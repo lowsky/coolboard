@@ -5,6 +5,9 @@ Both will always fit together, when you navigate through the git history
 for each section. 
 
 ---
+## Start and connect to specific server
+
+`REACT_APP_SERVER_HOST=coolboardsecure-djrgphjflv.now.sh  yarn start`
 
 ## Section 1: GraphQL basics
 
