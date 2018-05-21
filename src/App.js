@@ -32,9 +32,10 @@ import { FullVerticalContainer } from './components/FullVerticalContainer';
 import { ProfileHeader } from './components/ProfileHeader';
 import { GeneralErrorHandler } from './components/GeneralErrorHandler';
 
+const SRV_HOST_PORT_DOMAIN = process.env.REACT_APP_SERVER_HOST;
 // Create a Http link
 let httpLink = createHttpLink({
-  uri: 'http://localhost:4000',
+  uri: 'https://' + SRV_HOST_PORT_DOMAIN,
 });
 
 const middlewareAuthLink = new ApolloLink(
@@ -52,7 +53,7 @@ const middlewareAuthLink = new ApolloLink(
 
 // Create a WebSocket link:
 const wsLink = new WebSocketLink({
-  uri: `ws://localhost:4000`,
+  uri: `wss://${SRV_HOST_PORT_DOMAIN}`,
   options: {
     reconnect: true,
     connectionParams: {
