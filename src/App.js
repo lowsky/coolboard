@@ -20,14 +20,16 @@ import {
   Switch,
   Route,
   BrowserRouter,
+  Link,
 } from 'react-router-dom';
 
 import './App.css';
 
+import Auth from './auth/auth';
+import Auth0Callback from './components/Auth0Callback';
+
 import { CoolBoard } from './components/CoolBoard';
 import Boards from './components/Boards';
-import LoginForm from './components/LoginForm';
-import SignupForm from './components/SignupForm';
 import { FullVerticalContainer } from './components/FullVerticalContainer';
 import { ProfileHeader } from './components/ProfileHeader';
 import { GeneralErrorHandler } from './components/GeneralErrorHandler';
@@ -40,7 +42,7 @@ let httpLink = createHttpLink({
 
 const middlewareAuthLink = new ApolloLink(
   (operation, forward) => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('access_token');
 
     operation.setContext({
       headers: {
@@ -91,6 +93,21 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+const auth = new Auth(
+  result => console.log('auth result', result),
+  client
+);
+
+const handleAuthentication = (nextState, replace) => {
+  if (
+    /access_token|id_token|error/.test(
+      nextState.location.hash
+    )
+  ) {
+    auth.handleAuthentication();
+  }
+};
+
 class App extends Component {
   render() {
     return (
@@ -135,26 +152,27 @@ class App extends Component {
               <Route
                 exact
                 path="/login"
-                render={({ history }) => (
-                  <FullVerticalContainer>
-                    <LoginForm
-                      successfulLogin={token => {
-                        localStorage.setItem(
-                          'token',
-                          token
-                        );
-                        client
-                          .resetStore()
-                          .then(() => {
-                            history.push(`/`);
-                          });
-                      }}
-                    />
-                  </FullVerticalContainer>
-                )}
+                render={({ history }) => {
+                  auth.login();
+
+                  client.resetStore().then(() => {
+                    history.push(`/`);
+                  });
+
+                  return (
+                    <FullVerticalContainer>
+                      <p>
+                        Please wait, trying to authenticate ...
+                        If it did not work, you can go back to the
+                        <Link to="/">main page</Link>
+                      </p>
+                    </FullVerticalContainer>
+                  );
+                }}
               />
 
-              <Route
+              { /*
+                <Route
                 exact
                 path="/signup"
                 render={({ history }) => (
@@ -167,18 +185,34 @@ class App extends Component {
                   </FullVerticalContainer>
                 )}
               />
+                */
+              }
 
               <Route
                 exact
                 path="/logout"
                 render={({ history }) => {
                   localStorage.removeItem('token');
+
+                  auth.logout();
+
                   client.resetStore().then(() => {
                     history.push(`/`);
                   });
                   return (
-                    <p>Please wait, logging out ...</p>
+                    <p>
+                      Please wait, logging out ...
+                      You will be re-directed to the
+                      <Link to="/">main page</Link>
+                    </p>
                   );
+                }}
+              />
+              <Route
+                path="/callback"
+                render={props => {
+                  handleAuthentication(props);
+                  return <Auth0Callback {...props} />;
                 }}
               />
             </Switch>
