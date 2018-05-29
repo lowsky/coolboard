@@ -85,7 +85,7 @@ export default class Boards extends Component {
 
     return (
       <FullVerticalContainer>
-        <h1>List of Boards </h1>
+        <h1>Your Boards:</h1>
 
         <Query query={userWithBoardsQuery}>
           {({ loading, error, data, refetch }) => {
@@ -97,14 +97,22 @@ export default class Boards extends Component {
                 onCompleted={refetch}
                 mutation={deleteBoardMutation}>
                 {deleteBoard => (
-                  <BoardList
-                    boards={data.me.boards}
-                    deleteBoard={id => {
-                      return deleteBoard({
-                        variables: { id },
-                      });
-                    }}
-                  />
+                  <React.Fragment>
+                    {data.me.boards.length > 0 ?
+                      <BoardList
+                        boards={data.me.boards}
+                        deleteBoard={id => {
+                          return deleteBoard({
+                            variables: { id },
+                          });
+                        }}
+                      />
+                      :
+                      <span>
+                        There a no boards, yet. You need to create one ...
+                      </span>
+                    }
+                    </React.Fragment>
                 )}
               </Mutation>
             );

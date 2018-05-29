@@ -21,17 +21,53 @@ export const GeneralErrorHandler = ({
 
           if (notAuthErr) {
             return (
-              <Message error>
-                <strong>
-                  You need to be authenticated to see
-                  or change items.
-                </strong>
-                <p>Please click
-                  <Link to="/login">
-                    <span> this link </span>
-                  </Link> to log-in!
-                </p>
-              </Message>
+              <React.Fragment>
+                <Message error>
+                  <strong>
+                    You will need to be authenticated
+                    to see or create Boards or change
+                    any items.
+                  </strong>
+                  <p>
+                    Please click
+                    <Link to="/login">Log in</Link>
+                    to log-in!
+                  </p>
+                  <p></p>
+                </Message>
+
+                <div style={{
+                    border: 'solid 1px grey',
+                    background: '#ddd',
+                    textAlign: 'left',
+                    padding: '8px',
+                }}>
+                  <p>
+                    We are using the service of
+                    <a href="https://auth0.com/">
+                      Auth0
+                    </a>
+                    to allow signing-in via OAuth using
+                    Google/Twitter or email/password
+                    automatically.
+                  </p>
+                  <p>
+                    <b>About Privacy:</b>
+                    <br/>We will
+                    use your account information for
+                    authenticating
+                    and storing your boards under your
+                    account.
+                    <br/>
+                    We might rarely send any emails
+                    for notifying about
+                    changes related to providing
+                    this service (e.g. news, any case
+                    of outage or maintenance time) or
+                    updated to this.
+                  </p>
+                </div>
+              </React.Fragment>
             );
           }
           return (
