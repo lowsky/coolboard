@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 import './index.css';
 import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import unregisterServiceWorker from './registerServiceWorker';
 
 // Instead of integrating the
 // css here, with running webpack bundling every time while developing,
@@ -12,4 +13,4 @@ import registerServiceWorker from './registerServiceWorker';
 // import 'semantic-ui-css/semantic.min.css';
 
 ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+unregisterServiceWorker();
