@@ -219,7 +219,17 @@ class App extends Component {
                 path="/callback"
                 render={props => {
                   handleAuthentication(props);
-                  return <Auth0Callback {...props} />;
+                  return (
+                    <FullVerticalContainer>
+                      <ProfileHeader />
+                      <GeneralErrorHandler
+                        NetworkStatusNotifier={
+                          NetworkStatusNotifier
+                        }
+                      />
+                      <Auth0Callback {...props} />;
+                    </FullVerticalContainer>
+                  );
                 }}
               />
             </Switch>
