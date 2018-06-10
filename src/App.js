@@ -34,10 +34,15 @@ import { FullVerticalContainer } from './components/FullVerticalContainer';
 import { ProfileHeader } from './components/ProfileHeader';
 import { GeneralErrorHandler } from './components/GeneralErrorHandler';
 
-const SRV_HOST_PORT_DOMAIN = process.env.REACT_APP_SERVER_HOST;
+const node_env = process.env.NODE_ENV;
+const SRV_HOST_PORT_DOMAIN =
+  process.env.REACT_APP_SERVER_HOST;
 // Create a Http link
 let httpLink = createHttpLink({
-  uri: 'https://' + SRV_HOST_PORT_DOMAIN,
+  uri:
+    (node_env === 'production'
+      ? 'https://'
+      : 'http://') + SRV_HOST_PORT_DOMAIN,
 });
 
 const middlewareAuthLink = new ApolloLink(
@@ -55,7 +60,9 @@ const middlewareAuthLink = new ApolloLink(
 
 // Create a WebSocket link:
 const wsLink = new WebSocketLink({
-  uri: `wss://${SRV_HOST_PORT_DOMAIN}`,
+  uri:
+    (node_env === 'production' ? 'wss://' : 'ws://') +
+    SRV_HOST_PORT_DOMAIN,
   options: {
     reconnect: true,
     connectionParams: {
