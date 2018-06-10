@@ -26,7 +26,7 @@ const ProfileHeaderContainer = ({ children }) => (
       }}>
       <div style={{ flexGrow: 1, textAlign: 'start' }}>
         <Link to="/">
-          <span>Home</span>
+          <span>Home/Boards</span>
         </Link>
       </div>
 
