@@ -6,6 +6,7 @@ import {
   Container,
   Icon,
   Image,
+  Loader,
 } from 'semantic-ui-react';
 
 import { Link } from 'react-router-dom';
@@ -23,12 +24,17 @@ const ProfileHeaderContainer = ({ children }) => (
       style={{
         display: 'flex',
         alignItems: 'center',
+        placeContent: 'space-between',
       }}>
-      <div style={{ flexGrow: 1, textAlign: 'start' }}>
-        <Link to="/">
-          <span>Home/Boards</span>
+      <div>
+        <Link to="/boards">
+          <Icon size="big" name="list" />Boards
         </Link>
       </div>
+
+      <Link to="/">
+        <Icon size="big" name="question" />About
+      </Link>
 
       {children}
     </div>
@@ -41,6 +47,7 @@ const ProfileHeaderComponent = ({ data }) => {
   if (loading) {
     return (
       <ProfileHeaderContainer>
+        <Loader active />
       </ProfileHeaderContainer>
     );
   }
@@ -48,7 +55,9 @@ const ProfileHeaderComponent = ({ data }) => {
   if (error) {
     return (
       <ProfileHeaderContainer>
-        <Link to="/login">Log in</Link>
+        <Link to="/login">
+          <Icon size="big" name="sign in" />Log in
+        </Link>
       </ProfileHeaderContainer>
     );
   }
@@ -57,18 +66,20 @@ const ProfileHeaderComponent = ({ data }) => {
 
   return (
     <ProfileHeaderContainer>
-      <span>{name} </span>
-      {avatarUrl && (
-        <Image
-          src={avatarUrl}
-          avatar
-          style={{ margin: '0 4px' }}
-        />
-      )}
+      <div>
+        <span>{name} </span>
+        {avatarUrl && (
+          <Image
+            src={avatarUrl}
+            avatar
+            style={{ margin: '0 4px' }}
+          />
+        )}
 
-      <Link to="/logout">
-        <Icon name="log out" />Logout
-      </Link>
+        <Link to="/logout">
+          <Icon size="big" name="sign out" />Logout
+        </Link>
+      </div>
     </ProfileHeaderContainer>
   );
 };
