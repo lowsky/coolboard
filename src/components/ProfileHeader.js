@@ -11,7 +11,7 @@ import {
 
 import { Link } from 'react-router-dom';
 
-const ProfileHeaderContainer = ({ children }) => (
+const ProfileHeaderContainer = ({ children, isBoardsPage }) => (
   <Container
     fluid
     textAlign="right"
@@ -26,13 +26,18 @@ const ProfileHeaderContainer = ({ children }) => (
         alignItems: 'center',
         placeContent: 'space-between',
       }}>
-      <div>
-        <Link to="/boards">
-          <Icon size="big" name="list" />Boards
-        </Link>
-      </div>
-
+      {isBoardsPage &&
       <Link to="/">
+        <Icon size="big" name="home"/>Home
+      </Link>
+      }
+      {!isBoardsPage &&
+        <Link to="/boards">
+        <Icon size="big" name="list" />Boards
+        </Link>
+      }
+
+      <Link to="/about">
         <Icon size="big" name="question" />About
       </Link>
 
@@ -41,20 +46,21 @@ const ProfileHeaderContainer = ({ children }) => (
   </Container>
 );
 
-const ProfileHeaderComponent = ({ data }) => {
+const ProfileHeaderComponent = ({ data, isBoardsPage}) => {
   const { loading, error, me = {} } = data;
 
   if (loading) {
     return (
-      <ProfileHeaderContainer>
+      <ProfileHeaderContainer isBoardsPage={isBoardsPage}>
         <Loader active />
+        Loading user...
       </ProfileHeaderContainer>
     );
   }
 
   if (error) {
     return (
-      <ProfileHeaderContainer>
+      <ProfileHeaderContainer isBoardsPage={isBoardsPage}>
         <Link to="/login">
           <Icon size="big" name="sign in" />Log in
         </Link>
@@ -65,7 +71,7 @@ const ProfileHeaderComponent = ({ data }) => {
   let { avatarUrl, name } = me;
 
   return (
-    <ProfileHeaderContainer>
+    <ProfileHeaderContainer isBoardsPage={isBoardsPage}>
       <div>
         <span>{name} </span>
         {avatarUrl && (
