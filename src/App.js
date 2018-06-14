@@ -28,6 +28,8 @@ import './App.css';
 import Auth from './auth/auth';
 import Auth0Callback from './components/Auth0Callback';
 
+import About from './components/About';
+import Home from './components/Home';
 import { CoolBoard } from './components/CoolBoard';
 import Boards from './components/Boards';
 import { FullVerticalContainer } from './components/FullVerticalContainer';
@@ -124,10 +126,10 @@ class App extends Component {
             <Switch>
               <Route
                 exact
-                path="/"
+                path="/boards"
                 render={() => (
                   <FullVerticalContainer>
-                    <ProfileHeader />
+                    <ProfileHeader isBoardsPage />
                     <GeneralErrorHandler
                       NetworkStatusNotifier={
                         NetworkStatusNotifier
@@ -169,8 +171,9 @@ class App extends Component {
                   return (
                     <FullVerticalContainer>
                       <p>
-                        Please wait, trying to authenticate ...
-                        If it did not work, you can go back to the
+                        Please wait, trying to
+                        authenticate ... If it did not
+                        work, you can go back to the
                         <Link to="/">main page</Link>
                       </p>
                     </FullVerticalContainer>
@@ -178,7 +181,7 @@ class App extends Component {
                 }}
               />
 
-              { /*
+              {/*
                 <Route
                 exact
                 path="/signup"
@@ -192,8 +195,7 @@ class App extends Component {
                   </FullVerticalContainer>
                 )}
               />
-                */
-              }
+                */}
 
               <Route
                 exact
@@ -208,8 +210,8 @@ class App extends Component {
                   });
                   return (
                     <p>
-                      Please wait, logging out ...
-                      You will be re-directed to the
+                      Please wait, logging out ... You
+                      will be re-directed to the
                       <Link to="/">main page</Link>
                     </p>
                   );
@@ -231,6 +233,15 @@ class App extends Component {
                     </FullVerticalContainer>
                   );
                 }}
+              />
+              <Route
+                exact
+                path="/about"
+                render={() => <About />}
+              />
+              <Route
+                path="/"
+                render={() => <Home />}
               />
             </Switch>
           </ApolloProvider>

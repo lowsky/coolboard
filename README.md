@@ -7,7 +7,7 @@ for each section.
 ---
 ## Start and connect to specific server
 
-`REACT_APP_SERVER_HOST=coolboardsecure-djrgphjflv.now.sh  yarn start`
+`REACT_APP_SERVER_HOST=coolboard.now.sh  yarn start`
 
 ## Section 1: GraphQL basics
 

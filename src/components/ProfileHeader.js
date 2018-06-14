@@ -6,11 +6,12 @@ import {
   Container,
   Icon,
   Image,
+  Loader,
 } from 'semantic-ui-react';
 
 import { Link } from 'react-router-dom';
 
-const ProfileHeaderContainer = ({ children }) => (
+const ProfileHeaderContainer = ({ children, isBoardsPage }) => (
   <Container
     fluid
     textAlign="right"
@@ -23,32 +24,46 @@ const ProfileHeaderContainer = ({ children }) => (
       style={{
         display: 'flex',
         alignItems: 'center',
+        placeContent: 'space-between',
       }}>
-      <div style={{ flexGrow: 1, textAlign: 'start' }}>
-        <Link to="/">
-          <span>Home/Boards</span>
+      {isBoardsPage &&
+      <Link to="/">
+        <Icon size="big" name="home"/>Home
+      </Link>
+      }
+      {!isBoardsPage &&
+        <Link to="/boards">
+        <Icon size="big" name="list" />Boards
         </Link>
-      </div>
+      }
+
+      <Link to="/about">
+        <Icon size="big" name="question" />About
+      </Link>
 
       {children}
     </div>
   </Container>
 );
 
-const ProfileHeaderComponent = ({ data }) => {
+const ProfileHeaderComponent = ({ data, isBoardsPage}) => {
   const { loading, error, me = {} } = data;
 
   if (loading) {
     return (
-      <ProfileHeaderContainer>
+      <ProfileHeaderContainer isBoardsPage={isBoardsPage}>
+        <Loader active />
+        Loading user...
       </ProfileHeaderContainer>
     );
   }
 
   if (error) {
     return (
-      <ProfileHeaderContainer>
-        <Link to="/login">Log in</Link>
+      <ProfileHeaderContainer isBoardsPage={isBoardsPage}>
+        <Link to="/login">
+          <Icon size="big" name="sign in" />Log in
+        </Link>
       </ProfileHeaderContainer>
     );
   }
@@ -56,19 +71,21 @@ const ProfileHeaderComponent = ({ data }) => {
   let { avatarUrl, name } = me;
 
   return (
-    <ProfileHeaderContainer>
-      <span>{name} </span>
-      {avatarUrl && (
-        <Image
-          src={avatarUrl}
-          avatar
-          style={{ margin: '0 4px' }}
-        />
-      )}
+    <ProfileHeaderContainer isBoardsPage={isBoardsPage}>
+      <div>
+        <span>{name} </span>
+        {avatarUrl && (
+          <Image
+            src={avatarUrl}
+            avatar
+            style={{ margin: '0 4px' }}
+          />
+        )}
 
-      <Link to="/logout">
-        <Icon name="log out" />Logout
-      </Link>
+        <Link to="/logout">
+          <Icon size="big" name="sign out" />Logout
+        </Link>
+      </div>
     </ProfileHeaderContainer>
   );
 };
