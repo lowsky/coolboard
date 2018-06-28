@@ -38,11 +38,13 @@ import { GeneralErrorHandler } from './components/GeneralErrorHandler';
 
 const node_env = process.env.NODE_ENV;
 const SRV_HOST_PORT_DOMAIN =
-  process.env.REACT_APP_SERVER_HOST;
+  process.env.REACT_APP_SERVER_HOST
+const LOCALHOST =
+  SRV_HOST_PORT_DOMAIN.indexOf('localhost') > 0;
 // Create a Http link
 let httpLink = createHttpLink({
   uri:
-    (node_env === 'production'
+    (node_env === 'production' || !LOCALHOST
       ? 'https://'
       : 'http://') + SRV_HOST_PORT_DOMAIN,
 });
@@ -63,7 +65,7 @@ const middlewareAuthLink = new ApolloLink(
 // Create a WebSocket link:
 const wsLink = new WebSocketLink({
   uri:
-    (node_env === 'production' ? 'wss://' : 'ws://') +
+    (node_env === 'production' ||  !LOCALHOST ? 'wss://' : 'ws://') +
     SRV_HOST_PORT_DOMAIN,
   options: {
     reconnect: true,
