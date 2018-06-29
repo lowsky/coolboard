@@ -24,18 +24,21 @@ export default class About extends Component {
           <p>
             This is the Live Demo of the full
             application which we build in this
-            <Icon
-              name="video camera"
-              size="large"
-            />Video Course:
+            <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
+              <Icon
+                name="video camera"
+                size="large"
+              />Video Course:
+            </a>
           </p>
-          <b>
-            Hands-on Application building with GraphQL
-            and React
-          </b>
+          <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
+            <img src='./packt-page.png' height={141}/>
+          </a>
           <p>
             <b>Soon to be published</b> on{' '}
-            <a href="https://packtpub.com">Packt</a> !
+            <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
+              <img src='./packt-logo.svg' height={24} style={{verticalAlign:'bottom'}}/>
+            </a>
           </p>
           <Segment basic>
             <h2>What is it?</h2>
