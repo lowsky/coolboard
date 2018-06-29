@@ -39,7 +39,7 @@ import { GeneralErrorHandler } from './components/GeneralErrorHandler';
 const node_env = process.env.NODE_ENV;
 const SRV_HOST_PORT_DOMAIN =
   process.env.REACT_APP_SERVER_HOST
-const LOCALHOST =
+const LOCALHOST = !SRV_HOST_PORT_DOMAIN ||
   SRV_HOST_PORT_DOMAIN.indexOf('localhost') > 0;
 // Create a Http link
 let httpLink = createHttpLink({
