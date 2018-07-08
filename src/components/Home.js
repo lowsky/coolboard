@@ -46,33 +46,44 @@ export default class Home extends Component {
 
           <Segment basic>
             <p>
-              In this Course with >6 hours <Icon
-              name="video camera"
-              size="large"
-            />
-              you can learn how to build this whole application step-by-step.
+              <Icon name="video camera" size="large" />
+              In this Course with more than 6 hours you
+              can learn how to build this whole
+              application step-by-step.
             </p>
+            <h3 style={{ textAlign: 'center' }}>
+              <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
+                <b>
+                  Hands-on Application building with
+                  GraphQL and React
+                </b>
+              </a>
+            </h3>
             <p>
-              <b>
-                Hands-on Application building with GraphQL
-                and React
-              </b>
+              <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
+                <b>Soon</b> available on
+                <Image
+                  spaced
+                  inline
+                  src={packLogo}
+                  height={24}
+                  style={{ verticalAlign: 'bottom' }}
+                />
+              </a>!
             </p>
-
-            <p>
-              <b>soon</b> available on
-              <a href="https://packtpub.com">Packt</a>!
-            </p>
-
-            Follow <a href="https://www.twitter.com/rhosts">me on twitter <Icon
-            name="twitter"
-            size="large"
-          /></a> for updates if you want.
-
+            <Icon name="twitter" size="large" />
+            Follow{' '}
+            <a href="https://www.twitter.com/rhosts">
+              me on twitter
+            </a>{' '}
+            for updates if you want.
           </Segment>
 
           <p>
-            <Link to="/about">Some more details</Link> about this app.
+            <Link to="/about">
+              <Icon name="linkify" /> About this app,
+              more details.
+            </Link>
           </p>
         </Container>
       </FullVerticalContainer>
