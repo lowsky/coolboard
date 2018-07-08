@@ -3,6 +3,7 @@ import { Query, Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 
 import {
+  Container,
   Segment,
   Loader,
   Button,
@@ -17,6 +18,7 @@ const BoardListItem = ({ name, id, deleteBoard }) => {
   return (
     <div>
       <Link to={`/board/${id}`}>{name}</Link>
+      &nbsp;
       <Button
         onClick={() => deleteBoard(id)}
         size={'mini'}
@@ -97,8 +99,8 @@ export default class Boards extends Component {
                 onCompleted={refetch}
                 mutation={deleteBoardMutation}>
                 {deleteBoard => (
-                  <React.Fragment>
-                    {data.me.boards.length > 0 ?
+                  <Container fluid>
+                    {data.me.boards.length > 0 ? (
                       <BoardList
                         boards={data.me.boards}
                         deleteBoard={id => {
@@ -107,12 +109,13 @@ export default class Boards extends Component {
                           });
                         }}
                       />
-                      :
+                    ) : (
                       <span>
-                        There a no boards, yet. You need to create one ...
+                        There a no boards, yet. You
+                        need to create one ...
                       </span>
-                    }
-                    </React.Fragment>
+                    )}
+                  </Container>
                 )}
               </Mutation>
             );
