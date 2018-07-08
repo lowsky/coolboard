@@ -75,11 +75,7 @@ const ProfileHeaderComponent = ({ data, isBoardsPage}) => {
       <div>
         <span>{name} </span>
         {avatarUrl && (
-          <Image
-            src={avatarUrl}
-            avatar
-            style={{ margin: '0 4px' }}
-          />
+          <Image src={avatarUrl} avatar spaced />
         )}
 
         <Link to="/logout">
