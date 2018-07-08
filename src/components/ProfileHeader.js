@@ -11,7 +11,10 @@ import {
 
 import { Link } from 'react-router-dom';
 
-const ProfileHeaderContainer = ({ children, isBoardsPage }) => (
+const ProfileHeaderContainer = ({
+  children,
+  isBoardsPage,
+}) => (
   <Container
     fluid
     textAlign="right"
@@ -26,16 +29,16 @@ const ProfileHeaderContainer = ({ children, isBoardsPage }) => (
         alignItems: 'center',
         placeContent: 'space-between',
       }}>
-      {isBoardsPage &&
-      <Link to="/">
-        <Icon size="big" name="home"/>Home
-      </Link>
-      }
-      {!isBoardsPage &&
-        <Link to="/boards">
-        <Icon size="big" name="list" />Boards
+      {isBoardsPage && (
+        <Link to="/">
+          <Icon size="big" name="home" />Home
         </Link>
-      }
+      )}
+      {!isBoardsPage && (
+        <Link to="/boards">
+          <Icon size="big" name="list" />Boards
+        </Link>
+      )}
 
       <Link to="/about">
         <Icon size="big" name="question" />About
@@ -46,12 +49,16 @@ const ProfileHeaderContainer = ({ children, isBoardsPage }) => (
   </Container>
 );
 
-const ProfileHeaderComponent = ({ data, isBoardsPage}) => {
+const ProfileHeaderComponent = ({
+  data,
+  isBoardsPage,
+}) => {
   const { loading, error, me = {} } = data;
 
   if (loading) {
     return (
-      <ProfileHeaderContainer isBoardsPage={isBoardsPage}>
+      <ProfileHeaderContainer
+        isBoardsPage={isBoardsPage}>
         <Loader active />
         Loading user...
       </ProfileHeaderContainer>
@@ -60,7 +67,8 @@ const ProfileHeaderComponent = ({ data, isBoardsPage}) => {
 
   if (error) {
     return (
-      <ProfileHeaderContainer isBoardsPage={isBoardsPage}>
+      <ProfileHeaderContainer
+        isBoardsPage={isBoardsPage}>
         <Link to="/login">
           <Icon size="big" name="sign in" />Log in
         </Link>
@@ -71,7 +79,8 @@ const ProfileHeaderComponent = ({ data, isBoardsPage}) => {
   let { avatarUrl, name } = me;
 
   return (
-    <ProfileHeaderContainer isBoardsPage={isBoardsPage}>
+    <ProfileHeaderContainer
+      isBoardsPage={isBoardsPage}>
       <div>
         <span>{name} </span>
         {avatarUrl && (

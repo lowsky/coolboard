@@ -37,21 +37,22 @@ export default class Home extends Component {
             <p>
               Just
               <Link to="/login">
-                <Icon size="big" name="sign in"/>sign in here
+                <Icon size="big" name="sign in" />sign
+                in here
               </Link>
               and create
               <Link to="/boards">
-                <Icon size="big" name="list"/>your Boards
+                <Icon size="big" name="list" />your
+                Boards
               </Link>
-              and manage tasks together with others in real time!
+              and manage tasks together with others in
+              real time!
             </p>
           </Segment>
           <Segment basic>
-
             <h2>Screenshot</h2>
 
-            <Image bordered src="/screenshot.png"/>
-
+            <Image bordered src="/screenshot.png" />
           </Segment>
 
           <Segment basic>
