@@ -11,6 +11,9 @@ import { Link } from 'react-router-dom';
 
 import { FullVerticalContainer } from './FullVerticalContainer';
 
+import coolBoardLogo from './CoolBoardLogo.png';
+import packLogo from './packt-logo.svg';
+
 export default class Home extends Component {
   render() {
     return (
@@ -20,8 +23,15 @@ export default class Home extends Component {
             textAlign: 'left',
           }}>
           <h1>
-            <Image bordered src="/CoolBoardLogo.png" width="100px" circular inline/>
-            Welcome to CoolBoard </h1>
+            <Image
+              bordered
+              src={coolBoardLogo}
+              width="100px"
+              circular
+              inline
+            />
+            Welcome to CoolBoard{' '}
+          </h1>
           <Segment basic>
             <h2>How to get started?</h2>
             <p>
@@ -71,12 +81,14 @@ export default class Home extends Component {
                 />
               </a>!
             </p>
-            <Icon name="twitter" size="large" />
-            Follow{' '}
-            <a href="https://www.twitter.com/rhosts">
-              me on twitter
-            </a>{' '}
-            for updates if you want.
+            <p>
+              <Icon name="twitter" size="large" />
+              Follow
+              <a href="https://www.twitter.com/rhosts">
+                me on twitter
+              </a>
+              for updates if you want.
+            </p>
           </Segment>
 
           <p>
