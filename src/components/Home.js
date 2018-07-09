@@ -50,17 +50,10 @@ export default class Home extends Component {
             </p>
           </Segment>
           <Segment basic>
-            <h2>Screenshot</h2>
-
-            <Image bordered src="/screenshot.png" />
-          </Segment>
-
-          <Segment basic>
             <p>
               <Icon name="video camera" size="large" />
-              In this Course with more than 6 hours you
-              can learn how to build this whole
-              application step-by-step.
+              This is the live Demo of the App built in
+              this course:
             </p>
             <h3 style={{ textAlign: 'center' }}>
               <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
@@ -72,7 +65,7 @@ export default class Home extends Component {
             </h3>
             <p>
               <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
-                <b>Soon</b> available on
+                <b>Available for pre-order </b> on
                 <Image
                   spaced
                   inline
@@ -82,20 +75,17 @@ export default class Home extends Component {
                 />
               </a>!
             </p>
-            <p>
-              <Icon name="twitter" size="large" />
-              Follow
-              <a href="https://www.twitter.com/rhosts">
-                me on twitter
-              </a>
-              for updates if you want.
-            </p>
+          </Segment>
+          <Segment basic>
+            <h2>Screenshot</h2>
+
+            <Image bordered src="/screenshot.png" />
           </Segment>
 
           <p>
+            More details
             <Link to="/about">
-              <Icon name="linkify" /> About this app,
-              more details.
+              <Icon name="linkify" /> about this app,
             </Link>
           </p>
         </Container>
