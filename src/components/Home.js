@@ -11,6 +11,9 @@ import { Link } from 'react-router-dom';
 
 import { FullVerticalContainer } from './FullVerticalContainer';
 
+import coolBoardLogo from './CoolBoardLogo.png';
+import packLogo from './packt-logo.svg';
+
 export default class Home extends Component {
   render() {
     return (
@@ -20,59 +23,70 @@ export default class Home extends Component {
             textAlign: 'left',
           }}>
           <h1>
-            <Image bordered src="/CoolBoardLogo.png" width="100px" circular inline/>
-            Welcome to CoolBoard </h1>
+            <Image
+              bordered
+              src={coolBoardLogo}
+              width="100px"
+              circular
+              inline
+            />
+            Welcome to CoolBoard{' '}
+          </h1>
           <Segment basic>
             <h2>How to get started?</h2>
             <p>
               Just
               <Link to="/login">
-                <Icon size="big" name="sign in"/>sign in here
+                <Icon size="big" name="sign in" />sign
+                in here
               </Link>
               and create
               <Link to="/boards">
-                <Icon size="big" name="list"/>your Boards
+                <Icon size="big" name="list" />your
+                Boards
               </Link>
-              and manage tasks together with others in real time!
+              and manage tasks together with others in
+              real time!
             </p>
           </Segment>
           <Segment basic>
-
+            <p>
+              <Icon name="video camera" size="large" />
+              This is the live Demo of the App built in
+              this course:
+            </p>
+            <h3 style={{ textAlign: 'center' }}>
+              <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
+                <b>
+                  Hands-on Application building with
+                  GraphQL and React
+                </b>
+              </a>
+            </h3>
+            <p>
+              <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
+                <b>Available for pre-order </b> on
+                <Image
+                  spaced
+                  inline
+                  src={packLogo}
+                  height={24}
+                  style={{ verticalAlign: 'bottom' }}
+                />
+              </a>!
+            </p>
+          </Segment>
+          <Segment basic>
             <h2>Screenshot</h2>
 
-            <Image bordered src="/screenshot.png"/>
-
-          </Segment>
-
-          <Segment basic>
-            <p>
-              In this Course with >6 hours <Icon
-              name="video camera"
-              size="large"
-            />
-              you can learn how to build this whole application step-by-step.
-            </p>
-            <p>
-              <b>
-                Hands-on Application building with GraphQL
-                and React
-              </b>
-            </p>
-
-            <p>
-              <b>soon</b> available on
-              <a href="https://packtpub.com">Packt</a>!
-            </p>
-
-            Follow <a href="https://www.twitter.com/rhosts">me on twitter <Icon
-            name="twitter"
-            size="large"
-          /></a> for updates if you want.
-
+            <Image bordered src="/screenshot.png" />
           </Segment>
 
           <p>
-            <Link to="/about">Some more details</Link> about this app.
+            More details
+            <Link to="/about">
+              <Icon name="linkify" /> about this app,
+            </Link>
           </p>
         </Container>
       </FullVerticalContainer>

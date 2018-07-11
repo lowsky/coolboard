@@ -11,6 +11,9 @@ import { Link } from 'react-router-dom';
 import { FullVerticalContainer } from './FullVerticalContainer';
 import { ProfileHeader } from './ProfileHeader';
 
+import packLogo from './packt-logo.svg';
+import packLogoPng from './packt-page.png';
+
 export default class About extends Component {
   render() {
     return (
@@ -25,19 +28,21 @@ export default class About extends Component {
             This is the Live Demo of the full
             application which we build in this
             <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
-              <Icon
-                name="video camera"
-                size="large"
-              />Video Course:
+              <Icon name="video camera" size="large" />Video
+              Course:
             </a>
           </p>
           <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
-            <img src='./packt-page.png' height={141}/>
+            <img src={packLogoPng} height={141} />
           </a>
           <p>
             <b>Soon to be published</b> on{' '}
             <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
-              <img src='./packt-logo.svg' height={24} style={{verticalAlign:'bottom'}}/>
+              <img
+                src={packLogo}
+                height={24}
+                style={{ verticalAlign: 'bottom' }}
+              />
             </a>
           </p>
           <Segment basic>
@@ -59,7 +64,8 @@ export default class About extends Component {
             <p>
               You will need to Sign-up via email and{' '}
               <Link to="/login">
-                <Icon size="big" name="sign in"/>authenticate here
+                <Icon size="big" name="sign in" />authenticate
+                here
               </Link>
             </p>
             <p>
