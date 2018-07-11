@@ -12,6 +12,9 @@ body {
   background: lightgray;
   padding: 1em;
 }
+#footer p a i {
+  display: inline;
+}
 
 p a {
   padding-left: 0.5em;
