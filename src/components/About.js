@@ -36,7 +36,7 @@ export default class About extends Component {
             <img src={packLogoPng} height={141} />
           </a>
           <p>
-            <b>Soon to be published</b> on{' '}
+            <b>Published</b> on{' '}
             <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
               <img
                 src={packLogo}
