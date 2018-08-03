@@ -65,7 +65,7 @@ export default class Home extends Component {
             </h3>
             <p>
               <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
-                <b>Available for pre-order </b> on
+                <b>Available</b> at
                 <Image
                   spaced
                   inline
