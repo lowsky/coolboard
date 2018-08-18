@@ -231,7 +231,7 @@ class App extends Component {
                           NetworkStatusNotifier
                         }
                       />
-                      <Auth0Callback {...props} />;
+                      <Auth0Callback {...props} />
                     </FullVerticalContainer>
                   );
                 }}
