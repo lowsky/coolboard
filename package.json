@@ -20,7 +20,7 @@
     "react-apollo": "2.1.6",
     "react-apollo-network-status": "1.0.0",
     "react-dnd": "2.6.0",
-    "react-dnd-html5-backend": "2.6.0",
+    "react-dnd-html5-backend": "5.0.1",
     "react-dom": "^16.4.2",
     "react-router-dom": "4.3.1",
     "react-scripts": "1.1.4",
