@@ -3,8 +3,7 @@
 
 # redirect netlify sitename to your sitename for SEO purposes,
 # to avoid duplicate content.  Do this for http and https
-http://coolboard.netlify.com/* https://coolboard.netlify.com/:splat 301!
-
+https://deploy-preview-36--coolboard.netlify.com/* https://deploy-preview-36--coolboard.netlify.com/:splat 301!
 #http://coolboard.netlify.com/* http://www.example.com/:splat 301!
 
 # also redirect http to https for your custom domain.
