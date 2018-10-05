@@ -18,7 +18,7 @@
     "prop-types": "15.6.2",
     "react": "16.8.2",
     "react-apollo": "2.1.6",
-    "react-apollo-network-status": "1.0.0",
+    "react-apollo-network-status": "1.1.0",
     "react-dnd": "2.6.0",
     "react-dnd-html5-backend": "2.6.0",
     "react-dom": "16.8.2",
