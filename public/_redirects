@@ -22,10 +22,11 @@ http://coolboard.netlify.com/* https://coolboard.netlify.com/:splat 301!
 #http://coolboard.netlify.com/* http://www.example.com/:splat 301!
 # also redirect http to https for your custom domain.
 # Note that netlify automatically redirects to your custom domain from the bare domain (or vice versa), so you only need one rule here.
-https://coolboard.netlify.com/* https://coolboard.fun/:splat 301!
+https://coolboard.netlify.com/* https://www.coolboard.fun/:splat 301!
 
 #LATER http://www.example.com/* https://www.example.com/:splat 301!
-http://coolboard.fun/* https://coolboard.fun/:splat 301!
+http://coolboard.fun/* https://www.coolboard.fun/:splat 301!
+http://www.coolboard.fun/* https://www.coolboard.fun/:splat 301!
 
 /*  / 200
 
