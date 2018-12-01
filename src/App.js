@@ -38,15 +38,19 @@ import { GeneralErrorHandler } from './components/GeneralErrorHandler';
 
 const node_env = process.env.NODE_ENV;
 const SRV_HOST_PORT_DOMAIN =
-  process.env.REACT_APP_SERVER_HOST
-const LOCALHOST = !SRV_HOST_PORT_DOMAIN ||
-  SRV_HOST_PORT_DOMAIN.indexOf('localhost') > 0;
+  process.env.REACT_APP_SERVER_HOST;
+
+const IS_LOCALHOST =
+  !SRV_HOST_PORT_DOMAIN ||
+  SRV_HOST_PORT_DOMAIN.indexOf('localhost') >= 0;
 // Create a Http link
+
+const uri =
+  (node_env === 'production' || !IS_LOCALHOST
+    ? 'https://'
+    : 'http://') + SRV_HOST_PORT_DOMAIN;
 let httpLink = createHttpLink({
-  uri:
-    (node_env === 'production' || !LOCALHOST
-      ? 'https://'
-      : 'http://') + SRV_HOST_PORT_DOMAIN,
+  uri: uri,
 });
 
 const middlewareAuthLink = new ApolloLink(
@@ -63,10 +67,14 @@ const middlewareAuthLink = new ApolloLink(
 );
 
 // Create a WebSocket link:
+const websocketUrl =
+  (node_env === 'production' || !IS_LOCALHOST
+    ? 'wss://'
+    : 'ws://') + SRV_HOST_PORT_DOMAIN;
+console.log('websocketUrl', websocketUrl);
+
 const wsLink = new WebSocketLink({
-  uri:
-    (node_env === 'production' ||  !LOCALHOST ? 'wss://' : 'ws://') +
-    SRV_HOST_PORT_DOMAIN,
+  uri: websocketUrl,
   options: {
     reconnect: true,
     connectionParams: {
