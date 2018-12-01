@@ -17,6 +17,8 @@ http://deploy-preview-42--coolboard.netlify.com/* https://deploy-preview-42--coo
 http://deploy-preview-43--coolboard.netlify.com/* https://deploy-preview-43--coolboard.netlify.com/:splat 301!
 http://deploy-preview-44--coolboard.netlify.com/* https://deploy-preview-44--coolboard.netlify.com/:splat 301!
 http://deploy-preview-45--coolboard.netlify.com/* https://deploy-preview-45--coolboard.netlify.com/:splat 301!
+http://deploy-preview-46--coolboard.netlify.com/* https://deploy-preview-46--coolboard.netlify.com/:splat 301!
+http://deploy-preview-47--coolboard.netlify.com/* https://deploy-preview-47--coolboard.netlify.com/:splat 301!
 http://coolboard.netlify.com/* https://coolboard.netlify.com/:splat 301!
 
 #http://coolboard.netlify.com/* http://www.example.com/:splat 301!
