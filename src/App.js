@@ -109,13 +109,19 @@ const auth = new Auth(
   client
 );
 
-const handleAuthentication = (nextState, replace) => {
+const auth0CallbackHandler = (nextRoutingState, replace) => {
   if (
     /access_token|id_token|error/.test(
-      nextState.location.hash
+      nextRoutingState.location.hash
     )
   ) {
-    auth.handleAuthentication();
+    console.log('handling auth0 redirecting with token parameters. Parameters properly used. Good.');
+
+    console.log('Obsolete: auth.addHandleAuthenticationListener(); ');
+
+  }
+  else {
+    console.warn('Url for Auth0 callback was invoked without any of "access_token|id_token|error" in hash. see Url:', nextRoutingState.location);
   }
 };
 
@@ -222,9 +228,11 @@ class App extends Component {
               <Route
                 path="/callback"
                 render={props => {
-                  handleAuthentication(props);
+
+                  auth0CallbackHandler(props);
+
                   return (
-                    <FullVerticalContainer>
+                    <FullVerticalContainer data-cy="callback-full-container">
                       <ProfileHeader />
                       <GeneralErrorHandler
                         NetworkStatusNotifier={

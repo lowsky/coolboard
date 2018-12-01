@@ -33,7 +33,6 @@ class Auth {
   );
 
   constructor(cb, apolloClient) {
-    this.handleAuthentication();
     // binds functions to keep this context
     this.apolloClient = apolloClient;
     this.cb = cb.bind(this);
@@ -42,23 +41,27 @@ class Auth {
     this.isAuthenticated = this.isAuthenticated.bind(
       this
     );
+
+    this.addHandleAuthenticationListener();
   }
 
   login() {
     // Call the show method to display the widget.
-    console.log('lock', this.isAuthenticated());
+    console.log('Auth0lock: is authenticated?', this.isAuthenticated());
+
     this.lock.show();
   }
 
-  handleAuthentication() {
+  addHandleAuthenticationListener() {
     // Add a callback for Lock's `authenticated` event
     this.lock.on(
       'authenticated',
       this.setSession.bind(this)
     );
+
     // Add a callback for Lock's `authorization_error` event
     this.lock.on('authorization_error', err => {
-      console.log(err);
+      console.error('Error while authentication via auth0', err);
       alert(
         `Sorry, Error: ${
           err.error
@@ -115,16 +118,18 @@ class Auth {
         variables: { idToken },
       })
       .then(res => {
+        console.log(`authentication-mutation result: ${res}`);
         if (
           window.location.href.includes(`callback`)
         ) {
           window.location.href = '/';
         } else {
-          window.location.reload();
+          console.log(`ignored for testing purpose: 
+          window.location.reload();`);
         }
       })
       .catch(err =>
-        console.log(
+        console.error(
           'Sign in or create account error: ',
           err
         )
@@ -136,7 +141,7 @@ class Auth {
     localStorage.removeItem('access_token');
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
-
+    console.log('logged-out, removed token from localStorage.');
     window.location.reload();
   }
 
@@ -146,7 +151,11 @@ class Auth {
     const expiresAt = JSON.parse(
       localStorage.getItem('expires_at')
     );
-    return new Date().getTime() < expiresAt;
+    const isNotExpired = new Date().getTime() < expiresAt;
+
+    console.log(`AUTH: is expired? - ${ !isNotExpired}`);
+
+    return isNotExpired;
   }
 }
 
