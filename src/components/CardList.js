@@ -29,14 +29,18 @@ class CardListWithoutDnd extends React.Component {
     const { list = {}, loading, error } = cardList;
 
     if (error) {
-      return <div>ERROR! {error.message} </div>;
+      return (
+        <div data-cy="card-list-error">
+          ERROR! {error.message}{' '}
+        </div>
+      );
     }
 
     // use name injected as default if not yet available
     let { name = this.props.name, cards = [] } = list;
 
     return (
-      <div>
+      <div data-cy="card-list">
         {connectDropTarget(
           <div>
             <ListContainer
@@ -46,7 +50,10 @@ class CardListWithoutDnd extends React.Component {
                   : 'lightgrey',
               }}>
               <CardListHeader name={name}>
-                <CardListButton onButtonClick={() => deleteListWithId(id)}>
+                <CardListButton
+                  onButtonClick={() =>
+                    deleteListWithId(id)
+                  }>
                   <Icon name="trash" />
                 </CardListButton>
               </CardListHeader>
@@ -67,7 +74,10 @@ class CardListWithoutDnd extends React.Component {
                 </InnerScrollContainer>
               )}
 
-              <CardListButton onButtonClick={() => addCardWithName(id)}>
+              <CardListButton
+                onButtonClick={() =>
+                  addCardWithName(id)
+                }>
                 <Icon name="plus" />
                 Add a card
               </CardListButton>
@@ -150,6 +160,7 @@ export const CardList = graphql(
 
 const CardListHeader = ({ name, children }) => (
   <div
+    data-cy="card-list-header"
     style={{
       display: 'flex',
       flexDirection: 'row',
@@ -182,6 +193,7 @@ const CardListHeader = ({ name, children }) => (
 const InnerScrollContainer = ({ children }) => {
   return (
     <div
+      data-cy="inner-scroll-container"
       style={{
         flexShrink: 1,
         flexGrow: 0,
@@ -194,6 +206,7 @@ const InnerScrollContainer = ({ children }) => {
 
 const CardsContainer = ({ children }) => (
   <div
+    data-cy="cards-container"
     style={{
       border: '1em',
       display: 'flex',
@@ -205,6 +218,7 @@ const CardsContainer = ({ children }) => (
 
 const ListContainer = ({ children, style }) => (
   <div
+    data-cy="list-container"
     style={{
       backgroundColor: 'lightgrey',
       padding: '0.4em',

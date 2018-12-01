@@ -16,7 +16,7 @@ import { CreateBoardModal } from './CreateBoardModal';
 
 const BoardListItem = ({ name, id, deleteBoard }) => {
   return (
-    <div>
+    <div data-cy="board-list-item">
       <Link to={`/board/${id}`}>{name}</Link>
       &nbsp;
       <Button

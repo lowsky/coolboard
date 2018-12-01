@@ -32,7 +32,7 @@ class SignUpForm extends Component {
 
   render() {
     return (
-      <div>
+      <div data-cy="signup-form">
         <h1>Sign Up</h1>
         <AuthForm
           signUp

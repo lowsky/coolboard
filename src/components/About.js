@@ -17,7 +17,7 @@ import packLogoPng from './packt-page.png';
 export default class About extends Component {
   render() {
     return (
-      <FullVerticalContainer>
+      <FullVerticalContainer data-cy="about-full-container">
         <ProfileHeader />
         <Container
           style={{

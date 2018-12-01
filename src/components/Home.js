@@ -17,7 +17,7 @@ import packLogo from './packt-logo.svg';
 export default class Home extends Component {
   render() {
     return (
-      <FullVerticalContainer>
+      <FullVerticalContainer data-cy="home-container">
         <Container
           style={{
             textAlign: 'left',

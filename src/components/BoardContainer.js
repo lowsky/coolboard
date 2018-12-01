@@ -27,6 +27,7 @@ class BoardContainerInner extends React.Component {
         Board: {boardName}
       </Header>
       <div
+        data-cy="board-container-inner"
         style={{
           textAlign: 'left',
           backgroundColor: 'blue',
