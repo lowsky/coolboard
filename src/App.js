@@ -38,15 +38,19 @@ import { GeneralErrorHandler } from './components/GeneralErrorHandler';
 
 const node_env = process.env.NODE_ENV;
 const SRV_HOST_PORT_DOMAIN =
-  process.env.REACT_APP_SERVER_HOST
-const LOCALHOST = !SRV_HOST_PORT_DOMAIN ||
-  SRV_HOST_PORT_DOMAIN.indexOf('localhost') > 0;
+  process.env.REACT_APP_SERVER_HOST;
+
+const IS_LOCALHOST =
+  !SRV_HOST_PORT_DOMAIN ||
+  SRV_HOST_PORT_DOMAIN.indexOf('localhost') >= 0;
 // Create a Http link
+
+const uri =
+  (node_env === 'production' || !IS_LOCALHOST
+    ? 'https://'
+    : 'http://') + SRV_HOST_PORT_DOMAIN;
 let httpLink = createHttpLink({
-  uri:
-    (node_env === 'production' || !LOCALHOST
-      ? 'https://'
-      : 'http://') + SRV_HOST_PORT_DOMAIN,
+  uri: uri,
 });
 
 const middlewareAuthLink = new ApolloLink(
@@ -63,10 +67,14 @@ const middlewareAuthLink = new ApolloLink(
 );
 
 // Create a WebSocket link:
+const websocketUrl =
+  (node_env === 'production' || !IS_LOCALHOST
+    ? 'wss://'
+    : 'ws://') + SRV_HOST_PORT_DOMAIN;
+console.log('websocketUrl', websocketUrl);
+
 const wsLink = new WebSocketLink({
-  uri:
-    (node_env === 'production' ||  !LOCALHOST ? 'wss://' : 'ws://') +
-    SRV_HOST_PORT_DOMAIN,
+  uri: websocketUrl,
   options: {
     reconnect: true,
     connectionParams: {
@@ -109,13 +117,19 @@ const auth = new Auth(
   client
 );
 
-const handleAuthentication = (nextState, replace) => {
+const auth0CallbackHandler = (nextRoutingState, replace) => {
   if (
     /access_token|id_token|error/.test(
-      nextState.location.hash
+      nextRoutingState.location.hash
     )
   ) {
-    auth.handleAuthentication();
+    console.log('handling auth0 redirecting with token parameters. Parameters properly used. Good.');
+
+    console.log('Obsolete: auth.addHandleAuthenticationListener(); ');
+
+  }
+  else {
+    console.warn('Url for Auth0 callback was invoked without any of "access_token|id_token|error" in hash. see Url:', nextRoutingState.location);
   }
 };
 
@@ -130,7 +144,7 @@ class App extends Component {
                 exact
                 path="/boards"
                 render={() => (
-                  <FullVerticalContainer>
+                  <FullVerticalContainer data-cy="boards-full-container">
                     <ProfileHeader isBoardsPage />
                     <GeneralErrorHandler
                       NetworkStatusNotifier={
@@ -146,7 +160,7 @@ class App extends Component {
                 exact
                 path="/board/:id"
                 render={({ match }) => (
-                  <FullVerticalContainer>
+                  <FullVerticalContainer data-cy="board-full-container">
                     <ProfileHeader />
                     <GeneralErrorHandler
                       NetworkStatusNotifier={
@@ -171,7 +185,7 @@ class App extends Component {
                   });
 
                   return (
-                    <FullVerticalContainer>
+                    <FullVerticalContainer data-cy="login-full-container">
                       <p>
                         Please wait, trying to
                         authenticate ... If it did not
@@ -211,7 +225,7 @@ class App extends Component {
                     history.push(`/`);
                   });
                   return (
-                    <p>
+                    <p data-cy="login-in-progress">
                       Please wait, logging out ... You
                       will be re-directed to the
                       <Link to="/">main page</Link>
@@ -222,9 +236,11 @@ class App extends Component {
               <Route
                 path="/callback"
                 render={props => {
-                  handleAuthentication(props);
+
+                  auth0CallbackHandler(props);
+
                   return (
-                    <FullVerticalContainer>
+                    <FullVerticalContainer data-cy="callback-full-container">
                       <ProfileHeader />
                       <GeneralErrorHandler
                         NetworkStatusNotifier={

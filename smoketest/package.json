@@ -1,0 +1,14 @@
+{
+  "name": "coolboard-smoketests",
+  "version": "0.1.0",
+  "description": "run some browser tests via cypress",
+  "private": true,
+  "dependencies": {
+    "cypress": "3.1.2"
+  },
+  "scripts": {
+    "cy": "cypress",
+    "test": "npm run cy run"
+  },
+  "devDependencies": {}
+}

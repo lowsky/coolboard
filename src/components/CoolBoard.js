@@ -26,7 +26,7 @@ class Board extends React.Component {
     const { loading, error, board } = boardQuery;
 
     if (loading) {
-      return <div>Loading Board</div>;
+      return <div data-cy="board-container-loading">Loading Board</div>;
     }
 
     if (error) {
@@ -111,7 +111,7 @@ class Board extends React.Component {
       );
     }
 
-    return <div>Board does not exist.</div>;
+    return <div data-cy="board-container-error">Board does not exist.</div>;
   }
 
   componentWillMount() {

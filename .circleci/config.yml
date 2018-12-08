@@ -1,0 +1,59 @@
+# Orb 'cypress-io/cypress@1.0.1' resolved to 'cypress-io/cypress@1.0.1'
+version: 2
+jobs:
+  cypress/run:
+    docker:
+      - image: cypress/base:10
+    parallelism: 1
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - cache-{{ .Branch }}-{{ checksum "smoketest/package.json" }}
+      - run:
+          name: Npm CI
+          command: cd smoketest ; npm ci
+      - save_cache:
+          key: cache-{{ .Branch }}-{{ checksum "smoketest/package.json" }}
+          paths:
+            - ~/.npm
+            - ~/.cache
+      - run:
+          name: cypress verify
+          command: cd smoketest ; npx cypress verify
+      - run:
+          name: cypress cache path
+          command: cd smoketest ; npx cypress cache path
+      - run:
+          name: run cypress
+          command: cd smoketest ; npx cypress run --reporter junit --reporter-options mochaFile=test-results.xml,toConsole=true
+      - store_test_results:
+          path: smoketest
+      - store_artifacts:
+          root: /root/project/smoketest/cypress
+          path: /root/project/smoketest/cypress/screenshots
+          destination: screenshots
+      - store_artifacts:
+          path: /root/project/smoketest/cypress/videos
+          destination: videos
+
+workflows:
+  build:
+    jobs:
+      - cypress/run
+  version: 2
+
+# Original config.yml file:
+# version: 2.1
+# orbs:
+#   cypress: cypress-io/cypress@1.0.1
+#
+# # simplest use case - do everything in a single job
+# workflows:
+#   #   build:
+#   #     jobs:
+#   #       - cypress/run
+#   build:
+#     jobs:
+#       - cypress/run:
+#           command: 'cd smoketest ; yarn install ; yarn test'

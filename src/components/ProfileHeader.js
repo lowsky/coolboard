@@ -24,6 +24,7 @@ const ProfileHeaderContainer = ({
       background: 'lightgrey',
     }}>
     <div
+      data-cy="profil-header"
       style={{
         display: 'flex',
         alignItems: 'center',

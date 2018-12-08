@@ -39,7 +39,7 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <div>
+      <div data-cy="login-form">
         <h1>Login</h1>
         <AuthForm
           onSubmit={formData =>
