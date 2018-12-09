@@ -1,7 +1,7 @@
 # Orb 'cypress-io/cypress@1.0.1' resolved to 'cypress-io/cypress@1.0.1'
 version: 2
 jobs:
-  cypress/run:
+  smoketest:
     docker:
       - image: cypress/base:10
     parallelism: 1
@@ -26,11 +26,10 @@ jobs:
           command: cd smoketest ; npx cypress cache path
       - run:
           name: run cypress
-          command: cd smoketest ; npx cypress run --reporter junit --reporter-options mochaFile=test-results.xml,toConsole=true
+          command: cd smoketest ; mkdir -p cypress/results ; npx cypress run --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
       - store_test_results:
-          path: smoketest
+          path: smoketest/cypress/results
       - store_artifacts:
-          root: /root/project/smoketest/cypress
           path: /root/project/smoketest/cypress/screenshots
           destination: screenshots
       - store_artifacts:
@@ -40,7 +39,7 @@ jobs:
 workflows:
   build:
     jobs:
-      - cypress/run
+      - smoketest
   version: 2
 
 # Original config.yml file:
