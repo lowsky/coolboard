@@ -11,12 +11,11 @@ let auth0LockInputPassword =
 // needs prefix when set per env: CYPRESS_USER_PASSWORD
 const password = Cypress.env('USER_PASSWORD');
 
-// needs prefix when set per env: CYPRESS_TARGET_URL
-let TargetUrl = 'https://deploy-preview-47--coolboard.netlify.com/' || Cypress.env('TARGET_URL');
-// let TargetUrl = 'http://localhost:3000/';
+// will be set by cypress.json, or via env: CYPRESS_baseUrl
+let TargetUrl = Cypress.config('baseUrl');
 
 const gotoBoards = () =>
-  cy.visit(TargetUrl+ "boards")
+  cy.visit(TargetUrl+ "/boards")
     .url()
     .should('include', 'boards');
 
@@ -29,6 +28,8 @@ function clickLogin() {
 
 beforeEach(() => {
   console.clear();
+  assert(TargetUrl.endsWith("coolboard.netlify.com") || TargetUrl.endsWith("coolboard.netlify.com") , 'Wrong domain! only localhost or coolboard.netlify.com are allowed, but not: '+TargetUrl);
+  cy.log(`Testing this target url: ${TargetUrl}`);
   cy.clearLocalStorage();
   cy.clearCookies();
 });
@@ -60,7 +61,7 @@ function fillLoginForm() {
     //.should('include', 'callback')
     .url(LogAndWaitLong)
     .should('not.include', 'callback')
-    .should('equal', TargetUrl).
+    .should('equal', TargetUrl +  '/').
     wait(2000)
 }
 
