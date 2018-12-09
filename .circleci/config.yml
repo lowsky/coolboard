@@ -26,7 +26,12 @@ jobs:
           command: cd smoketest ; npx cypress cache path
       - run:
           name: run cypress
-          command: cd smoketest ; mkdir -p cypress/results ; npx cypress run --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
+          command: |
+            if [ "X${CYPRESS_baseUrl}" == "X" ]; then
+              echo no CYPRESS_baseUrl set, so skipping running tests
+            else
+              cd smoketest ; mkdir -p cypress/results ; npx cypress run --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
+            fi
       - store_test_results:
           path: smoketest/cypress/results
       - store_artifacts:
