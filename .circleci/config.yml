@@ -1,7 +1,7 @@
 # Orb 'cypress-io/cypress@1.0.1' resolved to 'cypress-io/cypress@1.0.1'
 version: 2
 jobs:
-  smoketest:
+  build:
     docker:
       - image: cypress/base:10
     parallelism: 1
@@ -39,7 +39,7 @@ jobs:
 workflows:
   build:
     jobs:
-      - smoketest
+      - build
   version: 2
 
 # Original config.yml file:
