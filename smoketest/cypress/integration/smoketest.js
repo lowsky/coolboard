@@ -28,7 +28,14 @@ function clickLogin() {
 
 beforeEach(() => {
   console.clear();
-  assert(TargetUrl.endsWith("coolboard.netlify.com") || TargetUrl.endsWith("coolboard.netlify.com") , 'Wrong domain! only localhost or coolboard.netlify.com are allowed, but not: '+TargetUrl);
+  assert(
+    TargetUrl.endsWith('coolboard.netlify.com') ||
+      TargetUrl.endsWith('coolboard.netlify.com') ||
+      TargetUrl.endsWith('www.coolboard.fun'),
+    `Wrong domain! ' +
+    only localhost, coolboard.fun or coolboard.netlify.com are allowed, but not: 
+      ${TargetUrl}`
+  );
   cy.log(`Testing this target url: ${TargetUrl}`);
   cy.clearLocalStorage();
   cy.clearCookies();
@@ -54,11 +61,11 @@ function fillLoginForm() {
   cy.get(auth0LockInputPassword).type(password, {
     log: false,
   });
-  return cy.get('#auth0-lock-container-1 > div > div.auth0-lock-center > form > div > div > button > span')
+  return cy.get('button.auth0-lock-submit')
     .click()
 
     .url(LogAndWaitLong)
-    //.should('include', 'callback')
+    // still needed? .should('include', 'callback')
     .url(LogAndWaitLong)
     .should('not.include', 'callback')
     .should('equal', TargetUrl +  '/').
