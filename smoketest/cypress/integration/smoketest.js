@@ -29,11 +29,11 @@ function clickLogin() {
 beforeEach(() => {
   console.clear();
   assert(
-    TargetUrl.endsWith('coolboard.netlify.com') ||
+    TargetUrl.endsWith('localhost:3000') ||
       TargetUrl.endsWith('coolboard.netlify.com') ||
       TargetUrl.endsWith('www.coolboard.fun'),
     `Wrong domain! ' +
-    only localhost, coolboard.fun or coolboard.netlify.com are allowed, but not: 
+    only localhost:3000, coolboard.fun or coolboard.netlify.com are allowed, but not: 
       ${TargetUrl}`
   );
   cy.log(`Testing this target url: ${TargetUrl}`);
