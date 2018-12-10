@@ -19,6 +19,14 @@ http://deploy-preview-44--coolboard.netlify.com/* https://deploy-preview-44--coo
 http://deploy-preview-45--coolboard.netlify.com/* https://deploy-preview-45--coolboard.netlify.com/:splat 301!
 http://deploy-preview-46--coolboard.netlify.com/* https://deploy-preview-46--coolboard.netlify.com/:splat 301!
 http://deploy-preview-47--coolboard.netlify.com/* https://deploy-preview-47--coolboard.netlify.com/:splat 301!
+http://deploy-preview-48--coolboard.netlify.com/* https://deploy-preview-48--coolboard.netlify.com/:splat 301!
+http://deploy-preview-49--coolboard.netlify.com/* https://deploy-preview-49--coolboard.netlify.com/:splat 301!
+http://deploy-preview-50--coolboard.netlify.com/* https://deploy-preview-50--coolboard.netlify.com/:splat 301!
+http://deploy-preview-51--coolboard.netlify.com/* https://deploy-preview-51--coolboard.netlify.com/:splat 301!
+http://deploy-preview-52--coolboard.netlify.com/* https://deploy-preview-52--coolboard.netlify.com/:splat 301!
+http://deploy-preview-53--coolboard.netlify.com/* https://deploy-preview-53--coolboard.netlify.com/:splat 301!
+http://deploy-preview-54--coolboard.netlify.com/* https://deploy-preview-54--coolboard.netlify.com/:splat 301!
+http://deploy-preview-55--coolboard.netlify.com/* https://deploy-preview-55--coolboard.netlify.com/:splat 301!
 http://coolboard.netlify.com/* https://coolboard.netlify.com/:splat 301!
 
 #http://coolboard.netlify.com/* http://www.example.com/:splat 301!
@@ -31,4 +39,3 @@ http://coolboard.fun/* https://www.coolboard.fun/:splat 301!
 http://www.coolboard.fun/* https://www.coolboard.fun/:splat 301!
 
 /*  / 200
-

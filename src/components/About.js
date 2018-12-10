@@ -33,7 +33,7 @@ export default class About extends Component {
             </a>
           </p>
           <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
-            <img src={packLogoPng} height={141} />
+            <img src={packLogoPng} height={141} alt="Packt Publishing logo" />
           </a>
           <p>
             <b>Published</b> on{' '}
@@ -42,6 +42,7 @@ export default class About extends Component {
                 src={packLogo}
                 height={24}
                 style={{ verticalAlign: 'bottom' }}
+                alt="Packt Publishing logo"
               />
             </a>
           </p>

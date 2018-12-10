@@ -1,7 +1,27 @@
 # Orb 'cypress-io/cypress@1.0.1' resolved to 'cypress-io/cypress@1.0.1'
 version: 2
 jobs:
-  cypress/run:
+  check:
+    docker:
+      - image:  circleci/node:11.4.0-stretch-browsers
+    parallelism: 1
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - cache-{{ .Branch }}-{{ checksum "package-lock.json" }}
+      - run:
+          name: web client - npm CI
+          command: npm ci
+      - save_cache:
+          key: cache-{{ .Branch }}-{{ checksum "package-lock.json" }}
+          paths:
+            - ~/.npm
+            - ~/.cache
+      - run:
+          name: web client - build
+          command: npm run build
+  build:
     docker:
       - image: cypress/base:10
     parallelism: 1
@@ -26,11 +46,15 @@ jobs:
           command: cd smoketest ; npx cypress cache path
       - run:
           name: run cypress
-          command: cd smoketest ; npx cypress run --reporter junit --reporter-options mochaFile=test-results.xml,toConsole=true
+          command: |
+            if [ "X${CYPRESS_baseUrl}" == "X" ]; then
+              echo no CYPRESS_baseUrl set, so skipping running tests
+            else
+              cd smoketest ; mkdir -p cypress/results ; npx cypress run --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
+            fi
       - store_test_results:
-          path: smoketest
+          path: smoketest/cypress/results
       - store_artifacts:
-          root: /root/project/smoketest/cypress
           path: /root/project/smoketest/cypress/screenshots
           destination: screenshots
       - store_artifacts:
@@ -40,20 +64,8 @@ jobs:
 workflows:
   build:
     jobs:
-      - cypress/run
+      - check
+  smoke:
+    jobs:
+      - build
   version: 2
-
-# Original config.yml file:
-# version: 2.1
-# orbs:
-#   cypress: cypress-io/cypress@1.0.1
-#
-# # simplest use case - do everything in a single job
-# workflows:
-#   #   build:
-#   #     jobs:
-#   #       - cypress/run
-#   build:
-#     jobs:
-#       - cypress/run:
-#           command: 'cd smoketest ; yarn install ; yarn test'
