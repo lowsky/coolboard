@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 
 import { FullVerticalContainer } from './FullVerticalContainer';
 
-import coolBoardLogo from './CoolBoardLogo.png';
+import coolBoardLogo100 from './CoolBoardLogo100.png';
 import packLogo from './packt-logo.svg';
 
 export default class Home extends Component {
@@ -25,7 +25,7 @@ export default class Home extends Component {
           <h1>
             <Image
               bordered
-              src={coolBoardLogo}
+              src={coolBoardLogo100}
               width="100px"
               circular
               inline

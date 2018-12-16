@@ -10,6 +10,12 @@
       font-family: sans-serif;
     }
   </style>
+  <!-- start Mixpanel --><script type="text/javascript">(function(c,a){if(!a.__SV){var b=window;try{var d,m,j,k=b.location,f=k.hash;d=function(a,b){return(m=a.match(RegExp(b+"=([^&]*)")))?m[1]:null};f&&d(f,"state")&&(j=JSON.parse(decodeURIComponent(d(f,"state"))),"mpeditor"===j.action&&(b.sessionStorage.setItem("_mpcehash",f),history.replaceState(j.desiredHash||"",c.title,k.pathname+k.search)))}catch(n){}var l,h;window.mixpanel=a;a._i=[];a.init=function(b,d,g){function c(b,i){var a=i.split(".");2==a.length&&(b=b[a[0]],i=a[1]);b[i]=function(){b.push([i].concat(Array.prototype.slice.call(arguments,
+  0)))}}var e=a;"undefined"!==typeof g?e=a[g]=[]:g="mixpanel";e.people=e.people||[];e.toString=function(b){var a="mixpanel";"mixpanel"!==g&&(a+="."+g);b||(a+=" (stub)");return a};e.people.toString=function(){return e.toString(1)+".people (stub)"};l="disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" ");
+  for(h=0;h<l.length;h++)c(e,l[h]);var f="set set_once union unset remove delete".split(" ");e.get_group=function(){function a(c){b[c]=function(){call2_args=arguments;call2=[c].concat(Array.prototype.slice.call(call2_args,0));e.push([d,call2])}}for(var b={},d=["get_group"].concat(Array.prototype.slice.call(arguments,0)),c=0;c<f.length;c++)a(f[c]);return b};a._i.push([b,d,g])};a.__SV=1.2;b=c.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?
+  MIXPANEL_CUSTOM_LIB_URL:"file:"===c.location.protocol&&"//cdn4.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn4.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn4.mxpnl.com/libs/mixpanel-2-latest.min.js";d=c.getElementsByTagName("script")[0];d.parentNode.insertBefore(b,d)}})(document,window.mixpanel||[]);
+mixpanel.init("4c4706d7993c599ca58fabe6d7013cf1");</script>
+  <!-- end Mixpanel -->
 </head>
 <body>
 <h1>Privacy Policy</h1>
@@ -30,7 +36,9 @@
 
 <h2>Data Collection on our website</h2>
 <h3>Analytics and third-party tools</h3>
-<p>Coolboard don't use any trackers or advertisement itself.
+<p>For getting information about which other web pages have links to Coolboard, we are using <b>mixpanel</b> which is
+  full GDPR compliant. For further details, please see their pages about <a href="https://mixpanel.com/legal/dpa/">DPA</a> or
+  their <a href="https://mixpanel.com/legal/terms-of-use/">terms-of-use</a>.
 </p>
 <p>
   When visiting our website, statistical analyses may be made of your surfing behavior
@@ -56,19 +64,22 @@
 
 <p>
 If you like to work with this demo application, you need to supply some information for createing your own account by signing-in via a pop-up dialog using <a href="https://auth0.com/">Auth0</a> service.
-The supplied data includes:
+The supplied data include:
 <br>
 name, first name, avatar-url, email
 <br>
 
-All this information could be visible in this application to other users if you share your create board with them.
+All this information could be visible in this application to other users, - if you share your created board with them or - enter data on any other shared board.
+
 They are also stored by auth0 and prisma to provide this service and is subject to the
 <a href="https://auth0.com/">Auth0 Privacy Statement</a> and
 <a href="https://www.netlify.com/privacy/">Netlify Privacy Policy</a>.
 Please see their Statement and rules for details.
-Furthermore these data are transfered by a backend service running on the Now Platform by ZEIT, Inc with their
-<a href="https://zeit.co/privacy">Privacy Policy</a>
-Your account data, and additionally all the board data, is stored in the Prisma Cloud database, see <a href="https://github.com/prismagraphql/content/blob/master/static/legal/terms.md">there privacy terms</a>
+<br>
+Furthermore these data are transferred by a backend service running on the Now Platform by ZEIT, Inc with their
+<a href="https://zeit.co/privacy">Privacy Policy</a>.
+<br>
+Your account data, and additionally all the board data, is stored in the Prisma Cloud(EU) database, see <a href="https://github.com/prismagraphql/content/blob/master/static/legal/terms.md">there privacy terms</a>.
 </p>
 
 <p>Our team members could lookup this information in case of any technical issues to avoid data loss or when we need to transfer your data to a different page
@@ -77,5 +88,7 @@ Your account data, and additionally all the board data, is stored in the Prisma 
 
 <h2>Contact</h2>
 <p>In case of any questions, do not hesitate to ask for suppor by <b>E-Mail:</b> coolboard @ protonmail.com</p>
+
+<script type="text/javascript"> mixpanel.track("/privacy");</script>
 
 </body>

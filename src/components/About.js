@@ -12,7 +12,7 @@ import { FullVerticalContainer } from './FullVerticalContainer';
 import { ProfileHeader } from './ProfileHeader';
 
 import packLogo from './packt-logo.svg';
-import packLogoPng from './packt-page.png';
+import packLogoSmallPng from './packt-page-v141.png';
 
 export default class About extends Component {
   render() {
@@ -33,7 +33,7 @@ export default class About extends Component {
             </a>
           </p>
           <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
-            <img src={packLogoPng} height={141} alt="Packt Publishing logo" />
+            <img src={packLogoSmallPng} height={141} alt="Packt Publishing logo" />
           </a>
           <p>
             <b>Published</b> on{' '}
