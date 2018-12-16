@@ -32,7 +32,12 @@ jobs:
             - cache-{{ .Branch }}-{{ checksum "smoketest/package.json" }}
       - run:
           name: Npm CI
-          command: cd smoketest ; npm ci
+          command: |
+            if [ "X${CYPRESS_baseUrl}" == "X" ]; then
+              echo no CYPRESS_baseUrl set, so skipping this step
+            else
+              cd smoketest ; npm ci
+            fi
       - save_cache:
           key: cache-{{ .Branch }}-{{ checksum "smoketest/package.json" }}
           paths:
@@ -40,10 +45,20 @@ jobs:
             - ~/.cache
       - run:
           name: cypress verify
-          command: cd smoketest ; npx cypress verify
+          command: |
+            if [ "X${CYPRESS_baseUrl}" == "X" ]; then
+              echo no CYPRESS_baseUrl set, so skipping this step
+            else
+              cd smoketest ; npx cypress verify
+            fi
       - run:
           name: cypress cache path
-          command: cd smoketest ; npx cypress cache path
+          command: |
+            if [ "X${CYPRESS_baseUrl}" == "X" ]; then
+              echo no CYPRESS_baseUrl set, so skipping this step
+            else
+              cd smoketest ; npx cypress cache path
+            fi
       - run:
           name: run cypress
           command: |
