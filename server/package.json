@@ -11,15 +11,15 @@
   "author": "Robert Hostlowsky",
   "private": "yes",
   "dependencies": {
-    "apollo-errors": "1.9.0",
+    "apollo-errors": "1.7.1",
     "bcryptjs": "2.4.3",
-    "graphql": "14.1.1",
+    "graphql": "0.13.2",
     "graphql-yoga": "1.9.2",
-    "jsonwebtoken": "8.4.0",
+    "jsonwebtoken": "8.2.1",
     "prisma-binding": "1.5.16"
   },
   "devDependencies": {
-    "dotenv": "5.0.1",
+    "dotenv": "6.2.0",
     "graphql-cli": "3.0.10",
     "nodemon": "1.18.10",
     "npm-run-all": "4.1.5",
