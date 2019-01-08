@@ -12,4 +12,8 @@ datamodel: datamodel.graphql
 #seed:
 #  import: seed.graphql
 
-#DEPR since 1.7: cluster: ${env:PRISMA_CLUSTER}
+hooks:
+  post-deploy:
+    - echo "Deployment finished."
+    - echo run graphql prepare
+    - graphql get-schema --project database
