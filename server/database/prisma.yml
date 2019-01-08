@@ -1,8 +1,12 @@
+#since 1.7:
+# A new property called endpoint has been added. The new endpoint effectively encodes the information of the three removed properties.
+endpoint: ${env:PRISMA_ENDPOINT}
+
 # the name for the service (will be part of the service's HTTP endpoint)
-service: coolboardsecure
+#DEPR since 1.7: service: coolboardsecure
 
 # the cluster and stage the service is deployed to
-stage: ${env:PRISMA_STAGE}
+#DEPR since 1.7: stage: ${env:PRISMA_STAGE}
 
 # to disable authentication:
 # disableAuth: true
@@ -12,7 +16,9 @@ secret: ${env:PRISMA_SECRET}
 datamodel: datamodel.graphql
 
 # seed your service with initial data based on seed.graphql
-seed:
-  import: seed.graphql
+#seed:
+#  import: seed.graphql
+
+#DEPR since 1.7: cluster: ${env:PRISMA_CLUSTER}
 
 cluster: ${env:PRISMA_CLUSTER}
