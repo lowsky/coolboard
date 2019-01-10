@@ -12,8 +12,11 @@ datamodel: datamodel.graphql
 #seed:
 #  import: seed.graphql
 
+generate:
+  - generator: graphql-schema
+    output: "../src/generated/"
 hooks:
   post-deploy:
     - echo "Deployment finished."
     - echo run graphql prepare
-    - graphql get-schema --project database
+    - prisma generate
