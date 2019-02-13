@@ -178,9 +178,9 @@ apollo-cache-control@^0.1.0:
   dependencies:
     graphql-extensions "^0.0.x"
 
-apollo-errors@1.7.1:
-  version "1.7.1"
-  resolved "https://registry.yarnpkg.com/apollo-errors/-/apollo-errors-1.7.1.tgz#6e9b456a83cd32ac4e86351619bbd29aefcf099e"
+apollo-errors@1.9.0:
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/apollo-errors/-/apollo-errors-1.9.0.tgz#f1ed0ca0a6be5cd2f24e2eaa7b0860a10146ff51"
   dependencies:
     assert "^1.4.1"
     extendable-error "^0.1.5"
