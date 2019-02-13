@@ -340,6 +340,7 @@ class CardForDragging extends Component {
   }
 }
 
+/* eslint-disable react/forbid-foreign-prop-types */
 CardForDragging.propTypes = {
   connectDragSource: PropTypes.func.isRequired,
   isDragging: PropTypes.bool.isRequired,
