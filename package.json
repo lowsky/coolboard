@@ -10,7 +10,7 @@
     "apollo-link-schema": "1.1.0",
     "apollo-link-ws": "1.0.8",
     "apollo-utilities": "1.0.11",
-    "auth0-lock": "11.12.1",
+    "auth0-lock": "11.14.0",
     "create-react-app": "1.5.2",
     "graphql": "0.13.2",
     "graphql-tag": "2.9.2",
