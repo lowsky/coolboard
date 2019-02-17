@@ -4,7 +4,7 @@
   "description": "run some browser tests via cypress",
   "private": true,
   "dependencies": {
-    "cypress": "3.1.3"
+    "cypress": "3.1.5"
   },
   "scripts": {
     "cy": "cypress",
