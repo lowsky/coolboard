@@ -12,7 +12,7 @@
     "apollo-utilities": "1.0.11",
     "auth0-lock": "11.14.0",
     "create-react-app": "2.1.5",
-    "graphql": "0.13.2",
+    "graphql": "14.1.1",
     "graphql-tag": "2.9.2",
     "graphql-tools": "4.0.4",
     "prop-types": "15.6.2",
