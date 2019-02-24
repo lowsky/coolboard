@@ -12,6 +12,7 @@ datamodel: datamodel.graphql
 #seed:
 #  import: seed.graphql
 
+# automatically run by prisma deploy:
 generate:
   - generator: graphql-schema
     output: "../src/generated/"
