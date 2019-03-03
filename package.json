@@ -30,10 +30,10 @@
     "subscriptions-transport-ws": "0.9.16"
   },
   "scripts": {
-    "postinstall": "cd server ; yarn",
+    "postinstall": "cd server ; npm install",
     "start": "react-scripts start",
     "build": "react-scripts build ; npm run build:server",
-    "build:server": "cd server ; npm run build:lambda",
+    "build:server": "cd server ; npm run build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
