@@ -4,6 +4,18 @@ const { Prisma } = require('prisma-binding');
 const resolvers = require('../resolvers');
 
 function getPrisma() {
+    if(true)
+    return new Prisma({
+      // the Prisma DB schema
+      typeDefs: 'src/generated/prisma.graphql',
+      // the endpoint of the Prisma DB service (value is set in .env)
+      endpoint: process.env.PRISMA_ENDPOINT,
+      // taken from database/prisma.yml (value is set in .env)
+      secret: process.env.PRISMA_MANAGEMENT_API_SECRET,
+      // log all GraphQL queries & mutations
+      debug: true,
+    });
+
   return new Prisma({
     // the Prisma DB schema
     typeDefs: 'src/generated/prisma.graphql',
@@ -31,9 +43,9 @@ const typeDefs = `
 
 const helloResolvers = {
   Query: {
-    hello: function(_, { name }, ctx) {
-      console.log("me:", Object.keys(ctx)  );
-      if(ctx.context) console.log('me .contxt:', Object.keys(ctx.context) );
+    hello: async function(_, { name }, ctx) {
+      console.log("hello: ctx = ", Object.keys(ctx), ctx);
+      console.log("hello: ctx  ", Object.keys(ctx.event), ctx.event);
 
       return `Hello ${name || 'world'}`;
     },
@@ -42,20 +54,16 @@ const helloResolvers = {
 
 const lambda = new GraphQLServerLambda({
   typeDefs: './src/schema.graphql',
-  resolvers,
+  resolvers, // : helloResolvers,
+
   context: function(req) {
-    console.log('Creating/filling req:', Object.keys(req) );
-    if(req.context) console.log('Creating/filling Req.contxt:', Object.keys(req.context) );
-    if(req.event) console.log('Creating/filling Req.event:', Object.keys(req.event) );
 
     return {
-      ...req,
 
-      context: {
+      ...req.context,
+      event: req.event,
+      db: getPrisma(),
         DUMMY: "ENTRY"
-      },
-
-      // db: getPrisma(),
     };
   },
 });
