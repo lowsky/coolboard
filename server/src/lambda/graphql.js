@@ -52,8 +52,10 @@ const helloResolvers = {
   },
 };
 
+const x = require('../schema.graphql');
+
 const lambda = new GraphQLServerLambda({
-  typeDefs: './src/schema.graphql',
+  typeDefs: x.typedefs,
   resolvers, // : helloResolvers,
 
   context: function(req) {
