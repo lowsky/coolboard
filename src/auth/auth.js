@@ -33,24 +33,15 @@ class Auth {
   );
 
   constructor(cb, apolloClient) {
-    // binds functions to keep this context
     this.apolloClient = apolloClient;
-    this.cb = cb.bind(this);
-    this.login = this.login.bind(this);
-    this.logout = this.logout.bind(this);
-    this.isAuthenticated = this.isAuthenticated.bind(
-      this
-    );
+    this.callback = cb.bind(this);
 
     this.addHandleAuthenticationListener();
   }
 
-  login() {
-    // Call the show method to display the widget.
-    console.log('Auth0lock: is authenticated?', this.isAuthenticated());
-
+  login = () => {
     this.lock.show();
-  }
+  };
 
   addHandleAuthenticationListener() {
     // Add a callback for Lock's `authenticated` event
@@ -71,7 +62,7 @@ class Auth {
         status: `error`,
         errMessage: err.error,
       };
-      this.cb(data);
+      this.callback(data);
     });
   }
 
@@ -101,18 +92,13 @@ class Auth {
         idToken: authResult.idToken,
         expiresAt,
       };
-      this.signinOrCreateAccount({ ...data });
-      this.cb(data);
+      this.signinOrCreateAccount(authResult.idToken)
+        .then(() => this.callback(data));
     }
   }
 
-  signinOrCreateAccount({
-    accessToken,
-    idToken,
-    expiresAt,
-  }) {
-    console.log(this.apolloClient);
-    this.apolloClient
+  async signinOrCreateAccount(idToken) {
+    return this.apolloClient
       .mutate({
         mutation: AUTHENTICATE,
         variables: { idToken },
@@ -136,16 +122,16 @@ class Auth {
       );
   }
 
-  logout() {
+  logout = () => {
     // Clear access token and ID token from local storage
     localStorage.removeItem('access_token');
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
     console.log('logged-out, removed token from localStorage.');
     window.location.reload();
-  }
+  };
 
-  isAuthenticated() {
+  isAuthenticated = () => {
     // Check whether the current time is past the
     // access token's expiry time
     const expiresAt = JSON.parse(
@@ -156,7 +142,7 @@ class Auth {
     console.log(`AUTH: is expired? - ${ !isNotExpired}`);
 
     return isNotExpired;
-  }
+  };
 }
 
 export default Auth;
