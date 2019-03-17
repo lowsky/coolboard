@@ -995,6 +995,10 @@ type Query {
 type Mutation {
   createBoard(name: String!): User!
   deleteBoard(id: ID!): Board!
+
+  authenticate(idToken: String!): User
+
+  # deprecated
   signup(email: String!, password: String!, name: String!, avatarUrl: String): AuthPayload!
   login(email: String!, password: String!): AuthPayload!
 

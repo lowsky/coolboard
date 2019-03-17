@@ -1,6 +1,6 @@
-const jwt = require('jsonwebtoken');
-
 const { createError } = require('apollo-errors');
+
+const validateAndParseIdToken = require('./helpers/validateAndParseIdToken');
 
 const NotAuthorizedError = 'NotAuthorizedError';
 
@@ -10,6 +10,17 @@ const AuthError = createError(NotAuthorizedError, {
 
 function getUserId(ctx) {
   console.log('CTX: event.headers', Object.keys(ctx.event.headers));
+  const user = ctx.request.user;
+  if (user) {
+    return user.id;
+  }
+  throw new AuthError({
+    message:
+      'Not authorized: no user in current request',
+  });
+}
+
+async function verifyAuth0HeaderToken(ctx) {
 
   const Authorization = ctx.request
     ? ctx.request.get('Authorization')
@@ -21,11 +32,18 @@ function getUserId(ctx) {
 
   if (Authorization) {
     const token = Authorization.replace('Bearer ', '');
-    const { userId } = jwt.verify(
-      token,
-      process.env.APP_SECRET
+
+    try {
+      await validateAndParseIdToken(token);
+      return;
+      
+    } catch (err) {
+      throw new Error(
+        `utils: validating token: ${token} - ${
+          err.message
+        }`
     );
-    return userId;
+    }
   }
 
   throw new AuthError({
@@ -35,6 +53,7 @@ function getUserId(ctx) {
 
 module.exports = {
   getUserId,
+  verifyAuth0HeaderToken,
   AuthError,
   NotAuthorizedError,
 };

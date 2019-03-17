@@ -1,5 +1,6 @@
 const { GraphQLServer } = require('graphql-yoga');
 const { Prisma } = require('prisma-binding');
+const { checkJwt } = require('./middleware/jwt');
 const { formatError } = require('apollo-errors');
 const resolvers = require('./resolvers');
 
@@ -26,6 +27,15 @@ const server = new GraphQLServer({
     }),
   }),
 });
+
+server.express.post(
+  server.options.endpoint,
+  checkJwt,
+  (err, req, res, next) => {
+    if (err) return res.status(401).send(err.message);
+    next();
+  }
+);
 
 server.start(options, () =>
   console.log(
