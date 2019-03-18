@@ -1,8 +1,6 @@
 module.exports = {
   typedefs: `
-  # import Board from "./generated/prisma.graphql"
-
-
+# import Board from "./generated/prisma.graphql"
 
 
 
@@ -1834,10 +1832,11 @@ type Subscription {
 type User {
   id: ID!
   email: String!
-  password: String!
   name: String!
   avatarUrl: String
   boards(where: BoardWhereInput, orderBy: BoardOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Board!]
+  auth0id: String
+  identity: String
 }
 
 type UserConnection {
@@ -1848,9 +1847,10 @@ type UserConnection {
 
 input UserCreateInput {
   email: String!
-  password: String!
   name: String!
   avatarUrl: String
+  auth0id: String
+  identity: String
   boards: BoardCreateManyWithoutUpdatedByInput
 }
 
@@ -1866,9 +1866,10 @@ input UserCreateOneWithoutBoardsInput {
 
 input UserCreateWithoutBoardsInput {
   email: String!
-  password: String!
   name: String!
   avatarUrl: String
+  auth0id: String
+  identity: String
 }
 
 type UserEdge {
@@ -1881,12 +1882,14 @@ enum UserOrderByInput {
   id_DESC
   email_ASC
   email_DESC
-  password_ASC
-  password_DESC
   name_ASC
   name_DESC
   avatarUrl_ASC
   avatarUrl_DESC
+  auth0id_ASC
+  auth0id_DESC
+  identity_ASC
+  identity_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -1896,9 +1899,10 @@ enum UserOrderByInput {
 type UserPreviousValues {
   id: ID!
   email: String!
-  password: String!
   name: String!
   avatarUrl: String
+  auth0id: String
+  identity: String
 }
 
 type UserSubscriptionPayload {
@@ -1921,25 +1925,28 @@ input UserSubscriptionWhereInput {
 
 input UserUpdateDataInput {
   email: String
-  password: String
   name: String
   avatarUrl: String
+  auth0id: String
+  identity: String
   boards: BoardUpdateManyWithoutUpdatedByInput
 }
 
 input UserUpdateInput {
   email: String
-  password: String
   name: String
   avatarUrl: String
+  auth0id: String
+  identity: String
   boards: BoardUpdateManyWithoutUpdatedByInput
 }
 
 input UserUpdateManyMutationInput {
   email: String
-  password: String
   name: String
   avatarUrl: String
+  auth0id: String
+  identity: String
 }
 
 input UserUpdateOneInput {
@@ -1962,9 +1969,10 @@ input UserUpdateOneWithoutBoardsInput {
 
 input UserUpdateWithoutBoardsDataInput {
   email: String
-  password: String
   name: String
   avatarUrl: String
+  auth0id: String
+  identity: String
 }
 
 input UserUpsertNestedInput {
@@ -2006,20 +2014,6 @@ input UserWhereInput {
   email_not_starts_with: String
   email_ends_with: String
   email_not_ends_with: String
-  password: String
-  password_not: String
-  password_in: [String!]
-  password_not_in: [String!]
-  password_lt: String
-  password_lte: String
-  password_gt: String
-  password_gte: String
-  password_contains: String
-  password_not_contains: String
-  password_starts_with: String
-  password_not_starts_with: String
-  password_ends_with: String
-  password_not_ends_with: String
   name: String
   name_not: String
   name_in: [String!]
@@ -2048,6 +2042,60 @@ input UserWhereInput {
   avatarUrl_not_starts_with: String
   avatarUrl_ends_with: String
   avatarUrl_not_ends_with: String
+  auth0id: String
+  # All values that are not equal to given value.
+  auth0id_not: String
+  # All values that are contained in given list.
+  auth0id_in: [String!]
+  # All values that are not contained in given list.
+  auth0id_not_in: [String!]
+  # All values less than the given value.
+  auth0id_lt: String
+  # All values less than or equal the given value.
+  auth0id_lte: String
+  # All values greater than the given value.
+  auth0id_gt: String
+  # All values greater than or equal the given value.
+  auth0id_gte: String
+  # All values containing the given string.
+  auth0id_contains: String
+  # All values not containing the given string.
+  auth0id_not_contains: String
+  # All values starting with the given string.
+  auth0id_starts_with: String
+  # All values not starting with the given string.
+  auth0id_not_starts_with: String
+  # All values ending with the given string.
+  auth0id_ends_with: String
+  # All values not ending with the given string.
+  auth0id_not_ends_with: String
+  identity: String
+  # All values that are not equal to given value.
+  identity_not: String
+  # All values that are contained in given list.
+  identity_in: [String!]
+  # All values that are not contained in given list.
+  identity_not_in: [String!]
+  # All values less than the given value.
+  identity_lt: String
+  # All values less than or equal the given value.
+  identity_lte: String
+  # All values greater than the given value.
+  identity_gt: String
+  # All values greater than or equal the given value.
+  identity_gte: String
+  # All values containing the given string.
+  identity_contains: String
+  # All values not containing the given string.
+  identity_not_contains: String
+  # All values starting with the given string.
+  identity_starts_with: String
+  # All values not starting with the given string.
+  identity_not_starts_with: String
+  # All values ending with the given string.
+  identity_ends_with: String
+  # All values not ending with the given string.
+  identity_not_ends_with: String
   boards_every: BoardWhereInput
   boards_some: BoardWhereInput
   boards_none: BoardWhereInput
@@ -2059,6 +2107,7 @@ input UserWhereInput {
 input UserWhereUniqueInput {
   id: ID
   email: String
+  auth0id: String
 }
 
 `
