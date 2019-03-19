@@ -118,21 +118,6 @@ const auth = new Auth(
   client
 );
 
-const auth0CallbackHandler = (nextRoutingState, replace) => {
-  if (
-    /access_token|id_token|error/.test(
-      nextRoutingState.location.hash
-    )
-  ) {
-    console.log('handling auth0 redirecting with token parameters. Parameters properly used. Good.');
-    console.log('Obsolete: auth.addHandleAuthenticationListener(); ');
-  }
-  else {
-    console.warn('Url for Auth0 callback was invoked without any of "access_token|id_token|error" in hash. see Url:',
-      nextRoutingState.location);
-  }
-};
-
 class App extends Component {
   render() {
     return (
