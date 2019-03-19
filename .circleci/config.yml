@@ -3,7 +3,7 @@ version: 2
 jobs:
   check:
     docker:
-      - image:  circleci/node:11.4.0-stretch-browsers
+      - image:  circleci/node:11.10.1-stretch-browsers
     parallelism: 1
     steps:
       - checkout
@@ -11,7 +11,7 @@ jobs:
           keys:
             - cache-{{ .Branch }}-{{ checksum "package-lock.json" }}
       - run:
-          name: web client - npm CI
+          name: web client - npm
           command: npm ci
       - save_cache:
           key: cache-{{ .Branch }}-{{ checksum "package-lock.json" }}
@@ -27,14 +27,38 @@ jobs:
     parallelism: 1
     steps:
       - checkout
+      - run:
+          name: Set PR number
+          command: |
+            env | grep CIRCLE | sort
+            echo 'export CIRCLE_PR_NUMBER="${CIRCLE_PR_NUMBER:-${CIRCLE_PULL_REQUEST##*/}}"' >> $BASH_ENV
+            source $BASH_ENV
+            echo PR no.: $CIRCLE_PR_NUMBER
+      - run:
+          name: builds diagnosis
+          command: |
+            echo PR no.: $CIRCLE_PR_NUMBER
+            source $BASH_ENV
+            if [ -n "$CIRCLE_PR_NUMBER" ]; then
+              echo " there is this PR number: $CIRCLE_PR_NUMBER"
+            fi
+            echo "Value of CIRCLE_PULL_REQUEST: ${CIRCLE_PULL_REQUEST} "
+            if [ -n "$CIRCLE_PULL_REQUEST" ]; then
+              echo transformed to ${CIRCLE_PULL_REQUEST##*/}
+              echo " there is this PR number: $CIRCLE_PR_NUMBER" ...
+            fi
+            env | grep CIRCLE | sort
+            echo PR no.: $CIRCLE_PR_NUMBER
       - restore_cache:
           keys:
             - cache-{{ .Branch }}-{{ checksum "smoketest/package.json" }}
       - run:
           name: Npm CI
           command: |
-            if [ "X${CYPRESS_baseUrl}" == "X" ]; then
-              echo no CYPRESS_baseUrl set, so skipping this step
+            echo PR no.: $CIRCLE_PR_NUMBER
+            echo $CIRCLE_PR_NUMBER
+            if [ "X${CIRCLE_PR_NUMBER}" == "X" ]; then
+              echo no CIRCLE_PR_NUMBER set, so skipping this step
             else
               cd smoketest ; npm ci
             fi
@@ -46,6 +70,8 @@ jobs:
       - run:
           name: cypress verify
           command: |
+            echo PR no.: $CIRCLE_PR_NUMBER
+            export CYPRESS_baseUrl=https://deploy-preview-${CIRCLE_PR_NUMBER}--coolboard.netlify.com
             if [ "X${CYPRESS_baseUrl}" == "X" ]; then
               echo no CYPRESS_baseUrl set, so skipping this step
             else
@@ -54,16 +80,20 @@ jobs:
       - run:
           name: cypress cache path
           command: |
-            if [ "X${CYPRESS_baseUrl}" == "X" ]; then
-              echo no CYPRESS_baseUrl set, so skipping this step
+            echo PR no.: $CIRCLE_PR_NUMBER
+            export CYPRESS_baseUrl=https://deploy-preview-${CIRCLE_PR_NUMBER}--coolboard.netlify.com
+            if [ "X${CIRCLE_PR_NUMBER}" == "X" ]; then
+              echo no $CIRCLE_PR_NUMBER set, so skipping this step
             else
               cd smoketest ; npx cypress cache path
             fi
       - run:
           name: run cypress
           command: |
-            if [ "X${CYPRESS_baseUrl}" == "X" ]; then
-              echo no CYPRESS_baseUrl set, so skipping running tests
+            echo PR no.: $CIRCLE_PR_NUMBER
+            export CYPRESS_baseUrl=https://deploy-preview-${CIRCLE_PR_NUMBER}--coolboard.netlify.com
+            if [ "X${CIRCLE_PR_NUMBER}" == "X" ]; then
+              echo no $CIRCLE_PR_NUMBER set, so skipping running tests
             else
               cd smoketest ; mkdir -p cypress/results ; npx cypress run --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
             fi

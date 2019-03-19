@@ -129,7 +129,7 @@ describe('Checkout cypress', () => {
     cy.get('div:nth-child(2) > div > div > div > .ui > .ellipsis')
       .click();
 
-    cy.get('body > div > .ui > .ui > .trash')
+    cy.get('.ui > .button > .trash')
       .first()
       .click();
 

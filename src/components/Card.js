@@ -124,7 +124,14 @@ export class CardComponent extends React.Component {
     this.setState({ loading });
   }
 
-  hide = () => {
+  avoidEventBubbling(event) {
+    if(event && event.stopPropagation) {
+      event.stopPropagation();
+    }
+  }
+
+  hide = event => {
+    this.avoidEventBubbling(event);
     this.setState({ showModal: false });
   };
 
@@ -340,6 +347,7 @@ class CardForDragging extends Component {
   }
 }
 
+/* eslint-disable react/forbid-foreign-prop-types */
 CardForDragging.propTypes = {
   connectDragSource: PropTypes.func.isRequired,
   isDragging: PropTypes.bool.isRequired,
