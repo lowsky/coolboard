@@ -20,8 +20,12 @@ const gotoBoards = () =>
     .should('include', 'boards');
 
 function clickLogin() {
+  cy.screenshot()
   return cy
-    .get('a[href="/login"]')
+    .get('a[href="/login"]', {
+      log: true,
+      timeout: 12000,
+    })
     .first()
     .click();
 }
@@ -32,13 +36,11 @@ beforeEach(() => {
     TargetUrl.endsWith('localhost:3000') ||
       TargetUrl.endsWith('coolboard.netlify.com') ||
       TargetUrl.endsWith('www.coolboard.fun'),
-    `Wrong domain! ' +
-    only localhost:3000, coolboard.fun or coolboard.netlify.com are allowed, but not: 
+    `Check: Domain should be one of: ' +
+     localhost:3000 | coolboard.fun | coolboard.netlify.com , but not: 
       ${TargetUrl}`
   );
   cy.log(`Testing this target url: ${TargetUrl}`);
-  cy.clearLocalStorage();
-  cy.clearCookies();
 });
 
 const boardListContainer = () => cy.get('[data-cy="board-container-inner"]');
@@ -46,7 +48,7 @@ const cardListButtons = () => boardListContainer().get('button');
 
 const add_a_list = () => cardListButtons().contains('Add a list');
 
-const sections = options => boardListContainer(options).get('[data-cy="card-list"]', options);
+const sections = options => boardListContainer().get('[data-cy="card-list"]', options);
 
 const add_a_card = () =>
   cardListButtons({
