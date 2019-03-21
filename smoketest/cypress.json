@@ -1,4 +1,5 @@
 {
   "baseUrl": "https://www.coolboard.fun",
+  "chromeWebSecurity": false,
   "projectId": "8p1ybc"
 }
