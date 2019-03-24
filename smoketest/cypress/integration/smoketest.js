@@ -20,7 +20,6 @@ const gotoBoards = () =>
     .should('include', 'boards');
 
 function clickLogin() {
-  cy.screenshot()
   return cy
     .get('a[href="/login"]', {
       log: true,
@@ -48,7 +47,7 @@ const cardListButtons = () => boardListContainer().get('button');
 
 const add_a_list = () => cardListButtons().contains('Add a list');
 
-const sections = options => boardListContainer().get('[data-cy="card-list"]', options);
+const sections = options => boardListContainer(options).get('[data-cy="card-list"]', options);
 
 const add_a_card = () =>
   cardListButtons({
