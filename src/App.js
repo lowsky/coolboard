@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 
+import { Loader } from 'semantic-ui-react';
+
 import { ApolloClient } from 'apollo-client';
 import { ApolloProvider } from 'react-apollo';
 import { InMemoryCache } from 'apollo-cache-inmemory';
@@ -26,7 +28,6 @@ import {
 import './App.css';
 
 import Auth from './auth/auth';
-import Auth0Callback from './components/Auth0Callback';
 
 import About from './components/About';
 import Home from './components/Home';
@@ -43,12 +44,14 @@ const SRV_HOST_PORT_DOMAIN =
 const IS_LOCALHOST =
   !SRV_HOST_PORT_DOMAIN ||
   SRV_HOST_PORT_DOMAIN.indexOf('localhost') >= 0;
-// Create a Http link
 
+const secureConnection =
+  node_env === 'production' || !IS_LOCALHOST;
 const uri =
-  (node_env === 'production' || !IS_LOCALHOST
-    ? 'https://'
-    : 'http://') + SRV_HOST_PORT_DOMAIN;
+  (secureConnection ? 'https://' : 'http://') +
+  SRV_HOST_PORT_DOMAIN;
+
+// Create a Http link
 let httpLink = createHttpLink({
   uri: uri,
 });
@@ -68,19 +71,17 @@ const middlewareAuthLink = new ApolloLink(
 
 // Create a WebSocket link:
 const websocketUrl =
-  (node_env === 'production' || !IS_LOCALHOST
-    ? 'wss://'
-    : 'ws://') + SRV_HOST_PORT_DOMAIN;
-console.log('websocketUrl', websocketUrl);
+  (secureConnection ? 'wss://' : 'ws://') +
+  SRV_HOST_PORT_DOMAIN;
+
+const token = localStorage.getItem('access_token');
 
 const wsLink = new WebSocketLink({
   uri: websocketUrl,
   options: {
     reconnect: true,
     connectionParams: {
-      Authorization: `Bearer ${localStorage.getItem(
-        'access_token'
-      )}`,
+      Authorization: `Bearer ${token}`,
     },
   },
 });
@@ -116,22 +117,6 @@ const auth = new Auth(
   result => console.log('auth result', result),
   client
 );
-
-const auth0CallbackHandler = (nextRoutingState, replace) => {
-  if (
-    /access_token|id_token|error/.test(
-      nextRoutingState.location.hash
-    )
-  ) {
-    console.log('handling auth0 redirecting with token parameters. Parameters properly used. Good.');
-
-    console.log('Obsolete: auth.addHandleAuthenticationListener(); ');
-
-  }
-  else {
-    console.warn('Url for Auth0 callback was invoked without any of "access_token|id_token|error" in hash. see Url:', nextRoutingState.location);
-  }
-};
 
 class App extends Component {
   render() {
@@ -236,9 +221,6 @@ class App extends Component {
               <Route
                 path="/callback"
                 render={props => {
-
-                  auth0CallbackHandler(props);
-
                   return (
                     <FullVerticalContainer data-cy="callback-full-container">
                       <ProfileHeader />
@@ -247,7 +229,9 @@ class App extends Component {
                           NetworkStatusNotifier
                         }
                       />
-                      <Auth0Callback {...props} />
+                      <div>
+                        <Loader active>Authenticating...</Loader>
+                      </div>
                     </FullVerticalContainer>
                   );
                 }}
