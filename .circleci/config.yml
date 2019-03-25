@@ -9,12 +9,12 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - cache-{{ .Branch }}-{{ checksum "package-lock.json" }}
+            - cache-{{ .Branch }}-{{ checksum "yarn.lock" }}
       - run:
           name: web client - npm
           command: npm ci
       - save_cache:
-          key: cache-{{ .Branch }}-{{ checksum "package-lock.json" }}
+          key: cache-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
             - ~/.npm
             - ~/.cache
