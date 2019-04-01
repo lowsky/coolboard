@@ -17,10 +17,12 @@ const validateAndParseIdToken = async (idToken) =>
     const token = jwt.decode(idToken, {
       complete: true,
     });
-    console.log('XXX',token);
+    console.log('validateAndParseIdToken: token=', token);
 
     const { header, payload } = token;
-    if (!header || !header.kid || !payload) reject(new Error('Invalid Token:', token));
+    if (!header || !header.kid || !payload) {
+      reject(new Error('Invalid Token:', token));
+    }
 
     jwks.getSigningKey(header.kid, (err, key) => {
       console.log('validateAndParse', header);
