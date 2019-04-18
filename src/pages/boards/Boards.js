@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Query, Mutation } from 'react-apollo/index';
+import { Query, Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 
 import {
@@ -7,7 +7,7 @@ import {
   Segment,
   Loader,
   Button,
-} from 'semantic-ui-react/index';
+} from 'semantic-ui-react';
 
 import { Link } from 'react-router-dom';
 

@@ -5,7 +5,7 @@ import {
   Segment,
   Icon,
   Image,
-} from 'semantic-ui-react/index';
+} from 'semantic-ui-react';
 
 import { Link } from 'react-router-dom';
 
