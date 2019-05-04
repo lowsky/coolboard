@@ -3,7 +3,7 @@ version: 2
 jobs:
   check:
     docker:
-      - image:  circleci/node:11.13.0-stretch-browsers
+      - image:  circleci/node:11.15.0-stretch-browsers
     parallelism: 1
     steps:
       - checkout
