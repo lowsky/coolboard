@@ -123,139 +123,137 @@ const auth = new Auth(
   client
 );
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <BrowserRouter>
-          <ApolloProvider client={client}>
-            <Switch>
-              <Route
-                exact
-                path="/boards"
-                render={() => (
-                  <FullVerticalContainer data-cy="boards-full-container">
-                    <ProfileHeader isBoardsPage />
-                    <GeneralErrorHandler
-                      NetworkStatusNotifier={
-                        NetworkStatusNotifier
-                      }
-                    />
-                    <Boards />
-                  </FullVerticalContainer>
-                )}
-              />
+const App = () => {
+  return (
+    <div className="App">
+      <BrowserRouter>
+        <ApolloProvider client={client}>
+          <Switch>
+            <Route
+              exact
+              path="/boards"
+              render={() => (
+                <FullVerticalContainer data-cy="boards-full-container">
+                  <ProfileHeader isBoardsPage />
+                  <GeneralErrorHandler
+                    NetworkStatusNotifier={
+                      NetworkStatusNotifier
+                    }
+                  />
+                  <Boards />
+                </FullVerticalContainer>
+              )}
+            />
 
+            <Route
+              exact
+              path="/board/:id"
+              render={({ match }) => (
+                <FullVerticalContainer data-cy="board-full-container">
+                  <ProfileHeader />
+                  <GeneralErrorHandler
+                    NetworkStatusNotifier={
+                      NetworkStatusNotifier
+                    }
+                  />
+                  <CoolBoard
+                    boardId={match.params.id}
+                  />
+                </FullVerticalContainer>
+              )}
+            />
+
+            <Route
+              exact
+              path="/login"
+              render={({ history }) => {
+                auth.login();
+
+                client.resetStore().then(() => {
+                  history.push(`/`);
+                });
+
+                return (
+                  <FullVerticalContainer data-cy="login-full-container">
+                    <p>
+                      Please wait, trying to
+                      authenticate ... If it did not
+                      work, you can go back to the
+                      <Link to="/">main page</Link>
+                    </p>
+                  </FullVerticalContainer>
+                );
+              }}
+            />
+
+            {/*
               <Route
-                exact
-                path="/board/:id"
-                render={({ match }) => (
-                  <FullVerticalContainer data-cy="board-full-container">
+              exact
+              path="/signup"
+              render={({ history }) => (
+                <FullVerticalContainer>
+                  <SignupForm
+                    successfulSignup={() => {
+                      history.push('/login');
+                    }}
+                  />
+                </FullVerticalContainer>
+              )}
+            />
+              */}
+
+            <Route
+              exact
+              path="/logout"
+              render={({ history }) => {
+                localStorage.removeItem('token');
+
+                auth.logout();
+
+                client.resetStore().then(() => {
+                  history.push(`/`);
+                });
+                return (
+                  <p data-cy="login-in-progress">
+                    Please wait, logging out ... You
+                    will be re-directed to the
+                    <Link to="/">main page</Link>
+                  </p>
+                );
+              }}
+            />
+            <Route
+              path="/callback"
+              render={props => {
+                return (
+                  <FullVerticalContainer data-cy="callback-full-container">
                     <ProfileHeader />
                     <GeneralErrorHandler
                       NetworkStatusNotifier={
                         NetworkStatusNotifier
                       }
                     />
-                    <CoolBoard
-                      boardId={match.params.id}
-                    />
+                    <div>
+                      <Loader active>Authenticating...</Loader>
+                    </div>
                   </FullVerticalContainer>
-                )}
-              />
-
-              <Route
-                exact
-                path="/login"
-                render={({ history }) => {
-                  auth.login();
-
-                  client.resetStore().then(() => {
-                    history.push(`/`);
-                  });
-
-                  return (
-                    <FullVerticalContainer data-cy="login-full-container">
-                      <p>
-                        Please wait, trying to
-                        authenticate ... If it did not
-                        work, you can go back to the
-                        <Link to="/">main page</Link>
-                      </p>
-                    </FullVerticalContainer>
-                  );
-                }}
-              />
-
-              {/*
-                <Route
-                exact
-                path="/signup"
-                render={({ history }) => (
-                  <FullVerticalContainer>
-                    <SignupForm
-                      successfulSignup={() => {
-                        history.push('/login');
-                      }}
-                    />
-                  </FullVerticalContainer>
-                )}
-              />
-                */}
-
-              <Route
-                exact
-                path="/logout"
-                render={({ history }) => {
-                  localStorage.removeItem('token');
-
-                  auth.logout();
-
-                  client.resetStore().then(() => {
-                    history.push(`/`);
-                  });
-                  return (
-                    <p data-cy="login-in-progress">
-                      Please wait, logging out ... You
-                      will be re-directed to the
-                      <Link to="/">main page</Link>
-                    </p>
-                  );
-                }}
-              />
-              <Route
-                path="/callback"
-                render={props => {
-                  return (
-                    <FullVerticalContainer data-cy="callback-full-container">
-                      <ProfileHeader />
-                      <GeneralErrorHandler
-                        NetworkStatusNotifier={
-                          NetworkStatusNotifier
-                        }
-                      />
-                      <div>
-                        <Loader active>Authenticating...</Loader>
-                      </div>
-                    </FullVerticalContainer>
-                  );
-                }}
-              />
-              <Route
-                exact
-                path="/about"
-                render={() => <About />}
-              />
-              <Route
-                path="/"
-                render={() => <Home />}
-              />
-            </Switch>
-          </ApolloProvider>
-        </BrowserRouter>
-      </div>
-    );
-  }
-}
+                );
+            }}
+            />
+            <Route
+              exact
+              path="/about"
+              render={() => <About />}
+            />
+            <Route
+              path="/"
+              render={() => <Home />}
+            />
+          </Switch>
+        </ApolloProvider>
+      </BrowserRouter>
+    </div>
+  );
+};
 
 export default App;
