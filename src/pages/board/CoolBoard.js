@@ -2,15 +2,15 @@
 import React from 'react';
 
 import gql from 'graphql-tag';
-import { graphql } from 'react-apollo';
-import { compose } from 'react-apollo';
+import { graphql } from 'react-apollo/index';
+import { compose } from 'react-apollo/index';
 
 import {
   BoardContainer,
   AddListButton,
   DelListButton,
-} from './BoardContainer';
-import { CardList } from './CardList';
+} from '../../components/BoardContainer';
+import { CardList } from '../../components/CardList';
 
 class Board extends React.Component {
   render() {

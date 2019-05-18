@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Query, Mutation } from 'react-apollo';
+import { Query, Mutation } from 'react-apollo/index';
 import gql from 'graphql-tag';
 
 import {
@@ -7,12 +7,12 @@ import {
   Segment,
   Loader,
   Button,
-} from 'semantic-ui-react';
+} from 'semantic-ui-react/index';
 
 import { Link } from 'react-router-dom';
 
-import { FullVerticalContainer } from './FullVerticalContainer';
-import { CreateBoardModal } from './CreateBoardModal';
+import { FullVerticalContainer } from '../../components/general/FullVerticalContainer';
+import { CreateBoardModal } from '../../components/CreateBoardModal';
 
 const BoardListItem = ({ name, id, deleteBoard }) => {
   return (

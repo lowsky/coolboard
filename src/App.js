@@ -29,13 +29,13 @@ import './App.css';
 
 import Auth from './auth/auth';
 
-import About from './components/About';
-import Home from './components/Home';
-import { CoolBoard } from './components/CoolBoard';
-import Boards from './components/Boards';
-import { FullVerticalContainer } from './components/FullVerticalContainer';
+import About from './pages/about/About';
+import Home from './pages/home/Home';
+import { CoolBoard } from './pages/board/CoolBoard';
+import Boards from './pages/boards/Boards';
+import { FullVerticalContainer } from './components/general/FullVerticalContainer';
 import { ProfileHeader } from './components/ProfileHeader';
-import { GeneralErrorHandler } from './components/GeneralErrorHandler';
+import { GeneralErrorHandler } from './components/general/GeneralErrorHandler';
 
 const node_env = process.env.NODE_ENV;
 const SRV_HOST_PORT_DOMAIN =

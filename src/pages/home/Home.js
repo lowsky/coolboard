@@ -5,14 +5,14 @@ import {
   Segment,
   Icon,
   Image,
-} from 'semantic-ui-react';
+} from 'semantic-ui-react/index';
 
 import { Link } from 'react-router-dom';
 
-import { FullVerticalContainer } from './FullVerticalContainer';
+import { FullVerticalContainer } from '../../components/general/FullVerticalContainer';
 
 import coolBoardLogo100 from './CoolBoardLogo100.png';
-import packLogo from './packt-logo.svg';
+import packLogo from '../../assets/packt-logo.svg';
 
 export default class Home extends Component {
   render() {

@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
 import {
   Container,
   Segment,
   Icon,
-} from 'semantic-ui-react';
+} from 'semantic-ui-react/index';
 
 import { Link } from 'react-router-dom';
 
-import { FullVerticalContainer } from './FullVerticalContainer';
-import { ProfileHeader } from './ProfileHeader';
+import { FullVerticalContainer } from '../../components/general/FullVerticalContainer';
+import { ProfileHeader } from '../../components/ProfileHeader';
 
-import packLogo from './packt-logo.svg';
+import packLogo from '../../assets/packt-logo.svg';
 import packLogoSmallPng from './packt-page-v141.png';
 
-export default class About extends Component {
+export default class About extends PureComponent {
   render() {
     return (
       <FullVerticalContainer data-cy="about-full-container">
@@ -28,8 +28,8 @@ export default class About extends Component {
             This is the Live Demo of the full
             application which we build in this
             <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
-              <Icon name="video camera" size="large" />Video
-              Course:
+              <Icon name="video camera" size="large" />
+              Video Course:
             </a>
           </p>
           <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
