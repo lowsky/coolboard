@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { graphql } from 'react-apollo/index';
 import gql from 'graphql-tag';
 import {
   Container,
@@ -10,6 +9,7 @@ import {
 } from 'semantic-ui-react';
 
 import { Link } from 'react-router-dom';
+import { Query } from 'react-apollo';
 
 const ProfileHeaderContainer = ({
   children,
@@ -50,62 +50,59 @@ const ProfileHeaderContainer = ({
   </Container>
 );
 
-const ProfileHeaderComponent = ({
-  data,
-  isBoardsPage,
-}) => {
-  const { loading, error, me = {} } = data;
-
-  if (loading) {
-    return (
-      <ProfileHeaderContainer
-        isBoardsPage={isBoardsPage}>
-        <Loader active />
-        Loading user...
-      </ProfileHeaderContainer>
-    );
-  }
-
-  if (error) {
-    return (
-      <ProfileHeaderContainer
-        isBoardsPage={isBoardsPage}>
-        <Link to="/login">
-          <Icon size="big" name="sign in" />Log in
-        </Link>
-      </ProfileHeaderContainer>
-    );
-  }
-
-  let { avatarUrl, name } = me;
-
-  return (
-    <ProfileHeaderContainer
-      isBoardsPage={isBoardsPage}>
-      <div>
-        <span>{name} </span>
-        {avatarUrl && (
-          <Image src={avatarUrl} avatar spaced />
-        )}
-
-        <Link to="/logout">
-          <Icon size="big" name="sign out" />Logout
-        </Link>
-      </div>
-    </ProfileHeaderContainer>
-  );
-};
-
-export const ProfileHeader = graphql(
-  gql`
-    query Profile {
-      me {
-        email
-        id
-        name
-        avatarUrl
+export const ProfileHeader = ({ isBoardsPage }) => (
+  // { options: { fetchPolicy: 'network-only' } }
+  <Query
+    query={gql`
+      {
+        me {
+          email
+          id
+          name
+          avatarUrl
+        }
       }
-    }
-  `,
-  { options: { fetchPolicy: 'network-only' } }
-)(ProfileHeaderComponent);
+    `}>
+    {({ loading, error, data }) => {
+      if (loading) {
+        return (
+          <ProfileHeaderContainer
+            isBoardsPage={isBoardsPage}>
+            <Loader active />
+            Loading user...
+          </ProfileHeaderContainer>
+        );
+      }
+
+      if (error) {
+        return (
+          <ProfileHeaderContainer
+            isBoardsPage={isBoardsPage}>
+            <Link to="/login">
+              <Icon size="big" name="sign in" />Log in
+            </Link>
+          </ProfileHeaderContainer>
+        );
+      }
+
+      const { me } = data;
+      const { avatarUrl, name } = me;
+
+      return (
+        <ProfileHeaderContainer
+          isBoardsPage={isBoardsPage}>
+          <div>
+            <span>{name} </span>
+            {avatarUrl && (
+              <Image src={avatarUrl} avatar spaced />
+            )}
+
+            <Link to="/logout">
+              <Icon size="big" name="sign out" />Logout
+            </Link>
+          </div>
+        </ProfileHeaderContainer>
+      );
+    }}
+  </Query>
+);
