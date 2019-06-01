@@ -9,11 +9,16 @@ const AuthError = createError(NotAuthorizedError, {
 });
 
 function getUserId(ctx) {
-  console.log('CTX: event.headers', Object.keys(ctx.event.headers));
-  const user = ctx.request.user;
-  if (user) {
-    return user.id;
+
+  verifyAuth0HeaderToken(ctx);
+
+  if(ctx.request) {
+    const user = ctx.request.user;
+    if (user) {
+      return user.id;
+    }
   }
+
   throw new AuthError({
     message:
       'Not authorized: no user in current request',
@@ -29,14 +34,13 @@ async function verifyAuth0HeaderToken(ctx) {
         ctx.event.headers['authorization']
         : ctx.connection.context.Authorization);
 
-
   if (Authorization) {
     const token = Authorization.replace('Bearer ', '');
 
     try {
       await validateAndParseIdToken(token);
       return;
-      
+
     } catch (err) {
       throw new Error(
         `utils: validating token: ${token} - ${
