@@ -28,19 +28,21 @@ const validateAndParseIdToken = async (idToken) =>
       console.log('validateAndParse', header);
       console.log('validateAndParse', err);
       console.log('validateAndParse', key);
-      if (err)
-        reject(
-          new Error(
-            'Error getting signing key: ' + err.message
-          )
-        );
+      if (err) {
+          reject(
+              new Error(
+                  'Error getting signing key: ' + err.message
+              )
+          );
+      }
       jwt.verify(
         idToken,
         key.publicKey,
         { algorithms: ['RS256'] },
         (err, decoded) => {
-          if (err)
-            reject('jwt verify error: ' + err.message);
+          if (err) {
+              reject('jwt verify error: ' + err.message);
+          }
           resolve(decoded);
         }
       );

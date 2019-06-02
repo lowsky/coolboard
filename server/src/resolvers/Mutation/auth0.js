@@ -22,6 +22,8 @@ const auth0 = {
     let userToken;
 
     //try
+
+    try
     {
       userToken = await validateAndParseIdToken(
         idToken
@@ -53,12 +55,17 @@ const auth0 = {
 
        */
     }
-    /*catch (err) {
+    catch (err) {
       throw new Error(
         `Auth0: validating token: ${idToken} - ${err.message}`
       );
-    }*/
+    }
+
     const auth0id = userToken.sub.split('|')[1];
+
+    if (!auth0id) {
+      throw new Error("auth0id is empty, invalid token !");
+    }
 
     let userByAuth0id = await ctx.db.query.user(
       { where: { auth0id } },

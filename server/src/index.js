@@ -25,6 +25,9 @@ const db = new Prisma({
   secret: process.env.PRISMA_MANAGEMENT_API_SECRET,
   // log all GraphQL queries & mutations
   debug: false,
+  resolverValidationOptions: {
+    requireResolversForResolveType: false,
+  },
 });
 
 const schema = makeExecutableSchema({
@@ -34,6 +37,7 @@ const schema = makeExecutableSchema({
 
 const server = new GraphQLServer({
   schema,
+  debug: false,
   context: req => ({
     ...req,
     db,
@@ -44,7 +48,9 @@ server.express.post(
   server.options.endpoint,
   checkJwt,
   (err, req, res, next) => {
-    if (err) return res.status(401).send(err.message);
+    if (err) {
+      return res.status(401).json({ err });
+    }
     next();
   }
 );

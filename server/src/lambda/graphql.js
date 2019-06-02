@@ -5,7 +5,8 @@ const resolvers = require('../resolvers');
 
 const schema = require('../newschema.graphql');
 const typeDefs = schema.typedefs;
-const gernerated_prisma_schema = schema.gernerated_prisma_schema;
+const gernerated_prisma_schema =
+  schema.gernerated_prisma_schema;
 
 function getPrisma() {
   if (true) {
@@ -72,15 +73,11 @@ const lambda = new GraphQLServerLambda({
 
   context: function(req) {
     console.log('context(): req:', Object.keys(req));
-    if (req.event)
-      console.log(
-        'context(): req - event:',
+    if (req.event) {
+      log(
+        'context(): req - event ...:',
         Object.keys(req.event)
       );
-    if (req.event)
-      console.log(
-        'context(): req - context:',
-        Object.keys(req.context)
       );
 
     // if(req.context) console.log('context(): req - contxt:', Object.keys(req.context), req.context );
@@ -92,6 +89,7 @@ const lambda = new GraphQLServerLambda({
       DUMMY: 'ENTRY',
     };
   },
+  debug: true,
 });
 
 //exports.handler = lambda.handler;

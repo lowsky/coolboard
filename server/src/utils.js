@@ -12,7 +12,7 @@ function getUserId(ctx) {
 
   verifyAuth0HeaderToken(ctx);
 
-  if(ctx.request) {
+  if (ctx.request) {
     const user = ctx.request.user;
     if (user) {
       return user.id;
@@ -26,13 +26,17 @@ function getUserId(ctx) {
 }
 
 async function verifyAuth0HeaderToken(ctx) {
-
   const Authorization = ctx.request
     ? ctx.request.get('Authorization')
-    : (
-      ctx.event.headers && ctx.event.headers['authorization'] ?
-        ctx.event.headers['authorization']
-        : ctx.connection.context.Authorization);
+    : ctx.event &&
+      ctx.event.headers &&
+      ctx.event.headers['authorization']
+    ? ctx.event.headers['authorization']
+    : ctx.connection &&
+      ctx.connection.context &&
+      ctx.connection.context.Authorization
+    ? ctx.connection.context.Authorization
+    : undefined;
 
   if (Authorization) {
     const token = Authorization.replace('Bearer ', '');
@@ -46,7 +50,7 @@ async function verifyAuth0HeaderToken(ctx) {
         `utils: validating token: ${token} - ${
           err.message
         }`
-    );
+      );
     }
   }
 
