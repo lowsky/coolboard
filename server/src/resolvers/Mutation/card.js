@@ -15,7 +15,7 @@ const card = {
   }
   */
   async updateCard(parent, args, ctx, info) {
-    const userId = getUserId(ctx);
+    const userId = await getUserId(ctx);
 
     const argsWithUpdatedByUser = {
       where: args.where,

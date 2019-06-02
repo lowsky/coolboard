@@ -8,9 +8,18 @@ const AuthError = createError(NotAuthorizedError, {
   message: NotAuthorizedError,
 });
 
-function getUserId(ctx) {
+const getUserId = async ctx => {
+  const auth0id = await verifyAuth0HeaderToken(ctx);
 
-  verifyAuth0HeaderToken(ctx);
+  if (auth0id) {
+    const userByAuth0id = await ctx.db.query.user({
+      where: { auth0id },
+    });
+    if (userByAuth0id) {
+      console.trace('getUserId - found user: with ID: ', userByAuth0id);
+      return userByAuth0id.id;
+    }
+  }
 
   if (ctx.request) {
     const user = ctx.request.user;
@@ -23,7 +32,7 @@ function getUserId(ctx) {
     message:
       'Not authorized: no user in current request',
   });
-}
+};
 
 async function verifyAuth0HeaderToken(ctx) {
   const Authorization = ctx.request
@@ -42,9 +51,16 @@ async function verifyAuth0HeaderToken(ctx) {
     const token = Authorization.replace('Bearer ', '');
 
     try {
-      await validateAndParseIdToken(token);
-      return;
-
+      const userToken = await validateAndParseIdToken(
+        token
+      );
+      const auth0id = userToken.sub.split('|')[1];
+      if (!auth0id) {
+        throw new Error(
+          'auth0id is empty = invalid auth token in header !'
+        );
+      }
+      return auth0id;
     } catch (err) {
       throw new Error(
         `utils: validating token: ${token} - ${

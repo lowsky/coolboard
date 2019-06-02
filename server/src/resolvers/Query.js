@@ -1,22 +1,31 @@
 const { getUserId } = require('../utils');
 
 const Query = {
-  board(parent, { id }, ctx, info) {
-    console.log("board:", { id, ctx})
-    getUserId(ctx);
-    return ctx.db.query.board({ where: { id } }, info);
+  async board(parent, { where }, ctx, info) {
+    await getUserId(ctx);
+    return ctx.db.query.board({ where }, info);
   },
 
-  list(parent, { id }, ctx, info) {
-    getUserId(ctx);
-    return ctx.db.query.list({ where: { id } }, info);
+  async list(parent, { where }, ctx, info) {
+    await getUserId(ctx);
+    return ctx.db.query.list({ where }, info);
   },
 
-  me(parent, args, ctx, info) {
-    console.log("me:", { ctx, req: ctx.req })
-    const id = getUserId(ctx);
-    console.log("me:", { id })
-    return ctx.db.query.user({ where: { id } }, info);
+  async me(parent, args, ctx, info) {
+    try {
+      const id = await getUserId(ctx);
+      const fetchedUser = await ctx.db.query.user(
+        { where: { id } },
+          info
+      );
+      return fetchedUser;
+    } catch (err) {
+      error('query me', err);
+      throw new Error(
+        'Error fetching current user details (me)',
+        err
+      );
+    }
   },
 };
 

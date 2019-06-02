@@ -2,7 +2,7 @@ const { getUserId } = require('../../utils');
 
 const board = {
   async updateBoard(parent, args, ctx, info) {
-    const userId = getUserId(ctx);
+    const userId = await getUserId(ctx);
     const board = await ctx.db.mutation.updateBoard(
       {
         where: args.where,
@@ -22,7 +22,7 @@ const board = {
   async createBoard(parent, args, ctx, info) {
     const { name } = args;
 
-    const id = getUserId(ctx);
+    const id = await getUserId(ctx);
 
     console.log('user-id', id);
 
@@ -67,7 +67,7 @@ const board = {
   async deleteBoard(parent, args, ctx, info) {
     const { id } = args;
 
-    getUserId(ctx);
+    await getUserId(ctx);
 
     console.log('board-id', id);
 

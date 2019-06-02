@@ -2,7 +2,7 @@ const { getUserId } = require('../../utils');
 
 const list = {
   async updateList(parent, args, ctx, info) {
-    const userId = getUserId(ctx);
+    const userId = await getUserId(ctx);
 
     const list = await ctx.db.mutation.updateList(
       {
@@ -21,7 +21,7 @@ const list = {
     return list;
   },
   async deleteList(parent, args, ctx, info) {
-    getUserId(ctx);
+    await getUserId(ctx);
     return await ctx.db.mutation.deleteList(
       args,
       info
