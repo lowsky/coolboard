@@ -2,8 +2,3 @@
   Command = "npm run build"
   Functions = "server/lambda"
   Publish = "build"
-
-[context."lambdafy"]
-
-[context."lambdafy".environment]
-  AUTH0_DOMAIN = "lowsky.eu.auth0.com"
