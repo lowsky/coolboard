@@ -16,7 +16,6 @@ const getUserId = async ctx => {
       where: { auth0id },
     });
     if (userByAuth0id) {
-      console.trace('getUserId - found user: with ID: ', userByAuth0id);
       return userByAuth0id.id;
     }
   }
@@ -50,24 +49,16 @@ async function verifyAuth0HeaderToken(ctx) {
   if (Authorization) {
     const token = Authorization.replace('Bearer ', '');
 
-    try {
-      const userToken = await validateAndParseIdToken(
-        token
-      );
-      const auth0id = userToken.sub.split('|')[1];
-      if (!auth0id) {
-        throw new Error(
-          'auth0id is empty = invalid auth token in header !'
-        );
-      }
-      return auth0id;
-    } catch (err) {
+    const userToken = await validateAndParseIdToken(
+      token
+    );
+    const auth0id = userToken.sub.split('|')[1];
+    if (!auth0id) {
       throw new Error(
-        `utils: validating token: ${token} - ${
-          err.message
-        }`
+        'invalid auth token was sent in header: auth0id is missing !'
       );
     }
+    return auth0id;
   }
 
   throw new AuthError({

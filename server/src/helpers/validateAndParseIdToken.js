@@ -42,7 +42,7 @@ const validateAndParseIdToken = async idToken =>
         { algorithms: ['RS256'] },
         (err, decoded) => {
           if (err) {
-            reject('jwt verify error: ' + err.message);
+            reject(new Error(err.message));
           }
           resolve(decoded);
         }
