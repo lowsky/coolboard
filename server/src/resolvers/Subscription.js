@@ -1,6 +1,4 @@
-const {
-  verifyAuth0HeaderToken,
-} = require('../../src/utils');
+const { verifyAuth0HeaderToken } = require('../utils');
 
 const Subscription = {
   board: {

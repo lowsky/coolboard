@@ -1,5 +1,8 @@
 const { getUserId } = require('../utils');
 
+var debug = require('debug');
+var error = debug('Query:error');
+
 const Query = {
   async board(parent, { where }, ctx, info) {
     await getUserId(ctx);
@@ -16,7 +19,7 @@ const Query = {
       const id = await getUserId(ctx);
       const fetchedUser = await ctx.db.query.user(
         { where: { id } },
-          info
+        info
       );
       return fetchedUser;
     } catch (err) {

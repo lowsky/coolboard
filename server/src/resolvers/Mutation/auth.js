@@ -34,6 +34,10 @@ const auth = {
 
     const user = users[0];
 
+    if (!user.password) {
+      throw new Error('Sorry, no password based authentication available for this user!');
+    }
+
     const valid = await bcrypt.compare(
       password,
       user.password

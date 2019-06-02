@@ -4,15 +4,13 @@ const jwksClient = require('jwks-rsa');
 const jwks = jwksClient({
   cache: true,
   rateLimit: true,
-  jwksRequestsPerMinute: 1,
+  jwksRequestsPerMinute: 10,
   jwksUri: `https://${
     process.env.AUTH0_DOMAIN
   }/.well-known/jwks.json`,
 });
 
-
-
-const validateAndParseIdToken = async (idToken) =>
+const validateAndParseIdToken = async idToken =>
   new Promise((resolve, reject) => {
     const token = jwt.decode(idToken, {
       complete: true,
@@ -25,18 +23,18 @@ const validateAndParseIdToken = async (idToken) =>
 
     jwks.getSigningKey(header.kid, (err, key) => {
       if (err) {
-          reject(
-              new Error(
-                  'Error getting signing key: ' + err.message
-              )
-          );
+        reject(
+          new Error(
+            'Error getting signing key: ' + err.message
+          )
+        );
       }
       if (!key) {
-          reject(
-              new Error(
-                  'Error getting signing key: "No public key info available"'
-              )
-          );
+        reject(
+          new Error(
+            'Error getting signing key: "No public key info available"'
+          )
+        );
       }
       jwt.verify(
         idToken,
@@ -44,7 +42,7 @@ const validateAndParseIdToken = async (idToken) =>
         { algorithms: ['RS256'] },
         (err, decoded) => {
           if (err) {
-              reject('jwt verify error: ' + err.message);
+            reject('jwt verify error: ' + err.message);
           }
           resolve(decoded);
         }

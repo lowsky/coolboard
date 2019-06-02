@@ -4,8 +4,7 @@ const list = {
   async updateList(parent, args, ctx, info) {
     const userId = await getUserId(ctx);
 
-    const list = await ctx.db.mutation.updateList(
-      {
+    return ctx.db.mutation.updateList({
         where: args.where,
         data: {
           ...args.data,
@@ -18,14 +17,10 @@ const list = {
       },
       info
     );
-    return list;
   },
   async deleteList(parent, args, ctx, info) {
     await getUserId(ctx);
-    return await ctx.db.mutation.deleteList(
-      args,
-      info
-    );
+    return ctx.db.mutation.deleteList(args, info);
   },
 };
 

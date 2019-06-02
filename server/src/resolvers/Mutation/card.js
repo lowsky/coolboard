@@ -14,13 +14,13 @@ const card = {
     # ...
   }
   */
-  async updateCard(parent, args, ctx, info) {
+  async updateCard(parent, { where, data }, ctx, info) {
     const userId = await getUserId(ctx);
 
     const argsWithUpdatedByUser = {
-      where: args.where,
+      where,
       data: {
-        ...args.data,
+        ...data,
         updatedBy: {
           connect: {
             id: userId,
@@ -33,11 +33,10 @@ const card = {
       argsWithUpdatedByUser
     );
 
-    const result = await ctx.db.query.card(
+    return ctx.db.query.card(
       { where: { id: updatedCard.id } },
       info
     );
-    return result;
 
     /* Example:
     mutation {

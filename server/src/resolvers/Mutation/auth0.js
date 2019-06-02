@@ -1,29 +1,24 @@
 const validateAndParseIdToken = require('../../helpers/validateAndParseIdToken');
 
-async function createPrismaUser(ctx, idToken) {
+const createPrismaUser = async (ctx, idToken) => {
   const data = {
     identity: idToken.sub.split(`|`)[0],
     auth0id: idToken.sub.split(`|`)[1],
     name: idToken.name,
-    email: idToken.email
-      ? idToken.email
-      : 'twitter://' + idToken.name, // should not be empty when using twitter
+    email: idToken.email,
     avatarUrl: idToken.picture,
   };
 
-  const user = await ctx.db.mutation.createUser({
+  return ctx.db.mutation.createUser({
     data,
   });
-  return user;
-}
+};
 
 const auth0 = {
   async authenticate(parent, { idToken }, ctx, info) {
     let userToken;
 
-
-    try
-    {
+    try {
       userToken = await validateAndParseIdToken(
         idToken
       );
@@ -53,17 +48,20 @@ const auth0 = {
       }
 
        */
-    }
-    catch (err) {
+    } catch (err) {
       throw new Error(
-        `Auth0: validating token: ${idToken} - ${err.message}`
+        `Auth0: validating token: ${idToken} - ${
+          err.message
+        }`
       );
     }
 
     const auth0id = userToken.sub.split('|')[1];
 
     if (!auth0id) {
-      throw new Error("auth0id is empty, invalid token !");
+      throw new Error(
+        'auth0id is empty, invalid token !'
+      );
     }
 
     let userByAuth0id = await ctx.db.query.user(
@@ -75,14 +73,14 @@ const auth0 = {
       return userByAuth0id;
     }
 
+    /*
     let userByEmail = await ctx.db.query.user(
       { where: { email: userToken.email } },
       info
     );
+    */
 
-    const newUser = createPrismaUser(ctx, userToken);
-
-    return newUser;
+    return createPrismaUser(ctx, userToken);
   },
 };
 
