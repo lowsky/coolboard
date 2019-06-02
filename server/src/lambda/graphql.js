@@ -78,6 +78,10 @@ const lambda = new GraphQLServerLambda({
         'context(): req - event ...:',
         Object.keys(req.event)
       );
+    if (req.context)
+      log(
+        'context(): req - context ...:',
+        Object.keys(req.context),
       );
 
     // if(req.context) console.log('context(): req - contxt:', Object.keys(req.context), req.context );
