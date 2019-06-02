@@ -45,15 +45,20 @@ const IS_LOCALHOST =
   !SRV_HOST_PORT_DOMAIN ||
   SRV_HOST_PORT_DOMAIN.indexOf('localhost') >= 0;
 
-const secureConnection =
-  node_env === 'production' || !IS_LOCALHOST;
+const IS_PROD = node_env === 'production';
+
+const secureConnection = IS_PROD || !IS_LOCALHOST;
+
 const uri =
   (secureConnection ? 'https://' : 'http://') +
   SRV_HOST_PORT_DOMAIN;
 
 // Create a Http link
 let httpLink = createHttpLink({
-  uri: uri,
+  uri:
+    IS_LOCALHOST || IS_PROD
+      ? '/.netlify/functions/graphql'
+      : uri,
 });
 
 const middlewareAuthLink = new ApolloLink(
