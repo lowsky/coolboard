@@ -1,6 +1,6 @@
 const { GraphQLServer } = require('graphql-yoga');
 const { Prisma } = require('prisma-binding');
-const { checkJwt } = require('./middleware/jwt');
+const { checkJwt } = require('./express/middleware/jwt');
 const {
   makeExecutableSchema,
 } = require('graphql-tools');
@@ -8,7 +8,7 @@ const { importSchema } = require('graphql-import');
 const { formatError } = require('apollo-errors');
 const resolvers = require('./resolvers');
 
-const { getUser } = require('./middleware/getUser');
+const { getUser } = require('./express/middleware/getUser');
 
 const options = {
   formatError: (...args) => {
