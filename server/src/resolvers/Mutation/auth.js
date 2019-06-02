@@ -22,13 +22,20 @@ const auth = {
   },
 
   async login(parent, { email, password }, ctx, info) {
-    const user = await ctx.db.query.user({
+    const users = await ctx.db.query.users({
       where: { email },
     });
-    if (!user) {
+    if (!users || users.length !== 1) {
+      console.log('   - users:', users);
       throw new Error(
         `No such user found for email: ${email}`
       );
+    }
+
+    const user = users[0];
+
+    if (!user.password) {
+      throw new Error('Sorry, no password based authentication available for this user!');
     }
 
     const valid = await bcrypt.compare(

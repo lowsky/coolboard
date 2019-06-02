@@ -127,8 +127,6 @@ class Auth {
     localStorage.removeItem('access_token');
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
-    console.log('logged-out, removed token from localStorage.');
-    window.location.reload();
   };
 
   isAuthenticated = () => {

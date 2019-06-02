@@ -38,9 +38,14 @@ type Card {
 
 type User {
   id: ID! @unique
+  #orig
   email: String! @unique
-  password: String!
+  #not needed anymore: password: String!
   name: String!
   avatarUrl: String @default(value:"")
   boards: [Board!]!
+
+  #new, needed for prisma-auth0:
+  auth0id: String @unique
+  identity: String
 }

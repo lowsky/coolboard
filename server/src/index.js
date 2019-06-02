@@ -1,7 +1,14 @@
 const { GraphQLServer } = require('graphql-yoga');
 const { Prisma } = require('prisma-binding');
+const { checkJwt } = require('./express/middleware/jwt');
+const {
+  makeExecutableSchema,
+} = require('graphql-tools');
+const { importSchema } = require('graphql-import');
 const { formatError } = require('apollo-errors');
 const resolvers = require('./resolvers');
+
+const { getUser } = require('./express/middleware/getUser');
 
 const options = {
   formatError: (...args) => {
@@ -9,23 +16,48 @@ const options = {
   },
 };
 
-const server = new GraphQLServer({
-  typeDefs: 'src/schema.graphql',
+const db = new Prisma({
+  // the Prisma DB schema
+  typeDefs: 'src/generated/prisma.graphql',
+  // the endpoint of the Prisma DB service (value is set in .env)
+  endpoint: process.env.PRISMA_ENDPOINT,
+  // taken from database/prisma.yml (value is set in .env)
+  secret: process.env.PRISMA_MANAGEMENT_API_SECRET,
+  // log all GraphQL queries & mutations
+  debug: false,
+  resolverValidationOptions: {
+    requireResolversForResolveType: false,
+  },
+});
+
+const schema = makeExecutableSchema({
+  typeDefs: importSchema('src/schema.graphql'),
   resolvers,
+});
+
+const server = new GraphQLServer({
+  schema,
+  debug: false,
   context: req => ({
     ...req,
-    db: new Prisma({
-      // the Prisma DB schema
-      typeDefs: 'src/generated/prisma.graphql',
-      // the endpoint of the Prisma DB service (value is set in .env)
-      endpoint: process.env.PRISMA_ENDPOINT,
-      // taken from database/prisma.yml (value is set in .env)
-      secret: process.env.PRISMA_MANAGEMENT_API_SECRET,
-      // log all GraphQL queries & mutations
-      debug: true,
-    }),
+    db,
   }),
 });
+
+server.express.post(
+  server.options.endpoint,
+  checkJwt,
+  (err, req, res, next) => {
+    if (err) {
+      return res.status(401).json({ err });
+    }
+    next();
+  }
+);
+server.express.post(
+  server.options.endpoint,
+  (req, res, next) => getUser(req, res, next, db)
+);
 
 server.start(options, () =>
   console.log(
