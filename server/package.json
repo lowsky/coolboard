@@ -22,7 +22,7 @@
     "graphql-import": "0.7.1",
     "graphql-yoga": "1.16.9",
     "jsonwebtoken": "8.5.1",
-    "jwks-rsa": "1.4.0",
+    "jwks-rsa": "1.5.1",
     "netlify-lambda": "1.4.2",
     "prisma-binding": "2.2.14",
     "utf-8-validate": "5.0.2"
