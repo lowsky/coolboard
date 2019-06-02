@@ -1037,7 +1037,7 @@ type User {
   boards: [Board]
 }
 `,
-  gernerated_prisma_schema: `
+  generated_prisma_schema: `
 type AggregateBoard {
   count: Int!
 }

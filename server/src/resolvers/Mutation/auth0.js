@@ -21,7 +21,6 @@ const auth0 = {
   async authenticate(parent, { idToken }, ctx, info) {
     let userToken;
 
-    //try
 
     try
     {

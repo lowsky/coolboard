@@ -17,7 +17,6 @@ const validateAndParseIdToken = async (idToken) =>
     const token = jwt.decode(idToken, {
       complete: true,
     });
-    console.log('validateAndParseIdToken: token=', token);
 
     const { header, payload } = token;
     if (!header || !header.kid || !payload) {
@@ -25,13 +24,17 @@ const validateAndParseIdToken = async (idToken) =>
     }
 
     jwks.getSigningKey(header.kid, (err, key) => {
-      console.log('validateAndParse', header);
-      console.log('validateAndParse', err);
-      console.log('validateAndParse', key);
       if (err) {
           reject(
               new Error(
                   'Error getting signing key: ' + err.message
+              )
+          );
+      }
+      if (!key) {
+          reject(
+              new Error(
+                  'Error getting signing key: "No public key info available"'
               )
           );
       }
