@@ -1,5 +1,9 @@
 const { GraphQLServerLambda } = require('graphql-yoga');
 
+var debug = require('debug');
+var error = debug('graphqlambda:error');
+var log = debug('graphqlambda:log');
+
 const { Prisma } = require('prisma-binding');
 const resolvers = require('../resolvers');
 
@@ -72,7 +76,12 @@ const lambda = new GraphQLServerLambda({
   resolvers, // : helloResolvers,
 
   context: function(req) {
-    console.log('context(): req:', Object.keys(req));
+    error('-------------------------');
+    error('                setup context');
+    error('-------------------------');
+
+    log('context(): req:', Object.keys(req));
+
     if (req.event) {
       log(
         'context(): req - event ...:',
@@ -87,6 +96,9 @@ const lambda = new GraphQLServerLambda({
       );
 
     // if(req.context) console.log('context(): req - contxt:', Object.keys(req.context), req.context );
+
+    error('-------------------------');
+    error();
 
     return {
       ...req.context,
