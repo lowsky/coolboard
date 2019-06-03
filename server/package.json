@@ -17,7 +17,7 @@
     "aws-lambda": "0.1.2",
     "bcryptjs": "2.4.3",
     "bufferutil": "4.0.1",
-    "express-jwt": "^5.3.1",
+    "express-jwt": "5.3.1",
     "graphql": "14.3.1",
     "graphql-import": "0.7.1",
     "graphql-yoga": "1.16.9",
