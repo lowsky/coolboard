@@ -1,4 +1,5 @@
 const { GraphQLServer } = require('graphql-yoga');
+const { ApolloEngine } = require('apollo-engine');
 const { Prisma } = require('prisma-binding');
 const { checkJwt } = require('./express/middleware/jwt');
 const {
@@ -59,8 +60,26 @@ server.express.post(
   (req, res, next) => getUser(req, res, next, db)
 );
 
-server.start(options, () =>
-  console.log(
-    'Server is running on http://localhost:4000'
-  )
+const engine = new ApolloEngine({
+  // apiKey: process.env.APOLLO_ENGINE_KEY,
+  apiKey: 'service:lowsky-coolboard:FfdCjK0Nug0Dq2_qFuLfgw',
+});
+
+const httpServer = server.createHttpServer({
+  tracing: true,
+  cacheControl: true,
+});
+
+const port=4000;
+
+engine.listen(
+    {
+      port,
+      httpServer,
+      graphqlPaths: ['/'],
+    },
+    () =>
+        console.log(
+            `Server with Apollo Engine is running on http://localhost:${port}`,
+        ),
 );

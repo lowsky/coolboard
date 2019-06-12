@@ -26,7 +26,6 @@ const auth = {
       where: { email },
     });
     if (!users || users.length !== 1) {
-      console.log('   - users:', users);
       throw new Error(
         `No such user found for email: ${email}`
       );
