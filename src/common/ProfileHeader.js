@@ -93,14 +93,15 @@ export const ProfileHeader = ({ isBoardsPage }) => (
         <ProfileHeaderContainer
           isBoardsPage={isBoardsPage}>
           <div>
-          <span>{name} </span>
-          {avatarUrl && (
-            <Image src={avatarUrl} avatar spaced />
-          )}
+            <span>{name} </span>
+            {avatarUrl && (
+              <Image src={avatarUrl} avatar spaced />
+            )}
 
-          <Link to="/logout">
-              <Icon size="big" name="sign out" />Logout
-          </Link>
+            <Link to="/logout">
+              <Icon size="big" name="sign out" />
+              Logout
+            </Link>
           </div>
         </ProfileHeaderContainer>
       );
