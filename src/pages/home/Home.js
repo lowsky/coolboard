@@ -9,7 +9,7 @@ import {
 
 import { Link } from 'react-router-dom';
 
-import { FullVerticalContainer } from '../../components/general/FullVerticalContainer';
+import { FullVerticalContainer } from '../../common/FullVerticalContainer';
 
 import coolBoardLogo100 from './CoolBoardLogo100.png';
 import packLogo from '../../assets/packt-logo.svg';

@@ -8,8 +8,8 @@ import {
 
 import { Link } from 'react-router-dom';
 
-import { FullVerticalContainer } from '../../components/general/FullVerticalContainer';
-import { ProfileHeader } from '../../components/ProfileHeader';
+import { FullVerticalContainer } from '../../common/FullVerticalContainer';
+import { ProfileHeader } from '../../common/ProfileHeader';
 
 import packLogo from '../../assets/packt-logo.svg';
 import packLogoSmallPng from './packt-page-v141.png';

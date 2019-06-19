@@ -27,15 +27,15 @@ import {
 
 import './App.css';
 
-import Auth from './auth/auth';
+import Auth from './authentication/auth';
 
-import About from './pages/about/About';
+import { About } from './pages/about/About';
 import Home from './pages/home/Home';
-import { CoolBoard } from './pages/board/CoolBoard';
-import Boards from './pages/boards/Boards';
-import { FullVerticalContainer } from './components/general/FullVerticalContainer';
-import { ProfileHeader } from './components/ProfileHeader';
-import { GeneralErrorHandler } from './components/general/GeneralErrorHandler';
+import { CoolBoard } from './components/CoolBoard';
+import { Boards } from './components/Boards';
+import { FullVerticalContainer } from './common/FullVerticalContainer';
+import { ProfileHeader } from './common/ProfileHeader';
+import { GeneralErrorHandler } from './common/GeneralErrorHandler';
 
 const node_env = process.env.NODE_ENV;
 const SRV_HOST_PORT_DOMAIN =

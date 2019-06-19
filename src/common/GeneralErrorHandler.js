@@ -21,21 +21,19 @@ export const GeneralErrorHandler = ({
 
           if (notAuthErr) {
             return (
-              <React.Fragment>
-                <Message error>
-                  <strong>
-                    You will need to be authenticated
-                    to see or create Boards or change
-                    any items.
-                  </strong>
-                  <p>
-                    Please
-                    <Link to="/login">
-                      <Icon size="big" name="sign in" />Log in
-                    </Link>
-                  </p>
-                </Message>
-              </React.Fragment>
+              <Message error>
+                <strong>
+                  You will need to be authenticated
+                  to see or create Boards or change
+                  any items.
+                </strong>
+                <p>
+                  Please
+                  <Link to="/login">
+                    <Icon size="big" name="sign in" />Log in
+                  </Link>
+                </p>
+              </Message>
             );
           }
           return (
@@ -57,18 +55,18 @@ export const GeneralErrorHandler = ({
               </p>
             </Message>
           );
-        } else {
-          console.log('unknown error!', error);
-          return (
-            <Message error>
-              <strong>Unknown error!</strong>
-              <p>
-                You could find more details in the
-                browser console.
-              </p>
-            </Message>
-          );
         }
+
+        console.log('unknown error!', error);
+        return (
+          <Message error>
+            <strong>Unknown error!</strong>
+            <p>
+              You could find more details in the
+              browser console.
+            </p>
+          </Message>
+        );
       }
       // do not render anything, when there is no error above
       return false;

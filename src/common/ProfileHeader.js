@@ -85,21 +85,22 @@ export const ProfileHeader = ({ isBoardsPage }) => (
         );
       }
 
-      const { me } = data;
-      const { avatarUrl, name } = me;
+      const {
+        me: { avatarUrl, name },
+      } = data;
 
       return (
         <ProfileHeaderContainer
           isBoardsPage={isBoardsPage}>
           <div>
-            <span>{name} </span>
-            {avatarUrl && (
-              <Image src={avatarUrl} avatar spaced />
-            )}
+          <span>{name} </span>
+          {avatarUrl && (
+            <Image src={avatarUrl} avatar spaced />
+          )}
 
-            <Link to="/logout">
+          <Link to="/logout">
               <Icon size="big" name="sign out" />Logout
-            </Link>
+          </Link>
           </div>
         </ProfileHeaderContainer>
       );

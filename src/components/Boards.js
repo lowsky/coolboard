@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
-import { Mutation, Query } from 'react-apollo';
+import { Query, Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 
 import {
-  Button,
   Container,
-  Loader,
   Segment,
+  Loader,
+  Button,
 } from 'semantic-ui-react';
 
 import { Link } from 'react-router-dom';
 
-import { FullVerticalContainer } from '../../components/general/FullVerticalContainer';
-import { CreateBoardModal } from '../../components/CreateBoardModal';
+import { FullVerticalContainer } from '../common/FullVerticalContainer';
+import { CreateBoardModal } from './CreateBoardModal';
 
 const BoardListItem = ({ name, id, deleteBoard }) => (
   <div data-cy="board-list-item">
@@ -20,7 +20,7 @@ const BoardListItem = ({ name, id, deleteBoard }) => (
     &nbsp;
     <Button
       onClick={() => deleteBoard(id)}
-      size='mini'
+      size="mini"
       icon="trash"
     />
   </div>

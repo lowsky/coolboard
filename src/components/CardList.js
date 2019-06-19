@@ -2,7 +2,7 @@ import React from 'react';
 import { DropTarget } from 'react-dnd';
 import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
-import { graphql } from 'react-apollo';
+import { Query } from 'react-apollo';
 
 import {
   Button,
@@ -12,8 +12,9 @@ import {
   Popup,
 } from 'semantic-ui-react';
 
-import Card from './Card';
-import { ItemTypes } from './Constants';
+import styles from './CardList.module.css';
+
+import Card, { dndItemType, } from './Card';
 
 class CardListWithoutDnd extends React.Component {
   render() {
@@ -26,15 +27,7 @@ class CardListWithoutDnd extends React.Component {
     } = this.props;
 
     const { cardList } = this.props;
-    const { list = {}, loading, error } = cardList;
-
-    if (error) {
-      return (
-        <div data-cy="card-list-error">
-          ERROR! {error.message}{' '}
-        </div>
-      );
-    }
+    const { list = {}, loading } = cardList;
 
     // use name injected as default if not yet available
     let { name = this.props.name, cards = [] } = list;
@@ -43,7 +36,8 @@ class CardListWithoutDnd extends React.Component {
       <div data-cy="card-list">
         {connectDropTarget(
           <div>
-            <ListContainer
+            <div
+              className={styles.list}
               style={{
                 backgroundColor: isOver
                   ? 'yellow'
@@ -61,8 +55,8 @@ class CardListWithoutDnd extends React.Component {
               {loading ? (
                 <Loader active />
               ) : (
-                <InnerScrollContainer>
-                  <CardsContainer>
+                <div className={styles.inner}>
+                  <div className={styles.container}>
                     {cards.map(c => (
                       <Card
                         key={c.id}
@@ -70,8 +64,8 @@ class CardListWithoutDnd extends React.Component {
                         cardListId={id}
                       />
                     ))}
-                  </CardsContainer>
-                </InnerScrollContainer>
+                  </div>
+                </div>
               )}
 
               <CardListButton
@@ -81,7 +75,7 @@ class CardListWithoutDnd extends React.Component {
                 <Icon name="plus" />
                 Add a card
               </CardListButton>
-            </ListContainer>
+            </div>
           </div>
         )}
       </div>
@@ -90,14 +84,8 @@ class CardListWithoutDnd extends React.Component {
 }
 
 const dropTarget = {
-  drop(props, monitor, component) {
-    console.log(
-      'dropped: ',
-      props,
-      monitor,
-      component
-    );
-    let cardItem = monitor.getItem();
+  drop(props, monitor) {
+    const cardItem = monitor.getItem();
     const cardId = cardItem.id;
     const cardListId = props.id;
     const oldCardListId = cardItem.cardListId;
@@ -107,11 +95,10 @@ const dropTarget = {
       cardListId
     );
   },
-  hover(props, monitor) {},
+  hover() {},
   canDrop(props, monitor) {
-    let item = monitor.getItem();
-    let can = !(props.id === item.cardListId);
-    return can;
+    const item = monitor.getItem();
+    return !(props.id === item.cardListId);
   },
 };
 
@@ -133,46 +120,47 @@ const CardListfragments = {
   `,
 };
 
-const queryOptions = {
-  name: 'cardList',
-  options: props => ({
-    variables: {
-      cardListId: props.id,
-    },
-  }),
-};
+const CardListWithDnd = DropTarget(
+  dndItemType,
+  dropTarget,
+  collect
+)(CardListWithoutDnd);
 
-export const CardList = graphql(
-  gql`
-    query CardList($cardListId: ID) {
-      list(where: { id: $cardListId }) {
-        ...CardList_list
+export const CardList = ({ id, ...props }) => (
+  <Query
+    variables={{ cardListId: id }}
+    query={gql`
+      query CardList($cardListId: ID) {
+        list(where: { id: $cardListId }) {
+          ...CardList_list
+        }
       }
-    }
-    ${CardListfragments.list}
-  `,
-  queryOptions
-)(
-  DropTarget(ItemTypes.CARD, dropTarget, collect)(
-    CardListWithoutDnd
-  )
+      ${CardListfragments.list}
+    `}>
+    {({ loading, error, data }) => {
+      if (error) {
+        return <span>Load error!</span>;
+      }
+      const cardList = {
+        ...data,
+        loading,
+      };
+      return (
+        <CardListWithDnd
+          {...props}
+          cardList={cardList}
+          id={id}
+        />
+      );
+    }}
+  </Query>
 );
 
 const CardListHeader = ({ name, children }) => (
-  <div
-    data-cy="card-list-header"
-    style={{
-      display: 'flex',
-      flexDirection: 'row',
-      alignItems: 'center',
-      padding: '0.4em 0',
-    }}>
+  <div className={styles.header}>
     <Header
       textAlign="center"
-      style={{
-        flexGrow: 1,
-        marginBottom: 0, // reduce semantic-ui's bottom border
-      }}>
+      className={styles.title}>
       {name}
     </Header>
     <Popup
@@ -190,60 +178,14 @@ const CardListHeader = ({ name, children }) => (
   </div>
 );
 
-const InnerScrollContainer = ({ children }) => {
-  return (
-    <div
-      data-cy="inner-scroll-container"
-      style={{
-        flexShrink: 1,
-        flexGrow: 0,
-        overflow: 'auto',
-      }}>
-      {children}
-    </div>
-  );
-};
-
-const CardsContainer = ({ children }) => (
-  <div
-    data-cy="cards-container"
-    style={{
-      border: '1em',
-      display: 'flex',
-      flexDirection: 'column',
-    }}>
-    {children}
-  </div>
-);
-
-const ListContainer = ({ children, style }) => (
-  <div
-    data-cy="list-container"
-    style={{
-      backgroundColor: 'lightgrey',
-      padding: '0.4em',
-      width: '20em',
-      color: 'black',
-      marginRight: '1em',
-      flexShrink: 0,
-      flexGrow: 0,
-      flexDirection: 'column',
-      display: 'flex',
-      ...style,
-    }}>
-    {children}
-  </div>
-);
-
-const CardListButton = ({ onButtonClick, children }) => (
+const CardListButton = ({
+  onButtonClick,
+  children,
+}) => (
   <Button
+    className={styles.button}
     compact
-    onClick={() => onButtonClick()}
-    style={{
-      margin: '0.1em 0 0 0',
-      borderBottom: '1px solid #ccc',
-      backgroundColor: '#grey',
-    }}>
+    onClick={() => onButtonClick()}>
     {children}
   </Button>
 );
