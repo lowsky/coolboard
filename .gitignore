@@ -23,3 +23,5 @@ smoketest/node_modules
 smoketest/cypress/videos
 smoketest/cypress/screenshots
 server/lambda
+
+/.pnp/

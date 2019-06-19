@@ -11,37 +11,34 @@ import {
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
-class BoardContainerInner extends React.Component {
-  render() {
-    const { boardName, children } = this.props;
-
-    return (
-    <Container
-      fluid
+const BoardContainerInner = ({
+  boardName,
+  children,
+}) => (
+  <Container
+    fluid
+    style={{
+      display: 'flex',
+      flexDirection: 'column',
+      flexGrow: 1,
+    }}>
+    <Header textAlign="center" as="h1">
+      Board: {boardName}
+    </Header>
+    <div
+      data-cy="board-container-inner"
       style={{
+        textAlign: 'left',
+        backgroundColor: 'blue',
+        padding: '1em',
         display: 'flex',
-        flexDirection: 'column',
-        flexGrow: 1,
+        flex: 1,
+        overflow: 'auto',
       }}>
-      <Header textAlign="center" as="h1">
-        Board: {boardName}
-      </Header>
-      <div
-        data-cy="board-container-inner"
-        style={{
-          textAlign: 'left',
-          backgroundColor: 'blue',
-          padding: '1em',
-          display: 'flex',
-          flex: 1,
-          overflow: 'auto',
-        }}>
-        {children}
-      </div>
-    </Container>
-    );
-  }
-}
+      {children}
+    </div>
+  </Container>
+);
 
 export const BoardContainer = DragDropContext(
   HTML5Backend
@@ -64,7 +61,10 @@ export const AddListButton = ({ onAddNewList }) => (
     Add a list
   </Button>
 );
-export const DelListButton = ({ action, children }) => (
+export const DelListButton = ({
+  action,
+  children,
+}) => (
   <Button
     onClick={() => action()}
     style={{
@@ -73,14 +73,16 @@ export const DelListButton = ({ action, children }) => (
       alignSelf: 'flex-start',
     }}>
     <Icon name="delete" />
-    {children && children}
-    {!children && 'Delete'}
+    {children}
   </Button>
 );
 
 DelListButton.propTypes = {
   onAddNewList: PropTypes.func,
-  children: PropTypes.oneOfType([PropTypes.array, PropTypes.string]).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.string,
+  ]).isRequired,
 };
 AddListButton.propTypes = {
   onAddNewList: PropTypes.func,
