@@ -126,7 +126,7 @@ export class CardComponent extends React.Component {
       updatedBy = {},
     } = this.props;
     return (
-      <CardDiv onClick={() => this.showAndReset()}>
+      <CardDiv data-cy="card" onClick={() => this.showAndReset()}>
         <Modal open={showModal} onClose={this.hide}>
           <Modal.Header>Edit Card</Modal.Header>
           <Modal.Content>
