@@ -16,6 +16,9 @@ import { ApolloLink, split } from 'apollo-link';
 
 import { createNetworkStatusNotifier } from 'react-apollo-network-status';
 
+import { DndProvider } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
+
 /**/
 
 import {
@@ -155,7 +158,9 @@ export const App = () => (
                     NetworkStatusNotifier
                   }
                 />
-                <CoolBoard boardId={match.params.id} />
+                  <DndProvider backend={HTML5Backend}>
+                      <CoolBoard boardId={match.params.id} />
+                  </DndProvider>
               </FullVerticalContainer>
             )}
           />
