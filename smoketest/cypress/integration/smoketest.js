@@ -94,7 +94,9 @@ describe('Checkout cypress', () => {
     gotoBoards();
 
     // open first board named XXX
-    getBoardsList_FirstEntry('autotest').click();
+    const newBoardName =
+      process.env.CIRCLE_BRANCH || 'autotest';
+    getBoardsList_FirstEntry(newBoardName).click();
 
     // clear all lists:
     cy.get('button')
