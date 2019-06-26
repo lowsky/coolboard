@@ -11,11 +11,12 @@ const password = Cypress.env('USER_PASSWORD');
 
 // will be set by cypress.json, or via env: CYPRESS_baseUrl
 const baseUrl = Cypress.config('baseUrl');
+// will be set by cypress.json, or via env: CYPRESS_branch
 const branch =
   Cypress.config('branch') ||
   'missing-CYPRESS_branch-env';
 
-const newBoardName = branch
+const newBoardName = branch;
 
 beforeEach(() => {
   assert(
@@ -27,6 +28,9 @@ beforeEach(() => {
       ${baseUrl}`
   );
   cy.log(`Testing site on this base url: ${baseUrl}`);
+
+  assert(branch, 'CYPRESS_branch env var was not set');
+  cy.log('Testing project git branch: ' + branch);
 });
 
 const gotoBoards = () =>
@@ -93,12 +97,12 @@ const getBoardsList = () =>
   cy
     .get('.App h1', LogAndWaitLong)
     .parent()
+    .wait(2000) // wait a little longer
     .find('.fluid.container', LogAndWaitLong)
     .find('a', LogAndWaitLong);
 
 const getBoardsList_FirstEntry = name =>
   getBoardsList()
-    .pause()
     .contains(name)
     .first();
 
@@ -112,7 +116,24 @@ describe('Test coolboard', () => {
     doLogin().then(() => {
       gotoBoards();
     });
+  });
 
+  it('user can create a board for branch', function() {
+    doLogin();
+    gotoBoards();
+
+    getBoardsList().then(boards =>
+      cy
+        .log(boards)
+        .log(boards.length)
+        .get('.basic > .ui')
+        .click()
+        .get('input')
+        .type(newBoardName)
+        .get('.green')
+        .click()
+    );
+    getBoardsList_FirstEntry(newBoardName);
   });
 
   it('user can add lists and cards after login', function() {
