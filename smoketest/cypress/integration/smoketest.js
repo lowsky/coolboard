@@ -1,8 +1,6 @@
 /* eslint-disable no-undef */
 /// <reference types="Cypress" />
 
-// @ts-check
-
 let auth0LockInputEmail =
   'div > div > .auth0-lock-input-email > .auth0-lock-input-wrap > .auth0-lock-input';
 let auth0LockInputPassword =
@@ -12,42 +10,54 @@ let auth0LockInputPassword =
 const password = Cypress.env('USER_PASSWORD');
 
 // will be set by cypress.json, or via env: CYPRESS_baseUrl
-let TargetUrl = Cypress.config('baseUrl');
+const baseUrl = Cypress.config('baseUrl');
+const branch =
+  Cypress.config('branch') ||
+  'missing-CYPRESS_branch-env';
+
+const newBoardName = branch
+
+beforeEach(() => {
+  assert(
+    baseUrl.endsWith('localhost:3000') ||
+      baseUrl.endsWith('coolboard.netlify.com') ||
+      baseUrl.endsWith('www.coolboard.fun'),
+    `Check: Domain should be one of: ' +
+     localhost:3000 | coolboard.fun | coolboard.netlify.com , but not: 
+      ${baseUrl}`
+  );
+  cy.log(`Testing site on this base url: ${baseUrl}`);
+});
 
 const gotoBoards = () =>
-  cy.visit(TargetUrl+ "/boards")
+  cy
+    .visit(baseUrl + '/boards')
     .url()
     .should('include', 'boards');
 
-function clickLogin() {
-  return cy
+const clickLogin = () =>
+  cy
     .get('a[href="/login"]', {
       log: true,
       timeout: 12000,
     })
     .first()
     .click();
-}
 
-beforeEach(() => {
-  console.clear();
-  assert(
-    TargetUrl.endsWith('localhost:3000') ||
-      TargetUrl.endsWith('coolboard.netlify.com') ||
-      TargetUrl.endsWith('www.coolboard.fun'),
-    `Check: Domain should be one of: ' +
-     localhost:3000 | coolboard.fun | coolboard.netlify.com , but not: 
-      ${TargetUrl}`
+const _boardListContainer = () =>
+  cy.get('[data-cy="board-container-inner"]');
+
+const cardListButtons = () =>
+  _boardListContainer().get('button');
+
+const add_a_list = () =>
+  cardListButtons().contains('Add a list');
+
+const sections = options =>
+  _boardListContainer(options).get(
+    '[data-cy="card-list"]',
+    options
   );
-  cy.log(`Testing this target url: ${TargetUrl}`);
-});
-
-const boardListContainer = () => cy.get('[data-cy="board-container-inner"]');
-const cardListButtons = () => boardListContainer().get('button');
-
-const add_a_list = () => cardListButtons().contains('Add a list');
-
-const sections = options => boardListContainer(options).get('[data-cy="card-list"]', options);
 
 const add_a_card = () =>
   cardListButtons({
@@ -62,15 +72,15 @@ function fillLoginForm() {
   cy.get(auth0LockInputPassword).type(password, {
     log: false,
   });
-  return cy.get('button.auth0-lock-submit')
+  return cy
+    .get('button.auth0-lock-submit')
     .click()
 
     .url(LogAndWaitLong)
-    // still needed? .should('include', 'callback')
     .url(LogAndWaitLong)
     .should('not.include', 'callback')
-    .should('equal', TargetUrl +  '/').
-    wait(2000)
+    .should('equal', baseUrl + '/')
+    .wait(2000);
 }
 
 function doLogin() {
@@ -79,23 +89,38 @@ function doLogin() {
   return fillLoginForm();
 }
 
-describe('Checkout cypress', () => {
+const getBoardsList = () =>
+  cy
+    .get('.App h1', LogAndWaitLong)
+    .parent()
+    .find('.fluid.container', LogAndWaitLong)
+    .find('a', LogAndWaitLong);
 
-  it('tests coolboard', () => {
-    doLogin().then(() =>{
+const getBoardsList_FirstEntry = name =>
+  getBoardsList()
+    .pause()
+    .contains(name)
+    .first();
+
+let LogAndWaitLong = {
+  log: true,
+  timeout: 13000,
+};
+
+describe('Test coolboard', () => {
+  it('need to login to show boards', () => {
+    doLogin().then(() => {
       gotoBoards();
-    })
+    });
 
   });
 
-  it('logged-in user can add list and card', function() {
+  it('user can add lists and cards after login', function() {
     doLogin();
 
     gotoBoards();
 
     // open first board named XXX
-    const newBoardName =
-      process.env.CIRCLE_BRANCH || 'autotest';
     getBoardsList_FirstEntry(newBoardName).click();
 
     // clear all lists:
@@ -126,34 +151,16 @@ describe('Checkout cypress', () => {
       .contains('Save')
       .click();
 
-    add_a_list()
-      .click();
+    add_a_list().click();
 
-    cy.get('div:nth-child(2) > div > div > div > .ui > .ellipsis')
-      .click();
+    cy.get(
+      'div:nth-child(2) > div > div > div > .ui > .ellipsis'
+    ).click();
 
     cy.get('.ui > .button > .trash')
       .first()
       .click();
 
-    cy.get('.sc-bdVaJa > .ui > div > div > a')
-      .click();
+    cy.get('.sc-bdVaJa > .ui > div > div > a').click();
   });
-
 });
-
-
-function getBoardsList_FirstEntry(name) {
-  return cy
-    .get('.App  h1', LogAndWaitLong)
-    .parent()
-    .find('.fluid.container', LogAndWaitLong)
-    .find('a', LogAndWaitLong)
-    .contains(name)
-    .first();
-}
-
-let LogAndWaitLong = {
-  log: true,
-  timeout: 13000,
-};
