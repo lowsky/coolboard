@@ -75,9 +75,9 @@ class Board extends React.Component {
       });
     };
 
-    this.subscribeToBoardUpdates(subscribeToMore);
-    this.subscribeToCardUpdates(subscribeToMore);
+    this.subscribeToBoardUpdates(subscribeToMore, boardId);
     this.subscribeToListUpdates(subscribeToMore);
+    this.subscribeToCardUpdates(subscribeToMore);
 
     return (
       <BoardContainer boardName={name}>
