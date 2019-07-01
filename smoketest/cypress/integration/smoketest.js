@@ -13,12 +13,12 @@ const password = Cypress.env('USER_PASSWORD');
 const baseUrl = Cypress.config('baseUrl');
 // will be set by cypress.json, or via env: CYPRESS_branch
 const branch =
-  Cypress.config('branch') ||
+  Cypress.env('branch') ||
   'missing-CYPRESS_branch-env';
 
 const newBoardName = branch;
 
-beforeEach(() => {
+before(() => {
   assert(
     baseUrl.endsWith('localhost:3000') ||
       baseUrl.endsWith('coolboard.netlify.com') ||
@@ -112,14 +112,17 @@ let LogAndWaitLong = {
 };
 
 describe('Test coolboard', () => {
-  it('need to login to show boards', () => {
-    doLogin().then(() => {
-      gotoBoards();
-    });
+  beforeEach(() => {
+    doLogin();
   });
 
-  it('user can create a board for branch', function() {
-    doLogin();
+  it('need to login to show boards', () => {
+    // 'then' still needed? doLogin().then(() => {
+    gotoBoards();
+    // } );
+  });
+
+  it('user can create a board for branch', () => {
     gotoBoards();
 
     getBoardsList().then(boards =>
@@ -136,9 +139,7 @@ describe('Test coolboard', () => {
     getBoardsList_FirstEntry(newBoardName);
   });
 
-  it('user can add lists and cards after login', function() {
-    doLogin();
-
+  it('user can add lists and cards after login', () => {
     gotoBoards();
 
     // open first board named XXX
@@ -170,7 +171,8 @@ describe('Test coolboard', () => {
     cy.get('.modal')
       .find('.button')
       .contains('Save')
-      .click();
+      .click()
+      .wait(1500); // just wait a little until the mutation was done
 
     add_a_list().click();
 
@@ -183,5 +185,16 @@ describe('Test coolboard', () => {
       .click();
 
     cy.get('.sc-bdVaJa > .ui > div > div > a').click();
+  });
+
+  it('user can delete board', () => {
+    gotoBoards();
+
+    // open first board named XXX
+    getBoardsList_FirstEntry(newBoardName)
+      .parent()
+      .find('.button > .trash')
+      .click()
+      .wait(1500);
   });
 });
