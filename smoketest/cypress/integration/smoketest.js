@@ -195,8 +195,5 @@ describe('Test coolboard', () => {
       .find('.button > .trash')
       .click()
       .wait(1500);
-
-    getBoardsList_FirstEntry(newBoardName)
-      .should('have.length', 0);
   });
 });
