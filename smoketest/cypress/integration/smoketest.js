@@ -171,7 +171,8 @@ describe('Test coolboard', () => {
     cy.get('.modal')
       .find('.button')
       .contains('Save')
-      .click();
+      .click()
+      .wait(1500); // just wait a little until the mutation was done
 
     add_a_list().click();
 
