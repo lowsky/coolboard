@@ -186,4 +186,18 @@ describe('Test coolboard', () => {
 
     cy.get('.sc-bdVaJa > .ui > div > div > a').click();
   });
+
+  it('user can delete board', function() {
+    gotoBoards();
+
+    // open first board named XXX
+    getBoardsList_FirstEntry(newBoardName)
+      .parent()
+      .find('.button > .trash')
+      .click()
+      .wait(1500);
+
+    getBoardsList_FirstEntry(newBoardName)
+      .should('have.length', 0);
+  });
 });
