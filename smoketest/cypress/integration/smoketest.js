@@ -13,7 +13,7 @@ const password = Cypress.env('USER_PASSWORD');
 const baseUrl = Cypress.config('baseUrl');
 // will be set by cypress.json, or via env: CYPRESS_branch
 const branch =
-  Cypress.config('branch') ||
+  Cypress.env('branch') ||
   'missing-CYPRESS_branch-env';
 
 const newBoardName = branch;
