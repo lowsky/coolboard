@@ -112,14 +112,17 @@ let LogAndWaitLong = {
 };
 
 describe('Test coolboard', () => {
+  beforeEach(()=> {
+    doLogin()
+  })
+
   it('need to login to show boards', () => {
-    doLogin().then(() => {
+    // 'then' still needed? doLogin().then(() => {
       gotoBoards();
-    });
+    // } );
   });
 
   it('user can create a board for branch', function() {
-    doLogin();
     gotoBoards();
 
     getBoardsList().then(boards =>
@@ -137,7 +140,6 @@ describe('Test coolboard', () => {
   });
 
   it('user can add lists and cards after login', function() {
-    doLogin();
 
     gotoBoards();
 
