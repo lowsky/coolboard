@@ -112,17 +112,17 @@ let LogAndWaitLong = {
 };
 
 describe('Test coolboard', () => {
-  beforeEach(()=> {
-    doLogin()
-  })
+  beforeEach(() => {
+    doLogin();
+  });
 
   it('need to login to show boards', () => {
     // 'then' still needed? doLogin().then(() => {
-      gotoBoards();
+    gotoBoards();
     // } );
   });
 
-  it('user can create a board for branch', function() {
+  it('user can create a board for branch', () => {
     gotoBoards();
 
     getBoardsList().then(boards =>
@@ -139,8 +139,7 @@ describe('Test coolboard', () => {
     getBoardsList_FirstEntry(newBoardName);
   });
 
-  it('user can add lists and cards after login', function() {
-
+  it('user can add lists and cards after login', () => {
     gotoBoards();
 
     // open first board named XXX
@@ -187,7 +186,7 @@ describe('Test coolboard', () => {
     cy.get('.sc-bdVaJa > .ui > div > div > a').click();
   });
 
-  it('user can delete board', function() {
+  it('user can delete board', () => {
     gotoBoards();
 
     // open first board named XXX
