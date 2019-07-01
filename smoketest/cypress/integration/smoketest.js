@@ -18,7 +18,7 @@ const branch =
 
 const newBoardName = branch;
 
-beforeEach(() => {
+before(() => {
   assert(
     baseUrl.endsWith('localhost:3000') ||
       baseUrl.endsWith('coolboard.netlify.com') ||
