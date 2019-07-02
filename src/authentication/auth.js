@@ -104,7 +104,12 @@ class Auth {
         variables: { idToken },
       })
       .then(res => {
-        console.log(`authentication-mutation result: ${res}`);
+        if (
+          window.location.href.includes('localhost')
+        ) {
+          console.log('authentication-mutation result:', res
+          );
+        }
         if (
           window.location.href.includes(`callback`)
         ) {
@@ -135,9 +140,14 @@ class Auth {
     const expiresAt = JSON.parse(
       localStorage.getItem('expires_at')
     );
-    const isNotExpired = new Date().getTime() < expiresAt;
+    const isNotExpired =
+      new Date().getTime() < expiresAt;
 
-    console.log(`AUTH: is expired? - ${ !isNotExpired}`);
+    if (window.location.href.includes('localhost')) {
+      console.log(
+        `AUTH: is expired? - ${!isNotExpired}`
+      );
+    }
 
     return isNotExpired;
   };
