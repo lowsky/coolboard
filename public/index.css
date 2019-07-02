@@ -20,3 +20,13 @@ p a {
   padding-left: 0.5em;
   padding-right: 0.5em;
 }
+
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+#root {
+  flex-grow: 1;
+}

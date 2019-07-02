@@ -28,8 +28,6 @@ import {
   Link,
 } from 'react-router-dom';
 
-import './App.css';
-
 import Auth from './authentication/auth';
 
 import { About } from './pages/about/About';
