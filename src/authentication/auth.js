@@ -32,9 +32,8 @@ class Auth {
     }
   );
 
-  constructor(cb, apolloClient) {
+  constructor(apolloClient) {
     this.apolloClient = apolloClient;
-    this.callback = cb.bind(this);
 
     this.addHandleAuthenticationListener();
   }
@@ -52,17 +51,13 @@ class Auth {
 
     // Add a callback for Lock's `authorization_error` event
     this.lock.on('authorization_error', err => {
-      console.error('Error while authentication via auth0', err);
-      alert(
-        `Sorry, Error: ${
-          err.error
-        }. Check the console for further details, and Please Re-try.`
+      console.error(
+        'Error while authentication via auth0',
+        err
       );
-      const data = {
-        status: `error`,
-        errMessage: err.error,
-      };
-      this.callback(data);
+      alert(
+        `Sorry, Error: ${err.error}. Check the console for further details, and Please Re-try.`
+      );
     });
   }
 
@@ -86,14 +81,6 @@ class Auth {
         authResult.idToken
       );
       localStorage.setItem('expires_at', expiresAt);
-      const data = {
-        status: `success`,
-        accessToken: authResult.accessToken,
-        idToken: authResult.idToken,
-        expiresAt,
-      };
-      this.signinOrCreateAccount(authResult.idToken)
-        .then(() => this.callback(data));
     }
   }
 
@@ -107,7 +94,9 @@ class Auth {
         if (
           window.location.href.includes('localhost')
         ) {
-          console.log('authentication-mutation result:', res
+          console.log(
+            'authentication-mutation result:',
+            res
           );
         }
         if (

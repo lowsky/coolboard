@@ -119,10 +119,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-const auth = new Auth(
-  result => console.log('auth result', result),
-  client
-);
+const auth = new Auth(client);
 
 export const App = () => (
   <div className="App">
