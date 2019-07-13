@@ -2,9 +2,6 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  display: flex;
-  height: 1vh;
-  flex-direction: column;
 }
 
 #footer {
@@ -26,7 +23,4 @@ p a {
   display: flex;
   flex-direction: column;
   height: 100%;
-}
-#root {
-  flex-grow: 1;
 }

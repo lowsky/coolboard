@@ -20,9 +20,17 @@
       MIXPANEL_CUSTOM_LIB_URL:"file:"===c.location.protocol&&"//cdn4.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn4.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn4.mxpnl.com/libs/mixpanel-2-latest.min.js";d=c.getElementsByTagName("script")[0];d.parentNode.insertBefore(b,d)}})(document,window.mixpanel||[]);
       mixpanel.init("4c4706d7993c599ca58fabe6d7013cf1");</script>
     <!-- end Mixpanel -->
+    <style>
+      body {
+        height: 100vh;
+        display: flex;
+        flex-direction: column
+      }
+      #root {flex-grow: 1;}
+    </style>
     <link rel="stylesheet" href="index.css"/>
   </head>
-  <body style="height: 100%">
+  <body>
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
