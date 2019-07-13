@@ -224,17 +224,19 @@ export const App = () => (
             render={() => {
               return (
                 <FullVerticalContainer data-cy="callback-full-container">
-                  <ProfileHeader />
-                  <GeneralErrorHandler
-                    NetworkStatusNotifier={
-                      NetworkStatusNotifier
-                    }
-                  />
-                  <div>
-                    <Loader active>
-                      Authenticating...
-                    </Loader>
-                  </div>
+                  <ApolloProvider client={client}>
+                    <ProfileHeader />
+                    <GeneralErrorHandler
+                      NetworkStatusNotifier={
+                        NetworkStatusNotifier
+                      }
+                    />
+                    <div>
+                      <Loader active>
+                        Authenticating...
+                      </Loader>
+                    </div>
+                  </ApolloProvider>
                 </FullVerticalContainer>
               );
             }}
@@ -244,9 +246,8 @@ export const App = () => (
             path="/about"
             render={() => <About />}
           />
-          <Route path="/" render={() => <Home />} />
-        </Switch>
-      </ApolloProvider>
+        </ApolloProvider>
+      </Suspense>
     </BrowserRouter>
   </div>
 );
