@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 
 import { Loader } from 'semantic-ui-react';
 
@@ -32,11 +32,19 @@ import Auth from './authentication/auth';
 
 import { About } from './pages/about/About';
 import Home from './pages/home/Home';
-import { CoolBoard } from './components/CoolBoard';
-import { Boards } from './components/Boards';
 import { FullVerticalContainer } from './common/FullVerticalContainer';
 import { ProfileHeader } from './common/ProfileHeader';
 import { GeneralErrorHandler } from './common/GeneralErrorHandler';
+const CoolBoard = lazy(() =>
+  import('./components/CoolBoard').then(module => ({
+    default: module.CoolBoard,
+  }))
+);
+const Boards = lazy(() =>
+  import('./components/Boards').then(module => ({
+    default: module.Boards,
+  }))
+);
 
 const node_env = process.env.NODE_ENV;
 const SRV_HOST_PORT_DOMAIN =
@@ -124,23 +132,24 @@ const auth = new Auth(client);
 export const App = () => (
   <div className="App">
     <BrowserRouter>
-      <ApolloProvider client={client}>
-        <Switch>
-          <Route
-            exact
-            path="/boards"
-            render={() => (
-              <FullVerticalContainer data-cy="boards-full-container">
-                <ProfileHeader isBoardsPage />
-                <GeneralErrorHandler
-                  NetworkStatusNotifier={
-                    NetworkStatusNotifier
-                  }
-                />
-                <Boards />
-              </FullVerticalContainer>
-            )}
-          />
+      <Suspense fallback={<Loader />}>
+        <ApolloProvider client={client}>
+          <Switch>
+            <Route
+              exact
+              path="/boards"
+              render={() => (
+                <FullVerticalContainer data-cy="boards-full-container">
+                  <ProfileHeader isBoardsPage />
+                  <GeneralErrorHandler
+                    NetworkStatusNotifier={
+                      NetworkStatusNotifier
+                    }
+                  />
+                  <Boards />
+                </FullVerticalContainer>
+              )}
+            />
 
           <Route
             exact
@@ -166,22 +175,28 @@ export const App = () => (
             render={({ history }) => {
               auth.login();
 
-              client.resetStore().then(() => {
-                history.push(`/`);
-              });
+                client.resetStore().then(() => {
+                  history.push(`/`);
+                });
 
-              return (
-                <FullVerticalContainer data-cy="login-full-container">
-                  <p>
-                    Please wait, trying to authenticate
-                    ... If it did not work, you can go
-                    back to the
-                    <Link to="/">main page</Link>
-                  </p>
-                </FullVerticalContainer>
-              );
-            }}
-          />
+                return (
+                  <FullVerticalContainer data-cy="login-full-container">
+                    <p>
+                      Please wait, trying to authenticate
+                      ... If it did not work, you can go
+                      back to the
+                      <Link to="/">main page</Link>
+                    </p>
+                  </FullVerticalContainer>
+                );
+              }}
+            />
+            <Route
+              path="/"
+              exact
+              render={() => <Home />}
+            />
+          </Switch>
 
           {/*
               <Route
