@@ -184,6 +184,15 @@ describe('Test coolboard', () => {
       .first()
       .click();
 
+    cy.log('add a list');
+    add_a_list().click();
+
+    cy.log('delete first list');
+    sections(LogAndWaitLong)
+      // missing data-cy...  .get('.CardList_list__IEtjo > .CardList_header__x9UhR > .mini > .ellipsis')
+      .get('.CardList_list__IEtjo > .CardList_header__x9UhR > .mini > .ellipsis')
+      .first()
+      .click();
     cy.get('.ui > .button > .trash')
       .first()
       .click();
