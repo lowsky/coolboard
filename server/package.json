@@ -20,7 +20,7 @@
     "bcryptjs": "2.4.3",
     "bufferutil": "4.0.1",
     "express-jwt": "5.3.1",
-    "graphql": "14.3.1",
+    "graphql": "14.4.2",
     "graphql-import": "0.7.1",
     "graphql-yoga": "1.18.0",
     "jsonwebtoken": "8.5.1",
