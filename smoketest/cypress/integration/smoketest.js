@@ -174,17 +174,23 @@ describe('Test coolboard', () => {
       .click()
       .wait(1500); // just wait a little until the mutation was done
 
+    cy.log('add a list');
     add_a_list().click();
 
-    cy.get(
-      'div:nth-child(2) > div > div > div > .ui > .ellipsis'
-    ).click();
+    cy.log('delete first list');
+    sections(LogAndWaitLong)
+      // missing data-cy...  .get('.CardList_list__IEtjo > .CardList_header__x9UhR > .mini > .ellipsis')
+      .get('.CardList_list__IEtjo > .CardList_header__x9UhR > .mini > .ellipsis')
+      .first()
+      .click();
 
     cy.get('.ui > .button > .trash')
       .first()
       .click();
 
-    cy.get('.sc-bdVaJa > .ui > div > div > a').click();
+    // Later: if(headed) cy.pause();
+    // logout
+    cy.get('[data-cy=profil-header] > div > a').click();
   });
 
   it('user can delete board', () => {
