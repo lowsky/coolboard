@@ -21,76 +21,68 @@ jobs:
       - run:
           name: web client - build
           command: npm run build
-  build:
+  smoke:
     docker:
       - image: cypress/base:10
     parallelism: 1
     steps:
       - checkout
       - run:
-          name: Set PR number
+          name: Set PR number in env
           command: |
             env | grep CIRCLE | sort
             echo 'export CIRCLE_PR_NUMBER="${CIRCLE_PR_NUMBER:-${CIRCLE_PULL_REQUEST##*/}}"' >> $BASH_ENV
-            source $BASH_ENV
-            echo PR no.: $CIRCLE_PR_NUMBER
       - run:
-          name: builds diagnosis
+          name: build diagnosis
           command: |
             echo PR no.: $CIRCLE_PR_NUMBER
+            
             source $BASH_ENV
             if [ -n "$CIRCLE_PR_NUMBER" ]; then
               echo " there is this PR number: $CIRCLE_PR_NUMBER"
             fi
+
+            if [ "X${CIRCLE_PR_NUMBER}" == "X" ]; then
+              echo no CIRCLE_PR_NUMBER set, so skipping this step
+              exit -1
+            fi
+            
             echo "Value of CIRCLE_PULL_REQUEST: ${CIRCLE_PULL_REQUEST} "
             if [ -n "$CIRCLE_PULL_REQUEST" ]; then
               echo transformed to ${CIRCLE_PULL_REQUEST##*/}
-              echo " there is this PR number: $CIRCLE_PR_NUMBER" ...
             fi
+            
             env | grep CIRCLE | sort
-            echo PR no.: $CIRCLE_PR_NUMBER
       - restore_cache:
           keys:
-            - cache-{{ .Branch }}-{{ checksum "smoketest/package.json" }}
+            - cache-smoke-{{ .Branch }}-{{ checksum "smoketest/package.json" }}
       - run:
           name: Npm CI
           command: |
             echo PR no.: $CIRCLE_PR_NUMBER
-            echo $CIRCLE_PR_NUMBER
             if [ "X${CIRCLE_PR_NUMBER}" == "X" ]; then
               echo no CIRCLE_PR_NUMBER set, so skipping this step
             else
               cd smoketest ; npm ci
             fi
       - save_cache:
-          key: cache-{{ .Branch }}-{{ checksum "smoketest/package.json" }}
+          key: cache-smoke-{{ .Branch }}-{{ checksum "smoketest/package.json" }}
           paths:
             - ~/.npm
             - ~/.cache
       - run:
           name: cypress verify
           command: |
-            echo PR no.: $CIRCLE_PR_NUMBER
-            export CYPRESS_baseUrl=https://deploy-preview-${CIRCLE_PR_NUMBER}--coolboard.netlify.com
-            if [ "X${CYPRESS_baseUrl}" == "X" ]; then
-              echo no CYPRESS_baseUrl set, so skipping this step
-            else
-              cd smoketest ; npx cypress verify
-            fi
-      - run:
-          name: cypress cache path
-          command: |
-            echo PR no.: $CIRCLE_PR_NUMBER
-            export CYPRESS_baseUrl=https://deploy-preview-${CIRCLE_PR_NUMBER}--coolboard.netlify.com
+            echo PR: $CIRCLE_PR_NUMBER
             if [ "X${CIRCLE_PR_NUMBER}" == "X" ]; then
-              echo no $CIRCLE_PR_NUMBER set, so skipping this step
+              echo no PR, so skipping this step
             else
-              cd smoketest ; npx cypress cache path
+              cd smoketest ; npx cypress verify ; npx cypress cache path
             fi
       - run:
           name: run cypress
           command: |
-            echo PR no.: $CIRCLE_PR_NUMBER
+            echo PR: $CIRCLE_PR_NUMBER
             export CYPRESS_baseUrl=https://deploy-preview-${CIRCLE_PR_NUMBER}--coolboard.netlify.com
             if [ "X${CIRCLE_PR_NUMBER}" == "X" ]; then
               echo no $CIRCLE_PR_NUMBER set, so skipping running tests
@@ -107,10 +99,10 @@ jobs:
           destination: videos
 
 workflows:
-  build:
-    jobs:
-      - check
+#  build:
+#    jobs:
+#      - check
   smoke:
     jobs:
-      - build
+      - smoke
   version: 2
