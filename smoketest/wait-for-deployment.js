@@ -20,8 +20,8 @@ console.log(
   EXPECTED_GIT_SHA1
 );
 
-let intTimeMs = 60000; // interval duration
-let ntimes = 6; // number retries
+let intTimeMs = 5000; // retry periode
+let ntimes = 2; // number retries
 
 var options = {
   uri: url,
