@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import ReactDOM from 'react-dom';
 
-import { App } from './App';
-import { unregister } from './registerServiceWorker';
+import {
+  BrowserRouter,
+  Route,
+  Switch,
+} from 'react-router-dom';
+
+import { Loader } from 'semantic-ui-react';
+
+import Home from './pages/home/Home';
+
+// import { unregister } from './registerServiceWorker';
 
 // Instead of integrating the
 // css here, with running webpack bundling every time while developing,
@@ -11,8 +20,31 @@ import { unregister } from './registerServiceWorker';
 //
 import 'semantic-ui-css/semantic.min.css';
 
+const App = lazy(() =>
+  import('./App').then(module => ({
+    default: module.App,
+  }))
+);
+
+const Root = () => (
+  <BrowserRouter>
+    <Suspense fallback={<Loader />}>
+      <Switch>
+        <Route
+          path="/"
+          exact
+          render={() => <Home />}
+        />
+        <Route>
+          <App />
+        </Route>
+      </Switch>
+    </Suspense>
+  </BrowserRouter>
+);
+
 ReactDOM.render(
-  <App />,
+  <Root />,
   document.getElementById('root')
 );
-unregister();
+// unregister();
