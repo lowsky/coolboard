@@ -35,9 +35,7 @@ const Root = () => (
           exact
           render={() => <Home />}
         />
-        <Route>
-          <App />
-        </Route>
+        <Route component={App} />
       </Switch>
     </Suspense>
   </BrowserRouter>
