@@ -16,69 +16,67 @@ import styles from './CardList.module.css';
 
 import Card, { dndItemType } from './Card';
 
-class CardListWithoutDnd extends React.Component {
-  render() {
-    const {
-      isOver,
-      id,
-      addCardWithName = () => {},
-      deleteListWithId = () => {},
-    } = this.props;
+const CardListWithoutDnd = props => {
+  const {
+    isOver,
+    id,
+    addCardWithName = () => {},
+    deleteListWithId = () => {},
+  } = props;
 
-    const { cardList } = this.props;
-    const { list = {}, loading } = cardList;
+  const { cardList } = props;
+  const { list = {}, loading } = cardList;
 
-    // use name injected as default if not yet available
-    let { name = this.props.name, cards = [] } = list;
+  // use name injected as default if not yet available
+  let { name = props.name, cards = [] } = list;
 
-    return (
-      <div data-cy="card-list">
-        <div>
-          <div
-            className={styles.list}
-            style={{
-              backgroundColor: isOver
-                ? 'yellow'
-                : 'lightgrey',
-            }}>
-            <CardListHeader name={name}>
-              <CardListButton
-                onButtonClick={() =>
-                  deleteListWithId(id)
-                }>
-                <Icon name="trash" />
-              </CardListButton>
-            </CardListHeader>
-
-            {loading ? (
-              <Loader active />
-            ) : (
-              <div className={styles.inner}>
-                <div className={styles.container}>
-                  {cards.map(c => (
-                    <Card
-                      key={c.id}
-                      {...c}
-                      cardListId={id}
-                    />
-                  ))}
-                </div>
-              </div>
-            )}
-
+  return (
+    <div data-cy="card-list">
+      <div>
+        <div
+          className={styles.list}
+          style={{
+            backgroundColor: isOver
+              ? 'yellow'
+              : 'lightgrey',
+          }}>
+          <CardListHeader name={name}>
             <CardListButton
               onButtonClick={() =>
-                addCardWithName(id)
+                deleteListWithId(id)
               }>
-              <Icon name="plus" />
-              Add a card
+              <Icon name="trash" />
             </CardListButton>
-          </div>
+          </CardListHeader>
+
+          {loading ? (
+            <Loader active />
+          ) : (
+            <div className={styles.inner}>
+              <div className={styles.container}>
+                {cards.map(c => (
+                  <Card
+                    key={c.id}
+                    {...c}
+                    cardListId={id}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+
+          <CardListButton
+            onButtonClick={() =>
+              addCardWithName(id)
+            }>
+            <Icon name="plus" />
+            Add a card
+          </CardListButton>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 const drop = (props, cardItem) => {
   const cardId = cardItem.id;
