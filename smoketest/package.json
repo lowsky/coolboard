@@ -5,7 +5,7 @@
   "private": true,
   "dependencies": {
     "cypress": "3.4.0",
-    "snyk": "1.193.2"
+    "snyk": "1.207.2"
   },
   "scripts": {
     "cy": "cypress",
