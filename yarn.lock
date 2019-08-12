@@ -9474,10 +9474,24 @@ raw-body@2.4.0:
     iconv-lite "0.4.24"
     unpipe "1.0.0"
 
+<<<<<<< HEAD
 react-apollo-network-status@5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/react-apollo-network-status/-/react-apollo-network-status-5.0.1.tgz#25a7ccf956e9c0dd2b7b7bab9efe2681ba0b841c"
   integrity sha512-kA4WqEHUegc3IjvC9ZmA/hABRFpN9sjJ2wDehbRoyMyV2mVMoDcLq9BH/OQ6hpoeYZhTpl9F8np6fcWYERtn4g==
+=======
+react-apollo-hooks@0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/react-apollo-hooks/-/react-apollo-hooks-0.5.0.tgz#49607fbe9cdfd0be08ea5defd39085bf5f42e10e"
+  integrity sha512-Us5KqFe7/c6vY1NaiyfhnD2Pz4lPLTojQXLppShaBVYU/vYvJrRjmj4MzIPXnExXaSfnQ+K2bWDr4lP4efbsRQ==
+  dependencies:
+    lodash "^4.17.11"
+
+react-apollo-network-status@5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/react-apollo-network-status/-/react-apollo-network-status-5.0.0.tgz#0049c134222848089a780f8df87f3e626512136a"
+  integrity sha512-lroW7YpD/oRj3wSqooNssiO5FmTvcOknunlDyhDuaKZ8JKUHyHxxvT2mXHw7LIA0l0wwgOZkQFS7XxLyY4o3ug==
+>>>>>>> 8104025... use apollo hooks
 
 react-apollo@3.1.5:
   version "3.1.5"

@@ -9,7 +9,7 @@ import {
 } from 'semantic-ui-react';
 
 import { Link } from 'react-router-dom';
-import { Query } from 'react-apollo';
+import { useQuery } from 'react-apollo-hooks';
 
 const ProfileHeaderContainer = ({
   children,
@@ -50,61 +50,60 @@ const ProfileHeaderContainer = ({
   </Container>
 );
 
-export const ProfileHeader = ({ isBoardsPage }) => (
-  // { options: { fetchPolicy: 'network-only' } }
-  <Query
-    query={gql`
+export const ProfileHeader = ({ isBoardsPage }) => {
+  // LATER: { options: { fetchPolicy: 'network-only' } }
+  const { loading, error, data } = useQuery(
+    gql`
       {
-        me {
-          email
-          id
-          name
-          avatarUrl
-        }
+          me {
+              email
+              id
+              name
+              avatarUrl
+          }
       }
-    `}>
-    {({ loading, error, data }) => {
-      if (loading) {
-        return (
-          <ProfileHeaderContainer
-            isBoardsPage={isBoardsPage}>
-            <Loader active />
-            Loading user...
-          </ProfileHeaderContainer>
-        );
-      }
+    `
+  );
 
-      if (error) {
-        return (
-          <ProfileHeaderContainer
-            isBoardsPage={isBoardsPage}>
-            <Link to="/login">
-              <Icon size="big" name="sign in" />Log in
-            </Link>
-          </ProfileHeaderContainer>
-        );
-      }
+  if(loading) {
+    return (
+      <ProfileHeaderContainer
+        isBoardsPage={isBoardsPage}>
+        <Loader active />
+        Loading user...
+      </ProfileHeaderContainer>
+    );
+  }
 
-      const { me = {} } = data;
+  if (error) {
+    return (
+      <ProfileHeaderContainer
+        isBoardsPage={isBoardsPage}>
+        <Link to="/login">
+          <Icon size="big" name="sign in" />Log in
+        </Link>
+      </ProfileHeaderContainer>
+    );
+  }
 
-      const { avatarUrl, name } = me;
+  const { me= {} } = data;
 
-      return (
-        <ProfileHeaderContainer
-          isBoardsPage={isBoardsPage}>
-          <div>
-            <span>{name} </span>
-            {avatarUrl && (
-              <Image src={avatarUrl} avatar spaced />
-            )}
+  const { avatarUrl, name } = me;
 
-            <Link to="/logout">
-              <Icon size="big" name="sign out" />
-              Logout
-            </Link>
-          </div>
-        </ProfileHeaderContainer>
-      );
-    }}
-  </Query>
-);
+  return (
+    <ProfileHeaderContainer
+      isBoardsPage={isBoardsPage}>
+      <div>
+        <span>{name} </span>
+        {avatarUrl && (
+          <Image src={avatarUrl} avatar spaced />
+        )}
+
+        <Link to="/logout">
+          <Icon size="big" name="sign out" />
+          Logout
+        </Link>
+      </div>
+    </ProfileHeaderContainer>
+  );
+};
