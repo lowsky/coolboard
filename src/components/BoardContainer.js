@@ -18,6 +18,7 @@ export const BoardContainer = ({
       display: 'flex',
       flexDirection: 'column',
       flexGrow: 1,
+      marginTop: '1em',
     }}>
     <Header textAlign="center" as="h1">
       Board: {boardName}
