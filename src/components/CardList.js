@@ -2,7 +2,11 @@ import React from 'react';
 import { useDrop } from 'react-dnd';
 import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
-import { Query } from 'react-apollo';
+import {
+  graphql,
+  Mutation,
+  Query,
+} from 'react-apollo';
 
 import {
   Button,
@@ -102,47 +106,77 @@ const CardListWithDnd = props => {
   );
 };
 
-const CardListfragments = {
-  list: gql`
-    fragment CardList_list on List {
-      name
-      id
-      cards {
-        ...Card_card
-      }
-    }
-    ${Card.fragments.card}
-  `,
-};
+export const CardList = ({ id }) => (
+  <Mutation mutation={moveCardMutation}>
+    {moveCard => (
+      <Query
+        variables={{ cardListId: id }}
+        query={gql`
+          query CardList($cardListId: ID) {
+            list(where: { id: $cardListId }) {
+              ...CardList_list
+            }
+          }
+          ${CardList.fragments.list}
+        `}>
+        {({ loading, error, data }) => {
+          if (error) {
+            return <span>Load error!</span>;
+          }
 
-export const CardList = ({ id, ...props }) => (
-  <Query
-    variables={{ cardListId: id }}
-    query={gql`
-      query CardList($cardListId: ID) {
-        list(where: { id: $cardListId }) {
-          ...CardList_list
-        }
-      }
-      ${CardListfragments.list}
-    `}>
-    {({ loading, error, data }) => {
-      if (error) {
-        return <span>Load error!</span>;
-      }
-      const cardList = {
-        ...data,
-        loading,
-      };
-      return (
-        <CardListWithDnd
-          {...props}
-          cardList={cardList}
-          id={id}
-        />
-      );
-    }}
-  </Query>
+          const cardList = {
+            ...data,
+            loading,
+          };
+
+          const onMoveCardToList = (
+            cardId,
+            oldCardListId,
+            newCardListId
+          ) => {
+            console.log(
+              `triggered moving card with id: ${cardId} to list with id: ${oldCardListId} -> id: ${newCardListId}`
+            );
+
+            moveCard({
+              variables: {
+                oldCardListId,
+                cardListId: newCardListId,
+                cardId,
+              },
+            });
+          };
+
+          return (
+            <Mutation
+              mutation={deleteCardList}
+              variables={{
+                cardListId: id,
+              }}>
+              {deleteCardList => (
+                <Mutation
+                  mutation={addCardMutation}
+                  variables={{
+                    cardListId: id,
+                    name: 'new card',
+                  }}>
+                  {addCardWithName => (
+                    <CardListWithDnd
+                      deleteListWithId={deleteCardList}
+                      addCardWithName={addCardWithName}
+                      moveCardToList={onMoveCardToList}
+                      cardList={cardList}
+                      id={id}
+                    />
+                  )}
+                </Mutation>
+              )}
+            </Mutation>
+          );
+        }}
+      </Query>
+    )}
+  </Mutation>
 );
 
 const CardListHeader = ({ name, children }) => (
@@ -183,5 +217,119 @@ CardList.propTypes = {
 };
 
 CardList.fragments = {
-  ...CardListfragments,
+  list: gql`
+    fragment CardList_list on List {
+      name
+      id
+      cards {
+        ...Card_card
+      }
+    }
+    ${Card.fragments.card}
+  `,
 };
+
+const moveCardMutation = gql`
+  mutation moveCard(
+    $cardId: ID!
+    $oldCardListId: ID!
+    $cardListId: ID!
+  ) {
+    newList: updateList(
+      data: { cards: { connect: { id: $cardId } } }
+      where: { id: $cardListId }
+    ) {
+      ...CardList_list
+    }
+    oldList: updateList(
+      data: { cards: { disconnect: { id: $cardId } } }
+      where: { id: $oldCardListId }
+    ) {
+      ...CardList_list
+    }
+  }
+  ${CardList.fragments.list}
+`;
+
+let addCardMutation = gql`
+  mutation AddCardMutation(
+    $cardListId: ID!
+    $name: String!
+  ) {
+    updateList(
+      data: { cards: { create: { name: $name } } }
+      where: { id: $cardListId }
+    ) {
+      ...CardList_list
+    }
+  }
+  ${CardList.fragments.list}
+`;
+
+const addCard = graphql(
+  gql`
+    mutation AddCardMutation(
+      $cardListId: ID!
+      $name: String!
+    ) {
+      updateList(
+        data: { cards: { create: { name: $name } } }
+        where: { id: $cardListId }
+      ) {
+        ...CardList_list
+      }
+    }
+    ${CardList.fragments.list}
+  `,
+  {
+    name: 'addCardMutation',
+    props: ({ addCardMutation }) => ({
+      addCard: ({ name, cardListId }) => {
+        return addCardMutation({
+          variables: {
+            cardListId,
+            name,
+          },
+        });
+      },
+    }),
+  }
+);
+
+let moveCard = graphql(
+  gql`
+    mutation moveCard(
+      $cardId: ID!
+      $oldCardListId: ID!
+      $cardListId: ID!
+    ) {
+      newList: updateList(
+        data: { cards: { connect: { id: $cardId } } }
+        where: { id: $cardListId }
+      ) {
+        ...CardList_list
+      }
+      oldList: updateList(
+        data: {
+          cards: { disconnect: { id: $cardId } }
+        }
+        where: { id: $oldCardListId }
+      ) {
+        ...CardList_list
+      }
+    }
+    ${CardList.fragments.list}
+  `,
+  {
+    name: 'moveCard',
+  }
+);
+
+let deleteCardList = gql`
+  mutation deletelist($cardListId: ID!) {
+    # minimum data transfer:
+    deleteList(where: { id: $cardListId }) {
+      id
+    }
+  }
+`;
