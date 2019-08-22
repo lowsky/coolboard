@@ -32,11 +32,12 @@ export class CardComponent extends React.Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    console.log(
-      'getDerivedStateFromProps()',
-      props,
-      state
-    );
+    if (false && this.debugging)
+      console.log(
+        'getDerivedStateFromProps()',
+        props,
+        state
+      );
 
     if (!state.showModal) {
       return {
@@ -136,7 +137,9 @@ export class CardComponent extends React.Component {
       updatedBy = {},
     } = this.props;
     return (
-      <CardDiv data-cy="card" onClick={() => this.showAndReset()}>
+      <CardDiv
+        data-cy="card"
+        onClick={() => this.showAndReset()}>
         <Modal open={showModal} onClose={this.hide}>
           <Modal.Header>Edit Card</Modal.Header>
           <Modal.Content>
@@ -189,16 +192,20 @@ export class CardComponent extends React.Component {
                 <p>
                   <strong>updated: </strong>
                   <TimeAgo date={updatedAt} />
-                  <strong> by: </strong>
                   {updatedBy && (
-                    <Image
-                      avatar
-                      src={updatedBy.avatarUrl}
-                    />
+                    <>
+                      <strong> by: </strong>
+                      <Image
+                        avatar
+                        src={updatedBy.avatarUrl}
+                      />
+                      <span>
+                        { updatedBy.name ? updatedBy.name
+                          : (updatedBy.email ? updatedBy.email : '?')
+                        }
+                      </span>
+                    </>
                   )}
-                  <span>
-                    {updatedBy ? updatedBy.name : '?'}
-                  </span>
                 </p>
               </Message>
             </Segment>
@@ -264,6 +271,7 @@ CardComponent.fragments = {
       updatedAt
       updatedBy {
         avatarUrl
+        email
         name
         id
       }

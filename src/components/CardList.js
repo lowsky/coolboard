@@ -45,7 +45,7 @@ const CardListWithoutDnd = props => {
               onButtonClick={() =>
                 deleteListWithId(id)
               }>
-              <Icon name="trash" />
+              <Icon name="trash" color={'red'} />delete list
             </CardListButton>
           </CardListHeader>
 
@@ -66,9 +66,7 @@ const CardListWithoutDnd = props => {
           )}
 
           <CardListButton
-            onButtonClick={() =>
-              addCardWithName(id)
-            }>
+            onButtonClick={() => addCardWithName(id)}>
             <Icon name="plus" />
             Add a card
           </CardListButton>
@@ -149,11 +147,7 @@ export const CardList = ({ id, ...props }) => (
 
 const CardListHeader = ({ name, children }) => (
   <div className={styles.header}>
-    <Header
-      textAlign="center"
-      className={styles.title}>
-      {name}
-    </Header>
+    <Header className={styles.title}>{name}</Header>
     <Popup
       trigger={
         <Button
@@ -173,9 +167,8 @@ const CardListButton = ({
   onButtonClick,
   children,
 }) => (
-  <Button
+  <Button floated
     className={styles.button}
-    compact
     onClick={() => onButtonClick()}>
     {children}
   </Button>
