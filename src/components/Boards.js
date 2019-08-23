@@ -77,13 +77,17 @@ export const Boards = () => {
       <h1>Your Boards:</h1>
 
       <Query query={userWithBoardsQuery}>
-        {({ loading, error, data, refetch }) => {
+        {({ loading, error, data }) => {
           if (loading) return <Loader />;
           if (error) return false;
 
           return (
             <Mutation
-              onCompleted={refetch}
+              refetchQueries={[
+                {
+                  query: userWithBoardsQuery,
+                },
+              ]}
               mutation={deleteBoardMutation}>
               {deleteBoard => (
                 <Container fluid>
