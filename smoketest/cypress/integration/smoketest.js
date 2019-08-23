@@ -97,7 +97,7 @@ const getBoardsList = () =>
   cy
     .get('.App h1', LogAndWaitLong)
     .parent()
-    .wait(2000) // wait a little longer
+    .wait(5000) // wait a little longer
     .find('.fluid.container', LogAndWaitLong)
     .find('a', LogAndWaitLong);
 
@@ -179,8 +179,7 @@ describe('Test coolboard', () => {
 
     cy.log('delete first list');
     sections(LogAndWaitLong)
-      // missing data-cy...  .get('.CardList_list__IEtjo > .CardList_header__x9UhR > .mini > .ellipsis')
-      .get('.CardList_list__IEtjo > .CardList_header__x9UhR > .mini > .ellipsis')
+      .get('[data-cy=card-list] .CardList_header__x9UhR > .mini > .ellipsis')
       .first()
       .click();
 
@@ -189,8 +188,7 @@ describe('Test coolboard', () => {
 
     cy.log('delete first list');
     sections(LogAndWaitLong)
-      // missing data-cy...  .get('.CardList_list__IEtjo > .CardList_header__x9UhR > .mini > .ellipsis')
-      .get('.CardList_list__IEtjo > .CardList_header__x9UhR > .mini > .ellipsis')
+      .get('[data-cy=card-list] .CardList_header__x9UhR > .mini > .ellipsis')
       .first()
       .click();
     cy.get('.ui > .button > .trash')
