@@ -49,7 +49,8 @@ const CardListWithoutDnd = props => {
               onButtonClick={() =>
                 deleteListWithId(id)
               }>
-              <Icon name="trash" color={'red'} />delete list
+              <Icon name="trash" color={'red'} />
+              delete list
             </CardListButton>
           </CardListHeader>
 
