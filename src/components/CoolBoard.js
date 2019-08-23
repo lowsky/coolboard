@@ -18,7 +18,6 @@ class Board extends React.Component {
       addList,
       deleteAllLists,
       boardId,
-      subscribeToMore,
     } = this.props;
 
     const { name, lists = [] } = board;
@@ -34,13 +33,6 @@ class Board extends React.Component {
         },
       });
     };
-
-    this.subscribeToBoardUpdates(
-      subscribeToMore,
-      boardId
-    );
-    this.subscribeToListUpdates(subscribeToMore);
-    this.subscribeToCardUpdates(subscribeToMore);
 
     return (
       <BoardContainer boardName={name}>
@@ -62,80 +54,6 @@ class Board extends React.Component {
       </BoardContainer>
     );
   }
-
-  // for edit-board or  add-cardlist = board update
-  subscribeToBoardUpdates(subscribeToMore, boardId) {
-    subscribeToMore({
-      document: BoardSubscription,
-      variables: {
-        boardId,
-      },
-      updateQuery: (prev, { subscriptionData }) => {
-        console.log(
-          'updating board:',
-          subscriptionData.data.board
-        );
-      },
-    });
-  }
-
-  // for add-card = list update
-  subscribeToListUpdates(subscribeToMore) {
-    subscribeToMore({
-      document: ListsSubscription,
-      updateQuery: (prev, { subscriptionData }) => {
-        if (!subscriptionData.data) {
-          return prev;
-        }
-
-        const { list } = subscriptionData.data;
-        if (!list) {
-          return prev;
-        }
-
-        console.log('updating list:', list);
-
-        /* Deleting "leaf" without any board-change-update
-         * Update local cache, by updating board locally
-         */
-        if ('DELETED' === list.mutation) {
-          const oldList = prev.board.lists;
-
-          // use all items, but the specific cardList
-          const lists = oldList.filter(
-            cardList =>
-              cardList.id !== list.previousValues.id
-          );
-
-          const newBoard = {
-            ...prev.board,
-            lists,
-          };
-
-          return {
-            ...prev,
-            board: newBoard,
-          };
-        }
-
-        return prev;
-      },
-    });
-  }
-
-  // for edit-card = card update
-  subscribeToCardUpdates(subscribeToMore) {
-    subscribeToMore({
-      document: CardsSubscription,
-      updateQuery: (prev, { subscriptionData }) => {
-        if (subscriptionData.data)
-          console.log(
-            'updating card:',
-            subscriptionData.data.card
-          );
-      },
-    });
-  }
 }
 
 Board.fragments = {
@@ -150,82 +68,6 @@ Board.fragments = {
     }
   `,
 };
-
-/*
- Workaround:
- We need to replace the fragments in subscriptions
- until this bug will be fixed
- https://github.com/graphcool/prisma/issues/2026
-*/
-const CardsSubscription = gql`
-  subscription {
-    card(where: {}) {
-      mutation
-      node {
-        id
-        name
-        description
-        createdAt
-        updatedAt
-        updatedBy {
-          avatarUrl
-          name
-          id
-        }
-      }
-      previousValues {
-        id
-        name
-      }
-      updatedFields
-    }
-  }
-  # {Card.fragments.card}
-`;
-
-const ListsSubscription = gql`
-  subscription {
-    list(where: {}) {
-      mutation
-      previousValues {
-        id
-        name
-      }
-      node {
-        name
-        id
-        cards {
-          id
-          name
-          description
-        }
-      }
-    }
-  }
-  # {CardList.fragments.list}
-`;
-
-const BoardSubscription = gql`
-  subscription($boardId: ID) {
-    board(where: { node: { id: $boardId } }) {
-      mutation
-      node {
-        name
-        id
-        lists {
-          name
-          id
-        }
-      }
-      previousValues {
-        id
-        name
-      }
-      updatedFields
-    }
-  }
-  # {Board.fragments.board}
-`;
 
 const BoardQuery = gql`
   query board($boardId: ID) {

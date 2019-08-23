@@ -125,10 +125,10 @@ export const CardList = ({ id }) => (
             return <span>Load error!</span>;
           }
 
-          const cardList = {
-            ...data,
-            loading,
-          };
+      const cardList = {
+        ...data,
+        loading,
+      };
 
           const onMoveCardToList = (
             cardId,
@@ -139,45 +139,39 @@ export const CardList = ({ id }) => (
               `triggered moving card with id: ${cardId} to list with id: ${oldCardListId} -> id: ${newCardListId}`
             );
 
-            moveCard({
-              variables: {
-                oldCardListId,
-                cardListId: newCardListId,
-                cardId,
-              },
-            });
-          };
+                      moveCard({
+                        variables: {
+                          oldCardListId,
+                          cardListId: newCardListId,
+                          cardId,
+                        },
+                      });
+                    };
 
-          return (
-            <Mutation
-              mutation={deleteCardList}
-              variables={{
-                cardListId: id,
-              }}>
-              {deleteCardList => (
-                <Mutation
-                  mutation={addCardMutation}
-                  variables={{
-                    cardListId: id,
-                    name: 'new card',
-                  }}>
-                  {addCardWithName => (
-                    <CardListWithDnd
-                      deleteListWithId={deleteCardList}
-                      addCardWithName={addCardWithName}
-                      moveCardToList={onMoveCardToList}
-                      cardList={cardList}
-                      id={id}
-                    />
-                  )}
+                    return (
+                      <CardListWithDnd
+                        deleteListWithId={
+                          deleteCardList
+                        }
+                        addCardWithName={
+                          addCardWithName
+                        }
+                        moveCardToList={
+                          onMoveCardToList
+                        }
+                        cardList={cardList}
+                        id={id}
+                      />
+                    );
+                  }}
                 </Mutation>
               )}
             </Mutation>
-          );
-        }}
-      </Query>
-    )}
-  </Mutation>
+          )}
+        </Mutation>
+      );
+    }}
+  </Query>
 );
 
 const CardListHeader = ({ name, children }) => (
@@ -202,7 +196,7 @@ const CardListButton = ({
   onButtonClick,
   children,
 }) => (
-  <Button floated
+  <Button
     className={styles.button}
     onClick={() => onButtonClick()}>
     {children}
@@ -326,11 +320,22 @@ let moveCard = graphql(
   }
 );
 
-let deleteCardList = gql`
-  mutation deletelist($cardListId: ID!) {
-    # minimum data transfer:
-    deleteList(where: { id: $cardListId }) {
-      id
+const deleteCardListMutation = gql`
+  mutation deletelist(
+    $cardListId: ID!
+    $boardId: ID!
+  ) {
+    updateBoard(
+      data: { lists: { delete: { id: $cardListId } } }
+      where: { id: $boardId }
+    ) {
+    #    ...Board_board
+        id
+        
+        lists {
+            id
+        }
     }
   }
+  # {Board.fragments.board}
 `;
