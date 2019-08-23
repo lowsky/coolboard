@@ -30,7 +30,7 @@ class Board extends React.Component {
       addList({
         variables: {
           boardId,
-          name: 'Section 5',
+          name: 'new list',
         },
       });
     };
