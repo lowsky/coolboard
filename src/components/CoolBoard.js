@@ -16,7 +16,7 @@ class Board extends React.Component {
     const {
       board = {},
       addList,
-      deleteAllLists,
+      deleteLists,
       boardId,
     } = this.props;
 
@@ -38,7 +38,7 @@ class Board extends React.Component {
       <BoardContainer boardName={name}>
         <DelListButton
           action={() =>
-            deleteAllLists(boardId, lists)
+            deleteLists(lists.map(list => list.id))
           }>
           Delete All
         </DelListButton>
@@ -47,7 +47,7 @@ class Board extends React.Component {
             key={list.id}
             name={list.name}
             id={list.id}
-            boardId={boardId}
+            deleteListWithId={id => deleteLists([id])}
           />
         ))}
         <AddListButton onAddNewList={onBoardAddItem} />
@@ -90,11 +90,24 @@ const addListMutation = gql`
   ${Board.fragments.board}
 `;
 
-export const CoolBoard = props => (
-  <Query
-    query={BoardQuery}
-    variables={{ boardId: props.boardId }}>
-    {({ subscribeToMore, loading, error, data }) => {
+const deleteListsOfBoard = gql`
+  mutation deleteListsOfBoard(
+    $boardId: ID!
+    $listIds: [ID!]!
+  ) {
+    updateBoard(
+      data: { lists: { deleteMany: { id_in: $listIds } } }
+      where: { id: $boardId }
+    ) {
+      ...Board_board
+    }
+  }
+  ${Board.fragments.board}
+`;
+
+export const CoolBoard = ({ boardId }) => (
+  <Query query={BoardQuery} variables={{ boardId }}>
+    {({ loading, error, data }) => {
       if (loading) {
         return <div>Loading Board</div>;
       }
@@ -111,28 +124,25 @@ export const CoolBoard = props => (
       return (
         <Mutation mutation={addListMutation}>
           {addList => (
-            <Mutation mutation={deleteAllLists}>
-              {deleteManyLists => (
-                <Board
-                  {...props}
-                  addList={addList}
-                  board={data.board}
-                  deleteAllLists={(
-                    boardId,
-                    listIds
-                  ) => {
-                    deleteManyLists({
-                      variables: {
-                        boardId,
-                        listIds: listIds.map(li => ({
-                          id: li.id,
-                        })),
-                      },
-                    });
-                  }}
-                  subscribeToMore={subscribeToMore}
-                />
-              )}
+            <Mutation mutation={deleteListsOfBoard}>
+              {deleteListsOfBoard => {
+                const deleteLists = ids =>
+                  deleteListsOfBoard({
+                    variables: {
+                      boardId,
+                      listIds: ids,
+                    },
+                  });
+
+                return (
+                  <Board
+                    boardId={boardId}
+                    addList={addList}
+                    deleteLists={deleteLists}
+                    board={board}
+                  />
+                );
+              }}
             </Mutation>
           )}
         </Mutation>
@@ -140,17 +150,3 @@ export const CoolBoard = props => (
     }}
   </Query>
 );
-
-let deleteAllLists = gql`
-  mutation deletelistsOfBoard(
-    $boardId: ID!
-    $listIds: [ListWhereUniqueInput!]!
-  ) {
-    updateBoard(
-      data: { lists: { delete: $listIds } }
-      where: { id: $boardId }
-    ) {
-      id
-    }
-  }
-`;
