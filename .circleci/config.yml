@@ -36,7 +36,7 @@ jobs:
           name: build diagnosis
           command: |
             echo PR no.: $CIRCLE_PR_NUMBER
-            
+
             source $BASH_ENV
             if [ -n "$CIRCLE_PR_NUMBER" ]; then
               echo " there is this PR number: $CIRCLE_PR_NUMBER"
@@ -46,49 +46,46 @@ jobs:
               echo no CIRCLE_PR_NUMBER set, so skipping this step
               exit -1
             fi
-            
+
             echo "Value of CIRCLE_PULL_REQUEST: ${CIRCLE_PULL_REQUEST} "
             if [ -n "$CIRCLE_PULL_REQUEST" ]; then
               echo transformed to ${CIRCLE_PULL_REQUEST##*/}
             fi
-            
+
             env | grep CIRCLE | sort
       - restore_cache:
           keys:
-            - cache-smoke-{{ .Branch }}-{{ checksum "smoketest/package.json" }}
+            - cache-smoke-{{ checksum "smoketest/package.json" }}
       - run:
           name: Npm CI
           command: |
-            echo PR no.: $CIRCLE_PR_NUMBER
-            if [ "X${CIRCLE_PR_NUMBER}" == "X" ]; then
-              echo no CIRCLE_PR_NUMBER set, so skipping this step
-            else
-              cd smoketest ; npm ci
-            fi
+            cd smoketest
+            npm ci
       - save_cache:
-          key: cache-smoke-{{ .Branch }}-{{ checksum "smoketest/package.json" }}
+          key: cache-smoke-{{ checksum "smoketest/package.json" }}
           paths:
             - ~/.npm
             - ~/.cache
       - run:
+          name: verify fully deployed web site via git-commit
+          command: |
+            echo PR: $CIRCLE_PR_NUMBER
+            export CYPRESS_baseUrl=https://deploy-preview-${CIRCLE_PR_NUMBER}--coolboard.netlify.com
+            cd smoketest ; GIT_SHA1=${CIRCLE_SHA1} npm run wait:valid-version
+      - run:
           name: cypress verify
           command: |
             echo PR: $CIRCLE_PR_NUMBER
-            if [ "X${CIRCLE_PR_NUMBER}" == "X" ]; then
-              echo no PR, so skipping this step
-            else
-              cd smoketest ; npx cypress verify ; npx cypress cache path
-            fi
+            cd smoketest
+            npx cypress verify ; npx cypress cache path
       - run:
           name: run cypress
           command: |
             echo PR: $CIRCLE_PR_NUMBER
             export CYPRESS_baseUrl=https://deploy-preview-${CIRCLE_PR_NUMBER}--coolboard.netlify.com
-            if [ "X${CIRCLE_PR_NUMBER}" == "X" ]; then
-              echo no $CIRCLE_PR_NUMBER set, so skipping running tests
-            else
-              cd smoketest ; mkdir -p cypress/results ; GIT_SHA1=${CIRCLE_SHA1} npm run wait:valid-version && CYPRESS_branch=${CIRCLE_BRANCH} npx cypress run cypress run --record --key $CYPRESS_API_KEY --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
-            fi
+            cd smoketest
+            mkdir -p cypress/results
+            CYPRESS_branch=${CIRCLE_BRANCH} npx cypress run cypress run --record --key $CYPRESS_API_KEY --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
       - store_test_results:
           path: smoketest/cypress/results
       - store_artifacts:
