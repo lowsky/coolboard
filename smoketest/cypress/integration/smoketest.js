@@ -160,7 +160,7 @@ describe('Test coolboard', () => {
     add_a_card().click();
 
     cy.get('[data-cy=card]')
-      .contains('Card')
+      .contains('new card')
       .click();
 
     // edit card
