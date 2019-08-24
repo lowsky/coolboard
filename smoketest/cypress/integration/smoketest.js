@@ -84,7 +84,7 @@ function fillLoginForm() {
     .url(LogAndWaitLong)
     .should('not.include', 'callback')
     .should('equal', baseUrl + '/')
-    .wait(2000);
+    .wait(5000);
 }
 
 function doLogin() {
@@ -97,7 +97,7 @@ const getBoardsList = () =>
   cy
     .get('.App h1', LogAndWaitLong)
     .parent()
-    .wait(5000) // wait a little longer
+    .wait(10000) // wait a little longer
     .find('.fluid.container', LogAndWaitLong)
     .find('a', LogAndWaitLong);
 
@@ -108,7 +108,7 @@ const getBoardsList_FirstEntry = name =>
 
 let LogAndWaitLong = {
   log: true,
-  timeout: 13000,
+  timeout: 25000,
 };
 
 describe('Test coolboard', () => {
@@ -117,9 +117,7 @@ describe('Test coolboard', () => {
   });
 
   it('need to login to show boards', () => {
-    // 'then' still needed? doLogin().then(() => {
     gotoBoards();
-    // } );
   });
 
   it('user can create a board for branch', () => {
@@ -146,7 +144,7 @@ describe('Test coolboard', () => {
     getBoardsList_FirstEntry(newBoardName).click();
 
     // clear all lists:
-    cy.get('button')
+    cy.get('button', LogAndWaitLong)
       .contains('Delete All')
       .click();
 
@@ -208,6 +206,6 @@ describe('Test coolboard', () => {
       .parent()
       .find('.button > .trash')
       .click()
-      .wait(1500);
+      .wait(15000);
   });
 });
