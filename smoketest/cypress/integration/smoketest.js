@@ -93,12 +93,17 @@ function doLogin() {
   return fillLoginForm();
 }
 
-const getBoardsList = () =>
+const getBoardsList = () => {
   cy
+    .get('.App')
+    .find('[data-cy=boards-list]')
+    .first();
+
+  return cy
     .get('.App [data-cy=boards-list]', WaitVeryLong)
-    .should('exist')
     .should('have.length', 1)
     .find('a', WaitVeryLong);
+}
 
 const getBoardsList_FirstEntry = name =>
   getBoardsList()
@@ -137,10 +142,7 @@ describe('Test coolboard', () => {
         .get('.green')
         .click()
     );
-    cy.get(
-      '.modal'
-    ).should('not.exist');
-    ; // just wait a little until the mutation was done
+    cy.get('.modal').should('not.exist'); // just wait a little until the mutation was done
 
     getBoardsList_FirstEntry(newBoardName);
   });
