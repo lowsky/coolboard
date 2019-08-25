@@ -93,23 +93,31 @@ function doLogin() {
   return fillLoginForm();
 }
 
-const getBoardsList = () =>
+const getBoardsList = () => {
   cy
-    .get('.App h1', LogAndWaitLong)
-    .parent()
-    .wait(10000) // wait a little longer
-    .find('.fluid.container', LogAndWaitLong)
-    .find('a', LogAndWaitLong);
+    .get('.App')
+    .find('[data-cy=boards-list]')
+    .first();
+
+  return cy
+    .get('.App [data-cy=boards-list]', WaitVeryLong)
+    .should('have.length', 1)
+    .find('a', WaitVeryLong);
+}
 
 const getBoardsList_FirstEntry = name =>
   getBoardsList()
     .contains(name)
-    .first();
+    .first()
 
 let LogAndWaitLong = {
-  log: true,
-  timeout: 25000,
+  log: false,
+  timeout: 10000,
 };
+let WaitVeryLong = {
+  log: true,
+  timeout: 25000 * 4,
+}
 
 describe('Test coolboard', () => {
   beforeEach(() => {
@@ -134,6 +142,8 @@ describe('Test coolboard', () => {
         .get('.green')
         .click()
     );
+    cy.get('.modal').should('not.exist'); // just wait a little until the mutation was done
+
     getBoardsList_FirstEntry(newBoardName);
   });
 
@@ -157,12 +167,12 @@ describe('Test coolboard', () => {
 
     add_a_card().click();
 
-    cy.get('[data-cy=card]')
+    cy.get('[data-cy=card]', WaitVeryLong)
       .contains('new card')
       .click();
 
     // edit card
-    cy.log('edit card does not work yet');
+    cy.log('edit card');
     cy.get('.modal')
       .get('input')
       .type('name-changed');
@@ -170,7 +180,10 @@ describe('Test coolboard', () => {
       .find('.button')
       .contains('Save')
       .click()
-      .wait(1500); // just wait a little until the mutation was done
+      .wait(1500);
+
+    cy.log('wait until dialog closes');
+    cy.get('.modal', WaitVeryLong).should('not.exist');
 
     cy.log('add a list');
     add_a_list().click();
