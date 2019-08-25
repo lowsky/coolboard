@@ -96,6 +96,7 @@ function doLogin() {
 const getBoardsList = () =>
   cy
     .get('.App [data-cy=boards-list]', WaitVeryLong)
+    .should('exist')
     .should('have.length', 1)
     .find('a', WaitVeryLong);
 
@@ -109,9 +110,8 @@ let LogAndWaitLong = {
   timeout: 10000,
 };
 let WaitVeryLong = {
-  ...LogAndWaitLong,
   log: true,
-  timeout: 25000,
+  timeout: 25000 * 4,
 }
 
 describe('Test coolboard', () => {
@@ -170,7 +170,7 @@ describe('Test coolboard', () => {
       .click();
 
     // edit card
-    cy.log('edit card does not work yet');
+    cy.log('edit card');
     cy.get('.modal')
       .get('input')
       .type('name-changed');
@@ -180,12 +180,8 @@ describe('Test coolboard', () => {
       .click()
       .wait(1500);
 
-    cy.get(
-      '.modal',
-      WaitVeryLong
-
-    ).should('not.exist');
-    ; // just wait a little until the mutation was done
+    cy.log('wait until dialog closes');
+    cy.get('.modal', WaitVeryLong).should('not.exist');
 
     cy.log('add a list');
     add_a_list().click();
