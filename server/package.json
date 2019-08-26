@@ -22,7 +22,7 @@
     "express-jwt": "5.3.1",
     "graphql": "14.3.1",
     "graphql-import": "0.7.1",
-    "graphql-yoga": "1.18.2",
+    "graphql-yoga": "1.18.3",
     "jsonwebtoken": "8.5.1",
     "jwks-rsa": "1.6.0",
     "netlify-lambda": "1.5.1",
