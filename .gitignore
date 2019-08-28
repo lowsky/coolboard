@@ -25,3 +25,5 @@ smoketest/cypress/screenshots
 server/lambda
 
 /.pnp/
+/public/meta.json
+/smoketest/.env
