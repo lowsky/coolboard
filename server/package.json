@@ -15,7 +15,7 @@
   "dependencies": {
     "apollo-engine": "1.1.2",
     "apollo-errors": "1.9.0",
-    "apollo-server-lambda": "2.9.0",
+    "apollo-server-lambda": "2.9.1",
     "aws-lambda": "0.1.2",
     "bcryptjs": "2.4.3",
     "bufferutil": "4.0.1",
