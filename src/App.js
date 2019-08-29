@@ -6,7 +6,6 @@ import { Loader } from 'semantic-ui-react';
 import { ApolloProvider } from 'react-apollo';
 import { ApolloNetworkStatusProvider } from 'react-apollo-network-status';
 
-import { setupGraphQLClient } from './setupGraphQLClient';
 import { DndProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import {
@@ -29,13 +28,17 @@ const CoolBoard = lazy(() =>
     default: module.CoolBoard,
   }))
 );
+
 const Boards = lazy(() =>
   import('./components/Boards').then(module => ({
     default: module.Boards,
   }))
 );
 
-const {
+const setupGraphQLClient = () =>
+  import('./setupGraphQLClient');
+
+let {
   client,
   NetworkStatusNotifier,
 } = setupGraphQLClient();
@@ -48,22 +51,59 @@ export const App = () => (
       <Suspense fallback={<Loader />}>
         <ApolloProvider client={client}>
           <ApolloNetworkStatusProvider>
-          <Switch>
-            <Route
-              exact
-              path="/boards"
-              render={() => (
-                <FullVerticalContainer data-cy="boards-full-container">
+        <Switch>
+          <Route
+            exact
+            path="/boards"
+            render={() => {
+
+              let Compo = lazy(() => import('./asyncSetup') )
+              return <h1>Hello
+                  <Compo />
+                </h1>
+              }
+            }
+        />
+
+
+        <Route
+            exact
+            path="/boardsx"
+            render={ () => lazy(() => {
+
+              /*
+              const setup = setupGraphQLClient();
+
+              setup
+                .then(x => {
+                  const {
+                    client,
+                    NetworkStatusNotifier,
+                  } = x.setupGraphQLClient();
+                })
+                .catch(e => {
+                  console.error(e);
+                });
+
+                            console.warn('client', client);
+                            if(false) return (
+                              <ApolloProvider client={client}>
+                                <FullVerticalContainer data-cy="boards-full-container">
                   <ProfileHeader isBoardsPage />
                   <GeneralErrorHandler auth={auth}
-                    NetworkStatusNotifier={
-                      NetworkStatusNotifier
-                    }
-                  />
-                  <Boards />
-                </FullVerticalContainer>
-              )}
-            />
+                                    NetworkStatusNotifier={
+                                      NetworkStatusNotifier
+                                    }
+                                  />
+                                  <Boards/>
+                                </FullVerticalContainer>
+                              </ApolloProvider>
+                              );
+                            */
+
+              return <h1>Hello</h1>;
+            })}
+          />
 
           <Route
             exact
@@ -76,9 +116,11 @@ export const App = () => (
                     NetworkStatusNotifier
                   }
                 />
-                  <DndProvider backend={HTML5Backend}>
-                      <CoolBoard boardId={match.params.id} />
-                  </DndProvider>
+                <DndProvider backend={HTML5Backend}>
+                  <CoolBoard
+                    boardId={match.params.id}
+                  />
+                </DndProvider>
               </FullVerticalContainer>
             )}
           />
@@ -89,30 +131,30 @@ export const App = () => (
             render={({ history }) => {
               auth.login();
 
-                client.resetStore().then(() => {
-                  history.push(`/`);
-                });
+              client.resetStore().then(() => {
+                history.push(`/`);
+              });
 
-                return (
-                  <FullVerticalContainer data-cy="login-full-container">
-                    <p>
-                      Please wait, trying to authenticate
-                      ... If it did not work, you can go
-                      back to the
-                      <Link to="/">main page</Link>
-                    </p>
-                  </FullVerticalContainer>
-                );
-              }}
-            />
-            <Route
-              path="/"
-              exact
-              render={() => <Home />}
-            />
-          </Switch>
+              return (
+                <FullVerticalContainer data-cy="login-full-container">
+                  <p>
+                    Please wait, trying to authenticate
+                    ... If it did not work, you can go
+                    back to the
+                    <Link to="/">main page</Link>
+                  </p>
+                </FullVerticalContainer>
+              );
+            }}
+          />
+          <Route
+            path="/"
+            exact
+            render={() => <Home />}
+          />
+        </Switch>
 
-          {/*
+        {/*
               <Route
               exact
               path="/signup"
@@ -128,50 +170,54 @@ export const App = () => (
             />
               */}
 
-          <Route
-            exact
-            path="/logout"
-            render={({ history }) => {
+        <Route
+          exact
+          path="/logout"
+          render={({ history }) => {
               localStorage.removeItem('token');
-              auth.logout();
-              return (
-                <p data-cy="login-in-progress">
-                  Please wait, logging out ... You will
-                  be re-directed to the
-                  <Link to="/">main page</Link>
-                </p>
-              );
-            }}
-          />
-          <Route
-            path="/callback"
-            render={() => {
-              return (
-                <FullVerticalContainer data-cy="callback-full-container">
-                  <ApolloProvider client={client}>
+            auth.logout();
+
+              client.resetStore().then(() => {
+                history.push(`/`);
+              });
+            return (
+              <p data-cy="login-in-progress">
+                Please wait, logging out ... You will
+                be re-directed to the
+                <Link to="/">main page</Link>
+              </p>
+            );
+          }}
+        />
+        <Route
+          path="/callback"
+          render={() => {
+            return (
+              <FullVerticalContainer data-cy="callback-full-container">
+                <ApolloProvider client={client}>
                     <ApolloNetworkStatusProvider>
-                    <ProfileHeader />
+                  <ProfileHeader />
                     <GeneralErrorHandler auth={auth}
-                      NetworkStatusNotifier={
-                        NetworkStatusNotifier
-                      }
-                    />
-                    <div>
-                      <Loader active>
-                        Authenticating...
-                      </Loader>
-                    </div>
+                    NetworkStatusNotifier={
+                      NetworkStatusNotifier
+                    }
+                  />
+                  <div>
+                    <Loader active>
+                      Authenticating...
+                    </Loader>
+                  </div>
                     </ApolloNetworkStatusProvider>
-                  </ApolloProvider>
-                </FullVerticalContainer>
-              );
-            }}
-          />
-          <Route
-            exact
-            path="/about"
-            render={() => <About />}
-          />
+                </ApolloProvider>
+              </FullVerticalContainer>
+            );
+          }}
+        />
+        <Route
+          exact
+          path="/about"
+          render={() => <About />}
+        />
           </ApolloNetworkStatusProvider>
         </ApolloProvider>
       </Suspense>
