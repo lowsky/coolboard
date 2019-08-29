@@ -8,18 +8,12 @@ import { ApolloProvider } from 'react-apollo';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 /* http link */
 import { createHttpLink } from 'apollo-link-http';
-/* ws link */
-import { WebSocketLink } from 'apollo-link-ws';
-
-import { getMainDefinition } from 'apollo-utilities';
-import { ApolloLink, split } from 'apollo-link';
+import { ApolloLink } from 'apollo-link';
 
 import { createNetworkStatusNotifier } from 'react-apollo-network-status';
 
 import { DndProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
-
-/**/
 
 import {
   Switch,
@@ -83,47 +77,13 @@ const middlewareAuthLink = new ApolloLink(
   }
 );
 
-// Create a WebSocket link:
-const websocketUrl =
-  (secureConnection ? 'wss://' : 'ws://') +
-  SRV_HOST_PORT_DOMAIN;
-
-const token = localStorage.getItem('access_token');
-
-const wsLink = new WebSocketLink({
-  uri: websocketUrl,
-  options: {
-    reconnect: true,
-    connectionParams: {
-      Authorization: `Bearer ${token}`,
-    },
-  },
-});
-
-// using the ability to split links, you can send data to each link
-// depending on what kind of operation is being sent
-const returnTrueIfSubscription = ({ query }) => {
-  const { kind, operation } = getMainDefinition(query);
-  return (
-    kind === 'OperationDefinition' &&
-    operation === 'subscription'
-  );
-};
-
-// split based on operation type
-const link = split(
-  returnTrueIfSubscription,
-  wsLink,
-  middlewareAuthLink.concat(httpLink)
-);
-
 const {
   NetworkStatusNotifier,
   link: networkStatusNotifierLink,
 } = createNetworkStatusNotifier();
 
 const client = new ApolloClient({
-  link: networkStatusNotifierLink.concat(link),
+  link: networkStatusNotifierLink.concat(middlewareAuthLink.concat(httpLink)),
   cache: new InMemoryCache(),
 });
 
