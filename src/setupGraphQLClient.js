@@ -53,3 +53,5 @@ export const setupGraphQLClient = () => {
 
   return { client };
 };
+
+export default setupGraphQLClient;
