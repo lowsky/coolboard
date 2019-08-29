@@ -41,6 +41,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "babel-eslint": "10.0.2",
     "eslint": "6.1.0",
     "eslint-config-prettier": "6.1.0",
     "eslint-config-react-app": "4.0.1",
