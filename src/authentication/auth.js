@@ -20,6 +20,11 @@ class Auth {
     {
       oidcConformant: true,
       autoclose: true,
+      rememberLastLogin: true,
+      allowForgotPassword: true,
+      allowAutocomplete: true,
+      allowShowPassword: true,
+      allowPasswordAutocomplete: true,
       auth: {
         sso: false,
         redirectUrl: AUTH_CONFIG.callbackUrl,
@@ -103,9 +108,6 @@ class Auth {
           window.location.href.includes(`callback`)
         ) {
           window.location.href = '/';
-        } else {
-          console.log(`ignored for testing purpose: 
-          window.location.reload();`);
         }
       })
       .catch(err =>
@@ -123,6 +125,17 @@ class Auth {
     localStorage.removeItem('expires_at');
   };
 
+  refresh = () => {
+    this.lock.checkSession({}, (err, ar) => {
+      if (err) {
+        console.error(
+          'error, while refreshing auth0 tokens.',
+          err
+        );
+      } else this.setSession(ar);
+    });
+  };
+
   isAuthenticated = () => {
     // Check whether the current time is past the
     // access token's expiry time
@@ -137,7 +150,6 @@ class Auth {
         `AUTH: is expired? - ${!isNotExpired}`
       );
     }
-
     return isNotExpired;
   };
 }

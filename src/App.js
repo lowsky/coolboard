@@ -53,7 +53,7 @@ export const App = () => (
               render={() => (
                 <FullVerticalContainer data-cy="boards-full-container">
                   <ProfileHeader isBoardsPage />
-                  <GeneralErrorHandler
+                  <GeneralErrorHandler auth={auth}
                     NetworkStatusNotifier={
                       NetworkStatusNotifier
                     }
@@ -69,7 +69,7 @@ export const App = () => (
             render={({ match }) => (
               <FullVerticalContainer data-cy="board-full-container">
                 <ProfileHeader />
-                <GeneralErrorHandler
+                <GeneralErrorHandler auth={auth}
                   NetworkStatusNotifier={
                     NetworkStatusNotifier
                   }
@@ -131,12 +131,7 @@ export const App = () => (
             path="/logout"
             render={({ history }) => {
               localStorage.removeItem('token');
-
               auth.logout();
-
-              client.resetStore().then(() => {
-                history.push(`/`);
-              });
               return (
                 <p data-cy="login-in-progress">
                   Please wait, logging out ... You will
@@ -153,7 +148,7 @@ export const App = () => (
                 <FullVerticalContainer data-cy="callback-full-container">
                   <ApolloProvider client={client}>
                     <ProfileHeader />
-                    <GeneralErrorHandler
+                    <GeneralErrorHandler auth={auth}
                       NetworkStatusNotifier={
                         NetworkStatusNotifier
                       }
