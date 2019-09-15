@@ -1,6 +1,5 @@
 import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
-import { createNetworkStatusNotifier } from 'react-apollo-network-status';
 import { ApolloLink } from 'apollo-link';
 import { createHttpLink } from 'apollo-link-http';
 
@@ -47,17 +46,10 @@ export const setupGraphQLClient = () => {
     }
   );
 
-  const {
-    NetworkStatusNotifier,
-    link: networkStatusNotifierLink,
-  } = createNetworkStatusNotifier();
-
   const client = new ApolloClient({
-    link: networkStatusNotifierLink.concat(
-      middlewareAuthLink.concat(httpLink)
-    ),
+    link: middlewareAuthLink.concat(httpLink),
     cache: new InMemoryCache(),
   });
 
-  return { client, NetworkStatusNotifier };
+  return { client };
 };
