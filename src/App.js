@@ -4,6 +4,7 @@ import React, { lazy, Suspense } from 'react';
 import { Loader } from 'semantic-ui-react';
 
 import { ApolloProvider } from 'react-apollo';
+import { ApolloNetworkStatusProvider } from 'react-apollo-network-status';
 
 import { setupGraphQLClient } from './setupGraphQLClient';
 import { DndProvider } from 'react-dnd';
@@ -46,6 +47,7 @@ export const App = () => (
     <BrowserRouter>
       <Suspense fallback={<Loader />}>
         <ApolloProvider client={client}>
+          <ApolloNetworkStatusProvider>
           <Switch>
             <Route
               exact
@@ -147,6 +149,7 @@ export const App = () => (
               return (
                 <FullVerticalContainer data-cy="callback-full-container">
                   <ApolloProvider client={client}>
+                    <ApolloNetworkStatusProvider>
                     <ProfileHeader />
                     <GeneralErrorHandler auth={auth}
                       NetworkStatusNotifier={
@@ -158,6 +161,7 @@ export const App = () => (
                         Authenticating...
                       </Loader>
                     </div>
+                    </ApolloNetworkStatusProvider>
                   </ApolloProvider>
                 </FullVerticalContainer>
               );
@@ -168,6 +172,7 @@ export const App = () => (
             path="/about"
             render={() => <About />}
           />
+          </ApolloNetworkStatusProvider>
         </ApolloProvider>
       </Suspense>
     </BrowserRouter>

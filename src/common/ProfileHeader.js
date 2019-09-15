@@ -85,9 +85,9 @@ export const ProfileHeader = ({ isBoardsPage }) => (
         );
       }
 
-      const {
-        me: { avatarUrl, name },
-      } = data;
+      const { me = {} } = data;
+
+      const { avatarUrl, name } = me;
 
       return (
         <ProfileHeaderContainer
