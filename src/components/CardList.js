@@ -106,52 +106,52 @@ const CardListWithDnd = props => {
 
 const fragments = {
   list: gql`
-      fragment CardList_list on List {
-          name
-          id
-          cards {
-              ...Card_card
-          }
+    fragment CardList_list on List {
+      name
+      id
+      cards {
+        ...Card_card
       }
-      ${Card.fragments.card}
+    }
+    ${Card.fragments.card}
   `,
 };
 
 const moveCardMutation = gql`
-    mutation moveCard(
-        $cardId: ID!
-        $oldCardListId: ID!
-        $cardListId: ID!
+  mutation moveCard(
+    $cardId: ID!
+    $oldCardListId: ID!
+    $cardListId: ID!
+  ) {
+    newList: updateList(
+      data: { cards: { connect: { id: $cardId } } }
+      where: { id: $cardListId }
     ) {
-        newList: updateList(
-            data: { cards: { connect: { id: $cardId } } }
-            where: { id: $cardListId }
-        ) {
-            ...CardList_list
-        }
-        oldList: updateList(
-            data: { cards: { disconnect: { id: $cardId } } }
-            where: { id: $oldCardListId }
-        ) {
-            ...CardList_list
-        }
+      ...CardList_list
     }
-    ${fragments.list}
+    oldList: updateList(
+      data: { cards: { disconnect: { id: $cardId } } }
+      where: { id: $oldCardListId }
+    ) {
+      ...CardList_list
+    }
+  }
+  ${fragments.list}
 `;
 
 let addCardMutation = gql`
-    mutation AddCardMutation(
-        $cardListId: ID!
-        $name: String!
+  mutation AddCardMutation(
+    $cardListId: ID!
+    $name: String!
+  ) {
+    updateList(
+      data: { cards: { create: { name: $name } } }
+      where: { id: $cardListId }
     ) {
-        updateList(
-            data: { cards: { create: { name: $name } } }
-            where: { id: $cardListId }
-        ) {
-            ...CardList_list
-        }
+      ...CardList_list
     }
-    ${fragments.list}
+  }
+  ${fragments.list}
 `;
 
 export const CardList = ({
@@ -159,65 +159,73 @@ export const CardList = ({
   name,
   deleteListWithId,
 }) => (
-  <Mutation mutation={moveCardMutation}>
-    {moveCard => (
-      <Query
-        variables={{ cardListId: id }}
-        query={gql`
-          query CardList($cardListId: ID) {
-            list(where: { id: $cardListId }) {
-              ...CardList_list
-            }
-          }
-          ${CardList.fragments.list}
-        `}>
-        {({ loading, error, data}) => {
-          if (error) {
-            return <span>Load error!</span>;
-          }
+  <Query
+    variables={{ cardListId: id }}
+    query={gql`
+      query CardList($cardListId: ID) {
+        list(where: { id: $cardListId }) {
+          ...CardList_list
+        }
+      }
+      ${CardList.fragments.list}
+    `}>
+    {res => {
+      const { loading, error, data } = res;
+      if (error) {
+        return <span>Load error!</span>;
+      }
 
-          const onMoveCardToList = (
-            cardId,
-            oldCardListId,
-            newCardListId
-          ) => {
-            console.log(
-              `triggered moving card with id: ${cardId} to list with id: ${oldCardListId} -> id: ${newCardListId}`
+      let list = [];
+      if (!loading && data) {
+        list = data.list; // fix data is undefined when loading...
+      }
+
+      return (
+        <Mutation mutation={moveCardMutation}>
+          {moveCard => {
+            const onMoveCardToList = (
+              cardId,
+              oldCardListId,
+              newCardListId
+            ) => {
+              console.log(
+                `triggered moving card with id: ${cardId} to list with id: ${oldCardListId} -> id: ${newCardListId}`
+              );
+
+              moveCard({
+                variables: {
+                  oldCardListId,
+                  cardListId: newCardListId,
+                  cardId,
+                },
+              });
+            };
+
+            return (
+              <Mutation
+                mutation={addCardMutation}
+                variables={{
+                  cardListId: id,
+                  name: 'new card',
+                }}>
+                {addCardWithName => (
+                  <CardListWithDnd
+                    deleteListWithId={deleteListWithId}
+                    addCardWithName={addCardWithName}
+                    moveCardToList={onMoveCardToList}
+                    cardList={{ list }}
+                    name={name}
+                    loading={loading}
+                    id={id}
+                  />
+                )}
+              </Mutation>
             );
-
-            moveCard({
-              variables: {
-                oldCardListId,
-                cardListId: newCardListId,
-                cardId,
-              },
-            });
-          };
-
-          return (
-            <Mutation
-              mutation={addCardMutation}
-              variables={{
-                cardListId: id,
-                name: 'new card',
-              }}>
-              {addCardWithName => (
-                <CardListWithDnd
-                  deleteListWithId={deleteListWithId}
-                  addCardWithName={addCardWithName}
-                  moveCardToList={onMoveCardToList}
-                  cardList={{ list:data.list }}
-                  name={name}
-                  loading={loading}
-                  id={id}
-                />
-              )}
-            </Mutation>
-          );
-        }}
-      </Query>
-    )}
-  </Mutation>
+          }}
+        </Mutation>
+      );
+    }}
+  </Query>
 );
 
 const CardListHeader = ({ name, children }) => (
