@@ -1,45 +1,33 @@
 import Auth0Lock from 'auth0-lock';
-import gql from 'graphql-tag';
-import { AUTH_CONFIG } from './auth0-variables';
 
-const AUTHENTICATE = gql`
-  mutation authenticate($idToken: String!) {
-    authenticate(idToken: $idToken) {
-      id
-      name
-      email
-      avatarUrl
-    }
-  }
-`;
+import { AUTH_CONFIG } from './auth0-variables';
+import { signInOrCreateAccount } from './signInOrCreateAccount';
 
 class Auth {
   lock = new Auth0Lock(
     AUTH_CONFIG.clientId,
     AUTH_CONFIG.domain,
     {
-      oidcConformant: true,
-      autoclose: true,
-      rememberLastLogin: true,
-      allowForgotPassword: true,
-      allowAutocomplete: true,
-      allowShowPassword: true,
-      allowPasswordAutocomplete: true,
-      auth: {
-        sso: false,
-        redirectUrl: AUTH_CONFIG.callbackUrl,
-        responseType: 'token id_token',
-        audience: `${AUTH_CONFIG.api_audience}`,
-        params: {
-          scope: `openid profile email user_metadata app_metadata picture`,
-        },
+    oidcConformant: true,
+    autoclose: true,
+    rememberLastLogin: true,
+    allowForgotPassword: true,
+    allowAutocomplete: true,
+    allowShowPassword: true,
+    allowPasswordAutocomplete: true,
+    auth: {
+      sso: false,
+      redirectUrl: AUTH_CONFIG.callbackUrl,
+      responseType: 'token id_token',
+      audience: `${AUTH_CONFIG.api_audience}`,
+      params: {
+        scope: `openid profile email user_metadata app_metadata picture`,
       },
+    },
     }
   );
 
-  constructor(apolloClient) {
-    this.apolloClient = apolloClient;
-
+  constructor() {
     this.addHandleAuthenticationListener();
   }
 
@@ -49,17 +37,11 @@ class Auth {
 
   addHandleAuthenticationListener() {
     // Add a callback for Lock's `authenticated` event
-    this.lock.on(
-      'authenticated',
-      this.setSession.bind(this)
-    );
+    this.lock.on('authenticated', this.setSession.bind(this));
 
     // Add a callback for Lock's `authorization_error` event
     this.lock.on('authorization_error', err => {
-      console.error(
-        'Error while authentication via auth0',
-        err
-      );
+      console.error('Error while authentication via auth0', err);
       alert(
         `Sorry, Error: ${err.error}. Check the console for further details, and Please Re-try.`
       );
@@ -86,36 +68,15 @@ class Auth {
         authResult.idToken
       );
       localStorage.setItem('expires_at', expiresAt);
+
+      if (window.location.href.includes(`callback`)) {
+        window.location.href = '/';
+      }
     }
   }
 
-  async signinOrCreateAccount(idToken) {
-    return this.apolloClient
-      .mutate({
-        mutation: AUTHENTICATE,
-        variables: { idToken },
-      })
-      .then(res => {
-        if (
-          window.location.href.includes('localhost')
-        ) {
-          console.log(
-            'authentication-mutation result:',
-            res
-          );
-        }
-        if (
-          window.location.href.includes(`callback`)
-        ) {
-          window.location.href = '/';
-        }
-      })
-      .catch(err =>
-        console.error(
-          'Sign in or create account error: ',
-          err
-        )
-      );
+  async signinOrCreateAccount(apolloClient, idToken) {
+    return signInOrCreateAccount(apolloClient, idToken);
   }
 
   logout = () => {
