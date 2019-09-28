@@ -1,6 +1,8 @@
-import React from "react";
-import {setupGraphQLClient} from './setupGraphQLClient'
+import React from 'react';
+
+import { setupGraphQLClient } from './setupGraphQLClient';
 
 setupGraphQLClient();
 
-export default () => <h1>Lazy</h1>
+// eslint-disable-next-line react/display-name
+export default () => <h1>Lazy</h1>;
