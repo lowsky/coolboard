@@ -35,14 +35,12 @@ export const setupGraphQLClient = () => {
         'access_token'
       );
 
-      operation.setContext({
-        headers: {
-          authorization: token
-            ? `Bearer ${token}`
-            : '',
-        },
-      });
-      return forward(operation);
+    operation.setContext({
+      headers: {
+        authorization: token ? `Bearer ${token}` : '',
+      },
+    });
+    return forward(operation);
     }
   );
 
@@ -51,7 +49,5 @@ export const setupGraphQLClient = () => {
     cache: new InMemoryCache(),
   });
 
-  return { client };
+  return client;
 };
-
-export default setupGraphQLClient;

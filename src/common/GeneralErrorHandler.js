@@ -29,17 +29,12 @@ export const GeneralErrorHandler = ({ auth }) => {
 
     const Relogin = () => (
       <div>
-        <span>
-          Or just after{' '}
-          <strong>some time of inactivity</strong>,
-          simply
-        </span>
-        <Button
+        <Button compact={true}
           onClick={() => {
             auth.refresh();
           }}>
-          auto-refresh security token
-        </Button>
+          Refresh
+        </Button> the security token.
       </div>
     );
 
@@ -75,13 +70,17 @@ export const GeneralErrorHandler = ({ auth }) => {
         );
       }
 
+      const errorMsgs = graphQLErrors
+        .filter(error => error.message)
+        .map(error => error.message);
+
       return (
         <Message error>
-          {graphQLErrors
-            .filter(error => error.message)
-            .map(error => error.message)
+          {errorMsgs.filter(msg=>(msg.indexOf('jwt expired')>=0)) && <Relogin />}
+          <strong>Error:</strong>
+          {errorMsgs
             .map((message, idx) => (
-              <p key={idx}>{message}</p>
+              <span key={idx}>{message}</span>
             ))}
         </Message>
       );
