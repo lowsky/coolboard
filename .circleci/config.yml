@@ -21,7 +21,7 @@ jobs:
       - run:
           name: web client - build
           command: npm run build
-  smoke:
+  build:
     docker:
       - image: cypress/base:10
     parallelism: 1
@@ -31,6 +31,8 @@ jobs:
           name: Set PR number in env
           command: |
             env | grep CIRCLE | sort
+            echo $CIRCLE_PR_NUMBER   no.: $CIRCLE_PR_NUMBER
+            echo CIRCLE_PULL_REQUEST no.: CIRCLE_PULL_REQUEST
             echo 'export CIRCLE_PR_NUMBER="${CIRCLE_PR_NUMBER:-${CIRCLE_PULL_REQUEST##*/}}"' >> $BASH_ENV
       - run:
           name: build diagnosis
@@ -71,7 +73,11 @@ jobs:
           command: |
             echo PR: $CIRCLE_PR_NUMBER
             export CYPRESS_baseUrl=https://deploy-preview-${CIRCLE_PR_NUMBER}--coolboard.netlify.com
-            cd smoketest ; GIT_SHA1=${CIRCLE_SHA1} npm run wait:valid-version
+            cd smoketest
+            echo DEPLOYED_SHA1 $DEPLOYED_SHA1
+            echo CIRCLE_SHA1 $CIRCLE_SHA1
+            echo using GIT_SHA1=${DEPLOYED_SHA1:-$CIRCLE_SHA1}
+            GIT_SHA1=${DEPLOYED_SHA1:-$CIRCLE_SHA1} npm run wait:valid-version
       - run:
           name: cypress verify
           command: |
@@ -95,11 +101,32 @@ jobs:
           path: /root/project/smoketest/cypress/videos
           destination: videos
 
+  buildonly:
+    docker:
+      - image: cypress/base:10
+    parallelism: 1
+    steps:
+      - checkout
+      - run:
+          name: Set PR number in env
+          command: |
+            env | grep CIRCLE | sort
+            echo CIRCLE_PULL_REQUEST = $CIRCLE_PULL_REQUEST
+            echo CIRCLE_PR_NUMBER = $CIRCLE_PR_NUMBER
+            echo 'export CIRCLE_PR_NUMBER="${CIRCLE_PR_NUMBER:-${CIRCLE_PULL_REQUEST##*/}}"' >> $BASH_ENV
+      - run:
+          name: build diagnosis
+          command: |
+            env | grep CIRCLE | sort
+
+            echo PR no.: $CIRCLE_PR_NUMBER
+
+            source $BASH_ENV
+            echo PR env from BASH_ENV file: $BASH_ENV
+            echo PR no.: $CIRCLE_PR_NUMBER
+
 workflows:
-#  build:
-#    jobs:
-#      - check
-  smoke:
+  show-env:
     jobs:
-      - smoke
+      - buildonly
   version: 2
