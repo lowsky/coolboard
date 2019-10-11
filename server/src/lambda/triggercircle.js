@@ -1,18 +1,13 @@
 const fetch = require('cross-fetch');
 
 require('dotenv').config();
+const { CIRCLE_API_USER_TOKEN } = process.env;
 
 exports.handler = async event => {
-  console.log(
-    'deploy-success type of body',
-    typeof event.body
-  );
-  const { CIRCLE_API_USER_TOKEN } = process.env;
   console.log(
     'deploy-success type of fetch=',
     typeof fetch
   );
-  console.log('deploy-success fetch=', fetch);
   console.log('deploy-success body=', event.body);
   console.log(
     'deploy-success body, json = ',
@@ -25,7 +20,8 @@ exports.handler = async event => {
     commit_ref = '43bd262',
   } = event.body;
 
-  const url = `https://${CIRCLE_API_USER_TOKEN}@circleci.com/api/v1.1/project/github/lowsky/Hands-on-Application-Building-with-GraphQL-and-React/tree/${branch}`; // ?build_parameters%5BCIRCLE_JOB%5D=smoke&build_parameters%5BCIRCLE_PR_NUMBER%5D=${review_id}&build_parameters%5BDEPLOYED_SHA1%5D=${commit_ref}`;
+  const url = `https://${CIRCLE_API_USER_TOKEN}@circleci.com/api/v1.1/project/github/lowsky/Hands-on-Application-Building-with-GraphQL-and-React/tree/${branch}`;
+  // ?build_parameters%5BCIRCLE_JOB%5D=smoke&build_parameters%5BCIRCLE_PR_NUMBER%5D=${review_id}&build_parameters%5BDEPLOYED_SHA1%5D=${commit_ref}`;
   //const url = `http://localhost:9000/.netlify/functions/deploy-succeeded`;
   // const url = `http://localhost:9000/.netlify/functions/deploy-succeeded?build_parameters%5BCIRCLE_JOB%5D=smoke&build_parameters%5BCIRCLE_PR_NUMBER%5D=${review_id}&build_parameters%5BDEPLOYED_SHA1%5D=${commit_ref}`;
 
