@@ -38,6 +38,8 @@ exports.handler = async event => {
       }),
     });
     if (!response.ok) {
+      console.log('circleci error! Response:', response);
+
       // NOT res.status >= 200 && res.status < 300
       return {
         statusCode: response.status,
