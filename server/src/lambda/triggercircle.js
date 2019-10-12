@@ -9,16 +9,16 @@ exports.handler = async event => {
     typeof fetch
   );
   console.log('deploy-success body=', event.body);
+  const body = JSON.parse(event.body);
   console.log(
-    'deploy-success body, json = ',
-    JSON.stringify(event.body)
+    'deploy-success body.review_id=',
+    body.review_id
   );
-
   const {
-    branch = 'test-triggering-ci',
+    branch = 'default',
     review_id = '0',
-    commit_ref = '43bd262',
-  } = event.body;
+    commit_ref = '123456',
+  } = body;
 
   const url = `https://${CIRCLE_API_USER_TOKEN}@circleci.com/api/v1.1/project/github/lowsky/Hands-on-Application-Building-with-GraphQL-and-React/tree/${branch}`;
   // ?build_parameters%5BCIRCLE_JOB%5D=smoke&build_parameters%5BCIRCLE_PR_NUMBER%5D=${review_id}&build_parameters%5BDEPLOYED_SHA1%5D=${commit_ref}`;
@@ -38,7 +38,7 @@ exports.handler = async event => {
   );
 
   try {
-    const response = await fetch(url, {
+    const response = await fetch('x' + url, {
       headers: { Accept: 'application/json' },
       method: 'POST',
       body: JSON.stringify({
