@@ -69,9 +69,7 @@ server.express.post(
 );
 
 const engine = new ApolloEngine({
-  // apiKey: process.env.APOLLO_ENGINE_KEY,
-  apiKey:
-    'service:lowsky-coolboard:FfdCjK0Nug0Dq2_qFuLfgw',
+  apiKey: process.env.ENGINE_API_KEY,
 });
 
 const httpServer = server.createHttpServer({

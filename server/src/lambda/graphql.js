@@ -23,6 +23,15 @@ const lambda = new ApolloServer({
 
   debug: true,
 
+  engine: {
+    // The Graph Manager API key
+    apiKey: process.env.ENGINE_API_KEY,
+
+    // For more information on schema tags/variants, see
+    // https://www.apollographql.com/docs/platform/schema-registry/#associating-metrics-with-a-variant
+    schemaTag: process.env.ENGINE_SCHEMA_TAG || 'undefined',
+  },
+
   resolverValidationOptions: {
     requireResolversForResolveType: false,
   },
