@@ -1,10 +1,10 @@
 const { ApolloServer } = require('apollo-server-lambda');
-
 const { Prisma } = require('prisma-binding');
+
 const resolvers = require('../resolvers');
 
-const schema = require('../newschema.graphql');
-const { typedefs,  generated_prisma_schema } = schema;
+const schema = require('./newschema.graphql');
+const { typedefs, generated_prisma_schema } = schema;
 
 const db = new Prisma({
   // the Prisma DB schema
