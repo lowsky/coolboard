@@ -1,9 +1,8 @@
-# Orb 'cypress-io/cypress@1.0.1' resolved to 'cypress-io/cypress@1.0.1'
 version: 2
 jobs:
   check:
     docker:
-      - image:  circleci/node:11.15.0-stretch-browsers
+      - image:  cypress/base:12.1.0
     parallelism: 1
     steps:
       - checkout
@@ -11,7 +10,7 @@ jobs:
           keys:
             - cache-{{ .Branch }}-{{ checksum "yarn.lock" }}
       - run:
-          name: web client - npm
+          name: web client - yarn
           command: yarn
       - save_cache:
           key: cache-{{ .Branch }}-{{ checksum "yarn.lock" }}
@@ -23,7 +22,7 @@ jobs:
           command: npm run build
   build:
     docker:
-      - image: cypress/base:10
+      - image: cypress/base:12.1.0
     parallelism: 1
     steps:
       - checkout
@@ -101,9 +100,9 @@ jobs:
           path: /root/project/smoketest/cypress/videos
           destination: videos
 
-  buildonly:
+  prebuild_diag:
     docker:
-      - image: cypress/base:10
+      - image: cypress/base:12.1.0
     parallelism: 1
     steps:
       - checkout
@@ -128,5 +127,5 @@ jobs:
 workflows:
   show-env:
     jobs:
-      - buildonly
+      - prebuild_diag
   version: 2

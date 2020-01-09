@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "run some browser tests via cypress",
   "private": true,
+  "engines": {
+    "node": ">=12.1"
+  },
   "dependencies": {
     "cypress": "3.8.3"
   },
