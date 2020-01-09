@@ -17,9 +17,9 @@ jobs:
           paths:
             - ~/.npm
             - ~/.cache
-      - run:
-          name: web client - build
-          command: npm run build
+#      - run:
+#          name: web client - build
+#          command: npm run build
   build:
     docker:
       - image: cypress/base:12.1.0
