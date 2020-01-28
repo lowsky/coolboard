@@ -1,12 +1,12 @@
 {
   "name": "trello-gateway",
   "version": "0.1.0",
-  "description": "A GraphQL server based on Prisma",
+  "description": "A GraphQL Trello server based on Prisma",
   "scripts": {
     "start:lambda": "node -r dotenv/config node_modules/.bin/netlify-lambda serve src/lambda",
     "build": "netlify-lambda build src/lambda",
-    "start": "nodemon -e js,graphql -x node -r dotenv/config src/index.js",
-    "debug": "nodemon -e js,graphql -x node --inspect -r dotenv/config src/index.js",
+    "start": "nodemon -e js,graphql -x node src/index.js",
+    "debug": "nodemon -e js,graphql -x node --inspect src/index.js",
     "playground": "prisma playground",
     "dev": "npm-run-all --parallel start playground"
   },

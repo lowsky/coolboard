@@ -1,3 +1,11 @@
+require('@instana/collector')({
+  tracing: {
+    enabled: true,
+  },
+});
+
+require('dotenv/config');
+
 const { GraphQLServer } = require('graphql-yoga');
 const { ApolloEngine } = require('apollo-engine');
 const { Prisma } = require('prisma-binding');
