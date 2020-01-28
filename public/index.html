@@ -29,6 +29,19 @@
       #root {flex-grow: 1;}
     </style>
     <link rel="stylesheet" href="index.css"/>
+
+    <script>
+      (function(c,e,f,k,g,h,b,a,d){c[g]||(c[g]=h,b=c[h]=function(){
+        b.q.push(arguments)},b.q=[],b.l=1*new Date,a=e.createElement(f),a.async=1,
+        a.src=k,a.setAttribute("crossorigin", "anonymous"),d=e.getElementsByTagName(f)[0],
+        d.parentNode.insertBefore(a,d))})(window,document,"script",
+        "https://eum.instana.io/eum.min.js","InstanaEumObject","ineum");
+      ineum('reportingUrl', 'https://eum-eu-west-1.instana.io');
+      ineum('ignoreUrls', [
+          /\/callback.+/i
+      ]);
+    </script>
+
   </head>
   <body>
     <noscript>
@@ -50,6 +63,11 @@
     </footer>
     <script type="text/javascript">
       mixpanel.track("open landing page");
+    </script>
+
+    <script>
+      ineum('user', null, null, 'robert');
+      ineum('page', 'main-page');
     </script>
   </body>
 </html>
