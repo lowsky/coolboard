@@ -15,7 +15,7 @@
     "wait:valid-version": "node wait-for-deployment.js"
   },
   "devDependencies": {
-    "request": "2.88.0",
+    "request": "2.88.2",
     "request-promise": "4.2.5"
   }
 }
