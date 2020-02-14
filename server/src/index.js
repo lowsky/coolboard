@@ -69,8 +69,7 @@ server.express.post(
 );
 
 const engine = new ApolloEngine({
-  // apiKey: process.env.APOLLO_ENGINE_KEY,
-  apiKey: 'service:lowsky-coolboard:FfdCjK0Nug0Dq2_qFuLfgw',
+  apiKey: process.env.ENGINE_API_KEY,
 });
 
 const httpServer = server.createHttpServer({
@@ -78,16 +77,16 @@ const httpServer = server.createHttpServer({
   cacheControl: true,
 });
 
-const port=4000;
+const port = 4000;
 
 engine.listen(
-    {
-      port,
-      httpServer,
-      graphqlPaths: ['/'],
-    },
-    () =>
-        console.log(
-            `Server with Apollo Engine is running on http://localhost:${port}`,
-        ),
+  {
+    port,
+    httpServer,
+    graphqlPaths: ['/'],
+  },
+  () =>
+    console.log(
+      `Server with Apollo Engine is running on http://localhost:${port}`,
+    )
 );

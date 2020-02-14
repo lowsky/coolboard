@@ -1,10 +1,10 @@
 const { ApolloServer } = require('apollo-server-lambda');
-
 const { Prisma } = require('prisma-binding');
+
 const resolvers = require('../resolvers');
 
-const schema = require('../newschema.graphql');
-const { typedefs,  generated_prisma_schema } = schema;
+const schema = require('./newschema.graphql');
+const { typedefs, generated_prisma_schema } = schema;
 
 const db = new Prisma({
   // the Prisma DB schema
@@ -22,6 +22,15 @@ const lambda = new ApolloServer({
   resolvers,
 
   debug: true,
+
+  engine: {
+    // The Graph Manager API key
+    apiKey: process.env.ENGINE_API_KEY,
+
+    // For more information on schema tags/variants, see
+    // https://www.apollographql.com/docs/platform/schema-registry/#associating-metrics-with-a-variant
+    schemaTag: process.env.ENGINE_SCHEMA_TAG || 'undefined',
+  },
 
   resolverValidationOptions: {
     requireResolversForResolveType: false,

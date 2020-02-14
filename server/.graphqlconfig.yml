@@ -8,3 +8,12 @@ projects:
     schemaPath: "src/generated/prisma.graphql"
     extensions:
       prisma: database/prisma.yml
+  lambda:
+    schemaPath: "src/lambda/localprisma.graphql"
+    extensions:
+      endpoints:
+        url: "http://localhost:9000/.netlify/functions/graphql"
+        introspect: false
+        headers:
+          user-agent: "JS GraphQL"
+

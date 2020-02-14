@@ -1,4 +1,4 @@
-const { getUserId } = require('../utils');
+const { getUserId } = require('./utils');
 
 const Query = {
   async board(parent, { where }, ctx, info) {

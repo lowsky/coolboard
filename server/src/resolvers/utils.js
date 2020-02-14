@@ -1,6 +1,6 @@
 const { createError } = require('apollo-errors');
 
-const validateAndParseIdToken = require('./helpers/validateAndParseIdToken');
+const validateAndParseIdToken = require('../helpers/validateAndParseIdToken');
 
 const NotAuthorizedError = 'NotAuthorizedError';
 

@@ -1,4 +1,4 @@
-const { getUserId } = require('../../utils');
+const { getUserId } = require('../utils');
 
 const board = {
   async updateBoard(parent, args, ctx, info) {
