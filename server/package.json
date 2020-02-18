@@ -32,7 +32,7 @@
     "graphql-tools": "4.0.7",
     "graphql-yoga": "1.18.3",
     "jsonwebtoken": "8.5.1",
-    "jwks-rsa": "1.6.2",
+    "jwks-rsa": "1.7.0",
     "netlify-lambda": "1.6.3",
     "node-fetch": "2.6.0",
     "prisma-binding": "2.3.16",
