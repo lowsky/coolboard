@@ -713,12 +713,12 @@
   resolved "https://registry.yarnpkg.com/@heroku/linewrap/-/linewrap-1.0.0.tgz#a9d4e99f0a3e423a899b775f5f3d6747a1ff15c6"
   integrity sha512-qPeQp2DnALUwWKaL6ZXfnOw/lHp+zNg5V8whx5c/Y10HMWYjuQFqKupgoJgyuEYjnvYwoZTarW280+aOXWQLCQ==
 
-"@instana/collector@1.89.1":
-  version "1.89.1"
-  resolved "https://registry.yarnpkg.com/@instana/collector/-/collector-1.89.1.tgz#6abf5b081d86df93c483a6263f10042965f3f367"
-  integrity sha512-4RsWOoWRtMGKOGkaqQAcFWOKdmMO1OedjjmgFE+Rly+dADt29yxyWBbyH2ZJq77zZQbH+fSWa/NdD2ujG7XpaQ==
+"@instana/collector@1.90.0":
+  version "1.90.0"
+  resolved "https://registry.yarnpkg.com/@instana/collector/-/collector-1.90.0.tgz#c5b9c539b4f3c296ee5555c33dba6cc80ae3bf89"
+  integrity sha512-7zHwQXAwhpmmd605K3wKZ88dBhp1NBQBJg7O2p8yhoxMMfsEAtF4q42oF0RzREgDDOgmoL15udADUjcmt+w8RA==
   dependencies:
-    "@instana/core" "^1.89.1"
+    "@instana/core" "^1.90.0"
     bunyan "^1.8.12"
     event-loop-lag "^1.4.0"
     semver "5.5.1"
@@ -729,10 +729,10 @@
     netlinkwrapper "^1.1.2"
     v8-profiler-node8 "^6.0.1"
 
-"@instana/core@^1.89.1":
-  version "1.89.1"
-  resolved "https://registry.yarnpkg.com/@instana/core/-/core-1.89.1.tgz#4e839aef45d6f249294e625e12f536db3efaf45f"
-  integrity sha512-UhNR+/ko4S2Vn75xgnOknGsc2RFhNTJydT51lgoblPfgB51oob7531a1TYu3hI4yKInhlhyjkU6Khp90nfzaEQ==
+"@instana/core@^1.90.0":
+  version "1.90.0"
+  resolved "https://registry.yarnpkg.com/@instana/core/-/core-1.90.0.tgz#faae82ebf9f1c453e8afedbf39e5feab50e2cf03"
+  integrity sha512-qe6KgmRXnMTaeeimICGsyot0tK1X3bsOcKRGqtxgApXOwBEsrBggn6+NXPEDtBOSvplVR/YzJMAVxxVxDztNhw==
   dependencies:
     async-hook-jl "^1.7.6"
     cls-bluebird "^2.1.0"
@@ -5534,22 +5534,6 @@ node-libs-browser@^2.2.1:
     util "^0.11.0"
     vm-browserify "^1.0.1"
 
-node-pre-gyp@*:
-  version "0.14.0"
-  resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.14.0.tgz#9a0596533b877289bcad4e143982ca3d904ddc83"
-  integrity sha512-+CvDC7ZttU/sSt9rFjix/P05iS43qHCOOGzcr3Ry99bXG7VX953+vFyEuph/tfqoYu8dttBkE86JSKBO2OzcxA==
-  dependencies:
-    detect-libc "^1.0.2"
-    mkdirp "^0.5.1"
-    needle "^2.2.1"
-    nopt "^4.0.1"
-    npm-packlist "^1.1.6"
-    npmlog "^4.0.2"
-    rc "^1.2.7"
-    rimraf "^2.6.1"
-    semver "^5.3.0"
-    tar "^4.4.2"
-
 node-pre-gyp@^0.13.0:
   version "0.13.0"
   resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.13.0.tgz#df9ab7b68dd6498137717838e4f92a33fc9daa42"
@@ -7509,7 +7493,7 @@ tar-stream@^1.5.0:
     to-buffer "^1.1.1"
     xtend "^4.0.0"
 
-tar@^4, tar@^4.4.2:
+tar@^4:
   version "4.4.13"
   resolved "https://registry.yarnpkg.com/tar/-/tar-4.4.13.tgz#43b364bc52888d555298637b10d60790254ab525"
   integrity sha512-w2VwSrBoHa5BsSyH+KxEqeQBAllHhccyMFVHtGtdMpF4W7IRWfZjFiQceJPChOeTsSDVUpER2T8FA93pr0L+QA==
