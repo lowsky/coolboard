@@ -2,8 +2,6 @@ module.exports = {
   typedefs: `
 # import Board from "./generated/prisma.graphql"
 
-
-
 type AggregateBoard {
   count: Int!
 }
@@ -2110,5 +2108,5 @@ input UserWhereUniqueInput {
   auth0id: String
 }
 
-`
+`,
 };
