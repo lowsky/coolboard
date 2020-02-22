@@ -3,8 +3,7 @@ const { Prisma } = require('prisma-binding');
 
 const resolvers = require('../resolvers');
 
-const schema = require('./newschema.graphql');
-const { typedefs, generated_prisma_schema } = schema;
+const { typedefs, generated_prisma_schema } = require('../apiSchema');
 
 const db = new Prisma({
   // the Prisma DB schema
@@ -43,11 +42,17 @@ const lambda = new ApolloServer({
 });
 
 exports.handler = (event, context, callback) => {
-
   const callbackFilter = function(error, output) {
+    if (error) console.error(error);
+    else console.error('no errrorr');
+
+    console.log('result', output);
     callback(error, output);
+    console.error('done');
   };
+
   const handler = lambda.createHandler();
+  console.error('handler created');
 
   return handler(event, context, callbackFilter);
 };

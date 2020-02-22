@@ -9,21 +9,13 @@ require('dotenv/config');
 const { GraphQLServer } = require('graphql-yoga');
 const { ApolloEngine } = require('apollo-engine');
 const { Prisma } = require('prisma-binding');
-const { checkJwt } = require('./express/middleware/jwt');
-const {
-  makeExecutableSchema,
-} = require('graphql-tools');
-const { importSchema } = require('graphql-import');
-const { formatError } = require('apollo-errors');
-const resolvers = require('./resolvers');
 
-const { getUser } = require('./express/middleware/getUser');
+const { makeExecutableSchema } = require('graphql-tools');
+const { typeDefs } = require('../apiSchema.js');
+const resolvers = require('../resolvers');
 
-const options = {
-  formatError: (...args) => {
-    return formatError(...args);
-  },
-};
+const { checkJwt } = require('./middleware/jwt');
+const { getUser } = require('./middleware/getUser');
 
 const db = new Prisma({
   // the Prisma DB schema
@@ -33,20 +25,20 @@ const db = new Prisma({
   // taken from database/prisma.yml (value is set in .env)
   secret: process.env.PRISMA_MANAGEMENT_API_SECRET,
   // log all GraphQL queries & mutations
-  debug: false,
+  debug: true,
   resolverValidationOptions: {
     requireResolversForResolveType: false,
   },
 });
 
 const schema = makeExecutableSchema({
-  typeDefs: importSchema('src/schema.graphql'),
+  typeDefs,
   resolvers,
 });
 
 const server = new GraphQLServer({
   schema,
-  debug: false,
+  debug: true,
   context: req => ({
     ...req,
     db,
@@ -58,6 +50,7 @@ server.express.post(
   checkJwt,
   (err, req, res, next) => {
     if (err) {
+      console.error('JWT check/auth failed ?! -> 401', err);
       return res.status(401).json({ err });
     }
     next();
@@ -73,7 +66,7 @@ const engine = new ApolloEngine({
 });
 
 const httpServer = server.createHttpServer({
-  tracing: true,
+  tracing: false, // Apollo-tracing off?
   cacheControl: true,
 });
 
@@ -87,6 +80,6 @@ engine.listen(
   },
   () =>
     console.log(
-      `Server with Apollo Engine is running on http://localhost:${port}`,
+      `Server with Apollo Engine is running on http://localhost:${port}`
     )
 );
