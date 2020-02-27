@@ -251,7 +251,7 @@ type Card {
   id: ID!
   name: String!
   description: String
-  createdBy: User
+  updatedBy: User
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -266,7 +266,7 @@ input CardCreateInput {
   id: ID
   name: String!
   description: String
-  createdBy: UserCreateOneInput
+  updatedBy: UserCreateOneInput
 }
 
 input CardCreateManyInput {
@@ -385,13 +385,13 @@ input CardSubscriptionWhereInput {
 input CardUpdateDataInput {
   name: String
   description: String
-  createdBy: UserUpdateOneInput
+  updatedBy: UserUpdateOneInput
 }
 
 input CardUpdateInput {
   name: String
   description: String
-  createdBy: UserUpdateOneInput
+  updatedBy: UserUpdateOneInput
 }
 
 input CardUpdateManyDataInput {
@@ -475,7 +475,7 @@ input CardWhereInput {
   description_not_starts_with: String
   description_ends_with: String
   description_not_ends_with: String
-  createdBy: UserWhereInput
+  updatedBy: UserWhereInput
   createdAt: DateTime
   createdAt_not: DateTime
   createdAt_in: [DateTime!]
