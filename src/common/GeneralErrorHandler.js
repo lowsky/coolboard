@@ -14,7 +14,7 @@ import { isExpired } from '../authentication/checkExpiration';
 // Error name, used on the server side, too
 const NotAuthorizedError = 'NotAuthorizedError';
 
-export const GeneralErrorHandler = ({ refresh: authRefresh }) => {
+export const GeneralErrorHandler = ({ authRefresh }) => {
   const {
     // numPendingQueries,
     // numPendingMutations,

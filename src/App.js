@@ -93,10 +93,10 @@ export const App = () => (
           <Route
             exact
             path="/login"
-            render={({ history }) => {
-
+            render={() => {
               client.resetStore().then(() => {
-                Auth0().then((auth) =>auth.login());
+                auth.login();
+                //LATER: Auth0().then((auth) =>auth.login());
               });
 
               return (
@@ -138,17 +138,21 @@ export const App = () => (
             path="/logout"
             render={({ history }) => {
               localStorage.removeItem('token');
-              auth.logout();
 
               client.resetStore().then(() => {
+                auth.logout();
                 history.push(`/`);
               });
+
               return (
-                <p data-cy="login-in-progress">
-                Please wait, logging out ... You will
-                be re-directed to the
-                  <Link to="/">main page</Link>
-                </p>
+                <FullVerticalContainer data-cy="logout-full-container">
+                  <p>
+                    Please wait, logging-out in
+                    progress ... If it did not work,
+                    back to the
+                    <Link to="/">main page</Link>
+                  </p>
+                </FullVerticalContainer>
               );
             }}
           />
@@ -156,8 +160,13 @@ export const App = () => (
             path="/callback"
             render={() => (
               <FullPageWithApollo client={client}>
-                <ProfileHeader/>
-                <GeneralErrorHandler auth={auth}/>
+                <p data-cy="login-in-progress">
+                  Please wait, logging-in ... You will
+                  be re-directed to the
+                  <Link to="/">main page</Link>
+                  automatically.
+                </p>
+
                 <div>
                   <Loader active>Authenticating...</Loader>
                 </div>
@@ -169,7 +178,9 @@ export const App = () => (
             path="/about"
             render={() => (
               <ApolloProvider client={client}>
-                <About />
+                <ApolloNetworkStatusProvider>
+                  <About />
+                </ApolloNetworkStatusProvider>
               </ApolloProvider>
             )}
           />
