@@ -9,11 +9,12 @@ import {
 } from 'semantic-ui-react';
 
 import { useApolloNetworkStatus } from 'react-apollo-network-status';
+import { isExpired } from '../authentication/checkExpiration';
 
 // Error name, used on the server side, too
 const NotAuthorizedError = 'NotAuthorizedError';
 
-export const GeneralErrorHandler = ({ auth }) => {
+export const GeneralErrorHandler = ({ refresh: authRefresh }) => {
   const {
     // numPendingQueries,
     // numPendingMutations,
@@ -30,8 +31,9 @@ export const GeneralErrorHandler = ({ auth }) => {
     const Relogin = () => (
       <div>
         <Button compact={true}
-          onClick={() => {
-            auth.refresh();
+          onClick={async () => {
+            await authRefresh();
+             window.history.go(0)
           }}>
           Refresh
         </Button> the security token.
@@ -48,7 +50,8 @@ export const GeneralErrorHandler = ({ auth }) => {
       if (notAuthErr) {
         return (
           <Message error>
-            {<Relogin />
+            {
+              isExpired() && <Relogin />
             }
             {(
               <>
@@ -74,9 +77,11 @@ export const GeneralErrorHandler = ({ auth }) => {
         .filter(error => error.message)
         .map(error => error.message);
 
+      console.log(errorMsgs);
+
       return (
         <Message error>
-          {errorMsgs.filter(msg=>(msg.indexOf('jwt expired')>=0)) && <Relogin />}
+          {errorMsgs.filter(msg=>(msg.indexOf('jwt expired')>=0)).length>0 && <Relogin />}
           <strong>Error:</strong>
           {errorMsgs
             .map((message, idx) => (
@@ -87,7 +92,7 @@ export const GeneralErrorHandler = ({ auth }) => {
     } else if (networkError) {
       return (
         <Message error>
-          <Relogin />
+          {isExpired() && <Relogin />}
           <p>
             <strong>Network Error:</strong>{' '}
             {networkError.message}
@@ -96,7 +101,7 @@ export const GeneralErrorHandler = ({ auth }) => {
       );
     }
 
-    console.log('unknown general error, do not know how to handle:', {queryError, mutationError});
+    console.error('unknown general error, do not know how to handle:', {queryError, mutationError});
   }
 
   // do not render anything, when there is no error above
