@@ -21,23 +21,23 @@ class Auth {
     AUTH_CONFIG.clientId,
     AUTH_CONFIG.domain,
     {
-    oidcConformant: true,
-    autoclose: true,
-    rememberLastLogin: true,
-    allowForgotPassword: true,
-    allowAutocomplete: true,
-    allowShowPassword: true,
-    allowPasswordAutocomplete: true,
-    avatar: null,
-    auth: {
-      sso: false,
-      redirectUrl: AUTH_CONFIG.callbackUrl,
-      responseType: 'token id_token',
-      audience: `${AUTH_CONFIG.api_audience}`,
-      params: {
-        scope: `openid profile email user_metadata app_metadata picture`,
+      oidcConformant: true,
+      autoclose: true,
+      rememberLastLogin: true,
+      allowForgotPassword: true,
+      allowAutocomplete: true,
+      allowShowPassword: true,
+      allowPasswordAutocomplete: true,
+      avatar: null,
+      auth: {
+        sso: false,
+        redirectUrl: AUTH_CONFIG.callbackUrl,
+        responseType: 'token id_token',
+        audience: `${AUTH_CONFIG.api_audience}`,
+        params: {
+          scope: `openid profile email picture`,
+        },
       },
-    },
     }
   );
 
@@ -77,7 +77,10 @@ class Auth {
   }
 
   async signinOrCreateAccount(apolloClient, idToken) {
-    return signInOrCreateAccount(apolloClient, idToken);
+    return signInOrCreateAccount(
+      apolloClient,
+      idToken
+    );
   }
 
   logout = () => {
@@ -85,6 +88,7 @@ class Auth {
     localStorage.removeItem('access_token');
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
+    this.lock.logout();
   };
 
   refresh = async () => {
