@@ -28,10 +28,8 @@ type Card {
   name: String!
   description: String @default(value: "")
 
-  #updatedBy: User @relation(name: "UpdatedBy")
-  createdBy: User @relation(link: TABLE)
-
   # Optional system fields, used for tracking changes
+  updatedBy: User @updatedBy @relation(link: TABLE)
   createdAt: DateTime! @createdAt# read-only (managed by Graphcool)
   updatedAt: DateTime! @updatedAt# read-only (managed by Graphcool)
 }
