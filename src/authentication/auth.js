@@ -3,6 +3,19 @@ import Auth0Lock from 'auth0-lock';
 import { AUTH_CONFIG } from './auth0-variables';
 import { signInOrCreateAccount } from './signInOrCreateAccount';
 
+function saveInLocalStore(authResult) {
+  // Set the time that the access token will expire at
+  let expiresAt = JSON.stringify(
+    authResult.expiresIn * 1000 + new Date().getTime()
+  );
+  localStorage.setItem(
+    'access_token',
+    authResult.accessToken
+  );
+  localStorage.setItem('id_token', authResult.idToken);
+  localStorage.setItem('expires_at', expiresAt);
+}
+
 class Auth {
   lock = new Auth0Lock(
     AUTH_CONFIG.clientId,
@@ -15,6 +28,7 @@ class Auth {
     allowAutocomplete: true,
     allowShowPassword: true,
     allowPasswordAutocomplete: true,
+    avatar: null,
     auth: {
       sso: false,
       redirectUrl: AUTH_CONFIG.callbackUrl,
@@ -37,7 +51,7 @@ class Auth {
 
   addHandleAuthenticationListener() {
     // Add a callback for Lock's `authenticated` event
-    this.lock.on('authenticated', this.setSession.bind(this));
+    this.lock.on('authenticated', this.setSession);
 
     // Add a callback for Lock's `authorization_error` event
     this.lock.on('authorization_error', err => {
@@ -54,20 +68,7 @@ class Auth {
       authResult.accessToken &&
       authResult.idToken
     ) {
-      // Set the time that the access token will expire at
-      let expiresAt = JSON.stringify(
-        authResult.expiresIn * 1000 +
-          new Date().getTime()
-      );
-      localStorage.setItem(
-        'access_token',
-        authResult.accessToken
-      );
-      localStorage.setItem(
-        'id_token',
-        authResult.idToken
-      );
-      localStorage.setItem('expires_at', expiresAt);
+      saveInLocalStore(authResult);
 
       if (window.location.href.includes(`callback`)) {
         window.location.href = '/';
@@ -86,32 +87,21 @@ class Auth {
     localStorage.removeItem('expires_at');
   };
 
-  refresh = () => {
-    this.lock.checkSession({}, (err, ar) => {
-      if (err) {
-        console.error(
-          'error, while refreshing auth0 tokens.',
-          err
-        );
-      } else this.setSession(ar);
+  refresh = async () => {
+    return new Promise((resolve, reject) => {
+      this.lock.checkSession({}, (err, authResult) => {
+        if (err) {
+          console.error(
+            'error, while refreshing auth0 tokens.',
+            err
+          );
+          reject(err);
+        } else {
+          this.setSession(authResult);
+          resolve();
+        }
+      });
     });
-  };
-
-  isAuthenticated = () => {
-    // Check whether the current time is past the
-    // access token's expiry time
-    const expiresAt = JSON.parse(
-      localStorage.getItem('expires_at')
-    );
-    const isNotExpired =
-      new Date().getTime() < expiresAt;
-
-    if (window.location.href.includes('localhost')) {
-      console.log(
-        `AUTH: is expired? - ${!isNotExpired}`
-      );
-    }
-    return isNotExpired;
   };
 }
 

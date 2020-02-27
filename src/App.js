@@ -42,6 +42,10 @@ let client = setupGraphQLClient();
 
 const auth = new Auth();
 
+const authRefresh = async () => {
+    return auth.refresh();
+};
+
 const FullPageWithApollo = ({ children }) => {
   return (
     <FullVerticalContainer data-cy="callback-full-container">
@@ -63,7 +67,7 @@ export const App = () => (
             render={() => (
               <FullPageWithApollo client={client}>
                 <ProfileHeader />
-                <GeneralErrorHandler auth={auth} />
+                <GeneralErrorHandler authRefresh={authRefresh} />
                   <Boards />
               </FullPageWithApollo>
             )}
@@ -75,7 +79,7 @@ export const App = () => (
             render={({ match }) => (
               <FullPageWithApollo client={client}>
                 <ProfileHeader />
-                <GeneralErrorHandler auth={auth}
+                <GeneralErrorHandler authRefresh={authRefresh}
                 />
                 <DndProvider backend={HTML5Backend}>
                   <CoolBoard
@@ -90,10 +94,9 @@ export const App = () => (
             exact
             path="/login"
             render={({ history }) => {
-              auth.login();
 
               client.resetStore().then(() => {
-                history.push(`/`);
+                Auth0().then((auth) =>auth.login());
               });
 
               return (
