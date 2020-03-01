@@ -35,6 +35,7 @@ const validateAndParseIdToken = async idToken =>
             'Error getting signing key: "No public key info available"'
           )
         );
+        return;
       }
       jwt.verify(
         idToken,

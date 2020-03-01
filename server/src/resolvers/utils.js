@@ -49,16 +49,19 @@ async function verifyAuth0HeaderToken(ctx) {
   if (Authorization) {
     const token = Authorization.replace('Bearer ', '');
 
-    const userToken = await validateAndParseIdToken(
-      token
-    );
-    const auth0id = userToken.sub.split('|')[1];
-    if (!auth0id) {
+    try {
+      const userToken = await validateAndParseIdToken(
+        token
+      );
+      const auth0id = userToken.sub.split('|')[1];
+      if(auth0id) {
+        return auth0id;
+      }
+    } catch(error) {
       throw new Error(
-        'invalid auth token was sent in header: auth0id is missing !'
+        'invalid auth token was sent: ' + error
       );
     }
-    return auth0id;
   }
 
   throw new AuthError({
