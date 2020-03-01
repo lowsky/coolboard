@@ -1,6 +1,15 @@
 version: '3'
 services:
-  prisma:
+  trello-gateway:
+    image: gateway
+    ports:
+      - 4000:4000
+    environment:
+      PRISMA_ENDPOINT: "http://trello-graphql:4466"
+    volumes:
+      - ./.env:/app/.env:ro
+      - ./.env.local:/app/.env.local:ro
+  trello-graphql:
     image: prismagraphql/prisma:1.34
     restart: always
     ports:
@@ -14,16 +23,16 @@ services:
             active: true
             connector: mysql  # or `postgres`
             migrations: true
-            host: db
+            host: trello-mysql
             port: 3306        # or `5432` for `postgres`
             user: root
             password: prisma
-  db:
+  trello-mysql:
     image: mysql:5.7
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: prisma
     volumes:
-      - mysql:/var/lib/mysql
+      - trello-mysql:/var/lib/mysql
 volumes:
-  mysql:
+  trello-mysql:
