@@ -1,5 +1,5 @@
 module.exports = {
-  typedefs: `
+  typeDefs: `
 # import Board from "./generated/prisma.graphql"
 
 type AggregateBoard {
