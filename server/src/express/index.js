@@ -56,30 +56,31 @@ server.express.post(
     next();
   }
 );
-server.express.post(
-  server.options.endpoint,
-  (req, res, next) => getUser(req, res, next, db)
+server.express.post(server.options.endpoint, (req, res, next) =>
+  getUser(req, res, next, db)
 );
 
-const engine = new ApolloEngine({
-  apiKey: process.env.ENGINE_API_KEY,
-});
-
 const httpServer = server.createHttpServer({
-  tracing: false, // Apollo-tracing off?
+  // Apollo-server-based tracing:
+  // This extends graphql response, and send extra detailed timing info,
+  // with overhead, so I disabled it here:
+  // tracing: true,
   cacheControl: true,
 });
 
 const port = 4000;
+if (process.env.ENGINE_API_KEY) {
+  const engine = new ApolloEngine();
 
-engine.listen(
-  {
-    port,
-    httpServer,
-    graphqlPaths: ['/'],
-  },
-  () =>
+  engine.listen({ port, httpServer }, () =>
     console.log(
       `Server with Apollo Engine is running on http://localhost:${port}`
     )
-);
+  );
+} else {
+  httpServer.listen({ port }, () =>
+    console.log(
+      `Server with GraphQL server is running on http://localhost:${port}`
+    )
+  );
+}
