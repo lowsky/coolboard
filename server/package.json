@@ -16,10 +16,10 @@
     "node": ">=12.1"
   },
   "dependencies": {
-    "@instana/collector": "1.90.0",
+    "@instana/collector": "1.92.4",
     "apollo-engine": "1.1.2",
     "apollo-errors": "1.9.0",
-    "apollo-server-lambda": "2.10.1",
+    "apollo-server-lambda": "2.11.0",
     "aws-lambda": "1.0.5",
     "bcryptjs": "2.4.3",
     "bufferutil": "4.0.1",
