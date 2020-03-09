@@ -3,7 +3,8 @@ const { Prisma } = require('prisma-binding');
 
 const resolvers = require('../resolvers');
 
-const { typedefs, generated_prisma_schema } = require('../apiSchema');
+const { typeDefs } = require('../apiSchema');
+const { generated_prisma_schema } = require('./src/prismaSchema');
 
 const db = new Prisma({
   // the Prisma DB schema
@@ -17,10 +18,12 @@ const db = new Prisma({
 });
 
 const lambda = new ApolloServer({
-  typeDefs: typedefs,
+  typeDefs,
   resolvers,
 
   debug: true,
+  playground: true,
+  introspection: true,
 
   engine: {
     // The Graph Manager API key
