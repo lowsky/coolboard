@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {
-  Container,
+  Container, Header,
   Icon,
   Segment,
 } from 'semantic-ui-react';
@@ -17,11 +17,12 @@ import packLogoSmallPng from './packt-page-v141.png';
 export const About = () => (
   <FullVerticalContainer data-cy="about-full-container">
     <ProfileHeader />
-    <Container
+    <Container text
       style={{
         textAlign: 'left',
       }}>
-      <h1>Welcome to CoolBoard</h1>
+      <Segment>
+      <Header as={"h2"}>Welcome to CoolBoard</Header>
       <p>
         This is the Live Demo of the full application
         which we build in this
@@ -30,13 +31,15 @@ export const About = () => (
           Video Course:
         </a>
       </p>
-      <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
-        <img
-          src={packLogoSmallPng}
-          height={141}
-          alt="Packt Publishing logo"
-        />
-      </a>
+      <p>
+        <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
+          <img
+            src={packLogoSmallPng}
+            height={141}
+            alt="Packt Publishing logo"
+          />
+        </a>
+      </p>
       <p>
         <b>Published</b> on{' '}
         <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
@@ -48,6 +51,7 @@ export const About = () => (
           />
         </a>
       </p>
+      </Segment>
       <Segment basic>
         <h2>What is it?</h2>
         <p>
@@ -85,9 +89,9 @@ export const About = () => (
           netlify.com
         </p>
       </Segment>
-      <Segment basic>
+      <Segment basic padded={true} raised={true} secondary={false}>
         <h2>How to sign-in?</h2>
-        <div
+        <Segment basic raised={true} secondary={true}
           style={{
             border: 'solid 1px grey',
             background: '#ddd',
@@ -114,7 +118,7 @@ export const About = () => (
             of outage or maintenance time) or updated
             to this.
           </p>
-        </div>
+        </Segment>
       </Segment>
       <Segment basic>
         <h2>Credits / Copyright</h2>
