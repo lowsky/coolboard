@@ -1,0 +1,1730 @@
+module.exports = {
+  typeDefs: `
+# import Board from "./generated/prisma.graphql"
+
+type AggregateBoard {
+  count: Int!
+}
+
+type AggregateCard {
+  count: Int!
+}
+
+type AggregateList {
+  count: Int!
+}
+
+type AggregateUser {
+  count: Int!
+}
+
+type BatchPayload {
+  count: Long!
+}
+
+type Board {
+  id: ID!
+  lists(where: ListWhereInput, orderBy: ListOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [List!]
+  name: String!
+  updatedBy: User
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type BoardConnection {
+  pageInfo: PageInfo!
+  edges: [BoardEdge]!
+  aggregate: AggregateBoard!
+}
+
+input BoardCreateInput {
+  id: ID
+  lists: ListCreateManyInput
+  name: String!
+  updatedBy: UserCreateOneWithoutBoardsInput
+}
+
+input BoardCreateManyWithoutUpdatedByInput {
+  create: [BoardCreateWithoutUpdatedByInput!]
+  connect: [BoardWhereUniqueInput!]
+}
+
+input BoardCreateWithoutUpdatedByInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  updatedBy: UserWhereInput
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [CardWhereInput!]
+  OR: [CardWhereInput!]
+  NOT: [CardWhereInput!]
+}
+
+input CardWhereUniqueInput {
+  id: ID
+}
+
+scalar DateTime
+
+type List {
+  cards(where: CardWhereInput, orderBy: CardOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Card!]
+  id: ID!
+  name: String!
+  updatedBy: User
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ListConnection {
+  pageInfo: PageInfo!
+  edges: [ListEdge]!
+  aggregate: AggregateList!
+}
+
+input ListCreateInput {
+  cards: CardCreateManyInput
+  name: String!
+  updatedBy: UserCreateOneInput
+}
+
+input ListCreateManyInput {
+  create: [ListCreateInput!]
+  connect: [ListWhereUniqueInput!]
+}
+
+type ListEdge {
+  node: List!
+  cursor: String!
+}
+
+enum ListOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type ListPreviousValues {
+  id: ID!
+  name: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+input ListScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [ListScalarWhereInput!]
+  OR: [ListScalarWhereInput!]
+  NOT: [ListScalarWhereInput!]
+}
+
+type ListSubscriptionPayload {
+  mutation: MutationType!
+  node: List
+  updatedFields: [String!]
+  previousValues: ListPreviousValues
+}
+
+input ListSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ListWhereInput
+  AND: [ListSubscriptionWhereInput!]
+  OR: [ListSubscriptionWhereInput!]
+  NOT: [ListSubscriptionWhereInput!]
+}
+
+input ListUpdateDataInput {
+  cards: CardUpdateManyInput
+  name: String
+  updatedBy: UserUpdateOneInput
+}
+
+input ListUpdateInput {
+  cards: CardUpdateManyInput
+  name: String
+  updatedBy: UserUpdateOneInput
+}
+
+input ListUpdateManyDataInput {
+  name: String
+}
+
+input ListUpdateManyInput {
+  create: [ListCreateInput!]
+  update: [ListUpdateWithWhereUniqueNestedInput!]
+  upsert: [ListUpsertWithWhereUniqueNestedInput!]
+  delete: [ListWhereUniqueInput!]
+  connect: [ListWhereUniqueInput!]
+  disconnect: [ListWhereUniqueInput!]
+  deleteMany: [ListScalarWhereInput!]
+  updateMany: [ListUpdateManyWithWhereNestedInput!]
+}
+
+input ListUpdateManyMutationInput {
+  name: String
+}
+
+input ListUpdateManyWithWhereNestedInput {
+  where: ListScalarWhereInput!
+  data: ListUpdateManyDataInput!
+}
+
+input ListUpdateWithWhereUniqueNestedInput {
+  where: ListWhereUniqueInput!
+  data: ListUpdateDataInput!
+}
+
+input ListUpsertWithWhereUniqueNestedInput {
+  where: ListWhereUniqueInput!
+  update: ListUpdateDataInput!
+  create: ListCreateInput!
+}
+
+input ListWhereInput {
+  cards_every: CardWhereInput
+  cards_some: CardWhereInput
+  cards_none: CardWhereInput
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  updatedBy: UserWhereInput
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [ListWhereInput!]
+  OR: [ListWhereInput!]
+  NOT: [ListWhereInput!]
+}
+
+input ListWhereUniqueInput {
+  id: ID
+}
+
+scalar Long
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+interface Node {
+  id: ID!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+
+
+type UserConnection {
+  pageInfo: PageInfo!
+  edges: [UserEdge]!
+  aggregate: AggregateUser!
+}
+
+input UserCreateInput {
+  email: String!
+  password: String!
+  name: String!
+  avatarUrl: String
+  boards: BoardCreateManyWithoutUpdatedByInput
+}
+
+input UserCreateOneInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateOneWithoutBoardsInput {
+  create: UserCreateWithoutBoardsInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateWithoutBoardsInput {
+  email: String!
+  password: String!
+  name: String!
+  avatarUrl: String
+}
+
+type UserEdge {
+  node: User!
+  cursor: String!
+}
+
+enum UserOrderByInput {
+  id_ASC
+  id_DESC
+  email_ASC
+  email_DESC
+  password_ASC
+  password_DESC
+  name_ASC
+  name_DESC
+  avatarUrl_ASC
+  avatarUrl_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type UserPreviousValues {
+  id: ID!
+  email: String!
+  password: String!
+  name: String!
+  avatarUrl: String
+}
+
+type UserSubscriptionPayload {
+  mutation: MutationType!
+  node: User
+  updatedFields: [String!]
+  previousValues: UserPreviousValues
+}
+
+input UserSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: UserWhereInput
+  AND: [UserSubscriptionWhereInput!]
+  OR: [UserSubscriptionWhereInput!]
+  NOT: [UserSubscriptionWhereInput!]
+}
+
+input UserUpdateDataInput {
+  email: String
+  password: String
+  name: String
+  avatarUrl: String
+  boards: BoardUpdateManyWithoutUpdatedByInput
+}
+
+input UserUpdateInput {
+  email: String
+  password: String
+  name: String
+  avatarUrl: String
+  boards: BoardUpdateManyWithoutUpdatedByInput
+}
+
+input UserUpdateManyMutationInput {
+  email: String
+  password: String
+  name: String
+  avatarUrl: String
+}
+
+input UserUpdateOneInput {
+  create: UserCreateInput
+  update: UserUpdateDataInput
+  upsert: UserUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateOneWithoutBoardsInput {
+  create: UserCreateWithoutBoardsInput
+  update: UserUpdateWithoutBoardsDataInput
+  upsert: UserUpsertWithoutBoardsInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateWithoutBoardsDataInput {
+  email: String
+  password: String
+  name: String
+  avatarUrl: String
+}
+
+input UserUpsertNestedInput {
+  update: UserUpdateDataInput!
+  create: UserCreateInput!
+}
+
+input UserUpsertWithoutBoardsInput {
+  update: UserUpdateWithoutBoardsDataInput!
+  create: UserCreateWithoutBoardsInput!
+}
+
+input UserWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  avatarUrl: String
+  avatarUrl_not: String
+  avatarUrl_in: [String!]
+  avatarUrl_not_in: [String!]
+  avatarUrl_lt: String
+  avatarUrl_lte: String
+  avatarUrl_gt: String
+  avatarUrl_gte: String
+  avatarUrl_contains: String
+  avatarUrl_not_contains: String
+  avatarUrl_starts_with: String
+  avatarUrl_not_starts_with: String
+  avatarUrl_ends_with: String
+  avatarUrl_not_ends_with: String
+  boards_every: BoardWhereInput
+  boards_some: BoardWhereInput
+  boards_none: BoardWhereInput
+  AND: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  NOT: [UserWhereInput!]
+}
+
+input UserWhereUniqueInput {
+  id: ID
+  email: String
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+type Query {
+  me: User
+  board(where: BoardWhereUniqueInput!): Board
+  list(where: ListWhereUniqueInput!): List
+}
+
+type Mutation {
+  createBoard(name: String!): User!
+  deleteBoard(id: ID!): Board!
+
+  authenticate(idToken: String!): User
+
+  # deprecated
+  signup(email: String!, password: String!, name: String!, avatarUrl: String): AuthPayload!
+  login(email: String!, password: String!): AuthPayload!
+
+  updateBoard(data: BoardUpdateInput!, where: BoardWhereUniqueInput!): Board
+  #used in:
+  #updateBoard(data: {lists: {create: {name: $name}}}, where: {id: $boardId})
+  #mutation deletelistsOfBoard($boardId: ID!, $listIds: [ListWhereUniqueInput!]!) {
+
+  updateList(data: ListUpdateInput!, where: ListWhereUniqueInput!): List
+  #used in:
+  #mutation AddCardMutation( $cardListId: ID! $name: String!
+  #mutation moveCard( $cardId: ID! $oldCardListId: ID! $cardListId: ID!
+
+  updateCard(data: CardUpdateInput!, where: CardWhereUniqueInput!): Card!
+  #used in:
+  #updateCard(data: CardUpdateInput!, where: CardWhereUniqueInput!): Card
+
+  deleteList(where: ListWhereUniqueInput!): List
+}
+
+type Subscription {
+  board(where: BoardSubscriptionWhereInput): BoardSubscriptionPayload
+  list(where: ListSubscriptionWhereInput): ListSubscriptionPayload
+  card(where: CardSubscriptionWhereInput): CardSubscriptionPayload
+  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+}
+
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
+type User {
+  id: ID!
+  email: String!
+  name: String!
+  avatarUrl: String
+  boards: [Board]
+}
+`,
+
+  generated_prisma_schema: `
+type AggregateBoard {
+  count: Int!
+}
+
+type AggregateCard {
+  count: Int!
+}
+
+type AggregateList {
+  count: Int!
+}
+
+type AggregateUser {
+  count: Int!
+}
+
+type BatchPayload {
+  count: Long!
+}
+
+type Board {
+  id: ID!
+  lists(where: ListWhereInput, orderBy: ListOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [List!]
+  name: String!
+  updatedBy: User
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type BoardConnection {
+  pageInfo: PageInfo!
+  edges: [BoardEdge]!
+  aggregate: AggregateBoard!
+}
+
+input BoardCreateInput {
+  lists: ListCreateManyInput
+  name: String!
+  updatedBy: UserCreateOneWithoutBoardsInput
+}
+
+input BoardCreateManyWithoutUpdatedByInput {
+  create: [BoardCreateWithoutUpdatedByInput!]
+  connect: [BoardWhereUniqueInput!]
+}
+
+input BoardCreateWithoutUpdatedByInput {
+  lists: ListCreateManyInput
+  name: String!
+}
+
+type BoardEdge {
+  node: Board!
+  cursor: String!
+}
+
+enum BoardOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type BoardPreviousValues {
+  id: ID!
+  name: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+input BoardScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [BoardScalarWhereInput!]
+  OR: [BoardScalarWhereInput!]
+  NOT: [BoardScalarWhereInput!]
+}
+
+type BoardSubscriptionPayload {
+  mutation: MutationType!
+  node: Board
+  updatedFields: [String!]
+  previousValues: BoardPreviousValues
+}
+
+input BoardSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: BoardWhereInput
+  AND: [BoardSubscriptionWhereInput!]
+  OR: [BoardSubscriptionWhereInput!]
+  NOT: [BoardSubscriptionWhereInput!]
+}
+
+input BoardUpdateInput {
+  lists: ListUpdateManyInput
+  name: String
+  updatedBy: UserUpdateOneWithoutBoardsInput
+}
+
+input BoardUpdateManyDataInput {
+  name: String
+}
+
+input BoardUpdateManyMutationInput {
+  name: String
+}
+
+input BoardUpdateManyWithoutUpdatedByInput {
+  create: [BoardCreateWithoutUpdatedByInput!]
+  delete: [BoardWhereUniqueInput!]
+  connect: [BoardWhereUniqueInput!]
+  disconnect: [BoardWhereUniqueInput!]
+  update: [BoardUpdateWithWhereUniqueWithoutUpdatedByInput!]
+  upsert: [BoardUpsertWithWhereUniqueWithoutUpdatedByInput!]
+  deleteMany: [BoardScalarWhereInput!]
+  updateMany: [BoardUpdateManyWithWhereNestedInput!]
+}
+
+input BoardUpdateManyWithWhereNestedInput {
+  where: BoardScalarWhereInput!
+  data: BoardUpdateManyDataInput!
+}
+
+input BoardUpdateWithoutUpdatedByDataInput {
+  lists: ListUpdateManyInput
+  name: String
+}
+
+input BoardUpdateWithWhereUniqueWithoutUpdatedByInput {
+  where: BoardWhereUniqueInput!
+  data: BoardUpdateWithoutUpdatedByDataInput!
+}
+
+input BoardUpsertWithWhereUniqueWithoutUpdatedByInput {
+  where: BoardWhereUniqueInput!
+  update: BoardUpdateWithoutUpdatedByDataInput!
+  create: BoardCreateWithoutUpdatedByInput!
+}
+
+input BoardWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  lists_every: ListWhereInput
+  lists_some: ListWhereInput
+  lists_none: ListWhereInput
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  updatedBy: UserWhereInput
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [BoardWhereInput!]
+  OR: [BoardWhereInput!]
+  NOT: [BoardWhereInput!]
+}
+
+input BoardWhereUniqueInput {
+  id: ID
+}
+
+type Card {
+  id: ID!
+  name: String!
+  description: String
+  updatedBy: User
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type CardConnection {
+  pageInfo: PageInfo!
+  edges: [CardEdge]!
+  aggregate: AggregateCard!
+}
+
+input CardCreateInput {
+  name: String!
+  description: String
+  updatedBy: UserCreateOneInput
+}
+
+input CardCreateManyInput {
+  create: [CardCreateInput!]
+  connect: [CardWhereUniqueInput!]
+}
+
+type CardEdge {
+  node: Card!
+  cursor: String!
+}
+
+enum CardOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  description_ASC
+  description_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type CardPreviousValues {
+  id: ID!
+  name: String!
+  description: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+input CardScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [CardScalarWhereInput!]
+  OR: [CardScalarWhereInput!]
+  NOT: [CardScalarWhereInput!]
+}
+
+type CardSubscriptionPayload {
+  mutation: MutationType!
+  node: Card
+  updatedFields: [String!]
+  previousValues: CardPreviousValues
+}
+
+input CardSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: CardWhereInput
+  AND: [CardSubscriptionWhereInput!]
+  OR: [CardSubscriptionWhereInput!]
+  NOT: [CardSubscriptionWhereInput!]
+}
+
+input CardUpdateDataInput {
+  name: String
+  description: String
+  updatedBy: UserUpdateOneInput
+}
+
+input CardUpdateInput {
+  name: String
+  description: String
+  updatedBy: UserUpdateOneInput
+}
+
+input CardUpdateManyDataInput {
+  name: String
+  description: String
+}
+
+input CardUpdateManyInput {
+  create: [CardCreateInput!]
+  update: [CardUpdateWithWhereUniqueNestedInput!]
+  upsert: [CardUpsertWithWhereUniqueNestedInput!]
+  delete: [CardWhereUniqueInput!]
+  connect: [CardWhereUniqueInput!]
+  set: [CardWhereUniqueInput!]
+  disconnect: [CardWhereUniqueInput!]
+  deleteMany: [CardScalarWhereInput!]
+  updateMany: [CardUpdateManyWithWhereNestedInput!]
+}
+
+input CardUpdateManyMutationInput {
+  name: String
+  description: String
+}
+
+input CardUpdateManyWithWhereNestedInput {
+  where: CardScalarWhereInput!
+  data: CardUpdateManyDataInput!
+}
+
+input CardUpdateWithWhereUniqueNestedInput {
+  where: CardWhereUniqueInput!
+  data: CardUpdateDataInput!
+}
+
+input CardUpsertWithWhereUniqueNestedInput {
+  where: CardWhereUniqueInput!
+  update: CardUpdateDataInput!
+  create: CardCreateInput!
+}
+
+input CardWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  updatedBy: UserWhereInput
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [CardWhereInput!]
+  OR: [CardWhereInput!]
+  NOT: [CardWhereInput!]
+}
+
+input CardWhereUniqueInput {
+  id: ID
+}
+
+scalar DateTime
+
+type List {
+  cards(where: CardWhereInput, orderBy: CardOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Card!]
+  id: ID!
+  name: String!
+  updatedBy: User
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ListConnection {
+  pageInfo: PageInfo!
+  edges: [ListEdge]!
+  aggregate: AggregateList!
+}
+
+input ListCreateInput {
+  cards: CardCreateManyInput
+  id: ID
+  name: String!
+  updatedBy: UserCreateOneInput
+}
+
+input ListCreateManyInput {
+  create: [ListCreateInput!]
+  connect: [ListWhereUniqueInput!]
+}
+
+type ListEdge {
+  node: List!
+  cursor: String!
+}
+
+enum ListOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type ListPreviousValues {
+  id: ID!
+  name: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+input ListScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [ListScalarWhereInput!]
+  OR: [ListScalarWhereInput!]
+  NOT: [ListScalarWhereInput!]
+}
+
+type ListSubscriptionPayload {
+  mutation: MutationType!
+  node: List
+  updatedFields: [String!]
+  previousValues: ListPreviousValues
+}
+
+input ListSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ListWhereInput
+  AND: [ListSubscriptionWhereInput!]
+  OR: [ListSubscriptionWhereInput!]
+  NOT: [ListSubscriptionWhereInput!]
+}
+
+input ListUpdateDataInput {
+  cards: CardUpdateManyInput
+  name: String
+  updatedBy: UserUpdateOneInput
+}
+
+input ListUpdateInput {
+  cards: CardUpdateManyInput
+  name: String
+  updatedBy: UserUpdateOneInput
+}
+
+input ListUpdateManyDataInput {
+  name: String
+}
+
+input ListUpdateManyInput {
+  create: [ListCreateInput!]
+  update: [ListUpdateWithWhereUniqueNestedInput!]
+  upsert: [ListUpsertWithWhereUniqueNestedInput!]
+  delete: [ListWhereUniqueInput!]
+  connect: [ListWhereUniqueInput!]
+  set: [ListWhereUniqueInput!]
+  disconnect: [ListWhereUniqueInput!]
+  deleteMany: [ListScalarWhereInput!]
+  updateMany: [ListUpdateManyWithWhereNestedInput!]
+}
+
+input ListUpdateManyMutationInput {
+  name: String
+}
+
+input ListUpdateManyWithWhereNestedInput {
+  where: ListScalarWhereInput!
+  data: ListUpdateManyDataInput!
+}
+
+input ListUpdateWithWhereUniqueNestedInput {
+  where: ListWhereUniqueInput!
+  data: ListUpdateDataInput!
+}
+
+input ListUpsertWithWhereUniqueNestedInput {
+  where: ListWhereUniqueInput!
+  update: ListUpdateDataInput!
+  create: ListCreateInput!
+}
+
+input ListWhereInput {
+  cards_every: CardWhereInput
+  cards_some: CardWhereInput
+  cards_none: CardWhereInput
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  updatedBy: UserWhereInput
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [ListWhereInput!]
+  OR: [ListWhereInput!]
+  NOT: [ListWhereInput!]
+}
+
+input ListWhereUniqueInput {
+  id: ID
+}
+
+scalar Long
+
+type Mutation {
+  createBoard(data: BoardCreateInput!): Board!
+  updateBoard(data: BoardUpdateInput!, where: BoardWhereUniqueInput!): Board
+  updateManyBoards(data: BoardUpdateManyMutationInput!, where: BoardWhereInput): BatchPayload!
+  upsertBoard(where: BoardWhereUniqueInput!, create: BoardCreateInput!, update: BoardUpdateInput!): Board!
+  deleteBoard(where: BoardWhereUniqueInput!): Board
+  deleteManyBoards(where: BoardWhereInput): BatchPayload!
+  createCard(data: CardCreateInput!): Card!
+  updateCard(data: CardUpdateInput!, where: CardWhereUniqueInput!): Card
+  updateManyCards(data: CardUpdateManyMutationInput!, where: CardWhereInput): BatchPayload!
+  upsertCard(where: CardWhereUniqueInput!, create: CardCreateInput!, update: CardUpdateInput!): Card!
+  deleteCard(where: CardWhereUniqueInput!): Card
+  deleteManyCards(where: CardWhereInput): BatchPayload!
+  createList(data: ListCreateInput!): List!
+  updateList(data: ListUpdateInput!, where: ListWhereUniqueInput!): List
+  updateManyLists(data: ListUpdateManyMutationInput!, where: ListWhereInput): BatchPayload!
+  upsertList(where: ListWhereUniqueInput!, create: ListCreateInput!, update: ListUpdateInput!): List!
+  deleteList(where: ListWhereUniqueInput!): List
+  deleteManyLists(where: ListWhereInput): BatchPayload!
+  createUser(data: UserCreateInput!): User!
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
+  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
+  deleteUser(where: UserWhereUniqueInput!): User
+  deleteManyUsers(where: UserWhereInput): BatchPayload!
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+interface Node {
+  id: ID!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type Query {
+  board(where: BoardWhereUniqueInput!): Board
+  boards(where: BoardWhereInput, orderBy: BoardOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Board]!
+  boardsConnection(where: BoardWhereInput, orderBy: BoardOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): BoardConnection!
+  card(where: CardWhereUniqueInput!): Card
+  cards(where: CardWhereInput, orderBy: CardOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Card]!
+  cardsConnection(where: CardWhereInput, orderBy: CardOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CardConnection!
+  list(where: ListWhereUniqueInput!): List
+  lists(where: ListWhereInput, orderBy: ListOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [List]!
+  listsConnection(where: ListWhereInput, orderBy: ListOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ListConnection!
+  user(where: UserWhereUniqueInput!): User
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  node(id: ID!): Node
+}
+
+type Subscription {
+  board(where: BoardSubscriptionWhereInput): BoardSubscriptionPayload
+  card(where: CardSubscriptionWhereInput): CardSubscriptionPayload
+  list(where: ListSubscriptionWhereInput): ListSubscriptionPayload
+  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+}
+
+type User {
+  id: ID!
+  email: String!
+  name: String!
+  avatarUrl: String
+  boards(where: BoardWhereInput, orderBy: BoardOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Board!]
+  auth0id: String
+  identity: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type UserConnection {
+  pageInfo: PageInfo!
+  edges: [UserEdge]!
+  aggregate: AggregateUser!
+}
+
+input UserCreateInput {
+  id: ID
+  email: String!
+  name: String!
+  avatarUrl: String
+  boards: BoardCreateManyWithoutUpdatedByInput
+  auth0id: String
+  identity: String
+}
+
+input UserCreateOneInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateOneWithoutBoardsInput {
+  create: UserCreateWithoutBoardsInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateWithoutBoardsInput {
+  id: ID
+  email: String!
+  name: String!
+  avatarUrl: String
+  auth0id: String
+  identity: String
+}
+
+type UserEdge {
+  node: User!
+  cursor: String!
+}
+
+enum UserOrderByInput {
+  id_ASC
+  id_DESC
+  email_ASC
+  email_DESC
+  name_ASC
+  name_DESC
+  avatarUrl_ASC
+  avatarUrl_DESC
+  auth0id_ASC
+  auth0id_DESC
+  identity_ASC
+  identity_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type UserPreviousValues {
+  id: ID!
+  email: String!
+  name: String!
+  avatarUrl: String
+  auth0id: String
+  identity: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type UserSubscriptionPayload {
+  mutation: MutationType!
+  node: User
+  updatedFields: [String!]
+  previousValues: UserPreviousValues
+}
+
+input UserSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: UserWhereInput
+  AND: [UserSubscriptionWhereInput!]
+  OR: [UserSubscriptionWhereInput!]
+  NOT: [UserSubscriptionWhereInput!]
+}
+
+input UserUpdateDataInput {
+  email: String
+  name: String
+  avatarUrl: String
+  boards: BoardUpdateManyWithoutUpdatedByInput
+  auth0id: String
+  identity: String
+}
+
+input UserUpdateInput {
+  email: String
+  name: String
+  avatarUrl: String
+  boards: BoardUpdateManyWithoutUpdatedByInput
+  auth0id: String
+  identity: String
+}
+
+input UserUpdateManyMutationInput {
+  email: String
+  name: String
+  avatarUrl: String
+  auth0id: String
+  identity: String
+}
+
+input UserUpdateOneInput {
+  create: UserCreateInput
+  update: UserUpdateDataInput
+  upsert: UserUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateOneWithoutBoardsInput {
+  create: UserCreateWithoutBoardsInput
+  update: UserUpdateWithoutBoardsDataInput
+  upsert: UserUpsertWithoutBoardsInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateWithoutBoardsDataInput {
+  email: String
+  name: String
+  avatarUrl: String
+  auth0id: String
+  identity: String
+}
+
+input UserUpsertNestedInput {
+  update: UserUpdateDataInput!
+  create: UserCreateInput!
+}
+
+input UserUpsertWithoutBoardsInput {
+  update: UserUpdateWithoutBoardsDataInput!
+  create: UserCreateWithoutBoardsInput!
+}
+
+input UserWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  avatarUrl: String
+  avatarUrl_not: String
+  avatarUrl_in: [String!]
+  avatarUrl_not_in: [String!]
+  avatarUrl_lt: String
+  avatarUrl_lte: String
+  avatarUrl_gt: String
+  avatarUrl_gte: String
+  avatarUrl_contains: String
+  avatarUrl_not_contains: String
+  avatarUrl_starts_with: String
+  avatarUrl_not_starts_with: String
+  avatarUrl_ends_with: String
+  avatarUrl_not_ends_with: String
+  boards_every: BoardWhereInput
+  boards_some: BoardWhereInput
+  boards_none: BoardWhereInput
+  auth0id: String
+  auth0id_not: String
+  auth0id_in: [String!]
+  auth0id_not_in: [String!]
+  auth0id_lt: String
+  auth0id_lte: String
+  auth0id_gt: String
+  auth0id_gte: String
+  auth0id_contains: String
+  auth0id_not_contains: String
+  auth0id_starts_with: String
+  auth0id_not_starts_with: String
+  auth0id_ends_with: String
+  auth0id_not_ends_with: String
+  identity: String
+  identity_not: String
+  identity_in: [String!]
+  identity_not_in: [String!]
+  identity_lt: String
+  identity_lte: String
+  identity_gt: String
+  identity_gte: String
+  identity_contains: String
+  identity_not_contains: String
+  identity_starts_with: String
+  identity_not_starts_with: String
+  identity_ends_with: String
+  identity_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  NOT: [UserWhereInput!]
+}
+
+input UserWhereUniqueInput {
+  id: ID
+  email: String
+  auth0id: String
+}
+
+`
+};
