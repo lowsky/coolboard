@@ -22,7 +22,19 @@ export const GeneralErrorHandler = ({ authRefresh }) => {
     mutationError,
   } = useApolloNetworkStatus();
 
-  if (queryError || mutationError) {
+  return false;
+}
+export const GeneralErrorHandler2 = ({ authRefresh }) => {
+  const {
+    // numPendingQueries,
+    // numPendingMutations,
+    queryError,
+    mutationError,
+  } = useApolloNetworkStatus();
+
+  if(true) return false;
+
+  if (true || queryError || mutationError) {
     const { networkError, graphQLErrors } = {
       ...mutationError,
       ...queryError,
@@ -33,25 +45,26 @@ export const GeneralErrorHandler = ({ authRefresh }) => {
         <Button compact={true}
           onClick={async () => {
             await authRefresh();
-             window.history.go(0)
+            window.history.go(0); // refresh page
           }}>
           Refresh
         </Button> the security token.
       </div>
     );
 
-    if (graphQLErrors) {
-      const notAuthErr = graphQLErrors.find(
+    if (true || graphQLErrors) {
+      const notAuthErr = graphQLErrors||[].find(
         err =>
           err.name === NotAuthorizedError ||
           err.message === 'Not authorized'
       );
 
-      if (notAuthErr) {
+      if (true || notAuthErr) {
         return (
           <Message error>
             {
-              isExpired() && <Relogin />
+              //isExpired() &&
+              <Relogin />
             }
             {(
               <>

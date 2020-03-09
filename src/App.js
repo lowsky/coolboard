@@ -25,6 +25,7 @@ import { ProfileHeader } from './common/ProfileHeader';
 import { GeneralErrorHandler } from './common/GeneralErrorHandler';
 
 import { setupGraphQLClient } from './setupGraphQLClient';
+import { trackPage } from "./common/tracking";
 
 const CoolBoard = lazy(() =>
   import('./components/CoolBoard').then(module => ({
@@ -43,7 +44,7 @@ let client = setupGraphQLClient();
 const auth = new Auth();
 
 const authRefresh = async () => {
-    return auth.refresh();
+  return auth.refresh();
 };
 
 const FullPageWithApollo = ({ children }) => {
@@ -64,36 +65,43 @@ export const App = () => (
           <Route
             exact
             path="/boards"
-            render={() => (
-              <FullPageWithApollo client={client}>
-                <ProfileHeader />
-                <GeneralErrorHandler authRefresh={authRefresh} />
-                  <Boards />
-              </FullPageWithApollo>
-            )}
+            render={() => {
+              trackPage('boards')
+              return (
+                <FullPageWithApollo client={client}>
+                  <ProfileHeader/>
+                  <GeneralErrorHandler authRefresh={authRefresh}/>
+                  <Boards/>
+                </FullPageWithApollo>
+              );
+            }}
           />
 
           <Route
             exact
             path="/board/:id"
-            render={({ match }) => (
-              <FullPageWithApollo client={client}>
-                <ProfileHeader />
-                <GeneralErrorHandler authRefresh={authRefresh}
-                />
-                <DndProvider backend={HTML5Backend}>
-                  <CoolBoard
-                    boardId={match.params.id}
+            render={({ match }) => {
+              trackPage('board ' + match.params.id)
+              return (
+                <FullPageWithApollo client={client}>
+                  <ProfileHeader/>
+                  <GeneralErrorHandler authRefresh={authRefresh}
                   />
-                </DndProvider>
-              </FullPageWithApollo>
-            )}
+                  <DndProvider backend={HTML5Backend}>
+                    <CoolBoard
+                      boardId={match.params.id}
+                    />
+                  </DndProvider>
+                </FullPageWithApollo>
+              );
+            }}
           />
 
           <Route
             exact
             path="/login"
             render={() => {
+              trackPage('login')
               client.resetStore().then(() => {
                 auth.login();
                 //LATER: Auth0().then((auth) =>auth.login());
@@ -114,7 +122,10 @@ export const App = () => (
           <Route
             path="/"
             exact
-            render={() => <Home />}
+            render={() => {
+              trackPage('root')
+              return <Home/>;
+            }}
           />
 
           {/*
@@ -137,6 +148,7 @@ export const App = () => (
             exact
             path="/logout"
             render={({ history }) => {
+              trackPage('logout')
               localStorage.removeItem('token');
 
               client.resetStore().then(() => {
@@ -176,13 +188,16 @@ export const App = () => (
           <Route
             exact
             path="/about"
-            render={() => (
-              <ApolloProvider client={client}>
-                <ApolloNetworkStatusProvider>
-                  <About />
-                </ApolloNetworkStatusProvider>
-              </ApolloProvider>
-            )}
+            render={() => {
+              trackPage('about')
+              return (
+                <ApolloProvider client={client}>
+                  <ApolloNetworkStatusProvider>
+                    <About/>
+                  </ApolloNetworkStatusProvider>
+                </ApolloProvider>
+              );
+            }}
           />
         </Switch>
       </Suspense>
