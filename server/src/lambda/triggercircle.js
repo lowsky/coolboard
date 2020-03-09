@@ -1,15 +1,21 @@
-const fetch = require('node-fetch');
-
 require('dotenv').config();
+import fetch from 'node-fetch';
+
 const { CIRCLE_API_USER_TOKEN } = process.env;
 
 exports.handler = async event => {
+  if (event.httpMethod !== "POST") {
+    return { statusCode: 405, body: "Method Not Allowed" };
+  }
+
+  console.log('deploy-success body type', typeof event.body);
   console.log('deploy-success body=', event.body);
   const body = JSON.parse(event.body);
   console.log(
     'deploy-success body.review_id=',
     body.review_id
   );
+
   const {
     branch = 'info-missing',
     review_id = '0',
@@ -37,6 +43,7 @@ exports.handler = async event => {
         build_parameters,
       }),
     });
+
     if (!response.ok) {
       console.log('circleci error! Response:', response);
 
@@ -53,8 +60,11 @@ exports.handler = async event => {
       statusCode: 200,
       body: `Smoketest on circle-ci triggerd for branch ${branch} PR ${review_id} commit ${commit_ref}`,
     };
+
   } catch (err) {
+
     console.log('error: ', err); // output to netlify function log
+
     return {
       statusCode: 500,
       body: JSON.stringify({ msg: err.message }), // Could be a custom message or object i.e. JSON.stringify(err)
