@@ -3,7 +3,7 @@ const { Prisma } = require('prisma-binding');
 
 const resolvers = require('../resolvers');
 
-const { typedefs, generated_prisma_schema } = require('../apiSchema');
+const { typeDefs, generated_prisma_schema } = require('../apiSchema');
 
 const db = new Prisma({
   // the Prisma DB schema
