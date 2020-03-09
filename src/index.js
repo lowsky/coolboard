@@ -11,6 +11,8 @@ import { Loader } from 'semantic-ui-react';
 
 import Home from './pages/home/Home';
 
+import { trackPage } from "./common/tracking";
+
 // import { unregister } from './registerServiceWorker';
 
 // Instead of integrating the
@@ -33,7 +35,10 @@ const Root = () => (
         <Route
           path="/"
           exact
-          render={() => <Home />}
+          render={() => {
+            trackPage('Home')
+            return <Home/>;
+          }}
         />
         <Route component={App} />
       </Switch>
