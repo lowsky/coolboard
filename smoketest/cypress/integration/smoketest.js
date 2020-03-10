@@ -24,7 +24,7 @@ before(() => {
       baseUrl.endsWith('coolboard.netlify.com') ||
       baseUrl.endsWith('www.coolboard.fun'),
     `Check: Domain should be one of: ' +
-     localhost:3000 | coolboard.fun | coolboard.netlify.com , but not: 
+     localhost:3000 | coolboard.fun | coolboard.netlify.com , but not:
       ${baseUrl}`
   );
   cy.log(`Testing site on this base url: ${baseUrl}`);
@@ -58,10 +58,7 @@ const add_a_list = () =>
   cardListButtons().contains('Add a list');
 
 const sections = options =>
-  cy.get(
-    '[data-cy="card-list"]',
-    options
-  );
+  cy.get('[data-cy="card-list"]', options);
 
 const add_a_card = () =>
   cardListButtons({
@@ -76,23 +73,48 @@ function fillLoginForm() {
   cy.get(auth0LockInputPassword).type(password, {
     log: false,
   });
-  cy
-    .get('button.auth0-lock-submit')
-    .click()
+
+  cy.get('button.auth0-lock-submit')
+    .click();
 
   // helps to wait for auth0 process of redirecting with to the /callback url
-  cy.wait(1000)
-
+  return cy.wait(1000)
     .url(LogAndWaitLong)
     .should('not.include', 'callback')
     .should('equal', baseUrl + '/')
     .wait(2000);
 }
 
+let authResult;
+
 function doLogin() {
-  gotoBoards();
-  clickLogin();
-  return fillLoginForm();
+  cy
+    .visit(baseUrl)
+    .then(() => {
+      if(authResult) {
+        const { expiresAt, idToken, accessToken } = authResult;
+
+        localStorage.setItem('access_token', accessToken);
+        localStorage.setItem('id_token', idToken);
+        localStorage.setItem('expires_at', expiresAt);
+      } else {
+        gotoBoards();
+        clickLogin();
+        fillLoginForm()
+          .then(() => {
+              let accessToken = localStorage.getItem('access_token')
+              let idToken = localStorage.getItem('id_token')
+              let expiresAt = localStorage.getItem('expires_at')
+
+              authResult = {
+                expiresAt,
+                idToken,
+                accessToken
+              }
+            }
+          )
+      }
+    });
 }
 
 const getBoardsList = () => {
@@ -109,7 +131,7 @@ const getBoardsList = () => {
 const getBoardsList_FirstEntry = name =>
   getBoardsList()
     .contains(name)
-    .first()
+    .first();
 
 let LogAndWaitLong = {
   log: false,
@@ -121,15 +143,13 @@ let WaitVeryLong = {
 }
 
 describe('Test coolboard', () => {
-  beforeEach(() => {
-    doLogin();
-  });
-
   it('need to login to show boards', () => {
+    doLogin();
     gotoBoards();
   });
 
   it('user can create a board for branch', () => {
+    doLogin();
     gotoBoards();
 
     getBoardsList().then(boards =>
@@ -149,6 +169,8 @@ describe('Test coolboard', () => {
   });
 
   it('user can add lists and cards after login', () => {
+    doLogin();
+
     gotoBoards();
 
     // open first board named XXX
@@ -214,13 +236,15 @@ describe('Test coolboard', () => {
   });
 
   it('user can delete board', () => {
+    doLogin();
     gotoBoards();
 
     // open first board named XXX
     getBoardsList_FirstEntry(newBoardName)
       .parent()
       .find('.button > .trash')
-      .click()
-      .wait(15000);
+      .click();
+    getBoardsList_FirstEntry(newBoardName)
+      .should('not.exist');
   });
 });
