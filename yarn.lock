@@ -5666,7 +5666,7 @@ follow-redirects@^1.0.0:
   dependencies:
     debug "^3.0.0"
 
-fomantic-ui-css@^2.8.4:
+fomantic-ui-css@2.8.4:
   version "2.8.4"
   resolved "https://registry.yarnpkg.com/fomantic-ui-css/-/fomantic-ui-css-2.8.4.tgz#33a4d2eab0447984a19e67e5f3b6693fa2d7a152"
   integrity sha512-4j8BgxDZQnn66v1ia2nMlqBinxtZxdO1DdvWxUNiZ0ZVd6s02bpTTz3I8F7MiYUyGi4NAXfZD8UQgslL6jCzxw==
