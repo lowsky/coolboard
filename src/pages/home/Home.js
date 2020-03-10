@@ -1,11 +1,6 @@
 import React from 'react';
 
-import {
-  Container,
-  Icon,
-  Image,
-  Segment,
-} from 'semantic-ui-react';
+import { Container, Icon, Image, Segment, } from 'semantic-ui-react';
 
 import { Link } from 'react-router-dom';
 
@@ -75,18 +70,21 @@ export default function Home() {
             </a>
           </p>
         </Segment>
+        <Segment>
+          <p>
+            More
+            <Link to="/about">
+              <Icon name="linkify"/> details about
+            </Link>
+            this app
+          </p>
+        </Segment>
+
         <Segment basic>
           <h2>Screenshot</h2>
 
           <Image bordered src="/screenshot.png" />
         </Segment>
-
-        <p>
-          More details
-          <Link to="/about">
-            <Icon name="linkify" /> about this app
-          </Link>
-        </p>
       </Container>
     </FullVerticalContainer>
   );
