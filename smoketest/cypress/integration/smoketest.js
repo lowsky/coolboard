@@ -52,13 +52,13 @@ const _boardListContainer = () =>
   cy.get('[data-cy="board-container-inner"]');
 
 const cardListButtons = () =>
-  _boardListContainer().get('button');
+  _boardListContainer().find('button');
 
 const add_a_list = () =>
   cardListButtons().contains('Add a list');
 
 const sections = options =>
-  _boardListContainer(options).get(
+  cy.get(
     '[data-cy="card-list"]',
     options
   );
@@ -76,15 +76,17 @@ function fillLoginForm() {
   cy.get(auth0LockInputPassword).type(password, {
     log: false,
   });
-  return cy
+  cy
     .get('button.auth0-lock-submit')
     .click()
 
-    .url(LogAndWaitLong)
+  // helps to wait for auth0 process of redirecting with to the /callback url
+  cy.wait(1000)
+
     .url(LogAndWaitLong)
     .should('not.include', 'callback')
     .should('equal', baseUrl + '/')
-    .wait(5000);
+    .wait(2000);
 }
 
 function doLogin() {
@@ -95,13 +97,12 @@ function doLogin() {
 
 const getBoardsList = () => {
   cy
-    .get('.App')
-    .find('[data-cy=boards-list]')
+    .get('.App [data-cy=boards-list]')
     .first();
 
   return cy
     .get('.App [data-cy=boards-list]', WaitVeryLong)
-    .should('have.length', 1)
+    .should('exist')
     .find('a', WaitVeryLong);
 }
 
@@ -163,6 +164,7 @@ describe('Test coolboard', () => {
     //add card
     add_a_list().click();
 
+    cy.wait(2000);
     sections(LogAndWaitLong).should('have.length', 1);
 
     add_a_card().click();
