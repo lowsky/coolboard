@@ -15,7 +15,6 @@ const { typeDefs } = require('../apiSchema.js');
 const resolvers = require('../resolvers');
 
 const { checkJwt } = require('./middleware/jwt');
-const { getUser } = require('./middleware/getUser');
 
 const db = new Prisma({
   // the Prisma DB schema
@@ -55,9 +54,6 @@ server.express.post(
     }
     next();
   }
-);
-server.express.post(server.options.endpoint, (req, res, next) =>
-  getUser(req, res, next, db)
 );
 
 const httpServer = server.createHttpServer({
