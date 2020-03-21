@@ -6,6 +6,8 @@ const resolvers = require('../resolvers');
 const { typeDefs } = require('../apiSchema');
 const { generated_prisma_schema } = require('./src/prismaSchema');
 
+const isLocalDev = (process && process.env && process.env.LOCAL_DEV) || false;
+
 const db = new Prisma({
   // the Prisma DB schema
   typeDefs: generated_prisma_schema, // 'src/generated/prisma.graphql',
@@ -14,16 +16,16 @@ const db = new Prisma({
   // taken from database/prisma.yml (value is set in .env)
   secret: process.env.PRISMA_MANAGEMENT_API_SECRET,
   // log all GraphQL queries & mutations
-  debug: true,
+  debug: isLocalDev,
 });
 
 const lambda = new ApolloServer({
   typeDefs,
   resolvers,
 
-  debug: true,
-  playground: true,
-  introspection: true,
+  debug: isLocalDev,
+  playground: isLocalDev,
+  introspection: isLocalDev,
 
   engine: {
     // The Graph Manager API key
@@ -47,15 +49,20 @@ const lambda = new ApolloServer({
 exports.handler = (event, context, callback) => {
   const callbackFilter = function(error, output) {
     if (error) console.error(error);
-    else console.error('no errrorr');
+    else {
+      isLocalDev || console.info('no error. -----------------------------------------------------------------------');
+    }
 
-    console.log('result', output);
+    console.log('Environment: ', process && process.env && process.env.NODE_ENV);
+    if (isLocalDev) console.log('Environment: LOCAL? ', isLocalDev);
+
+    if (isLocalDev) console.log('result', output);
     callback(error, output);
-    console.error('done');
+    if (isLocalDev) console.info('done');
   };
 
   const handler = lambda.createHandler();
-  console.error('handler created');
+  if (isLocalDev) console.info('handler created');
 
   return handler(event, context, callbackFilter);
 };

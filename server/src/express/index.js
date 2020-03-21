@@ -49,7 +49,7 @@ server.express.post(
   checkJwt,
   (err, req, res, next) => {
     if (err) {
-      console.error('JWT check/auth failed ?! -> 401', err);
+      console.error('JWT token verification check/auth failed!', err);
       return res.status(401).json({ err });
     }
     next();
@@ -61,7 +61,7 @@ const httpServer = server.createHttpServer({
   // This extends graphql response, and send extra detailed timing info,
   // with overhead, so I disabled it here:
   // tracing: true,
-  cacheControl: true,
+  debug: true,
 });
 
 const port = 4000;
