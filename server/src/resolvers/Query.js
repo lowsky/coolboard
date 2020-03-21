@@ -1,13 +1,14 @@
 const { getUserId } = require('./utils');
+const { verifyUserIsAuthenticated } = require('./utils');
 
 const Query = {
   async board(parent, { where }, ctx, info) {
-    await getUserId(ctx);
+    await verifyUserIsAuthenticated(ctx);
     return ctx.db.query.board({ where }, info);
   },
 
   async list(parent, { where }, ctx, info) {
-    await getUserId(ctx);
+    await verifyUserIsAuthenticated(ctx);
     return ctx.db.query.list({ where }, info);
   },
 

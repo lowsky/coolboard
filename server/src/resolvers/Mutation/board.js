@@ -1,4 +1,5 @@
 const { getUserId } = require('../utils');
+const { verifyUserIsAuthenticated } = require('../utils');
 
 const board = {
   async updateBoard(parent, args, ctx, info) {
@@ -40,7 +41,7 @@ const board = {
   async deleteBoard(parent, args, ctx, info) {
     const { id } = args;
 
-    await getUserId(ctx);
+    await verifyUserIsAuthenticated(ctx);
 
     return ctx.db.mutation.deleteBoard(
       {

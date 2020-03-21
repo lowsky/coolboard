@@ -69,8 +69,20 @@ async function verifyAuth0HeaderToken(ctx) {
   });
 }
 
+const verifyUserIsAuthenticated = async ctx => {
+  const auth0id = await verifyAuth0HeaderToken(ctx);
+  if (auth0id) {
+    return true;
+  }
+  throw new AuthError({
+    message:
+      'Not authorized: no user in current request',
+  });
+};
+
 module.exports = {
   getUserId,
+  verifyUserIsAuthenticated,
   verifyAuth0HeaderToken,
   AuthError,
   NotAuthorizedError,

@@ -1,4 +1,5 @@
 const { getUserId } = require('../utils');
+const { verifyUserIsAuthenticated } = require('../utils');
 
 const list = {
   async updateList(parent, args, ctx, info) {
@@ -19,7 +20,7 @@ const list = {
     );
   },
   async deleteList(parent, args, ctx, info) {
-    await getUserId(ctx);
+    await verifyUserIsAuthenticated(ctx);
     return ctx.db.mutation.deleteList(args, info);
   },
 };
