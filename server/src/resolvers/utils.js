@@ -54,10 +54,10 @@ async function verifyAuth0HeaderToken(ctx) {
         token
       );
       const auth0id = userToken.sub.split('|')[1];
-      if(auth0id) {
+      if (auth0id) {
         return auth0id;
       }
-    } catch(error) {
+    } catch (error) {
       throw new Error(
         'invalid auth token was sent: ' + error
       );

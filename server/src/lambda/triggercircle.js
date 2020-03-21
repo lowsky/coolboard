@@ -4,7 +4,7 @@ import fetch from 'node-fetch';
 const { CIRCLE_API_USER_TOKEN } = process.env;
 
 exports.handler = async event => {
-  if (event.httpMethod !== "POST") {
+  if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: "Method Not Allowed" };
   }
 
@@ -60,9 +60,7 @@ exports.handler = async event => {
       statusCode: 200,
       body: `Smoketest on circle-ci triggerd for branch ${branch} PR ${review_id} commit ${commit_ref}`,
     };
-
   } catch (err) {
-
     console.log('error: ', err); // output to netlify function log
 
     return {
