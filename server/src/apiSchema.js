@@ -1,5 +1,4 @@
-module.exports = {
-  typeDefs: `
+export const typeDefs = `
 # import Board from "./generated/prisma.graphql"
 
 type AggregateBoard {
@@ -1035,4 +1034,6 @@ type User {
   boards: [Board]
 }
 `
-};
+export default {
+  typeDefs
+}

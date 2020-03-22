@@ -1,4 +1,4 @@
-const { verifyAuth0HeaderToken } = require('./utils');
+import { verifyAuth0HeaderToken } from './utils';
 
 const Subscription = {
   board: {
@@ -31,4 +31,4 @@ const Subscription = {
   },
 };
 
-module.exports = { Subscription };
+export default Subscription;

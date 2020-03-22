@@ -1,5 +1,4 @@
-module.exports = {
-  typeDefs: `
+export const typeDefs = `
 # import Board from "./generated/prisma.graphql"
 
 type AggregateBoard {
@@ -652,9 +651,9 @@ type User {
   avatarUrl: String
   boards: [Board]
 }
-`,
+`;
 
-  generated_prisma_schema: `
+export const generated_prisma_schema = `
 type AggregateBoard {
   count: Int!
 }
@@ -1725,6 +1724,4 @@ input UserWhereUniqueInput {
   email: String
   auth0id: String
 }
-
-`
-};
+`;

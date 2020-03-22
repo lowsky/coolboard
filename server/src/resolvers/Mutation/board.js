@@ -1,5 +1,4 @@
-const { getUserId } = require('../utils');
-const { verifyUserIsAuthenticated } = require('../utils');
+import { getUserId, verifyUserIsAuthenticated } from '../utils';
 
 const board = {
   async updateBoard(parent, args, ctx, info) {
@@ -52,4 +51,4 @@ const board = {
   },
 };
 
-module.exports = { board };
+export default board;

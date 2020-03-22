@@ -1,6 +1,6 @@
-const { createError } = require('apollo-errors');
+import { createError } from 'apollo-errors';
 
-const validateAndParseIdToken = require('../helpers/validateAndParseIdToken');
+import validateAndParseIdToken from '../helpers/validateAndParseIdToken';
 
 const NotAuthorizedError = 'NotAuthorizedError';
 
@@ -80,7 +80,7 @@ const verifyUserIsAuthenticated = async ctx => {
   });
 };
 
-module.exports = {
+export {
   getUserId,
   verifyUserIsAuthenticated,
   verifyAuth0HeaderToken,

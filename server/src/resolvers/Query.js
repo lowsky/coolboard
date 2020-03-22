@@ -1,5 +1,4 @@
-const { getUserId } = require('./utils');
-const { verifyUserIsAuthenticated } = require('./utils');
+import { getUserId, verifyUserIsAuthenticated } from './utils';
 
 const Query = {
   async board(parent, { where }, ctx, info) {
@@ -18,4 +17,4 @@ const Query = {
   },
 };
 
-module.exports = { Query };
+export default Query;

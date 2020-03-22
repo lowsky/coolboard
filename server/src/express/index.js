@@ -1,22 +1,25 @@
-require('@instana/collector')({
+import instana from '@instana/collector';
+instana({
   tracing: {
     enabled: true,
   },
 });
 
-require('dotenv/config');
+import dotenv from 'dotenv';
+dotenv.config()
 
-const { GraphQLServer } = require('graphql-yoga');
-const { ApolloEngine } = require('apollo-engine');
-const { Prisma } = require('prisma-binding');
+import GraphQLServer from 'graphql-yoga';
+import ApolloEngine from 'apollo-engine';
+import Prisma from 'prisma-binding';
 
-const { makeExecutableSchema } = require('graphql-tools');
-const { typeDefs } = require('../apiSchema.js');
-const resolvers = require('../resolvers');
+import gqlTools from 'graphql-tools';
 
-const { checkJwt } = require('./middleware/jwt');
+import { typeDefs } from '../apiSchema';
+import resolvers from '../resolvers';
 
-const db = new Prisma({
+// import { checkJwt } from './middleware/jwt';
+
+const db = new Prisma.Prisma({
   // the Prisma DB schema
   typeDefs: 'src/generated/prisma.graphql',
   // the endpoint of the Prisma DB service (value is set in .env)
@@ -30,12 +33,12 @@ const db = new Prisma({
   },
 });
 
-const schema = makeExecutableSchema({
+const schema = gqlTools.makeExecutableSchema({
   typeDefs,
   resolvers,
 });
 
-const server = new GraphQLServer({
+const server = new GraphQLServer.GraphQLServer({
   schema,
   debug: true,
   context: req => ({
@@ -66,7 +69,7 @@ const httpServer = server.createHttpServer({
 
 const port = 4000;
 if (process.env.ENGINE_API_KEY) {
-  const engine = new ApolloEngine();
+  const engine = new ApolloEngine.ApolloEngine();
 
   engine.listen({ port, httpServer }, () =>
     console.log(

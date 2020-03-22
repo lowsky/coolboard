@@ -1,5 +1,4 @@
-const { getUserId } = require('../utils');
-const { verifyUserIsAuthenticated } = require('../utils');
+import { getUserId, verifyUserIsAuthenticated } from '../utils';
 
 const list = {
   async updateList(parent, args, ctx, info) {
@@ -25,4 +24,4 @@ const list = {
   },
 };
 
-module.exports = { list };
+export default list;

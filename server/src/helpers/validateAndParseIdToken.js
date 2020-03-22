@@ -1,5 +1,5 @@
-const jwt = require('jsonwebtoken');
-const jwksClient = require('jwks-rsa');
+import jwt from 'jsonwebtoken';
+import jwksClient from 'jwks-rsa';
 
 const jwks = jwksClient({
   cache: true,
@@ -51,4 +51,4 @@ const validateAndParseIdToken = async idToken =>
     });
   });
 
-module.exports = validateAndParseIdToken;
+export default validateAndParseIdToken

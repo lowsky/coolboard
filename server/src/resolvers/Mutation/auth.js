@@ -1,5 +1,5 @@
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 
 const auth = {
   async signup(parent, args, ctx, info) {
@@ -57,4 +57,4 @@ const auth = {
   },
 };
 
-module.exports = { auth };
+export default auth;

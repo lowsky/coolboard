@@ -1,10 +1,10 @@
-const { ApolloServer } = require('apollo-server-lambda');
-const { Prisma } = require('prisma-binding');
+import { ApolloServer } from 'apollo-server-lambda';
+import { Prisma } from 'prisma-binding';
 
-const resolvers = require('../resolvers');
+import resolvers from '../resolvers';
 
-const { typeDefs } = require('../apiSchema');
-const { generated_prisma_schema } = require('./src/prismaSchema');
+import { typeDefs } from '../apiSchema';
+import { generated_prisma_schema } from './src/prismaSchema';
 
 const isLocalDev = (process && process.env && process.env.LOCAL_DEV) || false;
 

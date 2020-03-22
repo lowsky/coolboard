@@ -1,4 +1,4 @@
-const validateAndParseIdToken = require('../../helpers/validateAndParseIdToken');
+import validateAndParseIdToken from '../../helpers/validateAndParseIdToken';
 
 const createPrismaUser = async (ctx, idToken) => {
   const data = {
@@ -84,4 +84,4 @@ const auth0 = {
   },
 };
 
-module.exports = { auth0 };
+export default auth0;
