@@ -34,7 +34,7 @@ const getUserId = async ctx => {
 };
 
 async function verifyAuth0HeaderToken(ctx) {
-  const Authorization = ctx.request
+  const authorization = ctx.request
     ? ctx.request.get('Authorization')
     : ctx.event &&
       ctx.event.headers &&
@@ -46,8 +46,8 @@ async function verifyAuth0HeaderToken(ctx) {
     ? ctx.connection.context.Authorization
     : undefined;
 
-  if (Authorization) {
-    const token = Authorization.replace('Bearer ', '');
+  if (authorization) {
+    const token = authorization.replace('Bearer ', '');
 
     try {
       const userToken = await validateAndParseIdToken(
