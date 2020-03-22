@@ -50,19 +50,19 @@ exports.handler = (event, context, callback) => {
   const callbackFilter = function(error, output) {
     if (error) console.error(error);
     else {
-      isLocalDev || console.info('no error. -----------------------------------------------------------------------');
+      isLocalDev && console.info('no error. -----------------------------------------------------------------------');
     }
 
     console.log('Environment: ', process && process.env && process.env.NODE_ENV);
-    if (isLocalDev) console.log('Environment: LOCAL? ', isLocalDev);
+    isLocalDev && console.log('Environment: LOCAL? ', isLocalDev);
 
-    if (isLocalDev) console.log('result', output);
+    isLocalDev && console.log('result', output);
     callback(error, output);
-    if (isLocalDev) console.info('done');
+    isLocalDev && console.info('done');
   };
 
   const handler = lambda.createHandler();
-  if (isLocalDev) console.info('handler created');
+  isLocalDev && console.info('handler created');
 
   return handler(event, context, callbackFilter);
 };

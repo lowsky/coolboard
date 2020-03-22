@@ -49,6 +49,7 @@ const server = new GraphQLServer.GraphQLServer({
 
 server.express.post(
   server.options.endpoint,
+  (req, res, next) => {console.info('snip 8< ------------------------------------------------'); next()},
   checkJwt,
   (err, req, res, next) => {
     if (err) {
