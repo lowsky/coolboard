@@ -1,4 +1,5 @@
-import { getUserId, verifyUserIsAuthenticated } from './utils';
+import { verifyAuth0HeaderToken, verifyUserIsAuthenticated } from './utils';
+import { injectUserIdByAuth0id } from '../helpers/userIdByAuth0id';
 
 const Query = {
   async board(parent, { where }, ctx, info) {
@@ -12,8 +13,10 @@ const Query = {
   },
 
   async me(parent, args, ctx, info) {
-    const id = await getUserId(ctx);
-    return ctx.db.query.user({ where: { id } }, info);
+    const auth0id = await verifyAuth0HeaderToken(ctx);
+    const user = ctx.db.query.user({ where: { auth0id } }, info);
+    injectUserIdByAuth0id(user.id, auth0id);
+    return user
   },
 };
 
