@@ -1,6 +1,7 @@
 import { createError } from 'apollo-errors';
 
 import validateAndParseIdToken from '../helpers/validateAndParseIdToken';
+import { userIdByAuth0id } from '../helpers/userIdByAuth0id';
 
 const NotAuthorizedError = 'NotAuthorizedError';
 
@@ -12,12 +13,7 @@ const getUserId = async ctx => {
   const auth0id = await verifyAuth0HeaderToken(ctx);
 
   if (auth0id) {
-    const userByAuth0id = await ctx.db.query.user({
-      where: { auth0id },
-    });
-    if (userByAuth0id) {
-      return userByAuth0id.id;
-    }
+    return await userIdByAuth0id(ctx.db, auth0id);
   }
 
   if (ctx.request) {
@@ -70,14 +66,7 @@ async function verifyAuth0HeaderToken(ctx) {
 }
 
 const verifyUserIsAuthenticated = async ctx => {
-  const auth0id = await verifyAuth0HeaderToken(ctx);
-  if (auth0id) {
-    return true;
-  }
-  throw new AuthError({
-    message:
-      'Not authorized: no user in current request',
-  });
+  await verifyAuth0HeaderToken(ctx);
 };
 
 export {
