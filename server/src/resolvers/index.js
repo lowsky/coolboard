@@ -1,13 +1,13 @@
-const { Query } = require('./Query');
-const { Subscription } = require('./Subscription');
-const { auth } = require('./Mutation/auth');
-const { auth0 } = require('./Mutation/auth0');
-const { board } = require('./Mutation/board');
-const { list } = require('./Mutation/list');
-const { card } = require('./Mutation/card');
-const { AuthPayload } = require('./AuthPayload');
+import Query from './Query';
+import Subscription from './Subscription';
+import auth from './Mutation/auth';
+import auth0 from './Mutation/auth0.js';
+import board from './Mutation/board';
+import list from './Mutation/list';
+import card from './Mutation/card';
+import AuthPayload from './AuthPayload';
 
-module.exports = {
+export default {
   Query,
   Mutation: {
     ...auth,

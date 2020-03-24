@@ -1,10 +1,12 @@
-const { ApolloServer } = require('apollo-server-lambda');
-const { Prisma } = require('prisma-binding');
+import { ApolloServer } from 'apollo-server-lambda';
+import { Prisma } from 'prisma-binding';
 
-const resolvers = require('../resolvers');
+import resolvers from '../resolvers';
 
-const { typeDefs } = require('../apiSchema');
-const { generated_prisma_schema } = require('./src/prismaSchema');
+import { typeDefs } from '../apiSchema';
+import { generated_prisma_schema } from './src/prismaSchema';
+
+const isLocalDev = (process && process.env && process.env.LOCAL_DEV) || false;
 
 const db = new Prisma({
   // the Prisma DB schema
@@ -14,16 +16,16 @@ const db = new Prisma({
   // taken from database/prisma.yml (value is set in .env)
   secret: process.env.PRISMA_MANAGEMENT_API_SECRET,
   // log all GraphQL queries & mutations
-  debug: true,
+  debug: isLocalDev,
 });
 
 const lambda = new ApolloServer({
   typeDefs,
   resolvers,
 
-  debug: true,
-  playground: true,
-  introspection: true,
+  debug: isLocalDev,
+  playground: isLocalDev,
+  introspection: isLocalDev,
 
   engine: {
     // The Graph Manager API key
@@ -47,15 +49,20 @@ const lambda = new ApolloServer({
 exports.handler = (event, context, callback) => {
   const callbackFilter = function(error, output) {
     if (error) console.error(error);
-    else console.error('no errrorr');
+    else {
+      isLocalDev && console.info('no error. -----------------------------------------------------------------------');
+    }
 
-    console.log('result', output);
+    console.log('Environment: ', process && process.env && process.env.NODE_ENV);
+    isLocalDev && console.log('Environment: LOCAL? ', isLocalDev);
+
+    isLocalDev && console.log('result', output);
     callback(error, output);
-    console.error('done');
+    isLocalDev && console.info('done');
   };
 
   const handler = lambda.createHandler();
-  console.error('handler created');
+  isLocalDev && console.info('handler created');
 
   return handler(event, context, callbackFilter);
 };

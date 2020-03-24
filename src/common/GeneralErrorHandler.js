@@ -22,19 +22,7 @@ export const GeneralErrorHandler = ({ authRefresh }) => {
     mutationError,
   } = useApolloNetworkStatus();
 
-  return false;
-}
-export const GeneralErrorHandler2 = ({ authRefresh }) => {
-  const {
-    // numPendingQueries,
-    // numPendingMutations,
-    queryError,
-    mutationError,
-  } = useApolloNetworkStatus();
-
-  if(true) return false;
-
-  if (true || queryError || mutationError) {
+  if (queryError || mutationError) {
     const { networkError, graphQLErrors } = {
       ...mutationError,
       ...queryError,
@@ -52,14 +40,14 @@ export const GeneralErrorHandler2 = ({ authRefresh }) => {
       </div>
     );
 
-    if (true || graphQLErrors) {
+    if (graphQLErrors) {
       const notAuthErr = graphQLErrors||[].find(
         err =>
           err.name === NotAuthorizedError ||
           err.message === 'Not authorized'
       );
 
-      if (true || notAuthErr) {
+      if (notAuthErr) {
         return (
           <Message error>
             {

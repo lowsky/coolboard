@@ -1,23 +1,25 @@
-require('@instana/collector')({
+import instana from '@instana/collector';
+instana({
   tracing: {
     enabled: true,
   },
 });
 
-require('dotenv/config');
+import dotenv from 'dotenv';
+dotenv.config()
 
-const { GraphQLServer } = require('graphql-yoga');
-const { ApolloEngine } = require('apollo-engine');
-const { Prisma } = require('prisma-binding');
+import GraphQLServer from 'graphql-yoga';
+import ApolloEngine from 'apollo-engine';
+import Prisma from 'prisma-binding';
 
-const { makeExecutableSchema } = require('graphql-tools');
-const { typeDefs } = require('../apiSchema.js');
-const resolvers = require('../resolvers');
+import gqlTools from 'graphql-tools';
 
-const { checkJwt } = require('./middleware/jwt');
-const { getUser } = require('./middleware/getUser');
+import { typeDefs } from '../apiSchema';
+import resolvers from '../resolvers';
 
-const db = new Prisma({
+// import { checkJwt } from './middleware/jwt';
+
+const db = new Prisma.Prisma({
   // the Prisma DB schema
   typeDefs: 'src/generated/prisma.graphql',
   // the endpoint of the Prisma DB service (value is set in .env)
@@ -31,12 +33,12 @@ const db = new Prisma({
   },
 });
 
-const schema = makeExecutableSchema({
+const schema = gqlTools.makeExecutableSchema({
   typeDefs,
   resolvers,
 });
 
-const server = new GraphQLServer({
+const server = new GraphQLServer.GraphQLServer({
   schema,
   debug: true,
   context: req => ({
@@ -47,17 +49,15 @@ const server = new GraphQLServer({
 
 server.express.post(
   server.options.endpoint,
+  (req, res, next) => {console.info('snip 8< ------------------------------------------------'); next()},
   checkJwt,
   (err, req, res, next) => {
     if (err) {
-      console.error('JWT check/auth failed ?! -> 401', err);
+      console.error('JWT token verification check/auth failed!', err);
       return res.status(401).json({ err });
     }
     next();
   }
-);
-server.express.post(server.options.endpoint, (req, res, next) =>
-  getUser(req, res, next, db)
 );
 
 const httpServer = server.createHttpServer({
@@ -65,12 +65,12 @@ const httpServer = server.createHttpServer({
   // This extends graphql response, and send extra detailed timing info,
   // with overhead, so I disabled it here:
   // tracing: true,
-  cacheControl: true,
+  debug: true,
 });
 
 const port = 4000;
 if (process.env.ENGINE_API_KEY) {
-  const engine = new ApolloEngine();
+  const engine = new ApolloEngine.ApolloEngine();
 
   engine.listen({ port, httpServer }, () =>
     console.log(

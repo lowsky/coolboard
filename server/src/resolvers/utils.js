@@ -1,6 +1,7 @@
-const { createError } = require('apollo-errors');
+import { createError } from 'apollo-errors';
 
-const validateAndParseIdToken = require('../helpers/validateAndParseIdToken');
+import validateAndParseIdToken from '../helpers/validateAndParseIdToken';
+import { userIdByAuth0id } from '../helpers/userIdByAuth0id';
 
 const NotAuthorizedError = 'NotAuthorizedError';
 
@@ -12,12 +13,7 @@ const getUserId = async ctx => {
   const auth0id = await verifyAuth0HeaderToken(ctx);
 
   if (auth0id) {
-    const userByAuth0id = await ctx.db.query.user({
-      where: { auth0id },
-    });
-    if (userByAuth0id) {
-      return userByAuth0id.id;
-    }
+    return await userIdByAuth0id(ctx.db, auth0id);
   }
 
   if (ctx.request) {
@@ -34,7 +30,7 @@ const getUserId = async ctx => {
 };
 
 async function verifyAuth0HeaderToken(ctx) {
-  const Authorization = ctx.request
+  const authorization = ctx.request
     ? ctx.request.get('Authorization')
     : ctx.event &&
       ctx.event.headers &&
@@ -46,18 +42,18 @@ async function verifyAuth0HeaderToken(ctx) {
     ? ctx.connection.context.Authorization
     : undefined;
 
-  if (Authorization) {
-    const token = Authorization.replace('Bearer ', '');
+  if (authorization) {
+    const token = authorization.replace('Bearer ', '');
 
     try {
       const userToken = await validateAndParseIdToken(
         token
       );
       const auth0id = userToken.sub.split('|')[1];
-      if(auth0id) {
+      if (auth0id) {
         return auth0id;
       }
-    } catch(error) {
+    } catch (error) {
       throw new Error(
         'invalid auth token was sent: ' + error
       );
@@ -69,8 +65,13 @@ async function verifyAuth0HeaderToken(ctx) {
   });
 }
 
-module.exports = {
+const verifyUserIsAuthenticated = async ctx => {
+  await verifyAuth0HeaderToken(ctx);
+};
+
+export {
   getUserId,
+  verifyUserIsAuthenticated,
   verifyAuth0HeaderToken,
   AuthError,
   NotAuthorizedError,

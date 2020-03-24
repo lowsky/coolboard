@@ -1,4 +1,4 @@
-const { getUserId } = require('../utils');
+import { getUserId, verifyUserIsAuthenticated } from '../utils';
 
 const list = {
   async updateList(parent, args, ctx, info) {
@@ -19,9 +19,9 @@ const list = {
     );
   },
   async deleteList(parent, args, ctx, info) {
-    await getUserId(ctx);
+    await verifyUserIsAuthenticated(ctx);
     return ctx.db.mutation.deleteList(args, info);
   },
 };
 
-module.exports = { list };
+export default list;

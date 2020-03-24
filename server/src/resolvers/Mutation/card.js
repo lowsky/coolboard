@@ -1,4 +1,4 @@
-const { getUserId } = require('../utils');
+import { getUserId } from '../utils';
 
 const card = {
   /*
@@ -65,4 +65,4 @@ const card = {
   },
 };
 
-module.exports = { card };
+export default card;
