@@ -41,12 +41,9 @@
     "postinstall": "cd server ; yarn",
     "start": "react-scripts start",
     "build": "echo '{\"GIT_SHA1\" : \"'$COMMIT_REF'\" }' > public/meta.json && react-scripts build && npm run build:server",
-    "build:server": "cd server ; npm run build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "build:server": "cd server ; npm run build"
   },
   "devDependencies": {
-    "babel-eslint": "10.0.3",
     "eslint": "6.8.0",
     "eslint-config-prettier": "6.10.1",
     "eslint-config-react-app": "5.2.1",
