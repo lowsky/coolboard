@@ -16,6 +16,9 @@ const validateAndParseIdToken = async idToken =>
       complete: true,
     });
 
+    if (!token) {
+      reject(new Error('Invalid Token!'));
+    }
     const { header, payload } = token;
     if (!header || !header.kid || !payload) {
       reject(new Error('Invalid Token:', token));
