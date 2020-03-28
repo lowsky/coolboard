@@ -32,15 +32,17 @@ export default function Home() {
             Just
             <Link to="/login">
               <Icon size="big" name="sign in" />
-              <s>sign in here</s>
+              <span>sign in here</span>
             </Link>
             and create
             <Link to="/boards">
               <Icon size="big" name="list" />
               your Boards
             </Link>
-            and manage tasks together with others in
-            real time!
+            and share it with others <s>in
+            real time!</s>
+            <br/>
+            <strong>Automatic updates are disabled on current serverless environment, sry!</strong>
           </p>
         </Segment>
         <Segment basic>
