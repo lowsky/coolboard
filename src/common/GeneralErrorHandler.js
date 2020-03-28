@@ -41,7 +41,7 @@ export const GeneralErrorHandler = ({ authRefresh }) => {
     );
 
     if (graphQLErrors) {
-      const notAuthErr = graphQLErrors||[].find(
+      const notAuthErr = (graphQLErrors||[]).find(
         err =>
           err.name === NotAuthorizedError ||
           err.message === 'Not authorized'
@@ -83,7 +83,7 @@ export const GeneralErrorHandler = ({ authRefresh }) => {
       return (
         <Message error>
           {errorMsgs.filter(msg=>(msg.indexOf('jwt expired')>=0)).length>0 && <Relogin />}
-          <strong>Error:</strong>
+          <strong>Error:</strong>{' '}
           {errorMsgs
             .map((message, idx) => (
               <span key={idx}>{message}</span>
@@ -95,7 +95,7 @@ export const GeneralErrorHandler = ({ authRefresh }) => {
         <Message error>
           {isExpired() && <Relogin />}
           <p>
-            <strong>Network Error:</strong>{' '}
+            <strong>Network Error:</strong>
             {networkError.message}
           </p>
         </Message>
