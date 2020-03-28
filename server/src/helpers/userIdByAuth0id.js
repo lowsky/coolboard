@@ -4,17 +4,20 @@ export function injectUserIdByAuth0id(userId, auth0Id) {
   cache[auth0Id] = userId;
 }
 
-export async function userIdByAuth0id(prisma, auth0Id) {
-  let cachedUserId = cache[auth0Id];
+export async function userIdByAuth0id(prisma, auth0id) {
+  let cachedUserId = cache[auth0id];
   if (cachedUserId) {
     return cachedUserId;
   }
 
-  const { id } = await prisma.query.user({
-    where: { auth0Id },
+  const user = await prisma.query.user({
+    where: { auth0id },
   });
 
-  if (id) injectUserIdByAuth0id(id, auth0Id);
+  if (user) {
+    const { id } = user;
+    if (id) injectUserIdByAuth0id(id, auth0id);
+  }
 
-  return id;
+  return user?.id;
 }
