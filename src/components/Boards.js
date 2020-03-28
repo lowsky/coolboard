@@ -91,7 +91,7 @@ export const Boards = () => {
               mutation={deleteBoardMutation}>
               {deleteBoard => (
                 <Container fluid data-cy='boards-list'>
-                  {data.me.boards.length > 0 ? (
+                  {data?.me?.boards?.length > 0 ? (
                     <BoardList
                       boards={data.me.boards}
                       deleteBoard={id => {

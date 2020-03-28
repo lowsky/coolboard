@@ -1,4 +1,4 @@
-export function isExpired() {
+export const isExpired = () => {
   // Check whether the current time is past the
   // access token's expiry time
   const expiresAt = JSON.parse(
@@ -6,4 +6,8 @@ export function isExpired() {
   );
 
   return new Date().getTime() >= expiresAt;
-}
+};
+
+export const hasExpirationSet = () => {
+  return !!localStorage.getItem('expires_at')
+};
