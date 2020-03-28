@@ -28,11 +28,6 @@ export default function Home() {
         </h1>
         <Segment basic>
           <h2>How to get started?</h2>
-          <Segment raised={true} style={{background: 'red', color: 'white'}}>
-            <h3>Creating a new account is currently not working</h3>
-            <p>So, it only works for already registered accounts.</p>
-          </Segment>
-
           <p>
             Just
             <Link to="/login">
