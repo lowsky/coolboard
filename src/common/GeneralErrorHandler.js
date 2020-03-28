@@ -12,8 +12,6 @@ import { useApolloNetworkStatus } from 'react-apollo-network-status';
 import { isExpired } from '../authentication/checkExpiration';
 
 // Error name, used on the server side, too
-const NotAuthorizedError = 'NotAuthorizedError';
-
 export const GeneralErrorHandler = ({ authRefresh }) => {
   const {
     // numPendingQueries,
@@ -41,9 +39,40 @@ export const GeneralErrorHandler = ({ authRefresh }) => {
     );
 
     if (graphQLErrors) {
+      const registrationFailed = graphQLErrors.find(
+        err =>
+          err.name === 'RegistrationFailed'
+        );
+
+      if (registrationFailed) {
+        return (
+          <Message error style={{
+            flexShrink: 0
+          }}>
+            <p>
+              You will need to be authenticated to
+              see or create Boards or change any
+              items.
+            </p>
+            <strong>
+              Registration failed. One reason may be that another user already exist
+              with the same email.
+            </strong>
+            <p>
+              Please try to
+              <Link to="/login">
+                <Icon size="big" name="sign in" />
+                Log in
+              </Link> again or <br/>
+              <strong>contact the support</strong>
+            </p>
+          </Message>
+        );
+      }
+
       const notAuthErr = (graphQLErrors||[]).find(
         err =>
-          err.name === NotAuthorizedError ||
+          err.name === 'NotAuthorizedError' ||
           err.message === 'Not authorized'
       );
 
@@ -54,22 +83,18 @@ export const GeneralErrorHandler = ({ authRefresh }) => {
               //isExpired() &&
               <Relogin />
             }
-            {(
-              <>
-                <strong>
-                  You will need to be authenticated to
-                  see or create Boards or change any
-                  items.
-                </strong>
-                <p>
-                  Please
-                  <Link to="/login">
-                    <Icon size="big" name="sign in" />
-                    Log in
-                  </Link>
-                </p>
-              </>
-            )}
+            <strong>
+              You will need to be authenticated to
+              see or create Boards or change any
+              items.
+            </strong>
+            <p>
+              Please
+              <Link to="/login">
+                <Icon size="big" name="sign in" />
+                Log in
+              </Link>
+            </p>
           </Message>
         );
       }
