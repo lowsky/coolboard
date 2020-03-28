@@ -6,8 +6,8 @@ import resolvers from '../resolvers';
 import { typeDefs } from '../apiSchema';
 import { generated_prisma_schema } from './src/prismaSchema';
 
-const isLocalDev = (process && process.env && process.env.LOCAL_DEV) || false;
 import { formatError } from 'apollo-errors';
+import { isLocalDev } from '../helpers/logging';
 
 const db = new Prisma({
   // the Prisma DB schema
