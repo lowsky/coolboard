@@ -10,17 +10,16 @@ const AuthError = createError(NotAuthorizedError, {
 });
 
 const getUserId = async ctx => {
-  const auth0id = await verifyAuth0HeaderToken(ctx);
 
-  if (auth0id) {
-    return await userIdByAuth0id(ctx.db, auth0id);
-  }
+  const userToken = await verifyAuth0HeaderToken(ctx);
+  if (userToken) {
 
-  if (ctx.request) {
-    const user = ctx.request.user;
-    if (user) {
-      return user.id;
+    const auth0id = userToken.sub.split('|')[1];
+    const userId = await userIdByAuth0id(ctx.db, auth0id);
+    if (userId) {
+      return userId;
     }
+
   }
 
   throw new AuthError({
@@ -50,8 +49,9 @@ async function verifyAuth0HeaderToken(ctx) {
         token
       );
       const auth0id = userToken.sub.split('|')[1];
-      if (auth0id) {
-        return auth0id;
+
+      if (userToken && auth0id) {
+        return userToken;
       }
     } catch (error) {
       throw new Error(
@@ -61,7 +61,7 @@ async function verifyAuth0HeaderToken(ctx) {
   }
 
   throw new AuthError({
-    message: 'Not authorized',
+    message: 'Not authorized or invalid auth token',
   });
 }
 
@@ -74,5 +74,4 @@ export {
   verifyUserIsAuthenticated,
   verifyAuth0HeaderToken,
   AuthError,
-  NotAuthorizedError,
 };

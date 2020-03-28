@@ -14,6 +14,7 @@ const createPrismaUser = async (ctx, idToken) => {
   });
 };
 
+// @deprecate
 const auth0 = {
   async authenticate(parent, { idToken }, ctx, info) {
     let userToken;

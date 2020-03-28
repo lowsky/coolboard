@@ -13,7 +13,10 @@ const Query = {
   },
 
   async me(parent, args, ctx, info) {
-    const auth0id = await verifyAuth0HeaderToken(ctx);
+    const userToken = await verifyAuth0HeaderToken(ctx);
+
+    const auth0id = userToken.sub.split('|')[1];
+
     const user = await ctx.db.query.user({ where: { auth0id } }, info);
     if (user?.id) {
       injectUserIdByAuth0id(user.id, auth0id);
