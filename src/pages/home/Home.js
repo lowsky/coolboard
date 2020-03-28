@@ -28,24 +28,21 @@ export default function Home() {
         </h1>
         <Segment basic>
           <h2>How to get started?</h2>
-          <Segment raised={true} style={{background: 'red', color: 'white'}}>
-            <h3>Creating a new account is currently not working</h3>
-            <p>So, it only works for already registered accounts.</p>
-          </Segment>
-
           <p>
             Just
             <Link to="/login">
               <Icon size="big" name="sign in" />
-              <s>sign in here</s>
+              <span>sign in here</span>
             </Link>
             and create
             <Link to="/boards">
               <Icon size="big" name="list" />
               your Boards
             </Link>
-            and manage tasks together with others in
-            real time!
+            and share it with others <s>in
+            real time!</s>
+            <br/>
+            <strong>Automatic updates are disabled on current serverless environment, sry!</strong>
           </p>
         </Segment>
         <Segment basic>

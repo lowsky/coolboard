@@ -2,6 +2,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 const auth = {
+  // @deprecate
   async signup(parent, args, ctx, info) {
     const password = await bcrypt.hash(
       args.password,
@@ -21,6 +22,7 @@ const auth = {
     };
   },
 
+  // @deprecate
   async login(parent, { email, password }, ctx, info) {
     const users = await ctx.db.query.users({
       where: { email },

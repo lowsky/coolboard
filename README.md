@@ -7,7 +7,7 @@ for each section.
 ---
 ## Start and connect to specific server
 
-`REACT_APP_SERVER_HOST=coolboard.now.sh  yarn start`
+`REACT_APP_SERVER_HOST=coolboard.netlify.com yarn start`
 
 ## Section 1: GraphQL basics
 
@@ -33,16 +33,6 @@ type Card @model {
 ```
 
 ## Section 2:
-
-Running in Apollo launchpad:
-
-2.1 [coolboard-lists-cards-simple](https://launchpad.graphql.com/nxmqnlj917)
-
-2.2 [coolboard-lists-cards-simple-mocks](https://launchpad.graphql.com/w53zvlpxpz)
-
-2.3 [Trello REST wrapper](https://launchpad.graphql.com/9jl8jr7v4r)
-
-2.4 [Local server](./server/README.md) as a trello-rest wrapper/proxy
 
 ## Hands-on application building with GraphQL and React
 

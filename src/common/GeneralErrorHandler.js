@@ -9,10 +9,9 @@ import {
 } from 'semantic-ui-react';
 
 import { useApolloNetworkStatus } from 'react-apollo-network-status';
-import { isExpired } from '../authentication/checkExpiration';
+import { hasExpirationSet, isExpired } from '../authentication/checkExpiration';
 
-// Error name, used on the server side, too
-const NotAuthorizedError = 'NotAuthorizedError';
+const ErrorMessage = ({children}) => <Message error style={{ flexShrink: 0 }}>{children}</Message>
 
 export const GeneralErrorHandler = ({ authRefresh }) => {
   const {
@@ -29,6 +28,7 @@ export const GeneralErrorHandler = ({ authRefresh }) => {
     };
 
     const Relogin = () => (
+      hasExpirationSet() && isExpired() &&
       <div>
         <Button compact={true}
           onClick={async () => {
@@ -41,36 +41,58 @@ export const GeneralErrorHandler = ({ authRefresh }) => {
     );
 
     if (graphQLErrors) {
-      const notAuthErr = graphQLErrors||[].find(
+      const registrationFailed = graphQLErrors.find(
         err =>
-          err.name === NotAuthorizedError ||
+          err.name === 'RegistrationFailed'
+        );
+
+      if (registrationFailed) {
+        return (
+          <ErrorMessage>
+            <p>
+              You will need to be authenticated to
+              see or create Boards or change any
+              items...
+            </p>
+            <strong>
+              Registration failed. One reason may be that another user already exist
+              with the same email.
+            </strong>
+            <p>
+              Please try to
+              <Link to="/login">
+                <Icon size="big" name="sign in" />
+                Log in
+              </Link> again or <br/>
+              <strong>contact the support</strong>
+            </p>
+          </ErrorMessage>
+        );
+      }
+
+      const notAuthErr = (graphQLErrors||[]).find(
+        err =>
+          err.name === 'NotAuthorizedError' ||
           err.message === 'Not authorized'
       );
 
       if (notAuthErr) {
         return (
-          <Message error>
-            {
-              //isExpired() &&
-              <Relogin />
-            }
-            {(
-              <>
-                <strong>
-                  You will need to be authenticated to
-                  see or create Boards or change any
-                  items.
-                </strong>
-                <p>
-                  Please
-                  <Link to="/login">
-                    <Icon size="big" name="sign in" />
-                    Log in
-                  </Link>
-                </p>
-              </>
-            )}
-          </Message>
+          <ErrorMessage>
+            <Relogin />
+            <strong>
+              You will need to be authenticated to
+              see or create Boards or change any
+              items.
+            </strong>
+            <p>
+              Please
+              <Link to="/login">
+                <Icon size="big" name="sign in" />
+                Log in
+              </Link>
+            </p>
+          </ErrorMessage>
         );
       }
 
@@ -81,24 +103,24 @@ export const GeneralErrorHandler = ({ authRefresh }) => {
       console.log(errorMsgs);
 
       return (
-        <Message error>
+        <ErrorMessage>
           {errorMsgs.filter(msg=>(msg.indexOf('jwt expired')>=0)).length>0 && <Relogin />}
-          <strong>Error:</strong>
+          <strong>Error:</strong>{' '}
           {errorMsgs
             .map((message, idx) => (
               <span key={idx}>{message}</span>
             ))}
-        </Message>
+        </ErrorMessage>
       );
     } else if (networkError) {
       return (
-        <Message error>
-          {isExpired() && <Relogin />}
+        <ErrorMessage>
+          <Relogin />
           <p>
-            <strong>Network Error:</strong>{' '}
+            <strong>Network Error:</strong>
             {networkError.message}
           </p>
-        </Message>
+        </ErrorMessage>
       );
     }
 

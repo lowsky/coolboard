@@ -1,7 +1,9 @@
 import { createError } from 'apollo-errors';
 
 import validateAndParseIdToken from '../helpers/validateAndParseIdToken';
-import { userIdByAuth0id } from '../helpers/userIdByAuth0id';
+import { injectUserIdByAuth0id, userIdByAuth0id } from '../helpers/userIdByAuth0id';
+import { createNewUser } from '../helpers/registerNewUser';
+import { isLocalDev } from '../helpers/logging';
 
 const NotAuthorizedError = 'NotAuthorizedError';
 
@@ -9,18 +11,26 @@ const AuthError = createError(NotAuthorizedError, {
   message: NotAuthorizedError,
 });
 
+export const RegistrationFailed = createError('RegistrationFailed', {
+  message: 'RegistrationFailed',
+});
+
 const getUserId = async ctx => {
-  const auth0id = await verifyAuth0HeaderToken(ctx);
 
-  if (auth0id) {
-    return await userIdByAuth0id(ctx.db, auth0id);
-  }
+  const userToken = await verifyAuth0HeaderToken(ctx);
+  if (userToken) {
 
-  if (ctx.request) {
-    const user = ctx.request.user;
-    if (user) {
-      return user.id;
+    const auth0id = userToken.sub.split('|')[1];
+    const userId = await userIdByAuth0id(ctx.db, auth0id);
+    if (userId) {
+      return userId;
     }
+
+    const user = await createNewUser(ctx.db, userToken);
+    if (isLocalDev) console.log('--- created prisma user (+id)', user);
+    const { id } = user;
+    if (id) injectUserIdByAuth0id(user.id, auth0id)
+    return id;
   }
 
   throw new AuthError({
@@ -51,7 +61,7 @@ async function verifyAuth0HeaderToken(ctx) {
       );
       const auth0id = userToken.sub.split('|')[1];
       if (auth0id) {
-        return auth0id;
+        return userToken;
       }
     } catch (error) {
       throw new Error(
@@ -61,7 +71,7 @@ async function verifyAuth0HeaderToken(ctx) {
   }
 
   throw new AuthError({
-    message: 'Not authorized',
+    message: 'Not authorized or invalid auth token',
   });
 }
 
@@ -73,6 +83,4 @@ export {
   getUserId,
   verifyUserIsAuthenticated,
   verifyAuth0HeaderToken,
-  AuthError,
-  NotAuthorizedError,
 };

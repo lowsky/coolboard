@@ -1,19 +1,7 @@
 import validateAndParseIdToken from '../../helpers/validateAndParseIdToken';
+import { createNewUser } from '../../helpers/registerNewUser';
 
-const createPrismaUser = async (ctx, idToken) => {
-  const data = {
-    identity: idToken.sub.split(`|`)[0],
-    auth0id: idToken.sub.split(`|`)[1],
-    name: idToken.name,
-    email: idToken.email,
-    avatarUrl: idToken.picture,
-  };
-
-  return ctx.db.mutation.createUser({
-    data,
-  });
-};
-
+// @deprecate
 const auth0 = {
   async authenticate(parent, { idToken }, ctx, info) {
     let userToken;
@@ -80,7 +68,7 @@ const auth0 = {
     );
     */
 
-    return createPrismaUser(ctx, userToken);
+    return createNewUser(ctx, userToken);
   },
 };
 
