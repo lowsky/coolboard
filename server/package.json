@@ -16,7 +16,7 @@
     "node": ">=12.1"
   },
   "dependencies": {
-    "@instana/collector": "1.95.0",
+    "@instana/collector": "1.95.2",
     "apollo-engine": "1.1.2",
     "apollo-errors": "1.9.0",
     "apollo-server-lambda": "2.11.0",
