@@ -12,7 +12,7 @@
   "scripts": {
     "cy": "cypress",
     "test": "npm run cy run",
-    "wait:valid-version": "node wait-for-deployment.js"
+    "wait:valid-version": "npm install request request-promise ; node wait-for-deployment.js"
   },
   "devDependencies": {
     "request": "2.88.2",

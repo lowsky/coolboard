@@ -1,4 +1,16 @@
-version: 2
+version: 2.1
+
+# have a filter to disable regular builds.
+workflows:
+  version: 2
+  do_not_run_usually:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only:
+                - non-existing-branch
+
 jobs:
   check:
     docker:
@@ -22,8 +34,7 @@ jobs:
 #          command: npm run build
   build:
     docker:
-      - image: cypress/base:12.16.1
-    parallelism: 1
+      - image: cypress/included:4.5.0
     steps:
       - checkout
       - run:
@@ -54,35 +65,14 @@ jobs:
             fi
 
             env | grep CIRCLE | sort
-      - restore_cache:
-          keys:
-            - cache-smoke-{{ checksum "smoketest/package.json" }}
-      - run:
-          name: Npm CI
-          command: |
-            cd smoketest
-            npm ci
-      - save_cache:
-          key: cache-smoke-{{ checksum "smoketest/package.json" }}
-          paths:
-            - ~/.npm
-            - ~/.cache
       - run:
           name: verify fully deployed web site via git-commit
           command: |
-            echo PR: $CIRCLE_PR_NUMBER
             export CYPRESS_baseUrl=https://deploy-preview-${CIRCLE_PR_NUMBER}--coolboard.netlify.app
             cd smoketest
-            echo DEPLOYED_SHA1 $DEPLOYED_SHA1
             echo CIRCLE_SHA1 $CIRCLE_SHA1
             echo using GIT_SHA1=${DEPLOYED_SHA1:-$CIRCLE_SHA1}
             GIT_SHA1=${DEPLOYED_SHA1:-$CIRCLE_SHA1} npm run wait:valid-version
-      - run:
-          name: cypress verify
-          command: |
-            echo PR: $CIRCLE_PR_NUMBER
-            cd smoketest
-            npx cypress verify ; npx cypress cache path
       - run:
           name: run cypress
           command: |
@@ -90,7 +80,7 @@ jobs:
             export CYPRESS_baseUrl=https://deploy-preview-${CIRCLE_PR_NUMBER}--coolboard.netlify.app
             cd smoketest
             mkdir -p cypress/results
-            CYPRESS_branch=${CIRCLE_BRANCH} npx cypress run cypress run --record --key $CYPRESS_API_KEY --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
+            CYPRESS_branch=${CIRCLE_BRANCH} cypress run --record --key $CYPRESS_API_KEY --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
       - store_test_results:
           path: smoketest/cypress/results
       - store_artifacts:
@@ -102,8 +92,7 @@ jobs:
 
   prebuild_diag:
     docker:
-      - image: cypress/base:12.16.1
-    parallelism: 1
+      - image: cypress/included:4.5.0
     steps:
       - checkout
       - run:
@@ -123,9 +112,3 @@ jobs:
             source $BASH_ENV
             echo PR env from BASH_ENV file: $BASH_ENV
             echo PR no.: $CIRCLE_PR_NUMBER
-
-workflows:
-  show-env:
-    jobs:
-      - prebuild_diag
-  version: 2
