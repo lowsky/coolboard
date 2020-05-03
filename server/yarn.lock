@@ -922,12 +922,12 @@
   resolved "https://registry.yarnpkg.com/@heroku/linewrap/-/linewrap-1.0.0.tgz#a9d4e99f0a3e423a899b775f5f3d6747a1ff15c6"
   integrity sha512-qPeQp2DnALUwWKaL6ZXfnOw/lHp+zNg5V8whx5c/Y10HMWYjuQFqKupgoJgyuEYjnvYwoZTarW280+aOXWQLCQ==
 
-"@instana/collector@1.95.2":
-  version "1.95.2"
-  resolved "https://registry.yarnpkg.com/@instana/collector/-/collector-1.95.2.tgz#0d99c26230b73918fe9d9af9e513a2ee9cb22770"
-  integrity sha512-YGeFwjV86evLiVWUgP2nRzy5zjeS0ExaOW4XGipJ+lT0oBNq0lcycLjrJ7IowNhWq/BLvGVnJ21oQ1yn4f2SDg==
+"@instana/collector@1.96.0":
+  version "1.96.0"
+  resolved "https://registry.yarnpkg.com/@instana/collector/-/collector-1.96.0.tgz#0ecc409f23bd067d3ff0428136c8e8bd684ac0f3"
+  integrity sha512-e+DCorWtbKk67ExUPADTgjx9365N/4ab0oQOgt6uypz0vbaN3MdUshX2AQpRUthhUTcAl3ga9rc9D5SgclnOsw==
   dependencies:
-    "@instana/core" "^1.95.2"
+    "@instana/core" "^1.96.0"
     bunyan "^1.8.12"
     event-loop-lag "^1.4.0"
     semver "5.5.1"
@@ -938,10 +938,10 @@
     netlinkwrapper "^1.1.2"
     v8-profiler-node8 "^6.0.1"
 
-"@instana/core@^1.95.2":
-  version "1.95.2"
-  resolved "https://registry.yarnpkg.com/@instana/core/-/core-1.95.2.tgz#adca9e9099dff6615c30df39ff8094627606757b"
-  integrity sha512-djZLf4fqLbfh8TPSw4ZJp33NS7Br6FwxYB2qQzv4OhbJGzmAycgAUKldTQ9J/xy4ZCfmSmWPQYNkshOjWoQaEA==
+"@instana/core@^1.96.0":
+  version "1.96.0"
+  resolved "https://registry.yarnpkg.com/@instana/core/-/core-1.96.0.tgz#83e0516d41e652ac6796636604d96186f298167c"
+  integrity sha512-wDPQCs4HnB1L0ajn7ZxG4hq5IdnEo4fAT2fmbICow0K7IUm5RtUawv8FHpphmG+fquCPUVrPCBhQ3dv9p8Yhbg==
   dependencies:
     async-hook-jl "^1.7.6"
     cls-bluebird "^2.1.0"
