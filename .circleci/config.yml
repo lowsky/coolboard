@@ -71,7 +71,7 @@ jobs:
           name: verify fully deployed web site via git-commit
           command: |
             echo PR: $CIRCLE_PR_NUMBER
-            export CYPRESS_baseUrl=https://deploy-preview-${CIRCLE_PR_NUMBER}--coolboard.netlify.com
+            export CYPRESS_baseUrl=https://deploy-preview-${CIRCLE_PR_NUMBER}--coolboard.netlify.app
             cd smoketest
             echo DEPLOYED_SHA1 $DEPLOYED_SHA1
             echo CIRCLE_SHA1 $CIRCLE_SHA1
@@ -87,7 +87,7 @@ jobs:
           name: run cypress
           command: |
             echo PR: $CIRCLE_PR_NUMBER
-            export CYPRESS_baseUrl=https://deploy-preview-${CIRCLE_PR_NUMBER}--coolboard.netlify.com
+            export CYPRESS_baseUrl=https://deploy-preview-${CIRCLE_PR_NUMBER}--coolboard.netlify.app
             cd smoketest
             mkdir -p cypress/results
             CYPRESS_branch=${CIRCLE_BRANCH} npx cypress run cypress run --record --key $CYPRESS_API_KEY --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
