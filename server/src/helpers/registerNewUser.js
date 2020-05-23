@@ -1,7 +1,7 @@
 import { RegistrationFailed } from '../resolvers/utils';
 import { isLocalDev } from './logging';
 
-export const createNewUser = async (prisma, idToken) => {
+export const createNewUser = async (idToken, createPersistentUser) => {
   const data = {
     identity: idToken.sub.split(`|`)[0],
     auth0id: idToken.sub.split(`|`)[1],
@@ -25,7 +25,7 @@ export const createNewUser = async (prisma, idToken) => {
   }
 
   try {
-    return prisma.mutation.createUser({ data });
+    return createPersistentUser(data);
   } catch (err) {
     if (isLocalDev) console.error('Failed to create this new user:', data, err);
 

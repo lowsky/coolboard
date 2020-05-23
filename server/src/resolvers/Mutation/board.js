@@ -3,51 +3,46 @@ import { getUserId, verifyUserIsAuthenticated } from '../utils';
 const board = {
   async updateBoard(parent, args, ctx, info) {
     const userId = await getUserId(ctx);
-    return ctx.db.mutation.updateBoard(
-      {
-        where: args.where,
-        data: {
-          ...args.data,
-          updatedBy: {
-            connect: {
-              id: userId,
-            },
+    const { prisma } = ctx;
+
+    return prisma.updateBoard({
+      where: args.where,
+      data: {
+        ...args.data,
+        updatedBy: {
+          connect: {
+            id: userId,
           },
         },
       },
-      info
-    );
+    });
   },
   async createBoard(parent, args, ctx, info) {
     const { name } = args;
+    const { prisma } = ctx;
 
     const id = await getUserId(ctx);
 
-    return ctx.db.mutation.updateUser(
-      {
-        data: {
-          boards: {
-            create: {
-              name,
-            },
+    return prisma.updateUser({
+      data: {
+        boards: {
+          create: {
+            name,
           },
         },
-        where: { id },
       },
-      info
-    );
+      where: { id },
+    });
   },
   async deleteBoard(parent, args, ctx, info) {
     const { id } = args;
+    const { prisma } = ctx;
 
     await verifyUserIsAuthenticated(ctx);
 
-    return ctx.db.mutation.deleteBoard(
-      {
-        where: { id },
-      },
-      info
-    );
+    return prisma.deleteBoard({
+      where: { id },
+    });
   },
 };
 

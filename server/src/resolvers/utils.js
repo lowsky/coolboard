@@ -21,12 +21,12 @@ const getUserId = async ctx => {
   if (userToken) {
 
     const auth0id = userToken.sub.split('|')[1];
-    const userId = await userIdByAuth0id(ctx.db, auth0id);
+    const userId = await userIdByAuth0id(auth0id, ctx.prisma.user);
     if (userId) {
       return userId;
     }
 
-    const user = await createNewUser(ctx.db, userToken);
+    const user = await createNewUser(userToken, ctx.prisma.createUser);
     if (isLocalDev) console.log('--- created prisma user (+id)', user);
     const { id } = user;
     if (id) injectUserIdByAuth0id(user.id, auth0id)
