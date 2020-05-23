@@ -6,18 +6,9 @@ import { typeDefs } from '../apiSchema';
 
 import { formatError } from 'apollo-errors';
 import { isLocalDev } from '../helpers/logging';
-import { Prisma } from "../generated/prisma/index.js";
+import { Prisma } from "../generated/prisma";
 
 export const prisma = new Prisma({
-  debug: true,
-});
-  // the Prisma DB schema
-  typeDefs: generated_prisma_schema, // 'src/generated/prisma.graphql',
-  // the endpoint of the Prisma DB service (value is set in .env)
-  endpoint: process.env.PRISMA_ENDPOINT,
-  // taken from database/prisma.yml (value is set in .env)
-  secret: process.env.PRISMA_MANAGEMENT_API_SECRET,
-  // log all GraphQL queries & mutations
   debug: isLocalDev,
 });
 
@@ -39,10 +30,11 @@ const lambda = new ApolloServer({
     schemaTag: process.env.ENGINE_SCHEMA_TAG || 'undefined',
   },
 
+  /*
   resolverValidationOptions: {
     requireResolversForResolveType: false,
   },
-
+  */
   context: req => ({
     ...req,
     prisma,

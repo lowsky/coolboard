@@ -1,7 +1,7 @@
 import { getUserId, verifyUserIsAuthenticated } from '../utils';
 
 const board = {
-  async updateBoard(parent, args, ctx, info) {
+  async updateBoard(parent, args, ctx) {
     const userId = await getUserId(ctx);
     const { prisma } = ctx;
 
@@ -17,7 +17,7 @@ const board = {
       },
     });
   },
-  async createBoard(parent, args, ctx, info) {
+  async createBoard(parent, args, ctx) {
     const { name } = args;
     const { prisma } = ctx;
 
@@ -34,7 +34,7 @@ const board = {
       where: { id },
     });
   },
-  async deleteBoard(parent, args, ctx, info) {
+  async deleteBoard(parent, args, ctx) {
     const { id } = args;
     const { prisma } = ctx;
 

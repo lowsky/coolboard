@@ -14,7 +14,7 @@ const card = {
     # ...
   }
   */
-  async updateCard(parent, { where, data }, ctx, info) {
+  async updateCard(parent, { where, data }, ctx) {
     const userId = await getUserId(ctx);
     const { prisma } = ctx;
 
