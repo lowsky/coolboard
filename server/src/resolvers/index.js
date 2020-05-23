@@ -3,7 +3,6 @@ import Subscription from './Subscription';
 import board from './Mutation/board';
 import list from './Mutation/list';
 import card from './Mutation/card';
-import AuthPayload from './AuthPayload';
 
 export default {
   Query,
@@ -13,5 +12,22 @@ export default {
     ...card,
   },
   Subscription,
-  // AuthPayload,
+  User: {
+    boards(parent, args, ctx) {
+      const { prisma } = ctx;
+      return prisma.user({ id: parent.id }).boards();
+    },
+  },
+  Board: {
+    lists(parent, args, ctx) {
+      const { prisma } = ctx;
+      return prisma.board({ id: parent.id }).lists();
+    },
+  },
+  List: {
+    cards(parent, args, ctx) {
+      const { prisma } = ctx;
+      return prisma.list({ id: parent.id }).cards();
+    },
+  },
 };

@@ -1,7 +1,7 @@
 import { getUserId, verifyUserIsAuthenticated } from '../utils';
 
 const list = {
-  async updateList(parent, args, ctx, info) {
+  async updateList(parent, args, ctx) {
     const userId = await getUserId(ctx);
     const { prisma } = ctx;
 
@@ -15,10 +15,9 @@ const list = {
           },
         },
       },
-      info
-    );
+    });
   },
-  async deleteList(parent, args, ctx, info) {
+  async deleteList(parent, args, ctx) {
     await verifyUserIsAuthenticated(ctx);
     const { prisma } = ctx;
     return prisma.deleteList(args);
