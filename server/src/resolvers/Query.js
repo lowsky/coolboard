@@ -33,6 +33,8 @@ const Query = {
 
     const u = await createNewUser(userToken, prisma.createUser);
 
+    if (isLocalDev)
+      console.log('created prisma user:', u);
 
     if (u?.id) {
       injectUserIdByAuth0id(u.id, auth0id);
