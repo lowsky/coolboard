@@ -3,15 +3,15 @@ import { getUserId, verifyUserIsAuthenticated } from '../utils';
 const list = {
   async updateList(parent, args, ctx, info) {
     const userId = await getUserId(ctx);
+    const { prisma } = ctx;
 
-    return ctx.db.mutation.updateList({
-        where: args.where,
-        data: {
-          ...args.data,
-          updatedBy: {
-            connect: {
-              id: userId,
-            },
+    return prisma.updateList({
+      where: args.where,
+      data: {
+        ...args.data,
+        updatedBy: {
+          connect: {
+            id: userId,
           },
         },
       },
@@ -20,7 +20,8 @@ const list = {
   },
   async deleteList(parent, args, ctx, info) {
     await verifyUserIsAuthenticated(ctx);
-    return ctx.db.mutation.deleteList(args, info);
+    const { prisma } = ctx;
+    return prisma.deleteList(args);
   },
 };
 

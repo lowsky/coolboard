@@ -3,7 +3,7 @@ import { createNewUser } from '../../helpers/registerNewUser';
 
 // @deprecate
 const auth0 = {
-  async authenticate(parent, { idToken }, ctx, info) {
+  async authenticate(parent, { idToken }, { prisma }) {
     let userToken;
 
     try {
@@ -52,10 +52,7 @@ const auth0 = {
       );
     }
 
-    let userByAuth0id = await ctx.db.query.user(
-      { where: { auth0id } },
-      info
-    );
+    let userByAuth0id = await prisma.user({ auth0id });
 
     if (userByAuth0id) {
       return userByAuth0id;
@@ -68,7 +65,7 @@ const auth0 = {
     );
     */
 
-    return createNewUser(ctx, userToken);
+    return createNewUser(userToken, prisma.createUser);
   },
 };
 

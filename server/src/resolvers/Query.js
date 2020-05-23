@@ -6,20 +6,24 @@ import { isLocalDev } from '../helpers/logging';
 const Query = {
   async board(parent, { where }, ctx, info) {
     await verifyUserIsAuthenticated(ctx);
-    return ctx.db.query.board({ where }, info);
+    const { prisma } = ctx;
+    return prisma.board(where, info);
   },
 
   async list(parent, { where }, ctx, info) {
     await verifyUserIsAuthenticated(ctx);
-    return ctx.db.query.list({ where }, info);
+    const { prisma } = ctx;
+    return prisma.list(where, info);
   },
 
-  async me(parent, args, ctx, info) {
-    const userToken = await verifyAuth0HeaderToken(ctx);
-
+  me: async function (parent, args, ctx) {
+    const userToken = await verifyAuth0HeaderToken(
+      ctx
+    );
     const auth0id = userToken.sub.split('|')[1];
 
-    const user = await ctx.db.query.user({ where: { auth0id } }, info);
+    const { prisma } = ctx;
+    const user = prisma.user({ auth0id });
     if (user?.id) {
       injectUserIdByAuth0id(user.id, auth0id);
     }
@@ -27,9 +31,8 @@ const Query = {
       return user
     }
 
-    const u = await createNewUser(ctx.db, userToken)
+    const u = await createNewUser(userToken, prisma.createUser);
 
-    if (isLocalDev) console.log('created prisma user:', u)
 
     if (u?.id) {
       injectUserIdByAuth0id(u.id, auth0id);

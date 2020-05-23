@@ -16,6 +16,7 @@ const card = {
   */
   async updateCard(parent, { where, data }, ctx, info) {
     const userId = await getUserId(ctx);
+    const { prisma } = ctx;
 
     const argsWithUpdatedByUser = {
       where,
@@ -29,14 +30,11 @@ const card = {
       },
     };
 
-    const updatedCard = await ctx.db.mutation.updateCard(
+    const updatedCard = await prisma.updateCard(
       argsWithUpdatedByUser
     );
 
-    return ctx.db.query.card(
-      { where: { id: updatedCard.id } },
-      info
-    );
+    return prisma.card({ id: updatedCard.id });
 
     /* Example:
     mutation {

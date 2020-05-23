@@ -4,25 +4,29 @@ const Subscription = {
   board: {
     subscribe: async (parent, args, ctx, info) => {
       await verifyUserIsAuthenticated(ctx);
-      return ctx.db.subscription.board(args, info);
+      const { prisma } = ctx;
+      return prisma.$subscribe.board(args);
     },
   },
   list: {
     subscribe: async (parent, args, ctx, info) => {
       await verifyUserIsAuthenticated(ctx);
-      return ctx.db.subscription.list(args, info);
+      const { prisma } = ctx;
+      return prisma.$subscribe.list(args);
     },
   },
   card: {
     subscribe: async (parent, args, ctx, info) => {
       await verifyUserIsAuthenticated(ctx);
-      return ctx.db.subscription.card(args, info);
+      const { prisma } = ctx;
+      return prisma.$subscribe.card(args);
     },
   },
   user: {
     subscribe: async (parent, args, ctx, info) => {
       await verifyUserIsAuthenticated(ctx);
-      return ctx.db.subscription.user(args, info);
+      const { prisma } = ctx;
+      return prisma.$subscribe.user(args);
     },
   },
 };

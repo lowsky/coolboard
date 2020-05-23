@@ -1,15 +1,16 @@
 import { ApolloServer } from 'apollo-server-lambda';
-import { Prisma } from 'prisma-binding';
 
 import resolvers from '../resolvers';
 
 import { typeDefs } from '../apiSchema';
-import { generated_prisma_schema } from './src/prismaSchema';
 
 import { formatError } from 'apollo-errors';
 import { isLocalDev } from '../helpers/logging';
+import { Prisma } from "../generated/prisma/index.js";
 
-const db = new Prisma({
+export const prisma = new Prisma({
+  debug: true,
+});
   // the Prisma DB schema
   typeDefs: generated_prisma_schema, // 'src/generated/prisma.graphql',
   // the endpoint of the Prisma DB service (value is set in .env)
@@ -44,7 +45,7 @@ const lambda = new ApolloServer({
 
   context: req => ({
     ...req,
-    db,
+    prisma,
   }),
 });
 
