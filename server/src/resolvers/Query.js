@@ -23,7 +23,7 @@ const Query = {
     const auth0id = userToken.sub.split('|')[1];
 
     const { prisma } = ctx;
-    const user = prisma.user({ auth0id });
+    const user = await prisma.user({ auth0id });
     if (user?.id) {
       injectUserIdByAuth0id(user.id, auth0id);
     }
