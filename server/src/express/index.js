@@ -1,44 +1,41 @@
-import instana from '@instana/collector';
-instana({
-  tracing: {
-    enabled: true,
-  },
-});
-
+// import instana from '@instana/collector';
+if(false) {
+  // eslint-disable-next-line no-undef
+  instana({
+    tracing: {
+      enabled: true,
+    },
+  });
+}
 import dotenv from 'dotenv';
 dotenv.config()
 
-import GraphQLServer from 'graphql-yoga';
+import { GraphQLServer } from 'graphql-yoga';
 import ApolloEngine from 'apollo-engine';
-import Prisma from 'prisma-binding';
+import { Prisma } from '../generated/prisma';
 
-import gqlTools from 'graphql-tools';
+import { makeExecutableSchema } from 'graphql-tools';
 
 import { typeDefs } from '../apiSchema';
 import resolvers from '../resolvers';
 
-// import { checkJwt } from './middleware/jwt';
+import { checkJwt } from './middleware/jwt';
 
-const db = new Prisma.Prisma({
-  // the Prisma DB schema
-  typeDefs: 'src/generated/prisma.graphql',
+const db = new Prisma({
   // the endpoint of the Prisma DB service (value is set in .env)
   endpoint: process.env.PRISMA_ENDPOINT,
   // taken from database/prisma.yml (value is set in .env)
   secret: process.env.PRISMA_MANAGEMENT_API_SECRET,
   // log all GraphQL queries & mutations
   debug: true,
-  resolverValidationOptions: {
-    requireResolversForResolveType: false,
-  },
 });
 
-const schema = gqlTools.makeExecutableSchema({
+const schema = makeExecutableSchema({
   typeDefs,
   resolvers,
 });
 
-const server = new GraphQLServer.GraphQLServer({
+const server = new GraphQLServer({
   schema,
   debug: true,
   context: req => ({

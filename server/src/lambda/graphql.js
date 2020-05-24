@@ -1,12 +1,11 @@
 import { ApolloServer } from 'apollo-server-lambda';
+import { formatError } from 'apollo-errors';
 
 import resolvers from '../resolvers';
-
 import { typeDefs } from '../apiSchema';
 
-import { formatError } from 'apollo-errors';
+import { Prisma } from '../generated/prisma';
 import { isLocalDev } from '../helpers/logging';
-import { Prisma } from "../generated/prisma";
 
 export const prisma = new Prisma({
   debug: isLocalDev,

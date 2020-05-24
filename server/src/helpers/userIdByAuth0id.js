@@ -17,5 +17,5 @@ export async function userIdByAuth0id(auth0id, fetchUserByAuth0id) {
     if (id) injectUserIdByAuth0id(id, auth0id);
   }
 
-  return user?.id;
+  return user && user.id;
 }
