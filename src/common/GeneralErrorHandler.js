@@ -8,12 +8,21 @@ import {
   Message,
 } from 'semantic-ui-react';
 
-import { useApolloNetworkStatus } from 'react-apollo-network-status';
-import { hasExpirationSet, isExpired } from '../authentication/checkExpiration';
+import { useApolloNetworkStatus } from '../setupGraphQLClient';
+import {
+  hasExpirationSet,
+  isExpired,
+} from '../authentication/checkExpiration';
 
-const ErrorMessage = ({children}) => <Message error style={{ flexShrink: 0 }}>{children}</Message>
+const ErrorMessage = ({ children }) => (
+  <Message error style={{ flexShrink: 0 }}>
+    {children}
+  </Message>
+);
 
-export const GeneralErrorHandler = ({ authRefresh }) => {
+export const GeneralErrorHandler = ({
+  authRefresh,
+}) => {
   const {
     // numPendingQueries,
     // numPendingMutations,
@@ -27,51 +36,54 @@ export const GeneralErrorHandler = ({ authRefresh }) => {
       ...queryError,
     };
 
-    const Relogin = () => (
-      hasExpirationSet() && isExpired() &&
-      <div>
-        <Button compact={true}
-          onClick={async () => {
-            await authRefresh();
-            window.history.go(0); // refresh page
-          }}>
-          Refresh
-        </Button> the security token.
-      </div>
-    );
+    const Relogin = () =>
+      hasExpirationSet() &&
+      isExpired() && (
+        <div>
+          <Button
+            compact={true}
+            onClick={async () => {
+              await authRefresh();
+              window.history.go(0); // refresh page
+            }}>
+            Refresh
+          </Button>{' '}
+          the security token.
+        </div>
+      );
 
     if (graphQLErrors) {
       const registrationFailed = graphQLErrors.find(
-        err =>
-          err.name === 'RegistrationFailed'
-        );
+        (err) => err.name === 'RegistrationFailed'
+      );
 
       if (registrationFailed) {
         return (
           <ErrorMessage>
             <p>
-              You will need to be authenticated to
-              see or create Boards or change any
-              items...
+              You will need to be authenticated to see
+              or create Boards or change any items...
             </p>
             <strong>
-              Registration failed. One reason may be that another user already exist
-              with the same email.
+              Registration failed. One reason may be
+              that another user already exist with the
+              same email.
             </strong>
             <p>
               Please try to
               <Link to="/login">
                 <Icon size="big" name="sign in" />
                 Log in
-              </Link> again or <br/>
+              </Link>{' '}
+              again or <br />
               <strong>contact the support</strong>
             </p>
           </ErrorMessage>
         );
       }
 
-      const notAuthErr = (graphQLErrors||[]).find(
-        err =>
+      const notAuthErr = (graphQLErrors || []).find(
+        (err) =>
           err.name === 'NotAuthorizedError' ||
           err.message === 'Not authorized'
       );
@@ -81,9 +93,8 @@ export const GeneralErrorHandler = ({ authRefresh }) => {
           <ErrorMessage>
             <Relogin />
             <strong>
-              You will need to be authenticated to
-              see or create Boards or change any
-              items.
+              You will need to be authenticated to see
+              or create Boards or change any items.
             </strong>
             <p>
               Please
@@ -97,19 +108,20 @@ export const GeneralErrorHandler = ({ authRefresh }) => {
       }
 
       const errorMsgs = graphQLErrors
-        .filter(error => error.message)
-        .map(error => error.message);
+        .filter((error) => error.message)
+        .map((error) => error.message);
 
       console.log(errorMsgs);
 
       return (
         <ErrorMessage>
-          {errorMsgs.filter(msg=>(msg.indexOf('jwt expired')>=0)).length>0 && <Relogin />}
+          {errorMsgs.filter(
+            (msg) => msg.indexOf('jwt expired') >= 0
+          ).length > 0 && <Relogin />}
           <strong>Error:</strong>{' '}
-          {errorMsgs
-            .map((message, idx) => (
-              <span key={idx}>{message}</span>
-            ))}
+          {errorMsgs.map((message, idx) => (
+            <span key={idx}>{message}</span>
+          ))}
         </ErrorMessage>
       );
     } else if (networkError) {
@@ -124,7 +136,10 @@ export const GeneralErrorHandler = ({ authRefresh }) => {
       );
     }
 
-    console.error('unknown general error, do not know how to handle:', {queryError, mutationError});
+    console.error(
+      'unknown general error, do not know how to handle:',
+      { queryError, mutationError }
+    );
   }
 
   // do not render anything, when there is no error above
