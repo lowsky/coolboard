@@ -38,7 +38,7 @@
     "subscriptions-transport-ws": "0.9.16"
   },
   "scripts": {
-    "postinstall": "cd server ; yarn",
+    "postinstall": "cd server ; yarn --frozen-lockfile --production",
     "start": "react-scripts start",
     "build": "echo '{\"GIT_SHA1\" : \"'$COMMIT_REF'\" }' > public/meta.json && react-scripts build && npm run build:server",
     "build:server": "cd server ; npm run build"
