@@ -11,7 +11,7 @@ import { Loader } from 'semantic-ui-react';
 
 import Home from './pages/home/Home';
 
-import { trackPage } from "./common/tracking";
+import { trackPage } from './common/tracking';
 
 // import { unregister } from './registerServiceWorker';
 
@@ -36,8 +36,8 @@ const Root = () => (
           path="/"
           exact
           render={() => {
-            trackPage('Home')
-            return <Home/>;
+            trackPage('Home');
+            return <Home />;
           }}
         />
         <Route component={App} />

@@ -37,17 +37,16 @@ export const setupGraphQLClient = () => {
 
   const middlewareAuthLink = new ApolloLink(
     (operation, forward) => {
-      const token = localStorage.getItem(
-//        'access_token'
-        'id_token'
-      );
+      const token = localStorage.getItem('id_token');
 
-    operation.setContext({
-      headers: {
-        authorization: token ? `Bearer ${token}` : '',
-      },
-    });
-    return forward(operation);
+      operation.setContext({
+        headers: {
+          authorization: token
+            ? `Bearer ${token}`
+            : '',
+        },
+      });
+      return forward(operation);
     }
   );
 
