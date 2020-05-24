@@ -41,7 +41,7 @@ const board = {
     await verifyUserIsAuthenticated(ctx);
 
     return prisma.deleteBoard({
-      where: { id },
+        id
     });
   },
 };
