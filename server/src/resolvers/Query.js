@@ -24,11 +24,11 @@ const Query = {
 
     const { prisma } = ctx;
     const user = await prisma.user({ auth0id });
-    if (user?.id) {
-      injectUserIdByAuth0id(user.id, auth0id);
-    }
     if (user) {
-      return user
+      if (user.id) {
+        injectUserIdByAuth0id(user.id, auth0id);
+      }
+      return user;
     }
 
     const u = await createNewUser(userToken, prisma.createUser);
@@ -36,7 +36,7 @@ const Query = {
     if (isLocalDev)
       console.log('created prisma user:', u);
 
-    if (u?.id) {
+    if (u && u.id) {
       injectUserIdByAuth0id(u.id, auth0id);
     }
     return u;
