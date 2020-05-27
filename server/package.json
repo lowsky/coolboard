@@ -28,8 +28,8 @@
     "utf-8-validate": "5.0.2"
   },
   "devDependencies": {
-    "@babel/node": "7.8.7",
-    "@babel/preset-env": "7.9.6",
+    "@babel/node": "7.10.1",
+    "@babel/preset-env": "7.10.1",
     "@instana/collector": "1.98.0",
     "apollo-engine": "1.1.2",
     "dotenv": "8.2.0",
