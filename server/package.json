@@ -30,7 +30,7 @@
   "devDependencies": {
     "@babel/node": "7.10.3",
     "@babel/preset-env": "7.10.3",
-    "@instana/collector": "1.101.0",
+    "@instana/collector": "1.101.1",
     "apollo-engine": "1.1.2",
     "dotenv": "8.2.0",
     "express-jwt": "5.3.3",
