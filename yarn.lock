@@ -9755,10 +9755,10 @@ raw-body@2.4.0:
     iconv-lite "0.4.24"
     unpipe "1.0.0"
 
-react-apollo-network-status@4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/react-apollo-network-status/-/react-apollo-network-status-4.0.0.tgz#8a75d3b2e984aa745fd2aac640cf4c6552973b5e"
-  integrity sha512-sUByBWqw9Fh1NmNIQbViAfIzgfDsBVHbFgA6bwj2XSiN6BVtia8EkSBIgqzK4Oj3A2x4dM3WlG7onc/ZlCGhZQ==
+react-apollo-network-status@4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/react-apollo-network-status/-/react-apollo-network-status-4.0.1.tgz#023efe25d59f8b56df555a52eeb9d252d7948df1"
+  integrity sha512-AOhKMGpm+Lj+LwqOsK5c7ed1IKxR6QGz/PUn0tnJEdpnRHmXPpkq4J2qpag7ugLPO6KBsGAQSfiR+iaJ1cXJiA==
   dependencies:
     "@apollo/react-common" "^3.0.0"
     apollo-link "^1.2.13"
