@@ -10,7 +10,6 @@ if(false) {
 import dotenv from 'dotenv';
 dotenv.config()
 
-import { GraphQLServer } from 'graphql-yoga';
 import ApolloEngine from 'apollo-engine';
 import { Prisma } from '../generated/prisma';
 
@@ -36,8 +35,12 @@ const schema = makeExecutableSchema({
   resolvers,
 });
 
-const server = new GraphQLServer({
+import { ApolloServer } from 'apollo-server-express';
+
+const server = new ApolloServer({
   schema,
+  introspection: ifLocaldev(),
+  playground: ifLocaldev(),
   debug: true,
   context: req => ({
     ...req,
@@ -65,8 +68,9 @@ const httpServer = server.createHttpServer({
   debug: true,
 });
 
-const port = 4000;
-if (process.env.ENGINE_API_KEY) {
+const port = process.env.PORT ?? 5000;
+
+if (false && process.env.ENGINE_API_KEY) {
   const engine = new ApolloEngine.ApolloEngine();
 
   engine.listen({ port, httpServer }, () =>
