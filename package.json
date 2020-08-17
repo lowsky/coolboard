@@ -35,7 +35,7 @@
     "semantic-ui-css": "2.4.1",
     "semantic-ui-react": "1.2.0",
     "styled-components": "5.1.1",
-    "subscriptions-transport-ws": "0.9.17"
+    "subscriptions-transport-ws": "0.9.18"
   },
   "scripts": {
     "postinstall": "cd server ; yarn --frozen-lockfile",
