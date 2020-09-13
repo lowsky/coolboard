@@ -5495,10 +5495,10 @@ follow-redirects@^1.0.0:
   dependencies:
     debug "^3.0.0"
 
-fomantic-ui-css@2.8.6:
-  version "2.8.6"
-  resolved "https://registry.yarnpkg.com/fomantic-ui-css/-/fomantic-ui-css-2.8.6.tgz#65bb7d4534e12557bfa82128c32578db3d05186d"
-  integrity sha512-JRQD1QDNX+qEYml+XoiCzoJZQpB3wD9ISVSWkFzKn0XgCxA3NMVCpoeWqSVFAGbQPatDfG3IP67Hy9x5wm+tiQ==
+fomantic-ui-css@2.8.7:
+  version "2.8.7"
+  resolved "https://registry.yarnpkg.com/fomantic-ui-css/-/fomantic-ui-css-2.8.7.tgz#296f491b03aebf47c554c6a138e3903d8cd471d2"
+  integrity sha512-lMriCcy+FMd69qsiTPyg2dVsLMA1Tl61EY/roTeMLmtuSk/yhgRpWb0aqG8p3NzifB9olhUGmZcYboaWQdBufw==
   dependencies:
     jquery "^3.4.0"
 
