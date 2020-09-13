@@ -44,6 +44,7 @@
     "build:server": "cd server ; npm run build"
   },
   "devDependencies": {
+    "babel-eslint": "10.1.0",
     "eslint": "7.8.1",
     "eslint-config-prettier": "6.11.0",
     "eslint-config-react-app": "5.2.1",
