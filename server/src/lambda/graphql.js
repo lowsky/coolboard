@@ -7,6 +7,8 @@ import { typeDefs } from '../apiSchema';
 import { Prisma } from '../generated/prisma';
 import { isLocalDev } from '../helpers/logging';
 
+const instana = require('@instana/aws-lambda');
+
 export const prisma = new Prisma({
   debug: isLocalDev,
 });
@@ -40,7 +42,7 @@ const lambda = new ApolloServer({
   }),
 });
 
-exports.handler = (event, context, callback) => {
+exports.handler = instana.wrap((event, context, callback) => {
   const callbackFilter = function (error, output) {
     if (error) {
       console.error(error);
@@ -67,4 +69,4 @@ exports.handler = (event, context, callback) => {
   isLocalDev && console.info('handler created');
 
   return handler(event, context, callbackFilter);
-};
+});
