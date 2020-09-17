@@ -19,6 +19,7 @@
     "@instana/aws-lambda": "1.106.2",
     "apollo-errors": "1.9.0",
     "apollo-server-lambda": "2.17.0",
+    "aws-sdk": "2.755.0",
     "bcryptjs": "2.4.3",
     "bufferutil": "4.0.1",
     "graphql": "15.3.0",
