@@ -4,7 +4,7 @@
   "description": "A GraphQL Trello server based on Prisma",
   "scripts": {
     "start:lambda": "node -r dotenv/config node_modules/.bin/netlify-lambda serve src/lambda",
-    "build": "netlify-lambda build src/lambda -c src/lambda/.webpack.config.js",
+    "build": "netlify-lambda build src/lambda -c src/.webpack.config.js",
     "start": "nodemon -e js,graphql -x babel-node -b @babel/preset-env src/express",
     "debug": "nodemon -e js,graphql -x babel-node -b @babel/preset-env --inspect src/express",
     "playground": "prisma playground",
