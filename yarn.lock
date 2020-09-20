@@ -2810,10 +2810,10 @@ auth0-js@^9.13.3:
     url-join "^4.0.1"
     winchan "^0.2.2"
 
-auth0-lock@11.26.3:
-  version "11.26.3"
-  resolved "https://registry.yarnpkg.com/auth0-lock/-/auth0-lock-11.26.3.tgz#9aee4b434298ce38f5811741349a2187f8be7fa7"
-  integrity sha512-jjl4X2/l3NPy4v+CTlircReUnlp8M2jP3j3ijFhYc4t/JrNpAQ3gFlvuzIigy0Uj6me0g7m8NBf8TUu0mFY2/w==
+auth0-lock@11.27.0:
+  version "11.27.0"
+  resolved "https://registry.yarnpkg.com/auth0-lock/-/auth0-lock-11.27.0.tgz#49eb3c624ed3a467e41e1f8c69e1008e05e49a9a"
+  integrity sha512-vUsjbGZ719hE/XPro5xCW0nDEBO71NtnHccgvJx/U3b34LKDttB1dkmC9NoHBPKMECoBEtHUFNKsTub7YSZBgQ==
   dependencies:
     auth0-js "^9.13.3"
     auth0-password-policies "^1.0.2"
@@ -2828,6 +2828,7 @@ auth0-lock@11.26.3:
     react-transition-group "^2.2.1"
     trim "0.0.1"
     url-join "^1.1.0"
+    validator "^13.1.1"
 
 auth0-password-policies@^1.0.2:
   version "1.0.2"
@@ -11837,6 +11838,11 @@ validate-npm-package-license@^3.0.1:
   dependencies:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
+
+validator@^13.1.1:
+  version "13.1.17"
+  resolved "https://registry.yarnpkg.com/validator/-/validator-13.1.17.tgz#ad677736950adddd3c37209484a6b2e0966579ad"
+  integrity sha512-zL5QBoemJ3jYFb2/j38y7ljhwYGXVLUp8H6W1nVxadnAOvUOytec+L7BHh1oBQ82/TzWXHd+GSaxUWp4lROkLg==
 
 value-equal@^1.0.1:
   version "1.0.1"
