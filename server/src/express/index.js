@@ -21,7 +21,8 @@ import resolvers from '../resolvers';
 
 import { checkJwt } from './middleware/jwt';
 
-const db = new Prisma({
+console.log('PRISMA_ENDPOINT', process.env.PRISMA_ENDPOINT);
+const prisma = new Prisma({
   // the endpoint of the Prisma DB service (value is set in .env)
   endpoint: process.env.PRISMA_ENDPOINT,
   // taken from database/prisma.yml (value is set in .env)
@@ -40,14 +41,13 @@ const server = new GraphQLServer({
   debug: true,
   context: req => ({
     ...req,
-    db,
+    prisma
   }),
 });
 
 server.express.post(
   server.options.endpoint,
   (req, res, next) => {console.info('snip 8< ------------------------------------------------'); next()},
-  checkJwt,
   (err, req, res, next) => {
     if (err) {
       console.error('JWT token verification check/auth failed!', err);
