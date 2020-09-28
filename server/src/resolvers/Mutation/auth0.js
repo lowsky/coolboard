@@ -59,7 +59,7 @@ const auth0 = {
     }
 
     /*
-    let userByEmail = await ctx.db.query.user(
+    let userByEmail = await ctx.prisma.query.user(
       { where: { email: userToken.email } },
       info
     );

@@ -8,7 +8,7 @@ const auth = {
       args.password,
       10
     );
-    const user = await ctx.db.mutation.createUser({
+    const user = await ctx.prisma.mutation.createUser({
       data: { ...args, password },
     });
 
@@ -24,7 +24,7 @@ const auth = {
 
   // @deprecate
   async login(parent, { email, password }, ctx, info) {
-    const users = await ctx.db.query.users({
+    const users = await ctx.prisma.query.users({
       where: { email },
     });
     if (!users || users.length !== 1) {
