@@ -50,6 +50,6 @@
     ],
     "theme_color": "#27ae60",
     "background_color": "#27ae60",
-    "start_url": "https://coolboard.fun/boards",
+    "start_url": "/boards",
     "display": "standalone"
 }
