@@ -68,7 +68,7 @@ export const App = () => (
               trackPage('boards');
               return (
                 <FullPageWithApollo client={client}>
-                  <ProfileHeader />
+                  <ProfileHeader isBoardsPage />
                   <GeneralErrorHandler
                     authRefresh={authRefresh}
                   />
