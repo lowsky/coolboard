@@ -1,6 +1,11 @@
 import React from 'react';
 
-import { Container, Icon, Image, Segment, } from 'semantic-ui-react';
+import {
+  Container,
+  Icon,
+  Image,
+  Segment,
+} from 'semantic-ui-react';
 
 import { Link } from 'react-router-dom';
 
@@ -27,32 +32,57 @@ export default function Home() {
           Welcome to CoolBoard{' '}
         </h1>
         <Segment basic>
-          <h2>How to get started?</h2>
+          <h2>
+            Create a board to share your tasks in a
+            kanban style
+          </h2>
           <p>
-            Just
+            You need to{' '}
             <Link to="/login">
-              <Icon size="big" name="sign in" />
-              <span>sign in here</span>
+              <Icon name="sign in" />
+              <span>sign in</span>
             </Link>
-            and create
+            first via google, or email.
+          </p>
+          <p>
+            Then start to create
             <Link to="/boards">
+              boards
               <Icon size="big" name="list" />
-              your Boards
             </Link>
-            and share it with others <s>in
-            real time!</s>
-            <br/>
-            <strong>Automatic updates are disabled on current serverless environment, sry!</strong>
+          </p>
+          <p>
+            If you want to share the board, just send
+            the <Icon name="linkify" />
+            URL of the board with others.
+            <br />
+            Everybody who is logged-in can access the board.
           </p>
         </Segment>
+        <Segment>
+          More
+          <Link to="/about">
+            {' '}
+            <Icon name="linkify" />
+            details about
+          </Link>{' '}
+          this app
+        </Segment>
+
+        <Segment basic>
+          <Link to="/boards">
+            <Image bordered src="/screenshot.png" />
+          </Link>
+        </Segment>
+
         <Segment basic>
           <p>
-            <Icon name="video camera" size="large" />
-            This is the live Demo of the App built in
-            this course:
+            This is the demo of the app which we built
+            in this course:
           </p>
-          <h3 style={{ textAlign: 'center' }}>
+          <h3>
             <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
+              <Icon name="video camera" size="large" />
               <b>
                 Hands-on Application building with
                 GraphQL and React
@@ -71,21 +101,6 @@ export default function Home() {
               />
             </a>
           </p>
-        </Segment>
-        <Segment>
-          <p>
-            More
-            <Link to="/about">
-              <Icon name="linkify"/> details about
-            </Link>
-            this app
-          </p>
-        </Segment>
-
-        <Segment basic>
-          <h2>Screenshot</h2>
-
-          <Image bordered src="/screenshot.png" />
         </Segment>
       </Container>
     </FullVerticalContainer>

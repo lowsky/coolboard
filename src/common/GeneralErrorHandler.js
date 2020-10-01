@@ -37,6 +37,7 @@ export const GeneralErrorHandler = ({
     };
 
     const Relogin = () =>
+      !!authRefresh &&
       hasExpirationSet() &&
       isExpired() && (
         <div>
