@@ -148,10 +148,6 @@ export const About = () => (
       </Segment>
       <Segment basic>
         <h2>Credits / Copyright</h2>
-        <p>
-          The sources are shared by Packt Publishing on
-          github.
-        </p>
         <p>The logo and favicon was based on</p>
         <p>
           “Freezer Cold” icon by Creaticca Creative
