@@ -1,7 +1,8 @@
 import React from 'react';
 
 import {
-  Container, Header,
+  Container,
+  Header,
   Icon,
   Segment,
 } from 'semantic-ui-react';
@@ -13,46 +14,47 @@ import { ProfileHeader } from '../../common/ProfileHeader';
 
 import packLogo from '../../assets/packt-logo.svg';
 import packLogoSmallPng from './packt-page-v141.png';
-import { GeneralErrorHandler } from "../../common/GeneralErrorHandler";
+import { GeneralErrorHandler } from '../../common/GeneralErrorHandler';
 
 export const About = () => (
   <FullVerticalContainer data-cy="about-full-container">
     <ProfileHeader />
     <GeneralErrorHandler />
-    <Container text
+    <Container
+      text
       style={{
         textAlign: 'left',
       }}>
       <Segment>
-      <Header as={"h2"}>Welcome to CoolBoard</Header>
-      <p>
-        This is the Live Demo of the full application
-        which we build in this
-        <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
-          <Icon name="video camera" size="large" />
-          Video Course:
-        </a>
-      </p>
-      <p>
-        <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
-          <img
-            src={packLogoSmallPng}
-            height={141}
-            alt="Packt Publishing logo"
-          />
-        </a>
-      </p>
-      <p>
-        <b>Published</b> on{' '}
-        <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
-          <img
-            src={packLogo}
-            height={24}
-            style={{ verticalAlign: 'bottom' }}
-            alt="Packt Publishing logo"
-          />
-        </a>
-      </p>
+        <Header as={'h2'}>Welcome to CoolBoard</Header>
+        <p>
+          This is the Live Demo of the full application
+          which we build in this
+          <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
+            <Icon name="video camera" size="large" />
+            Video Course:
+          </a>
+        </p>
+        <p>
+          <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
+            <img
+              src={packLogoSmallPng}
+              height={141}
+              alt="Packt Publishing logo"
+            />
+          </a>
+        </p>
+        <p>
+          <b>Published</b> on{' '}
+          <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
+            <img
+              src={packLogo}
+              height={24}
+              style={{ verticalAlign: 'bottom' }}
+              alt="Packt Publishing logo"
+            />
+          </a>
+        </p>
       </Segment>
       <Segment basic>
         <h2>What is it?</h2>
@@ -84,16 +86,38 @@ export const About = () => (
       </Segment>
       <Segment basic>
         <h2>What technology is used?</h2>
-        <p>GraphQL database on prisma cloud</p>
-        <p>GraphQL nodejs server as on zeit.co</p>
         <p>
-          React frontend with Apollo served by
-          netlify.com
+          GraphQL database powered by{' '}
+          <a href="https://www.prisma.io/">Prisma</a>
+        </p>
+        <p>
+          GraphQL trello server running as{' '}
+          <a href="https://www.netlify.com/products/functions/">
+            lambda functions on Netlify
+          </a>
+        </p>
+        <p>
+          <a href="https://www.react.org/">React</a>
+          frontend with{' '}
+          <a href="https://www.apollographql.com/apollo-client">
+            Apollo
+          </a>{' '}
+          served by
+          <a href="https://www.netlify.com/">
+            Netlify
+          </a>
         </p>
       </Segment>
-      <Segment basic padded={true} raised={true} secondary={false}>
+      <Segment
+        basic
+        padded={true}
+        raised={true}
+        secondary={false}>
         <h2>How to sign-in?</h2>
-        <Segment basic raised={true} secondary={true}
+        <Segment
+          basic
+          raised={true}
+          secondary={true}
           style={{
             border: 'solid 1px grey',
             background: '#ddd',
