@@ -44,7 +44,7 @@
     "build:server": "cd server ; npm run build"
   },
   "devDependencies": {
-    "http-proxy-middleware": "1.0.5"
+    "http-proxy-middleware": "1.0.6"
   },
   "browserslist": [
     ">0.2%",
