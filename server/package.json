@@ -16,7 +16,7 @@
     "node": ">=12.1"
   },
   "dependencies": {
-    "@instana/aws-lambda": "1.106.4",
+    "@instana/aws-lambda": "1.106.5",
     "apollo-errors": "1.9.0",
     "apollo-server-lambda": "2.18.2",
     "aws-sdk": "2.777.0",
