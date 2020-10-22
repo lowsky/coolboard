@@ -14,7 +14,7 @@ workflows:
 jobs:
   check:
     docker:
-      - image:  cypress/base:12.18.3
+      - image:  cypress/base:12.18.4
     parallelism: 1
     steps:
       - checkout
