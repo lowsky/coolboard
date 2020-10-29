@@ -27,3 +27,5 @@ server/lambda
 /.pnp/
 /public/meta.json
 /smoketest/.env
+
+.vercel
