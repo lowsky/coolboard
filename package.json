@@ -41,6 +41,7 @@
     "postinstall": "cd server ; yarn --frozen-lockfile",
     "start": "react-scripts start",
     "build": "echo '{\"GIT_SHA1\" : \"'$COMMIT_REF'\" }' > public/meta.json && react-scripts build && npm run build:server",
+    "vercel-build": "echo '{\"GIT_SHA1\" : \"'$COMMIT_REF'\" }' > public/meta.json && react-scripts build",
     "build:server": "cd server ; npm run build"
   },
   "devDependencies": {
