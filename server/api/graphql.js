@@ -7,13 +7,13 @@ import { typeDefs } from '../src/apiSchema';
 import { Prisma } from '../src/generated/prisma';
 import { isLocalDev } from '../src/helpers/logging';
 
-const instana = require('@instana/aws-lambda');
+// const instana = require('@instana/aws-lambda');
 
 export const prisma = new Prisma({
   debug: isLocalDev,
 });
 
-const lambda = new ApolloServer({
+const server = new ApolloServer({
   typeDefs,
   resolvers,
   formatError,
@@ -22,6 +22,7 @@ const lambda = new ApolloServer({
   playground: isLocalDev,
   introspection: isLocalDev,
 
+  /*
   engine: {
     // The Graph Manager API key
     apiKey: process.env.ENGINE_API_KEY,
@@ -30,18 +31,23 @@ const lambda = new ApolloServer({
     // https://www.apollographql.com/docs/platform/schema-registry/#associating-metrics-with-a-variant
     schemaTag: process.env.ENGINE_SCHEMA_TAG || 'undefined',
   },
+   */
 
   /*
   resolverValidationOptions: {
     requireResolversForResolveType: false,
   },
   */
-  context: req => ({
-    ...req,
+  context: ({req}) => ({
+    event: {
+      headers: req.headers
+    },
     prisma,
   }),
 });
 
+
+/*
 const handler = instana.wrap((event, context, callback) => {
   const callbackFilter = function (error, output) {
     if (error) {
@@ -69,6 +75,11 @@ const handler = instana.wrap((event, context, callback) => {
   isLocalDev && console.info('handler created');
 
   return handler(event, context, callbackFilter);
+});
+*/
+
+const handler = server.createHandler({
+  path: '/api/graphql',
 });
 
 export default async (req, res) => {
