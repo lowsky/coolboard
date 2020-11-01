@@ -15,14 +15,14 @@ BRANCH=$VERCEL_GITHUB_COMMIT_REF
 # obsolete - CIRCLE_PR_NUMBER=565
 
 SUT_URL=https://hands-on-application-building-with-graph-ql-and-reac-790uxmthz.vercel.app/
-SUT_URL=$VERCEL_URL
+SUT_URL=https://$VERCEL_URL
 echo testing "$SUT_URL"
 
 CIRCLE="https://circleci.com/api/v1.1/project"
 PROJ="$CIRCLE/github/lowsky/Hands-on-Application-Building-with-GraphQL-and-React/tree/${BRANCH}"
 
 #URL="$PROJ?build_parameters%5BCIRCLE_JOB%5D=build&build_parameters%5BDEPLOYED_SHA1%5D=$DEPLOYED_SHA1&build_parameters%5BCIRCLE_PR_NUMBER%5D=$CIRCLE_PR_NUMBER&build_parameters%5BTEST_URL%5D=$SUT_URL"
-URL="$PROJ?build_parameters%5BCIRCLE_JOB%5D=build&build_parameters%5BDEPLOYED_SHA1%5D=$DEPLOYED_SHA1&build_parameters%5BTEST_URL%5D=$SUT_URL"
+URL="$PROJ?build_parameters%5BCIRCLE_JOB%5D=build&build_parameters%5BDEPLOYED_SHA1%5D=$DEPLOYED_SHA1&build_parameters%5BCYPRESS_baseUrl%5D=$SUT_URL"
 
 echo triggering url : $URL
 
