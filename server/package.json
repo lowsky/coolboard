@@ -23,7 +23,6 @@
     "aws-sdk": "2.781.0",
     "bcryptjs": "2.4.3",
     "bufferutil": "4.0.1",
-    "graphql": "15.4.0",
     "jsonwebtoken": "8.5.1",
     "jwks-rsa": "1.11.0",
     "netlify-lambda": "2.0.1",
