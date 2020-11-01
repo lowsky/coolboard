@@ -41,8 +41,9 @@
   "scripts": {
     "postinstall": "cd server ; yarn --frozen-lockfile",
     "start": "react-scripts start",
+    "trigger-e2e-smoke": "sh trigger-circleci-smoke.sh",
     "build": "npm-run-all -p build:client build:server ",
-    "vercel-build": "yarn run build:client",
+    "vercel-build": "yarn run build:client ; yarn trigger-e2e-smoke",
     "build:client": "echo '{\"GIT_SHA1\" : \"'$COMMIT_REF'\" }' > public/meta.json && react-scripts build",
     "build:server": "cd server ; yarn run build"
   },
