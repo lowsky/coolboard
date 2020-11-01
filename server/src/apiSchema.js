@@ -730,9 +730,11 @@ enum MutationType {
   DELETED
 }
 
-interface Node {
-  id: ID!
-}
+###
+#interface Node {
+#  id: ID!
+#}
+###
 
 type PageInfo {
   hasNextPage: Boolean!

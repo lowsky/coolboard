@@ -4,10 +4,10 @@ module.exports = {
     node: true,
   },
   parser: 'babel-eslint',
-  plugins: ['prettier'],
+  // plugins: ['prettier'],
   extends: [
     'eslint:recommended',
-    'plugin:prettier/recommended',
+    // 'plugin:prettier/recommended',
   ],
   rules: {
     // already defined with prettier:

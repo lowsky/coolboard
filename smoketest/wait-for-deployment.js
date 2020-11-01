@@ -20,8 +20,8 @@ console.log(
   EXPECTED_GIT_SHA1
 );
 
-let intTimeMs = 5000; // retry periode
-let ntimes = 2; // number retries
+let intTimeMs = 5000; // retry period
+let noRetries = 3; // number retries
 
 var options = {
   uri: url,
@@ -59,9 +59,9 @@ function checkSiteVersion() {
 const retryCheck = () => {
   checkSiteVersion();
 
-  ntimes--;
+  noRetries--;
 
-  if (!ntimes || validGitCommitReceived) {
+  if (noRetries<0 || validGitCommitReceived) {
     clearInterval(interval);
     if (validGitCommitReceived) {
       process.exit(0);
@@ -71,7 +71,7 @@ const retryCheck = () => {
   }
   console.log(
     ' Will retry check another %d times',
-    ntimes
+    noRetries
   );
 };
 

@@ -10,29 +10,18 @@ export const {
 } = networkStatusNotifier;
 
 export const setupGraphQLClient = () => {
-  // eslint-disable-next-line no-undef
-  const node_env = process.env.NODE_ENV;
-  const SRV_HOST_PORT_DOMAIN =
-    // eslint-disable-next-line no-undef
-    process.env.REACT_APP_SERVER_HOST;
+  const GRAPHQL_URL =
+    process.env.REACT_APP_GRAPHQL_URL ??
+    '/api/graphql';
 
-  const IS_LOCALHOST =
-    !SRV_HOST_PORT_DOMAIN ||
-    SRV_HOST_PORT_DOMAIN.indexOf('localhost') >= 0;
+  // const IS_LOCALHOST = !SRV_HOST_PORT_DOMAIN || SRV_HOST_PORT_DOMAIN.indexOf('localhost') >= 0;
+  // const node_env = process.env.NODE_ENV;
+  // const IS_PROD = node_env === 'production';
 
-  const IS_PROD = node_env === 'production';
-
-  const secureConnection = IS_PROD || !IS_LOCALHOST;
-
-  const uri =
-    (secureConnection ? 'https://' : 'http://') +
-    SRV_HOST_PORT_DOMAIN;
+  const uri = GRAPHQL_URL
   // Create a Http link
   let httpLink = createHttpLink({
-    uri:
-      IS_LOCALHOST || IS_PROD
-        ? '/.netlify/functions/graphql'
-        : uri,
+    uri,
   });
 
   const middlewareAuthLink = new ApolloLink(
