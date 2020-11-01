@@ -69,15 +69,16 @@ jobs:
           name: verify fully deployed web site via git-commit
           command: |
             cd smoketest
+            NETLIFY_URL=https://deploy-preview-${CIRCLE_PR_NUMBER}--coolboard.netlify.app
+            export CYPRESS_baseUrl=${CYPRESS_baseUrl:-$NETLIFY_URL}
+            echo SUT: $CYPRESS_baseUrl
+            echo
             echo CIRCLE_SHA1 $CIRCLE_SHA1
             echo DEPLOYED_SHA1 $DEPLOYED_SHA1
             echo
             echo using GIT_SHA1=${DEPLOYED_SHA1:-$CIRCLE_SHA1}
             echo running GIT_SHA1=${DEPLOYED_SHA1:-$CIRCLE_SHA1} npm run wait:valid-version
             echo
-            NETLIFY_URL=https://deploy-preview-${CIRCLE_PR_NUMBER}--coolboard.netlify.app
-            export CYPRESS_baseUrl=${CYPRESS_baseUrl:-$NETLIFY_URL}
-            echo SUT: $CYPRESS_baseUrl
             GIT_SHA1=${DEPLOYED_SHA1:-$CIRCLE_SHA1} npm run wait:valid-version
       - run:
           name: run cypress
