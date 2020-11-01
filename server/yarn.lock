@@ -2028,7 +2028,7 @@ apollo-server-core@^1.3.6, apollo-server-core@^1.4.0:
     apollo-tracing "^0.1.0"
     graphql-extensions "^0.0.x"
 
-apollo-server-core@^2.18.2:
+apollo-server-core@^2.19.0:
   version "2.19.0"
   resolved "https://registry.yarnpkg.com/apollo-server-core/-/apollo-server-core-2.19.0.tgz#ff14e788f228c2d6739478a68cf93f46a16e5bfa"
   integrity sha512-2aMKUVPyNbomJQaG2tkpfqvp1Tfgxgkdr7nX5zHudYNSzsPrHw+CcYlCbIVFFI/mTZsjoK9czNq1qerFRxZbJw==
@@ -2089,27 +2089,27 @@ apollo-server-lambda@1.3.6:
     apollo-server-core "^1.3.6"
     apollo-server-module-graphiql "^1.3.4"
 
-apollo-server-lambda@2.18.2:
-  version "2.18.2"
-  resolved "https://registry.yarnpkg.com/apollo-server-lambda/-/apollo-server-lambda-2.18.2.tgz#3d89afd49ac617b44b141949d9acae6d77d671e6"
-  integrity sha512-w1PxAAyrNLXOTeKl+Kp4fp37CGuAwn/ubSsWv+dz9fLgs/AXnPhb9B9mWCwLW5LOBOTWH7zYDqtSNqs/J7+r1Q==
+apollo-server-lambda@2.19.0:
+  version "2.19.0"
+  resolved "https://registry.yarnpkg.com/apollo-server-lambda/-/apollo-server-lambda-2.19.0.tgz#63d114bd095ca6d2958e1d05f0c0ed9d23cfd61b"
+  integrity sha512-44W6QaHMnVsKKXtC0o04JR0U65hoUC7Pfj3ik1PThsGejHVByyaQi7Qfbas3vuMAxU0UGkF5TKycc7K6KFxGUw==
   dependencies:
     "@apollographql/graphql-playground-html" "1.6.26"
     "@types/aws-lambda" "^8.10.31"
-    apollo-server-core "^2.18.2"
+    apollo-server-core "^2.19.0"
     apollo-server-env "^2.4.5"
-    apollo-server-types "^0.6.0"
+    apollo-server-types "^0.6.1"
     graphql-tools "^4.0.0"
 
-apollo-server-micro@2.18.2:
-  version "2.18.2"
-  resolved "https://registry.yarnpkg.com/apollo-server-micro/-/apollo-server-micro-2.18.2.tgz#29fe1a9c1808581cc4ce29c2c45f282eb129cef5"
-  integrity sha512-QmWXrWdD0BCC4NZidskgdG81XUGuogf+SIl15VkcaZAO5lvmiFqLL372Q0qakvigpOXYrU77eW4iHk7FHurEZg==
+apollo-server-micro@2.19.0:
+  version "2.19.0"
+  resolved "https://registry.yarnpkg.com/apollo-server-micro/-/apollo-server-micro-2.19.0.tgz#911a397d234340c7ab4c9abb242c74503897849e"
+  integrity sha512-EvGzcdb9DM71NmR4plF8Y2l18uE30uaElb1LPCV57/7ZN0+IvX8xNPxXP9geoyngniPiZVP1kqiRKdq1OPAu4g==
   dependencies:
     "@apollographql/graphql-playground-html" "1.6.26"
     accept "^3.0.2"
-    apollo-server-core "^2.18.2"
-    apollo-server-types "^0.6.0"
+    apollo-server-core "^2.19.0"
+    apollo-server-types "^0.6.1"
     micro "^9.3.2"
 
 apollo-server-module-graphiql@^1.3.4, apollo-server-module-graphiql@^1.4.0:
@@ -2124,7 +2124,7 @@ apollo-server-plugin-base@^0.10.2:
   dependencies:
     apollo-server-types "^0.6.1"
 
-apollo-server-types@^0.6.0, apollo-server-types@^0.6.1:
+apollo-server-types@^0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/apollo-server-types/-/apollo-server-types-0.6.1.tgz#61486980b44cacee2cb4939f0b369a0eb661a098"
   integrity sha512-IEQ37aYvMLiTUzsySVLOSuvvhxuyYdhI05f3cnH6u2aN1HgGp7vX6bg+U3Ue8wbHfdcifcGIk5UEU+Q+QO6InA==
