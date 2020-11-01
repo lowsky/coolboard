@@ -23,6 +23,7 @@ before(() => {
     baseUrl.endsWith('localhost:3000') ||
       baseUrl.endsWith('coolboard.netlify.com') ||
       baseUrl.endsWith('coolboard.netlify.app') ||
+      baseUrl.startsWith('https://hands-on-application-building-with-graph-ql-and-reac') ||
       baseUrl.endsWith('www.coolboard.fun'),
     `Check: Domain should be one of: ' +
      localhost:3000 | coolboard.fun | coolboard.netlify.com , but not:
