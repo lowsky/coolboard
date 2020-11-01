@@ -41,13 +41,15 @@
   "scripts": {
     "postinstall": "cd server ; yarn --frozen-lockfile",
     "start": "react-scripts start",
-    "build": "echo '{\"GIT_SHA1\" : \"'$COMMIT_REF'\" }' > public/meta.json && react-scripts build && npm run build:server",
-    "vercel-build": "echo '{\"GIT_SHA1\" : \"'$COMMIT_REF'\" }' > public/meta.json && react-scripts build",
-    "build:server": "cd server ; npm run build"
+    "build": "npm-run-all -p build:client build:server ",
+    "vercel-build": "yarn run build:client",
+    "build:client": "echo '{\"GIT_SHA1\" : \"'$COMMIT_REF'\" }' > public/meta.json && react-scripts build",
+    "build:server": "cd server ; yarn run build"
   },
   "devDependencies": {
     "@types/react": "16.9.55",
-    "http-proxy-middleware": "1.0.6"
+    "http-proxy-middleware": "1.0.6",
+    "npm-run-all": "4.1.5"
   },
   "browserslist": [
     ">0.2%",
