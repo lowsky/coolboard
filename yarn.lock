@@ -9456,10 +9456,10 @@ raw-body@2.4.0:
     iconv-lite "0.4.24"
     unpipe "1.0.0"
 
-react-apollo-network-status@5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/react-apollo-network-status/-/react-apollo-network-status-5.0.0.tgz#0049c134222848089a780f8df87f3e626512136a"
-  integrity sha512-lroW7YpD/oRj3wSqooNssiO5FmTvcOknunlDyhDuaKZ8JKUHyHxxvT2mXHw7LIA0l0wwgOZkQFS7XxLyY4o3ug==
+react-apollo-network-status@5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/react-apollo-network-status/-/react-apollo-network-status-5.0.1.tgz#25a7ccf956e9c0dd2b7b7bab9efe2681ba0b841c"
+  integrity sha512-kA4WqEHUegc3IjvC9ZmA/hABRFpN9sjJ2wDehbRoyMyV2mVMoDcLq9BH/OQ6hpoeYZhTpl9F8np6fcWYERtn4g==
 
 react-apollo@3.1.5:
   version "3.1.5"
