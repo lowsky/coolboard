@@ -15,7 +15,7 @@ BRANCH=$VERCEL_GITHUB_COMMIT_REF
 # obsolete - CIRCLE_PR_NUMBER=565
 
 SUT_URL=https://hands-on-application-building-with-graph-ql-and-reac-790uxmthz.vercel.app/
-SUT_URL=$VERCEL_GITHUB_DEPLOYMENT
+SUT_URL=$VERCEL_URL
 echo testing "$SUT_URL"
 
 CIRCLE="https://circleci.com/api/v1.1/project"
