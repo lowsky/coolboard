@@ -11,11 +11,10 @@
   },
   "scripts": {
     "cy": "cypress",
-    "test": "npm run cy run",
-    "wait:valid-version": "npm install request request-promise ; echo install done with exit code $? ; node wait-for-deployment.js"
+    "test": "yarn run cy run",
+    "wait:valid-version": "yarn --frozen-lockfile ; echo install done with exit code $? ; node wait-for-deployment.js"
   },
   "devDependencies": {
-    "request": "2.88.2",
-    "request-promise": "4.2.6"
+    "got": "11.8.0"
   }
 }
