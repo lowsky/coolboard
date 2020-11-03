@@ -1,5 +1,4 @@
-// eslint-disable-next-line no-unused-vars,no-undef
-var rp = require('request-promise');
+const got = require('got');
 
 const url =
   (process.env.CYPRESS_baseUrl ||
@@ -23,35 +22,32 @@ console.log(
 let intTimeMs = 5000; // retry period
 let noRetries = 3; // number retries
 
-var options = {
-  uri: url,
-  headers: { 'User-Agent': 'Request-Promise' },
-  json: true, // Automatically parses the JSON string in the response
-};
-
+let interval;
 let validGitCommitReceived;
 
 function checkSiteVersion() {
-  return rp(options)
-    .then(response => {
+  got(url)
+    .then((responseAll) => {
+      const response = JSON.parse(responseAll.body);
+
       validGitCommitReceived =
         EXPECTED_GIT_SHA1 === response.GIT_SHA1;
 
       if (validGitCommitReceived) {
         console.log(
-          `Deployed site is based on the expected commit: ${response.GIT_SHA1} ✓`
+          `✓ Deployed site is based on the expected commit. ✓`
         );
-        clearInterval(interval);
+        if (interval) clearInterval(interval);
         process.exit(0);
       }
       console.warn(
-        `Deployed site is based on this commit: ${response.GIT_SHA1} - expected was ${EXPECTED_GIT_SHA1}`
+        `⚠️ Deployed site is based on this commit: ${response.GIT_SHA1} - expected: ${EXPECTED_GIT_SHA1}`
       );
     })
-    .catch(err => {
-      console.warn(
+    .catch((err) => {
+      console.info(
         `Error fetching from ${url} details:`,
-        err.error
+        err
       );
     });
 }
@@ -61,7 +57,7 @@ const retryCheck = () => {
 
   noRetries--;
 
-  if (noRetries<0 || validGitCommitReceived) {
+  if (noRetries < 0 || validGitCommitReceived) {
     clearInterval(interval);
     if (validGitCommitReceived) {
       process.exit(0);
@@ -77,4 +73,4 @@ const retryCheck = () => {
 
 checkSiteVersion();
 
-const interval = setInterval(retryCheck, intTimeMs);
+interval = setInterval(retryCheck, intTimeMs);
