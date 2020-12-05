@@ -1774,13 +1774,13 @@
     node-abi "^2.19.1"
     node-gyp "^6.1.0"
 
-"@instana/aws-lambda@1.107.0":
-  version "1.107.0"
-  resolved "https://registry.yarnpkg.com/@instana/aws-lambda/-/aws-lambda-1.107.0.tgz#6ac4f07c40371e1d0a59e16f43a168f0df80df89"
-  integrity sha512-Pmp5AIq//U5LgsiRiI5Uc/4Z0km1LTQc+Tfc26NIylOJWruZsqIsPWOXmU454Ym2dAPHqKZGLNdwbRvR973voQ==
+"@instana/aws-lambda@1.109.0":
+  version "1.109.0"
+  resolved "https://registry.yarnpkg.com/@instana/aws-lambda/-/aws-lambda-1.109.0.tgz#c77ab57441f87a3862d5073090e9c949212b1654"
+  integrity sha512-sF5CgZ4mFlgjU2U4UhRanpZmwZ5AT4Qdj+Bxwn5Fxr4DSBhDfHbMxp0CkZEGMII7BKxPjJAFLHwUB/Gv84FjBg==
   dependencies:
-    "@instana/core" "^1.107.0"
-    "@instana/serverless" "^1.107.0"
+    "@instana/core" "^1.109.0"
+    "@instana/serverless" "^1.109.0"
 
 "@instana/collector@1.109.0":
   version "1.109.0"
@@ -1797,10 +1797,10 @@
     "@instana/autoprofile" "^1.109.0"
     netlinkwrapper "^1.2.0"
 
-"@instana/core@^1.107.0":
-  version "1.107.0"
-  resolved "https://registry.yarnpkg.com/@instana/core/-/core-1.107.0.tgz#d1668377dba6121439295600a83d3ecd9f7605c7"
-  integrity sha512-bWzEZ0QCZbaPk+5zCk6YB41EPBFo4fYy5ppZQtYF1Wtv0Xed1S6EwCGuILT2uI3Cw7jrvSadkdqP4kdFOajVgQ==
+"@instana/core@^1.108.0":
+  version "1.108.0"
+  resolved "https://registry.yarnpkg.com/@instana/core/-/core-1.108.0.tgz#6f6202395fe45ff6f785b8ebc273e8b4e6508b81"
+  integrity sha512-50364z+f7TAIb7TqglWnEXq97rAp2vtNm8ZPJCxsjzFw+wuF3s5ovOK+YarZWRMSwYZ2Eaf4qk4MI9bp5uZkNg==
   dependencies:
     async-hook-jl "^1.7.6"
     cls-bluebird "^2.1.0"
@@ -1827,12 +1827,12 @@
     semver "5.5.1"
     shimmer "1.2.0"
 
-"@instana/serverless@^1.107.0":
-  version "1.107.0"
-  resolved "https://registry.yarnpkg.com/@instana/serverless/-/serverless-1.107.0.tgz#45356a09d9d9e1002358cf73963f226538a99aaa"
-  integrity sha512-zl1NKEqgg3qd1ubwmlk4FCFVlaM8RROwjKDqRLWNLaaEeXDC2WWduAhwen6Nt0lWONYNnw0X9Ai1GDzft4vVgw==
+"@instana/serverless@^1.109.0":
+  version "1.109.0"
+  resolved "https://registry.yarnpkg.com/@instana/serverless/-/serverless-1.109.0.tgz#3237911d907426d2ee8ce81d4f1e1b76d8b7165d"
+  integrity sha512-ohrN8nmwc7MHma5TlMImv7O6AL/zoYD+ZzOCccVn5WnIDJtj+eM9pqgzb+4DvWwrp+ohpQZNXSuXpDbs3LCTtQ==
   dependencies:
-    "@instana/core" "^1.107.0"
+    "@instana/core" "^1.109.0"
     https-proxy-agent "^5.0.0"
     semver "^5.6.0"
 
