@@ -6,6 +6,7 @@ import {
   Segment,
   Loader,
   Button,
+  Container,
 } from 'semantic-ui-react';
 
 import { Link } from 'react-router-dom';
@@ -79,7 +80,7 @@ export const Boards = () => {
     return (
       <FullVerticalContainer>
         <h1>List of Boards </h1>
-        <Loader />;
+        <Loader />
       </FullVerticalContainer>
     );
   }
@@ -100,14 +101,24 @@ export const Boards = () => {
         onCompleted={refetch}
         mutation={deleteBoardMutation}>
         {deleteBoard => (
-          <BoardList
-            boards={data.me.boards}
-            deleteBoard={id =>
-              deleteBoard({
-                variables: { id },
-              })
-            }
+          <Container fluid data-cy='boards-list'>
+            {data?.me?.boards?.length > 0 ? (
+              <BoardList
+                boards={data.me.boards}
+                deleteBoard={id => {
+                  return deleteBoard({
+                    variables: { id },
+                  });
+                }}
+              />
+            ) : (
+              <span>
+                      There a no boards, yet. You need
+                      need to create one ...
+                    </span>
+            )}
           />
+          </Container>
         )}
       </Mutation>
 
