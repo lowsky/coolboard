@@ -1,6 +1,6 @@
 import React from 'react';
 
-import gql from 'graphql-tag';
+import { gql, useQuery } from "@apollo/client";
 import {
   Container,
   Icon,
@@ -9,7 +9,6 @@ import {
 } from 'semantic-ui-react';
 
 import { Link } from 'react-router-dom';
-import { useQuery } from 'react-apollo-hooks';
 
 const ProfileHeaderContainer = ({
   children,

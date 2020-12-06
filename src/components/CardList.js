@@ -2,8 +2,8 @@
 import React from 'react';
 import { useDrop } from 'react-dnd';
 import PropTypes from 'prop-types';
-import gql from 'graphql-tag';
-import { Mutation, Query } from 'react-apollo';
+import { gql } from "@apollo/client";
+import { Mutation, Query  } from '@apollo/client/react/components';
 import {
   Button,
   Header,

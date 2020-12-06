@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import { Mutation } from 'react-apollo';
-import gql from 'graphql-tag';
+import { Mutation } from '@apollo/client/react/components';
+import { gql } from "@apollo/client";
 
 import AuthForm from './AuthForm';
 import PropTypes from 'prop-types';

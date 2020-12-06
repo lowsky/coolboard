@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Mutation } from 'react-apollo';
-import { useQuery } from 'react-apollo-hooks';
-import gql from 'graphql-tag';
+import { Mutation } from '@apollo/client/react/components';
+import { gql, useQuery } from "@apollo/client";
 
 import {
   Segment,

@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 
-import gql from 'graphql-tag';
-import { Mutation, Query } from 'react-apollo';
+import { gql } from "@apollo/client";
+import { Mutation, Query } from '@apollo/client/react/components';
 
 import {
   BoardContainer,
