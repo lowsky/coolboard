@@ -2,8 +2,7 @@
 import React from 'react';
 import { useDrop } from 'react-dnd';
 import PropTypes from 'prop-types';
-import gql from 'graphql-tag';
-import { Mutation, Query } from 'react-apollo';
+import { gql, useMutation, useQuery } from "@apollo/client";
 import {
   Button,
   Header,
@@ -158,75 +157,72 @@ export const CardList = ({
   id,
   name,
   deleteListWithId,
-}) => (
-  <Query
-    variables={{ cardListId: id }}
-    query={gql`
-      query CardList($cardListId: ID) {
-        list(where: { id: $cardListId }) {
-          ...CardList_list
+}) => {
+  const { loading, error, data } = useQuery(
+      gql`
+        query CardList($cardListId: ID) {
+          list(where: { id: $cardListId }) {
+            ...CardList_list
+          }
         }
+        ${CardList.fragments.list}
+      `,
+    {variables:{ cardListId: id }});
+
+  const [moveCard] = useMutation(
+    moveCardMutation
+  );
+
+  const [addCardWithName] = useMutation(
+    addCardMutation,
+    {
+      variables: {
+        cardListId: id,
+        name: 'new card',
       }
-      ${CardList.fragments.list}
-    `}>
-    {res => {
-      const { loading, error, data } = res;
-      if (error) {
-        return <span>Load error!</span>;
-      }
+    }
+  );
 
-      let list = [];
-      if (!loading && data) {
-        list = data.list; // fix data is undefined when loading...
-      }
+  if(error) {
+      return <span>Load error!</span>;
+  }
 
-      return (
-        <Mutation mutation={moveCardMutation}>
-          {moveCard => {
-            const onMoveCardToList = (
-              cardId,
-              oldCardListId,
-              newCardListId
-            ) => {
-              console.log(
-                `triggered moving card with id: ${cardId} to list with id: ${oldCardListId} -> id: ${newCardListId}`
-              );
+  let list = [];
+  if(!loading && data) {
+    list = data.list; // fix data is undefined when loading...
+  }
 
-              moveCard({
-                variables: {
-                  oldCardListId,
-                  cardListId: newCardListId,
-                  cardId,
-                },
-              });
-            };
 
-            return (
-              <Mutation
-                mutation={addCardMutation}
-                variables={{
-                  cardListId: id,
-                  name: 'new card',
-                }}>
-                {addCardWithName => (
-                  <CardListWithDnd
-                    deleteListWithId={deleteListWithId}
-                    addCardWithName={addCardWithName}
-                    moveCardToList={onMoveCardToList}
-                    cardList={{ list }}
-                    name={name}
-                    loading={loading}
-                    id={id}
-                  />
-                )}
-              </Mutation>
-            );
-          }}
-        </Mutation>
-      );
-    }}
-  </Query>
-);
+  const onMoveCardToList = (
+    cardId,
+    oldCardListId,
+    newCardListId
+  ) => {
+    console.log(
+      `triggered moving card with id: ${cardId} to list with id: ${oldCardListId} -> id: ${newCardListId}`
+    );
+
+    moveCard({
+      variables: {
+        oldCardListId,
+        cardListId: newCardListId,
+        cardId,
+      },
+    });
+  };
+
+  return (
+    <CardListWithDnd
+      deleteListWithId={deleteListWithId}
+      addCardWithName={addCardWithName}
+      moveCardToList={onMoveCardToList}
+      cardList={{ list }}
+      name={name}
+      loading={loading}
+      id={id}
+    />
+  );
+};
 
 const CardListHeader = ({ name, children }) => (
   <div className={styles.header}>

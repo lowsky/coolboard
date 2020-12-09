@@ -1,7 +1,4 @@
-import { ApolloClient } from 'apollo-client';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { ApolloLink } from 'apollo-link';
-import { createHttpLink } from 'apollo-link-http';
+import { ApolloClient, InMemoryCache, ApolloLink, createHttpLink } from '@apollo/client';
 import { createNetworkStatusNotifier } from 'react-apollo-network-status';
 
 const networkStatusNotifier = createNetworkStatusNotifier();

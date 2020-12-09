@@ -3,7 +3,7 @@ import React, { lazy, Suspense } from 'react';
 
 import { Loader } from 'semantic-ui-react';
 
-import { ApolloProvider } from 'react-apollo';
+import { ApolloProvider } from "@apollo/client";
 
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';

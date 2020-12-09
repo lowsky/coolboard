@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import gql from 'graphql-tag';
-import { Mutation } from 'react-apollo';
+import { gql, useMutation } from "@apollo/client";
 
 import { useDrag } from 'react-dnd';
 import { CardComponent } from './CardComponent';
@@ -33,24 +32,23 @@ const EditCardMutation = gql`
   ${CardComponent.fragments.card}
 `;
 
-export const Card = props => (
-  <Mutation
-    mutation={EditCardMutation}
-    variables={{
+export const Card = props => {
+  const [mutation] = useMutation(EditCardMutation, {
+    variables: {
       ...props,
-    }}>
-    {mutation => (
-      <CardComponent
-        {...props}
-        storeCard={vars =>
-          mutation({
-            variables: vars,
-          })
-        }
-      />
-    )}
-  </Mutation>
-);
+    }
+  });
+  return (
+    <CardComponent
+      {...props}
+      storeCard={vars =>
+        mutation({
+          variables: vars,
+        })
+      }
+    />
+  );
+};
 
 Card.propTypes = {
   id: PropTypes.string.isRequired,

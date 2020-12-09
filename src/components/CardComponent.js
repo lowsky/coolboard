@@ -10,7 +10,7 @@ import {
 } from 'semantic-ui-react';
 import TimeAgo from 'react-timeago';
 import PropTypes from 'prop-types';
-import gql from 'graphql-tag';
+import { gql } from "@apollo/client";
 import styled from 'styled-components';
 
 export class CardComponent extends React.Component {

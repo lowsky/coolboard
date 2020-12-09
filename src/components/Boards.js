@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { Query, Mutation } from 'react-apollo';
-import gql from 'graphql-tag';
+import { gql, useQuery, useMutation } from "@apollo/client";
 
 import {
-  Container,
   Segment,
   Loader,
   Button,
+  Container,
 } from 'semantic-ui-react';
 
 import { Link } from 'react-router-dom';
@@ -56,87 +55,93 @@ const deleteBoardMutation = gql`
   }
 `;
 
-export const Boards = () => {
-  const [showModal, setShowModal] = useState(false);
-
-  const userWithBoardsQuery = gql`
-    {
-      me {
+const userWithBoardsQuery = gql`
+  {
+    me {
+      name
+      id
+      boards {
         name
         id
-        boards {
-          name
-          id
-        }
       }
     }
-  `;
+  }
+`;
+
+export const Boards = () => {
+  const { loading, error, data, refetch } = useQuery(
+    userWithBoardsQuery
+  );
+
+  const [showModal, setShowModal] = useState(false);
+
+  const [deleteBoard] = useMutation(
+    deleteBoardMutation,
+    { onCompleted: () => refetch() }
+  );
+
+  const [createBoard, boardCreationState] = useMutation(
+      createBoardMutation,
+    { onCompleted: () => refetch() }
+  );
+
+  if (loading) {
+    return (
+      <FullVerticalContainer>
+        <h1>List of Boards </h1>
+        <Loader />
+      </FullVerticalContainer>
+    );
+  }
+
+  if (error) {
+    return (
+      <FullVerticalContainer>
+        <h1>List of Boards </h1>
+        <p>Error loading ... </p>
+      </FullVerticalContainer>
+    );
+  }
 
   return (
     <FullVerticalContainer>
-      <h1>Your Boards:</h1>
+      <h1>List of Boards </h1>
+      <Container fluid data-cy='boards-list'>
+        {data?.me?.boards?.length > 0 ? (
+          <BoardList
+            boards={data.me.boards}
+            deleteBoard={id => {
+              return deleteBoard({
+                variables: { id },
+              });
+            }}
+          />
+        ) : (
+          <span>
+            There a no boards, yet. You need
+            need to create one ...
+          </span>
+        )}
+      </Container>
 
-      <Query query={userWithBoardsQuery}>
-        {({ loading, error, data }) => {
-          if (loading) return <Loader />;
-          if (error) return false;
-
-          return (
-            <Mutation
-              refetchQueries={[
-                {
-                  query: userWithBoardsQuery,
-                },
-              ]}
-              mutation={deleteBoardMutation}>
-              {deleteBoard => (
-                <Container fluid data-cy='boards-list'>
-                  {data?.me?.boards?.length > 0 ? (
-                    <BoardList
-                      boards={data.me.boards}
-                      deleteBoard={id => {
-                        return deleteBoard({
-                          variables: { id },
-                        });
-                      }}
-                    />
-                  ) : (
-                    <span>
-                      There a no boards, yet. You need
-                      need to create one ...
-                    </span>
-                  )}
-                </Container>
-              )}
-            </Mutation>
-          );
-        }}
-      </Query>
-      <Mutation mutation={createBoardMutation}>
-        {(createBoard, { loading, error }) => {
-          const { message } = error || {};
-          return (
-            <Segment basic>
-              <CreateBoardModal
-                loading={loading}
-                error={message}
-                open={showModal}
-                onOpen={() => {
-                  setShowModal(true);
-                }}
-                onHide={() => {
-                  setShowModal(false);
-                }}
-                createBoard={({ name }) => {
-                  return createBoard({
-                    variables: { name },
-                  });
-                }}
-              />
-            </Segment>
-          );
-        }}
-      </Mutation>
+      <Segment basic>
+        <CreateBoardModal
+          loading={boardCreationState.loading}
+          error={boardCreationState.error?.message}
+          open={showModal}
+          onOpen={() => {
+            setShowModal(true);
+          }}
+          onHide={() => {
+            setShowModal(false);
+          }}
+          createBoard={({ name }) => {
+            return createBoard({
+              variables: { name },
+            });
+          }}
+        />
+      </Segment>
     </FullVerticalContainer>
   );
 };

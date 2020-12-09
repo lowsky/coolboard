@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
-import { Mutation } from 'react-apollo';
-import gql from 'graphql-tag';
+import { gql, useMutation } from "@apollo/client";
 
 import AuthForm from './AuthForm';
 import PropTypes from 'prop-types';
@@ -73,18 +72,17 @@ const LOGIN_MUTATION = gql`
   }
 `;
 
-export const LoginForm = ({ successfulLogin }) => (
-  <Mutation mutation={LOGIN_MUTATION}>
-    {mutate => {
-      return (
-        <LoginFormComponent
-          mutate={mutate}
-          successfulLogin={successfulLogin}
-        />
-      );
-    }}
-  </Mutation>
-);
+export const LoginForm = ({ successfulLogin }) => {
+  const [mutate] = useMutation(LOGIN_MUTATION);
+  return (
+    <LoginFormComponent
+      mutate={mutate}
+      successfulLogin={successfulLogin}
+    />
+  );
+};
+
+
 
 LoginForm.propTypes = {
   successfulLogin: PropTypes.func,
