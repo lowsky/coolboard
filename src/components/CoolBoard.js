@@ -1,8 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 
-import { gql } from "@apollo/client";
-import { Mutation, Query } from '@apollo/client/react/components';
+import { gql, useMutation, useQuery } from "@apollo/client";
 
 import {
   BoardContainer,
@@ -90,7 +89,7 @@ const addListMutation = gql`
   ${Board.fragments.board}
 `;
 
-const deleteListsOfBoard = gql`
+const deleteListsOfBoardMutation = gql`
   mutation deleteListsOfBoard(
     $boardId: ID!
     $listIds: [ID!]!
@@ -105,48 +104,46 @@ const deleteListsOfBoard = gql`
   ${Board.fragments.board}
 `;
 
-export const CoolBoard = ({ boardId }) => (
-  <Query query={BoardQuery} variables={{ boardId }}>
-    {({ loading, error, data }) => {
-      if (loading) {
-        return <div>Loading Board</div>;
-      }
+export const CoolBoard = ({ boardId }) => {
+  const { loading, error, data } = useQuery(
+    BoardQuery,
+    { variables: { boardId } });
 
-      if (error) {
-        return false;
-      }
+  const [addList] = useMutation(
+    addListMutation,
+  );
 
-      const { board } = data;
-      if (!board) {
-        return <div>Board does not exist.</div>;
-      }
+  const [deleteListsOfBoard] = useMutation(
+    deleteListsOfBoardMutation,
+  );
 
-      return (
-        <Mutation mutation={addListMutation}>
-          {addList => (
-            <Mutation mutation={deleteListsOfBoard}>
-              {deleteListsOfBoard => {
-                const deleteLists = ids =>
-                  deleteListsOfBoard({
-                    variables: {
-                      boardId,
-                      listIds: ids,
-                    },
-                  });
+  if(loading) {
+    return <div>Loading Board</div>;
+  }
 
-                return (
-                  <Board
-                    boardId={boardId}
-                    addList={addList}
-                    deleteLists={deleteLists}
-                    board={board}
-                  />
-                );
-              }}
-            </Mutation>
-          )}
-        </Mutation>
-      );
-    }}
-  </Query>
-);
+  if(error) {
+    return false;
+  }
+
+  const { board } = data;
+  if(!board) {
+    return <div>Board does not exist.</div>;
+  }
+
+  const deleteLists = ids =>
+    deleteListsOfBoard({
+      variables: {
+        boardId,
+        listIds: ids,
+      },
+    });
+
+  return (
+    <Board
+      boardId={boardId}
+      addList={addList}
+      deleteLists={deleteLists}
+      board={board}
+    />
+  );
+};

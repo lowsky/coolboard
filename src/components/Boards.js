@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Mutation } from '@apollo/client/react/components';
-import { gql, useQuery } from "@apollo/client";
+import { gql, useQuery, useMutation } from "@apollo/client";
 
 import {
   Segment,
@@ -76,6 +75,16 @@ export const Boards = () => {
 
   const [showModal, setShowModal] = useState(false);
 
+  const [deleteBoard] = useMutation(
+    deleteBoardMutation,
+    { onCompleted: () => refetch() }
+  );
+
+  const [createBoard, boardCreationState] = useMutation(
+      createBoardMutation,
+    { onCompleted: () => refetch() }
+  );
+
   if (loading) {
     return (
       <FullVerticalContainer>
@@ -97,56 +106,42 @@ export const Boards = () => {
   return (
     <FullVerticalContainer>
       <h1>List of Boards </h1>
-      <Mutation
-        onCompleted={refetch}
-        mutation={deleteBoardMutation}>
-        {deleteBoard => (
-          <Container fluid data-cy='boards-list'>
-            {data?.me?.boards?.length > 0 ? (
-              <BoardList
-                boards={data.me.boards}
-                deleteBoard={id => {
-                  return deleteBoard({
-                    variables: { id },
-                  });
-                }}
-              />
-            ) : (
-              <span>
-                      There a no boards, yet. You need
-                      need to create one ...
-                    </span>
-            )}
+      <Container fluid data-cy='boards-list'>
+        {data?.me?.boards?.length > 0 ? (
+          <BoardList
+            boards={data.me.boards}
+            deleteBoard={id => {
+              return deleteBoard({
+                variables: { id },
+              });
+            }}
           />
-          </Container>
+        ) : (
+          <span>
+            There a no boards, yet. You need
+            need to create one ...
+          </span>
         )}
-      </Mutation>
+      </Container>
 
-      <Mutation mutation={createBoardMutation}>
-        {(createBoard, { loading, error }) => {
-          const { message } = error || {};
-          return (
-            <Segment basic>
-              <CreateBoardModal
-                loading={loading}
-                error={message}
-                open={showModal}
-                onOpen={() => {
-                  setShowModal(true);
-                }}
-                onHide={() => {
-                  setShowModal(false);
-                }}
-                createBoard={({ name }) => {
-                  return createBoard({
-                    variables: { name },
-                  });
-                }}
-              />
-            </Segment>
-          );
-        }}
-      </Mutation>
+      <Segment basic>
+        <CreateBoardModal
+          loading={boardCreationState.loading}
+          error={boardCreationState.error?.message}
+          open={showModal}
+          onOpen={() => {
+            setShowModal(true);
+          }}
+          onHide={() => {
+            setShowModal(false);
+          }}
+          createBoard={({ name }) => {
+            return createBoard({
+              variables: { name },
+            });
+          }}
+        />
+      </Segment>
     </FullVerticalContainer>
   );
 };
