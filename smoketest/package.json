@@ -15,6 +15,6 @@
     "wait:valid-version": "yarn --frozen-lockfile ; echo install done with exit code $? ; node wait-for-deployment.js"
   },
   "devDependencies": {
-    "got": "11.8.0"
+    "got": "11.8.1"
   }
 }
