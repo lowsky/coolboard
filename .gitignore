@@ -30,3 +30,4 @@ server/lambda
 /smoketest/.env
 
 .vercel
+/.netlify/
