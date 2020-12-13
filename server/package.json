@@ -22,7 +22,7 @@
     "node": ">=12.1"
   },
   "dependencies": {
-    "@babel/core": "7.12.9",
+    "@babel/core": "7.12.10",
     "@instana/aws-lambda": "1.109.0",
     "apollo-errors": "1.9.0",
     "apollo-server-express": "2.19.0",
@@ -39,10 +39,10 @@
     "webpack-node-externals": "2.5.2"
   },
   "devDependencies": {
-    "@babel/cli": "7.12.8",
-    "@babel/node": "7.12.6",
+    "@babel/cli": "7.12.10",
+    "@babel/node": "7.12.10",
     "@babel/polyfill": "7.12.1",
-    "@babel/preset-env": "7.12.7",
+    "@babel/preset-env": "7.12.10",
     "@instana/collector": "1.109.0",
     "core-js": "3.8.1",
     "dotenv": "8.2.0",
