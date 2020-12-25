@@ -1,5 +1,13 @@
 version: 2.1
 
+parameters:
+  gh-pr:
+    type: string
+    default: "999"
+  test-url:
+    type: string
+    default: "https://www.coolboard.fun"
+
 # have a filter to disable regular builds.
 workflows:
   version: 2
@@ -42,7 +50,9 @@ jobs:
           command: |
             env | grep CIRCLE | sort
             echo $CIRCLE_PR_NUMBER   no.: $CIRCLE_PR_NUMBER
-            echo CIRCLE_PULL_REQUEST no.: CIRCLE_PULL_REQUEST
+            echo CIRCLE_PULL_REQUEST no.: $CIRCLE_PULL_REQUEST
+            echo gh-pr parameter: << gh-pr >>
+            echo test-url parameter: << test-url >>
             echo 'export CIRCLE_PR_NUMBER="${CIRCLE_PR_NUMBER:-${CIRCLE_PULL_REQUEST##*/}}"' >> $BASH_ENV
       - run:
           name: build diagnosis
