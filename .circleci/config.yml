@@ -54,11 +54,6 @@ jobs:
               echo " there is this PR number: $CIRCLE_PR_NUMBER"
             fi
 
-            if [ "X${CIRCLE_PR_NUMBER}" == "X" ]; then
-              echo no CIRCLE_PR_NUMBER set, so skipping this step
-              exit -1
-            fi
-
             echo "Value of CIRCLE_PULL_REQUEST: ${CIRCLE_PULL_REQUEST} "
             if [ -n "$CIRCLE_PULL_REQUEST" ]; then
               echo transformed to ${CIRCLE_PULL_REQUEST##*/}
