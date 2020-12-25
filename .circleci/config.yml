@@ -11,13 +11,9 @@ parameters:
 # have a filter to disable regular builds.
 workflows:
   version: 2
-  do_not_run_usually:
+  build:
     jobs:
-      - build:
-          filters:
-            branches:
-              only:
-                - non-existing-branch
+      - build
 
 jobs:
   check:
