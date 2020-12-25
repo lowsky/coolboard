@@ -10,7 +10,6 @@ echo VERCEL_URL:  $VERCEL_URL
 # token: "trigger-from-netlify-hook"
 CIRCLE_API_USER_TOKEN=1851154c07ebcb2a01c99a5851a79fe9e8ca893c
 
-#DEPLOYED_SHA1=811fbecf6b228aa46a9cb72224cd8e5d1e467ff5
 #DEPLOYED_SHA1=b0d003070bbbd81bf1e8b15f3cd76cd389b13d72
 DEPLOYED_SHA1=$VERCEL_GITHUB_COMMIT_SHA
 
@@ -40,11 +39,7 @@ curl --request POST \
 	"branch": "'$BRANCH'",
 	"parameters":
     {
-			"deployed-sha": "'DEPLOYED_SHA1'",
+			"deployed-sha": "'$DEPLOYED_SHA1'",
 			"test-url": "'$SUT_URL'"
 		}
 }'
-
-exit
-    -d "build_parameters[DEPLOYED_SHA1]=$DEPLOYED_SHA1" \
-    -d "build_parameters[CYPRESS_baseUrl]=$SUT_URL"

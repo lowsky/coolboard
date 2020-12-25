@@ -41,16 +41,16 @@ jobs:
 #          command: npm run build
   build:
     docker:
-      - image: cypress/base:12.19.0
-      #  faster than cypress/included:4.12.1
+      - image: cypress/included:4.12.1
     steps:
       - checkout
       - run:
-          name: Set PR number in env
+          name: Use parameters
           command: |
-            echo gh-pr parameter: "<< pipeline.parameters.gh-pr >>"
-            echo test-url parameter: << pipeline.parameters.test-url >>
-            echo deployed-sha <<pipeline.parameters.deployed-sha>>
+            echo parameters:
+            echo gh-pr: "<< pipeline.parameters.gh-pr >>"
+            echo test-url: << pipeline.parameters.test-url >>
+            echo deployed-sha: <<pipeline.parameters.deployed-sha>>
 
             echo 'export CIRCLE_PR_NUMBER=<< pipeline.parameters.gh-pr >>' | tee -a $BASH_ENV
       - run:
@@ -80,7 +80,7 @@ jobs:
           command: |
             cd smoketest
             CYPRESS_baseUrl=<< pipeline.parameters.test-url >>
-            EXPECTED_GIT_SHA=<<pipeline.parameters.deployed-sha>>
+            EXPECTED_GIT_SHA=<< pipeline.parameters.deployed-sha >>
 
             NETLIFY_URL=https://deploy-preview-${CIRCLE_PR_NUMBER}--coolboard.netlify.app
             export CYPRESS_baseUrl=${CYPRESS_baseUrl:-$NETLIFY_URL}
