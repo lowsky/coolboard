@@ -23,16 +23,28 @@ echo
 echo testing "$SUT_URL"
 echo
 
-CIRCLE="https://circleci.com/api/v1.1/project"
-PROJ="$CIRCLE/github/lowsky/Hands-on-Application-Building-with-GraphQL-and-React/tree/${BRANCH}"
+CIRCLE="https://circleci.com/api/v2/project"
+PROJ="$CIRCLE/gh/lowsky/Hands-on-Application-Building-with-GraphQL-and-React/pipeline"
 
-URL="$PROJ?build_parameters%5BCIRCLE_JOB%5D=build"
+URL="$PROJ"
 # not needed any longer? &build_parameters%5BDEPLOYED_SHA1%5D=$DEPLOYED_SHA1&build_parameters%5BCYPRESS_baseUrl%5D=$SUT_URL"
 
 echo
 echo triggering url : $URL
 echo
 
-curl -u ${CIRCLE_API_USER_TOKEN}: $URL \
+curl --request POST \
+  -u ${CIRCLE_API_USER_TOKEN}: $URL \
+  --header 'Content-Type: application/json' \
+  --data '{
+	"branch": "'$BRANCH'",
+	"parameters":
+    {
+			"deployed-sha": "'DEPLOYED_SHA1'",
+			"test-url": "'$SUT_URL'"
+		}
+}'
+
+exit
     -d "build_parameters[DEPLOYED_SHA1]=$DEPLOYED_SHA1" \
     -d "build_parameters[CYPRESS_baseUrl]=$SUT_URL"
