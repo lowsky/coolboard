@@ -41,6 +41,13 @@ jobs:
 #          name: web client - build
 #          command: npm run build
   build:
+    parameters:
+      gh-pr:
+        type: string
+        default: "999"
+      test-url:
+        type: string
+        default: "https://www.coolboard.fun"
     docker:
       - image: cypress/included:4.12.1
     steps:
