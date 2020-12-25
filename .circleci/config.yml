@@ -80,7 +80,7 @@ jobs:
           command: |
             cd smoketest
             CYPRESS_baseUrl=<< pipeline.parameters.test-url >>
-            deployed-sha1=<<pipeline.parameters.deployed-sha>>
+            EXPECTED_GIT_SHA=<<pipeline.parameters.deployed-sha>>
 
             NETLIFY_URL=https://deploy-preview-${CIRCLE_PR_NUMBER}--coolboard.netlify.app
             export CYPRESS_baseUrl=${CYPRESS_baseUrl:-$NETLIFY_URL}
@@ -88,12 +88,12 @@ jobs:
             echo SUT: $CYPRESS_baseUrl
             echo
             echo current CIRCLE_SHA1: $CIRCLE_SHA1
-            echo expected deployed-sha1: $deployed-sha1
+            echo expected EXPECTED_GIT_SHA: $EXPECTED_GIT_SHA
             echo
-            echo using GIT_SHA1=${deployed-sha1:-$CIRCLE_SHA1}
-            echo running GIT_SHA1=${deployed-sha1:-$CIRCLE_SHA1} npm run wait:valid-version
+            echo using GIT_SHA1=${EXPECTED_GIT_SHA:-$CIRCLE_SHA1}
+            echo running GIT_SHA1=${EXPECTED_GIT_SHA:-$CIRCLE_SHA1} npm run wait:valid-version
             echo
-            GIT_SHA1=${deployed-sha1:-$CIRCLE_SHA1} npm run wait:valid-version
+            GIT_SHA1=${EXPECTED_GIT_SHA:-$CIRCLE_SHA1} npm run wait:valid-version
       - run:
           name: run cypress
           command: |
