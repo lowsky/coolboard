@@ -1802,13 +1802,13 @@
     node-abi "^2.19.1"
     node-gyp "^6.1.0"
 
-"@instana/aws-lambda@1.109.0":
-  version "1.109.0"
-  resolved "https://registry.yarnpkg.com/@instana/aws-lambda/-/aws-lambda-1.109.0.tgz#c77ab57441f87a3862d5073090e9c949212b1654"
-  integrity sha512-sF5CgZ4mFlgjU2U4UhRanpZmwZ5AT4Qdj+Bxwn5Fxr4DSBhDfHbMxp0CkZEGMII7BKxPjJAFLHwUB/Gv84FjBg==
+"@instana/aws-lambda@1.110.5":
+  version "1.110.5"
+  resolved "https://registry.yarnpkg.com/@instana/aws-lambda/-/aws-lambda-1.110.5.tgz#39eaef2f704645d7517b500688cafb98facfe6df"
+  integrity sha512-7Qgk3VeHdpTKXHT5la443lqPT8ikDPmd/uZYA5xiKptDvx1U7CEba4Iv1eZZtnQYTPVx3he1/q1SkTLl3SDL7A==
   dependencies:
-    "@instana/core" "^1.109.0"
-    "@instana/serverless" "^1.109.0"
+    "@instana/core" "1.110.5"
+    "@instana/serverless" "1.110.5"
 
 "@instana/collector@1.110.5":
   version "1.110.5"
@@ -1855,12 +1855,12 @@
     semver "5.5.1"
     shimmer "1.2.0"
 
-"@instana/serverless@^1.109.0":
-  version "1.109.0"
-  resolved "https://registry.yarnpkg.com/@instana/serverless/-/serverless-1.109.0.tgz#3237911d907426d2ee8ce81d4f1e1b76d8b7165d"
-  integrity sha512-ohrN8nmwc7MHma5TlMImv7O6AL/zoYD+ZzOCccVn5WnIDJtj+eM9pqgzb+4DvWwrp+ohpQZNXSuXpDbs3LCTtQ==
+"@instana/serverless@1.110.5":
+  version "1.110.5"
+  resolved "https://registry.yarnpkg.com/@instana/serverless/-/serverless-1.110.5.tgz#68cc983d4d82fa0272e852ea9727ccb78a8ca6b2"
+  integrity sha512-IyK6z9bCK2kFQiP1uES6ZGCOK7zaWli3KD/faN1YFkQrdThbKS1YGKMm1SWbcuUOnYGQM+u4miXZnHsVeYszNQ==
   dependencies:
-    "@instana/core" "^1.109.0"
+    "@instana/core" "1.110.5"
     https-proxy-agent "^5.0.0"
     semver "^5.6.0"
 
