@@ -106,7 +106,8 @@ export const App = () => (
               trackPage('login');
               client.resetStore().then(() => {
                 auth.login();
-                //LATER: Auth0().then((auth) =>auth.login());
+              }).catch(ignoredError => {
+                auth.login();
               });
 
               return (
