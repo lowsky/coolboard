@@ -1859,21 +1859,6 @@
     semver "5.5.1"
     shimmer "1.2.0"
 
-"@instana/core@^1.109.0":
-  version "1.109.0"
-  resolved "https://registry.yarnpkg.com/@instana/core/-/core-1.109.0.tgz#4021ab2ffefacada318bc53a5316931d731a49bb"
-  integrity sha512-9xjY64qmveEyjJU0WvEV0dZAtT49JfMR9dsIbXrBK+MF0liJaO1PfeS8PtDqhMZSvcPC2ujWumYHn5PpO7uFdg==
-  dependencies:
-    async-hook-jl "^1.7.6"
-    cls-bluebird "^2.1.0"
-    emitter-listener "^1.1.2"
-    lru-cache "^5.1.1"
-    methods "^1.1.2"
-    opentracing "^0.14.3"
-    redis-commands "^1.3.5"
-    semver "5.5.1"
-    shimmer "1.2.0"
-
 "@instana/serverless@1.110.5":
   version "1.110.5"
   resolved "https://registry.yarnpkg.com/@instana/serverless/-/serverless-1.110.5.tgz#68cc983d4d82fa0272e852ea9727ccb78a8ca6b2"
@@ -5299,9 +5284,9 @@ inherits@2.0.3:
   integrity sha1-Yzwsg+PaQqUC9SRmAiSA9CCCYd4=
 
 ini@^1.3.5, ini@~1.3.0:
-  version "1.3.5"
-  resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.5.tgz#eee25f56db1c9ec6085e0c22778083f596abf927"
-  integrity sha512-RZY5huIKCMRWDUqZlEi72f/lmXKMvuszcMBduliQ3nnWbx9X/ZBQO7DijMEYS9EhHBb2qacRUMtC7svLwe0lcw==
+  version "1.3.8"
+  resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.8.tgz#a29da425b48806f34767a4efce397269af28432c"
+  integrity sha512-JV/yugV2uzW5iMRSiZAyDtQd+nxtUnjeLt0acNdw98kKLrvuRVyB80tsREOE7yvGVgalhZ6RNXCmEHkUKBKxew==
 
 invariant@^2.2.2:
   version "2.2.4"
