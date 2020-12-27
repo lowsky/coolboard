@@ -1792,10 +1792,10 @@
   resolved "https://registry.yarnpkg.com/@graphql-typed-document-node/core/-/core-3.1.0.tgz#0eee6373e11418bfe0b5638f654df7a4ca6a3950"
   integrity sha512-wYn6r8zVZyQJ6rQaALBEln5B1pzxb9shV5Ef97kTvn6yVGrqyXVnDqnU24MXnFubR+rZjBY9NWuxX3FB2sTsjg==
 
-"@instana/autoprofile@^1.109.0":
-  version "1.109.0"
-  resolved "https://registry.yarnpkg.com/@instana/autoprofile/-/autoprofile-1.109.0.tgz#ea3a3ffce3e843ed72a3f2f1576c58fa055be168"
-  integrity sha512-74QoldblqZQxsbmQyc6xJj1YO/QJOwLbDDaVAiZRZDcScJ92+Y+csuLSj4+Ayh8W4L6LrS9l0Wtfz0UAaLeW1Q==
+"@instana/autoprofile@1.110.5":
+  version "1.110.5"
+  resolved "https://registry.yarnpkg.com/@instana/autoprofile/-/autoprofile-1.110.5.tgz#7685d3c28877ffbdbbbd9ab7bc5b7fab51da36b0"
+  integrity sha512-klGnLhHyP/gp8o8Oo/+P74g1vJHfiCXdlQOLY0LemCEFfLbHkR68DGy0Hm1ahPCpMa/37LzWSs5hE14VWf9Zzw==
   dependencies:
     detect-libc "^1.0.3"
     nan "^2.14.0"
@@ -1810,20 +1810,35 @@
     "@instana/core" "^1.109.0"
     "@instana/serverless" "^1.109.0"
 
-"@instana/collector@1.109.0":
-  version "1.109.0"
-  resolved "https://registry.yarnpkg.com/@instana/collector/-/collector-1.109.0.tgz#9c5a9263bcfbf6aa6528d58867b4f76c65200985"
-  integrity sha512-UFYqKVhmujzmRQYS31F4Ll/tB7BAskruHidx3DneLyIT+BP42lGqLj9cF6lZLk6oWxeNVCCawHsCzJaxMXSyqg==
+"@instana/collector@1.110.5":
+  version "1.110.5"
+  resolved "https://registry.yarnpkg.com/@instana/collector/-/collector-1.110.5.tgz#3e1230d0ef65425957a7bd11161d5d1f8bd2e927"
+  integrity sha512-jmyOUakmmbvjdxWWQsMB18xLicmQHxscw4+enkjwQU1+pHmrGkN748MuWoLOmCbqsV10mpkUe+Cmby/i0IfMlg==
   dependencies:
-    "@instana/core" "^1.109.0"
-    "@instana/shared-metrics" "^1.109.0"
+    "@instana/core" "1.110.5"
+    "@instana/shared-metrics" "1.110.5"
     bunyan "^1.8.12"
     semver "5.5.1"
     serialize-error "^2.1.0"
     shimmer "1.2.0"
   optionalDependencies:
-    "@instana/autoprofile" "^1.109.0"
+    "@instana/autoprofile" "1.110.5"
     netlinkwrapper "^1.2.0"
+
+"@instana/core@1.110.5":
+  version "1.110.5"
+  resolved "https://registry.yarnpkg.com/@instana/core/-/core-1.110.5.tgz#0604124926193d3cd1fbca522dcb58dc1bcd2f75"
+  integrity sha512-d6XKwiaSlv2IFNBWAUhx0ng/R0i92RIMEBQCRtwbP2sMeRJcISCEvB2S9TF5Eqbe4L3/V1OXgZcYYvaMeWpMGg==
+  dependencies:
+    async-hook-jl "^1.7.6"
+    cls-bluebird "^2.1.0"
+    emitter-listener "^1.1.2"
+    lru-cache "^5.1.1"
+    methods "^1.1.2"
+    opentracing "^0.14.3"
+    redis-commands "^1.3.5"
+    semver "5.5.1"
+    shimmer "1.2.0"
 
 "@instana/core@^1.109.0":
   version "1.109.0"
@@ -1849,16 +1864,16 @@
     https-proxy-agent "^5.0.0"
     semver "^5.6.0"
 
-"@instana/shared-metrics@^1.109.0":
-  version "1.109.0"
-  resolved "https://registry.yarnpkg.com/@instana/shared-metrics/-/shared-metrics-1.109.0.tgz#be8dc608869703155886905aaa6431de7b69709c"
-  integrity sha512-GJCrQ4g92GZwQJ1JosvtYmW3vq1Mb3pMeOpYe1109GcW6QwQRqusOh54qvfEkVEI56WCqpJhItvlEViaIP197w==
+"@instana/shared-metrics@1.110.5":
+  version "1.110.5"
+  resolved "https://registry.yarnpkg.com/@instana/shared-metrics/-/shared-metrics-1.110.5.tgz#0c3cabfbaf4dc1b6281f3302636c1d12743a52df"
+  integrity sha512-7zdBv/dcWaYVehcwrs1ZbhY3+np11kITobtA7N6J2WnbJ9YUKIxzhNlsBLhTy64MNdQSIej0CUWQb1CvCqqHqg==
   dependencies:
-    "@instana/core" "^1.109.0"
+    "@instana/core" "1.110.5"
     detect-libc "^1.0.3"
     event-loop-lag "^1.4.0"
     recursive-copy "^2.0.11"
-    tar "^6.0.5"
+    tar "^5.0.5"
   optionalDependencies:
     event-loop-stats "1.3.0"
     gcstats.js "1.0.0"
@@ -3428,7 +3443,7 @@ chokidar@^3.4.0:
   optionalDependencies:
     fsevents "~2.1.2"
 
-chownr@^1.1.1:
+chownr@^1.1.1, chownr@^1.1.3:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/chownr/-/chownr-1.1.4.tgz#6fc9d7b42d32a583596337666e7d08084da2cc6b"
   integrity sha512-jJ0bqzaylmJtVnNgzTeSOs8DPavpbYgEr/b0YL8/2GO3xJEhInFmhKMUnEJQjZumK7KXGFhUy89PrsJWlakBVg==
@@ -6148,7 +6163,7 @@ minizlib@^1.2.1:
   dependencies:
     minipass "^2.9.0"
 
-minizlib@^2.1.1:
+minizlib@^2.1.0, minizlib@^2.1.1:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/minizlib/-/minizlib-2.1.2.tgz#e90d3466ba209b932451508a11ce3d3632145931"
   integrity sha512-bAxsR8BVfj60DWXHE3u30oHzfl4G7khkSuPW+qvpd7jFRHm7dLxOjUk1EHACJ/hxLY8phGJ0YhYHZo7jil7Qdg==
@@ -8033,7 +8048,19 @@ tar@^4.4.12:
     safe-buffer "^5.1.2"
     yallist "^3.0.3"
 
-tar@^6.0.2, tar@^6.0.5:
+tar@^5.0.5:
+  version "5.0.5"
+  resolved "https://registry.yarnpkg.com/tar/-/tar-5.0.5.tgz#03fcdb7105bc8ea3ce6c86642b9c942495b04f93"
+  integrity sha512-MNIgJddrV2TkuwChwcSNds/5E9VijOiw7kAc1y5hTNJoLDSuIyid2QtLYiCYNnICebpuvjhPQZsXwUL0O3l7OQ==
+  dependencies:
+    chownr "^1.1.3"
+    fs-minipass "^2.0.0"
+    minipass "^3.0.0"
+    minizlib "^2.1.0"
+    mkdirp "^0.5.0"
+    yallist "^4.0.0"
+
+tar@^6.0.2:
   version "6.0.5"
   resolved "https://registry.yarnpkg.com/tar/-/tar-6.0.5.tgz#bde815086e10b39f1dcd298e89d596e1535e200f"
   integrity sha512-0b4HOimQHj9nXNEAA7zWwMM91Zhhba3pspja6sQbgTpynOJf+bkjBnfybNYzbpLbnwXnbyB4LOREvlyXLkCHSg==
