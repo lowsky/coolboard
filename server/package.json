@@ -42,7 +42,7 @@
     "@babel/cli": "7.12.10",
     "@babel/node": "7.12.10",
     "@babel/polyfill": "7.12.1",
-    "@babel/preset-env": "7.12.10",
+    "@babel/preset-env": "7.12.11",
     "@instana/collector": "1.110.5",
     "core-js": "3.8.1",
     "dotenv": "8.2.0",
