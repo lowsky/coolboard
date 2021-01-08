@@ -1821,13 +1821,13 @@
     node-abi "^2.19.1"
     node-gyp "^6.1.0"
 
-"@instana/aws-lambda@1.110.5":
-  version "1.110.5"
-  resolved "https://registry.yarnpkg.com/@instana/aws-lambda/-/aws-lambda-1.110.5.tgz#39eaef2f704645d7517b500688cafb98facfe6df"
-  integrity sha512-7Qgk3VeHdpTKXHT5la443lqPT8ikDPmd/uZYA5xiKptDvx1U7CEba4Iv1eZZtnQYTPVx3he1/q1SkTLl3SDL7A==
+"@instana/aws-lambda@1.111.0":
+  version "1.111.0"
+  resolved "https://registry.yarnpkg.com/@instana/aws-lambda/-/aws-lambda-1.111.0.tgz#808f63b03d8aa2e290048a8660bedb6d141ae292"
+  integrity sha512-KYVGdpoSo1tlYSLCAUuyQpmt2Pr1Pf7VPV6QBYXwHiJWM0sscN9reItUvz64/T9p5iCpXO40MRXcZ9OWQ5NMrA==
   dependencies:
-    "@instana/core" "1.110.5"
-    "@instana/serverless" "1.110.5"
+    "@instana/core" "1.111.0"
+    "@instana/serverless" "1.111.0"
 
 "@instana/collector@1.110.5":
   version "1.110.5"
@@ -1859,12 +1859,27 @@
     semver "5.5.1"
     shimmer "1.2.0"
 
-"@instana/serverless@1.110.5":
-  version "1.110.5"
-  resolved "https://registry.yarnpkg.com/@instana/serverless/-/serverless-1.110.5.tgz#68cc983d4d82fa0272e852ea9727ccb78a8ca6b2"
-  integrity sha512-IyK6z9bCK2kFQiP1uES6ZGCOK7zaWli3KD/faN1YFkQrdThbKS1YGKMm1SWbcuUOnYGQM+u4miXZnHsVeYszNQ==
+"@instana/core@1.111.0":
+  version "1.111.0"
+  resolved "https://registry.yarnpkg.com/@instana/core/-/core-1.111.0.tgz#d37ebb45d0f440faaecb77bff22c2a0440d436a6"
+  integrity sha512-uKzSFnY1ELxkWZKzhLl6RwjoavovD/8m6AWRZNXTyWxp/A6RSqKKKKy9owUeLD5d4FLmLlCL/BT8QhaE+tVnKA==
   dependencies:
-    "@instana/core" "1.110.5"
+    async-hook-jl "^1.7.6"
+    cls-bluebird "^2.1.0"
+    emitter-listener "^1.1.2"
+    lru-cache "^5.1.1"
+    methods "^1.1.2"
+    opentracing "^0.14.3"
+    redis-commands "^1.3.5"
+    semver "5.5.1"
+    shimmer "1.2.0"
+
+"@instana/serverless@1.111.0":
+  version "1.111.0"
+  resolved "https://registry.yarnpkg.com/@instana/serverless/-/serverless-1.111.0.tgz#f7cd601002106e09fea5b6a9bb23c2edec54e6f1"
+  integrity sha512-1NiiAuc9QBbLqLkIuoJwECSg0rYjSJ0Tt3dnPqgaBkbvDdy9N9/dRtkoFmMa8y012oNveIj0pL/qNjNYz5Ck9A==
+  dependencies:
+    "@instana/core" "1.111.0"
     https-proxy-agent "^5.0.0"
     semver "^5.6.0"
 
