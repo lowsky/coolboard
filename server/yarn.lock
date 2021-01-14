@@ -1811,10 +1811,10 @@
   resolved "https://registry.yarnpkg.com/@graphql-typed-document-node/core/-/core-3.1.0.tgz#0eee6373e11418bfe0b5638f654df7a4ca6a3950"
   integrity sha512-wYn6r8zVZyQJ6rQaALBEln5B1pzxb9shV5Ef97kTvn6yVGrqyXVnDqnU24MXnFubR+rZjBY9NWuxX3FB2sTsjg==
 
-"@instana/autoprofile@1.110.5":
-  version "1.110.5"
-  resolved "https://registry.yarnpkg.com/@instana/autoprofile/-/autoprofile-1.110.5.tgz#7685d3c28877ffbdbbbd9ab7bc5b7fab51da36b0"
-  integrity sha512-klGnLhHyP/gp8o8Oo/+P74g1vJHfiCXdlQOLY0LemCEFfLbHkR68DGy0Hm1ahPCpMa/37LzWSs5hE14VWf9Zzw==
+"@instana/autoprofile@1.111.1":
+  version "1.111.1"
+  resolved "https://registry.yarnpkg.com/@instana/autoprofile/-/autoprofile-1.111.1.tgz#d7ff73adf2ca2d10bee89399312b98f66c03f1c8"
+  integrity sha512-xN1kLa0WAhHf3hDUmROGck667mZrFsFRSCha6/4WYRj36J7dEI+zzQkvghCP21StYxP8zJr4k2Tb4DtVxW1oXg==
   dependencies:
     detect-libc "^1.0.3"
     nan "^2.14.0"
@@ -1829,25 +1829,25 @@
     "@instana/core" "1.111.0"
     "@instana/serverless" "1.111.0"
 
-"@instana/collector@1.110.5":
-  version "1.110.5"
-  resolved "https://registry.yarnpkg.com/@instana/collector/-/collector-1.110.5.tgz#3e1230d0ef65425957a7bd11161d5d1f8bd2e927"
-  integrity sha512-jmyOUakmmbvjdxWWQsMB18xLicmQHxscw4+enkjwQU1+pHmrGkN748MuWoLOmCbqsV10mpkUe+Cmby/i0IfMlg==
+"@instana/collector@1.111.1":
+  version "1.111.1"
+  resolved "https://registry.yarnpkg.com/@instana/collector/-/collector-1.111.1.tgz#d8c678631c4b4eeb5c3ff3691716a80cde1c402a"
+  integrity sha512-DGm//k9hWMmzHn+9TTg3H3bDS4AD/7EIZWqq1SfI5evEFIbnyNSE7ylGJ1QnPkveuwB0rZX5GFPVzeRM8AUMoQ==
   dependencies:
-    "@instana/core" "1.110.5"
-    "@instana/shared-metrics" "1.110.5"
+    "@instana/core" "1.111.1"
+    "@instana/shared-metrics" "1.111.1"
     bunyan "^1.8.12"
     semver "5.5.1"
     serialize-error "^2.1.0"
     shimmer "1.2.0"
   optionalDependencies:
-    "@instana/autoprofile" "1.110.5"
+    "@instana/autoprofile" "1.111.1"
     netlinkwrapper "^1.2.0"
 
-"@instana/core@1.110.5":
-  version "1.110.5"
-  resolved "https://registry.yarnpkg.com/@instana/core/-/core-1.110.5.tgz#0604124926193d3cd1fbca522dcb58dc1bcd2f75"
-  integrity sha512-d6XKwiaSlv2IFNBWAUhx0ng/R0i92RIMEBQCRtwbP2sMeRJcISCEvB2S9TF5Eqbe4L3/V1OXgZcYYvaMeWpMGg==
+"@instana/core@1.111.0":
+  version "1.111.0"
+  resolved "https://registry.yarnpkg.com/@instana/core/-/core-1.111.0.tgz#d37ebb45d0f440faaecb77bff22c2a0440d436a6"
+  integrity sha512-uKzSFnY1ELxkWZKzhLl6RwjoavovD/8m6AWRZNXTyWxp/A6RSqKKKKy9owUeLD5d4FLmLlCL/BT8QhaE+tVnKA==
   dependencies:
     async-hook-jl "^1.7.6"
     cls-bluebird "^2.1.0"
@@ -1859,10 +1859,10 @@
     semver "5.5.1"
     shimmer "1.2.0"
 
-"@instana/core@1.111.0":
-  version "1.111.0"
-  resolved "https://registry.yarnpkg.com/@instana/core/-/core-1.111.0.tgz#d37ebb45d0f440faaecb77bff22c2a0440d436a6"
-  integrity sha512-uKzSFnY1ELxkWZKzhLl6RwjoavovD/8m6AWRZNXTyWxp/A6RSqKKKKy9owUeLD5d4FLmLlCL/BT8QhaE+tVnKA==
+"@instana/core@1.111.1":
+  version "1.111.1"
+  resolved "https://registry.yarnpkg.com/@instana/core/-/core-1.111.1.tgz#b540bd0eaac1670d90b69cffa0f339e4134ec54e"
+  integrity sha512-RqbSSR9coOK4rBmF4NO0Z1VgKKaygcZqSzJyNmLcG2cV3FPX+ndwoShXB9iV8tQ62kJn3ssPRKv+n5YbtCXY8Q==
   dependencies:
     async-hook-jl "^1.7.6"
     cls-bluebird "^2.1.0"
@@ -1883,12 +1883,12 @@
     https-proxy-agent "^5.0.0"
     semver "^5.6.0"
 
-"@instana/shared-metrics@1.110.5":
-  version "1.110.5"
-  resolved "https://registry.yarnpkg.com/@instana/shared-metrics/-/shared-metrics-1.110.5.tgz#0c3cabfbaf4dc1b6281f3302636c1d12743a52df"
-  integrity sha512-7zdBv/dcWaYVehcwrs1ZbhY3+np11kITobtA7N6J2WnbJ9YUKIxzhNlsBLhTy64MNdQSIej0CUWQb1CvCqqHqg==
+"@instana/shared-metrics@1.111.1":
+  version "1.111.1"
+  resolved "https://registry.yarnpkg.com/@instana/shared-metrics/-/shared-metrics-1.111.1.tgz#2e1660b512a7497211f8fa745cac58dec2c01176"
+  integrity sha512-9uAVzM1pjuNYrwzYeplx7whVCH3fXg6LI9YYzalhMmZAlU5vOCV1HgYrVVdhrGBbgNXQKgyNU7kNE08fk/aGaw==
   dependencies:
-    "@instana/core" "1.110.5"
+    "@instana/core" "1.111.1"
     detect-libc "^1.0.3"
     event-loop-lag "^1.4.0"
     recursive-copy "^2.0.11"
