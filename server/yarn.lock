@@ -1811,10 +1811,10 @@
   resolved "https://registry.yarnpkg.com/@graphql-typed-document-node/core/-/core-3.1.0.tgz#0eee6373e11418bfe0b5638f654df7a4ca6a3950"
   integrity sha512-wYn6r8zVZyQJ6rQaALBEln5B1pzxb9shV5Ef97kTvn6yVGrqyXVnDqnU24MXnFubR+rZjBY9NWuxX3FB2sTsjg==
 
-"@instana/autoprofile@1.111.1":
-  version "1.111.1"
-  resolved "https://registry.yarnpkg.com/@instana/autoprofile/-/autoprofile-1.111.1.tgz#d7ff73adf2ca2d10bee89399312b98f66c03f1c8"
-  integrity sha512-xN1kLa0WAhHf3hDUmROGck667mZrFsFRSCha6/4WYRj36J7dEI+zzQkvghCP21StYxP8zJr4k2Tb4DtVxW1oXg==
+"@instana/autoprofile@1.113.0":
+  version "1.113.0"
+  resolved "https://registry.yarnpkg.com/@instana/autoprofile/-/autoprofile-1.113.0.tgz#d3101489afafe8487341445c1e71b2631a3b27b2"
+  integrity sha512-oacycDSDgHqq/NXAAH0mL3FZsRJx4TPQXtyFiDchdLhC/jJT2B2oNB237oK2fa/+rs6oLd9LLriXgU1068pQfA==
   dependencies:
     detect-libc "^1.0.3"
     nan "^2.14.0"
@@ -1829,35 +1829,19 @@
     "@instana/core" "1.113.0"
     "@instana/serverless" "1.113.0"
 
-"@instana/collector@1.111.1":
-  version "1.111.1"
-  resolved "https://registry.yarnpkg.com/@instana/collector/-/collector-1.111.1.tgz#d8c678631c4b4eeb5c3ff3691716a80cde1c402a"
-  integrity sha512-DGm//k9hWMmzHn+9TTg3H3bDS4AD/7EIZWqq1SfI5evEFIbnyNSE7ylGJ1QnPkveuwB0rZX5GFPVzeRM8AUMoQ==
+"@instana/collector@1.113.0":
+  version "1.113.0"
+  resolved "https://registry.yarnpkg.com/@instana/collector/-/collector-1.113.0.tgz#775ac560e8c57f8ba266cc807ec4413260270b73"
+  integrity sha512-Uk7HVr4FpWVIkyta4nGLDzUBk4Ji0KuZf5OHU7FNCC+qEMUbDhvC6ZpqiOuPcJnOG3QvNWSl9Rmo+JwLr0dvRQ==
   dependencies:
-    "@instana/core" "1.111.1"
-    "@instana/shared-metrics" "1.111.1"
+    "@instana/core" "1.113.0"
+    "@instana/shared-metrics" "1.113.0"
     bunyan "^1.8.12"
     semver "5.5.1"
     serialize-error "^2.1.0"
     shimmer "1.2.0"
   optionalDependencies:
-    "@instana/autoprofile" "1.111.1"
-    netlinkwrapper "^1.2.0"
-
-"@instana/core@1.111.1":
-  version "1.111.1"
-  resolved "https://registry.yarnpkg.com/@instana/core/-/core-1.111.1.tgz#b540bd0eaac1670d90b69cffa0f339e4134ec54e"
-  integrity sha512-RqbSSR9coOK4rBmF4NO0Z1VgKKaygcZqSzJyNmLcG2cV3FPX+ndwoShXB9iV8tQ62kJn3ssPRKv+n5YbtCXY8Q==
-  dependencies:
-    async-hook-jl "^1.7.6"
-    cls-bluebird "^2.1.0"
-    emitter-listener "^1.1.2"
-    lru-cache "^5.1.1"
-    methods "^1.1.2"
-    opentracing "^0.14.3"
-    redis-commands "^1.3.5"
-    semver "5.5.1"
-    shimmer "1.2.0"
+    "@instana/autoprofile" "1.113.0"
 
 "@instana/core@1.113.0":
   version "1.113.0"
@@ -1883,12 +1867,12 @@
     https-proxy-agent "^5.0.0"
     semver "^5.6.0"
 
-"@instana/shared-metrics@1.111.1":
-  version "1.111.1"
-  resolved "https://registry.yarnpkg.com/@instana/shared-metrics/-/shared-metrics-1.111.1.tgz#2e1660b512a7497211f8fa745cac58dec2c01176"
-  integrity sha512-9uAVzM1pjuNYrwzYeplx7whVCH3fXg6LI9YYzalhMmZAlU5vOCV1HgYrVVdhrGBbgNXQKgyNU7kNE08fk/aGaw==
+"@instana/shared-metrics@1.113.0":
+  version "1.113.0"
+  resolved "https://registry.yarnpkg.com/@instana/shared-metrics/-/shared-metrics-1.113.0.tgz#871c3619d9be990c0f65add92361279e19a46021"
+  integrity sha512-OxdLFCeXSADbabBKpc9TkP9Z3l+CiprnM0OsFuLbS7rha4mNPjr+ulW8KWmKXy9Z5V0m0AdyLSCEvK6Rzco0JA==
   dependencies:
-    "@instana/core" "1.111.1"
+    "@instana/core" "1.113.0"
     detect-libc "^1.0.3"
     event-loop-lag "^1.4.0"
     recursive-copy "^2.0.11"
@@ -3043,7 +3027,7 @@ binary-extensions@^2.0.0:
   resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-2.1.0.tgz#30fa40c9e7fe07dbc895678cd287024dea241dd9"
   integrity sha512-1Yj8h9Q+QDF5FzhMs/c9+6UntbD5MkRfRwac8DoEm9ZfUBZ7tZ55YcGVAzEe4bXsdQHEk+s9S5wsOKVdZrw0tQ==
 
-bindings@1.5.0, bindings@^1.5.0:
+bindings@^1.5.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/bindings/-/bindings-1.5.0.tgz#10353c9e945334bc0511a6d90b38fbc7c9c504df"
   integrity sha512-p2q/t/mhvuOj/UeLlV6566GD/guowlr0hHxClI0W9m7MWYkL1F0hLo+0Aexs9HSPCtR1SXQ0TD3MMKrXZajbiQ==
@@ -6265,7 +6249,7 @@ mv@~2:
     ncp "~2.0.0"
     rimraf "~2.4.0"
 
-nan@2.14.1, nan@^2.0.5, nan@^2.12.1, nan@^2.14.0:
+nan@^2.0.5, nan@^2.12.1, nan@^2.14.0:
   version "2.14.1"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.14.1.tgz#d7be34dfa3105b91494c3147089315eff8874b01"
   integrity sha512-isWHgVjnFjh2x2yuJ/tj3JbwoHu3UC2dX5G/88Cm24yB6YopVgxvBObDY7n5xW6ExmFhJpSEQqFPvq9zaXc8Jw==
@@ -6322,14 +6306,6 @@ netlify-lambda@2.0.2:
     toml "^3.0.0"
     webpack "^4.43.0"
     webpack-merge "^4.2.2"
-
-netlinkwrapper@^1.2.0:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/netlinkwrapper/-/netlinkwrapper-1.2.1.tgz#eea73889b60f7690f03e533e6a202fa3d7c02a12"
-  integrity sha512-rh3hl2EPZOCC0ddEyJOQRb0bmJgAxuCW3dlhJFZ/V/pAQbLHyLy8TJ4EvS8aFOdUGJunvasepIuSDwgs2c37fA==
-  dependencies:
-    bindings "1.5.0"
-    nan "2.14.1"
 
 next-tick@~1.0.0:
   version "1.0.0"
