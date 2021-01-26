@@ -43,7 +43,7 @@
     "@babel/node": "7.12.10",
     "@babel/polyfill": "7.12.1",
     "@babel/preset-env": "7.12.11",
-    "@instana/collector": "1.111.1",
+    "@instana/collector": "1.113.0",
     "core-js": "3.8.2",
     "dotenv": "8.2.0",
     "express-jwt": "6.0.0",
