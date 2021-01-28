@@ -28,7 +28,7 @@
     "apollo-server-express": "2.19.2",
     "apollo-server-lambda": "2.19.2",
     "apollo-server-micro": "2.19.2",
-    "aws-sdk": "2.828.0",
+    "aws-sdk": "2.833.0",
     "bcryptjs": "2.4.3",
     "bufferutil": "4.0.3",
     "jsonwebtoken": "8.5.1",
