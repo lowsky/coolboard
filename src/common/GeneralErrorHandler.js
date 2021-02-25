@@ -123,6 +123,7 @@ export const GeneralErrorHandler = ({
           {errorMsgs.map((message, idx) => (
             <span key={idx}>{message}</span>
           ))}
+          After your first sign-in, please simple reload this page.
         </ErrorMessage>
       );
     } else if (networkError) {
