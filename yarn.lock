@@ -2641,10 +2641,10 @@ auth0-js@^9.13.3:
     url-join "^4.0.1"
     winchan "^0.2.2"
 
-auth0-lock@11.28.0:
-  version "11.28.0"
-  resolved "https://registry.yarnpkg.com/auth0-lock/-/auth0-lock-11.28.0.tgz#88391b3d39b1e188c390aee300adb1c624806554"
-  integrity sha512-rIzDfkgfM/mvTsaLP8v800xnYST6oVfM26Q4h/Bkqlu3fYmH+pUUbuk6uHj9SQXgNIdZhZYNhNdqkIlrTLvKUA==
+auth0-lock@11.28.1:
+  version "11.28.1"
+  resolved "https://registry.yarnpkg.com/auth0-lock/-/auth0-lock-11.28.1.tgz#f52ead0784d3d7c767a4eb616a38c8a83e5acb4a"
+  integrity sha512-TCZ5/L7ed1T+BI3Silc99Abghx3wK5BrVPaSdFM1Lqdo9sfQAOwuJbExdDHgqsN8y66L+H64Zk8eBgGq65bKpg==
   dependencies:
     auth0-js "^9.13.3"
     auth0-password-policies "^1.0.2"
@@ -2657,7 +2657,7 @@ auth0-lock@11.28.0:
     react "^15.6.2"
     react-dom "^15.6.2"
     react-transition-group "^2.2.1"
-    trim "0.0.1"
+    trim "1.0.0"
     url-join "^1.1.0"
     validator "^13.1.1"
 
@@ -11257,10 +11257,10 @@ tr46@^2.0.2:
   dependencies:
     punycode "^2.1.1"
 
-trim@0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/trim/-/trim-0.0.1.tgz#5858547f6b290757ee95cccc666fb50084c460dd"
-  integrity sha1-WFhUf2spB1fulczMZm+1AITEYN0=
+trim@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/trim/-/trim-1.0.0.tgz#fd1f30b878bdd2d8435fa0f2cc9cbb55f518be7d"
+  integrity sha512-UgtES1lYpE+f4WiGY5lyJlHchuGhTa/xMPH96g/B7gc+pEQPiL41s6ECm7Ky3hkhARG/u1SHGFcleJodAvQOKQ==
 
 tryer@^1.0.1:
   version "1.0.1"
