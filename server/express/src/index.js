@@ -1,3 +1,4 @@
+// eslint-disable-next-line prettier/prettier
 // import instana from '@instana/collector';
 if(false) {
   // eslint-disable-next-line no-undef
@@ -10,13 +11,13 @@ if(false) {
 import dotenv from 'dotenv';
 dotenv.config()
 
-import { isLocalDev } from "../helpers/logging";
-import { Prisma } from '../generated/prisma';
+import { isLocalDev } from "../../src/helpers/logging";
+import { Prisma } from '../../src/generated/prisma';
 
-import { makeExecutableSchema } from 'graphql-tools';
+import { makeExecutableSchema } from '@graphql-tools/schema';
 
-import { typeDefs } from '../apiSchema';
-import resolvers from '../resolvers';
+import { typeDefs } from '../../src/apiSchema';
+import resolvers from '../../src/resolvers';
 
 console.log('PRISMA_ENDPOINT', process.env.PRISMA_ENDPOINT);
 const prisma = new Prisma({
