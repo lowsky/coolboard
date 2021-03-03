@@ -31,3 +31,5 @@ server/lambda
 
 .vercel
 /.netlify/
+server/express/build/index.js
+server/express/build/jwt.js
