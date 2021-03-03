@@ -1,20 +1,12 @@
 {
   "name": "trello-gateway",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A GraphQL Trello server based on Prisma",
   "scripts": {
     "start:lambda": "node -r dotenv/config node_modules/.bin/netlify-lambda serve src/lambda",
     "build": "netlify-lambda build src/lambda",
-    "build:express": "babel --no-babelrc --presets @babel/env -d build src",
-    "start:express": "node -r dotenv/config build/express",
-    "start:express:nonoptimized": "OPTIMIZED=false node -r dotenv/config build/express",
-    "start": "nodemon -e js,graphql -x babel-node -r dotenv/config -b @babel/preset-env src/express",
-    "debug": "nodemon -e js,graphql -x babel-node -r dotenv/config -b @babel/preset-env --inspect src/express",
-    "build2": "netlify-lambda build src/lambda -c src/.webpack.config.js",
-    "start2": "nodemon -e js,graphql -x babel-node -b @babel/preset-env -r dotenv/config src/express",
-    "debug2": "nodemon -e js,graphql -x babel-node -b @babel/preset-env --inspect src/express",
     "playground": "prisma playground",
-    "dev": "npm-run-all --parallel start playground"
+    "dev": "npm-run-all --parallel start:lambda playground"
   },
   "author": "Robert Hostlowsky",
   "private": true,
@@ -22,32 +14,17 @@
     "node": ">=12.1"
   },
   "dependencies": {
-    "@babel/core": "7.13.8",
     "@instana/aws-lambda": "1.114.0",
     "apollo-errors": "1.9.0",
-    "apollo-server-express": "2.21.0",
     "apollo-server-lambda": "2.21.0",
     "apollo-server-micro": "2.21.0",
-    "aws-sdk": "2.855.0",
     "bcryptjs": "2.4.3",
-    "bufferutil": "4.0.3",
     "jsonwebtoken": "8.5.1",
     "jwks-rsa": "1.12.3",
     "netlify-lambda": "2.0.3",
-    "prisma-client-lib": "1.34.12",
-    "utf-8-validate": "5.0.4",
-    "webpack-node-externals": "2.5.2"
+    "prisma-client-lib": "1.34.12"
   },
   "devDependencies": {
-    "@babel/cli": "7.13.0",
-    "@babel/node": "7.13.0",
-    "@babel/polyfill": "7.12.1",
-    "@babel/preset-env": "7.13.9",
-    "@instana/collector": "1.116.0",
-    "core-js": "3.9.1",
-    "dotenv": "8.2.0",
-    "express-jwt": "6.0.0",
-    "graphql-tools": "7.0.4",
     "nodemon": "2.0.7",
     "npm-run-all": "4.1.5"
   }
