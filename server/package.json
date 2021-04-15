@@ -16,8 +16,8 @@
   "dependencies": {
     "@instana/aws-lambda": "1.116.0",
     "apollo-errors": "1.9.0",
-    "apollo-server-lambda": "2.21.0",
-    "apollo-server-micro": "2.21.0",
+    "apollo-server-lambda": "2.23.0",
+    "apollo-server-micro": "2.23.0",
     "bcryptjs": "2.4.3",
     "jsonwebtoken": "8.5.1",
     "jwks-rsa": "2.0.3",
