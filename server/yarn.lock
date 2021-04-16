@@ -877,37 +877,37 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@instana/aws-lambda@1.116.0":
-  version "1.116.0"
-  resolved "https://registry.yarnpkg.com/@instana/aws-lambda/-/aws-lambda-1.116.0.tgz#5f1e5f868954de97cfc996bc2661f8a961ecd837"
-  integrity sha512-zBhGx5ciSjk12vfjxEsByIIfb2NibrwjwgFHZikmSkhauP+AXJH8AjzxcbYrGBdZnziMg95DIV+JGA307SamcQ==
+"@instana/aws-lambda@1.119.2":
+  version "1.119.2"
+  resolved "https://registry.yarnpkg.com/@instana/aws-lambda/-/aws-lambda-1.119.2.tgz#0dd2344348354075b31e6b4db65ae314db6c944b"
+  integrity sha512-qLUPrA8YIoTTs7v3LbldyLPAKVt2AT2trqGhUUPxZX+saiEK4ImcLz70xZ7AVHj928wJ/ccFjboBt2xcLxTaIg==
   dependencies:
-    "@instana/core" "1.116.0"
-    "@instana/serverless" "1.116.0"
+    "@instana/core" "1.119.2"
+    "@instana/serverless" "1.119.2"
 
-"@instana/core@1.116.0":
-  version "1.116.0"
-  resolved "https://registry.yarnpkg.com/@instana/core/-/core-1.116.0.tgz#80654f7368d3af62da6660383a3bcd524dc8d633"
-  integrity sha512-tvD7CEV8u0JzdJ1FKGce34CvVVume4KxgyKKPjEJ8Do8vPrwzAvs3hPzy+yOoLtYNWRVoIOZxxgmCCwjqn4m8g==
+"@instana/core@1.119.2":
+  version "1.119.2"
+  resolved "https://registry.yarnpkg.com/@instana/core/-/core-1.119.2.tgz#695fc06d068cb188837b39098370ff1eeb783904"
+  integrity sha512-kiSz+m+hpa3oEHjQbgIT6UWKx8ee2PkM6lgm8iAyl4vZjwXTO2p60dvhM2Ucufl4pqQWLpn+rcAIMzpcTTnvSw==
   dependencies:
     async-hook-jl "^1.7.6"
     cls-bluebird "^2.1.0"
     emitter-listener "^1.1.2"
-    lru-cache "^5.1.1"
+    lru-cache "^6.0.0"
     methods "^1.1.2"
-    opentracing "^0.14.3"
-    redis-commands "^1.3.5"
-    semver "5.5.1"
-    shimmer "1.2.0"
+    opentracing "^0.14.5"
+    redis-commands "^1.7.0"
+    semver "7.3.5"
+    shimmer "1.2.1"
 
-"@instana/serverless@1.116.0":
-  version "1.116.0"
-  resolved "https://registry.yarnpkg.com/@instana/serverless/-/serverless-1.116.0.tgz#e995f33c1c36391c385fc2fd06f771e3f1572660"
-  integrity sha512-t56W5UXkUqSMRQMOfkCGkCJAuzz9WnnXPmRhkDsDPg+w57Xr8Jf2tV2lsSWMYfO4brgPcdGYhzeMyi8NcpRPfA==
+"@instana/serverless@1.119.2":
+  version "1.119.2"
+  resolved "https://registry.yarnpkg.com/@instana/serverless/-/serverless-1.119.2.tgz#6ed59122f1a99372bb76415b813a427561bde31b"
+  integrity sha512-ae3Xcvr/M+lprZSO8sXf1WYbGQ09K4u5QsZjTU7yfTHYWYHi1WBYwYLbgCMtWAeEml8Sil/vps4Kwmsct7CE/A==
   dependencies:
-    "@instana/core" "1.116.0"
+    "@instana/core" "1.119.2"
     https-proxy-agent "^5.0.0"
-    semver "^5.6.0"
+    semver "^7.3.5"
 
 "@nodelib/fs.scandir@2.1.4":
   version "2.1.4"
@@ -4592,7 +4592,7 @@ once@^1.3.0, once@^1.3.1, once@^1.4.0:
   dependencies:
     wrappy "1"
 
-opentracing@^0.14.3:
+opentracing@^0.14.5:
   version "0.14.5"
   resolved "https://registry.yarnpkg.com/opentracing/-/opentracing-0.14.5.tgz#891fa92cd90a24e64f99bc964370227310926c85"
   integrity sha512-XLKtEfHxqrWyF1fzxznsv78w3csW41ucHnjiKnfzZLD5FN8UBDZZL1i4q0FR29zjxXhm+2Hop+5Vr/b8tKIvEg==
@@ -5096,7 +5096,7 @@ readdirp@~3.5.0:
   dependencies:
     picomatch "^2.2.1"
 
-redis-commands@^1.3.5:
+redis-commands@^1.7.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/redis-commands/-/redis-commands-1.7.0.tgz#15a6fea2d58281e27b1cd1acfb4b293e278c3a89"
   integrity sha512-nJWqw3bTFy21hX/CPKHth6sfhZbdiHP6bTawSgQBlKOVRG7EZkfHbbHwQJnrE4vsQf0CMNE+3gJ4Fmm16vdVlQ==
@@ -5302,15 +5302,17 @@ semver-diff@^3.1.1:
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.7.1.tgz#a954f931aeba508d307bbf069eff0c01c96116f7"
   integrity sha512-sauaDf/PZdVgrLTNYHRtpXa1iRiKcaebiKQ1BJdpQlWH2lCvexQdX55snPFyK7QzpudqbCI0qXFfOasHdyNDGQ==
 
-semver@5.5.1:
-  version "5.5.1"
-  resolved "https://registry.yarnpkg.com/semver/-/semver-5.5.1.tgz#7dfdd8814bdb7cabc7be0fb1d734cfb66c940477"
-  integrity sha512-PqpAxfrEhlSUWge8dwIp4tZnQ25DIOthpiaHNIthsjEFQD6EvqUKUDM7L8O2rShkFccYo1VjJR0coWfNkCubRw==
-
 semver@7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.0.0.tgz#5f3ca35761e47e05b206c6daff2cf814f0316b8e"
   integrity sha512-+GB6zVA9LWh6zovYQLALHwv5rb2PHGlJi3lfiqIHxR0uuwCgefcOJc59v9fv1w8GbStwxuuqqAjI9NMAOOgq1A==
+
+semver@7.3.5, semver@^7.3.5:
+  version "7.3.5"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-7.3.5.tgz#0b621c879348d8998e4b0e4be94b3f12e6018ef7"
+  integrity sha512-PoeGJYh8HK4BTO/a9Tf6ZG3veo/A7ZVsYrSA6J8ny9nb3B1VrpkuN+z9OE5wfE5p6H4LchYZsegiQgbJD94ZFQ==
+  dependencies:
+    lru-cache "^6.0.0"
 
 semver@^6.0.0, semver@^6.1.1, semver@^6.1.2, semver@^6.2.0, semver@^6.3.0:
   version "6.3.0"
@@ -5408,12 +5410,7 @@ shell-quote@^1.6.1:
   resolved "https://registry.yarnpkg.com/shell-quote/-/shell-quote-1.7.2.tgz#67a7d02c76c9da24f99d20808fcaded0e0e04be2"
   integrity sha512-mRz/m/JVscCrkMyPqHc/bczi3OQHkLTqXHEFu0zDhK/qfv3UcOA4SVmRCLmos4bhjr9ekVQubj/R7waKapmiQg==
 
-shimmer@1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/shimmer/-/shimmer-1.2.0.tgz#f966f7555789763e74d8841193685a5e78736665"
-  integrity sha512-xTCx2vohXC2EWWDqY/zb4+5Mu28D+HYNSOuFzsyRDRvI/e1ICb69afwaUwfjr+25ZXldbOLyp+iDUZHq8UnTag==
-
-shimmer@^1.1.0, shimmer@^1.2.0:
+shimmer@1.2.1, shimmer@^1.1.0, shimmer@^1.2.0:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/shimmer/-/shimmer-1.2.1.tgz#610859f7de327b587efebf501fb43117f9aff337"
   integrity sha512-sQTKC1Re/rM6XyFM6fIAGHRPVGvyXfgzIDvzoq608vM+jeyVD0Tu1E6Np0Kc2zAIFWIj963V2800iF/9LPieQw==
