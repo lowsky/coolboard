@@ -4,13 +4,14 @@ import { formatError } from 'apollo-errors';
 import resolvers from '../resolvers';
 import { typeDefs } from '../apiSchema';
 
-import { Prisma } from '../generated/prisma';
 import { isLocalDev } from '../helpers/logging';
 
 // const instana = require('@instana/aws-lambda');
 
-export const prisma = new Prisma({
-  debug: isLocalDev,
+const { PrismaClient } = require('@prisma/client')
+const prisma = new PrismaClient({
+  log: isLocalDev ? ['query', 'info', `warn`, `error`]:
+    ['warn', 'error']
 });
 
 const lambda = new ApolloServer({
