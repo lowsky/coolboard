@@ -21,18 +21,32 @@ services:
         databases:
           default:
             active: true
-            connector: mysql  # or `postgres`
+            connector: postgres
+            # connector: mysql  # or `postgres`
             migrations: true
-            host: trello-mysql
-            port: 3306        # or `5432` for `postgres`
-            user: root
+            host: trello-postgres
+            #port: 3306        # or `5432` for `postgres`
+            port: 5432
+            user: postgres
             password: prisma
   trello-mysql:
     image: mysql:5.7
     restart: always
+    ports:
+      - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: prisma
     volumes:
       - trello-mysql:/var/lib/mysql
+  trello-postgres:
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: prisma
+    volumes:
+      - trello-postgres:/var/lib/postgres
 volumes:
   trello-mysql:
+  trello-postgres:
