@@ -1,26 +1,49 @@
 import { getUserId, verifyUserIsAuthenticated } from '../utils';
 
 const list = {
-  async updateList(parent, args, ctx) {
+  async updateList(parent, { where, data }, ctx) {
     const userId = await getUserId(ctx);
     const { prisma } = ctx;
+    const { create, connect, disconnect, ...otherCardOperation } = data.cards ?? {};
+    let cards;
+    if (create?.[0]) {
+      cards.create = {
+        name: create[0].name,
+        createdById: userId,
+        updatedById: userId,
+      };
+    }
+    if (connect?.[0]) {
+      const id = connect[0].id;
+      cards.connect = {
+        id,
+      };
+    }
+    if (disconnect?.[0]) {
+      cards.disconnect = {
+        id: disconnect[0].id,
+      };
+    }
+    if (!create && !connect && !disconnect) {
+      throw new Error('Unsupported operation on lists: ' + Object.keys(otherCardOperation));
+    }
 
-    return prisma.updateList({
-      where: args.where,
+    return prisma.list.update({
+      where,
       data: {
-        ...args.data,
-        updatedBy: {
-          connect: {
-            id: userId,
-          },
-        },
+        cards,
+        // createdById: userId, // should be updated-by
+        // updatedById: userId,
+      },
+      include: {
+        createdBy: true,
       },
     });
   },
-  async deleteList(parent, args, ctx) {
+  async deleteList(parent, { where }, ctx) {
     await verifyUserIsAuthenticated(ctx);
     const { prisma } = ctx;
-    return prisma.deleteList(args);
+    return prisma.list.delete({ where });
   },
 };
 

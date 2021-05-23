@@ -11,13 +11,16 @@ model Card {
   id          String   @id @default(cuid()) @db.VarChar(25)
   name        String
   description String?
+
   createdAt   DateTime @default(now())
   createdBy   User     @relation(name: "createdBy", fields: [createdById], references: [id])
   createdById String   @db.VarChar(25)
   updatedAt   DateTime @updatedAt
   updatedBy   User     @relation(name: "updatedBy", fields: [updatedById], references: [id])
   updatedById String   @db.VarChar(25)
-  list        List     @relation(fields: [id], references: [id])
+
+  listId      String   @db.VarChar(25)
+  list        List?    @relation(fields: [listId], references: [id])
 }
 
 model List {
@@ -25,8 +28,9 @@ model List {
   name      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  board     Board    @relation(fields: [id], references: [id])
-  cards     Card[]
+  board     Board?   @relation(fields: [boardId], references: [id])
+  boardId   String   @db.VarChar(25)
+  cards        Card[]
 
   createdBy   User   @relation(fields: [createdById], references: [id])
   createdById String @db.VarChar(25)
@@ -39,7 +43,8 @@ model Board {
   updatedAt   DateTime @updatedAt
   createdBy   User     @relation(fields: [createdById], references: [id])
   createdById String   @db.VarChar(25)
-  lists       List[]
+
+  lists List[]
 }
 
 model User {
@@ -51,9 +56,8 @@ model User {
   identity      String?
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
-  Board         Board[]
+  boards        Board[]
   CardCreatedBy Card[]   @relation(name: "createdBy")
   CardUpdatedBy Card[]   @relation(name: "updatedBy")
-
-  List List[]
+  lists          List[]
 }

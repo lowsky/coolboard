@@ -30,11 +30,13 @@ const card = {
       },
     };
 
-    const updatedCard = await prisma.updateCard(
+    const updatedCard = await prisma.card.update(
       argsWithUpdatedByUser
     );
 
-    return prisma.card({ id: updatedCard.id });
+    return prisma.card.findUnique({
+      where: { id: updatedCard.id },
+    });
 
     /* Example:
     mutation {

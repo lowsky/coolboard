@@ -17,7 +17,6 @@ const prisma = new PrismaClient({
 const lambda = new ApolloServer({
   typeDefs,
   resolvers,
-  formatError,
 
   debug: isLocalDev,
   playground: isLocalDev,
