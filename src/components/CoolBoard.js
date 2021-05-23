@@ -16,6 +16,7 @@ class Board extends React.Component {
       board = {},
       addList,
       deleteLists,
+      deleteList,
       boardId,
     } = this.props;
 
@@ -46,7 +47,7 @@ class Board extends React.Component {
             key={list.id}
             name={list.name}
             id={list.id}
-            deleteListWithId={id => deleteLists([id])}
+            deleteListWithId={id => deleteList(id)}
           />
         ))}
         <AddListButton onAddNewList={onBoardAddItem} />
@@ -104,6 +105,21 @@ const deleteListsOfBoardMutation = gql`
   ${Board.fragments.board}
 `;
 
+const deleteListOfBoardMutation = gql`
+  mutation deleteListOfBoard(
+    $boardId: ID!
+    $listId: ID!
+  ) {
+    updateBoard(
+      data: { lists: { delete: { id: $listId } } }
+      where: { id: $boardId }
+    ) {
+      ...Board_board
+    }
+  }
+  ${Board.fragments.board}
+`;
+
 export const CoolBoard = ({ boardId }) => {
   const { loading, error, data } = useQuery(
     BoardQuery,
@@ -115,6 +131,10 @@ export const CoolBoard = ({ boardId }) => {
 
   const [deleteListsOfBoard] = useMutation(
     deleteListsOfBoardMutation,
+  );
+
+  const [deleteListOfBoard] = useMutation(
+    deleteListOfBoardMutation,
   );
 
   if(loading) {
@@ -138,11 +158,20 @@ export const CoolBoard = ({ boardId }) => {
       },
     });
 
+  const deleteList = listId =>
+    deleteListOfBoard({
+      variables: {
+        boardId,
+        listId
+      },
+    });
+
   return (
     <Board
       boardId={boardId}
       addList={addList}
       deleteLists={deleteLists}
+      deleteList={deleteList}
       board={board}
     />
   );

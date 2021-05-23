@@ -1,5 +1,5 @@
 import Query from './Query';
-import Subscription from './Subscription';
+// import Subscription from './Subscription';
 import board from './Mutation/board';
 import list from './Mutation/list';
 import card from './Mutation/card';
@@ -11,23 +11,36 @@ export default {
     ...list,
     ...card,
   },
-  Subscription,
+  //Subscription,
   User: {
-    boards(parent, args, ctx) {
+    async boards(parent, args, ctx) {
       const { prisma } = ctx;
-      return prisma.user({ id: parent.id }).boards();
+      return prisma.board.findMany({
+        where: { createdById: parent.id },
+      });
     },
   },
   Board: {
-    lists(parent, args, ctx) {
+    async lists(parent, args, ctx) {
       const { prisma } = ctx;
-      return prisma.board({ id: parent.id }).lists();
+      return prisma.list.findMany({
+        where: { board: {id: parent.id} },
+        include: {
+          createdBy: true
+        }
+      });
     },
   },
   List: {
-    cards(parent, args, ctx) {
+    async cards(parent, args, ctx) {
       const { prisma } = ctx;
-      return prisma.list({ id: parent.id }).cards();
+      return prisma.card.findMany({
+          where: { list: {id: parent.id} },
+          include: {
+            createdBy: true
+          }
+        },
+      );
     },
   },
 };

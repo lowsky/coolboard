@@ -19,14 +19,19 @@ const getUserId = async ctx => {
 
   const userToken = await verifyAuth0HeaderToken(ctx);
   if (userToken) {
-
     const auth0id = userToken.sub.split('|')[1];
-    const userId = await userIdByAuth0id(auth0id, ctx.prisma.user);
+    const userId = await userIdByAuth0id(auth0id, (auth0id)=>
+      ctx.prisma.user.findUnique({
+        where: {
+          auth0id
+        }
+      }));
+
     if (userId) {
       return userId;
     }
 
-    const user = await createNewUser(userToken, ctx.prisma.createUser);
+    const user = await createNewUser(userToken, ctx.prisma.user.create);
     if (isLocalDev) console.log('--- created prisma user (+id)', user);
     const { id } = user;
     if (id) injectUserIdByAuth0id(user.id, auth0id)
@@ -38,6 +43,8 @@ const getUserId = async ctx => {
       'Not authorized: no user in current request',
   });
 };
+
+export const auth0idFromUserToken = userToken => userToken.sub.split('|')[1];
 
 async function verifyAuth0HeaderToken(ctx) {
   const authorization = ctx.request
@@ -59,7 +66,7 @@ async function verifyAuth0HeaderToken(ctx) {
       const userToken = await validateAndParseIdToken(
         token
       );
-      const auth0id = userToken.sub.split('|')[1];
+      const auth0id = auth0idFromUserToken(userToken);
       if (auth0id) {
         return userToken;
       }
@@ -71,7 +78,7 @@ async function verifyAuth0HeaderToken(ctx) {
   }
 
   throw new AuthError({
-    message: 'Not authorized or invalid auth token',
+    message: 'Not authorized, no valid auth token'
   });
 }
 

@@ -4,7 +4,6 @@ import { formatError } from 'apollo-errors';
 import resolvers from '../src/resolvers';
 import { typeDefs } from '../src/apiSchema';
 
-import { Prisma } from '../src/generated/prisma';
 import { isLocalDev } from '../src/helpers/logging';
 
 // const instana = require('@instana/aws-lambda');
