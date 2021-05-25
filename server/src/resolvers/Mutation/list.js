@@ -5,7 +5,12 @@ const list = {
     const userId = await getUserId(ctx);
     const { prisma } = ctx;
     const { create, connect, disconnect, ...otherCardOperation } = data.cards ?? {};
-    let cards;
+
+    if (!create && !connect && !disconnect) {
+      throw new Error('Unsupported operation on lists: ' + Object.keys(otherCardOperation));
+    }
+
+    let cards = {};
     if (create?.[0]) {
       cards.create = {
         name: create[0].name,
@@ -24,10 +29,6 @@ const list = {
         id: disconnect[0].id,
       };
     }
-    if (!create && !connect && !disconnect) {
-      throw new Error('Unsupported operation on lists: ' + Object.keys(otherCardOperation));
-    }
-
     return prisma.list.update({
       where,
       data: {
