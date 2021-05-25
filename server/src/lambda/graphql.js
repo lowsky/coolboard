@@ -11,7 +11,7 @@ import { isLocalDev } from '../helpers/logging';
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient({
   log: isLocalDev ? ['query', 'info', `warn`, `error`]:
-    ['warn', 'error']
+    ['info', 'warn', 'error']
 });
 
 const lambda = new ApolloServer({
