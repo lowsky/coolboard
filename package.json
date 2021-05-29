@@ -4,11 +4,8 @@
   "description": "A GraphQL Trello server based on Prisma",
   "scripts": {
     "start:lambda": "node -r dotenv/config node_modules/.bin/netlify-lambda serve src/lambda",
-    "build": "yarn prisma generate && netlify-lambda build src/lambda && yarn deploy-runtime",
-    "deploy-runtime": "cp node_modules/.prisma/client/query-* ./node_modules/@prisma/client/",
-    "playground": "prisma playground",
-
-    "dev": "npm-run-all --parallel start:lambda playground"
+    "build": "yarn prisma generate && netlify-lambda build src/lambda",
+    "dev": "yarn start:lambda"
   },
   "author": "Robert Hostlowsky",
   "private": true,
