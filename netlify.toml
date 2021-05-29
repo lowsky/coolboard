@@ -1,4 +1,4 @@
 [build]
   Command = "npm run build"
-  Functions = "src/lambda"
+  Functions = "lambda"
   Publish = "public"
