@@ -33,3 +33,7 @@ server/lambda
 /.netlify/
 server/express/build/index.js
 server/express/build/jwt.js
+dist
+package-lock.json
+.idea
+*.log
