@@ -25,8 +25,8 @@
   },
   "devDependencies": {
     "bufferutil": "4.0.3",
-    "netlify-cli": "3.29.15",
-    "netlify-lambda": "2.0.6",
+    "netlify-cli": "3.31.16",
+    "netlify-lambda": "2.0.7",
     "nodemon": "2.0.7",
     "npm-run-all": "4.1.5",
     "prisma": "2.23.0",
