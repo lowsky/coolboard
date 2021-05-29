@@ -1,6 +1,0 @@
-{
-  "ignoreDeps": ["@types/.*"],
-  "extends": [
-    "config:base"
-  ]
-}
