@@ -3,6 +3,8 @@
   "version": "0.2.0",
   "description": "A GraphQL Trello server based on Prisma",
   "scripts": {
+    "start": "yarn build && yarn netlify dev -p 3000",
+    "studio": "prisma studio",
     "build": "prisma generate && yarn compile",
     "compile": "yarn babel src --out-dir functions"
   },
