@@ -4,7 +4,7 @@
   "description": "A GraphQL Trello server based on Prisma",
   "scripts": {
     "build": "prisma generate && yarn compile",
-    "compile": "yarn babel src --out-dir functions",
+    "compile": "yarn babel src --out-dir functions"
   },
   "author": "Robert Hostlowsky",
   "private": true,
