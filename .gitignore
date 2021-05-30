@@ -23,7 +23,7 @@ yarn-error.log*
 smoketest/node_modules
 smoketest/cypress/videos
 smoketest/cypress/screenshots
-server/lambda
+/functions/
 
 /.pnp/
 /public/meta.json

@@ -1,4 +1,4 @@
 [build]
   Command = "npm run build"
-  Functions = "server/lambda"
+  Functions = "server/functions"
   Publish = "build"
