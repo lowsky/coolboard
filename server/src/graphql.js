@@ -1,10 +1,10 @@
 import { ApolloServer } from 'apollo-server-lambda';
 import { formatError } from 'apollo-errors';
 
-import resolvers from '../resolvers';
-import { typeDefs } from '../apiSchema';
+import resolvers from './resolvers';
+import { typeDefs } from './schema/apiSchema';
 
-import { isLocalDev } from '../helpers/logging';
+import { isLocalDev } from './helpers/logging';
 
 // const instana = require('@instana/aws-lambda');
 
