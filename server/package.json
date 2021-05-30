@@ -20,9 +20,9 @@
     "apollo-server-lambda": "2.23.0",
     "apollo-server-micro": "2.23.0",
     "bcryptjs": "2.4.3",
+    "graphql": "15.5.0",
     "jsonwebtoken": "8.5.1",
-    "jwks-rsa": "2.0.3",
-    "prisma-client-lib": "1.34.12"
+    "jwks-rsa": "2.0.3"
   },
   "devDependencies": {
     "@babel/cli": "7.14.3",
@@ -33,7 +33,6 @@
     "netlify-cli": "3.29.15",
     "nodemon": "2.0.7",
     "prisma": "2.23.0",
-    "prisma1": "1.34.12",
     "utf-8-validate": "5.0.5"
   }
 }
