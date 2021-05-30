@@ -1,12 +1,9 @@
-import { ApolloServer } from 'apollo-server-lambda';
-import { formatError } from 'apollo-errors';
+// const resolvers = require('../resolvers');
+// import { typeDefs } from '../apiSchema';
 
-import resolvers from '../resolvers';
-import { typeDefs } from '../apiSchema';
-
-import { isLocalDev } from '../helpers/logging';
-
-// const instana = require('@instana/aws-lambda');
+//import { isLocalDev } from '../helpers/logging';
+const { ApolloServer } = require("apollo-server-lambda");
+const isLocalDev = true;
 
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient({
@@ -15,8 +12,17 @@ const prisma = new PrismaClient({
 });
 
 const lambda = new ApolloServer({
-  typeDefs,
-  resolvers,
+  typeDefs: `type Query {
+    hello: String
+  }`,
+  resolvers: {
+    Query : {
+      async hello(parent, args, ctx) {
+        const b = await prisma.board.findUnique({ where: { id: "ckp3ws6oa0050pla1nofdwbi1" }});
+        return b.name;
+      },
+    },
+  },
 
   debug: isLocalDev,
   playground: isLocalDev,
@@ -24,7 +30,7 @@ const lambda = new ApolloServer({
 
   engine: {
     // The Graph Manager API key
-    apiKey: process.env.ENGINE_API_KEY,
+    //apiKey: process.env.ENGINE_API_KEY,
 
     // For more information on schema tags/variants, see
     // https://www.apollographql.com/docs/platform/schema-registry/#associating-metrics-with-a-variant
@@ -38,7 +44,7 @@ const lambda = new ApolloServer({
   */
   context: req => ({
     ...req,
-    prisma,
+    //prisma,
   }),
 });
 

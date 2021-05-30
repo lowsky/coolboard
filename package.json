@@ -4,7 +4,7 @@
   "description": "A GraphQL Trello server based on Prisma",
   "scripts": {
     "start:lambda": "node -r dotenv/config node_modules/.bin/netlify-lambda serve src/lambda",
-    "build": "yarn prisma generate && netlify-lambda build src/lambda && yarn deploy-lib",
+    "build": "yarn prisma generate && echo not: netlify-lambda build src/lambda && echo not: yarn deploy-lib",
     "deploy-lib": "cp -v ./node_modules/prisma/query-engine-rhel-openssl-1.0.x . && cp -v ./node_modules/prisma/query-engine-rhel-openssl-1.0.x lambda",
     "dev": "yarn start:lambda"
   },
