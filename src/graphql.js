@@ -1,9 +1,8 @@
-// const resolvers = require('../resolvers');
-// import { typeDefs } from '../apiSchema';
+import resolvers from "./resolvers";
+import { typeDefs } from './schema/apiSchema';
 
-//import { isLocalDev } from '../helpers/logging';
-const { ApolloServer } = require("apollo-server-lambda");
-const isLocalDev = true;
+import { isLocalDev } from './helpers/logging';
+import { ApolloServer } from "apollo-server-lambda";
 
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient({
@@ -12,17 +11,8 @@ const prisma = new PrismaClient({
 });
 
 const lambda = new ApolloServer({
-  typeDefs: `type Query {
-    hello: String
-  }`,
-  resolvers: {
-    Query : {
-      async hello(parent, args, ctx) {
-        const b = await prisma.board.findUnique({ where: { id: "ckp3ws6oa0050pla1nofdwbi1" }});
-        return b.name;
-      },
-    },
-  },
+  typeDefs,
+  resolvers,
 
   debug: isLocalDev,
   playground: isLocalDev,
@@ -44,7 +34,7 @@ const lambda = new ApolloServer({
   */
   context: req => ({
     ...req,
-    //prisma,
+    prisma,
   }),
 });
 

@@ -4,9 +4,10 @@
   "description": "A GraphQL Trello server based on Prisma",
   "scripts": {
     "start:lambda": "node -r dotenv/config node_modules/.bin/netlify-lambda serve src/lambda",
-    "build": "yarn prisma generate && echo not: netlify-lambda build src/lambda && echo not: yarn deploy-lib",
+    "build": "prisma generate && yarn compile && echo not: netlify-lambda build src/lambda && echo not: yarn deploy-lib",
+    "compile": "yarn babel src --out-dir functions",
     "deploy-lib": "cp -v ./node_modules/prisma/query-engine-rhel-openssl-1.0.x . && cp -v ./node_modules/prisma/query-engine-rhel-openssl-1.0.x lambda",
-    "dev": "yarn start:lambda"
+    "localdev": "yarn start:lambda"
   },
   "author": "Robert Hostlowsky",
   "private": true,
@@ -25,9 +26,13 @@
     "jwks-rsa": "2.0.3"
   },
   "devDependencies": {
+    "@babel/cli": "7.14.3",
+    "@babel/core": "7.14.3",
+    "@babel/preset-env": "7.14.4",
     "bufferutil": "4.0.3",
     "netlify-cli": "3.31.16",
     "netlify-lambda": "2.0.7",
+    "node-fetch": "^2.6.1",
     "nodemon": "2.0.7",
     "npm-run-all": "4.1.5",
     "prisma": "2.23.0",
