@@ -1,21 +1,21 @@
 import { ApolloServer } from 'apollo-server-micro';
-import { formatError } from 'apollo-errors';
 
-import resolvers from '../src/resolvers';
-import { typeDefs } from '../src/apiSchema';
+import resolvers from '../src/resolvers/resolvers';
+import { typeDefs } from '../src/schema/apiSchema';
 
 import { isLocalDev } from '../src/helpers/logging';
 
 // const instana = require('@instana/aws-lambda');
 
-export const prisma = new Prisma({
-  debug: isLocalDev,
+const { PrismaClient } = require('@prisma/client')
+const prisma = new PrismaClient({
+  log: isLocalDev ? ['query', 'info', `warn`, `error`]:
+    ['info', 'warn', 'error']
 });
 
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  formatError,
 
   debug: isLocalDev,
   playground: isLocalDev,
