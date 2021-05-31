@@ -1,12 +1,12 @@
 {
-  "name": "trello-gateway",
-  "version": "0.2.0",
+  "name": "trello-clone-backend",
+  "version": "1.0.0",
   "description": "A GraphQL Trello server based on Prisma",
   "scripts": {
     "start": "yarn build && yarn netlify dev -p 3000",
     "studio": "prisma studio",
     "build": "prisma generate && yarn compile",
-    "compile": "yarn babel src --out-dir functions"
+    "compile": "babel --verbose --delete-dir-on-start src --out-dir functions"
   },
   "author": "Robert Hostlowsky",
   "private": true,
@@ -31,7 +31,6 @@
     "bufferutil": "4.0.3",
     "netlify": "6.1.29",
     "netlify-cli": "3.29.15",
-    "nodemon": "2.0.7",
     "prisma": "2.23.0",
     "utf-8-validate": "5.0.5"
   }
