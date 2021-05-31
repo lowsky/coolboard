@@ -30,7 +30,7 @@ services:
             user: postgres
             password: prisma
   trello-mysql:
-    image: mysql:5.7
+    image: mysql:8.0
     restart: always
     ports:
       - "3306:3306"
