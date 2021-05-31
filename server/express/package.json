@@ -20,7 +20,7 @@
     "node": ">=12.1"
   },
   "dependencies": {
-    "@babel/core": "7.13.16",
+    "@babel/core": "7.14.3",
     "apollo-errors": "1.9.0",
     "apollo-server-express": "2.23.0",
     "apollo-server-micro": "2.23.0",
@@ -34,10 +34,10 @@
     "webpack-node-externals": "3.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "7.13.16",
-    "@babel/node": "7.13.13",
+    "@babel/cli": "7.14.3",
+    "@babel/node": "7.14.2",
     "@babel/polyfill": "7.12.1",
-    "@babel/preset-env": "7.13.15",
+    "@babel/preset-env": "7.14.4",
     "@graphql-tools/schema": "7.1.5",
     "@instana/collector": "1.119.2",
     "core-js": "3.13.1",
