@@ -22,6 +22,7 @@ const lambda = new ApolloServer({
   playground: isLocalDev,
   introspection: isLocalDev,
 
+  /*
   engine: {
     // The Graph Manager API key
     apiKey: process.env.ENGINE_API_KEY,
@@ -30,23 +31,20 @@ const lambda = new ApolloServer({
     // https://www.apollographql.com/docs/platform/schema-registry/#associating-metrics-with-a-variant
     schemaTag: process.env.ENGINE_SCHEMA_TAG || 'undefined',
   },
+   */
 
-  /*
-  resolverValidationOptions: {
-    requireResolversForResolveType: false,
-  },
-  */
   context: req => ({
     ...req,
     prisma,
   }),
 });
 
-//exports.handler = instana.wrap((event, context, callback) => {
+//LATER: exports.handler = instana.wrap((event, context, callback) => {
+
 exports.handler = ((event, context, callback) => {
   const callbackFilter = function (error, output) {
     if (error) {
-      console.error(error);
+      console.error('error:', error);
     } else {
       isLocalDev &&
         console.info(
@@ -54,12 +52,13 @@ exports.handler = ((event, context, callback) => {
         );
     }
 
-    console.log(
-      'Environment: ',
-      process && process.env && process.env.NODE_ENV
-    );
     isLocalDev &&
-      console.log('Environment: LOCAL? ', isLocalDev);
+      console.log(
+        'Environment: ',
+        process && process.env && process.env.NODE_ENV
+      );
+    isLocalDev &&
+      console.log('Environment: LOCAL DEV mode');
 
     isLocalDev && console.log('result', output);
     callback(error, output);

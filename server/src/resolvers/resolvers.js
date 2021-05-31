@@ -1,5 +1,5 @@
 import Query from './Query';
-// import Subscription from './Subscription';
+
 import board from './Mutation/board';
 import list from './Mutation/list';
 import card from './Mutation/card';
@@ -11,7 +11,6 @@ export default {
     ...list,
     ...card,
   },
-  //Subscription,
   User: {
     async boards(parent, args, ctx) {
       const { prisma } = ctx;
