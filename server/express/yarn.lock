@@ -1150,34 +1150,34 @@
     camel-case "4.1.2"
     tslib "~2.1.0"
 
-"@instana/autoprofile@1.121.0":
-  version "1.121.0"
-  resolved "https://registry.yarnpkg.com/@instana/autoprofile/-/autoprofile-1.121.0.tgz#995fc9de313c3cc2e609cb403d2fced0369a71a2"
-  integrity sha512-BhpOTn8wZXNYF0R2qnaiBzaB/8ozlnR1Bd6isr0y7WxDNw2a0H41hYvHn0eWQtcf+2eOmqpBvyCM0wTmDk6pag==
+"@instana/autoprofile@1.124.0":
+  version "1.124.0"
+  resolved "https://registry.yarnpkg.com/@instana/autoprofile/-/autoprofile-1.124.0.tgz#6d55e2f6a3d48c359b0ed0884c2ea7dc73b88fd2"
+  integrity sha512-iGKEKUSud0szB3zJ9/EZ1ZH5tVCTzQBohcL/BwPpacYDM/r4ZHc1z139bVHW1ez+fmgC1Fh5vH3PPsFlTBtvpg==
   dependencies:
     detect-libc "^1.0.3"
     nan "^2.14.2"
     node-abi "^2.21.0"
     node-gyp "^7.1.2"
 
-"@instana/collector@1.121.0":
-  version "1.121.0"
-  resolved "https://registry.yarnpkg.com/@instana/collector/-/collector-1.121.0.tgz#03b6152934be0359b7269350396970ad0d846db1"
-  integrity sha512-k4xGWGPBRhEVA6D5QoPecfLhnEv1ojEjMvghUqWTSN9fcpnNtokIVI1oAlrajYvHD+4tA45zDPS4DKd3hFeEDQ==
+"@instana/collector@1.124.0":
+  version "1.124.0"
+  resolved "https://registry.yarnpkg.com/@instana/collector/-/collector-1.124.0.tgz#4be00f75bb6b873e552e9f82a6cfb2a297d7fce8"
+  integrity sha512-1V5eFFpNjz8bSIjWwULlnjnHK5RzqaBNH3IvyRPFRiHvjbA7jAYCDRHVAonPXA7kw1wc7OoJ7C+I+pqslGoenQ==
   dependencies:
-    "@instana/core" "1.121.0"
-    "@instana/shared-metrics" "1.121.0"
+    "@instana/core" "1.124.0"
+    "@instana/shared-metrics" "1.124.0"
     bunyan "^1.8.15"
     semver "7.3.5"
     serialize-error "^3.0.0"
     shimmer "1.2.1"
   optionalDependencies:
-    "@instana/autoprofile" "1.121.0"
+    "@instana/autoprofile" "1.124.0"
 
-"@instana/core@1.121.0":
-  version "1.121.0"
-  resolved "https://registry.yarnpkg.com/@instana/core/-/core-1.121.0.tgz#cd0535410e5c9be09195156beb53833a56183b19"
-  integrity sha512-rhDcOPD79jfhL0uI5QYYb/3sHxmFpJI37LvSzhsMs2z2vP2aIiQuYWQYsW0KCOkb/13+2BOjVLHr53DzPHmjYw==
+"@instana/core@1.124.0":
+  version "1.124.0"
+  resolved "https://registry.yarnpkg.com/@instana/core/-/core-1.124.0.tgz#77afa61b2818607f49dd45bfda77163949865df1"
+  integrity sha512-MZHaIatCRLXbIUKYnQH9TE3nCX1ftWZKiXorqvNVk4jgt07tTet25PeSzteCAtIk4T5k/GBNI/HI3l2YDvLijA==
   dependencies:
     async-hook-jl "^1.7.6"
     cls-bluebird "^2.1.0"
@@ -1189,12 +1189,12 @@
     semver "7.3.5"
     shimmer "1.2.1"
 
-"@instana/shared-metrics@1.121.0":
-  version "1.121.0"
-  resolved "https://registry.yarnpkg.com/@instana/shared-metrics/-/shared-metrics-1.121.0.tgz#37e3ba53f2121bc7a45c3b557a4dca1e706bb8df"
-  integrity sha512-hCucE6MNXaniy8PR3b+vfaG56tcD0w92RrXf1CQZ+cw7LUbNDIhOeB0u66CWNoxON/Z6XR/F1QUaxE2W+XeAwQ==
+"@instana/shared-metrics@1.124.0":
+  version "1.124.0"
+  resolved "https://registry.yarnpkg.com/@instana/shared-metrics/-/shared-metrics-1.124.0.tgz#9df64e1f73d98d1645b3000b7b88602a75a79c58"
+  integrity sha512-ZBXo+XqhoFWGO/+wgMaci2saoeihBs+El6iV0PiYHd5S036B9zad6mAztRq31eKTHo8/mcJ0H9MQkJLU2bwpow==
   dependencies:
-    "@instana/core" "1.121.0"
+    "@instana/core" "1.124.0"
     detect-libc "^1.0.3"
     event-loop-lag "^1.4.0"
     recursive-copy "^2.0.11"
