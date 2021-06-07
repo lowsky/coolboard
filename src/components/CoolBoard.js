@@ -10,51 +10,49 @@ import {
 } from './BoardContainer';
 import { CardList } from './CardList';
 
-class Board extends React.Component {
-  render() {
-    const {
-      board = {},
-      addList,
-      deleteLists,
-      deleteList,
-      boardId,
-    } = this.props;
+const Board = (props) => {
+  const {
+    board = {},
+    addList,
+    deleteLists,
+    deleteList,
+    boardId,
+  } = props;
 
-    const { name, lists = [] } = board;
+  const { name, lists = [] } = board;
 
-    const onBoardAddItem = () => {
-      console.log(
-        `triggered adding list to the board`
-      );
-      addList({
-        variables: {
-          boardId,
-          name: 'new list',
-        },
-      });
-    };
-
-    return (
-      <BoardContainer boardName={name}>
-        <DelListButton
-          action={() =>
-            deleteLists(lists.map(list => list.id))
-          }>
-          Delete All
-        </DelListButton>
-        {lists.map(list => (
-          <CardList
-            key={list.id}
-            name={list.name}
-            id={list.id}
-            deleteListWithId={id => deleteList(id)}
-          />
-        ))}
-        <AddListButton onAddNewList={onBoardAddItem} />
-      </BoardContainer>
+  const onBoardAddItem = () => {
+    console.log(
+      `triggered adding list to the board`
     );
-  }
-}
+    addList({
+      variables: {
+        boardId,
+        name: 'new list',
+      },
+    });
+  };
+
+  return (
+    <BoardContainer boardName={name}>
+      <DelListButton
+        action={() =>
+          deleteLists(lists.map(list => list.id))
+        }>
+        Delete All
+      </DelListButton>
+      {lists.map(list => (
+        <CardList
+          key={list.id}
+          name={list.name}
+          id={list.id}
+          deleteListWithId={id => deleteList(id)}
+        />
+      ))}
+      <AddListButton onAddNewList={onBoardAddItem}/>
+    </BoardContainer>
+  );
+};
 
 Board.fragments = {
   board: gql`

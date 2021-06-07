@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 
 import {
   Button,
@@ -8,66 +8,60 @@ import {
   Icon,
 } from 'semantic-ui-react';
 
-export class CreateBoardModal extends Component {
-  state = {
-    name: '',
-  };
+export const CreateBoardModal = (props) => {
+  const [state, setState] = useState({ name: '' });
 
-  handleChange = (e, { name, value }) =>
-    this.setState({ [name]: value });
+  const handleChange = (e, { name, value }) =>
+    setState({ [name]: value });
 
-  render() {
-    const { name } = this.state;
-    const {
-      open,
-      onOpen,
-      onHide,
-      createBoard,
-      loading,
-      error = false,
-    } = this.props;
+  const { name } = state;
 
-    return (
-      <Modal
-        onClose={onHide}
-        onOpen={onOpen}
-        open={open}
-        trigger={<Button>Create a new Board</Button>}>
-        <Modal.Header>Create Board</Modal.Header>
-        <Modal.Content>
-          <Form loading={loading} error={error}>
-            <Form.Input
-              fluid
-              label="Board Name"
-              placeholder="Enter a title"
-              value={name}
-              name="name"
-              autoFocus
-              onChange={this.handleChange}
-              required
-            />
-            <Message error>{`${error}`}</Message>
-          </Form>
-        </Modal.Content>
-        <Modal.Actions>
-          <Button
-            color="green"
-            onClick={() => {
-              createBoard({
-                name,
-              }).then(() => onHide());
-            }}
-            inverted>
-            <Icon name="save" /> Create
-          </Button>
-          <Button
-            color="red"
-            onClick={onHide}
-            inverted>
-            <Icon name="cancel" /> cancel
-          </Button>
-        </Modal.Actions>
-      </Modal>
-    );
-  }
-}
+  const {
+    open,
+    onOpen,
+    onHide,
+    createBoard,
+    loading,
+    error = false,
+  } = props;
+
+  return (
+    <Modal
+      onClose={onHide}
+      onOpen={onOpen}
+      open={open}
+      trigger={<Button>Create a new Board</Button>}>
+      <Modal.Header>Create Board</Modal.Header>
+      <Modal.Content>
+        <Form loading={loading} error={error}>
+          <Form.Input
+            fluid
+            label="Board Name"
+            placeholder="Enter a title"
+            value={name}
+            name="name"
+            autoFocus
+            onChange={handleChange}
+            required
+          />
+          <Message error>{`${error}`}</Message>
+        </Form>
+      </Modal.Content>
+      <Modal.Actions>
+        <Button
+          color="green"
+          onClick={() => {
+            createBoard({
+              name,
+            }).then(() => onHide());
+          }}
+          inverted>
+          <Icon name="save" /> Create
+        </Button>
+        <Button color="red" onClick={onHide} inverted>
+          <Icon name="cancel" /> cancel
+        </Button>
+      </Modal.Actions>
+    </Modal>
+  );
+};

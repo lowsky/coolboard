@@ -1,38 +1,23 @@
-import React from 'react';
-import {
-  Button,
-  Form,
-  Icon,
-  Image,
-  Message,
-  Modal,
-  Segment,
-} from 'semantic-ui-react';
+import React, { useEffect, useState } from 'react';
+import { Button, Form, Icon, Image, Message, Modal, Segment, } from 'semantic-ui-react';
 import TimeAgo from 'react-timeago';
 import PropTypes from 'prop-types';
 import { gql } from "@apollo/client";
 import styled from 'styled-components';
 
-export class CardComponent extends React.Component {
-  state = {
-    name: this.props.name,
-    description: this.props.description,
+export const CardComponent = (props) => {
+  const initialState = {
+    name: props.name,
+    description: props.description,
     showModal: false,
   };
+  const [state, setState] = useState(initialState);
 
-  resetForm() {
-    this.setState({
-      conflict: false,
-      error: false,
-      name: this.props.name,
-      description: this.props.description,
-      old_name: this.props.name,
-      old_description: this.props.description,
-    });
-  }
-
-  static getDerivedStateFromProps(props, state) {
-    if (false && this.debugging)
+  /*
+  // LATER: reactivate when conflict handling will be needed again
+  // (when syncing and subscriptions are actually available again)
+  useEffect(() => {
+    if(false && this.debugging)
       console.log(
         'getDerivedStateFromProps()',
         props,
@@ -40,50 +25,59 @@ export class CardComponent extends React.Component {
       );
 
     if (!state.showModal) {
-      return {
+      setState({
         ...state,
         name: props.name,
         old_name: props.name,
         description: props.description,
         old_description: props.description,
-      };
+      });
+      return;
     }
 
     if (
       props.name !== state.old_name ||
       props.description !== state.old_description
     ) {
-      return {
+      setState({
         ...state,
         conflict: { props },
-      };
+      });
     }
 
-    return null;
-  }
+  }, [props, state]);
 
-  showAndReset = () => {
-    this.setState({ showModal: true });
-    this.resetForm();
+  */
+
+  const showAndReset = () => {
+    setState({
+      showModal: true,
+      conflict: false,
+      error: false,
+      name: props.name,
+      description: props.description,
+      old_name: props.name,
+      old_description: props.description,
+    });
   };
 
-  saveAndHide = () => {
+  const saveAndHide = () => {
     const {
       id,
       storeCard = () =>
         Promise.reject({
           message: 'Sorry, not implemented yet.',
         }),
-    } = this.props;
+    } = props;
 
     const {
       name,
       description,
       old_name,
       old_description,
-    } = this.state;
+    } = state;
 
-    this.setLoading();
+    setLoading();
 
     storeCard({
       id,
@@ -93,100 +87,111 @@ export class CardComponent extends React.Component {
       old_description,
     })
       .then(() => {
-        this.setLoading(false);
-        this.hide();
+        setLoading(false);
+        hide();
       })
       .catch(e => {
-        this.setLoading(false);
-        this.setState({
+        setLoading(false);
+        setState(prevState => ({
+          ...prevState,
           error: e.message,
-        });
+        }));
       });
   };
 
-  setLoading(loading = true) {
-    this.setState({ loading });
+  function setLoading(loading = true) {
+    setState(prevState => ({
+      ...prevState,
+      loading
+    }));
   }
 
-  hide = () => {
-    this.setState({ showModal: false });
+  const hide = () => {
+    setState(prevState => ({
+      ...prevState,
+      showModal: false
+    }));
   };
 
-  handleChange = (e, { name, value }) =>
-    this.setState({ [name]: value });
+  const handleChange = (e, { name, value }) => {
+    setState(previousState => ({
+      ...previousState,
+      [name]: value
+    }));
+  }
 
-  render() {
-    const {
-      loading = false,
-      error = false,
-      conflict = false,
-      name,
-      description,
-      showModal = false,
-    } = this.state;
+  const {
+    loading = false,
+    error = false,
+    conflict = false,
+    name,
+    description,
+    showModal = false,
+  } = state;
 
-    const whenDraggingStyle = {
-      color: 'black',
-      fontWeight: 'bold',
-      fontStyle: 'italic',
-    };
-    const {
-      isDragging,
-      createdAt,
-      updatedAt,
-      updatedBy = {},
-    } = this.props;
-    return (
-      <CardDiv
-        data-cy="card"
-        onClick={() => this.showAndReset()}>
-        <Modal open={showModal} onClose={this.hide}>
-          <Modal.Header>Edit Card</Modal.Header>
-          <Modal.Content>
-            <Form
-              onSubmit={() => this.saveAndHide()}
-              error={!!error}
-              loading={loading}
-              warning={!!conflict}>
-              <Message
-                warning
-                header="Warning! Card was concurrently modified on server."
-              />
-              <Message
-                error
-                header="Saving Card failed"
-                content={error}
-              />
-              <Form.Input
-                fluid
-                label="Task Name"
-                placeholder="Enter title"
-                value={name}
-                name="name"
-                autoFocus
-                onChange={this.handleChange}
-                required
-              />
-              <ShowDiffWarning
-                newValue={this.props.name}
-                currentValue={name}
-              />
-              <Form.TextArea
-                label="Task Description"
-                placeholder="Add some more details about this task ..."
-                value={description}
-                name="description"
-                onChange={this.handleChange}
-              />
-              <ShowDiffWarning
-                newValue={this.props.description}
-                currentValue={description}
-              />
-            </Form>
-            <Segment>
-              <Message>
-                <p>
-                  <strong>created: </strong>
+  const whenDraggingStyle = {
+    color: 'black',
+    fontWeight: 'bold',
+    fontStyle: 'italic',
+  };
+  const {
+    isDragging,
+    createdAt,
+    updatedAt,
+    updatedBy = {},
+  } = props;
+
+  return (
+    <CardDiv
+      data-cy="card"
+      onClick={() => !showModal && showAndReset()}>
+      <Modal open={showModal} onClose={hide}>
+        <Modal.Header>Edit Card</Modal.Header>
+        <Modal.Content>
+          <Form
+            onSubmit={() => saveAndHide()}
+            error={!!error}
+            loading={loading}
+            warning={!!conflict}>
+            <Message
+              warning
+              header="Warning! Card was concurrently modified on server."
+            />
+            <Message
+              error
+              header="Saving Card failed"
+              content={error}
+            />
+            <Form.Input
+              fluid
+              label="Task Name"
+              placeholder="Enter title"
+              value={name}
+              name="name"
+              autoFocus
+              onChange={handleChange}
+              required
+            />
+            <ShowDiffWarning
+              newValue={props.name}
+              currentValue={name}
+            />
+            <Form.TextArea
+              label="Task Description"
+              placeholder="Add some more details about this task ..."
+              value={description}
+              name="description"
+              onChange={handleChange}
+            />
+            <ShowDiffWarning
+              newValue={props.description}
+              currentValue={description}
+            />
+          </Form>
+          <Segment>
+            <Message>
+              <p>
+                <strong>created: </strong>
                   <TimeAgo date={createdAt} />
                 </p>
                 <p>
@@ -216,7 +221,7 @@ export class CardComponent extends React.Component {
                 color="green"
                 negative
                 onClick={() => {
-                  this.saveAndHide();
+                  saveAndHide();
                 }}
                 inverted>
                 <Icon name="save" /> Overwrite
@@ -226,7 +231,7 @@ export class CardComponent extends React.Component {
               <Button
                 color="green"
                 onClick={() => {
-                  this.saveAndHide();
+                  saveAndHide();
                 }}
                 inverted>
                 <Icon name="save" /> Save
@@ -234,7 +239,7 @@ export class CardComponent extends React.Component {
             )}
             <Button
               color="red"
-              onClick={this.hide}
+              onClick={hide}
               inverted>
               <Icon name="cancel" /> Close/cancel
             </Button>
@@ -242,11 +247,10 @@ export class CardComponent extends React.Component {
         </Modal>
         <span
           style={isDragging ? whenDraggingStyle : {}}>
-          {this.props.name}
+          {props.name}
         </span>
       </CardDiv>
     );
-  }
 }
 
 CardComponent.propTypes = {
