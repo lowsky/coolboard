@@ -13,8 +13,6 @@ import Home from './pages/home/Home';
 
 import { trackPage } from './common/tracking';
 
-// import { unregister } from './registerServiceWorker';
-
 // Instead of integrating the
 // css here, with running webpack bundling every time while developing,
 // I put something like this into the index page:
@@ -50,4 +48,3 @@ ReactDOM.render(
   <Root />,
   document.getElementById('root')
 );
-// unregister();
