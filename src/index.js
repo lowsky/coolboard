@@ -34,7 +34,7 @@ const Root = () => (
   </BrowserRouter>
 );
 
-ReactDOM.render(
-  <Root />,
-  document.getElementById('root')
-);
+// unregister();
+export default function NextIndexWrapper() {
+  return <Root />;
+}

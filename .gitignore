@@ -33,3 +33,13 @@ server/functions/
 /.netlify/
 server/express/build/index.js
 server/express/build/jwt.js
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+.pnp.js
+# next.js
+/.next/
+/out/
+*.pem
+# debug
+# local env files
+# vercel
