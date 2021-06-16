@@ -12,7 +12,7 @@ const AUTHENTICATE = gql`
 `;
 
 export const signInOrCreateAccount = async (apolloClient, idToken) => {
-  return this.apolloClient
+  return apolloClient
     .mutate({
       mutation: AUTHENTICATE,
       variables: { idToken },

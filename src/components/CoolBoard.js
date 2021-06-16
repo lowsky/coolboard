@@ -1,6 +1,4 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
-
 import { gql, useMutation, useQuery } from "@apollo/client";
 
 import {

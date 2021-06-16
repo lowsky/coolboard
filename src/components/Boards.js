@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { gql, useQuery, useMutation } from "@apollo/client";
-
 import {
   Segment,
   Loader,
   Button,
   Container,
 } from 'semantic-ui-react';
-
 import { Link } from 'react-router-dom';
 
 import { FullVerticalContainer } from '../common/FullVerticalContainer';

@@ -1,10 +1,6 @@
-/* eslint-disable react/prop-types */
 import React, { lazy, Suspense } from 'react';
-
 import { Loader } from 'semantic-ui-react';
-
 import { ApolloProvider } from "@apollo/client";
-
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import {
@@ -15,14 +11,11 @@ import {
 } from 'react-router-dom';
 
 import Auth from './authentication/auth';
-
 import { About } from './pages/about/About';
 import Home from './pages/home/Home';
-
 import { FullVerticalContainer } from './common/FullVerticalContainer';
 import { ProfileHeader } from './common/ProfileHeader';
 import { GeneralErrorHandler } from './common/GeneralErrorHandler';
-
 import { setupGraphQLClient } from './setupGraphQLClient';
 import { trackPage } from './common/tracking';
 

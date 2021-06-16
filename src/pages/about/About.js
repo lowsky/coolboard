@@ -1,20 +1,18 @@
 import React from 'react';
-
 import {
   Container,
   Header,
   Icon,
   Segment,
 } from 'semantic-ui-react';
-
 import { Link } from 'react-router-dom';
 
 import { FullVerticalContainer } from '../../common/FullVerticalContainer';
+import { GeneralErrorHandler } from '../../common/GeneralErrorHandler';
 import { ProfileHeader } from '../../common/ProfileHeader';
 
 import packLogo from '../../assets/packt-logo.svg';
 import packLogoSmallPng from './packt-page-v141.png';
-import { GeneralErrorHandler } from '../../common/GeneralErrorHandler';
 
 export const About = () => (
   <FullVerticalContainer data-cy="about-full-container">

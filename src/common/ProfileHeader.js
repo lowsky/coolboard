@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { gql, useQuery } from "@apollo/client";
 import {
   Container,
@@ -7,7 +6,6 @@ import {
   Image,
   Loader,
 } from 'semantic-ui-react';
-
 import { Link } from 'react-router-dom';
 
 const ProfileHeaderContainer = ({

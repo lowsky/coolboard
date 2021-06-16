@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import { gql, useMutation } from "@apollo/client";
-
 import { useDrag } from 'react-dnd';
+
 import { CardComponent } from './CardComponent';
 
 const EditCardMutation = gql`

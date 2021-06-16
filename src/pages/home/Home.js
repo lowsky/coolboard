@@ -1,12 +1,10 @@
 import React from 'react';
-
 import {
   Container,
   Icon,
   Image,
   Segment,
 } from 'semantic-ui-react';
-
 import { Link } from 'react-router-dom';
 
 import { FullVerticalContainer } from '../../common/FullVerticalContainer';

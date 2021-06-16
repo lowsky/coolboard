@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import { useDrop } from 'react-dnd';
 import PropTypes from 'prop-types';

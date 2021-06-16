@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 import { gql, useMutation } from "@apollo/client";
 
 import AuthForm from './AuthForm';
-import PropTypes from 'prop-types';
 
 class LoginFormComponent extends Component {
   state = { errors: [] };
