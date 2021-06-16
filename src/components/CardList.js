@@ -198,10 +198,6 @@ export const CardList = ({
     oldCardListId,
     newCardListId
   ) => {
-    console.log(
-      `triggered moving card with id: ${cardId} to list with id: ${oldCardListId} -> id: ${newCardListId}`
-    );
-
     moveCard({
       variables: {
         oldCardListId,

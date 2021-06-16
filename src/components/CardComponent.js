@@ -17,13 +17,6 @@ export const CardComponent = (props) => {
   // LATER: reactivate when conflict handling will be needed again
   // (when syncing and subscriptions are actually available again)
   useEffect(() => {
-    if(false && this.debugging)
-      console.log(
-        'getDerivedStateFromProps()',
-        props,
-        state
-      );
-
     if (!state.showModal) {
       setState({
         ...state,

@@ -112,8 +112,6 @@ export const GeneralErrorHandler = ({
         .filter((error) => error.message)
         .map((error) => error.message);
 
-      console.log(errorMsgs);
-
       return (
         <ErrorMessage>
           {errorMsgs.filter(

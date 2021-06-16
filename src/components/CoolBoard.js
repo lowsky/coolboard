@@ -22,9 +22,6 @@ const Board = (props) => {
   const { name, lists = [] } = board;
 
   const onBoardAddItem = () => {
-    console.log(
-      `triggered adding list to the board`
-    );
     addList({
       variables: {
         boardId,
