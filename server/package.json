@@ -14,7 +14,7 @@
     "node": ">=14.x"
   },
   "dependencies": {
-    "@instana/aws-lambda": "1.124.0",
+    "@instana/aws-lambda": "1.125.1",
     "@prisma/client": "2.25.0",
     "apollo-errors": "1.9.0",
     "apollo-server-lambda": "2.25.1",
