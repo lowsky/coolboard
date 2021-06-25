@@ -20,7 +20,7 @@
     "auth0-lock": "11.30.2",
     "fomantic-ui-css": "2.8.7",
     "graphql": "15.5.0",
-    "graphql-tag": "2.12.4",
+    "graphql-tag": "2.12.5",
     "prop-types": "15.7.2",
     "react": "17.0.2",
     "react-apollo-network-status": "5.0.1",
