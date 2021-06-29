@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@instana/aws-lambda": "1.125.1",
-    "@prisma/client": "2.25.0",
+    "@prisma/client": "2.26.0",
     "apollo-errors": "1.9.0",
     "apollo-server-lambda": "2.25.2",
     "apollo-server-micro": "2.25.2",
@@ -31,7 +31,7 @@
     "bufferutil": "4.0.3",
     "netlify": "7.0.1",
     "netlify-cli": "3.38.10",
-    "prisma": "2.25.0",
+    "prisma": "2.26.0",
     "utf-8-validate": "5.0.5"
   }
 }
