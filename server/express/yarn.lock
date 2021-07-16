@@ -1143,34 +1143,34 @@
     camel-case "4.1.2"
     tslib "~2.1.0"
 
-"@instana/autoprofile@1.125.1":
-  version "1.125.1"
-  resolved "https://registry.yarnpkg.com/@instana/autoprofile/-/autoprofile-1.125.1.tgz#d279d91fb067ece5e851448fc4393c0cc1bb2af3"
-  integrity sha512-zoxqNxk2rR7E6tXM+W2/Ijm4Rgk9g0M8m7Ek2e9+3MZ4sYVTlBGSNVT4EsGbmBHhSk1g82H9nVe7ZHuI+5Mn5Q==
+"@instana/autoprofile@1.129.0":
+  version "1.129.0"
+  resolved "https://registry.yarnpkg.com/@instana/autoprofile/-/autoprofile-1.129.0.tgz#6ec7b4d6272d9d79b6162fc0597346f2ca460e2d"
+  integrity sha512-5kqqL0Ibhwynhhimjzvsav7SUP0sQxHsPwscwCoBb4XTe8Nt/Vkb1vhs8AGK2ZKIB5fUyZFOlzaAM9PYcvnF8Q==
   dependencies:
     detect-libc "^1.0.3"
     nan "^2.14.2"
-    node-abi "^2.21.0"
+    node-abi "^2.30.0"
     node-gyp "^7.1.2"
 
-"@instana/collector@1.125.1":
-  version "1.125.1"
-  resolved "https://registry.yarnpkg.com/@instana/collector/-/collector-1.125.1.tgz#81e494b459e8b380475699f318470859386a5024"
-  integrity sha512-uoREd4aXnCSc6z4kpYiFSIMwp6FzCqRboiQgFJUnbfAXI53Mv3XB1P/ErvlydP4u4gdIknS02i1bjjVZZiIyyg==
+"@instana/collector@1.129.0":
+  version "1.129.0"
+  resolved "https://registry.yarnpkg.com/@instana/collector/-/collector-1.129.0.tgz#0780ecdeaba28edf776ddf4609c9d49acbdf16f4"
+  integrity sha512-Ll5bGAUsssItg+UNhNSvWeFkLcZv/ITbnLZOl/lrPsVGVeWoFlyMQZLhB+jZjv8ych1Wpjbf2IZ3VBG74OGvUA==
   dependencies:
-    "@instana/core" "1.125.1"
-    "@instana/shared-metrics" "1.125.1"
+    "@instana/core" "1.129.0"
+    "@instana/shared-metrics" "1.129.0"
     bunyan "^1.8.15"
     semver "7.3.5"
     serialize-error "^3.0.0"
     shimmer "1.2.1"
   optionalDependencies:
-    "@instana/autoprofile" "1.125.1"
+    "@instana/autoprofile" "1.129.0"
 
-"@instana/core@1.125.1":
-  version "1.125.1"
-  resolved "https://registry.yarnpkg.com/@instana/core/-/core-1.125.1.tgz#500fa149c04789038f2e0cd274bca8f7b3d24241"
-  integrity sha512-QNO1xkSdlESpoTPi8Lt2ZLUkjg6w8z/RVaWHo80jICzI8PL+8zIaYGo9kvT66NCT3ut1uUXxiRfx60+PEUQrHw==
+"@instana/core@1.129.0":
+  version "1.129.0"
+  resolved "https://registry.yarnpkg.com/@instana/core/-/core-1.129.0.tgz#03be5a29d04cb0a9a0637eaca9897ed20298612f"
+  integrity sha512-HpWSBmcDytdyI9gwXjSQnmlp3oYmV+AEH4utXog3YrcEvPNGvpVcI/Bf3qzDrhL5CAxeZ44mjST23S6PBmi9CA==
   dependencies:
     async-hook-jl "^1.7.6"
     cls-bluebird "^2.1.0"
@@ -1182,15 +1182,15 @@
     semver "7.3.5"
     shimmer "1.2.1"
 
-"@instana/shared-metrics@1.125.1":
-  version "1.125.1"
-  resolved "https://registry.yarnpkg.com/@instana/shared-metrics/-/shared-metrics-1.125.1.tgz#3e65a2b782eb7ca3bd2dd9345250f5c3f3f9fe9a"
-  integrity sha512-GmMGYHIho48X9EnDyMQq+Ibfae456nljkNpdPfWLcGW4WHjv0nDdvckQmdlyigCfSWePEmwywCJiE44+Ls4McA==
+"@instana/shared-metrics@1.129.0":
+  version "1.129.0"
+  resolved "https://registry.yarnpkg.com/@instana/shared-metrics/-/shared-metrics-1.129.0.tgz#e2650094ca6a5df877b44708fadd87be85835904"
+  integrity sha512-e1K9DXSmGvBbkV5qzTstIQFQtiBLdvK8FbJ2ur08W92YIILimaSMBEGXct/BiGvDTRZ2qgX2DpaCwFy5tGEOww==
   dependencies:
-    "@instana/core" "1.125.1"
+    "@instana/core" "1.129.0"
     detect-libc "^1.0.3"
     event-loop-lag "^1.4.0"
-    recursive-copy "^2.0.11"
+    recursive-copy "^2.0.13"
     tar "^5.0.5"
   optionalDependencies:
     event-loop-stats "1.3.0"
@@ -2686,11 +2686,6 @@ emitter-listener@^1.1.2:
   integrity sha512-Bt1sBAGFHY9DKY+4/2cV6izcKJUf5T7/gkdmkxzX/qv9CcGH8xSwVRW5mtX03SWJtRTWSOpzCuWN9rBFYZepZQ==
   dependencies:
     shimmer "^1.2.0"
-
-emitter-mixin@0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/emitter-mixin/-/emitter-mixin-0.0.3.tgz#5948cb286f2e48edc3b251a7cfc1f7883396d65c"
-  integrity sha1-WUjLKG8uSO3DslGnz8H3iDOW1lw=
 
 emoji-regex@^7.0.1:
   version "7.0.3"
@@ -4338,10 +4333,10 @@ no-case@^3.0.4:
     lower-case "^2.0.2"
     tslib "^2.0.3"
 
-node-abi@^2.21.0:
-  version "2.21.0"
-  resolved "https://registry.yarnpkg.com/node-abi/-/node-abi-2.21.0.tgz#c2dc9ebad6f4f53d6ea9b531e7b8faad81041d48"
-  integrity sha512-smhrivuPqEM3H5LmnY3KU6HfYv0u4QklgAxfFyRNujKUzbUcYZ+Jc2EhukB9SRcD2VpqhxM7n/MIcp1Ua1/JMg==
+node-abi@^2.30.0:
+  version "2.30.0"
+  resolved "https://registry.yarnpkg.com/node-abi/-/node-abi-2.30.0.tgz#8be53bf3e7945a34eea10e0fc9a5982776cf550b"
+  integrity sha512-g6bZh3YCKQRdwuO/tSZZYJAw622SjsRfJ2X0Iy4sSOHZ34/sPPdVBn8fev2tj7njzLwuqPw9uMtGsGkO5kIQvg==
   dependencies:
     semver "^5.4.1"
 
@@ -4953,13 +4948,12 @@ readdirp@~3.5.0:
   dependencies:
     picomatch "^2.2.1"
 
-recursive-copy@^2.0.11:
-  version "2.0.11"
-  resolved "https://registry.yarnpkg.com/recursive-copy/-/recursive-copy-2.0.11.tgz#7ed3c0f4b6bb0ffda7cab62bf865a82f5a391c39"
-  integrity sha512-DqL2kO10mUne7XK5BPcwRtOJJZKhddD7IrW4UmHmKrwdV3HLPWcw6Jr4Jh12ooddfJOVz7ynFoFYYnPM7De0Og==
+recursive-copy@^2.0.13:
+  version "2.0.13"
+  resolved "https://registry.yarnpkg.com/recursive-copy/-/recursive-copy-2.0.13.tgz#ace471459650f379d4127dd64aa2a4ceca808aa2"
+  integrity sha512-BjmE6R/dOImStEku+017L3Z0I6u/lA+SVr1sySWbTLjmQKDTESNmJ9WBZP8wbN5FuvqNvSYvRKA/IKQhAjqnpQ==
   dependencies:
     del "^2.2.0"
-    emitter-mixin "0.0.3"
     errno "^0.1.2"
     graceful-fs "^4.1.4"
     junk "^1.0.1"
