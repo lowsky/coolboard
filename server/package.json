@@ -30,7 +30,7 @@
     "@babel/preset-env": "7.14.7",
     "bufferutil": "4.0.3",
     "netlify": "7.0.1",
-    "netlify-cli": "3.39.4",
+    "netlify-cli": "4.4.4",
     "prisma": "2.26.0",
     "utf-8-validate": "5.0.5"
   }
