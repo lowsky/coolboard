@@ -1,7 +1,5 @@
 module.exports = {
-  env: {
-    PUBLIC_URL: ''
-  },
+  target: "serverless",
   experimental: {
     craCompat: true,
   },
@@ -10,5 +8,5 @@ module.exports = {
   // read more here: https://nextjs.org/docs/api-reference/next/image
   images: {
     disableStaticImages: true
-  }  
+  }
 }
