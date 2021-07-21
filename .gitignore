@@ -41,4 +41,4 @@ server/express/build/jwt.js
 *.pem
 # debug
 # local env files
-# vercel
+# vercel.next
