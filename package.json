@@ -52,7 +52,7 @@
     "start": "next dev",
     "start-production": "next start",
     "trigger-e2e-smoke": "sh trigger-circleci-smoke.sh",
-    "build": "echo '{\"GIT_SHA1\" : \"'$COMMIT_REF'\" }' > public/meta.json && next build",
+    "build": "echo '{\"GIT_SHA1\" : \"'$COMMIT_REF'\" }' > public/meta.json && prisma generate",
     "vercel-build": "COMMIT_REF=$VERCEL_GITHUB_COMMIT_SHA yarn run build ; yarn trigger-e2e-smoke"
   },
   "devDependencies": {
