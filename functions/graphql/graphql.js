@@ -1,12 +1,11 @@
 import { ApolloServer } from 'apollo-server-micro';
 
-import resolvers from '../src/resolvers/resolvers';
-import { typeDefs } from '../src/schema/apiSchema';
+import resolvers from '../../server/src/resolvers/resolvers';
+import { typeDefs } from '../../server/src/schema/apiSchema';
 
-import { isLocalDev } from '../src/helpers/logging';
+import { isLocalDev } from '../../server/src/helpers/logging';
 
 // const instana = require('@instana/aws-lambda');
-
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient({
   log: isLocalDev ? ['query', 'info', `warn`, `error`]:
@@ -16,7 +15,6 @@ const prisma = new PrismaClient({
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-
   debug: isLocalDev,
   playground: isLocalDev,
   introspection: isLocalDev,
@@ -82,13 +80,24 @@ const handler = server.createHandler({
 });
 
 export default async (req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,POST');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
-
+    /*
+  if (req.method === 'OPTIONS') {
+    res.end()
+    return false
+  }
+     */
     if (req.method === 'OPTIONS') {
         return res.send(200);
     }
 
     return handler(req, res);
 };
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+}

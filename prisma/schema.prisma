@@ -1,0 +1,64 @@
+generator client {
+  provider = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-1.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Card {
+  id          String  @id @default(cuid()) @db.VarChar(25)
+  name        String
+  description String?
+
+  createdAt   DateTime @default(now())
+  createdBy   User     @relation(name: "createdBy", fields: [createdById], references: [id])
+  createdById String   @db.VarChar(25)
+  updatedAt   DateTime @updatedAt
+  updatedBy   User     @relation(name: "updatedBy", fields: [updatedById], references: [id])
+  updatedById String   @db.VarChar(25)
+
+  listId String @db.VarChar(25)
+  list   List?  @relation(fields: [listId], references: [id])
+}
+
+model List {
+  id        String   @id @default(cuid()) @db.VarChar(25)
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  board     Board?   @relation(fields: [boardId], references: [id])
+  boardId   String   @db.VarChar(25)
+  cards     Card[]
+
+  createdBy   User   @relation(fields: [createdById], references: [id])
+  createdById String @db.VarChar(25)
+}
+
+model Board {
+  id          String   @id @default(cuid()) @db.VarChar(25)
+  name        String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdBy   User     @relation(fields: [createdById], references: [id])
+  createdById String   @db.VarChar(25)
+
+  lists List[]
+}
+
+model User {
+  id            String   @id @default(cuid()) @db.VarChar(25)
+  email         String   @unique
+  name          String
+  avatarUrl     String?
+  auth0id       String?  @unique
+  identity      String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  boards        Board[]
+  CardCreatedBy Card[]   @relation(name: "createdBy")
+  CardUpdatedBy Card[]   @relation(name: "updatedBy")
+  lists         List[]
+}

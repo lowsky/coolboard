@@ -1,4 +1,4 @@
 [build]
   Command = "npm run build"
-  Functions = "server/functions"
+  Functions = "functions"
   Publish = "build"
