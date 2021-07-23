@@ -2,16 +2,13 @@ import React from 'react';
 import {
   Container,
   Icon,
-  Image,
   Segment,
 } from 'semantic-ui-react';
-import Link  from 'next/link';
+import Link from 'next/link';
+import Image from 'next/image';
 
 import { FullVerticalContainer } from '../src/common/FullVerticalContainer';
 import { trackPage } from "../src/common/tracking";
-
-import coolBoardLogo100 from '../public/CoolBoardLogo100.png';
-import packLogo from '../src/assets/packt-logo.svg';
 
 export default function Index() {
   trackPage('Index');
@@ -24,13 +21,12 @@ export default function Index() {
         }}>
         <h1>
           <Image
-            bordered
-            src={coolBoardLogo100}
-            width="100px"
-            circular
-            inline
+            src={'/CoolBoardLogo100.png'}
+            width="100"
+            height="101"
+            alt="logo"
           />
-          Welcome to CoolBoard{' '}
+          Welcome to CoolBoard
         </h1>
         <Segment basic>
           <h2>
@@ -77,8 +73,11 @@ export default function Index() {
         </Segment>
 
         <Segment basic>
-          <Link href="/boards">
-            <Image bordered src="/screenshot.png" />
+          <Link href="/boards" passHref>
+            <Image src="/screenshot.png"
+            width="1099"
+            height="484"
+            alt="screenshot" />
           </Link>
         </Segment>
 
@@ -100,11 +99,11 @@ export default function Index() {
             <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
               <b>Available</b> at
               <Image
-                spaced
-                inline
-                src={packLogo}
+                src={'/packt-logo.svg'}
                 height={24}
+                width="100%"
                 style={{ verticalAlign: 'bottom' }}
+                alt="packt-logo"
               />
             </a>
           </p>
