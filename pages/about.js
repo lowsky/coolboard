@@ -5,19 +5,28 @@ import {
   Icon,
   Segment,
 } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
-import { FullVerticalContainer } from '../../common/FullVerticalContainer';
-import { GeneralErrorHandler } from '../../common/GeneralErrorHandler';
-import { ProfileHeader } from '../../common/ProfileHeader';
+import { FullVerticalContainer } from '../src/common/FullVerticalContainer';
+import { ProfileHeader } from '../src/common/ProfileHeader';
 
-import packLogo from '../../assets/packt-logo.svg';
-import packLogoSmallPng from './packt-page-v141.png';
+import packLogo from '../src/assets/packt-logo.svg';
+import packLogoSmallPng from './about/packt-page-v141.png';
+import { ApolloProvider } from "@apollo/client";
+import { setupGraphQLClient } from "../src/setupGraphQLClient";
 
-export const About = () => (
-  <FullVerticalContainer data-cy="about-full-container">
-    <ProfileHeader />
-    <GeneralErrorHandler />
+
+let client = setupGraphQLClient();
+
+export default function About() {
+  return <ApolloProvider client={client}>
+    <AboutInner/>
+  </ApolloProvider>
+}
+
+function AboutInner() {
+  return <FullVerticalContainer data-cy="about-full-container">
+    <ProfileHeader/>
     <Container
       text
       style={{
@@ -29,7 +38,7 @@ export const About = () => (
           This is the Live Demo of the full application
           which we build in this
           <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
-            <Icon name="video camera" size="large" />
+            <Icon name="video camera" size="large"/>
             Video Course:
           </a>
         </p>
@@ -72,9 +81,11 @@ export const About = () => (
         <h2>How does it work?</h2>
         <p>
           You will need to Sign-up via email and{' '}
-          <Link to="/login">
-            <Icon size="big" name="sign in" />
-            authenticate here
+          <Link href="/login">
+            <a>
+              <Icon size="big" name="sign in"/>
+              authenticate here
+            </a>
           </Link>
         </p>
         <p>
@@ -131,11 +142,11 @@ export const About = () => (
           </p>
           <p>
             <b>About Privacy:</b>
-            <br />
+            <br/>
             We will use your account information for
             authenticating and storing your boards
             under your account.
-            <br />
+            <br/>
             We might rarely send any emails for
             notifying about changes related to
             providing this service (e.g. news, any case
@@ -158,4 +169,4 @@ export const About = () => (
       </Segment>
     </Container>
   </FullVerticalContainer>
-);
+}

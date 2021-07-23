@@ -6,14 +6,14 @@ import {
   Button,
   Container,
 } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import Link  from 'next/link';
 
 import { FullVerticalContainer } from '../common/FullVerticalContainer';
 import { CreateBoardModal } from './CreateBoardModal';
 
 const BoardListItem = ({ name, id, deleteBoard }) => (
   <div data-cy="board-list-item">
-    <Link to={`/board/${id}`}>{name}</Link>
+    <Link href={`/board/${id}`}><a>{name}</a></Link>
     &nbsp;
     <Button
       onClick={() => deleteBoard(id)}
