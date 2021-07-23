@@ -15,7 +15,7 @@ export default function Logout( ) {
   trackPage('logout');
 
   if(typeof localStorage !== 'undefined') {
-    localStorage.removeItem('token');
+    localStorage?.removeItem('token');
   }
 
   client.resetStore().then(() => {

@@ -50,7 +50,7 @@ class Auth {
   }
 
   login = () => {
-    this.lock.show();
+    this.lock.show?.();
   };
 
   addHandleAuthenticationListener() {
