@@ -17,32 +17,36 @@ function saveInLocalStore(authResult) {
 }
 
 class Auth {
-  lock = new Auth0Lock(
-    AUTH_CONFIG.clientId,
-    AUTH_CONFIG.domain,
-    {
-      oidcConformant: true,
-      autoclose: true,
-      rememberLastLogin: true,
-      allowForgotPassword: true,
-      allowAutocomplete: true,
-      allowShowPassword: true,
-      allowPasswordAutocomplete: true,
-      avatar: null,
-      auth: {
-        sso: false,
-        redirectUrl: AUTH_CONFIG.callbackUrl,
-        responseType: 'token id_token',
-        audience: `${AUTH_CONFIG.api_audience}`,
-        params: {
-          scope: `openid profile email picture`,
-        },
-      },
-    }
-  );
+
+  lock = {}
 
   constructor() {
-    this.addHandleAuthenticationListener();
+    if (typeof window !== "undefined") {
+      this.lock = new Auth0Lock(
+        AUTH_CONFIG.clientId,
+        AUTH_CONFIG.domain,
+        {
+          oidcConformant: true,
+          autoclose: true,
+          rememberLastLogin: true,
+          allowForgotPassword: true,
+          allowAutocomplete: true,
+          allowShowPassword: true,
+          allowPasswordAutocomplete: true,
+          avatar: null,
+          auth: {
+            sso: false,
+            redirectUrl: AUTH_CONFIG.callbackUrl,
+            responseType: 'token id_token',
+            audience: `${AUTH_CONFIG.api_audience}`,
+            params: {
+              scope: `openid profile email picture`,
+            },
+          },
+        }
+      );
+      this.addHandleAuthenticationListener();
+    }
   }
 
   login = () => {
