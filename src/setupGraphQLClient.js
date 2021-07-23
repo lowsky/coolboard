@@ -7,13 +7,7 @@ export const {
 } = networkStatusNotifier;
 
 export const setupGraphQLClient = () => {
-  const GRAPHQL_URL =
-    process.env.REACT_APP_GRAPHQL_URL ??
-    '/api/graphql';
-
-  // const IS_LOCALHOST = !SRV_HOST_PORT_DOMAIN || SRV_HOST_PORT_DOMAIN.indexOf('localhost') >= 0;
-  // const node_env = process.env.NODE_ENV;
-  // const IS_PROD = node_env === 'production';
+  const GRAPHQL_URL = '/api/graphql';
 
   const uri = GRAPHQL_URL
   // Create a Http link
