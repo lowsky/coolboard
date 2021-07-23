@@ -7,7 +7,7 @@ import {
   Message,
   Segment,
 } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 class AuthForm extends Component {
   state = {
@@ -122,9 +122,9 @@ class AuthForm extends Component {
 
         {!signUp && (
           <Segment padded textAlign="center">
-            <Link to="/signup">
-              Sign up here, if you do not have already
-              an account
+            <Link href="/signup">
+              <a>Sign up here, if you do not have already
+                an account</a>
             </Link>
           </Segment>
         )}
