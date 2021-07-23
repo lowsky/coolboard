@@ -195,6 +195,7 @@ export const CardComponent = (props) => {
                       <strong> by: </strong>
                       <Image
                         avatar
+                        alt="user-avatar-icon"
                         src={updatedBy.avatarUrl}
                       />
                       <span>
