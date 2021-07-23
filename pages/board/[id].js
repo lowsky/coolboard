@@ -24,7 +24,7 @@ export default function Board() {
       />
       <DndProvider backend={HTML5Backend}>
         <CoolBoard
-          boardId={match.params.id}
+          boardId={id}
         />
       </DndProvider>
     </FullPageWithApollo>
