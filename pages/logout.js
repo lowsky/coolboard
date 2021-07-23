@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { auth } from "../src/App";
 import { FullVerticalContainer } from "../src/common/FullVerticalContainer";
@@ -14,14 +14,15 @@ export default function Logout( ) {
   const router = useRouter();
   trackPage('logout');
 
-  if(typeof localStorage !== 'undefined') {
-    localStorage?.removeItem('token');
-  }
+  useEffect(async() => {
+    // if(typeof localStorage !== 'undefined') {}
+      localStorage?.removeItem('token');
 
-  client.resetStore().then(() => {
-    auth.logout();
-    router.push(`/`);
-  });
+    await client.resetStore().then(() => {
+      auth.logout();
+      router.push(`/`);
+    });
+  })
 
   return (
     <FullVerticalContainer data-cy="logout-full-container">
