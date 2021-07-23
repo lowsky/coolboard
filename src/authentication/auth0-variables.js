@@ -3,7 +3,7 @@ export const AUTH_CONFIG = {
   domain: 'lowsky.eu.auth0.com',
   clientId: 'N9UJUBdCbClHC6zM7022I_m8GHJFXhFh',
   callbackUrl:
-    // typeof window !== undefined ? window.location.origin + '/callback':
-      // '/callback'
-      'http://localhost:3000/callback'
+     typeof window !== undefined ? window.location.origin + '/callback':
+       '/callback'
+
 };
