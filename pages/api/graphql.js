@@ -81,6 +81,7 @@ const handler = server.createHandler({
   path: '/api/graphql',
 });
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,POST');

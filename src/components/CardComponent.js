@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Button, Form, Icon, Image, Message, Modal, Segment, } from 'semantic-ui-react';
 import TimeAgo from 'react-timeago';
 import PropTypes from 'prop-types';

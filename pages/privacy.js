@@ -45,7 +45,7 @@ export default function Privacy() {
     that are used by Netlify nor Auth0.</p>
 
   <p>You can choose to disable cookies through your individual browser options. To know more detailed information about
-    cookie management with specific web browsers, it can be found at the browsers' respective websites.
+    cookie management with specific web browsers, it can be found at the browsers&apos; respective websites.
   </p>
 
   <h2>Consent</h2>
@@ -58,7 +58,7 @@ export default function Privacy() {
   <h2>Your entered data</h2>
 
   <p>
-    If you like to work with this demo application, you need to supply some information for createing your own account
+    If you like to work with this demo application, you need to supply some information for creating your own account
     by signing-in via a pop-up dialog using <a href="https://auth0.com/">Auth0</a> service.
     The supplied data include:
     <br/>
@@ -94,7 +94,7 @@ export default function Privacy() {
   </p>
 
   <h2>Contact</h2>
-  <p>In case of any questions, do not hesitate to ask for suppor by <b>E-Mail:</b> coolboard @ protonmail.com</p>
+  <p>In case of any questions, do not hesitate to ask for support by <b>E-Mail:</b> coolboard @ protonmail.com</p>
 
   </body>
 }

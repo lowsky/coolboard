@@ -10,19 +10,24 @@ import { setupGraphQLClient } from "../src/setupGraphQLClient";
 
 const client = setupGraphQLClient();
 
-export default function Logout( ) {
+export default function Logout() {
   const router = useRouter();
 
   trackPage('logout');
 
-  useEffect(async() => {
-    localStorage?.removeItem('token');
+  useEffect(() => {
+    async function removeToken() {
+      localStorage?.removeItem('token');
 
-    await client.resetStore().then(() => {
-      auth.logout();
-      router.push(`/`);
-    });
-  })
+      await client.resetStore().then(() => {
+        auth.logout();
+        router.push(`/`);
+      });
+    }
+
+    return removeToken();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <FullVerticalContainer data-cy="logout-full-container">
