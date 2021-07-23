@@ -5,12 +5,13 @@ import {
   Image,
   Segment,
 } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
+import Link  from 'next/link';
 
-import { FullVerticalContainer } from '../../common/FullVerticalContainer';
+import { FullVerticalContainer } from '../../src/common/FullVerticalContainer';
 
 import coolBoardLogo100 from './CoolBoardLogo100.png';
-import packLogo from '../../assets/packt-logo.svg';
+import packLogo from '../../src/assets/packt-logo.svg';
 
 export default function Home() {
   return (
@@ -36,17 +37,21 @@ export default function Home() {
           </h2>
           <p>
             You need to{' '}
-            <Link to="/login">
-              <Icon name="sign in" />
-              <span>sign in</span>
+            <Link href="/login">
+              <a>
+                <Icon name="sign in" />
+                <span>sign in</span>
+              </a>
             </Link>
             first via google, or email.
           </p>
           <p>
             Then start to create
-            <Link to="/boards">
-              boards
-              <Icon size="big" name="list" />
+            <Link href="/boards">
+              <a>
+                boards
+                <Icon size="big" name="list" />
+              </a>
             </Link>
           </p>
           <p>
@@ -59,16 +64,18 @@ export default function Home() {
         </Segment>
         <Segment>
           More
-          <Link to="/about">
+          <Link href="/about">
+            <a>
             {' '}
             <Icon name="linkify" />
             details about
+            </a>
           </Link>{' '}
           this app
         </Segment>
 
         <Segment basic>
-          <Link to="/boards">
+          <Link href="/boards">
             <Image bordered src="/screenshot.png" />
           </Link>
         </Segment>
