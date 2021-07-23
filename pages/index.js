@@ -1,9 +1,115 @@
 import React from 'react';
+import {
+  Container,
+  Icon,
+  Image,
+  Segment,
+} from 'semantic-ui-react';
+import Link  from 'next/link';
 
-import Home from './home/Home';
-import { trackPage } from '../src/common/tracking';
+import { FullVerticalContainer } from '../src/common/FullVerticalContainer';
+import { trackPage } from "../src/common/tracking";
 
-export default function MainHome() {
-  trackPage('Home');
-  return <Home/>;
+import coolBoardLogo100 from '../public/CoolBoardLogo100.png';
+import packLogo from '../src/assets/packt-logo.svg';
+
+export default function Index() {
+  trackPage('Index');
+
+  return (
+    <FullVerticalContainer data-cy="home-container">
+      <Container
+        style={{
+          textAlign: 'left',
+        }}>
+        <h1>
+          <Image
+            bordered
+            src={coolBoardLogo100}
+            width="100px"
+            circular
+            inline
+          />
+          Welcome to CoolBoard{' '}
+        </h1>
+        <Segment basic>
+          <h2>
+            Create a board to share your tasks in a
+            kanban style
+          </h2>
+          <p>
+            You need to{' '}
+            <Link href="/login">
+              <a>
+                <Icon name="sign in" />
+                <span>sign in</span>
+              </a>
+            </Link>
+            first via google, or email.
+          </p>
+          <p>
+            Then start to create
+            <Link href="/boards">
+              <a>
+                boards
+                <Icon size="big" name="list" />
+              </a>
+            </Link>
+          </p>
+          <p>
+            If you want to share the board, just send
+            the <Icon name="linkify" />
+            URL of the board with others.
+            <br />
+            Everybody who is logged-in can access the board.
+          </p>
+        </Segment>
+        <Segment>
+          More
+          <Link href="/about">
+            <a>
+            {' '}
+            <Icon name="linkify" />
+            details about
+            </a>
+          </Link>{' '}
+          this app
+        </Segment>
+
+        <Segment basic>
+          <Link href="/boards">
+            <Image bordered src="/screenshot.png" />
+          </Link>
+        </Segment>
+
+        <Segment basic>
+          <p>
+            This is the demo of the app which we built
+            in this course:
+          </p>
+          <h3>
+            <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
+              <Icon name="video camera" size="large" />
+              <b>
+                Hands-on Application building with
+                GraphQL and React
+              </b>
+            </a>
+          </h3>
+          <p>
+            <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
+              <b>Available</b> at
+              <Image
+                spaced
+                inline
+                src={packLogo}
+                height={24}
+                style={{ verticalAlign: 'bottom' }}
+              />
+            </a>
+          </p>
+        </Segment>
+      </Container>
+    </FullVerticalContainer>
+  );
 }

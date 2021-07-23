@@ -7,6 +7,7 @@ class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <meta charSet="utf-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
           <meta name="twitter:card" content="https://www.coolboard.fun/screenshot.png" />
           <meta name="twitter:site" content="@rhosts" />
           <meta name="twitter:creator" content="@rhosts" />
@@ -24,8 +25,6 @@ class MyDocument extends Document {
           <meta name="msapplication-TileImage" content="/favicons/mstile-144x144.png" />
           <meta name="msapplication-config" content="/favicons/browserconfig.xml" />
           <meta name="theme-color" content="#27ae60" />
-          <link rel="stylesheet" href="/fomantic-ui/semantic.css" />
-          <link rel="stylesheet" href="/index.css" />
         </Head>
 
         <body>
@@ -67,4 +66,4 @@ class MyDocument extends Document {
   }
 }
 
-export default MyDocument      
+export default MyDocument

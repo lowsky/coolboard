@@ -11,7 +11,7 @@ import { FullVerticalContainer } from '../src/common/FullVerticalContainer';
 import { ProfileHeader } from '../src/common/ProfileHeader';
 
 import packLogo from '../src/assets/packt-logo.svg';
-import packLogoSmallPng from './about/packt-page-v141.png';
+import packLogoSmallPng from '../public/packt-page-v141.png';
 import { ApolloProvider } from "@apollo/client";
 import { setupGraphQLClient } from "../src/setupGraphQLClient";
 
