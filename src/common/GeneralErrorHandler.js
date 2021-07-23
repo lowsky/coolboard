@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
+
 import {
   Button,
   Icon,
@@ -70,11 +71,13 @@ export const GeneralErrorHandler = ({
             </strong>
             <p>
               Please try to
-              <Link to="/login">
-                <Icon size="big" name="sign in" />
-                Log in
+              <Link href="/login">
+                <a>
+                  <Icon size="big" name="sign in"/>
+                  Log in
+                </a>
               </Link>{' '}
-              again or <br />
+              again or <br/>
               <strong>contact the support</strong>
             </p>
           </ErrorMessage>
@@ -97,9 +100,11 @@ export const GeneralErrorHandler = ({
             </strong>
             <p>
               Please
-              <Link to="/login">
-                <Icon size="big" name="sign in" />
-                Log in
+              <Link href="/login">
+                <a>
+                  <Icon size="big" name="sign in"/>
+                  Log in
+                </a>
               </Link>
             </p>
           </ErrorMessage>

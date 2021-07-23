@@ -6,7 +6,8 @@ import {
   Image,
   Loader,
 } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import Link  from 'next/link';
+
 
 const ProfileHeaderContainer = ({
   children,
@@ -28,18 +29,18 @@ const ProfileHeaderContainer = ({
         placeContent: 'space-between',
       }}>
       {isBoardsPage && (
-        <Link to="/">
-          <Icon size="big" name="home" />Home
+        <Link href="/">
+          <a><Icon size="big" name="home" />Home</a>
         </Link>
       )}
       {!isBoardsPage && (
-        <Link to="/boards">
-          <Icon size="big" name="list" />Boards
+        <Link href="/boards">
+          <a><Icon size="big" name="list" />Boards</a>
         </Link>
       )}
 
-      <Link to="/about">
-        <Icon size="big" name="question" />About
+      <Link href="/about">
+        <a><Icon size="big" name="question" />About</a>
       </Link>
 
       {children}
@@ -76,8 +77,9 @@ export const ProfileHeader = ({ isBoardsPage }) => {
     return (
       <ProfileHeaderContainer
         isBoardsPage={isBoardsPage}>
-        <Link to="/login">
-          <Icon size="big" name="sign in" />Log in
+        <Link href="/login">
+          <a><Icon size="big" name="sign in" />Log in
+          </a>
         </Link>
       </ProfileHeaderContainer>
     );
@@ -96,9 +98,11 @@ export const ProfileHeader = ({ isBoardsPage }) => {
           <Image src={avatarUrl} avatar spaced />
         )}
 
-        <Link to="/logout">
-          <Icon size="big" name="sign out" />
-          Logout
+        <Link href="/logout">
+          <a>
+            <Icon size="big" name="sign out" />
+            Logout
+          </a>
         </Link>
       </div>
     </ProfileHeaderContainer>
