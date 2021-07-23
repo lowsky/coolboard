@@ -7,7 +7,6 @@ class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <meta charSet="utf-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
           <meta name="twitter:card" content="https://www.coolboard.fun/screenshot.png" />
           <meta name="twitter:site" content="@rhosts" />
           <meta name="twitter:creator" content="@rhosts" />
