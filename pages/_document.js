@@ -1,4 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
+import  Link  from "next/link";
 
 class MyDocument extends Document {
   render() {
@@ -6,12 +7,12 @@ class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <meta charSet="utf-8" />
-          <meta name="twitter:card" content="https://coolboard.netlify.com/screenshot.png" />
+          <meta name="twitter:card" content="https://www.coolboard.fun/screenshot.png" />
           <meta name="twitter:site" content="@rhosts" />
           <meta name="twitter:creator" content="@rhosts" />
-          <meta name="twitter:title" content="coolboard: graphql kanban board" />
+          <meta name="twitter:title" content="coolboard: graphql trello clone" />
           <meta name="twitter:description" content="Working live demo of /building an entire Trello-like application using GraphQL and React/ video course on PacktPub.com" />
-          <meta name="twitter:image" content="https://coolboard.netlify.com/screenshot.png" />
+          <meta name="twitter:image" content="https://www.coolboard.fun/screenshot.png" />
           <meta name="description" content="Working live demo of /building an entire Trello-like application using GraphQL and React/ video course on PacktPub.com" />
           <link rel="manifest" href="/favicons/site.webmanifest" />
           <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#ffffff" />
@@ -23,31 +24,43 @@ class MyDocument extends Document {
           <meta name="msapplication-TileImage" content="/favicons/mstile-144x144.png" />
           <meta name="msapplication-config" content="/favicons/browserconfig.xml" />
           <meta name="theme-color" content="#27ae60" />
-          <style dangerouslySetInnerHTML={{ __html: `
-      body {
-        height: 100vh;
-        display: flex;
-        flex-direction: column
-      }
-      #root {flex-grow: 1;}
-    ` }} />
           <link rel="stylesheet" href="/fomantic-ui/semantic.css" />
           <link rel="stylesheet" href="/index.css" />
-          <noscript>
-      You need to enable JavaScript to run this app.
-    </noscript>
-          <footer id="footer" className="ui fluid container">
-      
-    </footer>
-          <script dangerouslySetInnerHTML={{ __html: `
-      if(window.ineum) ineum('page', 'main');
-    ` }} />
         </Head>
-        
+
         <body>
-          <Main />
+          <div id="root">
+            <noscript>
+              You need to enable JavaScript to run this app.
+            </noscript>
+            <Main />
+          </div>
+
           <NextScript />
-          
+
+          <footer id="footer" className="ui fluid container">
+            <p>
+              <span style={{color:"black"}}>CoolBoard, powered by Prisma, GraphQL, Apollo, React.js, Netlify</span>
+              <Link href="/imprint">
+                <a>Imprint</a>
+              </Link>
+              <Link href="/privacy">
+                <a>Privacy</a>
+              </Link>
+
+              <a href="mailto:coolboard@protonmail.com"><i className="icon mail "> Mail</i> </a>
+              <a href="https://twitter.com/rhosts"><i className="icon twitter"> Twitter</i></a>
+              <a href="https://github.com/lowsky/-Hands-on-Application-Building-with-GraphQL">
+                <i className="icon github">classic version</i>
+              </a>
+            </p>
+          </footer>
+          <script dangerouslySetInnerHTML={{ __html: `
+          // if(window.ineum) ineum('page', 'main');
+            {
+              // if(window.ineum) ineum('page', 'main');
+            }
+        ` }} />
         </body>
       </Html>
     )
