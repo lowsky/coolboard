@@ -12,11 +12,11 @@ const client = setupGraphQLClient();
 
 export default function Logout( ) {
   const router = useRouter();
+
   trackPage('logout');
 
   useEffect(async() => {
-    // if(typeof localStorage !== 'undefined') {}
-      localStorage?.removeItem('token');
+    localStorage?.removeItem('token');
 
     await client.resetStore().then(() => {
       auth.logout();

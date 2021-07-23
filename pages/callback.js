@@ -1,19 +1,18 @@
-import React from 'react';
-
-import Home from './home/Home';
-import { trackPage } from '../src/common/tracking';
 import Link from "next/link";
+import React from 'react';
 import { Loader } from "semantic-ui-react";
-import { setupGraphQLClient } from "../src/setupGraphQLClient";
+
+import Auth from '../src/authentication/auth';
 import FullPageWithApollo from "../src/common/FullPageWithApollo";
+
+import { trackPage } from '../src/common/tracking';
+import { setupGraphQLClient } from "../src/setupGraphQLClient";
 
 const client = setupGraphQLClient();
 
-import Auth from '../src/authentication/auth';
-
 new Auth()
 export default function Callback() {
-  trackPage('Home');
+  trackPage('callback');
 
   return <FullPageWithApollo client={client}>
     <p data-cy="login-in-progress">
