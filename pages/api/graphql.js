@@ -43,12 +43,13 @@ const server = new ApolloServer({
   }),
 });
 
+//LATER: exports.handler = instana.wrap((event, context, callback) => {
 
 /*
 const handler = instana.wrap((event, context, callback) => {
   const callbackFilter = function (error, output) {
     if (error) {
-      console.error(error);
+      console.error('error:', error);
     } else {
       isLocalDev &&
       console.info(
@@ -56,12 +57,13 @@ const handler = instana.wrap((event, context, callback) => {
       );
     }
 
+    isLocalDev &&
     console.log(
       'Environment: ',
       process && process.env && process.env.NODE_ENV
     );
     isLocalDev &&
-    console.log('Environment: LOCAL? ', isLocalDev);
+      console.log('Environment: LOCAL DEV mode');
 
     isLocalDev && console.log('result', output);
     callback(error, output);
