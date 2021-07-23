@@ -6,12 +6,11 @@ import {
   Segment,
 } from 'semantic-ui-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 import { FullVerticalContainer } from '../src/common/FullVerticalContainer';
 import { ProfileHeader } from '../src/common/ProfileHeader';
 
-import packLogo from '../src/assets/packt-logo.svg';
-import packLogoSmallPng from '../public/packt-page-v141.png';
 import { ApolloProvider } from "@apollo/client";
 import { setupGraphQLClient } from "../src/setupGraphQLClient";
 
@@ -44,8 +43,9 @@ function AboutInner() {
         </p>
         <p>
           <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
-            <img
-              src={packLogoSmallPng}
+            <Image
+              src={'/packt-page-v141.png'}
+              width={473}
               height={141}
               alt="Packt Publishing logo"
             />
@@ -54,8 +54,10 @@ function AboutInner() {
         <p>
           <b>Published</b> on{' '}
           <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
-            <img
-              src={packLogo}
+            <Image
+              src={'/packt-logo.svg'}
+              width={24
+              }
               height={24}
               style={{ verticalAlign: 'bottom' }}
               alt="Packt Publishing logo"
