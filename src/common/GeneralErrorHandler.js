@@ -83,11 +83,10 @@ export const GeneralErrorHandler = ({
           </ErrorMessage>
         );
       }
-
       const notAuthErr = (graphQLErrors || []).find(
         (err) =>
-          err.name === 'NotAuthorizedError' ||
-          err.message === 'Not authorized'
+          err.extension?.exception?.name === 'NotAuthorizedError' ||
+          err.message?.startsWith('Not authorized')
       );
 
       if (notAuthErr) {
@@ -124,7 +123,6 @@ export const GeneralErrorHandler = ({
           {errorMsgs.map((message, idx) => (
             <span key={idx}>{message}</span>
           ))}
-          After your first sign-in, please simple reload this page.
         </ErrorMessage>
       );
     } else if (networkError) {
