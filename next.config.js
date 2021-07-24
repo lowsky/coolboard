@@ -4,7 +4,7 @@ module.exports = {
   ...withImages(),
   // Target must be serverless (for use with netlify)
   target: "serverless",
-  // true by default:
+  // is true by default:
   // webpack5: false,
   //
   // Remove this to leverage Next.js' static image handling
