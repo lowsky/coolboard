@@ -75,7 +75,7 @@ class Auth {
       saveInLocalStore(authResult);
 
       if (window.location.href.includes(`callback`)) {
-        window.location.href = '/';
+        window.location.href = '/boards';
       }
     }
   }
