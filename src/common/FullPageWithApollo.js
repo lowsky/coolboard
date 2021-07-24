@@ -7,7 +7,7 @@ import { setupGraphQLClient } from "../setupGraphQLClient";
 const client = setupGraphQLClient();
 
 const FullPageWithApollo = ({ children }) => (
-  <FullVerticalContainer data-cy="callback-full-container">
+  <FullVerticalContainer data-cy="full-container">
     <ApolloProvider client={client}>
       {children}
     </ApolloProvider>
