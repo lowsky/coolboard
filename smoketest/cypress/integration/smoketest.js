@@ -121,11 +121,11 @@ function doLogin() {
 
 const getBoardsList = () => {
   cy
-    .get('.full-container [data-cy=boards-list]')
+    .get('[data-cy=full-container] [data-cy=boards-list]')
     .first();
 
   return cy
-    .get('.full-container [data-cy=boards-list]', WaitVeryLong)
+    .get('[data-cy=full-container] [data-cy=boards-list]', WaitVeryLong)
     .should('exist')
     .find('a', WaitVeryLong);
 }
@@ -178,6 +178,9 @@ describe('Test coolboard', () => {
     // open first board named XXX
     getBoardsList_FirstEntry(newBoardName).click();
 
+    cy.url()
+      .should('include', 'board/');
+
     // clear all lists:
     cy.get('button', LogAndWaitLong)
       .contains('Delete All')
@@ -216,7 +219,7 @@ describe('Test coolboard', () => {
 
     cy.log('delete first list');
     sections(LogAndWaitLong)
-      .get('[data-cy=card-list] .CardList_header__x9UhR > .mini > .ellipsis')
+      .get('[data-cy=card-list] .CardList_header__1277K > .mini > .ellipsis')
       .first()
       .click();
 
@@ -225,7 +228,7 @@ describe('Test coolboard', () => {
 
     cy.log('delete first list');
     sections(LogAndWaitLong)
-      .get('[data-cy=card-list] .CardList_header__x9UhR > .mini > .ellipsis')
+      .get('[data-cy=card-list] .CardList_header__1277K > .mini > .ellipsis')
       .first()
       .click();
     cy.get('.ui > .button > .trash')
