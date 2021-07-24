@@ -56,7 +56,7 @@
   },
   "devDependencies": {
     "@netlify/plugin-nextjs": "3.7.1",
-    "@types/react": "17.0.14",
+    "@types/react": "17.0.15",
     "eslint": "7.31.0",
     "eslint-config-next": "11.0.1",
     "http-proxy-middleware": "2.0.1",
