@@ -29,7 +29,7 @@
     "graphql-tag": "2.12.5",
     "jsonwebtoken": "8.5.1",
     "jwks-rsa": "2.0.3",
-    "lodash": "^4.17.21",
+    "lodash": "4.17.21",
     "netlify-cli": "5.2.3",
     "next": "11.0.1",
     "prisma": "2.27.0",
