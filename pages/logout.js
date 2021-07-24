@@ -35,8 +35,12 @@ export default function Logout() {
         Please wait, logging-out in
         progress ... If it did not work,
         back to the
-        <Link href="/">
+        <Link href="/main">
           <a>main page</a>
+        </Link>
+        or directly to the
+        <Link href="/boards">
+          <a>boards page</a>
         </Link>
       </p>
     </FullVerticalContainer>

@@ -1,12 +1,7 @@
+import { gql, useMutation, useQuery } from "@apollo/client";
+import Link from 'next/link';
 import React, { useState } from 'react';
-import { gql, useQuery, useMutation } from "@apollo/client";
-import {
-  Segment,
-  Loader,
-  Button,
-  Container,
-} from 'semantic-ui-react';
-import Link  from 'next/link';
+import { Button, Container, Loader, Segment, } from 'semantic-ui-react';
 
 import { FullVerticalContainer } from '../common/FullVerticalContainer';
 import { CreateBoardModal } from './CreateBoardModal';
@@ -79,50 +74,58 @@ export const Boards = () => {
   );
 
   const [createBoard, boardCreationState] = useMutation(
-      createBoardMutation,
+    createBoardMutation,
     { onCompleted: () => refetch() }
   );
 
-  if (loading) {
+  if(loading) {
     return (
       <FullVerticalContainer>
-        <h1>List of Boards </h1>
-        <Loader />
+        <Segment textAlign="center" basic>
+          <h1>Your Boards</h1>
+          <Loader/>
+        </Segment>
+
       </FullVerticalContainer>
     );
   }
 
-  if (error) {
+  if(error) {
     return (
       <FullVerticalContainer>
-        <h1>List of Boards </h1>
-        <p>Error loading ... </p>
+        <Segment textAlign="center" basic>
+          <h1>Your Boards</h1>
+          <p>list can not be loaded, please retry.</p>
+        </Segment>
+
       </FullVerticalContainer>
     );
   }
 
   return (
     <FullVerticalContainer>
-      <h1>List of Boards </h1>
-      <Container fluid data-cy='boards-list'>
-        {data?.me?.boards?.length > 0 ? (
-          <BoardList
-            boards={data.me.boards}
-            deleteBoard={id => {
-              return deleteBoard({
-                variables: { id },
-              });
-            }}
-          />
-        ) : (
-          <span>
+      <Segment textAlign="center" basic>
+        <h1>Your Boards</h1>
+        <Container data-cy='boards-list'>
+          {data?.me?.boards?.length > 0 ? (
+            <BoardList
+              boards={data.me.boards}
+              deleteBoard={id => {
+                return deleteBoard({
+                  variables: { id },
+                });
+              }}
+            />
+          ) : (
+            <span>
             There a no boards, yet. You need
-            need to create one ...
+            need to create one.
           </span>
-        )}
-      </Container>
+          )}
+        </Container>
+      </Segment>
 
-      <Segment basic>
+      <Segment textAlign="center" basic>
         <CreateBoardModal
           loading={boardCreationState.loading}
           error={boardCreationState.error?.message}
