@@ -11,21 +11,8 @@ import Image from 'next/image';
 import { FullVerticalContainer } from '../src/common/FullVerticalContainer';
 import { ProfileHeader } from '../src/common/ProfileHeader';
 
-import { ApolloProvider } from "@apollo/client";
-import { setupGraphQLClient } from "../src/setupGraphQLClient";
-
-
-let client = setupGraphQLClient();
-
 export default function About() {
-  return <ApolloProvider client={client}>
-    <AboutInner/>
-  </ApolloProvider>
-}
-
-function AboutInner() {
   return <FullVerticalContainer data-cy="about-full-container">
-    <ProfileHeader/>
     <Container
       text
       style={{

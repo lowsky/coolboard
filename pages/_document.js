@@ -53,12 +53,6 @@ class MyDocument extends Document {
               </a>
             </p>
           </footer>
-          <script dangerouslySetInnerHTML={{ __html: `
-          // if(window.ineum) ineum('page', 'main');
-            {
-              // if(window.ineum) ineum('page', 'main');
-            }
-        ` }} />
         </body>
       </Html>
     )
