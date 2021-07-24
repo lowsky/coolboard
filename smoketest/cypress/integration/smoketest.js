@@ -121,11 +121,11 @@ function doLogin() {
 
 const getBoardsList = () => {
   cy
-    .get('.App [data-cy=boards-list]')
+    .get('.full-container [data-cy=boards-list]')
     .first();
 
   return cy
-    .get('.App [data-cy=boards-list]', WaitVeryLong)
+    .get('.full-container [data-cy=boards-list]', WaitVeryLong)
     .should('exist')
     .find('a', WaitVeryLong);
 }
