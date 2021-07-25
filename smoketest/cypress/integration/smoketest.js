@@ -83,7 +83,7 @@ function fillLoginForm() {
   return cy.wait(1000)
     .url(LogAndWaitLong)
     .should('not.include', 'callback')
-    .should('equal', baseUrl + '/')
+    .should('equal', baseUrl + '/boards')
     .wait(2000);
 }
 
