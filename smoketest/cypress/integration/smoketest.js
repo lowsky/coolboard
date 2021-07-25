@@ -159,6 +159,7 @@ describe('Test coolboard', () => {
         .log(boards)
         .log(boards.length)
         .get('.basic > .ui')
+        .last()
         .click()
         .get('input')
         .type(newBoardName)
