@@ -20,6 +20,7 @@
     "apollo-server-micro": "2.25.2",
     "auth0-lock": "11.30.3",
     "bcryptjs": "2.4.3",
+    "bufferutil": "4.0.3",
     "fomantic-ui-css": "2.8.8",
     "graphql": "15.5.1",
     "graphql-tag": "2.12.5",
@@ -39,7 +40,8 @@
     "react-timeago": "6.2.1",
     "semantic-ui-css": "2.4.1",
     "semantic-ui-react": "2.0.3",
-    "styled-components": "5.3.0"
+    "styled-components": "5.3.0",
+    "utf-8-validate": "5.0.5"
   },
   "scripts": {
     "start": "next dev",
