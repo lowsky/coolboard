@@ -30,7 +30,7 @@
     "jsonwebtoken": "8.5.1",
     "jwks-rsa": "2.0.3",
     "lodash": "4.17.21",
-    "netlify-cli": "5.2.3",
+    "netlify-cli": "5.2.6",
     "next": "11.0.1",
     "prisma": "2.27.0",
     "prop-types": "15.7.2",
