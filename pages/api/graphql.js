@@ -12,37 +12,41 @@ const prisma = new PrismaClient({
     ['info', 'warn', 'error']
 });
 
-const server = new ApolloServer({
-  typeDefs,
-  resolvers,
-  debug: isLocalDev,
-  playground: isLocalDev,
-  introspection: isLocalDev,
+const getGraphqlServer = async() => {
+  const apolloServer = new ApolloServer({
+    typeDefs,
+    resolvers,
 
-  /*
-  engine: {
-    // The Graph Manager API key
-    apiKey: process.env.ENGINE_API_KEY,
+    debug: isLocalDev,
+    playground: isLocalDev,
+    introspection: isLocalDev,
 
-    // For more information on schema tags/variants, see
-    // https://www.apollographql.com/docs/platform/schema-registry/#associating-metrics-with-a-variant
-    schemaTag: process.env.ENGINE_SCHEMA_TAG || 'undefined',
-  },
-   */
+    /*
+    engine: {
+      // The Graph Manager API key
+      apiKey: process.env.ENGINE_API_KEY,
 
-  /*
-  resolverValidationOptions: {
-    requireResolversForResolveType: false,
-  },
-  */
-  context: ({req}) => ({
-    event: {
-      headers: req.headers
+      // For more information on schema tags/variants, see
+      // https://www.apollographql.com/docs/platform/schema-registry/#associating-metrics-with-a-variant
+      schemaTag: process.env.ENGINE_SCHEMA_TAG || 'undefined',
     },
-    prisma,
-  }),
-});
+     */
 
+    /*
+    resolverValidationOptions: {
+      requireResolversForResolveType: false,
+    },
+    */
+    context: ({ req }) => ({
+      event: {
+        headers: req.headers
+      },
+      prisma,
+    }),
+  });
+  await apolloServer.start();
+  return apolloServer;
+}
 //LATER: exports.handler = instana.wrap((event, context, callback) => {
 
 /*
@@ -77,26 +81,16 @@ const handler = instana.wrap((event, context, callback) => {
 });
 */
 
-const handler = server.createHandler({
-  path: '/api/graphql',
-});
+// will be stored here for re-use
+let server = null;
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default async (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,POST');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
-  /*
-if (req.method === 'OPTIONS') {
-  res.end()
-  return false
-}
-   */
-  if (req.method === 'OPTIONS') {
-    return res.send(200);
-  }
-
-  return handler(req, res);
+export default async(req, res) => {
+  const apolloServer = server || (await getGraphqlServer());
+  server = apolloServer;
+  return apolloServer.createHandler({
+    path: '/api/graphql',
+  })(req, res);
 };
 
 export const config = {
