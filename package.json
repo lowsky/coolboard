@@ -55,7 +55,7 @@
     "@types/react": "17.0.15",
     "eslint": "7.32.0",
     "eslint-config-next": "11.0.1",
-    "netlify-cli": "5.4.0"
+    "netlify-cli": "5.4.6"
   },
   "browserslist": [
     ">0.2%",
