@@ -31,7 +31,6 @@ const CardListWithoutDnd = props => {
 
   return (
     <div data-cy="card-list">
-      <div>
         <div
           className={styles.list}
           style={{
@@ -71,7 +70,6 @@ const CardListWithoutDnd = props => {
             Add a card
           </CardListButton>
         </div>
-      </div>
     </div>
   );
 };
