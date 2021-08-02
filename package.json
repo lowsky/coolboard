@@ -51,7 +51,7 @@
     "vercel-build": "COMMIT_REF=$VERCEL_GITHUB_COMMIT_SHA yarn run build ; yarn trigger-e2e-smoke"
   },
   "devDependencies": {
-    "@netlify/plugin-nextjs": "3.7.1",
+    "@netlify/plugin-nextjs": "3.8.0",
     "@types/react": "17.0.15",
     "eslint": "7.31.0",
     "eslint-config-next": "11.0.1",
