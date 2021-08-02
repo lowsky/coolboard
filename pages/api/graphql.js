@@ -13,37 +13,37 @@ const prisma = new PrismaClient({
 });
 
 const getGraphqlServer = async() => {
-  const apolloServer = new ApolloServer({
-    typeDefs,
-    resolvers,
+const apolloServer = new ApolloServer({
+  typeDefs,
+  resolvers,
+  debug: isLocalDev,
+  playground: isLocalDev,
+  introspection: isLocalDev,
 
-    debug: isLocalDev,
-    playground: isLocalDev,
-    introspection: isLocalDev,
+  /*
+  engine: {
+    // The Graph Manager API key
+    apiKey: process.env.ENGINE_API_KEY,
 
-    /*
-    engine: {
-      // The Graph Manager API key
-      apiKey: process.env.ENGINE_API_KEY,
+    // For more information on schema tags/variants, see
+    // https://www.apollographql.com/docs/platform/schema-registry/#associating-metrics-with-a-variant
+    schemaTag: process.env.ENGINE_SCHEMA_TAG || 'undefined',
+  },
+   */
 
-      // For more information on schema tags/variants, see
-      // https://www.apollographql.com/docs/platform/schema-registry/#associating-metrics-with-a-variant
-      schemaTag: process.env.ENGINE_SCHEMA_TAG || 'undefined',
+  /*
+  resolverValidationOptions: {
+    requireResolversForResolveType: false,
+  },
+  */
+  context: ({req}) => ({
+    event: {
+      headers: req.headers
     },
-     */
+    prisma,
+  }),
+});
 
-    /*
-    resolverValidationOptions: {
-      requireResolversForResolveType: false,
-    },
-    */
-    context: ({ req }) => ({
-      event: {
-        headers: req.headers
-      },
-      prisma,
-    }),
-  });
   await apolloServer.start();
   return apolloServer;
 }
@@ -80,6 +80,7 @@ const handler = instana.wrap((event, context, callback) => {
   return handler(event, context, callbackFilter);
 });
 */
+
 
 // will be stored here for re-use
 let server = null;
