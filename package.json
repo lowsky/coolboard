@@ -17,7 +17,7 @@
     "apollo-link": "1.2.14",
     "apollo-link-http": "1.5.17",
     "apollo-link-schema": "1.2.5",
-    "apollo-server-micro": "2.25.2",
+    "apollo-server-micro": "3.1.1",
     "auth0-lock": "11.30.3",
     "bcryptjs": "2.4.3",
     "bufferutil": "4.0.3",

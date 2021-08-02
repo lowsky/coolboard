@@ -12,7 +12,8 @@ const prisma = new PrismaClient({
     ['info', 'warn', 'error']
 });
 
-const server = new ApolloServer({
+const getGraphqlServer = async() => {
+const apolloServer = new ApolloServer({
   typeDefs,
   resolvers,
   debug: isLocalDev,
@@ -43,6 +44,9 @@ const server = new ApolloServer({
   }),
 });
 
+  await apolloServer.start();
+  return apolloServer;
+}
 //LATER: exports.handler = instana.wrap((event, context, callback) => {
 
 /*
@@ -77,26 +81,17 @@ const handler = instana.wrap((event, context, callback) => {
 });
 */
 
-const handler = server.createHandler({
-  path: '/api/graphql',
-});
+
+// will be stored here for re-use
+let server = null;
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default async (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,POST');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
-  /*
-if (req.method === 'OPTIONS') {
-  res.end()
-  return false
-}
-   */
-  if (req.method === 'OPTIONS') {
-    return res.send(200);
-  }
-
-  return handler(req, res);
+export default async(req, res) => {
+  const apolloServer = server || (await getGraphqlServer());
+  server = apolloServer;
+  return apolloServer.createHandler({
+    path: '/api/graphql',
+  })(req, res);
 };
 
 export const config = {
