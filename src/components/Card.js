@@ -9,8 +9,8 @@ const EditCardMutation = gql`
   mutation updateCard(
     $id: ID!
     $name: String
-    $description: String 
-    #$old_name: String 
+    $description: String
+    #$old_name: String
     #$old_description: String
   ) {
     updateCard(
@@ -62,9 +62,9 @@ export const dndItemType = 'card';
 export const CardForDragging = ({ ...props }) => {
   // eslint-disable-next-line no-unused-vars
   const [collected, ref] = useDrag({
-    item: {
+    type: dndItemType,
+    item:  {
       id: props.id,
-      type: dndItemType,
       cardListId: props.cardListId,
     },
     canDrag: () => props => !!props.cardListId,
