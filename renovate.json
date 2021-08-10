@@ -1,5 +1,12 @@
 {
   "ignoreDeps": ["@types/.*"],
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchCurrentVersion": "!/^0/",
+      "automerge": true
+    }
+  ],
   "extends": [
     "config:base"
   ]
