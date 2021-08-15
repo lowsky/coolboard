@@ -10,6 +10,9 @@ import Image from 'next/image';
 import { FullVerticalContainer } from '../src/common/FullVerticalContainer';
 import { trackPage } from "../src/common/tracking";
 
+import coolBoardLogo from "../public/CoolBoardLogo100.png";
+import screenshot from '../public/screenshot.png'
+
 export default function Index() {
   trackPage('Index');
 
@@ -21,9 +24,8 @@ export default function Index() {
         }}>
         <h1>
           <Image
-            src={'/CoolBoardLogo100.png'}
+            src={coolBoardLogo}
             width="100"
-            height="101"
             alt="logo"
           />
           Welcome to CoolBoard
@@ -74,9 +76,9 @@ export default function Index() {
 
         <Segment basic>
           <Link href="/boards" passHref>
-            <Image src="/screenshot.png"
+            <Image src={screenshot}
+            placeholder="blur"
             width="1099"
-            height="484"
             alt="screenshot" />
           </Link>
         </Segment>
@@ -102,7 +104,6 @@ export default function Index() {
                 src={'/packt-logo.svg'}
                 height={24}
                 width="100%"
-                style={{ verticalAlign: 'bottom' }}
                 alt="packt-logo"
               />
             </a>
