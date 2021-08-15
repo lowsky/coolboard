@@ -1,23 +1,44 @@
-import React from 'react';
 import Link from 'next/link';
+import React, { useState } from 'react';
 
-import {
-  Button,
-  Icon,
-  Message,
-} from 'semantic-ui-react';
+import { Button, Icon, Message, } from 'semantic-ui-react';
+import { hasExpirationSet, isExpired, } from '../authentication/checkExpiration';
 
 import { useApolloNetworkStatus } from '../setupGraphQLClient';
-import {
-  hasExpirationSet,
-  isExpired,
-} from '../authentication/checkExpiration';
 
 const ErrorMessage = ({ children }) => (
   <Message error style={{ flexShrink: 0 }}>
     {children}
   </Message>
 );
+
+function ReLoginButton({ authRefresh }) {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  return !!authRefresh &&
+    hasExpirationSet() &&
+    isExpired() && (
+      <div>
+        <Button
+          loading={loading}
+          compact={true}
+          onClick={async() => {
+            setLoading(true)
+            try {
+              await authRefresh();
+              setLoading(false);
+              window.history.go(0); // refresh page
+            } catch(e) {
+              setError(e)
+            }
+            setLoading(false)
+          }}>
+          Refresh
+        </Button>{' '}
+        the security token.
+      </div>
+    );
+}
 
 export const GeneralErrorHandler = ({
   authRefresh,
@@ -34,23 +55,6 @@ export const GeneralErrorHandler = ({
       ...mutationError,
       ...queryError,
     };
-
-    const Relogin = () =>
-      !!authRefresh &&
-      hasExpirationSet() &&
-      isExpired() && (
-        <div>
-          <Button
-            compact={true}
-            onClick={async () => {
-              await authRefresh();
-              window.history.go(0); // refresh page
-            }}>
-            Refresh
-          </Button>{' '}
-          the security token.
-        </div>
-      );
 
     if (graphQLErrors) {
       const registrationFailed = graphQLErrors.find(
@@ -92,7 +96,7 @@ export const GeneralErrorHandler = ({
       if (notAuthErr) {
         return (
           <ErrorMessage>
-            <Relogin />
+            <ReLoginButton authRefresh={authRefresh} />
             <strong>
               You will need to be authenticated to see
               or create Boards or change any items.
@@ -118,7 +122,7 @@ export const GeneralErrorHandler = ({
         <ErrorMessage>
           {errorMsgs.filter(
             (msg) => msg.indexOf('jwt expired') >= 0
-          ).length > 0 && <Relogin />}
+          ).length > 0 && <ReLoginButton authRefresh={authRefresh} />}
           <strong>Error:</strong>{' '}
           {errorMsgs.map((message, idx) => (
             <span key={idx}>{message}</span>
@@ -128,7 +132,7 @@ export const GeneralErrorHandler = ({
     } else if (networkError) {
       return (
         <ErrorMessage>
-          <Relogin />
+          <ReLoginButton authRefresh={authRefresh} />
           <p>
             <strong>Network Error:</strong>
             {networkError.message}
