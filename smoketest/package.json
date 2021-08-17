@@ -7,7 +7,7 @@
     "node": ">=12.1"
   },
   "dependencies": {
-    "cypress": "8.2.0"
+    "cypress": "8.3.0"
   },
   "scripts": {
     "cy": "cypress",
