@@ -1350,34 +1350,34 @@
   resolved "https://registry.yarnpkg.com/@hapi/hoek/-/hoek-9.2.0.tgz#f3933a44e365864f4dad5db94158106d511e8131"
   integrity sha512-sqKVVVOe5ivCaXDWivIJYVSaEgdQK9ul7a4Kity5Iw7u9+wBAPbX1RMSnLLmp7O4Vzj0WOWwMAJsTL00xwaNug==
 
-"@instana/autoprofile@1.130.1":
-  version "1.130.1"
-  resolved "https://registry.yarnpkg.com/@instana/autoprofile/-/autoprofile-1.130.1.tgz#eb229ffc7fb32f205a29e1fc34820b24e2bdb5a4"
-  integrity sha512-4j8JyfpCptHNXuVKHk3Py/wSd25vMy3wv+5jkU+cb+5H55rYSvVTScA8xZgC6jnvKyP69mZx9qG4RUxXPuVHRw==
+"@instana/autoprofile@1.131.0":
+  version "1.131.0"
+  resolved "https://registry.yarnpkg.com/@instana/autoprofile/-/autoprofile-1.131.0.tgz#b0ea9c3d50745c9c040a71b83c05337288c93db7"
+  integrity sha512-CnPwRJ+5mMA6hBGVHHGrtszxJsaU9EeRvdtBYXWMs99JKOFX5kAWHPx/sic+gGYLNCJzttrQw7/jcot0O8vhiA==
   dependencies:
     detect-libc "^1.0.3"
     nan "^2.14.2"
     node-abi "^2.30.0"
     node-gyp "^7.1.2"
 
-"@instana/collector@1.130.1":
-  version "1.130.1"
-  resolved "https://registry.yarnpkg.com/@instana/collector/-/collector-1.130.1.tgz#783657124156ad75f5dee786f25cd468d471f1a3"
-  integrity sha512-VcNT6RU3ZZlDgpgKwhjeYBOFKFwlWSu32QEQARxl0zmvKMn3QkyvQGyRNA22XgHXx2aoEsoGGxDqhqVi/lGANQ==
+"@instana/collector@1.131.0":
+  version "1.131.0"
+  resolved "https://registry.yarnpkg.com/@instana/collector/-/collector-1.131.0.tgz#8fb2377594acd9b935288cbb24be621ceafd39f7"
+  integrity sha512-2pziEbrErSHOzz6CiThVcBRDiByLsg1iaHlKBg3zh1Z+cat19Ee76EddH7fNrQ0vu2oDZoig8sCgP+SzUlowPg==
   dependencies:
-    "@instana/core" "1.130.1"
-    "@instana/shared-metrics" "1.130.1"
+    "@instana/core" "1.131.0"
+    "@instana/shared-metrics" "1.131.0"
     bunyan "^1.8.15"
     semver "7.3.5"
     serialize-error "^3.0.0"
     shimmer "1.2.1"
   optionalDependencies:
-    "@instana/autoprofile" "1.130.1"
+    "@instana/autoprofile" "1.131.0"
 
-"@instana/core@1.130.1":
-  version "1.130.1"
-  resolved "https://registry.yarnpkg.com/@instana/core/-/core-1.130.1.tgz#4ab157ef9d87fdd1470faf092a58b27cceaef9d3"
-  integrity sha512-b1AejBbIgiLI46fhNRGVvp9BLnmHpS+0VcRL50IdNxzefyZ28yrbGqPvyqGu6hjLhY+s9quudGR9lN2sEA/pPA==
+"@instana/core@1.131.0":
+  version "1.131.0"
+  resolved "https://registry.yarnpkg.com/@instana/core/-/core-1.131.0.tgz#4cd1e878238422ea14d17ba3fe05db05a3dbd59d"
+  integrity sha512-bV54aU2djhkko8gFvXtNROoG18Xnj2dWoKP7pyo1PW37NeCIixalDwdaJ8HdNiItuCdpWdEjq2BXZl1HVLYPbQ==
   dependencies:
     async-hook-jl "^1.7.6"
     cls-bluebird "^2.1.0"
@@ -1389,16 +1389,16 @@
     semver "7.3.5"
     shimmer "1.2.1"
 
-"@instana/shared-metrics@1.130.1":
-  version "1.130.1"
-  resolved "https://registry.yarnpkg.com/@instana/shared-metrics/-/shared-metrics-1.130.1.tgz#b68003b8bc0820132484d330aa31c0107c46e6c8"
-  integrity sha512-M7rEXxgFsBNZ64XMrR0VzzLDb3qrsL5JP+pseCrrZkmyRR0JN0dOxCJPzZROpJvvVOXYZckF2BCZ5CGnP8Dk8A==
+"@instana/shared-metrics@1.131.0":
+  version "1.131.0"
+  resolved "https://registry.yarnpkg.com/@instana/shared-metrics/-/shared-metrics-1.131.0.tgz#5cb10276a48531f3b78e5cfe3fd39818482688cf"
+  integrity sha512-zlRGWb1ZNpu1vDOqoL0jrmy7y7CAjFumTQfP2t8ucTeeBWyua0aGNl2KTN0obTcMKTJXbOM53vSFkBd1eblmuA==
   dependencies:
-    "@instana/core" "1.130.1"
+    "@instana/core" "1.131.0"
     detect-libc "^1.0.3"
     event-loop-lag "^1.4.0"
     recursive-copy "^2.0.13"
-    tar "^5.0.7"
+    tar "^5.0.9"
   optionalDependencies:
     event-loop-stats "1.3.0"
     gcstats.js "1.0.0"
@@ -2310,7 +2310,7 @@ chokidar@^3.2.2, chokidar@^3.4.0:
   optionalDependencies:
     fsevents "~2.3.1"
 
-chownr@^1.1.3:
+chownr@^1.1.4:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/chownr/-/chownr-1.1.4.tgz#6fc9d7b42d32a583596337666e7d08084da2cc6b"
   integrity sha512-jJ0bqzaylmJtVnNgzTeSOs8DPavpbYgEr/b0YL8/2GO3xJEhInFmhKMUnEJQjZumK7KXGFhUy89PrsJWlakBVg==
@@ -3011,7 +3011,7 @@ fragment-cache@^0.2.1:
   dependencies:
     map-cache "^0.2.2"
 
-fs-minipass@^2.0.0:
+fs-minipass@^2.0.0, fs-minipass@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/fs-minipass/-/fs-minipass-2.1.0.tgz#7f5036fdbf12c63c169190cbe4199c852271f9fb"
   integrity sha512-V/JgOLFCS+R6Vcq0slCuaeWEdNC3ouDlJMNIsacH2VtALiu9mV4LPrHc5cDl8k5aw6J8jwgWWpiTo5RYhmIzvg==
@@ -4073,14 +4073,14 @@ minimist@^1.2.0, minimist@^1.2.5:
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.5.tgz#67d66014b66a6a8aaa0c083c5fd58df4e4e97602"
   integrity sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==
 
-minipass@^3.0.0:
+minipass@^3.0.0, minipass@^3.1.3:
   version "3.1.3"
   resolved "https://registry.yarnpkg.com/minipass/-/minipass-3.1.3.tgz#7d42ff1f39635482e15f9cdb53184deebd5815fd"
   integrity sha512-Mgd2GdMVzY+x3IJ+oHnVM+KG3lA5c8tnabyJKmHSaG2kAGpudxuOf8ToDkhumF7UzME7DecbQE9uOZhNm7PuJg==
   dependencies:
     yallist "^4.0.0"
 
-minizlib@^2.1.0, minizlib@^2.1.1:
+minizlib@^2.1.1, minizlib@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/minizlib/-/minizlib-2.1.2.tgz#e90d3466ba209b932451508a11ce3d3632145931"
   integrity sha512-bAxsR8BVfj60DWXHE3u30oHzfl4G7khkSuPW+qvpd7jFRHm7dLxOjUk1EHACJ/hxLY8phGJ0YhYHZo7jil7Qdg==
@@ -4096,7 +4096,7 @@ mixin-deep@^1.2.0:
     for-in "^1.0.2"
     is-extendable "^1.0.1"
 
-mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.1:
+mkdirp@^0.5.1, mkdirp@^0.5.5, mkdirp@~0.5.1:
   version "0.5.5"
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.5.tgz#d91cefd62d1436ca0f41620e251288d420099def"
   integrity sha512-NKmAlESf6jMGym1++R0Ra7wvhV+wFW63FaSOFPwRahvea0gMUcGUhVeAg/0BC0wiv9ih5NYPB1Wn1UEI1/L+xQ==
@@ -5345,16 +5345,16 @@ symbol-observable@^1.0.4:
   resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.2.0.tgz#c22688aed4eab3cdc2dfeacbb561660560a00804"
   integrity sha512-e900nM8RRtGhlV36KGEU9k65K3mPb1WV70OdjfxlG2EAuM1noi/E/BaW/uMhL7bPEssK8QV57vN3esixjUvcXQ==
 
-tar@^5.0.7:
-  version "5.0.7"
-  resolved "https://registry.yarnpkg.com/tar/-/tar-5.0.7.tgz#42ff8ca3b731a52f4f2be72cc4cdd7688268f2af"
-  integrity sha512-g0qlHHRtAZAxzkZkJvt0P5C6ODEolw2paouzsSbVqE7l5jKani1m9ogy7VxGp6hEngiKpPCwkh9pX5UH8Wp6QA==
+tar@^5.0.9:
+  version "5.0.11"
+  resolved "https://registry.yarnpkg.com/tar/-/tar-5.0.11.tgz#f6e972e26960f71387c88e4313b202889be09292"
+  integrity sha512-E6q48d5y4XSCD+Xmwc0yc8lXuyDK38E0FB8N4S/drQRtXOMUhfhDxbB0xr2KKDhNfO51CFmoa6Oz00nAkWsjnA==
   dependencies:
-    chownr "^1.1.3"
-    fs-minipass "^2.0.0"
-    minipass "^3.0.0"
-    minizlib "^2.1.0"
-    mkdirp "^0.5.0"
+    chownr "^1.1.4"
+    fs-minipass "^2.1.0"
+    minipass "^3.1.3"
+    minizlib "^2.1.2"
+    mkdirp "^0.5.5"
     yallist "^4.0.0"
 
 tar@^6.0.2:
