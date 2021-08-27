@@ -1350,38 +1350,37 @@
   resolved "https://registry.yarnpkg.com/@hapi/hoek/-/hoek-9.2.0.tgz#f3933a44e365864f4dad5db94158106d511e8131"
   integrity sha512-sqKVVVOe5ivCaXDWivIJYVSaEgdQK9ul7a4Kity5Iw7u9+wBAPbX1RMSnLLmp7O4Vzj0WOWwMAJsTL00xwaNug==
 
-"@instana/autoprofile@1.131.0":
-  version "1.131.0"
-  resolved "https://registry.yarnpkg.com/@instana/autoprofile/-/autoprofile-1.131.0.tgz#b0ea9c3d50745c9c040a71b83c05337288c93db7"
-  integrity sha512-CnPwRJ+5mMA6hBGVHHGrtszxJsaU9EeRvdtBYXWMs99JKOFX5kAWHPx/sic+gGYLNCJzttrQw7/jcot0O8vhiA==
+"@instana/autoprofile@1.132.1":
+  version "1.132.1"
+  resolved "https://registry.yarnpkg.com/@instana/autoprofile/-/autoprofile-1.132.1.tgz#c3553a79d1f9e7d4abfaad8fc6f157dca6255873"
+  integrity sha512-AC5unTeFSSFhoG5a7jLIQlJmcwcbzyjDqeIjvylEZamD6RPl8mcNNHop3CH5qh2iG9nJDkFl72oFRgJUbGzNJw==
   dependencies:
     detect-libc "^1.0.3"
     nan "^2.14.2"
     node-abi "^2.30.0"
     node-gyp "^7.1.2"
 
-"@instana/collector@1.131.0":
-  version "1.131.0"
-  resolved "https://registry.yarnpkg.com/@instana/collector/-/collector-1.131.0.tgz#8fb2377594acd9b935288cbb24be621ceafd39f7"
-  integrity sha512-2pziEbrErSHOzz6CiThVcBRDiByLsg1iaHlKBg3zh1Z+cat19Ee76EddH7fNrQ0vu2oDZoig8sCgP+SzUlowPg==
+"@instana/collector@1.132.1":
+  version "1.132.1"
+  resolved "https://registry.yarnpkg.com/@instana/collector/-/collector-1.132.1.tgz#06f6501969351e70fac0fcee148487687685d728"
+  integrity sha512-Q0DNWYFuccE+7EpEMGlCM7TY1lUkY6OtGz+O5qaj3PDv641UU5VvMmmmh5XepV/LZH+UK0zQ7alRNJeTH5uWoA==
   dependencies:
-    "@instana/core" "1.131.0"
-    "@instana/shared-metrics" "1.131.0"
+    "@instana/core" "1.132.1"
+    "@instana/shared-metrics" "1.132.1"
     bunyan "^1.8.15"
     semver "7.3.5"
     serialize-error "^3.0.0"
     shimmer "1.2.1"
   optionalDependencies:
-    "@instana/autoprofile" "1.131.0"
+    "@instana/autoprofile" "1.132.1"
 
-"@instana/core@1.131.0":
-  version "1.131.0"
-  resolved "https://registry.yarnpkg.com/@instana/core/-/core-1.131.0.tgz#4cd1e878238422ea14d17ba3fe05db05a3dbd59d"
-  integrity sha512-bV54aU2djhkko8gFvXtNROoG18Xnj2dWoKP7pyo1PW37NeCIixalDwdaJ8HdNiItuCdpWdEjq2BXZl1HVLYPbQ==
+"@instana/core@1.132.1":
+  version "1.132.1"
+  resolved "https://registry.yarnpkg.com/@instana/core/-/core-1.132.1.tgz#12fd9e228d2778337f12e378cd0322525d85f1a0"
+  integrity sha512-PbeIVRrzJCXpxvlA3M9iyEVqNn8gQrQkIupOVjr/e20jN1Kd57mP2e5h34VimvityCOEVdWoKvbZjifs8pkFUA==
   dependencies:
     async-hook-jl "^1.7.6"
     cls-bluebird "^2.1.0"
-    emitter-listener "^1.1.2"
     lru-cache "^6.0.0"
     methods "^1.1.2"
     opentracing "^0.14.5"
@@ -1389,12 +1388,12 @@
     semver "7.3.5"
     shimmer "1.2.1"
 
-"@instana/shared-metrics@1.131.0":
-  version "1.131.0"
-  resolved "https://registry.yarnpkg.com/@instana/shared-metrics/-/shared-metrics-1.131.0.tgz#5cb10276a48531f3b78e5cfe3fd39818482688cf"
-  integrity sha512-zlRGWb1ZNpu1vDOqoL0jrmy7y7CAjFumTQfP2t8ucTeeBWyua0aGNl2KTN0obTcMKTJXbOM53vSFkBd1eblmuA==
+"@instana/shared-metrics@1.132.1":
+  version "1.132.1"
+  resolved "https://registry.yarnpkg.com/@instana/shared-metrics/-/shared-metrics-1.132.1.tgz#8264f30f32d8a1d086b5b7d70428c6ba146dae90"
+  integrity sha512-1PDYHH36A53leczhI1EJd8zIuNifmYeZj/t22EfgIb7j2lCICV6VPmo15sKcVxb0JZYi9R+b8/2heNjmy7ze2g==
   dependencies:
-    "@instana/core" "1.131.0"
+    "@instana/core" "1.132.1"
     detect-libc "^1.0.3"
     event-loop-lag "^1.4.0"
     recursive-copy "^2.0.13"
@@ -2732,13 +2731,6 @@ electron-to-chromium@^1.3.723:
   version "1.3.742"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.742.tgz#7223215acbbd3a5284962ebcb6df85d88b95f200"
   integrity sha512-ihL14knI9FikJmH2XUIDdZFWJxvr14rPSdOhJ7PpS27xbz8qmaRwCwyg/bmFwjWKmWK9QyamiCZVCvXm5CH//Q==
-
-emitter-listener@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/emitter-listener/-/emitter-listener-1.1.2.tgz#56b140e8f6992375b3d7cb2cab1cc7432d9632e8"
-  integrity sha512-Bt1sBAGFHY9DKY+4/2cV6izcKJUf5T7/gkdmkxzX/qv9CcGH8xSwVRW5mtX03SWJtRTWSOpzCuWN9rBFYZepZQ==
-  dependencies:
-    shimmer "^1.2.0"
 
 emoji-regex@^7.0.1:
   version "7.0.3"
@@ -5060,7 +5052,7 @@ shell-quote@^1.6.1:
   resolved "https://registry.yarnpkg.com/shell-quote/-/shell-quote-1.7.2.tgz#67a7d02c76c9da24f99d20808fcaded0e0e04be2"
   integrity sha512-mRz/m/JVscCrkMyPqHc/bczi3OQHkLTqXHEFu0zDhK/qfv3UcOA4SVmRCLmos4bhjr9ekVQubj/R7waKapmiQg==
 
-shimmer@1.2.1, shimmer@^1.1.0, shimmer@^1.2.0:
+shimmer@1.2.1, shimmer@^1.1.0:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/shimmer/-/shimmer-1.2.1.tgz#610859f7de327b587efebf501fb43117f9aff337"
   integrity sha512-sQTKC1Re/rM6XyFM6fIAGHRPVGvyXfgzIDvzoq608vM+jeyVD0Tu1E6Np0Kc2zAIFWIj963V2800iF/9LPieQw==
