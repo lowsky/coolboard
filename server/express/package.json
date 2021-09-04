@@ -20,7 +20,7 @@
     "node": ">=12.1"
   },
   "dependencies": {
-    "@babel/core": "7.15.4",
+    "@babel/core": "7.15.5",
     "apollo-errors": "1.9.0",
     "apollo-server-express": "3.3.0",
     "apollo-server-micro": "3.3.0",
