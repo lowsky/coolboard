@@ -1,1 +1,1 @@
-export const isLocalDev = (process && process.env && process.env.LOCAL_DEV) || true;
+export const isLocalDev = true;
