@@ -34,7 +34,7 @@
     "webpack-node-externals": "3.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "7.15.4",
+    "@babel/cli": "7.15.7",
     "@babel/node": "7.15.4",
     "@babel/polyfill": "7.12.1",
     "@babel/preset-env": "7.15.6",
