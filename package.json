@@ -20,7 +20,7 @@
     "apollo-server-micro": "3.3.0",
     "auth0-lock": "11.30.3",
     "bcryptjs": "2.4.3",
-    "bufferutil": "4.0.3",
+    "bufferutil": "4.0.4",
     "fomantic-ui-css": "2.8.8",
     "graphql": "15.6.0",
     "graphql-tag": "2.12.5",
