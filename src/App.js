@@ -1,7 +1,43 @@
-import Auth from './authentication/auth';
+let auth;
 
-export const auth = new Auth();
+export const getAuthInstance = async() => {
+  if(auth) {
+    return auth;
+  }
 
-export const authRefresh = async () => {
-  return await auth.refresh();
+  if(typeof window !== 'undefined') {
+    auth = new Promise((resolve, reject) => {
+      import( './authentication/auth').then(module => {
+        const Auth = module.default;
+        resolve(new Auth());
+      })
+    });
+  } else {
+    // on serverside, nothing needs to be done
+    auth = {
+      login: ()=>{
+        console.log('serverside noop: login');
+      },
+      refresh: ()=>{
+        console.log('serverside noop: refresh');
+      }
+    };
+  }
+  return auth;
+}
+
+export const authRefresh = async() => {
+  return (await getAuthInstance()).refresh();
+};
+
+export const logout = async() => {
+  return (await getAuthInstance()).logout();
+};
+
+export const login = async() => {
+  return (await getAuthInstance()).login();
+};
+
+export const initiateAuthOnCallback = async() => {
+  return getAuthInstance();
 };

@@ -2,7 +2,7 @@ import Link from "next/link";
 import React, { useEffect } from 'react';
 import { Loader } from "semantic-ui-react";
 
-import Auth from '../src/authentication/auth';
+import { initiateAuthOnCallback } from "../src/App";
 
 import { FullVerticalContainer } from "../src/common/FullVerticalContainer";
 
@@ -12,9 +12,9 @@ export default function Callback() {
   trackPage('callback');
 
   // connect auth0 mechanism only in browser
-  useEffect(() => {
+  useEffect(async() => {
     // automatically redirect to / after authentication...:
-    new Auth()
+    await initiateAuthOnCallback()
   })
 
   return <FullVerticalContainer data-cy="full-container">

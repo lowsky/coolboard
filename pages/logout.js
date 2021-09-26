@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect } from 'react';
 
-import { auth } from "../src/App";
+import { logout } from "../src/App";
 import { FullVerticalContainer } from "../src/common/FullVerticalContainer";
 
 import { trackPage } from '../src/common/tracking';
@@ -19,8 +19,8 @@ export default function Logout() {
     async function removeToken() {
       localStorage?.removeItem('token');
 
-      await client.resetStore().then(() => {
-        auth.logout();
+      await client.resetStore().then(async() => {
+        await logout();
         router.push(`/`);
       });
     }
