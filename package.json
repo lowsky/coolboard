@@ -18,7 +18,7 @@
     "apollo-link-http": "1.5.17",
     "apollo-link-schema": "1.2.5",
     "apollo-server-micro": "3.3.0",
-    "auth0-lock": "11.30.3",
+    "auth0-lock": "11.30.5",
     "bcryptjs": "2.4.3",
     "bufferutil": "4.0.4",
     "fomantic-ui-css": "2.8.8",
