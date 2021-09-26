@@ -3,7 +3,7 @@ import React from 'react';
 import { trackPage } from '../src/common/tracking';
 import { FullVerticalContainer } from '../src/common/FullVerticalContainer';
 import Link from 'next/link';
-import { auth } from '../src/App';
+import { login } from '../src/App';
 import { setupGraphQLClient } from '../src/setupGraphQLClient';
 
 const client = setupGraphQLClient();
@@ -12,11 +12,13 @@ export default function Login() {
   trackPage('login');
   client
     .resetStore()
-    .then(() => {
-      auth.login();
+    .then(async() => {
+      await login();
     })
-    .catch((ignoredError) => {
-      auth.login();
+    .catch(ignoredError => {
+      console.error('error while loggin in will be ignored', ignoredError);
+      // noinspection JSIgnoredPromiseFromCall - just trigger login, without waiting for result
+      login();
     });
 
   return (
