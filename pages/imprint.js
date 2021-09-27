@@ -70,7 +70,7 @@ export default function Imprint() {
     </p>
     <h3>Datenschutz</h3>
     <p>
-      Siehe <a href="privacy.js">Privacy</a> Seite
+      Siehe <a href="/privacy">Privacy</a> Seite
     </p>
     </>
   )
