@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { trackPage } from "../src/common/tracking";
 
 export default function Imprint() {
@@ -70,7 +71,11 @@ export default function Imprint() {
     </p>
     <h3>Datenschutz</h3>
     <p>
-      Siehe <a href="/privacy">Privacy</a> Seite
+      Siehe
+      <Link href="/privacy">
+        <a>Privacy</a>
+      </Link>
+      Seite
     </p>
     </>
   )
