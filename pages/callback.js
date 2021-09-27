@@ -12,10 +12,14 @@ export default function Callback() {
   trackPage('callback');
 
   // connect auth0 mechanism only in browser
-  useEffect(async() => {
-    // automatically redirect to / after authentication...:
-    await initiateAuthOnCallback()
-  })
+  useEffect(()=> {
+    async function initiateAuth0() {
+      // automatically redirect to / after authentication...:
+      await initiateAuthOnCallback();
+    }
+    initiateAuth0();
+    }, []
+  )
 
   return <FullVerticalContainer data-cy="full-container">
     <p data-cy="login-in-progress">
