@@ -1130,10 +1130,10 @@ auth0-js@^9.16.4:
     url-join "^4.0.1"
     winchan "^0.2.2"
 
-auth0-lock@11.30.5:
-  version "11.30.5"
-  resolved "https://registry.yarnpkg.com/auth0-lock/-/auth0-lock-11.30.5.tgz#a2654d2126d76bf79ac6af99416718e15f1caad0"
-  integrity sha512-wi4/CeDIwojLCGM/9lZUj1snlhHh99rLBUFY8YgtGVBnp5DIiCFJ6Dn3J+S5DfCYI0DVmPcZRScBrvT7BpoTug==
+auth0-lock@11.30.6:
+  version "11.30.6"
+  resolved "https://registry.yarnpkg.com/auth0-lock/-/auth0-lock-11.30.6.tgz#b59ecea147d2ece982c38b4ad2b1ada9d1e875b8"
+  integrity sha512-dEdXhboLqX+XOAwdB9WflY1oSUWYCnaRWvgtKuO7mpX3vmiG2qkQYrqwoyQR2k8Vzm9q9XXW1KolX7nDT0ShqA==
   dependencies:
     auth0-js "^9.16.4"
     auth0-password-policies "^1.0.2"
@@ -1141,6 +1141,7 @@ auth0-lock@11.30.5:
     dompurify "^2.2.8"
     immutable "^3.7.3"
     jsonp "^0.2.1"
+    node-fetch "^2.6.1"
     password-sheriff "^1.1.1"
     prop-types "^15.6.0"
     qs "^6.7.0"
