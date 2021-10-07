@@ -3755,10 +3755,10 @@ raw-body@2.4.1:
     iconv-lite "0.4.24"
     unpipe "1.0.0"
 
-react-apollo-network-status@5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/react-apollo-network-status/-/react-apollo-network-status-5.0.1.tgz#25a7ccf956e9c0dd2b7b7bab9efe2681ba0b841c"
-  integrity sha512-kA4WqEHUegc3IjvC9ZmA/hABRFpN9sjJ2wDehbRoyMyV2mVMoDcLq9BH/OQ6hpoeYZhTpl9F8np6fcWYERtn4g==
+react-apollo-network-status@5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/react-apollo-network-status/-/react-apollo-network-status-5.1.0.tgz#c74159e55f6b3e4ce7e06d727cdf3075e31a74f8"
+  integrity sha512-/YL9BqWdhDZxndD9lrRMA/ywLn5UdgAUrZcXx38Ff4sh9rmVBmJyOLA4Aq0PJJDBRLAr3IQ/ufoIeVgqSwgM/g==
 
 react-dnd-html5-backend@14.0.2:
   version "14.0.2"
