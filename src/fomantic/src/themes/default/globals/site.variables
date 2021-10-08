@@ -8,13 +8,14 @@
        Fonts
 --------------------*/
 
-@fontName          : 'Lato';
+@fontName          : 'Inter';
+
 
 @headerFont        : @fontName, 'Helvetica Neue', Arial, Helvetica, sans-serif;
 @pageFont          : @fontName, 'Helvetica Neue', Arial, Helvetica, sans-serif;
 
 @googleFontName    : @fontName;
-@importGoogleFonts : true;
+@importGoogleFonts : false;
 @googleFontSizes   : 'ital,wght@0,400%3B0,700%3B1,400%3B1,700';
 @googleSubset      : 'latin';
 @googleFontDisplay : 'swap';
