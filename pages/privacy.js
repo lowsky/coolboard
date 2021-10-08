@@ -39,7 +39,7 @@ export default function Privacy() {
     {/*
     <a href="https://www.netlify.com/privacy/privacy.js">Netlify Privacy Policy</a>
     */}
-    {<a target="_blank" rel="noopener" href="https://vercel.com/legal/privacy-policy">Vercel Privacy Policy</a>}
+    {<a target="_blank" rel="noreferrer noopener" href="https://vercel.com/legal/privacy-policy">Vercel Privacy Policy</a>}
   </p>
   <p>
     The analysis of your surfing behavior is usually anonymous, i.e. we will not be able to identify you from this data.
@@ -56,7 +56,7 @@ export default function Privacy() {
   <h2>Consent</h2>
 
   <p>By using our website, you hereby consent to our Privacy Policy and agree to its Terms and Conditions as well as to
-    the <a target="_blank" rel="noopener" href="https://auth0.com/privacy">Auth0 Privacy & Cookie Policy</a> and Vercel Privacy Statement and to its
+    the <a target="_blank" rel="noreferrer noopener" href="https://auth0.com/privacy">Auth0 Privacy & Cookie Policy</a> and Vercel Privacy Statement and to its
     Terms and Conditions.
   </p>
 
@@ -64,7 +64,7 @@ export default function Privacy() {
 
   <p>
     If you like to work with this demo application, you need to supply some information for creating your own account
-    by signing-in via a pop-up dialog using <a target="_blank" rel="noopener" href="https://auth0.com/">Auth0</a> service.
+    by signing-in via a pop-up dialog using <a target="_blank" rel="noreferrer noopener" href="https://auth0.com/">Auth0</a> service.
     The supplied data include:
     <br/>
     name, first name, avatar-url, email
@@ -74,17 +74,17 @@ export default function Privacy() {
     them or - enter data on any other shared board.
 
     They are also stored by auth0 and prisma to provide this service and is subject to the
-    <a target="_blank" rel="noopener" href="https://auth0.com/privaycy">Auth0 Privacy Statement</a> and
+    <a target="_blank" rel="noreferrer noopener" href="https://auth0.com/privaycy">Auth0 Privacy Statement</a> and
 
-    {/*<a target="_blank" rel="noopener" href="https://www.netlify.com/privacy/privacy.js">Netlify Privacy Policy</a>.*/}
-    <a target="_blank" rel="noopener" href="https://vercel.com/legal/privacy-policy">Vercel Privacy Policy</a>.
+    {/*<a target="_blank" rel="noreferrer noopener" href="https://www.netlify.com/privacy/privacy.js">Netlify Privacy Policy</a>.*/}
+    <a target="_blank" rel="noreferrer noopener" href="https://vercel.com/legal/privacy-policy">Vercel Privacy Policy</a>.
     Please see their Statement and rules for details.
     <br/>
     Furthermore these data are transferred by a backend service running on digital ocean, Inc with their
-    <a target="_blank" rel="noopener" href="https://www.digitalocean.com/legal/data-processing-agreement/">digitalocean DPA</a>.
+    <a target="_blank" rel="noreferrer noopener" href="https://www.digitalocean.com/legal/data-processing-agreement/">digitalocean DPA</a>.
     <br/>
     For monitoring data are transferred from the browser to instana
-    <a target="_blank" rel="noopener" href="https://www.instana.com/security/">instana privacy</a>.
+    <a target="_blank" rel="noreferrer noopener" href="https://www.instana.com/security/">instana privacy</a>.
   </p>
 
   <p>Our team members could lookup this information in case of any technical issues to avoid data loss or when we need
