@@ -1,10 +1,11 @@
 import Link from "next/link";
+import { Container } from "semantic-ui-react";
 import { trackPage } from "../src/common/tracking";
 
 export default function Imprint() {
   trackPage("imprint");
 
-  return (<>
+  return (<Container>
     <h1>Impressum</h1>
     <p>Angaben gemäß § 5 TMG:</p>
 
@@ -40,7 +41,7 @@ export default function Imprint() {
     </p>
     <p>
       Diese Seite verwendet den Inter Typeface https://rsms.me/inter/ (originated by Rasmus, @rsms on github),
-      lizensiert unter der <a href="../public/sil-openfont-license.txt">Open Font License (OFL)</a>
+      lizensiert unter der <a href="/sil-openfont-license.txt">Open Font License (OFL)</a>
     </p>
     <h3>Haftung für Inhalte</h3>
     <p>
@@ -77,6 +78,6 @@ export default function Imprint() {
       </Link>
       Seite
     </p>
-    </>
+    </Container>
   )
 }

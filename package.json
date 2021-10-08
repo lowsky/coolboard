@@ -46,6 +46,7 @@
     "utf-8-validate": "5.0.6"
   },
   "scripts": {
+    "dev": "echo you wanna run:  yarn start  instead; yarn start",
     "start": "next dev",
     "start-production": "next start",
     "trigger-e2e-smoke": "sh trigger-circleci-smoke.sh",
