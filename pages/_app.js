@@ -3,8 +3,7 @@ import Script from 'next/script'
 
 
 import '../public/index.css'
-import "fomantic-ui-css/semantic.min.css"
-import "inter-ui/inter.css"
+import '../src/fomantic/dist/semantic.css'
 
 // Head's title and view-port-meta needs to go here, see https://nextjs.org/docs/messages/no-document-viewport-meta
 

@@ -1,10 +1,8 @@
-@import 'https://rsms.me/inter/inter.css';
+@import "~inter-ui/inter.css";
 
-html {
-}
+html { font-family: 'Inter', sans-serif; }
 
 body {
-  font-family: 'Inter', 'Helvetica Neue', Arial, Helvetica, sans-serif  !important;
   height: 100vh;
   display: flex;
   flex-direction: column
