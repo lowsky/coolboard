@@ -42,3 +42,4 @@ server/express/build/jwt.js
 # debug
 # local env files
 # vercel.next
+/src/fomantic/dist/
