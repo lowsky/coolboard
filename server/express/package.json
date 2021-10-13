@@ -30,7 +30,7 @@
     "jsonwebtoken": "8.5.1",
     "jwks-rsa": "2.0.4",
     "prisma-client-lib": "1.34.12",
-    "utf-8-validate": "5.0.6",
+    "utf-8-validate": "5.0.7",
     "webpack-node-externals": "3.0.0"
   },
   "devDependencies": {
