@@ -38,7 +38,7 @@
     "@babel/node": "7.15.8",
     "@babel/polyfill": "7.12.1",
     "@babel/preset-env": "7.15.8",
-    "@graphql-tools/schema": "8.2.0",
+    "@graphql-tools/schema": "8.3.0",
     "@instana/collector": "1.135.0",
     "core-js": "3.18.3",
     "dotenv": "10.0.0",
