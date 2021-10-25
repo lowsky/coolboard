@@ -9,7 +9,7 @@
   * update package.json file
 */
 
-var
+const
   gulp            = require('gulp'),
 
   // node dependencies
@@ -30,9 +30,7 @@ var
   project         = require('../../config/project/release'),
 
   // shorthand
-  version         = project.version,
-  output          = config.paths.output
-
+  version         = project.version
 ;
 
 
@@ -191,11 +189,11 @@ module.exports = function(callback) {
       tasks.push(function() {
         return gulp.src(packageFile)
           .pipe(plumber())
-          .pipe(jsonEditor(function(package) {
+          .pipe(jsonEditor(function(_package) {
             if(version) {
-              package.version = version;
+              _package.version = version;
             }
-            return package;
+            return _package;
           }))
           .pipe(gulp.dest(outputDirectory))
         ;

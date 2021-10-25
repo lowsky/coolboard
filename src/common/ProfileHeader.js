@@ -95,7 +95,7 @@ export const ProfileHeader = ({ isBoardsPage }) => {
       <div>
         <span>{name} </span>
         {avatarUrl && (
-          <Image src={avatarUrl} avatar spaced />
+          <Image src={avatarUrl} avatar spaced alt="user avatar" />
         )}
 
         <Link href="/logout">
