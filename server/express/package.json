@@ -40,7 +40,7 @@
     "@babel/preset-env": "7.15.8",
     "@graphql-tools/schema": "8.3.0",
     "@instana/collector": "1.136.0",
-    "core-js": "3.18.3",
+    "core-js": "3.19.0",
     "dotenv": "10.0.0",
     "express-jwt": "6.1.0",
     "nodemon": "2.0.14",
