@@ -1495,14 +1495,14 @@ auth0-js@^9.16.4:
     url-join "^4.0.1"
     winchan "^0.2.2"
 
-auth0-lock@11.31.0:
-  version "11.31.0"
-  resolved "https://registry.yarnpkg.com/auth0-lock/-/auth0-lock-11.31.0.tgz#bcf277b2be8f023d3f609d9d9aa630270d0c86f0"
-  integrity sha512-UwKeqIK3syTyGz3/r9MNsH1BFIp0gw4ioXw+27Fw5OwApoyOFI91/MMWoKRabQa22pNAmOYtmRCgiACQ23pMpQ==
+auth0-lock@11.31.1:
+  version "11.31.1"
+  resolved "https://registry.yarnpkg.com/auth0-lock/-/auth0-lock-11.31.1.tgz#19753e2bef1807bfda9e1cff94cdb6b81df55b84"
+  integrity sha512-ozCLOZiucVA+ffAYh4++GKo3RHrgCoMlSAlM7WkFdrLCM942tl+sEbeoTchZULT0TuP4AuYm1jAJAAqPp8vwxA==
   dependencies:
     auth0-js "^9.16.4"
     auth0-password-policies "^1.0.2"
-    blueimp-md5 "^2.18.0"
+    blueimp-md5 "^2.19.0"
     classnames "^2.3.1"
     dompurify "^2.2.8"
     immutable "^3.7.3"
@@ -1656,7 +1656,7 @@ bindings@^1.5.0:
   dependencies:
     file-uri-to-path "1.0.0"
 
-blueimp-md5@^2.18.0:
+blueimp-md5@^2.19.0:
   version "2.19.0"
   resolved "https://registry.yarnpkg.com/blueimp-md5/-/blueimp-md5-2.19.0.tgz#b53feea5498dcb53dc6ec4b823adb84b729c4af0"
   integrity sha512-DRQrD6gJyy8FbiE4s+bDoXS9hiW3Vbx5uCdwvcCf3zLHL+Iv7LtGHLpr+GZV8rHG8tK766FGYBwRbu8pELTt+w==
