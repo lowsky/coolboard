@@ -39,7 +39,7 @@
     "@babel/polyfill": "7.12.1",
     "@babel/preset-env": "7.16.0",
     "@graphql-tools/schema": "8.3.1",
-    "@instana/collector": "1.136.0",
+    "@instana/collector": "1.137.0",
     "core-js": "3.19.1",
     "dotenv": "10.0.0",
     "express-jwt": "6.1.0",
