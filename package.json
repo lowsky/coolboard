@@ -30,7 +30,7 @@
     "jwks-rsa": "2.0.5",
     "lodash": "4.17.21",
     "micro": "9.3.4",
-    "next": "12.0.2",
+    "next": "12.0.3",
     "prisma": "3.4.1",
     "prop-types": "15.7.2",
     "react": "17.0.2",
@@ -60,7 +60,7 @@
   "devDependencies": {
     "@types/react": "17.0.34",
     "eslint": "8.1.0",
-    "eslint-config-next": "12.0.2"
+    "eslint-config-next": "12.0.3"
   },
   "browserslist": [
     ">0.2%",
