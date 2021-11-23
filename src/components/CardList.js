@@ -38,7 +38,7 @@ const CardListWithoutDnd = props => {
               ? 'yellow'
               : 'lightgrey',
           }}>
-          <CardListHeader name={name}>
+          <CardListHeader data-cy="card-list-header" name={name}>
             <CardListButton
               onButtonClick={() =>
                 deleteListWithId(id)
