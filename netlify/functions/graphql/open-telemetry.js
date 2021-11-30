@@ -37,12 +37,10 @@ const provider = new NodeTracerProvider({
 });
 
 // Configure a test exporter to print all traces to the console
-const consoleExporter = new ConsoleSpanExporter();
+// const consoleExporter = new ConsoleSpanExporter();
+//provider.addSpanProcessor(new SimpleSpanProcessor(consoleExporter));
 
-provider.addSpanProcessor(
-  new SimpleSpanProcessor(consoleExporter));
-provider.addSpanProcessor(
-  new SimpleSpanProcessor(instanaTraceExporter));
+provider.addSpanProcessor(new SimpleSpanProcessor(instanaTraceExporter));
 
 // Register the provider to begin tracing
 provider.register();
