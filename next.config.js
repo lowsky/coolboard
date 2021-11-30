@@ -19,11 +19,4 @@ module.exports = {
     // your project has ESLint errors.
     ignoreDuringBuilds: true,
   },
-
-  // Target must be serverless (for use with netlify)
-  target: "serverless",
-  //
-  // Remove this to leverage Next.js' static image handling
-  // read more here: https://nextjs.org/docs/api-reference/next/image
-  // images: { disableStaticImages: true }
 }
