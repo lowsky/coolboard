@@ -14,7 +14,8 @@ export default function App({ Component, pageProps}) {
         <title>Coolboard - Hands-on Application Building with GraphQL</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
       </Head>
-
+      {
+        /*
       <Script strategy='afterInteractive' id="eum-init"
       >
         {`
@@ -23,14 +24,15 @@ export default function App({ Component, pageProps}) {
               },
               n.q = [], n.v = 2, n.l = 1 * new Date)})(window,'InstanaEumObject','ineum');
 
-              ineum('reportingUrl', 'https://eum-pink-saas.instana.rocks');
-              ineum('key', 'C_tJGFlMS7WBNuGgrkIFhg');
+              ineum('reportingUrl', 'https://eum-pink-saas');
+              ineum('key', 'C_tJGFlMS7WBNuGg');
               ineum('trackSessions');
           `}
       </Script>
       <Script strategy='afterInteractive' id="eum" crossOrigin="anonymous"
               src="https://eum.instana.io/eum.min.js" defer/>
-
+      */
+      }
       <Component {...pageProps} />
     </>
   )
