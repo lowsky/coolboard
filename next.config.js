@@ -14,6 +14,9 @@ module.exports = {
     return config
   },
 
+  // "For faster deploy times, build IDs should be set to a static value..."
+  generateBuildId: () => 'build',
+
   eslint: {
     // Warning: This allows production builds to successfully complete even if
     // your project has ESLint errors.
