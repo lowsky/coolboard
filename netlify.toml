@@ -1,5 +1,9 @@
 [build]
   Command = "npm run build"
+  functions = "netlify/functions"
+
+[functions]
+  external_node_modules = ["graphql", "@prisma/client", "apollo-server-lambda", "ts-is-defined" ]
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"

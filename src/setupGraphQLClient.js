@@ -9,8 +9,8 @@ export const {
 export const setupGraphQLClient = () => {
   const GRAPHQL_URL = '/api/graphql';
 
-  const uri = GRAPHQL_URL
-  // Create a Http link
+  const uri = process.env.NEXT_PUBLIC_RELAY_ENDPOINT ?? GRAPHQL_URL
+
   let httpLink = createHttpLink({
     uri,
   });
