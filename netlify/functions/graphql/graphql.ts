@@ -12,9 +12,7 @@ const prisma = new PrismaClient({
     ['info', 'warn', 'error']
 });
 
-
 let handler = (event, context, callback) => {
-
   let lambdaServer;
   lambdaServer = new ApolloServer({
     typeDefs,
@@ -34,15 +32,12 @@ let handler = (event, context, callback) => {
   const handler = lambdaServer.createHandler();
 
   try {
-    if(isLocalDev) {
-      return handler({
-        ...event,
-        // Workaround for apollo-lambda crashes when running with netlify dev
-        // "Unable to determine event source based on event." (in @vendia/serverless-express)
-        requestContext: {}
-      }, context, callback);
-    }
-    return handler(event, context, callback);
+    return handler({
+      ...event,
+      // Workaround for apollo-lambda crashes when running with netlify dev
+      // "Unable to determine event source based on event." (in @vendia/serverless-express)
+      requestContext: {}
+    }, context, callback);
   }
   catch (e) {
     console.error(e);
