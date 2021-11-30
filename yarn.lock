@@ -349,10 +349,32 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.0.tgz#87de7af9c231826fdd68ac7258f77c429e0e5fcf"
   integrity sha512-wdppn25U8z/2yiaT6YGquE6X8sSv7hNMWSXYSSU1jGv/yd6XqjXgTDJ8KP4NgjTXfJ3GbRjeeb8RTV7a/VpM+w==
 
+"@instana/aws-lambda@1.137.2":
+  version "1.137.2"
+  resolved "https://registry.yarnpkg.com/@instana/aws-lambda/-/aws-lambda-1.137.2.tgz#528a87be8ef726ba1c9e0fd4480335b53ab723df"
+  integrity sha512-Km2N5hNTrcS036qCAhnA1UK2ORE4zccstLhjQT2gGXVqZ7qXnudy/OX/Xo3WpzD270qWwoNzbwN7mUM4Py7arw==
+  dependencies:
+    "@instana/core" "1.137.2"
+    "@instana/serverless" "1.137.2"
+
 "@instana/core@1.137.1":
   version "1.137.1"
   resolved "https://registry.yarnpkg.com/@instana/core/-/core-1.137.1.tgz#183ccd9161bc9dd1cf8607d3675e86ab7aa52d3e"
   integrity sha512-IILgKFBz1+8GKh/+6+Wpm2rgRovz39cG7E9zYnjiASfjmE6HCmiCxKgxZ3Y8dIQHmDlzu5mIenBu2Cmm1AGvMA==
+  dependencies:
+    async-hook-jl "^1.7.6"
+    cls-bluebird "^2.1.0"
+    lru-cache "6.0.0"
+    methods "^1.1.2"
+    opentracing "^0.14.5"
+    redis-commands "^1.7.0"
+    semver "7.3.3"
+    shimmer "1.2.1"
+
+"@instana/core@1.137.2":
+  version "1.137.2"
+  resolved "https://registry.yarnpkg.com/@instana/core/-/core-1.137.2.tgz#eebdf268e9aa28b07d8c825f8b8edda2b7a6ee90"
+  integrity sha512-UKE7yr76UTpN0Oh0A8pHMktPTZng/kzmCOBRprkJfD7Ud4bnZ1hZBz383bEgFk4Ieha0gbA/CI37AkPb8LdP8A==
   dependencies:
     async-hook-jl "^1.7.6"
     cls-bluebird "^2.1.0"
@@ -377,6 +399,16 @@
   integrity sha512-F9GdN4sboym6IeeX46iEj0jx0wTnfvWiqOl99ZAin3s+q3uVZHYLzsC48dIY+kqb7Rc96xm0gvb9GoAlyBVsgQ==
   dependencies:
     "@instana/core" "1.137.1"
+    agent-base "^6.0.2"
+    https-proxy-agent "^5.0.0"
+    semver "7.3.3"
+
+"@instana/serverless@1.137.2":
+  version "1.137.2"
+  resolved "https://registry.yarnpkg.com/@instana/serverless/-/serverless-1.137.2.tgz#282c6d8d5187e62b788cc35fb5c1d71616464f18"
+  integrity sha512-3F5Yd2ulku9/ypY6aI/t7qWKrcEMZor4ni48tkhTBv3XXAEXv9O8b3JKWjYQdLds2PN5slSh7+R7FeTZef1gcA==
+  dependencies:
+    "@instana/core" "1.137.2"
     agent-base "^6.0.2"
     https-proxy-agent "^5.0.0"
     semver "7.3.3"
@@ -2993,6 +3025,13 @@ elliptic@^6.5.3:
     inherits "^2.0.4"
     minimalistic-assert "^1.0.1"
     minimalistic-crypto-utils "^1.0.1"
+
+emitter-listener@1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/emitter-listener/-/emitter-listener-1.1.2.tgz#56b140e8f6992375b3d7cb2cab1cc7432d9632e8"
+  integrity sha512-Bt1sBAGFHY9DKY+4/2cV6izcKJUf5T7/gkdmkxzX/qv9CcGH8xSwVRW5mtX03SWJtRTWSOpzCuWN9rBFYZepZQ==
+  dependencies:
+    shimmer "^1.2.0"
 
 emoji-regex@^8.0.0:
   version "8.0.0"
@@ -7749,7 +7788,7 @@ shellwords@^0.1.1:
   resolved "https://registry.yarnpkg.com/shellwords/-/shellwords-0.1.1.tgz#d6b9181c1a48d397324c84871efbcfc73fc0654b"
   integrity sha512-vFwSUfQvqybiICwZY5+DAWIPLKsWO31Q91JSKl3UYv+K5c2QRPzn0qzec6QPu1Qc9eHYItiP3NdJqNVqetYAww==
 
-shimmer@1.2.1, shimmer@^1.1.0, shimmer@^1.2.1:
+shimmer@1.2.1, shimmer@^1.1.0, shimmer@^1.2.0, shimmer@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/shimmer/-/shimmer-1.2.1.tgz#610859f7de327b587efebf501fb43117f9aff337"
   integrity sha512-sQTKC1Re/rM6XyFM6fIAGHRPVGvyXfgzIDvzoq608vM+jeyVD0Tu1E6Np0Kc2zAIFWIj963V2800iF/9LPieQw==
