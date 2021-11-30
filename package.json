@@ -11,12 +11,20 @@
   "homepage": "/",
   "dependencies": {
     "@apollo/client": "3.5.4",
+    "@instana/opentelemetry-exporter": "1.137.1",
+    "@opentelemetry/api": "1.0.3",
+    "@opentelemetry/core": "0.22",
+    "@opentelemetry/instrumentation-express": "0.22",
+    "@opentelemetry/instrumentation-graphql": "0.22",
+    "@opentelemetry/instrumentation-http": "0.22",
+    "@opentelemetry/node": "0.22",
     "@prisma/client": "3.5.0",
     "apollo-cache-inmemory": "1.6.6",
     "apollo-errors": "1.9.0",
     "apollo-link": "1.2.14",
     "apollo-link-http": "1.5.17",
     "apollo-link-schema": "1.2.5",
+    "apollo-server-lambda": "3.5.0",
     "apollo-server-micro": "3.5.0",
     "auth0-lock": "11.31.1",
     "bcryptjs": "2.4.3",
@@ -59,7 +67,7 @@
   },
   "devDependencies": {
     "@types/react": "17.0.37",
-    "eslint": "8.3.0",
+    "eslint": "7",
     "eslint-config-next": "12.0.3"
   },
   "browserslist": [
