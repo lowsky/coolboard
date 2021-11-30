@@ -3,7 +3,7 @@
   functions = "netlify/functions"
 
 [functions]
-  external_node_modules = ["graphql", "@prisma/client", "apollo-server-lambda", "ts-is-defined", "@opentelemetry/instrumentation" ]
+  external_node_modules = ["http", "@opentelemetry/*", "graphql", "@prisma/client", "apollo-server-lambda", "ts-is-defined", "@instana/aws-lambda"]
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"

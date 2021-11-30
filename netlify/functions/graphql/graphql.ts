@@ -1,4 +1,4 @@
-import './open-telemetry'
+import instana from '@instana/aws-lambda';
 import { ApolloServer } from 'apollo-server-lambda';
 
 import resolvers from '../../../server/src/resolvers/resolvers';
@@ -12,9 +12,8 @@ const prisma = new PrismaClient({
     ['info', 'warn', 'error']
 });
 
-let handler = (event, context, callback) => {
-  let lambdaServer;
-  lambdaServer = new ApolloServer({
+let unmonitoredHandler = (event, context, callback) => {
+  const lambdaServer = new ApolloServer({
     typeDefs,
     resolvers,
 
@@ -47,5 +46,13 @@ let handler = (event, context, callback) => {
     };
   }
 }
+
+
+const handler = instana.wrap(
+  {
+    serviceName: 'github-graphql',
+  },
+  unmonitoredHandler
+);
 
 export { handler };
