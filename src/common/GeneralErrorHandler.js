@@ -130,12 +130,18 @@ export const GeneralErrorHandler = ({
         </ErrorMessage>
       );
     } else if (networkError) {
+      console.log({ networkError });
       return (
         <ErrorMessage>
           <ReLoginButton authRefresh={authRefresh} />
           <p>
-            <strong>Network Error:</strong>
-            {networkError.message}
+            <strong>Communication with the GraphQL server failed!</strong>
+            <span>
+              {' '}
+            (Status: {networkError.statusCode} - find technical details in browser console)
+              </span>
+            <br/>
+            Please, retry by reloading the page.
           </p>
         </ErrorMessage>
       );
