@@ -64,7 +64,7 @@
     "fomantic:help": "gulp -f src/fomantic/gulpfile.js -T",
     "fomantic:watch": "gulp -f src/fomantic/gulpfile.js watch",
     "fomantic:build": "gulp -f src/fomantic/gulpfile.js build",
-    "build": "echo '{\"GIT_SHA1\" : \"'$COMMIT_REF'\" }' > public/meta.json && prisma generate && yarn fomantic:build && next build",
+    "build": "echo '{\"GIT_SHA1\" : \"'$COMMIT_REF'\" }' > public/meta.json && prisma generate && yarn next lint && yarn fomantic:build && next build",
     "vercel-build": "COMMIT_REF=$VERCEL_GITHUB_COMMIT_SHA yarn run build ; yarn trigger-e2e-smoke"
   },
   "devDependencies": {
