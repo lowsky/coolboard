@@ -667,7 +667,7 @@
   resolved "https://registry.yarnpkg.com/@opentelemetry/context-async-hooks/-/context-async-hooks-0.22.0.tgz#bf00a1f43e77f98e52349cde058a9bc56f9a4e95"
   integrity sha512-JakZ9NJCiaf8FJ6lcR2Fle9xkBKxSFbXK4mk9gZ14totNh9SOTiUBUk08bAnATWUINrQlN8/5hpGKi5gs+FUxQ==
 
-"@opentelemetry/core@0.22", "@opentelemetry/core@0.22.0", "@opentelemetry/core@^0.22.0":
+"@opentelemetry/core@0.22.0", "@opentelemetry/core@^0.22.0":
   version "0.22.0"
   resolved "https://registry.yarnpkg.com/@opentelemetry/core/-/core-0.22.0.tgz#9281cb76a828f0347dcec7925a11ad2e9debf922"
   integrity sha512-x6JxuQ4rY2x39GEXJSqMgyf8XZPNNiZrGcCMhZSrtypq/WXlsJuxMNnUAl2hj2rpSGGukhhWn5cMpCmMJJz1hw==
@@ -683,7 +683,7 @@
     "@opentelemetry/semantic-conventions" "0.25.0"
     semver "^7.3.5"
 
-"@opentelemetry/instrumentation-express@0.22":
+"@opentelemetry/instrumentation-express@0.22.0":
   version "0.22.0"
   resolved "https://registry.yarnpkg.com/@opentelemetry/instrumentation-express/-/instrumentation-express-0.22.0.tgz#e7e5d06c48c342f148d752b59f2e4def75d31690"
   integrity sha512-GAcTrTeYZqhxOSE9kksSpGouxhBFOe56g4Zro4drGhsVVS30a1bKKqtdtaWvzxfCV8pKy+rATxUqygXvIfaReA==
@@ -693,7 +693,7 @@
     "@opentelemetry/semantic-conventions" "^0.22.0"
     "@types/express" "4.17.12"
 
-"@opentelemetry/instrumentation-graphql@0.22":
+"@opentelemetry/instrumentation-graphql@0.22.0":
   version "0.22.0"
   resolved "https://registry.yarnpkg.com/@opentelemetry/instrumentation-graphql/-/instrumentation-graphql-0.22.0.tgz#5c995c0c00683b0b582bbf3f950aa7409cc0ad3a"
   integrity sha512-7ERGMreKDKjFSBbLpb2+RVovuzOpIFWR9W8luoNiA7m+y+GxZSd1sA7BgGheG1+JZhjZSJYmVSyZxcbgRxUUTw==
@@ -701,7 +701,7 @@
     "@opentelemetry/instrumentation" "^0.22.0"
     "@types/graphql" "14.5.0"
 
-"@opentelemetry/instrumentation-http@0.22":
+"@opentelemetry/instrumentation-http@0.22.0":
   version "0.22.0"
   resolved "https://registry.yarnpkg.com/@opentelemetry/instrumentation-http/-/instrumentation-http-0.22.0.tgz#ebc0d0ea93396364ea3df6be4a3ff4d2c2654e3a"
   integrity sha512-vqM1hqgYtcO8Upq8pl4I+YW0bnodHlUSSKYuOH7m9Aujbi571pU3zFctpiU5pNhj9eLEJ/r7aOTV6O4hCxqOjQ==
@@ -721,7 +721,7 @@
     semver "^7.3.2"
     shimmer "^1.2.1"
 
-"@opentelemetry/node@0.22":
+"@opentelemetry/node@0.22.0":
   version "0.22.0"
   resolved "https://registry.yarnpkg.com/@opentelemetry/node/-/node-0.22.0.tgz#94c4713762c99ef16f5b612e2eddf97ea0adfb3c"
   integrity sha512-+HhGbDruQ7cwejVOIYyxRa28uosnG8W95NiQZ6qE8PXXPsDSyGeftAPbtYpGit0H2f5hrVcMlwmWHeAo9xkSLA==
