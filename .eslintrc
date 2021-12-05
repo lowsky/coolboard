@@ -1,4 +1,3 @@
 {
-  "extends": "next",
-  "parser": "@babel/parser"
+  "extends": "next"
 }
