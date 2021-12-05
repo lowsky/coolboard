@@ -45,7 +45,7 @@ const clickLogin = () =>
   cy
     .get('a[href="/login"]', {
       log: true,
-      timeout: 12000,
+      timeout: 6000,
     })
     .first()
     .click();
@@ -69,7 +69,7 @@ const add_a_card = () =>
   }).contains('Add a card');
 
 function fillLoginForm() {
-  cy.get(auth0LockInputEmail).type(
+  cy.get(auth0LockInputEmail, LogAndWaitLong).type(
     'skylab@nurfuerspam.de'
   );
   cy.get(auth0LockInputPassword).type(password, {
@@ -136,7 +136,7 @@ const getBoardsList_FirstEntry = name =>
     .first();
 
 let LogAndWaitLong = {
-  log: false,
+  log: true,
   timeout: 10000,
 };
 let WaitVeryLong = {
