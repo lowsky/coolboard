@@ -220,7 +220,7 @@ describe('Test coolboard', () => {
 
     cy.log('delete first list');
     sections(LogAndWaitLong)
-      .get('[data-cy=card-list] [data-cy=card-list-header] > .mini > .ellipsis')
+      .get('[data-cy=card-list-header] [data-cy=card-list-header-menu]')
       .first()
       .click();
 
@@ -229,7 +229,7 @@ describe('Test coolboard', () => {
 
     cy.log('delete first list');
     sections(LogAndWaitLong)
-      .get('[data-cy=card-list] [data-cy=card-list-header] > .mini > .ellipsis')
+      .get('[data-cy=card-list-header] [data-cy=card-list-header-menu]')
       .first()
       .click();
     cy.get('.ui > .button > .trash')

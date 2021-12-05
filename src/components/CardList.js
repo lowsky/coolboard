@@ -38,7 +38,7 @@ const CardListWithoutDnd = props => {
               ? 'yellow'
               : 'lightgrey',
           }}>
-          <CardListHeader data-cy="card-list-header" name={name}>
+          <CardListHeader name={name}>
             <CardListButton
               onButtonClick={() =>
                 deleteListWithId(id)
@@ -218,11 +218,12 @@ export const CardList = ({
 };
 
 const CardListHeader = ({ name, children }) => (
-  <div className={styles.header}>
+  <div className={styles.header} data-cy="card-list-header">
     <Header className={styles.title}>{name}</Header>
     <Popup
       trigger={
         <Button
+          data-cy="card-list-header-menu"
           style={{ flexGrow: 0 }}
           icon="ellipsis vertical"
           size="mini"
