@@ -23,7 +23,7 @@ module.exports = {
 
   log: {
     created: function(file) {
-      return 'Created: ' + file;
+      return false; // instead of return 'Created: ' + file;
     },
     modified: function(file) {
       return 'Modified: ' + file;
