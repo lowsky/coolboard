@@ -14,10 +14,17 @@ body {
 }
 
 #root {
-  flex-grow: 1;
+  height: 100%;
+}
+
+#__next {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 #footer {
+  flex: 0;
   color: white;
   background: lightgray;
   padding: 1em;

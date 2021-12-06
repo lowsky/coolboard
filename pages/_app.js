@@ -33,7 +33,12 @@ export default function App({ Component, pageProps}) {
               src="https://eum.instana.io/eum.min.js" defer/>
       */
       }
-      <Component {...pageProps} />
+      <div style={{
+        overflow: "auto",
+        flex: 1
+      }}>
+        <Component {...pageProps} />
+      </div>
     </>
   )
 }
