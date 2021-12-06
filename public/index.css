@@ -23,16 +23,6 @@ body {
   flex-direction: column;
 }
 
-#footer {
-  flex: 0;
-  color: white;
-  background: lightgray;
-  padding: 1em;
-}
-#footer p a i {
-  display: inline;
-}
-
 p a {
   padding-left: 0.25em;
   padding-right: 0.25em;

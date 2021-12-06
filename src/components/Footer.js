@@ -1,53 +1,45 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Button, Popup } from "semantic-ui-react";
+import { Popup } from "semantic-ui-react";
 
 import coolboardLogo from "./CoolBoardLogo.png";
 import netlifyLogo from "./netlify-logo.svg";
 import nextLogo from "./nextjs-logo.svg";
 import prismaLogo from "./prisma-logo.svg";
 
+import styles from "./Footer.module.css"
+
 export function Footer() {
-  return <footer id="footer" className="ui fluid container" style={{}}>
-    <p style={{
-      display: "flex",
-      justifyContent: "space-between",
-      flexDirection: "row",
-      alignItems: "flex-end"
-    }}>
-      <span style={{ color: "black" }}>
-        <Image height={20} width={20} src={coolboardLogo}/> Coolboard, powered by
-        {' '}
-        <Image height={20} width={20} src={prismaLogo}/> Prisma,GraphQL, Apollo, React.js,
-        {' '}
-        <Image height={20} width={20} src={netlifyLogo}/> Netlify and
-        {' '}
-        <Image height={20} width={40} src={nextLogo}/>
-      </span>
+  return <footer className={"ui fluid container " + styles.footer}>
+    <p className={styles.row}>
+      <Image height={20} width={20} src={coolboardLogo}/> Coolboard, powered by
+      <Image height={20} width={20} src={prismaLogo}/> Prisma, GraphQL, Apollo, React,
+      <Image height={20} width={20} src={netlifyLogo}/> Netlify and
+      <Image height={20} src={nextLogo} alt="Next.js"/>
+
+      <span className={styles.spacer}></span>
 
       <div>
-        <Link href="/imprint">
-          <a>Imprint</a>
-        </Link>
+        <Link href="/imprint"><a>Imprint</a></Link>
         {' '}
-        <Link href="/privacy">
-          <a>Privacy</a>
-        </Link>
+        <Link href="/privacy"><a>Privacy</a></Link>
         {' '}
-        <a href="mailto:coolboard@protonmail.com"><i className="icon mail"> Mail</i></a>
-        <a href="https://twitter.com/rhosts"><i className="icon twitter"> Twitter</i></a>
+        <a href="mailto:coolboard@protonmail.com"><i className="icon mail"/>Mail</a>
+        {' '}
+        <a href="https://twitter.com/rhosts" target="_blank" rel="noreferrer"><i className="icon twitter"/>Twitter</a>
         {' '}
         <Popup
-          style={{ cursor: "pointer" }}
+          style={{ cursor: "pointer",
+          }}
           content={
-            <Button>
+            <a href="https://twitter.com/rhosts" target="_blank" rel="noreferrer">
               Interested?
               <br/>
               ♥️ Please, drop me a message!
-            </Button>
+            </a>
           }
           on='click'
-          trigger={<span><i className="icon github black"/>&nbsp;Sources</span>}
+          trigger={<a href="https://www.github.com/lowsky" target="_blank" rel="noreferrer"><i className="icon github"/>Sources</a>}
         />
       </div>
     </p>
