@@ -29,49 +29,31 @@ export default function Index() {
             alt="logo"
           />
           Welcome to CoolBoard
+          - manage your tasks in a
+          kanban style
         </h1>
         <Segment basic>
           <h2>
-            Create a board to share your tasks in a
-            kanban style
           </h2>
           <p>
-            You need to{' '}
+            You can directly go to your list of
+            <Link href="/boards">
+              <a>
+                boards {' '}
+                <Icon size="big" name="list" />
+              </a>
+            </Link>
+          </p>
+          <p>
+            At the first time, you will need to{' '}
             <Link href="/login">
               <a>
                 <Icon name="sign in" />
                 <span>sign in</span>
               </a>
             </Link>
-            first via google, or email.
+            first via Google or any email/password.
           </p>
-          <p>
-            Then start to create
-            <Link href="/boards">
-              <a>
-                boards
-                <Icon size="big" name="list" />
-              </a>
-            </Link>
-          </p>
-          <p>
-            If you want to share the board, just send
-            the <Icon name="linkify" />
-            URL of the board with others.
-            <br />
-            Everybody who is logged-in can access the board.
-          </p>
-        </Segment>
-        <Segment>
-          More
-          <Link href="/about">
-            <a>
-            {' '}
-            <Icon name="linkify" />
-            details about
-            </a>
-          </Link>{' '}
-          this app
         </Segment>
 
         <Segment basic>
@@ -83,31 +65,40 @@ export default function Index() {
           </Link>
         </Segment>
 
-        <Segment basic>
+        <Segment>
           <p>
-            This is the demo of the app which we built
-            in this course:
+            This is the demo of the app which we built in this video course
           </p>
           <h3>
             <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
               <Icon name="video camera" size="large" />
               <b>
-                Hands-on Application building with
-                GraphQL and React
+                Hands-on Application building with GraphQL and React
               </b>
             </a>
           </h3>
           <p>
             <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
-              <b>Available</b> at
+              <b>Available</b> e.g. at
               <Image
                 src={'/packt-logo.svg'}
-                height={24}
+                height={20}
                 width="100%"
                 alt="packt-logo"
               />
-            </a>
+            </a> or Udemy, Safari online, etc.
           </p>
+        </Segment>
+        <Segment basic>
+          There are more
+          <Link href="/about">
+            <a>
+              {' '}
+              <Icon name="linkify" />
+              details about
+            </a>
+          </Link>{' '}
+          this app.
         </Segment>
       </Container>
     </FullVerticalContainer>
