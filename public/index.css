@@ -34,3 +34,10 @@ p a {
   flex-direction: column;
   height: 100%;
 }
+
+.zoomOnHover:hover {
+  cursor: pointer;
+  transition-duration: 0.5s;
+  transition-property: all;
+  transform: scale(1.1, 1.1);
+}

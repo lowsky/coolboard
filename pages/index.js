@@ -36,7 +36,7 @@ export default function Index() {
           <h2>
           </h2>
           <p>
-            You can directly go to your list of
+            You can go to your list of
             <Link href="/boards">
               <a>
                 boards {' '}
@@ -56,11 +56,11 @@ export default function Index() {
           </p>
         </Segment>
 
-        <Segment basic>
+        <Segment basic className="zoomOnHover">
           <Link href="/boards" passHref>
             <Image src={screenshot}
             placeholder="blur"
-            width="1099"
+            width="1000"
             alt="screenshot" />
           </Link>
         </Segment>
