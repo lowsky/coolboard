@@ -11,7 +11,7 @@ import styles from "./Footer.module.css"
 
 export function Footer() {
   return <footer className={"ui fluid container " + styles.footer}>
-    <p className={styles.row}>
+    <div className={styles.row}>
       <Image height={20} width={20} src={coolboardLogo}/> Coolboard, powered by
       <Image height={20} width={20} src={prismaLogo}/> Prisma, GraphQL, Apollo, React,
       <Image height={20} width={20} src={netlifyLogo}/> Netlify and
@@ -42,6 +42,6 @@ export function Footer() {
           trigger={<a href="https://www.github.com/lowsky" target="_blank" rel="noreferrer"><i className="icon github"/>Sources</a>}
         />
       </div>
-    </p>
+    </div>
   </footer>;
 }
