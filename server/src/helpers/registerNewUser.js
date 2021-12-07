@@ -25,7 +25,7 @@ export const createNewUser = async (idToken, createPersistentUser) => {
   }
 
   try {
-    return createPersistentUser(data);
+    return createPersistentUser({ data });
   } catch (err) {
     if (isLocalDev) console.error('Failed to create this new user:', data, err);
 
