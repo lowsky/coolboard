@@ -3,6 +3,7 @@
   functions = "netlify/functions"
 
 [functions]
+  node_bundler = "esbuild"
   external_node_modules = ["http", "@opentelemetry/*", "graphql", "@prisma/client", "apollo-server-lambda", "ts-is-defined", "@instana/aws-lambda"]
 
 [[plugins]]

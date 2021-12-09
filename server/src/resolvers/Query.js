@@ -1,5 +1,5 @@
 import { auth0idFromUserToken, getUserId, verifyAuth0HeaderToken, verifyUserIsAuthenticated } from './utils';
-import { injectUserIdByAuth0id } from '../helpers/userIdByAuth0id';
+import { injectUserIdByAuth0id, userIdByAuth0id } from '../helpers/userIdByAuth0id';
 import { createNewUser } from '../helpers/registerNewUser';
 import { isLocalDev } from '../helpers/logging';
 
@@ -38,8 +38,7 @@ const Query = {
     const auth0id = auth0idFromUserToken(userToken);
 
     const user = await prisma.user.findFirst({
-      where: { auth0id },
-      include: {boards: true}
+      where: { auth0id }
     });
 
     if (user) {
@@ -49,6 +48,7 @@ const Query = {
       return user;
     }
 
+    // user signed in, but not created in DB yet:
     const u = await createNewUser(
       userToken,
       prisma.user.create
