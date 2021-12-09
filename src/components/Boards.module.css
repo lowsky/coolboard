@@ -1,0 +1,14 @@
+.listItem {
+  width: 100%;
+  display: flex;
+  padding: 0.25rem;
+  background: #eee;
+}
+
+.listItem:nth-child(odd) {
+  background: #ddd;
+}
+
+.wideColumn {
+  flex: 1;
+}
