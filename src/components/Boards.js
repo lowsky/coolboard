@@ -1,32 +1,46 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
 import Link from 'next/link';
 import React, { useState } from 'react';
-import { Button, Container, Loader, Segment, } from 'semantic-ui-react';
+import { Button, Container, List, Loader, Segment, } from 'semantic-ui-react';
 
 import { FullVerticalContainer } from '../common/FullVerticalContainer';
 import { CreateBoardModal } from './CreateBoardModal';
 
-const BoardListItem = ({ name, id, deleteBoard }) => (
-  <div data-cy="board-list-item">
-    <Link href={`/board/${id}`}><a>{name}</a></Link>
-    &nbsp;
-    <Button
-      onClick={() => deleteBoard(id)}
-      size="mini"
-      icon="trash"
-    />
-  </div>
-);
+import styles from "./Boards.module.css";
+
+const BoardListItem = ({ name, id, deleteBoard, idx }) => {
+  const [deleting, setDeleting] = useState(false);
+  return (
+    <List.Item as={"li"} className={styles.listItem} data-cy="board-list-item">
+        <Link href={`/board/${id}`}>
+          <a className={styles.wideColumn}>{name}</a>
+        </Link>
+
+        <Button compact basic
+                onClick={() => {
+                  setDeleting(true);
+                  deleteBoard(id).finally(setDeleting(false))
+                }}
+                loading={deleting}
+                size="mini"
+                icon="trash"
+        />
+    </List.Item>
+  );
+};
 
 const BoardList = ({ boards, deleteBoard }) =>
-  boards.map(({ id, ...info }) => (
-    <BoardListItem
-      key={id}
-      id={id}
-      {...info}
-      deleteBoard={deleteBoard}
-    />
-  ));
+    <List celled divided>
+      {boards.map(({ id, ...info }, idx) => (
+        <BoardListItem
+          key={id}
+          id={id}
+          {...info}
+          idx={idx}
+          deleteBoard={deleteBoard}
+        />
+      ))}
+    </List>;
 
 const createBoardMutation = gql`
   mutation createBoard($name: String!) {
@@ -106,7 +120,7 @@ export const Boards = () => {
     <FullVerticalContainer>
       <Segment textAlign="center" basic>
         <h1>Your Boards</h1>
-        <Container data-cy='boards-list'>
+        <Container data-cy='boards-list' textAlign="left">
           {data?.me?.boards?.length > 0 ? (
             <BoardList
               boards={data.me.boards}

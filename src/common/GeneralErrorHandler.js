@@ -94,6 +94,24 @@ export const GeneralErrorHandler = ({
       );
 
       if (notAuthErr) {
+        if(!localStorage.getItem('expires_at')) {
+          return <Message  style={{ flexShrink: 0 }}>
+            <strong>
+              You will need to be authenticated to see
+              or create Boards or change any items.
+            </strong>
+            <p>
+              You can <Link href="/login">
+                <a>
+                  <Icon size="big" name="sign in"/>
+                  Sign in
+                </a>
+              </Link>
+              via Auth0 service.
+            </p>
+          </Message>
+        }
+
         return (
           <ErrorMessage>
             <ReLoginButton authRefresh={authRefresh} />
@@ -130,12 +148,18 @@ export const GeneralErrorHandler = ({
         </ErrorMessage>
       );
     } else if (networkError) {
+      console.log({ networkError });
       return (
         <ErrorMessage>
           <ReLoginButton authRefresh={authRefresh} />
           <p>
-            <strong>Network Error:</strong>
-            {networkError.message}
+            <strong>Communication with the GraphQL server failed!</strong>
+            <span>
+              {' '}
+            (Status: {networkError.statusCode} - find technical details in browser console)
+              </span>
+            <br/>
+            Please, retry by reloading the page.
           </p>
         </ErrorMessage>
       );

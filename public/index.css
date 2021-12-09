@@ -14,16 +14,13 @@ body {
 }
 
 #root {
-  flex-grow: 1;
+  height: 100%;
 }
 
-#footer {
-  color: white;
-  background: lightgray;
-  padding: 1em;
-}
-#footer p a i {
-  display: inline;
+#__next {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 p a {
@@ -36,4 +33,11 @@ p a {
   display: flex;
   flex-direction: column;
   height: 100%;
+}
+
+.zoomOnHover:hover {
+  cursor: pointer;
+  transition-duration: 0.5s;
+  transition-property: all;
+  transform: scale(1.1, 1.1);
 }
