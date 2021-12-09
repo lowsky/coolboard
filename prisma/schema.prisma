@@ -21,7 +21,7 @@ model Card {
   updatedById String   @db.VarChar(25)
 
   listId String @db.VarChar(25)
-  list   List?  @relation(fields: [listId], references: [id])
+  list   List?  @relation(fields: [listId], references: [id], onDelete: Cascade)
 }
 
 model List {
@@ -29,7 +29,7 @@ model List {
   name      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  board     Board?   @relation(fields: [boardId], references: [id])
+  board     Board?   @relation(fields: [boardId], references: [id], onDelete: Cascade)
   boardId   String   @db.VarChar(25)
   cards     Card[]
 
