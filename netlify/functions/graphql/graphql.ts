@@ -5,6 +5,7 @@ import resolvers from '../../../server/src/resolvers/resolvers';
 import { typeDefs } from '../../../server/src/schema/apiSchema';
 
 import { isLocalDev } from '../../../server/src/helpers/logging';
+import {Handler as NetlifyFunctionHandler} from "@netlify/functions";
 
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient({
@@ -12,7 +13,7 @@ const prisma = new PrismaClient({
     ['info', 'warn', 'error']
 });
 
-let unmonitoredHandler = (event, context, callback) => {
+const unmonitoredHandler: NetlifyFunctionHandler = (event, context, callback) => {
   const lambdaServer = new ApolloServer({
     typeDefs,
     resolvers,
@@ -31,12 +32,26 @@ let unmonitoredHandler = (event, context, callback) => {
   const handler = lambdaServer.createHandler();
 
   try {
-    return handler({
+    const result = handler({
       ...event,
       // Workaround for apollo-lambda crashes when running with netlify dev
       // "Unable to determine event source based on event." (in @vendia/serverless-express)
       requestContext: {}
-    }, context, callback);
+      },
+      // @ts-expect-error TS2345: identity: missing the following properties from type 'CognitoIdentity': cognitoIdentityId, cognitoIdentityPoolId
+      context,
+      callback
+    );
+
+    if (result) {
+      return result.then((data) => {
+        // avoid db pool limit hit
+        prisma.$disconnect();
+        return data;
+      });
+    }
+
+    return result;
   }
   catch (e) {
     console.error(e);
@@ -46,7 +61,6 @@ let unmonitoredHandler = (event, context, callback) => {
     };
   }
 }
-
 
 const handler = instana.wrap(
   {

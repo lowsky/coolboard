@@ -5,7 +5,6 @@ import { typeDefs } from '../../server/src/schema/apiSchema';
 
 import { isLocalDev } from '../../server/src/helpers/logging';
 
-// const instana = require('@instana/aws-lambda');
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient({
   log: isLocalDev ? ['query', 'info', `warn`, `error`]:
@@ -89,9 +88,12 @@ let server = null;
 export default async(req, res) => {
   const apolloServer = server || (await getGraphqlServer());
   server = apolloServer;
-  return apolloServer.createHandler({
+
+  const handler = apolloServer.createHandler({
     path: '/api/graphql',
-  })(req, res);
+  });
+
+  await handler(req, res);
 };
 
 export const config = {
