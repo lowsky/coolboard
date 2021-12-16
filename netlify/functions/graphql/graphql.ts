@@ -5,7 +5,7 @@ import resolvers from '../../../server/src/resolvers/resolvers';
 import { typeDefs } from '../../../server/src/schema/apiSchema';
 
 import { isLocalDev } from '../../../server/src/helpers/logging';
-import {Handler as NetlifyFunctionHandler} from "@netlify/functions";
+import {Handler as NetlifyFunctionHandler} from '@netlify/functions';
 
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient({

@@ -59,14 +59,15 @@ Card.propTypes = {
 
 export const dndItemType = 'card';
 
-export const CardForDragging = ({ ...props }) => {
-  // eslint-disable-next-line no-unused-vars
-  const [collected, ref] = useDrag({
+export const CardForDragging = (props) => {
+  const [_, ref] = useDrag({
     type: dndItemType,
     item:  {
       id: props.id,
       cardListId: props.cardListId,
     },
+    //((monitor: DragSourceMonitor<DragObject, DropResult>) => boolean);
+    // @ts-ignore
     canDrag: () => props => !!props.cardListId,
   });
 
@@ -75,11 +76,6 @@ export const CardForDragging = ({ ...props }) => {
       <Card {...props} />
     </div>
   );
-};
-
-CardForDragging.propTypes = {
-  isDragging: PropTypes.bool.isRequired,
-  ...CardComponent.propTypes,
 };
 
 CardForDragging.fragments = {

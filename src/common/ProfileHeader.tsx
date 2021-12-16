@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import { gql, useQuery } from "@apollo/client";
 import {
   Container,
@@ -12,6 +12,9 @@ import Link  from 'next/link';
 const ProfileHeaderContainer = ({
   children,
   isBoardsPage,
+}: {
+  children: ReactNode,
+  isBoardsPage?: boolean,
 }) => (
   <Container
     fluid
@@ -48,7 +51,7 @@ const ProfileHeaderContainer = ({
   </Container>
 );
 
-export const ProfileHeader = ({ isBoardsPage }) => {
+export const ProfileHeader = ({isBoardsPage}: { isBoardsPage?: boolean }) => {
   // LATER: { options: { fetchPolicy: 'network-only' } }
   const { loading, error, data } = useQuery(
     gql`

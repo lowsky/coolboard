@@ -25,7 +25,7 @@ export default function Logout() {
       });
     }
 
-    return removeToken();
+    removeToken();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

@@ -6,7 +6,7 @@ export const getAuthInstance = async() => {
   }
 
   if(typeof window !== 'undefined') {
-    auth = new Promise((resolve, reject) => {
+    auth = new Promise((resolve) => {
       import( './authentication/auth').then(module => {
         const Auth = module.default;
         resolve(new Auth());

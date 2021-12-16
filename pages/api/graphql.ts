@@ -16,7 +16,7 @@ const apolloServer = new ApolloServer({
   typeDefs,
   resolvers,
   debug: isLocalDev,
-  playground: isLocalDev,
+  // playground: isLocalDev,
   introspection: isLocalDev,
 
   /*
@@ -82,7 +82,7 @@ const handler = instana.wrap((event, context, callback) => {
 
 
 // will be stored here for re-use
-let server = null;
+let server: ApolloServer|null = null;
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default async(req, res) => {

@@ -6,4 +6,4 @@ export const AUTH_CONFIG = {
      typeof window !== 'undefined' ? window.location.origin + '/callback':
        '/callback'
 
-};
+} as const;

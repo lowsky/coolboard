@@ -17,7 +17,7 @@ export function Footer() {
       <Image height={20} width={20} src={netlifyLogo}/> Netlify and
       <Image height={20} src={nextLogo} alt="Next.js"/>
 
-      <span className={styles.spacer}></span>
+      <span className={styles.spacer}/>
 
       <div>
         <Link href="/imprint"><a>Imprint</a></Link>

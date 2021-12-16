@@ -9,7 +9,6 @@ import { ProfileHeader } from "../../src/common/ProfileHeader";
 import { GeneralErrorHandler } from "../../src/common/GeneralErrorHandler";
 import FullPageWithApollo  from "../../src/common/FullPageWithApollo";
 import { CoolBoard } from "../../src/components/CoolBoard";
-import { authRefresh } from "../../src/App";
 
 export default function Board() {
   const router = useRouter();
@@ -19,9 +18,7 @@ export default function Board() {
   return (
     <FullPageWithApollo>
       <ProfileHeader/>
-      <GeneralErrorHandler
-        authRefresh={authRefresh}
-      />
+      <GeneralErrorHandler/>
       <DndProvider backend={HTML5Backend}>
         <CoolBoard
           boardId={id}

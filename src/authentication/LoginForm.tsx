@@ -1,25 +1,25 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState} from 'react';
 import { gql, useMutation } from "@apollo/client";
 
-import AuthForm from './AuthForm';
+import AuthForm, {FormData} from './AuthForm';
 
-class LoginFormComponent extends Component {
-  state = { errors: [] };
+interface Props {
+  mutate: ({variables: FormData}) => Promise<{ data?: {login:{token: string} }|null |undefined}>,
+  successfulLogin: (token: string) => void,
+}
 
-  onSubmit(formData) {
-    const { mutate, successfulLogin } = this.props;
+const LoginFormComponent = (props:Props) => {
+  const [errors,setErrors] = useState<string[]>( [] )
+
+  const onSubmit = (formData:FormData) => {
+    const { mutate, successfulLogin } = props;
 
     try {
       mutate({
         variables: formData,
       })
         .then(({ data }) => {
-          const {
-            login: { token },
-          } = data;
-
-          successfulLogin(token);
+          successfulLogin(data?.login.token ?? 'invalid token');
         })
 
         .catch(res => {
@@ -29,36 +29,30 @@ class LoginFormComponent extends Component {
 
           console.error('login failed', res);
 
-          this.setState({ errors });
+          setErrors(errors);
         });
     } catch (ex) {
+      const message = typeof ex === 'object' ? ex?.['message'] : String(ex)
       const errors = [
-        `Login unsuccessful! Details: ${ex.message}`,
+        `Login unsuccessful! Details: ${message}`,
       ];
 
-      this.setState({ errors });
+      setErrors(errors);
     }
   }
 
-  render() {
     return (
       <div data-cy="login-form">
         <h1>Login</h1>
         <AuthForm
-          onSubmit={formData =>
-            this.onSubmit(formData)
+           onSubmit={(formData:FormData) =>
+            onSubmit(formData)
           }
-          errors={this.state.errors}
+          errors={errors}
         />
       </div>
     );
-  }
 }
-
-LoginFormComponent.propTypes = {
-  successfulLogin: PropTypes.func,
-  mutate: PropTypes.func,
-};
 
 const LOGIN_MUTATION = gql`
   mutation LoginMutation(
@@ -72,17 +66,11 @@ const LOGIN_MUTATION = gql`
 `;
 
 export const LoginForm = ({ successfulLogin }) => {
-  const [mutate] = useMutation(LOGIN_MUTATION);
+  const [mutate] = useMutation<{ login:{token: string} }>(LOGIN_MUTATION);
   return (
     <LoginFormComponent
       mutate={mutate}
       successfulLogin={successfulLogin}
     />
   );
-};
-
-
-
-LoginForm.propTypes = {
-  successfulLogin: PropTypes.func,
 };

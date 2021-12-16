@@ -88,8 +88,9 @@ const drop = (props, cardItem) => {
 const CardListWithDnd = props => {
   const [dndProps, ref] = useDrop({
     accept: dndItemType,
-    drop: item => drop(props, item),
-    canDrop: item => props.id !== item.cardListId,
+    drop: (item) => drop(props, item),
+    // @ts-ignore
+    canDrop: (item) => props.id !== item.cardListId,
     collect: monitor => ({ isOver: monitor.isOver() }),
   });
 
