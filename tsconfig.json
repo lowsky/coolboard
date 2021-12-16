@@ -11,6 +11,9 @@
       "dom",
       "es2017"
     ],
+    "paths": {
+      "node_modules/zen-observable": ["./node_modules/zen-observable-ts"]
+    },
     "module": "esnext",
     "moduleResolution": "node",
     "noEmit": true,
@@ -25,6 +28,7 @@
     "incremental": true
   },
   "exclude": [
+    "server/stuff",
     "**/node_modules"
   ],
   "include": [
