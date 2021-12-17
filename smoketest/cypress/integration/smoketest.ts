@@ -1,16 +1,19 @@
 /* eslint-disable no-undef */
 /// <reference types="Cypress" />
 
-let auth0LockInputEmail =
+import Loggable = Cypress.Loggable;
+import Timeoutable = Cypress.Timeoutable;
+
+const auth0LockInputEmail =
   'div > div > .auth0-lock-input-email > .auth0-lock-input-wrap > .auth0-lock-input';
-let auth0LockInputPassword =
+const auth0LockInputPassword =
   'div > div > .auth0-lock-input-password > .auth0-lock-input-wrap > .auth0-lock-input';
 
 // needs prefix when set per env: CYPRESS_USER_PASSWORD
 const password = Cypress.env('USER_PASSWORD');
 
 // will be set by cypress.json, or via env: CYPRESS_baseUrl
-const baseUrl = Cypress.config('baseUrl');
+const baseUrl = Cypress.config('baseUrl') ?? 'missing env CYPRESS_baseUrl';
 // will be set by cypress.json, or via env: CYPRESS_branch
 const branch =
   Cypress.env('branch') ||
@@ -51,7 +54,7 @@ const clickLogin = () =>
     .click();
 
 const _boardListContainer = () =>
-  cy.get('[data-cy="board-container-inner"]');
+  cy.dataCy('board-container-inner');
 
 const cardListButtons = () =>
   _boardListContainer().find('button');
@@ -59,14 +62,11 @@ const cardListButtons = () =>
 const add_a_list = () =>
   cardListButtons().contains('Add a list');
 
-const sections = options =>
-  cy.get('[data-cy="card-list"]', options);
+const sections = (options: (Partial<Loggable & Timeoutable>)) =>
+  cy.dataCy('card-list', options);
 
 const add_a_card = () =>
-  cardListButtons({
-    log: true,
-    timeout: 12000,
-  }).contains('Add a card');
+  cardListButtons().contains('Add a card');
 
 function fillLoginForm() {
   cy.get(auth0LockInputEmail, LogAndWaitLong).type(
@@ -87,15 +87,28 @@ function fillLoginForm() {
     .wait(2000);
 }
 
-let authResult;
+let authResult: {
+  expiresAt: string ,
+  idToken: string,
+  accessToken: string
+}
 
 function doLogin() {
-  cy
+  if(authResult) {
+    const { expiresAt, idToken, accessToken } = authResult;
+    localStorage.setItem('access_token', accessToken);
+    localStorage.setItem('id_token', idToken);
+    localStorage.setItem('expires_at', expiresAt);
+
+    gotoBoards();
+  }
+  else
+    cy
     .visit(baseUrl)
     .then(() => {
       if(authResult) {
+        // this block still needed - not sure...
         const { expiresAt, idToken, accessToken } = authResult;
-
         localStorage.setItem('access_token', accessToken);
         localStorage.setItem('id_token', idToken);
         localStorage.setItem('expires_at', expiresAt);
@@ -104,9 +117,9 @@ function doLogin() {
         clickLogin();
         fillLoginForm()
           .then(() => {
-              let accessToken = localStorage.getItem('access_token')
-              let idToken = localStorage.getItem('id_token')
-              let expiresAt = localStorage.getItem('expires_at')
+              const accessToken = localStorage.getItem('access_token')!
+              const idToken = localStorage.getItem('id_token')!
+              const expiresAt = localStorage.getItem('expires_at')!
 
               authResult = {
                 expiresAt,
@@ -121,27 +134,29 @@ function doLogin() {
 
 const getBoardsList = () => {
   cy
-    .get('[data-cy=full-container] [data-cy=boards-list]')
+    .dataCy('full-container')
+    .dataCy ('boards-list')
     .first();
 
   return cy
-    .get('[data-cy=full-container] [data-cy=boards-list]', WaitVeryLong)
+    .dataCy('full-container' )
+    .dataCy('boards-list', WaitVeryLong)
     .should('exist')
     .find('a', WaitVeryLong);
 }
 
-const getBoardsList_FirstEntry = name =>
+const getBoardsList_FirstEntry = (name:string) =>
   getBoardsList()
     .contains(name)
     .first();
 
 let LogAndWaitLong = {
   log: true,
-  timeout: 10000,
+  timeout: 8000,
 };
 let WaitVeryLong = {
   log: true,
-  timeout: 25000 * 4,
+  timeout: 5000 * 4,
 }
 
 describe('Test coolboard', () => {
@@ -156,8 +171,8 @@ describe('Test coolboard', () => {
 
     getBoardsList().then(boards =>
       cy
-        .log(boards)
-        .log(boards.length)
+        .log(String(boards))
+        .log(String(boards.length))
         .get('.basic > .ui')
         .last()
         .click()
@@ -197,7 +212,7 @@ describe('Test coolboard', () => {
 
     add_a_card().click();
 
-    cy.get('[data-cy=card]', WaitVeryLong)
+    cy.dataCy('card', WaitVeryLong)
       .contains('new card')
       .click();
 
@@ -220,7 +235,8 @@ describe('Test coolboard', () => {
 
     cy.log('delete first list');
     sections(LogAndWaitLong)
-      .get('[data-cy=card-list-header] [data-cy=card-list-header-menu]')
+      .dataCy('card-list-header')
+      .dataCy('card-list-header-menu')
       .first()
       .click();
 
@@ -229,7 +245,8 @@ describe('Test coolboard', () => {
 
     cy.log('delete first list');
     sections(LogAndWaitLong)
-      .get('[data-cy=card-list-header] [data-cy=card-list-header-menu]')
+      .dataCy('card-list-header')
+      .dataCy('card-list-header-menu')
       .first()
       .click();
     cy.get('.ui > .button > .trash')
@@ -254,3 +271,5 @@ describe('Test coolboard', () => {
       .should('not.exist');
   });
 });
+
+export {}
