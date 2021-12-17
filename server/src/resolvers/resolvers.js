@@ -23,10 +23,10 @@ export default {
     async lists(parent, args, ctx) {
       const { prisma } = ctx;
       return prisma.list.findMany({
-        where: { board: {id: parent.id} },
+        where: { board: { id: parent.id } },
         include: {
-          createdBy: true
-        }
+          createdBy: true,
+        },
       });
     },
   },
@@ -34,12 +34,11 @@ export default {
     async cards(parent, args, ctx) {
       const { prisma } = ctx;
       return prisma.card.findMany({
-          where: { list: {id: parent.id} },
-          include: {
-            createdBy: true
-          }
+        where: { list: { id: parent.id } },
+        include: {
+          createdBy: true,
         },
-      );
+      });
     },
   },
 };

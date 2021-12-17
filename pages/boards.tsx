@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { trackPage } from '../src/common/tracking';
-import { ProfileHeader } from "../src/common/ProfileHeader";
-import { GeneralErrorHandler } from "../src/common/GeneralErrorHandler";
-import FullPageWithApollo from "../src/common/FullPageWithApollo";
-import { Boards as BoardList } from "../src/components/Boards";
+import { ProfileHeader } from '../src/common/ProfileHeader';
+import { GeneralErrorHandler } from '../src/common/GeneralErrorHandler';
+import FullPageWithApollo from '../src/common/FullPageWithApollo';
+import { Boards as BoardList } from '../src/components/Boards';
 
 export default function Boards() {
   trackPage('boards');
@@ -12,7 +12,7 @@ export default function Boards() {
   return (
     <FullPageWithApollo>
       <ProfileHeader isBoardsPage />
-      <GeneralErrorHandler/>
+      <GeneralErrorHandler />
       <BoardList />
     </FullPageWithApollo>
   );

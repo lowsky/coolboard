@@ -4,18 +4,12 @@ import jwt from 'jsonwebtoken';
 const auth = {
   // @deprecate
   async signup(parent, args, ctx, info) {
-    const password = await bcrypt.hash(
-      args.password,
-      10
-    );
+    const password = await bcrypt.hash(args.password, 10);
     const user = await ctx.prisma.mutation.createUser({
       data: { ...args, password },
     });
 
-    const token = jwt.sign(
-      { userId: user.id },
-      process.env.APP_SECRET
-    );
+    const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
     return {
       token,
       user,
@@ -28,29 +22,23 @@ const auth = {
       where: { email },
     });
     if (!users || users.length !== 1) {
-      throw new Error(
-        `No such user found for email: ${email}`
-      );
+      throw new Error(`No such user found for email: ${email}`);
     }
 
     const user = users[0];
 
     if (!user.password) {
-      throw new Error('Sorry, no password based authentication available for this user!');
+      throw new Error(
+        'Sorry, no password based authentication available for this user!'
+      );
     }
 
-    const valid = await bcrypt.compare(
-      password,
-      user.password
-    );
+    const valid = await bcrypt.compare(password, user.password);
     if (!valid) {
       throw new Error('Invalid password');
     }
 
-    const token = jwt.sign(
-      { userId: user.id },
-      process.env.APP_SECRET
-    );
+    const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
 
     return {
       token,

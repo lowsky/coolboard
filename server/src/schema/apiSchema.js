@@ -1034,7 +1034,7 @@ type User {
   avatarUrl: String
   boards: [Board]
 }
-`
+`;
 export default {
-  typeDefs
-}
+  typeDefs,
+};

@@ -1,17 +1,13 @@
 import React from 'react';
-import {
-  Container,
-  Icon,
-  Segment,
-} from 'semantic-ui-react';
+import { Container, Icon, Segment } from 'semantic-ui-react';
 import Link from 'next/link';
 import Image from 'next/image';
 
 import { FullVerticalContainer } from '../src/common/FullVerticalContainer';
-import { trackPage } from "../src/common/tracking";
+import { trackPage } from '../src/common/tracking';
 
-import coolBoardLogo from "../public/CoolBoardLogo100.png";
-import screenshot from '../public/screenshot.png'
+import coolBoardLogo from '../public/CoolBoardLogo100.png';
+import screenshot from '../public/screenshot.png';
 
 export default function Index() {
   trackPage('Index');
@@ -23,24 +19,16 @@ export default function Index() {
           textAlign: 'left',
         }}>
         <h1>
-          <Image
-            src={coolBoardLogo}
-            width="100"
-            alt="logo"
-          />
-          Welcome to CoolBoard
-          - manage your tasks in a
-          kanban style
+          <Image src={coolBoardLogo} width="100" alt="logo" />
+          Welcome to CoolBoard - manage your tasks in a kanban style
         </h1>
         <Segment basic>
-          <h2>
-          </h2>
+          <h2></h2>
           <p>
             You can go to your list of
             <Link href="/boards">
               <a>
-                boards {' '}
-                <Icon size="big" name="list" />
+                boards <Icon size="big" name="list" />
               </a>
             </Link>
           </p>
@@ -58,23 +46,21 @@ export default function Index() {
 
         <Segment basic className="zoomOnHover">
           <Link href="/boards" passHref>
-            <Image src={screenshot}
-            placeholder="blur"
-            width="1000"
-            alt="screenshot" />
+            <Image
+              src={screenshot}
+              placeholder="blur"
+              width="1000"
+              alt="screenshot"
+            />
           </Link>
         </Segment>
 
         <Segment>
-          <p>
-            This is the demo of the app which we built in this video course
-          </p>
+          <p>This is the demo of the app which we built in this video course</p>
           <h3>
             <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
               <Icon name="video camera" size="large" />
-              <b>
-                Hands-on Application building with GraphQL and React
-              </b>
+              <b>Hands-on Application building with GraphQL and React</b>
             </a>
           </h3>
           <p>
@@ -86,7 +72,8 @@ export default function Index() {
                 width="100%"
                 alt="packt-logo"
               />
-            </a> or Udemy, Safari online, etc.
+            </a>{' '}
+            or Udemy, Safari online, etc.
           </p>
         </Segment>
         <Segment basic>

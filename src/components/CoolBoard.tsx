@@ -1,21 +1,11 @@
 import React from 'react';
-import { gql, useMutation, useQuery } from "@apollo/client";
+import { gql, useMutation, useQuery } from '@apollo/client';
 
-import {
-  BoardContainer,
-  AddListButton,
-  DelListButton,
-} from './BoardContainer';
+import { BoardContainer, AddListButton, DelListButton } from './BoardContainer';
 import { CardList } from './CardList';
 
 const Board = (props) => {
-  const {
-    board = {},
-    addList,
-    deleteLists,
-    deleteList,
-    boardId,
-  } = props;
+  const { board = {}, addList, deleteLists, deleteList, boardId } = props;
 
   const { name, lists = [] } = board;
 
@@ -30,21 +20,18 @@ const Board = (props) => {
 
   return (
     <BoardContainer boardName={name}>
-      <DelListButton
-        action={() =>
-          deleteLists(lists.map(list => list.id))
-        }>
+      <DelListButton action={() => deleteLists(lists.map((list) => list.id))}>
         Delete All
       </DelListButton>
-      {lists.map(list => (
+      {lists.map((list) => (
         <CardList
           key={list.id}
           name={list.name}
           id={list.id}
-          deleteListWithId={id => deleteList(id)}
+          deleteListWithId={(id) => deleteList(id)}
         />
       ))}
-      <AddListButton onAddNewList={onBoardAddItem}/>
+      <AddListButton onAddNewList={onBoardAddItem} />
     </BoardContainer>
   );
 };
@@ -72,7 +59,7 @@ const BoardQuery = gql`
 `;
 
 const addListMutation = gql`
-  mutation($boardId: ID!, $name: String!) {
+  mutation ($boardId: ID!, $name: String!) {
     updateBoard(
       data: { lists: { create: { name: $name } } }
       where: { id: $boardId }
@@ -84,10 +71,7 @@ const addListMutation = gql`
 `;
 
 const deleteListsOfBoardMutation = gql`
-  mutation deleteListsOfBoard(
-    $boardId: ID!
-    $listIds: [ID!]!
-  ) {
+  mutation deleteListsOfBoard($boardId: ID!, $listIds: [ID!]!) {
     updateBoard(
       data: { lists: { deleteMany: { id_in: $listIds } } }
       where: { id: $boardId }
@@ -99,10 +83,7 @@ const deleteListsOfBoardMutation = gql`
 `;
 
 const deleteListOfBoardMutation = gql`
-  mutation deleteListOfBoard(
-    $boardId: ID!
-    $listId: ID!
-  ) {
+  mutation deleteListOfBoard($boardId: ID!, $listId: ID!) {
     updateBoard(
       data: { lists: { delete: { id: $listId } } }
       where: { id: $boardId }
@@ -114,23 +95,17 @@ const deleteListOfBoardMutation = gql`
 `;
 
 export const CoolBoard = ({ boardId }) => {
-  const { loading, error, data } = useQuery(
-    BoardQuery,
-    { variables: { boardId } });
+  const { loading, error, data } = useQuery(BoardQuery, {
+    variables: { boardId },
+  });
 
-  const [addList] = useMutation(
-    addListMutation,
-  );
+  const [addList] = useMutation(addListMutation);
 
-  const [deleteListsOfBoard] = useMutation(
-    deleteListsOfBoardMutation,
-  );
+  const [deleteListsOfBoard] = useMutation(deleteListsOfBoardMutation);
 
-  const [deleteListOfBoard] = useMutation(
-    deleteListOfBoardMutation,
-  );
+  const [deleteListOfBoard] = useMutation(deleteListOfBoardMutation);
 
-  if(loading) {
+  if (loading) {
     return <div>Loading Board</div>;
   }
 
@@ -139,11 +114,11 @@ export const CoolBoard = ({ boardId }) => {
   }
 
   const { board } = data;
-  if(!board) {
+  if (!board) {
     return <div>Board does not exist.</div>;
   }
 
-  const deleteLists = ids =>
+  const deleteLists = (ids) =>
     deleteListsOfBoard({
       variables: {
         boardId,
@@ -151,11 +126,11 @@ export const CoolBoard = ({ boardId }) => {
       },
     });
 
-  const deleteList = listId =>
+  const deleteList = (listId) =>
     deleteListOfBoard({
       variables: {
         boardId,
-        listId
+        listId,
       },
     });
 

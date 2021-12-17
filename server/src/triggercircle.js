@@ -3,18 +3,15 @@ import fetch from 'node-fetch';
 
 const { CIRCLE_API_USER_TOKEN } = process.env;
 
-exports.handler = async event => {
+exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, body: "Method Not Allowed" };
+    return { statusCode: 405, body: 'Method Not Allowed' };
   }
 
   console.log('deploy-success body type', typeof event.body);
   console.log('deploy-success body=', event.body);
   const body = JSON.parse(event.body);
-  console.log(
-    'deploy-success body.review_id=',
-    body.review_id
-  );
+  console.log('deploy-success body.review_id=', body.review_id);
 
   const {
     branch = 'info-missing',
@@ -29,11 +26,7 @@ exports.handler = async event => {
     DEPLOYED_SHA1: commit_ref,
   };
 
-  console.log(
-    'triggering a new build on via',
-    url,
-    build_parameters
-  );
+  console.log('triggering a new build on via', url, build_parameters);
 
   try {
     const response = await fetch(url, {

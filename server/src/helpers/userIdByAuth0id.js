@@ -10,8 +10,7 @@ export async function userIdByAuth0id(auth0id, fetchUserByAuth0id) {
     return cachedUserId;
   }
 
-
-  const user = await fetchUserByAuth0id?.( auth0id );
+  const user = await fetchUserByAuth0id?.(auth0id);
   if (user) {
     const { id } = user;
     if (id) injectUserIdByAuth0id(id, auth0id);

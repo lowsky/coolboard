@@ -1,7 +1,6 @@
 // load type definitions that come with Cypress module
 /// <reference types="cypress" />
 
-
 // Must be declared global to be detected by typescript (allows import/export)
 // eslint-disable @typescript/interface-name
 declare global {
@@ -11,14 +10,17 @@ declare global {
        * Custom command to select DOM element by data-cy attribute.
        * @example cy.dataCy('greeting')
        */
-      dataCy(value: string, options?: ( (Partial<Loggable & Timeoutable>))): Chainable<JQuery<HTMLElement>>
+      dataCy(
+        value: string,
+        options?: Partial<Loggable & Timeoutable>
+      ): Chainable<JQuery<HTMLElement>>;
     }
   }
 }
 
 Cypress.Commands.add('dataCy', (value, options) =>
-   cy.get(`[data-cy="${value}"]`, options)
-)
+  cy.get(`[data-cy="${value}"]`, options)
+);
 
 // Convert this to a module instead of script (allows import/export)
-export {}
+export {};

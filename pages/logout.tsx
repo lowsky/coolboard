@@ -1,12 +1,12 @@
-import Link from "next/link";
-import { useRouter } from "next/router";
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 
-import { logout } from "../src/App";
-import { FullVerticalContainer } from "../src/common/FullVerticalContainer";
+import { logout } from '../src/App';
+import { FullVerticalContainer } from '../src/common/FullVerticalContainer';
 
 import { trackPage } from '../src/common/tracking';
-import { setupGraphQLClient } from "../src/setupGraphQLClient";
+import { setupGraphQLClient } from '../src/setupGraphQLClient';
 
 const client = setupGraphQLClient();
 
@@ -19,7 +19,7 @@ export default function Logout() {
     async function removeToken() {
       localStorage?.removeItem('token');
 
-      await client.resetStore().then(async() => {
+      await client.resetStore().then(async () => {
         await logout();
         router.push(`/`);
       });
@@ -27,14 +27,12 @@ export default function Logout() {
 
     removeToken();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
   return (
     <FullVerticalContainer data-cy="logout-full-container">
       <p>
-        Please wait, logging-out in
-        progress ... If it did not work,
-        back to the
+        Please wait, logging-out in progress ... If it did not work, back to the
         <Link href="/main">
           <a>main page</a>
         </Link>
