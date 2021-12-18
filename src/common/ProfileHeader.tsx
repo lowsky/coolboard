@@ -1,7 +1,10 @@
 import React, { ReactNode } from 'react';
-import { gql, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { Container, Icon, Image, Loader } from 'semantic-ui-react';
 import Link from 'next/link';
+
+// @ts-ignore
+import MeQuery from './MeQuery.graphql';
 
 const ProfileHeaderContainer = ({
   children,
@@ -56,18 +59,7 @@ const ProfileHeaderContainer = ({
 
 export const ProfileHeader = ({ isBoardsPage }: { isBoardsPage?: boolean }) => {
   // LATER: { options: { fetchPolicy: 'network-only' } }
-  const { loading, error, data } = useQuery(
-    gql`
-      {
-        me {
-          email
-          id
-          name
-          avatarUrl
-        }
-      }
-    `
-  );
+  const { loading, error, data } = useQuery(MeQuery);
 
   if (loading) {
     return (
