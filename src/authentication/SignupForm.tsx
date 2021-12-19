@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import { gql, useMutation } from "@apollo/client";
+import {gql, useMutation} from "@apollo/client";
 
-import AuthForm from './AuthForm';
+import AuthForm, {FormData} from './AuthForm';
 
-class SignUpFormComponent extends Component {
-  state = { errors: [] };
+const SignUpFormComponent  = (props) => {
+  const [errors,setErrors] = useState<string[]>( [] )
 
-  onSubmit({ name, email, password, avatarUrl }) {
-    const { mutate, successfulSignup } = this.props;
+  const onSubmit = ({ name, email, password, avatarUrl }: FormData) => {
+    const { mutate, successfulSignup } = props;
 
     mutate({
       variables: {
@@ -22,27 +22,24 @@ class SignUpFormComponent extends Component {
         successfulSignup();
       })
       .catch(res => {
-        const errors = res.graphQLErrors.map(
+        setErrors(res.graphQLErrors.map(
           error => error.message
-        );
-        this.setState({ errors });
+        ));
       });
   }
 
-  render() {
-    return (
-      <div data-cy="signup-form">
-        <h1>Sign Up</h1>
-        <AuthForm
-          signUp
-          onSubmit={formData =>
-            this.onSubmit(formData)
-          }
-          errors={this.state.errors}
-        />
-      </div>
-    );
-  }
+  return (
+    <div data-cy="signup-form">
+      <h1>Sign Up</h1>
+      <AuthForm
+        onSubmit={(formData: FormData) =>
+          onSubmit(formData)
+        }
+        errors={errors}
+        signUp
+      />
+    </div>
+  );
 }
 
 const SIGNUP_MUTATION = gql`

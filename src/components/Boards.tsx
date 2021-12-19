@@ -8,7 +8,7 @@ import { CreateBoardModal } from './CreateBoardModal';
 
 import styles from "./Boards.module.css";
 
-const BoardListItem = ({ name, id, deleteBoard, idx }) => {
+const BoardListItem = ({ name, id, deleteBoard }) => {
   const [deleting, setDeleting] = useState(false);
   return (
     <List.Item as={"li"} className={styles.listItem} data-cy="board-list-item">
@@ -19,7 +19,7 @@ const BoardListItem = ({ name, id, deleteBoard, idx }) => {
         <Button compact basic
                 onClick={() => {
                   setDeleting(true);
-                  deleteBoard(id).finally(setDeleting(false))
+                  deleteBoard(id).finally(() => setDeleting(false))
                 }}
                 loading={deleting}
                 size="mini"
@@ -31,12 +31,12 @@ const BoardListItem = ({ name, id, deleteBoard, idx }) => {
 
 const BoardList = ({ boards, deleteBoard }) =>
     <List celled divided>
-      {boards.map(({ id, ...info }, idx) => (
+      {boards.map(({ id, name, ...info }) => (
         <BoardListItem
           key={id}
           id={id}
+          name={name}
           {...info}
-          idx={idx}
           deleteBoard={deleteBoard}
         />
       ))}

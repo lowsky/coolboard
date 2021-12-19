@@ -18,7 +18,7 @@ function saveInLocalStore(authResult) {
 
 class Auth {
 
-  lock = {}
+  lock: Auth0Lock | undefined;
 
   constructor() {
     if (typeof window !== "undefined") {
@@ -50,7 +50,7 @@ class Auth {
   }
 
   login = () => {
-    this.lock.show?.();
+    this.lock?.show?.();
   };
 
   addHandleAuthenticationListener() {
@@ -106,7 +106,7 @@ class Auth {
           reject(err);
         } else {
           this.setSession(authResult);
-          resolve();
+          resolve(null);
         }
       });
     });

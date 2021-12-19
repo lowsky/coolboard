@@ -9,7 +9,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import { FullVerticalContainer } from '../src/common/FullVerticalContainer';
-import { ProfileHeader } from '../src/common/ProfileHeader';
 
 export default function About() {
   return <FullVerticalContainer data-cy="about-full-container">
@@ -43,9 +42,10 @@ export default function About() {
           <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
             <Image
               src={'/packt-logo.svg'}
-              width={24
-              }
+              width={24}
               height={24}
+              // need to check it still needed:
+              // @ts-ignore
               style={{ verticalAlign: 'bottom' }}
               alt="Packt Publishing logo"
             />

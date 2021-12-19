@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 
 import { Button, Icon, Message, } from 'semantic-ui-react';
 import { hasExpirationSet, isExpired, } from '../authentication/checkExpiration';
-
 import { useApolloNetworkStatus } from '../setupGraphQLClient';
+import {authRefresh} from "../App";
 
 const ErrorMessage = ({ children }) => (
   <Message error style={{ flexShrink: 0 }}>
@@ -14,38 +14,34 @@ const ErrorMessage = ({ children }) => (
 
 function ReLoginButton({ authRefresh }) {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  return !!authRefresh &&
+  if(!!authRefresh &&
     hasExpirationSet() &&
-    isExpired() && (
-      <div>
-        <Button
-          loading={loading}
-          compact={true}
-          onClick={async() => {
-            setLoading(true)
-            try {
-              await authRefresh();
-              setLoading(false);
-              window.history.go(0); // refresh page
-            } catch(e) {
-              setError(e)
-            }
-            setLoading(false)
-          }}>
-          Refresh
-        </Button>{' '}
-        the security token.
-      </div>
-    );
+    isExpired() ) {
+    return <div>
+      <Button
+        loading={loading}
+        compact={true}
+        onClick={async() => {
+          setLoading(true)
+          try {
+            await authRefresh();
+            setLoading(false);
+            window.history.go(0); // refresh page
+          } catch(e) {
+            console.error(e);
+          }
+          setLoading(false)
+        }}>
+        Refresh
+      </Button>{' '}
+      the security token.
+    </div>
+  }
+  return null;
 }
 
-export const GeneralErrorHandler = ({
-  authRefresh,
-}) => {
+export const GeneralErrorHandler = () => {
   const {
-    // numPendingQueries,
-    // numPendingMutations,
     queryError,
     mutationError,
   } = useApolloNetworkStatus();
@@ -89,7 +85,8 @@ export const GeneralErrorHandler = ({
       }
       const notAuthErr = (graphQLErrors || []).find(
         (err) =>
-          err.extension?.exception?.name === 'NotAuthorizedError' ||
+          // @ts-ignore
+          err.extensions?.exception?.name === 'NotAuthorizedError' ||
           err.message?.startsWith('Not authorized')
       );
 
@@ -156,7 +153,13 @@ export const GeneralErrorHandler = ({
             <strong>Communication with the GraphQL server failed!</strong>
             <span>
               {' '}
-            (Status: {networkError.statusCode} - find technical details in browser console)
+              {
+                /*(networkError typeof ServerError) ?
+                "(Status: {networkError?.statusCode}" :
+                ""
+                 */
+              }
+              - find technical details in browser console)
               </span>
             <br/>
             Please, retry by reloading the page.
@@ -172,5 +175,5 @@ export const GeneralErrorHandler = ({
   }
 
   // do not render anything, when there is no error above
-  return false;
+  return null;
 };

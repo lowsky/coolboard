@@ -1,17 +1,33 @@
-import React, { useState } from 'react';
+import React, {CSSProperties, useState} from 'react';
 import { Button, Form, Icon, Image, Message, Modal, Segment, } from 'semantic-ui-react';
 import TimeAgo from 'react-timeago';
 import PropTypes from 'prop-types';
 import { gql } from "@apollo/client";
 import styled from 'styled-components';
 
+type State = {
+    conflict: boolean,
+    loading?: boolean,
+    error: boolean | string,
+    old_name: string,
+    old_description: string,
+    name: string,
+    description: string
+    showModal?: boolean,
+}
+
 export const CardComponent = (props) => {
   const initialState = {
+    conflict: false,
+    loading: false,
+    error: false,
+    old_name: props.name,
+    old_description: props.description,
     name: props.name,
     description: props.description,
     showModal: false,
   };
-  const [state, setState] = useState(initialState);
+  const [state, setState] = useState<State>(initialState);
 
   /*
   // LATER: reactivate when conflict handling will be needed again
@@ -106,10 +122,12 @@ export const CardComponent = (props) => {
     }));
   };
 
-  const handleChange = (e, { name, value }) => {
+  //        onChange?: (event: React.ChangeEvent<HTMLInputElement>, data: InputOnChangeData) => void
+  // @ts-ignore
+  const handleChange = (event, data) => {
     setState(previousState => ({
       ...previousState,
-      [name]: value
+      [data.name]: data.value
     }));
   }
 
@@ -122,7 +140,7 @@ export const CardComponent = (props) => {
     showModal = false,
   } = state;
 
-  const whenDraggingStyle = {
+  const whenDraggingStyle: CSSProperties = {
     color: 'black',
     fontWeight: 'bold',
     fontStyle: 'italic',
@@ -143,9 +161,9 @@ export const CardComponent = (props) => {
         <Modal.Content>
           <Form
             onSubmit={() => saveAndHide()}
-            error={!!error}
+            error={Boolean(error)}
             loading={loading}
-            warning={!!conflict}>
+            warning={conflict}>
             <Message
               warning
               header="Warning! Card was concurrently modified on server."
@@ -210,7 +228,7 @@ export const CardComponent = (props) => {
             </Segment>
           </Modal.Content>
           <Modal.Actions>
-            {!!conflict && (
+            {conflict && (
               <Button
                 color="green"
                 negative
@@ -240,7 +258,7 @@ export const CardComponent = (props) => {
           </Modal.Actions>
         </Modal>
         <span
-          style={isDragging ? whenDraggingStyle : {}}>
+          style={isDragging ? whenDraggingStyle : undefined}>
           {props.name}
         </span>
       </CardDiv>
