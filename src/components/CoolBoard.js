@@ -134,7 +134,7 @@ export const CoolBoard = ({ boardId }) => {
     return <div>Loading Board</div>;
   }
 
-  if(error) {
+  if (error) {
     return null;
   }
 

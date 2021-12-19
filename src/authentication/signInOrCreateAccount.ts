@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
 const AUTHENTICATE = gql`
   mutation authenticate($idToken: String!) {
@@ -17,7 +17,7 @@ export const signInOrCreateAccount = async (apolloClient, idToken) => {
       mutation: AUTHENTICATE,
       variables: { idToken },
     })
-    .then(res => {
+    .then((res) => {
       if (window.location.href.includes('localhost')) {
         console.log('authentication-mutation result:', res);
       }
@@ -25,5 +25,5 @@ export const signInOrCreateAccount = async (apolloClient, idToken) => {
         window.location.href = '/';
       }
     })
-    .catch(err => console.error('Sign in or create account error: ', err));
+    .catch((err) => console.error('Sign in or create account error: ', err));
 };

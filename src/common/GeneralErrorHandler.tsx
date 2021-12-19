@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
 
-import { Button, Icon, Message, } from 'semantic-ui-react';
-import { hasExpirationSet, isExpired, } from '../authentication/checkExpiration';
+import { Button, Icon, Message } from 'semantic-ui-react';
+import { hasExpirationSet, isExpired } from '../authentication/checkExpiration';
 import { useApolloNetworkStatus } from '../setupGraphQLClient';
-import {authRefresh} from "../App";
+import { authRefresh } from '../App';
 
 const ErrorMessage = ({ children }) => (
   <Message error style={{ flexShrink: 0 }}>
@@ -14,37 +14,34 @@ const ErrorMessage = ({ children }) => (
 
 function ReLoginButton({ authRefresh }) {
   const [loading, setLoading] = useState(false);
-  if(!!authRefresh &&
-    hasExpirationSet() &&
-    isExpired() ) {
-    return <div>
-      <Button
-        loading={loading}
-        compact={true}
-        onClick={async() => {
-          setLoading(true)
-          try {
-            await authRefresh();
+  if (!!authRefresh && hasExpirationSet() && isExpired()) {
+    return (
+      <div>
+        <Button
+          loading={loading}
+          compact={true}
+          onClick={async () => {
+            setLoading(true);
+            try {
+              await authRefresh();
+              setLoading(false);
+              window.history.go(0); // refresh page
+            } catch (e) {
+              console.error(e);
+            }
             setLoading(false);
-            window.history.go(0); // refresh page
-          } catch(e) {
-            console.error(e);
-          }
-          setLoading(false)
-        }}>
-        Refresh
-      </Button>{' '}
-      the security token.
-    </div>
+          }}>
+          Refresh
+        </Button>{' '}
+        the security token.
+      </div>
+    );
   }
   return null;
 }
 
 export const GeneralErrorHandler = () => {
-  const {
-    queryError,
-    mutationError,
-  } = useApolloNetworkStatus();
+  const { queryError, mutationError } = useApolloNetworkStatus();
 
   if (queryError || mutationError) {
     const { networkError, graphQLErrors } = {
@@ -61,23 +58,22 @@ export const GeneralErrorHandler = () => {
         return (
           <ErrorMessage>
             <p>
-              You will need to be authenticated to see
-              or create Boards or change any items...
+              You will need to be authenticated to see or create Boards or
+              change any items...
             </p>
             <strong>
-              Registration failed. One reason may be
-              that another user already exist with the
-              same email.
+              Registration failed. One reason may be that another user already
+              exist with the same email.
             </strong>
             <p>
               Please try to
               <Link href="/login">
                 <a>
-                  <Icon size="big" name="sign in"/>
+                  <Icon size="big" name="sign in" />
                   Log in
                 </a>
               </Link>{' '}
-              again or <br/>
+              again or <br />
               <strong>contact the support</strong>
             </p>
           </ErrorMessage>
@@ -91,36 +87,39 @@ export const GeneralErrorHandler = () => {
       );
 
       if (notAuthErr) {
-        if(!localStorage.getItem('expires_at')) {
-          return <Message  style={{ flexShrink: 0 }}>
-            <strong>
-              You will need to be authenticated to see
-              or create Boards or change any items.
-            </strong>
-            <p>
-              You can <Link href="/login">
-                <a>
-                  <Icon size="big" name="sign in"/>
-                  Sign in
-                </a>
-              </Link>
-              via Auth0 service.
-            </p>
-          </Message>
+        if (!localStorage.getItem('expires_at')) {
+          return (
+            <Message style={{ flexShrink: 0 }}>
+              <strong>
+                You will need to be authenticated to see or create Boards or
+                change any items.
+              </strong>
+              <p>
+                You can{' '}
+                <Link href="/login">
+                  <a>
+                    <Icon size="big" name="sign in" />
+                    Sign in
+                  </a>
+                </Link>
+                via Auth0 service.
+              </p>
+            </Message>
+          );
         }
 
         return (
           <ErrorMessage>
             <ReLoginButton authRefresh={authRefresh} />
             <strong>
-              You will need to be authenticated to see
-              or create Boards or change any items.
+              You will need to be authenticated to see or create Boards or
+              change any items.
             </strong>
             <p>
               Please
               <Link href="/login">
                 <a>
-                  <Icon size="big" name="sign in"/>
+                  <Icon size="big" name="sign in" />
                   Log in
                 </a>
               </Link>
@@ -135,9 +134,8 @@ export const GeneralErrorHandler = () => {
 
       return (
         <ErrorMessage>
-          {errorMsgs.filter(
-            (msg) => msg.indexOf('jwt expired') >= 0
-          ).length > 0 && <ReLoginButton authRefresh={authRefresh} />}
+          {errorMsgs.filter((msg) => msg.indexOf('jwt expired') >= 0).length >
+            0 && <ReLoginButton authRefresh={authRefresh} />}
           <strong>Error:</strong>{' '}
           {errorMsgs.map((message, idx) => (
             <span key={idx}>{message}</span>
@@ -153,25 +151,23 @@ export const GeneralErrorHandler = () => {
             <strong>Communication with the GraphQL server failed!</strong>
             <span>
               {' '}
-              {
-                /*(networkError typeof ServerError) ?
+              {/*(networkError typeof ServerError) ?
                 "(Status: {networkError?.statusCode}" :
                 ""
-                 */
-              }
+                 */}
               - find technical details in browser console)
-              </span>
-            <br/>
+            </span>
+            <br />
             Please, retry by reloading the page.
           </p>
         </ErrorMessage>
       );
     }
 
-    console.error(
-      'unknown general error, do not know how to handle:',
-      { queryError, mutationError }
-    );
+    console.error('unknown general error, do not know how to handle:', {
+      queryError,
+      mutationError,
+    });
   }
 
   // do not render anything, when there is no error above

@@ -24,10 +24,7 @@
     "target": "esnext",
     "incremental": true
   },
-  "exclude": [
-    "server/stuff",
-    "**/node_modules"
-  ],
+  "exclude": ["server/stuff", "**/node_modules"],
   "include": [
     "next-env.d.ts",
     "netlify/**/*.ts",

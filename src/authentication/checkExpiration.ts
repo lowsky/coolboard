@@ -8,5 +8,5 @@ export const isExpired = () => {
 };
 
 export const hasExpirationSet = () => {
-  return !!localStorage.getItem('expires_at')
+  return !!localStorage.getItem('expires_at');
 };

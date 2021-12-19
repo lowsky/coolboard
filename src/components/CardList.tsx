@@ -1,20 +1,14 @@
 import React from 'react';
 import { useDrop } from 'react-dnd';
 import PropTypes from 'prop-types';
-import { gql, useMutation, useQuery } from "@apollo/client";
-import {
-  Button,
-  Header,
-  Icon,
-  Loader,
-  Popup,
-} from 'semantic-ui-react';
+import { gql, useMutation, useQuery } from '@apollo/client';
+import { Button, Header, Icon, Loader, Popup } from 'semantic-ui-react';
 
 import Card, { dndItemType } from './Card';
 
 import styles from './CardList.module.css';
 
-const CardListWithoutDnd = props => {
+const CardListWithoutDnd = (props) => {
   const {
     isOver,
     id,
@@ -31,45 +25,35 @@ const CardListWithoutDnd = props => {
 
   return (
     <div data-cy="card-list">
-        <div
-          className={styles.list}
-          style={{
-            backgroundColor: isOver
-              ? 'yellow'
-              : 'lightgrey',
-          }}>
-          <CardListHeader name={name}>
-            <CardListButton
-              onButtonClick={() =>
-                deleteListWithId(id)
-              }>
-              <Icon name="trash" color={'red'} />
-              delete list
-            </CardListButton>
-          </CardListHeader>
-
-          {loading ? (
-            <Loader active />
-          ) : (
-            <div className={styles.inner}>
-              <div className={styles.container}>
-                {cards.map(c => (
-                  <Card
-                    key={c.id}
-                    {...c}
-                    cardListId={id}
-                  />
-                ))}
-              </div>
-            </div>
-          )}
-
-          <CardListButton
-            onButtonClick={() => addCardWithName(id)}>
-            <Icon name="plus" />
-            Add a card
+      <div
+        className={styles.list}
+        style={{
+          backgroundColor: isOver ? 'yellow' : 'lightgrey',
+        }}>
+        <CardListHeader name={name}>
+          <CardListButton onButtonClick={() => deleteListWithId(id)}>
+            <Icon name="trash" color={'red'} />
+            delete list
           </CardListButton>
-        </div>
+        </CardListHeader>
+
+        {loading ? (
+          <Loader active />
+        ) : (
+          <div className={styles.inner}>
+            <div className={styles.container}>
+              {cards.map((c) => (
+                <Card key={c.id} {...c} cardListId={id} />
+              ))}
+            </div>
+          </div>
+        )}
+
+        <CardListButton onButtonClick={() => addCardWithName(id)}>
+          <Icon name="plus" />
+          Add a card
+        </CardListButton>
+      </div>
     </div>
   );
 };
@@ -78,20 +62,16 @@ const drop = (props, cardItem) => {
   const cardId = cardItem.id;
   const cardListId = props.id;
   const oldCardListId = cardItem.cardListId;
-  props.moveCardToList(
-    cardId,
-    oldCardListId,
-    cardListId
-  );
+  props.moveCardToList(cardId, oldCardListId, cardListId);
 };
 
-const CardListWithDnd = props => {
+const CardListWithDnd = (props) => {
   const [dndProps, ref] = useDrop({
     accept: dndItemType,
     drop: (item) => drop(props, item),
     // @ts-ignore
     canDrop: (item) => props.id !== item.cardListId,
-    collect: monitor => ({ isOver: monitor.isOver() }),
+    collect: (monitor) => ({ isOver: monitor.isOver() }),
   });
 
   return (
@@ -115,11 +95,7 @@ const fragments = {
 };
 
 const moveCardMutation = gql`
-  mutation moveCard(
-    $cardId: ID!
-    $oldCardListId: ID!
-    $cardListId: ID!
-  ) {
+  mutation moveCard($cardId: ID!, $oldCardListId: ID!, $cardListId: ID!) {
     newList: updateList(
       data: { cards: { connect: { id: $cardId } } }
       where: { id: $cardListId }
@@ -137,10 +113,7 @@ const moveCardMutation = gql`
 `;
 
 let addCardMutation = gql`
-  mutation AddCardMutation(
-    $cardListId: ID!
-    $name: String!
-  ) {
+  mutation AddCardMutation($cardListId: ID!, $name: String!) {
     updateList(
       data: { cards: { create: { name: $name } } }
       where: { id: $cardListId }
@@ -151,51 +124,38 @@ let addCardMutation = gql`
   ${fragments.list}
 `;
 
-export const CardList = ({
-  id,
-  name,
-  deleteListWithId,
-}) => {
+export const CardList = ({ id, name, deleteListWithId }) => {
   const { loading, error, data } = useQuery(
-      gql`
-        query CardList($cardListId: ID) {
-          list(where: { id: $cardListId }) {
-            ...CardList_list
-          }
+    gql`
+      query CardList($cardListId: ID) {
+        list(where: { id: $cardListId }) {
+          ...CardList_list
         }
-        ${CardList.fragments.list}
-      `,
-    {variables:{ cardListId: id }});
-
-  const [moveCard] = useMutation(
-    moveCardMutation
-  );
-
-  const [addCardWithName] = useMutation(
-    addCardMutation,
-    {
-      variables: {
-        cardListId: id,
-        name: 'new card',
       }
-    }
+      ${CardList.fragments.list}
+    `,
+    { variables: { cardListId: id } }
   );
 
-  if(error) {
-      return <span>Load error!</span>;
+  const [moveCard] = useMutation(moveCardMutation);
+
+  const [addCardWithName] = useMutation(addCardMutation, {
+    variables: {
+      cardListId: id,
+      name: 'new card',
+    },
+  });
+
+  if (error) {
+    return <span>Load error!</span>;
   }
 
   let list = [];
-  if(!loading && data) {
+  if (!loading && data) {
     list = data.list; // fix data is undefined when loading...
   }
 
-
-  const onMoveCardToList = (
-    cardId,
-    oldCardListId,
-    newCardListId
-  ) => {
+  const onMoveCardToList = (cardId, oldCardListId, newCardListId) => {
     moveCard({
       variables: {
         oldCardListId,
@@ -237,13 +197,8 @@ const CardListHeader = ({ name, children }) => (
   </div>
 );
 
-const CardListButton = ({
-  onButtonClick,
-  children,
-}) => (
-  <Button
-    className={styles.button}
-    onClick={() => onButtonClick()}>
+const CardListButton = ({ onButtonClick, children }) => (
+  <Button className={styles.button} onClick={() => onButtonClick()}>
     {children}
   </Button>
 );
