@@ -33,9 +33,10 @@ before(() => {
       ${baseUrl}`
   );
   cy.log(`Testing site on this base url: ${baseUrl}`);
+  cy.log('Testing project git branch: ' + branch);
 
   assert(branch, 'CYPRESS_branch env var was not set');
-  cy.log('Testing project git branch: ' + branch);
+  assert(password, 'CYPRESS_USER_PASSWORD env var was not set');
 });
 
 const gotoBoards = () =>

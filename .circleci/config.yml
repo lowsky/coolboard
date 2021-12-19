@@ -101,6 +101,7 @@ jobs:
             export CYPRESS_baseUrl=${CYPRESS_baseUrl:-$NETLIFY_URL}
             cd smoketest
             mkdir -p cypress/results
+            yarn
             CYPRESS_branch=${CIRCLE_BRANCH} yarn cypress run --record --key $CYPRESS_API_KEY --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
       - store_test_results:
           path: smoketest/cypress/results
