@@ -1,28 +1,19 @@
-import React, { Component, useState } from 'react';
-import {
-  Button,
-  Form,
-  Message,
-  Modal,
-  Icon,
-} from 'semantic-ui-react';
+import React, { useState } from 'react';
+import { Button, Form, Message, Modal, Icon } from 'semantic-ui-react';
 
 export const CreateBoardModal = (props) => {
   const [state, setState] = useState({ name: '' });
 
-  const handleChange = (e, { name, value }) =>
-    setState({ [name]: value });
+  const handleChange = (_, data) => {
+    setState((previousState) => ({
+      ...previousState,
+      [data.name]: data.value,
+    }));
+  };
 
   const { name } = state;
 
-  const {
-    open,
-    onOpen,
-    onHide,
-    createBoard,
-    loading,
-    error = false,
-  } = props;
+  const { open, onOpen, onHide, createBoard, loading, error = false } = props;
 
   return (
     <Modal

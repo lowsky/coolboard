@@ -13,8 +13,7 @@ export const createNewUser = async (idToken, createPersistentUser) => {
   if (!data.email || !data.name || !data.auth0id) {
     throw new RegistrationFailed({
       data: {
-        message:
-          `Error while signing in: Missing any of (email, name, auth0id). Plz contact support!`,
+        message: `Error while signing in: Missing any of (email, name, auth0id). Plz contact support!`,
       },
       internalData: {
         email: data.email,
@@ -29,16 +28,15 @@ export const createNewUser = async (idToken, createPersistentUser) => {
   } catch (err) {
     if (isLocalDev) console.error('Failed to create this new user:', data, err);
 
-    if(err.message.includes('unique constraint')) {
+    if (err.message.includes('unique constraint')) {
       throw new RegistrationFailed({
         data: {
-          message:
-            `Error signing in, a user with same email ${data.email} already exist. Plz contact support!`
+          message: `Error signing in, a user with same email ${data.email} already exist. Plz contact support!`,
         },
         internalData: {
-          error: err
-        }
-      })
+          error: err,
+        },
+      });
     }
     throw err;
   }

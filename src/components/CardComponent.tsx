@@ -1,20 +1,28 @@
-import React, {CSSProperties, useState} from 'react';
-import { Button, Form, Icon, Image, Message, Modal, Segment, } from 'semantic-ui-react';
+import React, { CSSProperties, useState } from 'react';
+import {
+  Button,
+  Form,
+  Icon,
+  Image,
+  Message,
+  Modal,
+  Segment,
+} from 'semantic-ui-react';
 import TimeAgo from 'react-timeago';
 import PropTypes from 'prop-types';
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 import styled from 'styled-components';
 
 type State = {
-    conflict: boolean,
-    loading?: boolean,
-    error: boolean | string,
-    old_name: string,
-    old_description: string,
-    name: string,
-    description: string
-    showModal?: boolean,
-}
+  conflict: boolean;
+  loading?: boolean;
+  error: boolean | string;
+  old_name: string;
+  old_description: string;
+  name: string;
+  description: string;
+  showModal?: boolean;
+};
 
 export const CardComponent = (props) => {
   const initialState = {
@@ -79,12 +87,7 @@ export const CardComponent = (props) => {
         }),
     } = props;
 
-    const {
-      name,
-      description,
-      old_name,
-      old_description,
-    } = state;
+    const { name, description, old_name, old_description } = state;
 
     setLoading();
 
@@ -99,9 +102,9 @@ export const CardComponent = (props) => {
         setLoading(false);
         hide();
       })
-      .catch(e => {
+      .catch((e) => {
         setLoading(false);
-        setState(prevState => ({
+        setState((prevState) => ({
           ...prevState,
           error: e.message,
         }));
@@ -109,27 +112,27 @@ export const CardComponent = (props) => {
   };
 
   function setLoading(loading = true) {
-    setState(prevState => ({
+    setState((prevState) => ({
       ...prevState,
-      loading
+      loading,
     }));
   }
 
   const hide = () => {
-    setState(prevState => ({
+    setState((prevState) => ({
       ...prevState,
-      showModal: false
+      showModal: false,
     }));
   };
 
   //        onChange?: (event: React.ChangeEvent<HTMLInputElement>, data: InputOnChangeData) => void
   // @ts-ignore
   const handleChange = (event, data) => {
-    setState(previousState => ({
+    setState((previousState) => ({
       ...previousState,
-      [data.name]: data.value
+      [data.name]: data.value,
     }));
-  }
+  };
 
   const {
     loading = false,
@@ -145,17 +148,10 @@ export const CardComponent = (props) => {
     fontWeight: 'bold',
     fontStyle: 'italic',
   };
-  const {
-    isDragging,
-    createdAt,
-    updatedAt,
-    updatedBy = {},
-  } = props;
+  const { isDragging, createdAt, updatedAt, updatedBy = {} } = props;
 
   return (
-    <CardDiv
-      data-cy="card"
-      onClick={() => !showModal && showAndReset()}>
+    <CardDiv data-cy="card" onClick={() => !showModal && showAndReset()}>
       <Modal open={showModal} onClose={hide}>
         <Modal.Header>Edit Card</Modal.Header>
         <Modal.Content>
@@ -168,11 +164,7 @@ export const CardComponent = (props) => {
               warning
               header="Warning! Card was concurrently modified on server."
             />
-            <Message
-              error
-              header="Saving Card failed"
-              content={error}
-            />
+            <Message error header="Saving Card failed" content={error} />
             <Form.Input
               fluid
               label="Task Name"
@@ -183,10 +175,7 @@ export const CardComponent = (props) => {
               onChange={handleChange}
               required
             />
-            <ShowDiffWarning
-              newValue={props.name}
-              currentValue={name}
-            />
+            <ShowDiffWarning newValue={props.name} currentValue={name} />
             <Form.TextArea
               label="Task Description"
               placeholder="Add some more details about this task ..."
@@ -203,67 +192,65 @@ export const CardComponent = (props) => {
             <Message>
               <p>
                 <strong>created: </strong>
-                  <TimeAgo date={createdAt} />
-                </p>
-                <p>
-                  <strong>updated: </strong>
-                  <TimeAgo date={updatedAt} />
-                  {updatedBy && (
-                    <>
-                      <strong> by: </strong>
-                      <Image
-                        avatar
-                        alt="user-avatar-icon"
-                        src={updatedBy.avatarUrl}
-                      />
-                      <span>
-                        { updatedBy.name ? updatedBy.name
-                          : (updatedBy.email ? updatedBy.email : '?')
-                        }
-                      </span>
-                    </>
-                  )}
-                </p>
-              </Message>
-            </Segment>
-          </Modal.Content>
-          <Modal.Actions>
-            {conflict && (
-              <Button
-                color="green"
-                negative
-                onClick={() => {
-                  saveAndHide();
-                }}
-                inverted>
-                <Icon name="save" /> Overwrite
-              </Button>
-            )}
-            {!conflict && (
-              <Button
-                color="green"
-                onClick={() => {
-                  saveAndHide();
-                }}
-                inverted>
-                <Icon name="save" /> Save
-              </Button>
-            )}
+                <TimeAgo date={createdAt} />
+              </p>
+              <p>
+                <strong>updated: </strong>
+                <TimeAgo date={updatedAt} />
+                {updatedBy && (
+                  <>
+                    <strong> by: </strong>
+                    <Image
+                      avatar
+                      alt="user-avatar-icon"
+                      src={updatedBy.avatarUrl}
+                    />
+                    <span>
+                      {updatedBy.name
+                        ? updatedBy.name
+                        : updatedBy.email
+                        ? updatedBy.email
+                        : '?'}
+                    </span>
+                  </>
+                )}
+              </p>
+            </Message>
+          </Segment>
+        </Modal.Content>
+        <Modal.Actions>
+          {conflict && (
             <Button
-              color="red"
-              onClick={hide}
+              color="green"
+              negative
+              onClick={() => {
+                saveAndHide();
+              }}
               inverted>
-              <Icon name="cancel" /> Close/cancel
+              <Icon name="save" /> Overwrite
             </Button>
-          </Modal.Actions>
-        </Modal>
-        <span
-          style={isDragging ? whenDraggingStyle : undefined}>
-          {props.name}
-        </span>
-      </CardDiv>
-    );
-}
+          )}
+          {!conflict && (
+            <Button
+              color="green"
+              onClick={() => {
+                saveAndHide();
+              }}
+              inverted>
+              <Icon name="save" /> Save
+            </Button>
+          )}
+          <Button color="red" onClick={hide} inverted>
+            <Icon name="cancel" /> Close/cancel
+          </Button>
+        </Modal.Actions>
+      </Modal>
+      <span style={isDragging ? whenDraggingStyle : undefined}>
+        {props.name}
+      </span>
+    </CardDiv>
+  );
+};
 
 CardComponent.propTypes = {
   id: PropTypes.string.isRequired,
@@ -303,14 +290,8 @@ const CardDiv = styled.div`
   padding: 10px;
 `;
 
-const ShowDiffWarning = ({
-  newValue,
-  currentValue,
-}) => (
-  <Message
-    warning
-    size="mini"
-    hidden={newValue === currentValue}>
+const ShowDiffWarning = ({ newValue, currentValue }) => (
+  <Message warning size="mini" hidden={newValue === currentValue}>
     <b>New:</b> {newValue}
   </Message>
 );

@@ -1,17 +1,9 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Button,
-  Container,
-  Header,
-  Icon,
-} from 'semantic-ui-react';
+import { Button, Container, Header, Icon } from 'semantic-ui-react';
 
-export const BoardContainer = ({
-  boardName,
-  children,
-}) => (
+export const BoardContainer = ({ boardName, children }) => (
   <Container
     fluid
     style={{
@@ -56,10 +48,7 @@ export const AddListButton = ({ onAddNewList }) => (
   </Button>
 );
 
-export const DelListButton = ({
-  action,
-  children,
-}) => (
+export const DelListButton = ({ action, children }) => (
   <Button
     onClick={() => action()}
     style={{
@@ -74,10 +63,7 @@ export const DelListButton = ({
 
 DelListButton.propTypes = {
   onAddNewList: PropTypes.func,
-  children: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.string,
-  ]).isRequired,
+  children: PropTypes.oneOfType([PropTypes.array, PropTypes.string]).isRequired,
 };
 AddListButton.propTypes = {
   onAddNewList: PropTypes.func,

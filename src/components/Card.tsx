@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { gql, useMutation } from "@apollo/client";
+import { gql, useMutation } from '@apollo/client';
 import { useDrag } from 'react-dnd';
 
 import { CardComponent } from './CardComponent';
@@ -9,9 +9,7 @@ const EditCardMutation = gql`
   mutation updateCard(
     $id: ID!
     $name: String
-    $description: String
-    #$old_name: String
-    #$old_description: String
+    $description: String #$old_name: String #$old_description: String
   ) {
     updateCard(
       where: { id: $id }
@@ -31,16 +29,16 @@ const EditCardMutation = gql`
   ${CardComponent.fragments.card}
 `;
 
-export const Card = props => {
+export const Card = (props) => {
   const [mutation] = useMutation(EditCardMutation, {
     variables: {
       ...props,
-    }
+    },
   });
   return (
     <CardComponent
       {...props}
-      storeCard={vars =>
+      storeCard={(vars) =>
         mutation({
           variables: vars,
         })
@@ -62,13 +60,13 @@ export const dndItemType = 'card';
 export const CardForDragging = (props) => {
   const [_, ref] = useDrag({
     type: dndItemType,
-    item:  {
+    item: {
       id: props.id,
       cardListId: props.cardListId,
     },
     //((monitor: DragSourceMonitor<DragObject, DropResult>) => boolean);
     // @ts-ignore
-    canDrag: () => props => !!props.cardListId,
+    canDrag: () => (props) => !!props.cardListId,
   });
 
   return (

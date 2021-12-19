@@ -5,21 +5,22 @@ import { typeDefs } from '../../server/src/schema/apiSchema';
 
 import { isLocalDev } from '../../server/src/helpers/logging';
 
-const { PrismaClient } = require('@prisma/client')
+const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient({
-  log: isLocalDev ? ['query', 'info', `warn`, `error`]:
-    ['info', 'warn', 'error']
+  log: isLocalDev
+    ? ['query', 'info', `warn`, `error`]
+    : ['info', 'warn', 'error'],
 });
 
-const getGraphqlServer = async() => {
-const apolloServer = new ApolloServer({
-  typeDefs,
-  resolvers,
-  debug: isLocalDev,
-  // playground: isLocalDev,
-  introspection: isLocalDev,
+const getGraphqlServer = async () => {
+  const apolloServer = new ApolloServer({
+    typeDefs,
+    resolvers,
+    debug: isLocalDev,
+    // playground: isLocalDev,
+    introspection: isLocalDev,
 
-  /*
+    /*
   engine: {
     // The Graph Manager API key
     apiKey: process.env.ENGINE_API_KEY,
@@ -30,22 +31,22 @@ const apolloServer = new ApolloServer({
   },
    */
 
-  /*
+    /*
   resolverValidationOptions: {
     requireResolversForResolveType: false,
   },
   */
-  context: ({req}) => ({
-    event: {
-      headers: req.headers
-    },
-    prisma,
-  }),
-});
+    context: ({ req }) => ({
+      event: {
+        headers: req.headers,
+      },
+      prisma,
+    }),
+  });
 
   await apolloServer.start();
   return apolloServer;
-}
+};
 //LATER: exports.handler = instana.wrap((event, context, callback) => {
 
 /*
@@ -80,12 +81,11 @@ const handler = instana.wrap((event, context, callback) => {
 });
 */
 
-
 // will be stored here for re-use
-let server: ApolloServer|null = null;
+let server: ApolloServer | null = null;
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default async(req, res) => {
+export default async (req, res) => {
   const apolloServer = server || (await getGraphqlServer());
   server = apolloServer;
 
@@ -100,4 +100,4 @@ export const config = {
   api: {
     bodyParser: false,
   },
-}
+};

@@ -1,23 +1,24 @@
-import Head from 'next/head'
+import Head from 'next/head';
 // import Link from "next/link";
 // import Script from 'next/script'
 
-
-import '../public/index.css'
-import '../src/fomantic/dist/semantic.css'
-import { Footer } from "../src/components/Footer";
+import '../public/index.css';
+import '../src/fomantic/dist/semantic.css';
+import { Footer } from '../src/components/Footer';
 
 // Head's title and view-port-meta needs to go here, see https://nextjs.org/docs/messages/no-document-viewport-meta
 
-export default function App({ Component, pageProps}) {
+export default function App({ Component, pageProps }) {
   return (
     <>
       <Head>
         <title>Coolboard - Hands-on Application Building with GraphQL</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
       </Head>
-      {
-        /*
+      {/*
       <Script strategy='afterInteractive' id="eum-init"
       >
         {`
@@ -33,16 +34,16 @@ export default function App({ Component, pageProps}) {
       </Script>
       <Script strategy='afterInteractive' id="eum" crossOrigin="anonymous"
               src="https://eum.instana.io/eum.min.js" defer/>
-      */
-      }
-      <div style={{
-        overflow: "auto",
-        flex: 1
-      }}>
+      */}
+      <div
+        style={{
+          overflow: 'auto',
+          flex: 1,
+        }}>
         <Component {...pageProps} />
       </div>
 
       <Footer />
     </>
-  )
+  );
 }

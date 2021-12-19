@@ -1,6 +1,5 @@
-// eslint-disable-next-line prettier/prettier
 // import instana from '@instana/collector';
-if(false) {
+if (false) {
   // eslint-disable-next-line no-undef
   instana({
     tracing: {
@@ -9,9 +8,9 @@ if(false) {
   });
 }
 import dotenv from 'dotenv';
-dotenv.config()
+dotenv.config();
 
-import { isLocalDev } from "../../src/helpers/logging";
+import { isLocalDev } from '../../src/helpers/logging';
 import { Prisma } from '../../src/generated/prisma';
 
 import { makeExecutableSchema } from '@graphql-tools/schema';
@@ -41,15 +40,18 @@ const server = new ApolloServer({
   introspection: isLocalDev,
   playground: isLocalDev,
   debug: true,
-  context: req => ({
+  context: (req) => ({
     ...req,
-    prisma
+    prisma,
   }),
 });
 
 server.express.post(
   server.options.endpoint,
-  (req, res, next) => {console.info('snip 8< ------------------------------------------------'); next()},
+  (req, res, next) => {
+    console.info('snip 8< ------------------------------------------------');
+    next();
+  },
   (err, req, res, next) => {
     if (err) {
       console.error('JWT token verification check/auth failed!', err);

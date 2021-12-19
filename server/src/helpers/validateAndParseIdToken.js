@@ -5,12 +5,10 @@ const jwks = jwksClient({
   cache: true,
   rateLimit: true,
   jwksRequestsPerMinute: 10,
-  jwksUri: `https://${
-    process.env.AUTH0_DOMAIN
-  }/.well-known/jwks.json`,
+  jwksUri: `https://${process.env.AUTH0_DOMAIN}/.well-known/jwks.json`,
 });
 
-const validateAndParseIdToken = async idToken =>
+const validateAndParseIdToken = async (idToken) =>
   new Promise((resolve, reject) => {
     const token = jwt.decode(idToken, {
       complete: true,
@@ -26,17 +24,11 @@ const validateAndParseIdToken = async idToken =>
 
     jwks.getSigningKey(header.kid, (err, key) => {
       if (err) {
-        reject(
-          new Error(
-            'Error getting signing key: ' + err.message
-          )
-        );
+        reject(new Error('Error getting signing key: ' + err.message));
       }
       if (!key) {
         reject(
-          new Error(
-            'Error getting signing key: "No public key info available"'
-          )
+          new Error('Error getting signing key: "No public key info available"')
         );
         return;
       }
@@ -54,4 +46,4 @@ const validateAndParseIdToken = async idToken =>
     });
   });
 
-export default validateAndParseIdToken
+export default validateAndParseIdToken;

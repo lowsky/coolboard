@@ -30,9 +30,7 @@ const card = {
       },
     };
 
-    const updatedCard = await prisma.card.update(
-      argsWithUpdatedByUser
-    );
+    const updatedCard = await prisma.card.update(argsWithUpdatedByUser);
 
     return prisma.card.findUnique({
       where: { id: updatedCard.id },

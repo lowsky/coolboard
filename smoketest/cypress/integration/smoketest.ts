@@ -15,9 +15,7 @@ const password = Cypress.env('USER_PASSWORD');
 // will be set by cypress.json, or via env: CYPRESS_baseUrl
 const baseUrl = Cypress.config('baseUrl') ?? 'missing env CYPRESS_baseUrl';
 // will be set by cypress.json, or via env: CYPRESS_branch
-const branch =
-  Cypress.env('branch') ||
-  'missing-CYPRESS_branch-env';
+const branch = Cypress.env('branch') || 'missing-CYPRESS_branch-env';
 
 const newBoardName = branch;
 
@@ -26,7 +24,9 @@ before(() => {
     baseUrl.endsWith('localhost:8888') ||
       baseUrl.endsWith('localhost:3000') ||
       baseUrl.endsWith('coolboard.netlify.app') ||
-      baseUrl.startsWith('https://hands-on-application-building-with-graph-ql-and-reac') ||
+      baseUrl.startsWith(
+        'https://hands-on-application-building-with-graph-ql-and-reac'
+      ) ||
       baseUrl.endsWith('coolboard.fun'),
     `Check: Domain should be one of: ' +
      localhost:3000 |localhost:8888 | coolboard.fun | coolboard.netlify.app , but not:
@@ -54,34 +54,28 @@ const clickLogin = () =>
     .first()
     .click();
 
-const _boardListContainer = () =>
-  cy.dataCy('board-container-inner');
+const _boardListContainer = () => cy.dataCy('board-container-inner');
 
-const cardListButtons = () =>
-  _boardListContainer().find('button');
+const cardListButtons = () => _boardListContainer().find('button');
 
-const add_a_list = () =>
-  cardListButtons().contains('Add a list');
+const add_a_list = () => cardListButtons().contains('Add a list');
 
-const sections = (options: (Partial<Loggable & Timeoutable>)) =>
+const sections = (options: Partial<Loggable & Timeoutable>) =>
   cy.dataCy('card-list', options);
 
-const add_a_card = () =>
-  cardListButtons().contains('Add a card');
+const add_a_card = () => cardListButtons().contains('Add a card');
 
 function fillLoginForm() {
-  cy.get(auth0LockInputEmail, LogAndWaitLong).type(
-    'skylab@nurfuerspam.de'
-  );
+  cy.get(auth0LockInputEmail, LogAndWaitLong).type('skylab@nurfuerspam.de');
   cy.get(auth0LockInputPassword).type(password, {
     log: false,
   });
 
-  cy.get('button.auth0-lock-submit')
-    .click();
+  cy.get('button.auth0-lock-submit').click();
 
   // helps to wait for auth0 process of redirecting with to the /callback url
-  return cy.wait(1000)
+  return cy
+    .wait(1000)
     .url(LogAndWaitLong)
     .should('not.include', 'callback')
     .should('equal', baseUrl + '/boards')
@@ -89,25 +83,22 @@ function fillLoginForm() {
 }
 
 let authResult: {
-  expiresAt: string ,
-  idToken: string,
-  accessToken: string
-}
+  expiresAt: string;
+  idToken: string;
+  accessToken: string;
+};
 
 function doLogin() {
-  if(authResult) {
+  if (authResult) {
     const { expiresAt, idToken, accessToken } = authResult;
     localStorage.setItem('access_token', accessToken);
     localStorage.setItem('id_token', idToken);
     localStorage.setItem('expires_at', expiresAt);
 
     gotoBoards();
-  }
-  else
-    cy
-    .visit(baseUrl)
-    .then(() => {
-      if(authResult) {
+  } else
+    cy.visit(baseUrl).then(() => {
+      if (authResult) {
         // this block still needed - not sure...
         const { expiresAt, idToken, accessToken } = authResult;
         localStorage.setItem('access_token', accessToken);
@@ -116,40 +107,33 @@ function doLogin() {
       } else {
         gotoBoards();
         clickLogin();
-        fillLoginForm()
-          .then(() => {
-              const accessToken = localStorage.getItem('access_token')!
-              const idToken = localStorage.getItem('id_token')!
-              const expiresAt = localStorage.getItem('expires_at')!
+        fillLoginForm().then(() => {
+          const accessToken = localStorage.getItem('access_token')!;
+          const idToken = localStorage.getItem('id_token')!;
+          const expiresAt = localStorage.getItem('expires_at')!;
 
-              authResult = {
-                expiresAt,
-                idToken,
-                accessToken
-              }
-            }
-          )
+          authResult = {
+            expiresAt,
+            idToken,
+            accessToken,
+          };
+        });
       }
     });
 }
 
 const getBoardsList = () => {
-  cy
-    .dataCy('full-container')
-    .dataCy ('boards-list')
-    .first();
+  cy.dataCy('full-container').dataCy('boards-list').first();
 
   return cy
-    .dataCy('full-container' )
+    .dataCy('full-container')
     .dataCy('boards-list', WaitVeryLong)
     .should('exist')
     .find('a', WaitVeryLong);
-}
+};
 
-const getBoardsList_FirstEntry = (name:string) =>
-  getBoardsList()
-    .contains(name)
-    .first();
+const getBoardsList_FirstEntry = (name: string) =>
+  getBoardsList().contains(name).first();
 
 let LogAndWaitLong = {
   log: true,
@@ -158,7 +142,7 @@ let LogAndWaitLong = {
 let WaitVeryLong = {
   log: true,
   timeout: 5000 * 4,
-}
+};
 
 describe('Test coolboard', () => {
   it('need to login to show boards', () => {
@@ -170,7 +154,7 @@ describe('Test coolboard', () => {
     doLogin();
     gotoBoards();
 
-    getBoardsList().then(boards =>
+    getBoardsList().then((boards) =>
       cy
         .log(String(boards))
         .log(String(boards.length))
@@ -195,13 +179,10 @@ describe('Test coolboard', () => {
     // open first board named XXX
     getBoardsList_FirstEntry(newBoardName).click();
 
-    cy.url()
-      .should('include', 'board/');
+    cy.url().should('include', 'board/');
 
     // clear all lists:
-    cy.get('button', LogAndWaitLong)
-      .contains('Delete All')
-      .click();
+    cy.get('button', LogAndWaitLong).contains('Delete All').click();
 
     sections(LogAndWaitLong).should('not.exist');
 
@@ -213,20 +194,12 @@ describe('Test coolboard', () => {
 
     add_a_card().click();
 
-    cy.dataCy('card', WaitVeryLong)
-      .contains('new card')
-      .click();
+    cy.dataCy('card', WaitVeryLong).contains('new card').click();
 
     // edit card
     cy.log('edit card');
-    cy.get('.modal')
-      .get('input')
-      .type('name-changed');
-    cy.get('.modal')
-      .find('.button')
-      .contains('Save')
-      .click()
-      .wait(1500);
+    cy.get('.modal').get('input').type('name-changed');
+    cy.get('.modal').find('.button').contains('Save').click().wait(1500);
 
     cy.log('wait until dialog closes');
     cy.get('.modal', WaitVeryLong).should('not.exist');
@@ -250,9 +223,7 @@ describe('Test coolboard', () => {
       .dataCy('card-list-header-menu')
       .first()
       .click();
-    cy.get('.ui > .button > .trash')
-      .first()
-      .click();
+    cy.get('.ui > .button > .trash').first().click();
 
     // Later: if(headed) cy.pause();
     // logout
@@ -268,9 +239,8 @@ describe('Test coolboard', () => {
       .parent()
       .find('.button > .trash')
       .click();
-    getBoardsList_FirstEntry(newBoardName)
-      .should('not.exist');
+    getBoardsList_FirstEntry(newBoardName).should('not.exist');
   });
 });
 
-export {}
+export {};

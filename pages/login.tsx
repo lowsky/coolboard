@@ -12,10 +12,10 @@ export default function Login() {
   trackPage('login');
   client
     .resetStore()
-    .then(async() => {
+    .then(async () => {
       await login();
     })
-    .catch(ignoredError => {
+    .catch((ignoredError) => {
       console.error('error while loggin in will be ignored', ignoredError);
       // noinspection JSIgnoredPromiseFromCall - just trigger login, without waiting for result
       login();

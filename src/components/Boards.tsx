@@ -1,46 +1,49 @@
-import { gql, useMutation, useQuery } from "@apollo/client";
+import { gql, useMutation, useQuery } from '@apollo/client';
 import Link from 'next/link';
 import React, { useState } from 'react';
-import { Button, Container, List, Loader, Segment, } from 'semantic-ui-react';
+import { Button, Container, List, Loader, Segment } from 'semantic-ui-react';
 
 import { FullVerticalContainer } from '../common/FullVerticalContainer';
 import { CreateBoardModal } from './CreateBoardModal';
 
-import styles from "./Boards.module.css";
+import styles from './Boards.module.css';
 
 const BoardListItem = ({ name, id, deleteBoard }) => {
   const [deleting, setDeleting] = useState(false);
   return (
-    <List.Item as={"li"} className={styles.listItem} data-cy="board-list-item">
-        <Link href={`/board/${id}`}>
-          <a className={styles.wideColumn}>{name}</a>
-        </Link>
+    <List.Item as={'li'} className={styles.listItem} data-cy="board-list-item">
+      <Link href={`/board/${id}`}>
+        <a className={styles.wideColumn}>{name}</a>
+      </Link>
 
-        <Button compact basic
-                onClick={() => {
-                  setDeleting(true);
-                  deleteBoard(id).finally(() => setDeleting(false))
-                }}
-                loading={deleting}
-                size="mini"
-                icon="trash"
-        />
+      <Button
+        compact
+        basic
+        onClick={() => {
+          setDeleting(true);
+          deleteBoard(id).finally(() => setDeleting(false));
+        }}
+        loading={deleting}
+        size="mini"
+        icon="trash"
+      />
     </List.Item>
   );
 };
 
-const BoardList = ({ boards, deleteBoard }) =>
-    <List celled divided>
-      {boards.map(({ id, name, ...info }) => (
-        <BoardListItem
-          key={id}
-          id={id}
-          name={name}
-          {...info}
-          deleteBoard={deleteBoard}
-        />
-      ))}
-    </List>;
+const BoardList = ({ boards, deleteBoard }) => (
+  <List celled divided>
+    {boards.map(({ id, name, ...info }) => (
+      <BoardListItem
+        key={id}
+        id={id}
+        name={name}
+        {...info}
+        deleteBoard={deleteBoard}
+      />
+    ))}
+  </List>
+);
 
 const createBoardMutation = gql`
   mutation createBoard($name: String!) {
@@ -76,42 +79,36 @@ const userWithBoardsQuery = gql`
 `;
 
 export const Boards = () => {
-  const { loading, error, data, refetch } = useQuery(
-    userWithBoardsQuery
-  );
+  const { loading, error, data, refetch } = useQuery(userWithBoardsQuery);
 
   const [showModal, setShowModal] = useState(false);
 
-  const [deleteBoard] = useMutation(
-    deleteBoardMutation,
-    { onCompleted: () => refetch() }
-  );
+  const [deleteBoard] = useMutation(deleteBoardMutation, {
+    onCompleted: () => refetch(),
+  });
 
-  const [createBoard, boardCreationState] = useMutation(
-    createBoardMutation,
-    { onCompleted: () => refetch() }
-  );
+  const [createBoard, boardCreationState] = useMutation(createBoardMutation, {
+    onCompleted: () => refetch(),
+  });
 
-  if(loading) {
+  if (loading) {
     return (
       <FullVerticalContainer>
         <Segment textAlign="center" basic>
           <h1>Your Boards</h1>
-          <Loader/>
+          <Loader />
         </Segment>
-
       </FullVerticalContainer>
     );
   }
 
-  if(error) {
+  if (error) {
     return (
       <FullVerticalContainer>
         <Segment textAlign="center" basic>
           <h1>Your Boards</h1>
           <p>list can not be loaded, please retry.</p>
         </Segment>
-
       </FullVerticalContainer>
     );
   }
@@ -120,21 +117,18 @@ export const Boards = () => {
     <FullVerticalContainer>
       <Segment textAlign="center" basic>
         <h1>Your Boards</h1>
-        <Container data-cy='boards-list' textAlign="left">
+        <Container data-cy="boards-list" textAlign="left">
           {data?.me?.boards?.length > 0 ? (
             <BoardList
               boards={data.me.boards}
-              deleteBoard={id => {
+              deleteBoard={(id) => {
                 return deleteBoard({
                   variables: { id },
                 });
               }}
             />
           ) : (
-            <span>
-            There a no boards, yet. You need
-            need to create one.
-          </span>
+            <span>There a no boards, yet. You need need to create one.</span>
           )}
         </Container>
       </Segment>

@@ -7,9 +7,7 @@ const auth0 = {
     let userToken;
 
     try {
-      userToken = await validateAndParseIdToken(
-        idToken
-      );
+      userToken = await validateAndParseIdToken(idToken);
       /*      id-JWT-Token
 
       containing header:
@@ -37,19 +35,13 @@ const auth0 = {
 
        */
     } catch (err) {
-      throw new Error(
-        `Auth0: validating token: ${idToken} - ${
-          err.message
-        }`
-      );
+      throw new Error(`Auth0: validating token: ${idToken} - ${err.message}`);
     }
 
     const auth0id = userToken.sub.split('|')[1];
 
     if (!auth0id) {
-      throw new Error(
-        'auth0id is empty, invalid token !'
-      );
+      throw new Error('auth0id is empty, invalid token !');
     }
 
     let userByAuth0id = await prisma.user({ auth0id });

@@ -1,7 +1,10 @@
 import { createError } from 'apollo-errors';
 
 import validateAndParseIdToken from '../helpers/validateAndParseIdToken';
-import { injectUserIdByAuth0id, userIdByAuth0id } from '../helpers/userIdByAuth0id';
+import {
+  injectUserIdByAuth0id,
+  userIdByAuth0id,
+} from '../helpers/userIdByAuth0id';
 import { createNewUser } from '../helpers/registerNewUser';
 import { isLocalDev } from '../helpers/logging';
 
@@ -15,17 +18,17 @@ export const RegistrationFailed = createError('RegistrationFailed', {
   message: 'RegistrationFailed',
 });
 
-const getUserId = async ctx => {
-
+const getUserId = async (ctx) => {
   const userToken = await verifyAuth0HeaderToken(ctx);
   if (userToken) {
     const auth0id = userToken.sub.split('|')[1];
-    const userId = await userIdByAuth0id(auth0id, (auth0id)=>
+    const userId = await userIdByAuth0id(auth0id, (auth0id) =>
       ctx.prisma.user.findUnique({
         where: {
-          auth0id
-        }
-      }));
+          auth0id,
+        },
+      })
+    );
 
     if (userId) {
       return userId;
@@ -34,24 +37,21 @@ const getUserId = async ctx => {
     const user = await createNewUser(userToken, ctx.prisma.user.create);
     if (isLocalDev) console.log('--- created prisma user (+id)', user);
     const { id } = user;
-    if (id) injectUserIdByAuth0id(user.id, auth0id)
+    if (id) injectUserIdByAuth0id(user.id, auth0id);
     return id;
   }
 
   throw new AuthError({
-    message:
-      'Not authorized: no user in current request',
+    message: 'Not authorized: no user in current request',
   });
 };
 
-export const auth0idFromUserToken = userToken => userToken.sub.split('|')[1];
+export const auth0idFromUserToken = (userToken) => userToken.sub.split('|')[1];
 
 async function verifyAuth0HeaderToken(ctx) {
   const authorization = ctx.request
     ? ctx.request.get('Authorization')
-    : ctx.event &&
-      ctx.event.headers &&
-      ctx.event.headers['authorization']
+    : ctx.event && ctx.event.headers && ctx.event.headers['authorization']
     ? ctx.event.headers['authorization']
     : ctx.connection &&
       ctx.connection.context &&
@@ -63,31 +63,23 @@ async function verifyAuth0HeaderToken(ctx) {
     const token = authorization.replace('Bearer ', '');
 
     try {
-      const userToken = await validateAndParseIdToken(
-        token
-      );
+      const userToken = await validateAndParseIdToken(token);
       const auth0id = auth0idFromUserToken(userToken);
       if (auth0id) {
         return userToken;
       }
     } catch (error) {
-      throw new Error(
-        'invalid auth token was sent: ' + error
-      );
+      throw new Error('invalid auth token was sent: ' + error);
     }
   }
 
   throw new AuthError({
-    message: 'Not authorized, no valid auth token'
+    message: 'Not authorized, no valid auth token',
   });
 }
 
-const verifyUserIsAuthenticated = async ctx => {
+const verifyUserIsAuthenticated = async (ctx) => {
   await verifyAuth0HeaderToken(ctx);
 };
 
-export {
-  getUserId,
-  verifyUserIsAuthenticated,
-  verifyAuth0HeaderToken,
-};
+export { getUserId, verifyUserIsAuthenticated, verifyAuth0HeaderToken };

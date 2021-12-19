@@ -1,20 +1,14 @@
-import React, {ReactNode} from 'react';
-import { gql, useQuery } from "@apollo/client";
-import {
-  Container,
-  Icon,
-  Image,
-  Loader,
-} from 'semantic-ui-react';
-import Link  from 'next/link';
-
+import React, { ReactNode } from 'react';
+import { gql, useQuery } from '@apollo/client';
+import { Container, Icon, Image, Loader } from 'semantic-ui-react';
+import Link from 'next/link';
 
 const ProfileHeaderContainer = ({
   children,
   isBoardsPage,
 }: {
-  children: ReactNode,
-  isBoardsPage?: boolean,
+  children: ReactNode;
+  isBoardsPage?: boolean;
 }) => (
   <Container
     fluid
@@ -33,17 +27,26 @@ const ProfileHeaderContainer = ({
       }}>
       {isBoardsPage && (
         <Link href="/">
-          <a><Icon size="big" name="home" />Home</a>
+          <a>
+            <Icon size="big" name="home" />
+            Home
+          </a>
         </Link>
       )}
       {!isBoardsPage && (
         <Link href="/boards">
-          <a><Icon size="big" name="list" />Boards</a>
+          <a>
+            <Icon size="big" name="list" />
+            Boards
+          </a>
         </Link>
       )}
 
       <Link href="/about">
-        <a><Icon size="big" name="question" />About</a>
+        <a>
+          <Icon size="big" name="question" />
+          About
+        </a>
       </Link>
 
       {children}
@@ -51,25 +54,24 @@ const ProfileHeaderContainer = ({
   </Container>
 );
 
-export const ProfileHeader = ({isBoardsPage}: { isBoardsPage?: boolean }) => {
+export const ProfileHeader = ({ isBoardsPage }: { isBoardsPage?: boolean }) => {
   // LATER: { options: { fetchPolicy: 'network-only' } }
   const { loading, error, data } = useQuery(
     gql`
       {
-          me {
-              email
-              id
-              name
-              avatarUrl
-          }
+        me {
+          email
+          id
+          name
+          avatarUrl
+        }
       }
     `
   );
 
-  if(loading) {
+  if (loading) {
     return (
-      <ProfileHeaderContainer
-        isBoardsPage={isBoardsPage}>
+      <ProfileHeaderContainer isBoardsPage={isBoardsPage}>
         <Loader active />
         Loading user...
       </ProfileHeaderContainer>
@@ -78,28 +80,26 @@ export const ProfileHeader = ({isBoardsPage}: { isBoardsPage?: boolean }) => {
 
   if (error) {
     return (
-      <ProfileHeaderContainer
-        isBoardsPage={isBoardsPage}>
+      <ProfileHeaderContainer isBoardsPage={isBoardsPage}>
         <Link href="/login">
-          <a><Icon size="big" name="sign in" />Log in
+          <a>
+            <Icon size="big" name="sign in" />
+            Log in
           </a>
         </Link>
       </ProfileHeaderContainer>
     );
   }
 
-  const { me= {} } = data;
+  const { me = {} } = data;
 
   const { avatarUrl, name } = me;
 
   return (
-    <ProfileHeaderContainer
-      isBoardsPage={isBoardsPage}>
+    <ProfileHeaderContainer isBoardsPage={isBoardsPage}>
       <div>
         <span>{name} </span>
-        {avatarUrl && (
-          <Image src={avatarUrl} avatar spaced alt="user avatar" />
-        )}
+        {avatarUrl && <Image src={avatarUrl} avatar spaced alt="user avatar" />}
 
         <Link href="/logout">
           <a>

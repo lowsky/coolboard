@@ -4,10 +4,13 @@ const list = {
   async updateList(parent, { where, data }, ctx) {
     const userId = await getUserId(ctx);
     const { prisma } = ctx;
-    const { create, connect, disconnect, ...otherCardOperation } = data.cards ?? {};
+    const { create, connect, disconnect, ...otherCardOperation } =
+      data.cards ?? {};
 
     if (!create && !connect && !disconnect) {
-      throw new Error('Unsupported operation on lists: ' + Object.keys(otherCardOperation));
+      throw new Error(
+        'Unsupported operation on lists: ' + Object.keys(otherCardOperation)
+      );
     }
 
     let cards = {};
