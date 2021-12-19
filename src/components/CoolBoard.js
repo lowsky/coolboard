@@ -135,7 +135,7 @@ export const CoolBoard = ({ boardId }) => {
   }
 
   if(error) {
-    return false;
+    return null;
   }
 
   const { board } = data;
