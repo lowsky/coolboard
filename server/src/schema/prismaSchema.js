@@ -1,6 +1,4 @@
 export const typeDefs = `
-# import Board from "./generated/prisma.graphql"
-
 type AggregateBoard {
   count: Int!
 }
