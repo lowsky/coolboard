@@ -1,10 +1,10 @@
-import { gql, useMutation, useQuery } from '@apollo/client';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { Button, Container, List, Loader, Segment } from 'semantic-ui-react';
 
 import { FullVerticalContainer } from '../common/FullVerticalContainer';
 import { CreateBoardModal } from './CreateBoardModal';
+import { useCreateBoardMutation, useDeleteBoardMutation, useUserBoardsQuery } from '../generated/graphql';
 
 import styles from './Boards.module.css';
 
@@ -45,49 +45,16 @@ const BoardList = ({ boards, deleteBoard }) => (
   </List>
 );
 
-const createBoardMutation = gql`
-  mutation createBoard($name: String!) {
-    createBoard(name: $name) {
-      name
-      id
-      boards {
-        name
-        id
-      }
-    }
-  }
-`;
-const deleteBoardMutation = gql`
-  mutation delBoard($id: ID!) {
-    deleteBoard(id: $id) {
-      id
-    }
-  }
-`;
-
-const userWithBoardsQuery = gql`
-  {
-    me {
-      name
-      id
-      boards {
-        name
-        id
-      }
-    }
-  }
-`;
-
 export const Boards = () => {
-  const { loading, error, data, refetch } = useQuery(userWithBoardsQuery);
+  const { loading, error, data, refetch } = useUserBoardsQuery();
 
   const [showModal, setShowModal] = useState(false);
 
-  const [deleteBoard] = useMutation(deleteBoardMutation, {
+  const [deleteBoard] = useDeleteBoardMutation( {
     onCompleted: () => refetch(),
   });
 
-  const [createBoard, boardCreationState] = useMutation(createBoardMutation, {
+  const [createBoard, boardCreationState] = useCreateBoardMutation({
     onCompleted: () => refetch(),
   });
 
@@ -118,7 +85,7 @@ export const Boards = () => {
       <Segment textAlign="center" basic>
         <h1>Your Boards</h1>
         <Container data-cy="boards-list" textAlign="left">
-          {data?.me?.boards?.length > 0 ? (
+          {data?.me?.boards && data?.me?.boards?.length > 0 ? (
             <BoardList
               boards={data.me.boards}
               deleteBoard={(id) => {

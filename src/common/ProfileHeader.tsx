@@ -1,10 +1,7 @@
 import React, { ReactNode } from 'react';
-import { useQuery } from '@apollo/client';
 import { Container, Icon, Image, Loader } from 'semantic-ui-react';
 import Link from 'next/link';
 
-// @ts-ignore
-import MeQuery from './MeQuery.graphql';
 import { useMeQueryQuery } from '../generated/graphql';
 
 const ProfileHeaderContainer = ({

@@ -1,8 +1,13 @@
 import React from 'react';
-import { gql, useMutation, useQuery } from '@apollo/client';
 
 import { BoardContainer, AddListButton, DelListButton } from './BoardContainer';
 import { CardList } from './CardList';
+import {
+  useAddListMutation,
+  useBoardQuery,
+  useDeleteListOfBoardMutation,
+  useDeleteListsOfBoardMutation,
+} from '../generated/graphql';
 
 const Board = (props) => {
   const { board = {}, addList, deleteLists, deleteList, boardId } = props;
@@ -36,74 +41,16 @@ const Board = (props) => {
   );
 };
 
-Board.fragments = {
-  board: gql`
-    fragment Board_board on Board {
-      name
-      id
-      lists {
-        name
-        id
-      }
-    }
-  `,
-};
-
-const BoardQuery = gql`
-  query board($boardId: ID) {
-    board(where: { id: $boardId }) {
-      ...Board_board
-    }
-  }
-  ${Board.fragments.board}
-`;
-
-const addListMutation = gql`
-  mutation ($boardId: ID!, $name: String!) {
-    updateBoard(
-      data: { lists: { create: { name: $name } } }
-      where: { id: $boardId }
-    ) {
-      ...Board_board
-    }
-  }
-  ${Board.fragments.board}
-`;
-
-const deleteListsOfBoardMutation = gql`
-  mutation deleteListsOfBoard($boardId: ID!, $listIds: [ID!]!) {
-    updateBoard(
-      data: { lists: { deleteMany: { id_in: $listIds } } }
-      where: { id: $boardId }
-    ) {
-      ...Board_board
-    }
-  }
-  ${Board.fragments.board}
-`;
-
-const deleteListOfBoardMutation = gql`
-  mutation deleteListOfBoard($boardId: ID!, $listId: ID!) {
-    updateBoard(
-      data: { lists: { delete: { id: $listId } } }
-      where: { id: $boardId }
-    ) {
-      ...Board_board
-    }
-  }
-  ${Board.fragments.board}
-`;
-
 export const CoolBoard = ({ boardId }) => {
-  const { loading, error, data } = useQuery(BoardQuery, {
+  const { loading, error, data } = useBoardQuery({
     variables: { boardId },
   });
 
-  const [addList] = useMutation(addListMutation);
+  const [addList] = useAddListMutation();
 
-  const [deleteListsOfBoard] = useMutation(deleteListsOfBoardMutation);
+  const [deleteListsOfBoard] = useDeleteListsOfBoardMutation();
 
-  const [deleteListOfBoard] = useMutation(deleteListOfBoardMutation);
+  const [deleteListOfBoard] = useDeleteListOfBoardMutation();
 
   if (loading) {
     return <div>Loading Board</div>;
@@ -113,7 +60,7 @@ export const CoolBoard = ({ boardId }) => {
     return null;
   }
 
-  const { board } = data;
+  const { board } = data ?? {};
   if (!board) {
     return <div>Board does not exist.</div>;
   }
