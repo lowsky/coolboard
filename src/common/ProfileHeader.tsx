@@ -5,6 +5,7 @@ import Link from 'next/link';
 
 // @ts-ignore
 import MeQuery from './MeQuery.graphql';
+import { useMeQueryQuery } from '../generated/graphql';
 
 const ProfileHeaderContainer = ({
   children,
@@ -59,7 +60,7 @@ const ProfileHeaderContainer = ({
 
 export const ProfileHeader = ({ isBoardsPage }: { isBoardsPage?: boolean }) => {
   // LATER: { options: { fetchPolicy: 'network-only' } }
-  const { loading, error, data } = useQuery(MeQuery);
+  const { loading, error, data } = useMeQueryQuery();
 
   if (loading) {
     return (
@@ -83,9 +84,9 @@ export const ProfileHeader = ({ isBoardsPage }: { isBoardsPage?: boolean }) => {
     );
   }
 
-  const { me = {} } = data;
+  const { me } = data ?? {};
 
-  const { avatarUrl, name } = me;
+  const { avatarUrl, name } = me ?? {};
 
   return (
     <ProfileHeaderContainer isBoardsPage={isBoardsPage}>
