@@ -1,0 +1,69 @@
+query board($boardId: ID) {
+  board(where: { id: $boardId }) {
+    ...Board_board
+  }
+}
+
+fragment Board_board on Board {
+  name
+  id
+  lists {
+    name
+    id
+  }
+}
+
+mutation createBoard($name: String!) {
+  createBoard(name: $name) {
+    name
+    id
+    boards {
+      name
+      id
+    }
+  }
+}
+
+mutation deleteBoard($id: ID!) {
+  deleteBoard(id: $id) {
+    id
+  }
+}
+
+query userBoards {
+  me {
+    name
+    id
+    boards {
+      name
+      id
+    }
+  }
+}
+
+mutation addList($boardId: ID!, $name: String!) {
+  updateBoard(
+    data: { lists: { create: { name: $name } } }
+    where: { id: $boardId }
+  ) {
+    ...Board_board
+  }
+}
+
+mutation deleteListsOfBoard($boardId: ID!, $listIds: [ID!]!) {
+  updateBoard(
+    data: { lists: { deleteMany: { id_in: $listIds } } }
+    where: { id: $boardId }
+  ) {
+    ...Board_board
+  }
+}
+
+mutation deleteListOfBoard($boardId: ID!, $listId: ID!) {
+  updateBoard(
+    data: { lists: { delete: { id: $listId } } }
+    where: { id: $boardId }
+  ) {
+    ...Board_board
+  }
+}

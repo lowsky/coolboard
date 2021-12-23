@@ -1,0 +1,72 @@
+query CardList($cardListId: ID) {
+  list(where: { id: $cardListId }) {
+    ...CardList_list
+  }
+}
+mutation moveCard($cardId: ID!, $oldCardListId: ID!, $cardListId: ID!) {
+  newList: updateList(
+    data: { cards: { connect: { id: $cardId } } }
+    where: { id: $cardListId }
+  ) {
+    ...CardList_list
+  }
+  oldList: updateList(
+    data: { cards: { disconnect: { id: $cardId } } }
+    where: { id: $oldCardListId }
+  ) {
+    ...CardList_list
+  }
+}
+
+mutation addCardMutation($cardListId: ID!, $name: String!) {
+  updateList(
+    data: { cards: { create: { name: $name } } }
+    where: { id: $cardListId }
+  ) {
+    ...CardList_list
+  }
+}
+
+mutation updateCard(
+  $id: ID!
+  $name: String
+  $description: String #$old_name: String #$old_description: String
+) {
+  updateCard(
+    where: { id: $id }
+    # where: {
+    #   AND: [
+    #     { id: $id }
+    #     { name: $old_name }
+    #     { description: $old_description }
+    #   ]
+    # }
+    data: { name: $name, description: $description }
+  ) {
+    #count
+    ...Card_card
+  }
+}
+
+fragment CardList_list on List {
+  name
+  id
+  cards {
+    ...Card_card
+  }
+}
+
+fragment Card_card on Card {
+  id
+  name
+  description
+  createdAt
+  updatedAt
+  updatedBy {
+    avatarUrl
+    email
+    name
+    id
+  }
+}
+

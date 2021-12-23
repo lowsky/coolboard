@@ -1,0 +1,8 @@
+query MeQuery {
+  me {
+    email
+    id
+    name
+    avatarUrl
+  }
+}

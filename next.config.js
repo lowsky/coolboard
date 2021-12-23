@@ -11,7 +11,13 @@ module.exports = {
       // config.externals.push('ts-tiny-invariant')
     }
 
-    return config
+    config.module.rules.push({
+      test: /\.(graphql|gql)$/,
+      exclude: /node_modules/,
+      loader: 'graphql-tag/loader',
+    });
+
+    return config;
   },
 
   // "For faster deploy times, build IDs should be set to a static value..."

@@ -10,7 +10,6 @@ import {
 } from 'semantic-ui-react';
 import TimeAgo from 'react-timeago';
 import PropTypes from 'prop-types';
-import { gql } from '@apollo/client';
 import styled from 'styled-components';
 
 type State = {
@@ -262,24 +261,6 @@ CardComponent.propTypes = {
   createdAt: PropTypes.string,
   updatedAt: PropTypes.string,
   updatedBy: PropTypes.object,
-};
-
-CardComponent.fragments = {
-  card: gql`
-    fragment Card_card on Card {
-      id
-      name
-      description
-      createdAt
-      updatedAt
-      updatedBy {
-        avatarUrl
-        email
-        name
-        id
-      }
-    }
-  `,
 };
 
 const CardDiv = styled.div`
