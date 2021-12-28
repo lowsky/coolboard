@@ -40,13 +40,11 @@ type Subscription {
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
 }
 
-
 # old auth, without auth0
 #type AuthPayload {
 #  token: String!
 #  user: User!
 #}
-
 
 type AggregateBoard {
   count: Int!
@@ -68,10 +66,17 @@ type BatchPayload {
   count: Long!
 }
 
-
 type Board {
   id: ID!
- lists(where: ListWhereInput, orderBy: ListOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [List!]
+  lists(
+    where: ListWhereInput
+    orderBy: ListOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [List!]
   name: String!
   updatedBy: User
   createdAt: DateTime!
@@ -303,7 +308,6 @@ type Card {
   createdAt: DateTime!
   updatedAt: DateTime!
 }
-
 
 input CardCreateInput {
   name: String!
@@ -546,7 +550,15 @@ input CardWhereUniqueInput {
 scalar DateTime
 
 type List {
-  cards(where: CardWhereInput, orderBy: CardOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Card!]
+  cards(
+    where: CardWhereInput
+    orderBy: CardOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Card!]
   id: ID!
   name: String!
   updatedBy: User
@@ -788,8 +800,6 @@ type PageInfo {
   startCursor: String
   endCursor: String
 }
-
-
 
 type UserConnection {
   pageInfo: PageInfo!
@@ -1053,14 +1063,6 @@ input UserWhereUniqueInput {
   email: String
   auth0id: String
 }
-
-
-
-
-
-
-
-
 
 type User {
   id: ID!

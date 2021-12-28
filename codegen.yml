@@ -7,8 +7,9 @@ generates:
       - "typescript"
       - "typescript-operations"
       - "typescript-react-apollo"
-      #- "typescript-graphql-files-modules"
-      - "fragment-matcher"
   ./server/graphql.schema.json:
     plugins:
       - "introspection"
+hooks:
+  afterAllFileWrite:
+    - prettier --write

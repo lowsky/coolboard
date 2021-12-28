@@ -2,10 +2,16 @@ import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
-const defaultOptions =  {}
+export type Exact<T extends { [key: string]: unknown }> = {
+  [K in keyof T]: T[K];
+};
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]?: Maybe<T[SubKey]>;
+};
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]: Maybe<T[SubKey]>;
+};
+const defaultOptions = {};
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -51,7 +57,6 @@ export type Board = {
   updatedAt: Scalars['DateTime'];
   updatedBy?: Maybe<User>;
 };
-
 
 export type BoardListsArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -100,7 +105,7 @@ export enum BoardOrderByInput {
   NameAsc = 'name_ASC',
   NameDesc = 'name_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC'
+  UpdatedAtDesc = 'updatedAt_DESC',
 }
 
 export type BoardPreviousValues = {
@@ -321,7 +326,7 @@ export enum CardOrderByInput {
   NameAsc = 'name_ASC',
   NameDesc = 'name_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC'
+  UpdatedAtDesc = 'updatedAt_DESC',
 }
 
 export type CardPreviousValues = {
@@ -545,7 +550,6 @@ export type List = {
   updatedBy?: Maybe<User>;
 };
 
-
 export type ListCardsArgs = {
   after?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;
@@ -588,7 +592,7 @@ export enum ListOrderByInput {
   NameAsc = 'name_ASC',
   NameDesc = 'name_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC'
+  UpdatedAtDesc = 'updatedAt_DESC',
 }
 
 export type ListPreviousValues = {
@@ -785,38 +789,31 @@ export type Mutation = {
   updateList?: Maybe<List>;
 };
 
-
 export type MutationAuthenticateArgs = {
   idToken: Scalars['String'];
 };
-
 
 export type MutationCreateBoardArgs = {
   name: Scalars['String'];
 };
 
-
 export type MutationDeleteBoardArgs = {
   id: Scalars['ID'];
 };
 
-
 export type MutationDeleteListArgs = {
   where: ListWhereUniqueInput;
 };
-
 
 export type MutationUpdateBoardArgs = {
   data: BoardUpdateInput;
   where: BoardWhereUniqueInput;
 };
 
-
 export type MutationUpdateCardArgs = {
   data: CardUpdateInput;
   where: CardWhereUniqueInput;
 };
-
 
 export type MutationUpdateListArgs = {
   data: ListUpdateInput;
@@ -826,7 +823,7 @@ export type MutationUpdateListArgs = {
 export enum MutationType {
   Created = 'CREATED',
   Deleted = 'DELETED',
-  Updated = 'UPDATED'
+  Updated = 'UPDATED',
 }
 
 export type PageInfo = {
@@ -844,11 +841,9 @@ export type Query = {
   me?: Maybe<User>;
 };
 
-
 export type QueryBoardArgs = {
   where: BoardWhereUniqueInput;
 };
-
 
 export type QueryListArgs = {
   where: ListWhereUniqueInput;
@@ -862,21 +857,17 @@ export type Subscription = {
   user?: Maybe<UserSubscriptionPayload>;
 };
 
-
 export type SubscriptionBoardArgs = {
   where?: InputMaybe<BoardSubscriptionWhereInput>;
 };
-
 
 export type SubscriptionCardArgs = {
   where?: InputMaybe<CardSubscriptionWhereInput>;
 };
 
-
 export type SubscriptionListArgs = {
   where?: InputMaybe<ListSubscriptionWhereInput>;
 };
-
 
 export type SubscriptionUserArgs = {
   where?: InputMaybe<UserSubscriptionWhereInput>;
@@ -947,7 +938,7 @@ export enum UserOrderByInput {
   NameAsc = 'name_ASC',
   NameDesc = 'name_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC'
+  UpdatedAtDesc = 'updatedAt_DESC',
 }
 
 export type UserPreviousValues = {
@@ -1158,69 +1149,201 @@ export type UserWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']>;
 };
 
-export type MeQueryQueryVariables = Exact<{ [key: string]: never; }>;
+export type MeQueryQueryVariables = Exact<{ [key: string]: never }>;
 
-
-export type MeQueryQuery = { __typename?: 'Query', me?: { __typename?: 'User', email: string, id: string, name: string, avatarUrl?: string | null | undefined } | null | undefined };
+export type MeQueryQuery = {
+  __typename?: 'Query';
+  me?:
+    | {
+        __typename?: 'User';
+        email: string;
+        id: string;
+        name: string;
+        avatarUrl?: string | null | undefined;
+      }
+    | null
+    | undefined;
+};
 
 export type BoardQueryVariables = Exact<{
   boardId?: InputMaybe<Scalars['ID']>;
 }>;
 
+export type BoardQuery = {
+  __typename?: 'Query';
+  board?:
+    | {
+        __typename?: 'Board';
+        name: string;
+        id: string;
+        lists?:
+          | Array<{ __typename?: 'List'; name: string; id: string }>
+          | null
+          | undefined;
+      }
+    | null
+    | undefined;
+};
 
-export type BoardQuery = { __typename?: 'Query', board?: { __typename?: 'Board', name: string, id: string, lists?: Array<{ __typename?: 'List', name: string, id: string }> | null | undefined } | null | undefined };
-
-export type Board_BoardFragment = { __typename?: 'Board', name: string, id: string, lists?: Array<{ __typename?: 'List', name: string, id: string }> | null | undefined };
+export type Board_BoardFragment = {
+  __typename?: 'Board';
+  name: string;
+  id: string;
+  lists?:
+    | Array<{ __typename?: 'List'; name: string; id: string }>
+    | null
+    | undefined;
+};
 
 export type CreateBoardMutationVariables = Exact<{
   name: Scalars['String'];
 }>;
 
-
-export type CreateBoardMutation = { __typename?: 'Mutation', createBoard: { __typename?: 'User', name: string, id: string, boards?: Array<{ __typename?: 'Board', name: string, id: string } | null | undefined> | null | undefined } };
+export type CreateBoardMutation = {
+  __typename?: 'Mutation';
+  createBoard: {
+    __typename?: 'User';
+    name: string;
+    id: string;
+    boards?:
+      | Array<
+          { __typename?: 'Board'; name: string; id: string } | null | undefined
+        >
+      | null
+      | undefined;
+  };
+};
 
 export type DeleteBoardMutationVariables = Exact<{
   id: Scalars['ID'];
 }>;
 
+export type DeleteBoardMutation = {
+  __typename?: 'Mutation';
+  deleteBoard: { __typename?: 'Board'; id: string };
+};
 
-export type DeleteBoardMutation = { __typename?: 'Mutation', deleteBoard: { __typename?: 'Board', id: string } };
+export type UserBoardsQueryVariables = Exact<{ [key: string]: never }>;
 
-export type UserBoardsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type UserBoardsQuery = { __typename?: 'Query', me?: { __typename?: 'User', name: string, id: string, boards?: Array<{ __typename?: 'Board', name: string, id: string } | null | undefined> | null | undefined } | null | undefined };
+export type UserBoardsQuery = {
+  __typename?: 'Query';
+  me?:
+    | {
+        __typename?: 'User';
+        name: string;
+        id: string;
+        boards?:
+          | Array<
+              | { __typename?: 'Board'; name: string; id: string }
+              | null
+              | undefined
+            >
+          | null
+          | undefined;
+      }
+    | null
+    | undefined;
+};
 
 export type AddListMutationVariables = Exact<{
   boardId: Scalars['ID'];
   name: Scalars['String'];
 }>;
 
-
-export type AddListMutation = { __typename?: 'Mutation', updateBoard?: { __typename?: 'Board', name: string, id: string, lists?: Array<{ __typename?: 'List', name: string, id: string }> | null | undefined } | null | undefined };
+export type AddListMutation = {
+  __typename?: 'Mutation';
+  updateBoard?:
+    | {
+        __typename?: 'Board';
+        name: string;
+        id: string;
+        lists?:
+          | Array<{ __typename?: 'List'; name: string; id: string }>
+          | null
+          | undefined;
+      }
+    | null
+    | undefined;
+};
 
 export type DeleteListsOfBoardMutationVariables = Exact<{
   boardId: Scalars['ID'];
   listIds: Array<Scalars['ID']> | Scalars['ID'];
 }>;
 
-
-export type DeleteListsOfBoardMutation = { __typename?: 'Mutation', updateBoard?: { __typename?: 'Board', name: string, id: string, lists?: Array<{ __typename?: 'List', name: string, id: string }> | null | undefined } | null | undefined };
+export type DeleteListsOfBoardMutation = {
+  __typename?: 'Mutation';
+  updateBoard?:
+    | {
+        __typename?: 'Board';
+        name: string;
+        id: string;
+        lists?:
+          | Array<{ __typename?: 'List'; name: string; id: string }>
+          | null
+          | undefined;
+      }
+    | null
+    | undefined;
+};
 
 export type DeleteListOfBoardMutationVariables = Exact<{
   boardId: Scalars['ID'];
   listId: Scalars['ID'];
 }>;
 
-
-export type DeleteListOfBoardMutation = { __typename?: 'Mutation', updateBoard?: { __typename?: 'Board', name: string, id: string, lists?: Array<{ __typename?: 'List', name: string, id: string }> | null | undefined } | null | undefined };
+export type DeleteListOfBoardMutation = {
+  __typename?: 'Mutation';
+  updateBoard?:
+    | {
+        __typename?: 'Board';
+        name: string;
+        id: string;
+        lists?:
+          | Array<{ __typename?: 'List'; name: string; id: string }>
+          | null
+          | undefined;
+      }
+    | null
+    | undefined;
+};
 
 export type CardListQueryVariables = Exact<{
   cardListId?: InputMaybe<Scalars['ID']>;
 }>;
 
-
-export type CardListQuery = { __typename?: 'Query', list?: { __typename?: 'List', name: string, id: string, cards?: Array<{ __typename?: 'Card', id: string, name: string, description?: string | null | undefined, createdAt: any, updatedAt: any, updatedBy?: { __typename?: 'User', avatarUrl?: string | null | undefined, email: string, name: string, id: string } | null | undefined }> | null | undefined } | null | undefined };
+export type CardListQuery = {
+  __typename?: 'Query';
+  list?:
+    | {
+        __typename?: 'List';
+        name: string;
+        id: string;
+        cards?:
+          | Array<{
+              __typename?: 'Card';
+              id: string;
+              name: string;
+              description?: string | null | undefined;
+              createdAt: any;
+              updatedAt: any;
+              updatedBy?:
+                | {
+                    __typename?: 'User';
+                    avatarUrl?: string | null | undefined;
+                    email: string;
+                    name: string;
+                    id: string;
+                  }
+                | null
+                | undefined;
+            }>
+          | null
+          | undefined;
+      }
+    | null
+    | undefined;
+};
 
 export type MoveCardMutationVariables = Exact<{
   cardId: Scalars['ID'];
@@ -1228,16 +1351,105 @@ export type MoveCardMutationVariables = Exact<{
   cardListId: Scalars['ID'];
 }>;
 
-
-export type MoveCardMutation = { __typename?: 'Mutation', newList?: { __typename?: 'List', name: string, id: string, cards?: Array<{ __typename?: 'Card', id: string, name: string, description?: string | null | undefined, createdAt: any, updatedAt: any, updatedBy?: { __typename?: 'User', avatarUrl?: string | null | undefined, email: string, name: string, id: string } | null | undefined }> | null | undefined } | null | undefined, oldList?: { __typename?: 'List', name: string, id: string, cards?: Array<{ __typename?: 'Card', id: string, name: string, description?: string | null | undefined, createdAt: any, updatedAt: any, updatedBy?: { __typename?: 'User', avatarUrl?: string | null | undefined, email: string, name: string, id: string } | null | undefined }> | null | undefined } | null | undefined };
+export type MoveCardMutation = {
+  __typename?: 'Mutation';
+  newList?:
+    | {
+        __typename?: 'List';
+        name: string;
+        id: string;
+        cards?:
+          | Array<{
+              __typename?: 'Card';
+              id: string;
+              name: string;
+              description?: string | null | undefined;
+              createdAt: any;
+              updatedAt: any;
+              updatedBy?:
+                | {
+                    __typename?: 'User';
+                    avatarUrl?: string | null | undefined;
+                    email: string;
+                    name: string;
+                    id: string;
+                  }
+                | null
+                | undefined;
+            }>
+          | null
+          | undefined;
+      }
+    | null
+    | undefined;
+  oldList?:
+    | {
+        __typename?: 'List';
+        name: string;
+        id: string;
+        cards?:
+          | Array<{
+              __typename?: 'Card';
+              id: string;
+              name: string;
+              description?: string | null | undefined;
+              createdAt: any;
+              updatedAt: any;
+              updatedBy?:
+                | {
+                    __typename?: 'User';
+                    avatarUrl?: string | null | undefined;
+                    email: string;
+                    name: string;
+                    id: string;
+                  }
+                | null
+                | undefined;
+            }>
+          | null
+          | undefined;
+      }
+    | null
+    | undefined;
+};
 
 export type AddCardMutationMutationVariables = Exact<{
   cardListId: Scalars['ID'];
   name: Scalars['String'];
 }>;
 
-
-export type AddCardMutationMutation = { __typename?: 'Mutation', updateList?: { __typename?: 'List', name: string, id: string, cards?: Array<{ __typename?: 'Card', id: string, name: string, description?: string | null | undefined, createdAt: any, updatedAt: any, updatedBy?: { __typename?: 'User', avatarUrl?: string | null | undefined, email: string, name: string, id: string } | null | undefined }> | null | undefined } | null | undefined };
+export type AddCardMutationMutation = {
+  __typename?: 'Mutation';
+  updateList?:
+    | {
+        __typename?: 'List';
+        name: string;
+        id: string;
+        cards?:
+          | Array<{
+              __typename?: 'Card';
+              id: string;
+              name: string;
+              description?: string | null | undefined;
+              createdAt: any;
+              updatedAt: any;
+              updatedBy?:
+                | {
+                    __typename?: 'User';
+                    avatarUrl?: string | null | undefined;
+                    email: string;
+                    name: string;
+                    id: string;
+                  }
+                | null
+                | undefined;
+            }>
+          | null
+          | undefined;
+      }
+    | null
+    | undefined;
+};
 
 export type UpdateCardMutationVariables = Exact<{
   id: Scalars['ID'];
@@ -1245,57 +1457,119 @@ export type UpdateCardMutationVariables = Exact<{
   description?: InputMaybe<Scalars['String']>;
 }>;
 
+export type UpdateCardMutation = {
+  __typename?: 'Mutation';
+  updateCard: {
+    __typename?: 'Card';
+    id: string;
+    name: string;
+    description?: string | null | undefined;
+    createdAt: any;
+    updatedAt: any;
+    updatedBy?:
+      | {
+          __typename?: 'User';
+          avatarUrl?: string | null | undefined;
+          email: string;
+          name: string;
+          id: string;
+        }
+      | null
+      | undefined;
+  };
+};
 
-export type UpdateCardMutation = { __typename?: 'Mutation', updateCard: { __typename?: 'Card', id: string, name: string, description?: string | null | undefined, createdAt: any, updatedAt: any, updatedBy?: { __typename?: 'User', avatarUrl?: string | null | undefined, email: string, name: string, id: string } | null | undefined } };
+export type CardList_ListFragment = {
+  __typename?: 'List';
+  name: string;
+  id: string;
+  cards?:
+    | Array<{
+        __typename?: 'Card';
+        id: string;
+        name: string;
+        description?: string | null | undefined;
+        createdAt: any;
+        updatedAt: any;
+        updatedBy?:
+          | {
+              __typename?: 'User';
+              avatarUrl?: string | null | undefined;
+              email: string;
+              name: string;
+              id: string;
+            }
+          | null
+          | undefined;
+      }>
+    | null
+    | undefined;
+};
 
-export type CardList_ListFragment = { __typename?: 'List', name: string, id: string, cards?: Array<{ __typename?: 'Card', id: string, name: string, description?: string | null | undefined, createdAt: any, updatedAt: any, updatedBy?: { __typename?: 'User', avatarUrl?: string | null | undefined, email: string, name: string, id: string } | null | undefined }> | null | undefined };
-
-export type Card_CardFragment = { __typename?: 'Card', id: string, name: string, description?: string | null | undefined, createdAt: any, updatedAt: any, updatedBy?: { __typename?: 'User', avatarUrl?: string | null | undefined, email: string, name: string, id: string } | null | undefined };
+export type Card_CardFragment = {
+  __typename?: 'Card';
+  id: string;
+  name: string;
+  description?: string | null | undefined;
+  createdAt: any;
+  updatedAt: any;
+  updatedBy?:
+    | {
+        __typename?: 'User';
+        avatarUrl?: string | null | undefined;
+        email: string;
+        name: string;
+        id: string;
+      }
+    | null
+    | undefined;
+};
 
 export const Board_BoardFragmentDoc = gql`
-    fragment Board_board on Board {
-  name
-  id
-  lists {
+  fragment Board_board on Board {
     name
     id
+    lists {
+      name
+      id
+    }
   }
-}
-    `;
+`;
 export const Card_CardFragmentDoc = gql`
-    fragment Card_card on Card {
-  id
-  name
-  description
-  createdAt
-  updatedAt
-  updatedBy {
-    avatarUrl
-    email
-    name
+  fragment Card_card on Card {
     id
+    name
+    description
+    createdAt
+    updatedAt
+    updatedBy {
+      avatarUrl
+      email
+      name
+      id
+    }
   }
-}
-    `;
+`;
 export const CardList_ListFragmentDoc = gql`
-    fragment CardList_list on List {
-  name
-  id
-  cards {
-    ...Card_card
-  }
-}
-    ${Card_CardFragmentDoc}`;
-export const MeQueryDocument = gql`
-    query MeQuery {
-  me {
-    email
-    id
+  fragment CardList_list on List {
     name
-    avatarUrl
+    id
+    cards {
+      ...Card_card
+    }
   }
-}
-    `;
+  ${Card_CardFragmentDoc}
+`;
+export const MeQueryDocument = gql`
+  query MeQuery {
+    me {
+      email
+      id
+      name
+      avatarUrl
+    }
+  }
+`;
 
 /**
  * __useMeQueryQuery__
@@ -1312,24 +1586,38 @@ export const MeQueryDocument = gql`
  *   },
  * });
  */
-export function useMeQueryQuery(baseOptions?: Apollo.QueryHookOptions<MeQueryQuery, MeQueryQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<MeQueryQuery, MeQueryQueryVariables>(MeQueryDocument, options);
-      }
-export function useMeQueryLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MeQueryQuery, MeQueryQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<MeQueryQuery, MeQueryQueryVariables>(MeQueryDocument, options);
-        }
+export function useMeQueryQuery(
+  baseOptions?: Apollo.QueryHookOptions<MeQueryQuery, MeQueryQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<MeQueryQuery, MeQueryQueryVariables>(
+    MeQueryDocument,
+    options
+  );
+}
+export function useMeQueryLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<MeQueryQuery, MeQueryQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<MeQueryQuery, MeQueryQueryVariables>(
+    MeQueryDocument,
+    options
+  );
+}
 export type MeQueryQueryHookResult = ReturnType<typeof useMeQueryQuery>;
 export type MeQueryLazyQueryHookResult = ReturnType<typeof useMeQueryLazyQuery>;
-export type MeQueryQueryResult = Apollo.QueryResult<MeQueryQuery, MeQueryQueryVariables>;
+export type MeQueryQueryResult = Apollo.QueryResult<
+  MeQueryQuery,
+  MeQueryQueryVariables
+>;
 export const BoardDocument = gql`
-    query board($boardId: ID) {
-  board(where: {id: $boardId}) {
-    ...Board_board
+  query board($boardId: ID) {
+    board(where: { id: $boardId }) {
+      ...Board_board
+    }
   }
-}
-    ${Board_BoardFragmentDoc}`;
+  ${Board_BoardFragmentDoc}
+`;
 
 /**
  * __useBoardQuery__
@@ -1347,30 +1635,46 @@ export const BoardDocument = gql`
  *   },
  * });
  */
-export function useBoardQuery(baseOptions?: Apollo.QueryHookOptions<BoardQuery, BoardQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<BoardQuery, BoardQueryVariables>(BoardDocument, options);
-      }
-export function useBoardLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<BoardQuery, BoardQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<BoardQuery, BoardQueryVariables>(BoardDocument, options);
-        }
+export function useBoardQuery(
+  baseOptions?: Apollo.QueryHookOptions<BoardQuery, BoardQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<BoardQuery, BoardQueryVariables>(
+    BoardDocument,
+    options
+  );
+}
+export function useBoardLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<BoardQuery, BoardQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<BoardQuery, BoardQueryVariables>(
+    BoardDocument,
+    options
+  );
+}
 export type BoardQueryHookResult = ReturnType<typeof useBoardQuery>;
 export type BoardLazyQueryHookResult = ReturnType<typeof useBoardLazyQuery>;
-export type BoardQueryResult = Apollo.QueryResult<BoardQuery, BoardQueryVariables>;
+export type BoardQueryResult = Apollo.QueryResult<
+  BoardQuery,
+  BoardQueryVariables
+>;
 export const CreateBoardDocument = gql`
-    mutation createBoard($name: String!) {
-  createBoard(name: $name) {
-    name
-    id
-    boards {
+  mutation createBoard($name: String!) {
+    createBoard(name: $name) {
       name
       id
+      boards {
+        name
+        id
+      }
     }
   }
-}
-    `;
-export type CreateBoardMutationFn = Apollo.MutationFunction<CreateBoardMutation, CreateBoardMutationVariables>;
+`;
+export type CreateBoardMutationFn = Apollo.MutationFunction<
+  CreateBoardMutation,
+  CreateBoardMutationVariables
+>;
 
 /**
  * __useCreateBoardMutation__
@@ -1389,21 +1693,38 @@ export type CreateBoardMutationFn = Apollo.MutationFunction<CreateBoardMutation,
  *   },
  * });
  */
-export function useCreateBoardMutation(baseOptions?: Apollo.MutationHookOptions<CreateBoardMutation, CreateBoardMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CreateBoardMutation, CreateBoardMutationVariables>(CreateBoardDocument, options);
-      }
-export type CreateBoardMutationHookResult = ReturnType<typeof useCreateBoardMutation>;
-export type CreateBoardMutationResult = Apollo.MutationResult<CreateBoardMutation>;
-export type CreateBoardMutationOptions = Apollo.BaseMutationOptions<CreateBoardMutation, CreateBoardMutationVariables>;
-export const DeleteBoardDocument = gql`
-    mutation deleteBoard($id: ID!) {
-  deleteBoard(id: $id) {
-    id
-  }
+export function useCreateBoardMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    CreateBoardMutation,
+    CreateBoardMutationVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<CreateBoardMutation, CreateBoardMutationVariables>(
+    CreateBoardDocument,
+    options
+  );
 }
-    `;
-export type DeleteBoardMutationFn = Apollo.MutationFunction<DeleteBoardMutation, DeleteBoardMutationVariables>;
+export type CreateBoardMutationHookResult = ReturnType<
+  typeof useCreateBoardMutation
+>;
+export type CreateBoardMutationResult =
+  Apollo.MutationResult<CreateBoardMutation>;
+export type CreateBoardMutationOptions = Apollo.BaseMutationOptions<
+  CreateBoardMutation,
+  CreateBoardMutationVariables
+>;
+export const DeleteBoardDocument = gql`
+  mutation deleteBoard($id: ID!) {
+    deleteBoard(id: $id) {
+      id
+    }
+  }
+`;
+export type DeleteBoardMutationFn = Apollo.MutationFunction<
+  DeleteBoardMutation,
+  DeleteBoardMutationVariables
+>;
 
 /**
  * __useDeleteBoardMutation__
@@ -1422,25 +1743,39 @@ export type DeleteBoardMutationFn = Apollo.MutationFunction<DeleteBoardMutation,
  *   },
  * });
  */
-export function useDeleteBoardMutation(baseOptions?: Apollo.MutationHookOptions<DeleteBoardMutation, DeleteBoardMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<DeleteBoardMutation, DeleteBoardMutationVariables>(DeleteBoardDocument, options);
-      }
-export type DeleteBoardMutationHookResult = ReturnType<typeof useDeleteBoardMutation>;
-export type DeleteBoardMutationResult = Apollo.MutationResult<DeleteBoardMutation>;
-export type DeleteBoardMutationOptions = Apollo.BaseMutationOptions<DeleteBoardMutation, DeleteBoardMutationVariables>;
+export function useDeleteBoardMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    DeleteBoardMutation,
+    DeleteBoardMutationVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<DeleteBoardMutation, DeleteBoardMutationVariables>(
+    DeleteBoardDocument,
+    options
+  );
+}
+export type DeleteBoardMutationHookResult = ReturnType<
+  typeof useDeleteBoardMutation
+>;
+export type DeleteBoardMutationResult =
+  Apollo.MutationResult<DeleteBoardMutation>;
+export type DeleteBoardMutationOptions = Apollo.BaseMutationOptions<
+  DeleteBoardMutation,
+  DeleteBoardMutationVariables
+>;
 export const UserBoardsDocument = gql`
-    query userBoards {
-  me {
-    name
-    id
-    boards {
+  query userBoards {
+    me {
       name
       id
+      boards {
+        name
+        id
+      }
     }
   }
-}
-    `;
+`;
 
 /**
  * __useUserBoardsQuery__
@@ -1457,25 +1792,53 @@ export const UserBoardsDocument = gql`
  *   },
  * });
  */
-export function useUserBoardsQuery(baseOptions?: Apollo.QueryHookOptions<UserBoardsQuery, UserBoardsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<UserBoardsQuery, UserBoardsQueryVariables>(UserBoardsDocument, options);
-      }
-export function useUserBoardsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UserBoardsQuery, UserBoardsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<UserBoardsQuery, UserBoardsQueryVariables>(UserBoardsDocument, options);
-        }
-export type UserBoardsQueryHookResult = ReturnType<typeof useUserBoardsQuery>;
-export type UserBoardsLazyQueryHookResult = ReturnType<typeof useUserBoardsLazyQuery>;
-export type UserBoardsQueryResult = Apollo.QueryResult<UserBoardsQuery, UserBoardsQueryVariables>;
-export const AddListDocument = gql`
-    mutation addList($boardId: ID!, $name: String!) {
-  updateBoard(data: {lists: {create: {name: $name}}}, where: {id: $boardId}) {
-    ...Board_board
-  }
+export function useUserBoardsQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    UserBoardsQuery,
+    UserBoardsQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<UserBoardsQuery, UserBoardsQueryVariables>(
+    UserBoardsDocument,
+    options
+  );
 }
-    ${Board_BoardFragmentDoc}`;
-export type AddListMutationFn = Apollo.MutationFunction<AddListMutation, AddListMutationVariables>;
+export function useUserBoardsLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    UserBoardsQuery,
+    UserBoardsQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<UserBoardsQuery, UserBoardsQueryVariables>(
+    UserBoardsDocument,
+    options
+  );
+}
+export type UserBoardsQueryHookResult = ReturnType<typeof useUserBoardsQuery>;
+export type UserBoardsLazyQueryHookResult = ReturnType<
+  typeof useUserBoardsLazyQuery
+>;
+export type UserBoardsQueryResult = Apollo.QueryResult<
+  UserBoardsQuery,
+  UserBoardsQueryVariables
+>;
+export const AddListDocument = gql`
+  mutation addList($boardId: ID!, $name: String!) {
+    updateBoard(
+      data: { lists: { create: { name: $name } } }
+      where: { id: $boardId }
+    ) {
+      ...Board_board
+    }
+  }
+  ${Board_BoardFragmentDoc}
+`;
+export type AddListMutationFn = Apollo.MutationFunction<
+  AddListMutation,
+  AddListMutationVariables
+>;
 
 /**
  * __useAddListMutation__
@@ -1495,24 +1858,39 @@ export type AddListMutationFn = Apollo.MutationFunction<AddListMutation, AddList
  *   },
  * });
  */
-export function useAddListMutation(baseOptions?: Apollo.MutationHookOptions<AddListMutation, AddListMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<AddListMutation, AddListMutationVariables>(AddListDocument, options);
-      }
+export function useAddListMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    AddListMutation,
+    AddListMutationVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<AddListMutation, AddListMutationVariables>(
+    AddListDocument,
+    options
+  );
+}
 export type AddListMutationHookResult = ReturnType<typeof useAddListMutation>;
 export type AddListMutationResult = Apollo.MutationResult<AddListMutation>;
-export type AddListMutationOptions = Apollo.BaseMutationOptions<AddListMutation, AddListMutationVariables>;
+export type AddListMutationOptions = Apollo.BaseMutationOptions<
+  AddListMutation,
+  AddListMutationVariables
+>;
 export const DeleteListsOfBoardDocument = gql`
-    mutation deleteListsOfBoard($boardId: ID!, $listIds: [ID!]!) {
-  updateBoard(
-    data: {lists: {deleteMany: {id_in: $listIds}}}
-    where: {id: $boardId}
-  ) {
-    ...Board_board
+  mutation deleteListsOfBoard($boardId: ID!, $listIds: [ID!]!) {
+    updateBoard(
+      data: { lists: { deleteMany: { id_in: $listIds } } }
+      where: { id: $boardId }
+    ) {
+      ...Board_board
+    }
   }
-}
-    ${Board_BoardFragmentDoc}`;
-export type DeleteListsOfBoardMutationFn = Apollo.MutationFunction<DeleteListsOfBoardMutation, DeleteListsOfBoardMutationVariables>;
+  ${Board_BoardFragmentDoc}
+`;
+export type DeleteListsOfBoardMutationFn = Apollo.MutationFunction<
+  DeleteListsOfBoardMutation,
+  DeleteListsOfBoardMutationVariables
+>;
 
 /**
  * __useDeleteListsOfBoardMutation__
@@ -1532,21 +1910,42 @@ export type DeleteListsOfBoardMutationFn = Apollo.MutationFunction<DeleteListsOf
  *   },
  * });
  */
-export function useDeleteListsOfBoardMutation(baseOptions?: Apollo.MutationHookOptions<DeleteListsOfBoardMutation, DeleteListsOfBoardMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<DeleteListsOfBoardMutation, DeleteListsOfBoardMutationVariables>(DeleteListsOfBoardDocument, options);
-      }
-export type DeleteListsOfBoardMutationHookResult = ReturnType<typeof useDeleteListsOfBoardMutation>;
-export type DeleteListsOfBoardMutationResult = Apollo.MutationResult<DeleteListsOfBoardMutation>;
-export type DeleteListsOfBoardMutationOptions = Apollo.BaseMutationOptions<DeleteListsOfBoardMutation, DeleteListsOfBoardMutationVariables>;
-export const DeleteListOfBoardDocument = gql`
-    mutation deleteListOfBoard($boardId: ID!, $listId: ID!) {
-  updateBoard(data: {lists: {delete: {id: $listId}}}, where: {id: $boardId}) {
-    ...Board_board
-  }
+export function useDeleteListsOfBoardMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    DeleteListsOfBoardMutation,
+    DeleteListsOfBoardMutationVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    DeleteListsOfBoardMutation,
+    DeleteListsOfBoardMutationVariables
+  >(DeleteListsOfBoardDocument, options);
 }
-    ${Board_BoardFragmentDoc}`;
-export type DeleteListOfBoardMutationFn = Apollo.MutationFunction<DeleteListOfBoardMutation, DeleteListOfBoardMutationVariables>;
+export type DeleteListsOfBoardMutationHookResult = ReturnType<
+  typeof useDeleteListsOfBoardMutation
+>;
+export type DeleteListsOfBoardMutationResult =
+  Apollo.MutationResult<DeleteListsOfBoardMutation>;
+export type DeleteListsOfBoardMutationOptions = Apollo.BaseMutationOptions<
+  DeleteListsOfBoardMutation,
+  DeleteListsOfBoardMutationVariables
+>;
+export const DeleteListOfBoardDocument = gql`
+  mutation deleteListOfBoard($boardId: ID!, $listId: ID!) {
+    updateBoard(
+      data: { lists: { delete: { id: $listId } } }
+      where: { id: $boardId }
+    ) {
+      ...Board_board
+    }
+  }
+  ${Board_BoardFragmentDoc}
+`;
+export type DeleteListOfBoardMutationFn = Apollo.MutationFunction<
+  DeleteListOfBoardMutation,
+  DeleteListOfBoardMutationVariables
+>;
 
 /**
  * __useDeleteListOfBoardMutation__
@@ -1566,20 +1965,35 @@ export type DeleteListOfBoardMutationFn = Apollo.MutationFunction<DeleteListOfBo
  *   },
  * });
  */
-export function useDeleteListOfBoardMutation(baseOptions?: Apollo.MutationHookOptions<DeleteListOfBoardMutation, DeleteListOfBoardMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<DeleteListOfBoardMutation, DeleteListOfBoardMutationVariables>(DeleteListOfBoardDocument, options);
-      }
-export type DeleteListOfBoardMutationHookResult = ReturnType<typeof useDeleteListOfBoardMutation>;
-export type DeleteListOfBoardMutationResult = Apollo.MutationResult<DeleteListOfBoardMutation>;
-export type DeleteListOfBoardMutationOptions = Apollo.BaseMutationOptions<DeleteListOfBoardMutation, DeleteListOfBoardMutationVariables>;
-export const CardListDocument = gql`
-    query CardList($cardListId: ID) {
-  list(where: {id: $cardListId}) {
-    ...CardList_list
-  }
+export function useDeleteListOfBoardMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    DeleteListOfBoardMutation,
+    DeleteListOfBoardMutationVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    DeleteListOfBoardMutation,
+    DeleteListOfBoardMutationVariables
+  >(DeleteListOfBoardDocument, options);
 }
-    ${CardList_ListFragmentDoc}`;
+export type DeleteListOfBoardMutationHookResult = ReturnType<
+  typeof useDeleteListOfBoardMutation
+>;
+export type DeleteListOfBoardMutationResult =
+  Apollo.MutationResult<DeleteListOfBoardMutation>;
+export type DeleteListOfBoardMutationOptions = Apollo.BaseMutationOptions<
+  DeleteListOfBoardMutation,
+  DeleteListOfBoardMutationVariables
+>;
+export const CardListDocument = gql`
+  query CardList($cardListId: ID) {
+    list(where: { id: $cardListId }) {
+      ...CardList_list
+    }
+  }
+  ${CardList_ListFragmentDoc}
+`;
 
 /**
  * __useCardListQuery__
@@ -1597,34 +2011,56 @@ export const CardListDocument = gql`
  *   },
  * });
  */
-export function useCardListQuery(baseOptions?: Apollo.QueryHookOptions<CardListQuery, CardListQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<CardListQuery, CardListQueryVariables>(CardListDocument, options);
-      }
-export function useCardListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CardListQuery, CardListQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<CardListQuery, CardListQueryVariables>(CardListDocument, options);
-        }
-export type CardListQueryHookResult = ReturnType<typeof useCardListQuery>;
-export type CardListLazyQueryHookResult = ReturnType<typeof useCardListLazyQuery>;
-export type CardListQueryResult = Apollo.QueryResult<CardListQuery, CardListQueryVariables>;
-export const MoveCardDocument = gql`
-    mutation moveCard($cardId: ID!, $oldCardListId: ID!, $cardListId: ID!) {
-  newList: updateList(
-    data: {cards: {connect: {id: $cardId}}}
-    where: {id: $cardListId}
-  ) {
-    ...CardList_list
-  }
-  oldList: updateList(
-    data: {cards: {disconnect: {id: $cardId}}}
-    where: {id: $oldCardListId}
-  ) {
-    ...CardList_list
-  }
+export function useCardListQuery(
+  baseOptions?: Apollo.QueryHookOptions<CardListQuery, CardListQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<CardListQuery, CardListQueryVariables>(
+    CardListDocument,
+    options
+  );
 }
-    ${CardList_ListFragmentDoc}`;
-export type MoveCardMutationFn = Apollo.MutationFunction<MoveCardMutation, MoveCardMutationVariables>;
+export function useCardListLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    CardListQuery,
+    CardListQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<CardListQuery, CardListQueryVariables>(
+    CardListDocument,
+    options
+  );
+}
+export type CardListQueryHookResult = ReturnType<typeof useCardListQuery>;
+export type CardListLazyQueryHookResult = ReturnType<
+  typeof useCardListLazyQuery
+>;
+export type CardListQueryResult = Apollo.QueryResult<
+  CardListQuery,
+  CardListQueryVariables
+>;
+export const MoveCardDocument = gql`
+  mutation moveCard($cardId: ID!, $oldCardListId: ID!, $cardListId: ID!) {
+    newList: updateList(
+      data: { cards: { connect: { id: $cardId } } }
+      where: { id: $cardListId }
+    ) {
+      ...CardList_list
+    }
+    oldList: updateList(
+      data: { cards: { disconnect: { id: $cardId } } }
+      where: { id: $oldCardListId }
+    ) {
+      ...CardList_list
+    }
+  }
+  ${CardList_ListFragmentDoc}
+`;
+export type MoveCardMutationFn = Apollo.MutationFunction<
+  MoveCardMutation,
+  MoveCardMutationVariables
+>;
 
 /**
  * __useMoveCardMutation__
@@ -1645,21 +2081,39 @@ export type MoveCardMutationFn = Apollo.MutationFunction<MoveCardMutation, MoveC
  *   },
  * });
  */
-export function useMoveCardMutation(baseOptions?: Apollo.MutationHookOptions<MoveCardMutation, MoveCardMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<MoveCardMutation, MoveCardMutationVariables>(MoveCardDocument, options);
-      }
+export function useMoveCardMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    MoveCardMutation,
+    MoveCardMutationVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<MoveCardMutation, MoveCardMutationVariables>(
+    MoveCardDocument,
+    options
+  );
+}
 export type MoveCardMutationHookResult = ReturnType<typeof useMoveCardMutation>;
 export type MoveCardMutationResult = Apollo.MutationResult<MoveCardMutation>;
-export type MoveCardMutationOptions = Apollo.BaseMutationOptions<MoveCardMutation, MoveCardMutationVariables>;
+export type MoveCardMutationOptions = Apollo.BaseMutationOptions<
+  MoveCardMutation,
+  MoveCardMutationVariables
+>;
 export const AddCardMutationDocument = gql`
-    mutation addCardMutation($cardListId: ID!, $name: String!) {
-  updateList(data: {cards: {create: {name: $name}}}, where: {id: $cardListId}) {
-    ...CardList_list
+  mutation addCardMutation($cardListId: ID!, $name: String!) {
+    updateList(
+      data: { cards: { create: { name: $name } } }
+      where: { id: $cardListId }
+    ) {
+      ...CardList_list
+    }
   }
-}
-    ${CardList_ListFragmentDoc}`;
-export type AddCardMutationMutationFn = Apollo.MutationFunction<AddCardMutationMutation, AddCardMutationMutationVariables>;
+  ${CardList_ListFragmentDoc}
+`;
+export type AddCardMutationMutationFn = Apollo.MutationFunction<
+  AddCardMutationMutation,
+  AddCardMutationMutationVariables
+>;
 
 /**
  * __useAddCardMutationMutation__
@@ -1679,21 +2133,42 @@ export type AddCardMutationMutationFn = Apollo.MutationFunction<AddCardMutationM
  *   },
  * });
  */
-export function useAddCardMutationMutation(baseOptions?: Apollo.MutationHookOptions<AddCardMutationMutation, AddCardMutationMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<AddCardMutationMutation, AddCardMutationMutationVariables>(AddCardMutationDocument, options);
-      }
-export type AddCardMutationMutationHookResult = ReturnType<typeof useAddCardMutationMutation>;
-export type AddCardMutationMutationResult = Apollo.MutationResult<AddCardMutationMutation>;
-export type AddCardMutationMutationOptions = Apollo.BaseMutationOptions<AddCardMutationMutation, AddCardMutationMutationVariables>;
-export const UpdateCardDocument = gql`
-    mutation updateCard($id: ID!, $name: String, $description: String) {
-  updateCard(where: {id: $id}, data: {name: $name, description: $description}) {
-    ...Card_card
-  }
+export function useAddCardMutationMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    AddCardMutationMutation,
+    AddCardMutationMutationVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    AddCardMutationMutation,
+    AddCardMutationMutationVariables
+  >(AddCardMutationDocument, options);
 }
-    ${Card_CardFragmentDoc}`;
-export type UpdateCardMutationFn = Apollo.MutationFunction<UpdateCardMutation, UpdateCardMutationVariables>;
+export type AddCardMutationMutationHookResult = ReturnType<
+  typeof useAddCardMutationMutation
+>;
+export type AddCardMutationMutationResult =
+  Apollo.MutationResult<AddCardMutationMutation>;
+export type AddCardMutationMutationOptions = Apollo.BaseMutationOptions<
+  AddCardMutationMutation,
+  AddCardMutationMutationVariables
+>;
+export const UpdateCardDocument = gql`
+  mutation updateCard($id: ID!, $name: String, $description: String) {
+    updateCard(
+      where: { id: $id }
+      data: { name: $name, description: $description }
+    ) {
+      ...Card_card
+    }
+  }
+  ${Card_CardFragmentDoc}
+`;
+export type UpdateCardMutationFn = Apollo.MutationFunction<
+  UpdateCardMutation,
+  UpdateCardMutationVariables
+>;
 
 /**
  * __useUpdateCardMutation__
@@ -1714,21 +2189,24 @@ export type UpdateCardMutationFn = Apollo.MutationFunction<UpdateCardMutation, U
  *   },
  * });
  */
-export function useUpdateCardMutation(baseOptions?: Apollo.MutationHookOptions<UpdateCardMutation, UpdateCardMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateCardMutation, UpdateCardMutationVariables>(UpdateCardDocument, options);
-      }
-export type UpdateCardMutationHookResult = ReturnType<typeof useUpdateCardMutation>;
-export type UpdateCardMutationResult = Apollo.MutationResult<UpdateCardMutation>;
-export type UpdateCardMutationOptions = Apollo.BaseMutationOptions<UpdateCardMutation, UpdateCardMutationVariables>;
-
-      export interface PossibleTypesResultData {
-        possibleTypes: {
-          [key: string]: string[]
-        }
-      }
-      const result: PossibleTypesResultData = {
-  "possibleTypes": {}
-};
-      export default result;
-    
+export function useUpdateCardMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    UpdateCardMutation,
+    UpdateCardMutationVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<UpdateCardMutation, UpdateCardMutationVariables>(
+    UpdateCardDocument,
+    options
+  );
+}
+export type UpdateCardMutationHookResult = ReturnType<
+  typeof useUpdateCardMutation
+>;
+export type UpdateCardMutationResult =
+  Apollo.MutationResult<UpdateCardMutation>;
+export type UpdateCardMutationOptions = Apollo.BaseMutationOptions<
+  UpdateCardMutation,
+  UpdateCardMutationVariables
+>;
