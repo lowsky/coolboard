@@ -69,4 +69,3 @@ fragment Card_card on Card {
     id
   }
 }
-

@@ -4,7 +4,11 @@ import { Button, Container, List, Loader, Segment } from 'semantic-ui-react';
 
 import { FullVerticalContainer } from '../common/FullVerticalContainer';
 import { CreateBoardModal } from './CreateBoardModal';
-import { useCreateBoardMutation, useDeleteBoardMutation, useUserBoardsQuery } from '../generated/graphql';
+import {
+  useCreateBoardMutation,
+  useDeleteBoardMutation,
+  useUserBoardsQuery,
+} from '../generated/graphql';
 
 import styles from './Boards.module.css';
 
@@ -50,7 +54,7 @@ export const Boards = () => {
 
   const [showModal, setShowModal] = useState(false);
 
-  const [deleteBoard] = useDeleteBoardMutation( {
+  const [deleteBoard] = useDeleteBoardMutation({
     onCompleted: () => refetch(),
   });
 

@@ -1721,14 +1721,3 @@ export function useUpdateCardMutation(baseOptions?: Apollo.MutationHookOptions<U
 export type UpdateCardMutationHookResult = ReturnType<typeof useUpdateCardMutation>;
 export type UpdateCardMutationResult = Apollo.MutationResult<UpdateCardMutation>;
 export type UpdateCardMutationOptions = Apollo.BaseMutationOptions<UpdateCardMutation, UpdateCardMutationVariables>;
-
-      export interface PossibleTypesResultData {
-        possibleTypes: {
-          [key: string]: string[]
-        }
-      }
-      const result: PossibleTypesResultData = {
-  "possibleTypes": {}
-};
-      export default result;
-    
