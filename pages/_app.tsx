@@ -1,6 +1,6 @@
-import Head from 'next/head';
-// import Link from "next/link";
-// import Script from 'next/script'
+import Head from 'next/head'
+//import Script from 'next/script'
+import { UserProvider } from "@auth0/nextjs-auth0";
 
 import '../public/index.css';
 import '../src/fomantic/dist/semantic.css';
@@ -40,7 +40,9 @@ export default function App({ Component, pageProps }) {
           overflow: 'auto',
           flex: 1,
         }}>
-        <Component {...pageProps} />
+        <UserProvider>
+          <Component {...pageProps} />
+        </UserProvider>
       </div>
 
       <Footer />

@@ -62,7 +62,7 @@ export default function About() {
           <h2>How does it work?</h2>
           <p>
             You will need to Sign-up via email and{' '}
-            <Link href="/login">
+            <Link href="/api/auth/login">
               <a>
                 <Icon size="big" name="sign in" />
                 authenticate here

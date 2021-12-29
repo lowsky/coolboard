@@ -67,7 +67,7 @@ export const GeneralErrorHandler = () => {
             </strong>
             <p>
               Please try to
-              <Link href="/login">
+              <Link href="/api/auth/login">
                 <a>
                   <Icon size="big" name="sign in" />
                   Log in
@@ -117,7 +117,7 @@ export const GeneralErrorHandler = () => {
             </strong>
             <p>
               Please
-              <Link href="/login">
+              <Link href="/api/auth/login">
                 <a>
                   <Icon size="big" name="sign in" />
                   Log in
