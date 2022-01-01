@@ -1,44 +1,13 @@
-import Link from 'next/link';
-import React, { useState } from 'react';
+import React from 'react';
 
-import { Button, Icon, Message } from 'semantic-ui-react';
-import { hasExpirationSet, isExpired } from '../authentication/checkExpiration';
+import { Icon, Message } from 'semantic-ui-react';
 import { useApolloNetworkStatus } from '../setupGraphQLClient';
-import { authRefresh } from '../App';
 
 const ErrorMessage = ({ children }) => (
   <Message error style={{ flexShrink: 0 }}>
     {children}
   </Message>
 );
-
-function ReLoginButton({ authRefresh }) {
-  const [loading, setLoading] = useState(false);
-  if (!!authRefresh && hasExpirationSet() && isExpired()) {
-    return (
-      <div>
-        <Button
-          loading={loading}
-          compact={true}
-          onClick={async () => {
-            setLoading(true);
-            try {
-              await authRefresh();
-              setLoading(false);
-              window.history.go(0); // refresh page
-            } catch (e) {
-              console.error(e);
-            }
-            setLoading(false);
-          }}>
-          Refresh
-        </Button>{' '}
-        the security token.
-      </div>
-    );
-  }
-  return null;
-}
 
 export const GeneralErrorHandler = () => {
   const { queryError, mutationError } = useApolloNetworkStatus();
@@ -67,12 +36,10 @@ export const GeneralErrorHandler = () => {
             </strong>
             <p>
               Please try to
-              <Link href="/api/auth/login">
-                <a>
-                  <Icon size="big" name="sign in" />
-                  Log in
-                </a>
-              </Link>{' '}
+              <a href="/api/auth/login?returnTo=/boards">
+                <Icon size="big" name="sign in" />
+                Log in
+              </a>{' '}
               again or <br />
               <strong>contact the support</strong>
             </p>
@@ -96,12 +63,10 @@ export const GeneralErrorHandler = () => {
               </strong>
               <p>
                 You can{' '}
-                <Link href="/login">
-                  <a>
-                    <Icon size="big" name="sign in" />
-                    Sign in
-                  </a>
-                </Link>
+                <a href="/api/auth/login?returnTo=/boards">
+                  <Icon size="big" name="sign in" />
+                  Sign in
+                </a>
                 via Auth0 service.
               </p>
             </Message>
@@ -110,19 +75,16 @@ export const GeneralErrorHandler = () => {
 
         return (
           <ErrorMessage>
-            <ReLoginButton authRefresh={authRefresh} />
             <strong>
               You will need to be authenticated to see or create Boards or
               change any items.
             </strong>
             <p>
               Please
-              <Link href="/api/auth/login">
-                <a>
-                  <Icon size="big" name="sign in" />
-                  Log in
-                </a>
-              </Link>
+              <a href="/api/auth/login?returnTo=/boards">
+                <Icon size="big" name="sign in" />
+                Log in
+              </a>
             </p>
           </ErrorMessage>
         );
@@ -134,8 +96,6 @@ export const GeneralErrorHandler = () => {
 
       return (
         <ErrorMessage>
-          {errorMsgs.filter((msg) => msg.indexOf('jwt expired') >= 0).length >
-            0 && <ReLoginButton authRefresh={authRefresh} />}
           <strong>Error:</strong>{' '}
           {errorMsgs.map((message, idx) => (
             <span key={idx}>{message}</span>
@@ -146,7 +106,6 @@ export const GeneralErrorHandler = () => {
       console.log({ networkError });
       return (
         <ErrorMessage>
-          <ReLoginButton authRefresh={authRefresh} />
           <p>
             <strong>Communication with the GraphQL server failed!</strong>
             <span>

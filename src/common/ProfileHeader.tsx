@@ -58,7 +58,7 @@ const ProfileHeaderContainer = ({
 export const ProfileHeader = ({ isBoardsPage }: { isBoardsPage?: boolean }) => {
   const { user, error, isLoading } = useUser();
 
-  if (isLoading || (!error && !user)) {
+  if (isLoading) {
     return (
       <ProfileHeaderContainer isBoardsPage={isBoardsPage}>
         <Loader active />
@@ -70,12 +70,10 @@ export const ProfileHeader = ({ isBoardsPage }: { isBoardsPage?: boolean }) => {
   if (error) {
     return (
       <ProfileHeaderContainer isBoardsPage={isBoardsPage}>
-        <Link href="/api/auth/login">
-          <a>
-            <Icon size="big" name="sign in" />
-            Log in
-          </a>
-        </Link>
+        <a href="/api/auth/login">
+          <Icon size="big" name="sign in" />
+          Log in
+        </a>
       </ProfileHeaderContainer>
     );
   }
@@ -83,8 +81,10 @@ export const ProfileHeader = ({ isBoardsPage }: { isBoardsPage?: boolean }) => {
   if (!user) {
     return (
       <ProfileHeaderContainer isBoardsPage={isBoardsPage}>
-        <Loader active />
-        Loading user...
+        <a href="/api/auth/login">
+          <Icon size="big" name="sign in" />
+          Login
+        </a>
       </ProfileHeaderContainer>
     );
   }
@@ -96,12 +96,10 @@ export const ProfileHeader = ({ isBoardsPage }: { isBoardsPage?: boolean }) => {
       <div>
         <span>{name} </span>
         {picture && <Image src={picture} avatar spaced alt="user avatar" />}
-        <Link href="/api/auth/logout">
-          <a>
-            <Icon size="big" name="sign out" />
-            Logout
-          </a>
-        </Link>
+        <a href="/api/auth/logout">
+          <Icon size="big" name="sign out" />
+          Logout
+        </a>
       </div>
     </ProfileHeaderContainer>
   );

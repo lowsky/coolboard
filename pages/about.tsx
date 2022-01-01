@@ -1,6 +1,5 @@
 import React from 'react';
 import { Container, Header, Icon, Segment } from 'semantic-ui-react';
-import Link from 'next/link';
 import Image from 'next/image';
 
 import { FullVerticalContainer } from '../src/common/FullVerticalContainer';
@@ -62,12 +61,11 @@ export default function About() {
           <h2>How does it work?</h2>
           <p>
             You will need to Sign-up via email and{' '}
-            <Link href="/api/auth/login">
-              <a>
-                <Icon size="big" name="sign in" />
-                authenticate here
-              </a>
-            </Link>
+            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+            <a href="/api/auth/login">
+              <Icon size="big" name="sign in" />
+              authenticate here
+            </a>
           </p>
           <p>Then you can create and share a board (via its URL)</p>
         </Segment>

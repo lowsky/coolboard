@@ -18,25 +18,8 @@ export const setupGraphQLClient = () => {
     uri,
   });
 
-  const middlewareAuthLink = new ApolloLink((operation, forward) => {
-    if (typeof localStorage !== 'undefined') {
-      const token = localStorage?.getItem('id_token');
-
-      operation.setContext({
-        headers: {
-          authorization: token ? `Bearer ${token}` : '',
-        },
-      });
-    }
-    return forward(operation);
-  });
-
   return new ApolloClient({
-    link: ApolloLink.from([
-      networkStatusNotifier.link,
-      middlewareAuthLink,
-      httpLink,
-    ]),
+    link: ApolloLink.from([networkStatusNotifier.link, httpLink]),
     cache: new InMemoryCache(),
   });
 };
