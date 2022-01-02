@@ -26,7 +26,7 @@
     "apollo-server-micro": "3.6.1",
     "aws-sdk": "2.1048.0",
     "bcryptjs": "2.4.3",
-    "bufferutil": "4.0.5",
+    "bufferutil": "4.0.6",
     "jsonwebtoken": "8.5.1",
     "jwks-rsa": "2.0.5",
     "prisma-client-lib": "1.34.12",
