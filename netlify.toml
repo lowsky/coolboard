@@ -1,6 +1,6 @@
 [build]
   Command = "npm run build"
-  functions = "netlify/functions"
+  ## functions = "netlify/functions"
   publish = ".next"
 
 [functions]
