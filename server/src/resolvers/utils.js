@@ -50,16 +50,17 @@ const getUserId = async (ctx) => {
 export const auth0idFromUserToken = (userToken) => userToken?.sub.split('|')[1];
 
 async function verifyAuth0HeaderToken(ctx) {
-  const session = getSession(ctx.req, ctx.res);
-
   try {
+    const session = getSession(ctx.req, ctx.res);
     const userToken = session?.user;
     const auth0id = auth0idFromUserToken(userToken);
     if (auth0id) {
       return userToken;
     }
   } catch (error) {
-    throw new Error('invalid auth token was sent: ' + error);
+    throw new Error(
+      'Not authenticated or auth info in cookie invalid:' + error
+    );
   }
 
   const authorization =

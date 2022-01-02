@@ -26,12 +26,16 @@ const unmonitoredHandler: NetlifyFunctionHandler = (
     debug: isLocalDev,
     introspection: isLocalDev,
 
-    context: ({ event }) => ({
-      event: {
-        headers: event.headers,
-      },
-      prisma,
-    }),
+    context: ({ event, express }) => {
+      return {
+        event: {
+          headers: event?.headers,
+        },
+        req: express.req,
+        res: express.res,
+        prisma,
+      };
+    },
   });
 
   const handler = lambdaServer.createHandler();
