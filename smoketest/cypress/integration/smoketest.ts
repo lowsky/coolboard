@@ -24,6 +24,7 @@ before(() => {
     baseUrl.endsWith('localhost:8888') ||
       baseUrl.endsWith('localhost:3000') ||
       baseUrl.endsWith('coolboard.netlify.app') ||
+      baseUrl.startsWith('https://localhost') ||
       baseUrl.startsWith(
         'https://hands-on-application-building-with-graph-ql-and-reac'
       ) ||
@@ -37,7 +38,11 @@ before(() => {
 
   assert(branch, 'CYPRESS_branch env var was not set');
   assert(password, 'CYPRESS_USER_PASSWORD env var was not set');
+  cy.clearCookies();
+  cy.clearLocalStorage();
 });
+
+beforeEach(() => {});
 
 const gotoBoards = () =>
   cy
@@ -47,7 +52,7 @@ const gotoBoards = () =>
 
 const clickLogin = () =>
   cy
-    .get('a[href="/login"]', {
+    .contains('Sign in', {
       log: true,
       timeout: 6000,
     })
@@ -81,45 +86,31 @@ function fillLoginForm() {
     .should('equal', baseUrl + '/boards')
     .wait(2000);
 }
+function fillLoginFormNew() {
+  cy.get('#username').clear();
+  cy.get('#username').type('skylab@nurfuerspam.de');
+  cy.get('#password').click();
+  cy.get('#password').clear();
+  cy.get('#password').type(password + '{enter}', {
+    log: false,
+  });
 
-let authResult: {
-  expiresAt: string;
-  idToken: string;
-  accessToken: string;
-};
+  // helps to wait for auth0 process of redirecting with to the /callback url
+  return cy
+    .wait(1000)
+    .url(LogAndWaitLong)
+    .should('not.include', 'callback')
+    .should('equal', baseUrl + '/boards')
+    .wait(2000);
+}
 
 function doLogin() {
-  if (authResult) {
-    const { expiresAt, idToken, accessToken } = authResult;
-    localStorage.setItem('access_token', accessToken);
-    localStorage.setItem('id_token', idToken);
-    localStorage.setItem('expires_at', expiresAt);
-
-    gotoBoards();
-  } else
-    cy.visit(baseUrl).then(() => {
-      if (authResult) {
-        // this block still needed - not sure...
-        const { expiresAt, idToken, accessToken } = authResult;
-        localStorage.setItem('access_token', accessToken);
-        localStorage.setItem('id_token', idToken);
-        localStorage.setItem('expires_at', expiresAt);
-      } else {
-        gotoBoards();
-        clickLogin();
-        fillLoginForm().then(() => {
-          const accessToken = localStorage.getItem('access_token')!;
-          const idToken = localStorage.getItem('id_token')!;
-          const expiresAt = localStorage.getItem('expires_at')!;
-
-          authResult = {
-            expiresAt,
-            idToken,
-            accessToken,
-          };
-        });
-      }
-    });
+  gotoBoards();
+  clickLogin();
+  // Classic auth0 login
+  fillLoginForm();
+  // New, modern auth0 login
+  // ... fillLoginFormNew();
 }
 
 const getBoardsList = () => {
@@ -147,11 +138,10 @@ let WaitVeryLong = {
 describe('Test coolboard', () => {
   it('need to login to show boards', () => {
     doLogin();
-    gotoBoards();
+    // gotoBoards();
   });
 
   it('user can create a board for branch', () => {
-    doLogin();
     gotoBoards();
 
     getBoardsList().then((boards) =>
@@ -172,8 +162,6 @@ describe('Test coolboard', () => {
   });
 
   it('user can add lists and cards after login', () => {
-    doLogin();
-
     gotoBoards();
 
     // open first board named XXX
@@ -224,14 +212,9 @@ describe('Test coolboard', () => {
       .first()
       .click();
     cy.get('.ui > .button > .trash').first().click();
-
-    // Later: if(headed) cy.pause();
-    // logout
-    cy.get('[data-cy=profile-header] > div > a').click();
   });
 
   it('user can delete board', () => {
-    doLogin();
     gotoBoards();
 
     // open first board named XXX
@@ -240,6 +223,9 @@ describe('Test coolboard', () => {
       .find('.button > .trash')
       .click();
     getBoardsList_FirstEntry(newBoardName).should('not.exist');
+
+    // logout
+    cy.get('[data-cy=profile-header] > div > a').click();
   });
 });
 
