@@ -20,7 +20,7 @@ export default function Board() {
       <ProfileHeader />
       <GeneralErrorHandler />
       <DndProvider backend={HTML5Backend}>
-        <CoolBoard boardId={id} />
+        {id && <CoolBoard boardId={id} />}
       </DndProvider>
     </FullPageWithApollo>
   );
