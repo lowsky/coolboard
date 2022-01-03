@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { UserProvider } from '@auth0/nextjs-auth0';
 
 import '../public/index.css';
-import '../src/fomantic/dist/semantic.css';
+import '../src/fomantic/dist/semantic.min.css';
 import { Footer } from '../src/components/Footer';
 
 // Head's title and view-port-meta needs to go here, see https://nextjs.org/docs/messages/no-document-viewport-meta
