@@ -1,6 +1,7 @@
 import { createError } from 'apollo-errors';
-import { getSession, getAccessToken } from '@auth0/nextjs-auth0';
+import { getAccessToken } from '@auth0/nextjs-auth0';
 
+import auth0 from '../../../src/auth0';
 import validateAndParseIdToken from '../helpers/validateAndParseIdToken';
 import {
   injectUserIdByAuth0id,
@@ -51,7 +52,7 @@ export const auth0idFromUserToken = (userToken) => userToken?.sub.split('|')[1];
 
 async function verifyAuth0HeaderToken(ctx) {
   try {
-    const session = getSession(ctx.req, ctx.res);
+    const session = auth0.getSession(ctx.req, ctx.res);
     const userToken = session?.user;
     const auth0id = auth0idFromUserToken(userToken);
     if (auth0id) {

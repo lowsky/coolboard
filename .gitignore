@@ -43,3 +43,4 @@ server/express/build/
 # local env files
 # vercel.next
 !/src/fomantic/dist/semantic.min.css
+/src/auth0config.json

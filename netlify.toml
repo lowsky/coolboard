@@ -1,7 +1,6 @@
 [build]
-  Command = "npm run build"
-  ## functions = "netlify/functions"
-  publish = ".next"
+Command = "npm run build"
+publish = ".next"
 
 [functions]
   external_node_modules = ["keyv", "http", "@opentelemetry/*", "graphql", "@prisma/client", "apollo-server-lambda", "ts-is-defined", "@instana/aws-lambda", "sharp"]
