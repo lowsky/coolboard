@@ -1562,13 +1562,12 @@
     "@opentelemetry/semantic-conventions" "^1.0.0"
     "@types/express" "4.17.13"
 
-"@opentelemetry/instrumentation-graphql@0.27.0":
-  version "0.27.0"
-  resolved "https://registry.yarnpkg.com/@opentelemetry/instrumentation-graphql/-/instrumentation-graphql-0.27.0.tgz#1a6ca56029d011f2229e413543ee8a19c44e0989"
-  integrity sha512-B+YXItqPMxedkUiXiCLC8h/4nKcpNjJv6H7GwyZwuIoTzTXg2WUet4sY2VRdFkC1jyR5W8+/UPGnfud5ktg8gQ==
+"@opentelemetry/instrumentation-graphql@0.27.1":
+  version "0.27.1"
+  resolved "https://registry.yarnpkg.com/@opentelemetry/instrumentation-graphql/-/instrumentation-graphql-0.27.1.tgz#d434962d10adfb7e7a21c01faee0921b748deeef"
+  integrity sha512-1lE5BR6rsEOcSndfzP42kJJPy747MdMXNfYeR9cMtfThHiW4QVc5IYQu7DkPZxIc5LYilRRgtSVqza+cX/fy7A==
   dependencies:
     "@opentelemetry/instrumentation" "^0.27.0"
-    "@types/graphql" "14.5.0"
 
 "@opentelemetry/instrumentation-http@0.27.0":
   version "0.27.0"
