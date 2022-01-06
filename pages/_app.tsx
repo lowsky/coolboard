@@ -1,14 +1,16 @@
 import Head from 'next/head';
-// import Link from "next/link";
-// import Script from 'next/script'
+//import Script from 'next/script'
+import { UserProvider } from '@auth0/nextjs-auth0';
 
 import '../public/index.css';
-import '../src/fomantic/dist/semantic.css';
+import '../src/fomantic/dist/semantic.min.css';
 import { Footer } from '../src/components/Footer';
 
 // Head's title and view-port-meta needs to go here, see https://nextjs.org/docs/messages/no-document-viewport-meta
 
 export default function App({ Component, pageProps }) {
+  const { user } = pageProps;
+
   return (
     <>
       <Head>
@@ -40,7 +42,9 @@ export default function App({ Component, pageProps }) {
           overflow: 'auto',
           flex: 1,
         }}>
-        <Component {...pageProps} />
+        <UserProvider user={user}>
+          <Component {...pageProps} />
+        </UserProvider>
       </div>
 
       <Footer />

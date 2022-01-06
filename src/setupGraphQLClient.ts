@@ -12,31 +12,15 @@ export const { useApolloNetworkStatus } = networkStatusNotifier;
 export const setupGraphQLClient = () => {
   const GRAPHQL_URL = '/api/graphql';
 
-  const uri = process.env.NEXT_PUBLIC_RELAY_ENDPOINT ?? GRAPHQL_URL;
+  // const uri = process.env.NEXT_PUBLIC_RELAY_ENDPOINT ?? GRAPHQL_URL;
+  const uri = GRAPHQL_URL;
 
   let httpLink = createHttpLink({
     uri,
   });
 
-  const middlewareAuthLink = new ApolloLink((operation, forward) => {
-    if (typeof localStorage !== 'undefined') {
-      const token = localStorage?.getItem('id_token');
-
-      operation.setContext({
-        headers: {
-          authorization: token ? `Bearer ${token}` : '',
-        },
-      });
-    }
-    return forward(operation);
-  });
-
   return new ApolloClient({
-    link: ApolloLink.from([
-      networkStatusNotifier.link,
-      middlewareAuthLink,
-      httpLink,
-    ]),
+    link: ApolloLink.from([networkStatusNotifier.link, httpLink]),
     cache: new InMemoryCache(),
   });
 };

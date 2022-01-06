@@ -23,7 +23,6 @@ export default function Index() {
           Welcome to CoolBoard - manage your tasks in a kanban style
         </h1>
         <Segment basic>
-          <h2></h2>
           <p>
             You can go to your list of
             <Link href="/boards">
@@ -34,12 +33,11 @@ export default function Index() {
           </p>
           <p>
             At the first time, you will need to{' '}
-            <Link href="/login">
-              <a>
-                <Icon name="sign in" />
-                <span>sign in</span>
-              </a>
-            </Link>
+            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+            <a href="/api/auth/login?returnTo=/boards">
+              <Icon name="sign in" />
+              <span>sign in</span>
+            </a>
             first via Google or any email/password.
           </p>
         </Segment>

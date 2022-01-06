@@ -22,5 +22,9 @@ Cypress.Commands.add('dataCy', (value, options) =>
   cy.get(`[data-cy="${value}"]`, options)
 );
 
+Cypress.Cookies.defaults({
+  preserve: () => true,
+});
+
 // Convert this to a module instead of script (allows import/export)
 export {};

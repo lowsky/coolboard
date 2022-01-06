@@ -1,5 +1,7 @@
 import { createError } from 'apollo-errors';
+import { getAccessToken } from '@auth0/nextjs-auth0';
 
+import auth0 from '../../../src/auth0';
 import validateAndParseIdToken from '../helpers/validateAndParseIdToken';
 import {
   injectUserIdByAuth0id,
@@ -46,18 +48,27 @@ const getUserId = async (ctx) => {
   });
 };
 
-export const auth0idFromUserToken = (userToken) => userToken.sub.split('|')[1];
+export const auth0idFromUserToken = (userToken) => userToken?.sub.split('|')[1];
 
 async function verifyAuth0HeaderToken(ctx) {
-  const authorization = ctx.request
-    ? ctx.request.get('Authorization')
-    : ctx.event && ctx.event.headers && ctx.event.headers['authorization']
-    ? ctx.event.headers['authorization']
-    : ctx.connection &&
-      ctx.connection.context &&
-      ctx.connection.context.Authorization
-    ? ctx.connection.context.Authorization
-    : undefined;
+  try {
+    const session = auth0.getSession(ctx.req, ctx.res);
+    const userToken = session?.user;
+    const auth0id = auth0idFromUserToken(userToken);
+    if (auth0id) {
+      return userToken;
+    }
+  } catch (error) {
+    throw new Error(
+      'Not authenticated or auth info in cookie invalid:' + error
+    );
+  }
+
+  const authorization =
+    ctx.request?.get('Authorization') ??
+    ctx.event?.headers?.['authorization'] ??
+    ctx.connection?.context?.Authorization ??
+    undefined;
 
   if (authorization) {
     const token = authorization.replace('Bearer ', '');

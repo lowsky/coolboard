@@ -1,10 +1,6 @@
 [build]
-  Command = "npm run build"
-  functions = "netlify/functions"
+Command = "npm run build"
+publish = ".next"
 
 [functions]
-  node_bundler = "esbuild"
-  external_node_modules = ["http", "@opentelemetry/*", "graphql", "@prisma/client", "apollo-server-lambda", "ts-is-defined", "@instana/aws-lambda", "sharp"]
-
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
+  external_node_modules = ["keyv", "http", "@opentelemetry/*", "graphql", "@prisma/client", "apollo-server-lambda", "ts-is-defined", "@instana/aws-lambda", "sharp"]

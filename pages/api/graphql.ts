@@ -36,12 +36,13 @@ const getGraphqlServer = async () => {
     requireResolversForResolveType: false,
   },
   */
-    context: ({ req }) => ({
-      event: {
-        headers: req.headers,
-      },
-      prisma,
-    }),
+    context: ({ req, res }) => {
+      return {
+        req,
+        res,
+        prisma,
+      };
+    },
   });
 
   await apolloServer.start();

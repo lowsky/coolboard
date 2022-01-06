@@ -1,4 +1,4 @@
-import instana from '@instana/aws-lambda';
+//LATER import instana from '@instana/aws-lambda';
 import { ApolloServer } from 'apollo-server-lambda';
 
 import resolvers from '../../../server/src/resolvers/resolvers';
@@ -26,12 +26,16 @@ const unmonitoredHandler: NetlifyFunctionHandler = (
     debug: isLocalDev,
     introspection: isLocalDev,
 
-    context: ({ event }) => ({
-      event: {
-        headers: event.headers,
-      },
-      prisma,
-    }),
+    context: ({ event, express }) => {
+      return {
+        event: {
+          headers: event?.headers,
+        },
+        req: express.req,
+        res: express.res,
+        prisma,
+      };
+    },
   });
 
   const handler = lambdaServer.createHandler();
@@ -69,11 +73,15 @@ const unmonitoredHandler: NetlifyFunctionHandler = (
   }
 };
 
+const handler = unmonitoredHandler;
+/*
 const handler = instana.wrap(
   {
     serviceName: 'github-graphql',
   },
   unmonitoredHandler
 );
+
+ */
 
 export { handler };

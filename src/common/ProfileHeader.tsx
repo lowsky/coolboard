@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import { Container, Icon, Image, Loader } from 'semantic-ui-react';
 import Link from 'next/link';
 
-import { useMeQueryQuery } from '../generated/graphql';
+import { useUser } from '@auth0/nextjs-auth0';
 
 const ProfileHeaderContainer = ({
   children,
@@ -56,10 +56,9 @@ const ProfileHeaderContainer = ({
 );
 
 export const ProfileHeader = ({ isBoardsPage }: { isBoardsPage?: boolean }) => {
-  // LATER: { options: { fetchPolicy: 'network-only' } }
-  const { loading, error, data } = useMeQueryQuery();
+  const { user, error, isLoading } = useUser();
 
-  if (loading) {
+  if (isLoading) {
     return (
       <ProfileHeaderContainer isBoardsPage={isBoardsPage}>
         <Loader active />
@@ -71,32 +70,36 @@ export const ProfileHeader = ({ isBoardsPage }: { isBoardsPage?: boolean }) => {
   if (error) {
     return (
       <ProfileHeaderContainer isBoardsPage={isBoardsPage}>
-        <Link href="/login">
-          <a>
-            <Icon size="big" name="sign in" />
-            Log in
-          </a>
-        </Link>
+        <a href="/api/auth/login">
+          <Icon size="big" name="sign in" />
+          Log in
+        </a>
       </ProfileHeaderContainer>
     );
   }
 
-  const { me } = data ?? {};
+  if (!user) {
+    return (
+      <ProfileHeaderContainer isBoardsPage={isBoardsPage}>
+        <a href="/api/auth/login">
+          <Icon size="big" name="sign in" />
+          Login
+        </a>
+      </ProfileHeaderContainer>
+    );
+  }
 
-  const { avatarUrl, name } = me ?? {};
+  const { picture, name } = user;
 
   return (
     <ProfileHeaderContainer isBoardsPage={isBoardsPage}>
       <div>
         <span>{name} </span>
-        {avatarUrl && <Image src={avatarUrl} avatar spaced alt="user avatar" />}
-
-        <Link href="/logout">
-          <a>
-            <Icon size="big" name="sign out" />
-            Logout
-          </a>
-        </Link>
+        {picture && <Image src={picture} avatar spaced alt="user avatar" />}
+        <a href="/api/auth/logout">
+          <Icon size="big" name="sign out" />
+          Logout
+        </a>
       </div>
     </ProfileHeaderContainer>
   );
