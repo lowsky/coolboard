@@ -15,6 +15,9 @@ export default {
     async boards(parent, args, ctx) {
       const { prisma } = ctx;
       return prisma.board.findMany({
+        orderBy: {
+          createdAt: 'asc',
+        },
         where: { createdById: parent.id },
       });
     },
@@ -23,6 +26,9 @@ export default {
     async lists(parent, args, ctx) {
       const { prisma } = ctx;
       return prisma.list.findMany({
+        orderBy: {
+          createdAt: 'asc',
+        },
         where: { board: { id: parent.id } },
         include: {
           createdBy: true,
@@ -34,6 +40,9 @@ export default {
     async cards(parent, args, ctx) {
       const { prisma } = ctx;
       return prisma.card.findMany({
+        orderBy: {
+          createdAt: 'asc',
+        },
         where: { list: { id: parent.id } },
         include: {
           createdBy: true,
