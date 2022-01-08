@@ -1,6 +1,10 @@
 import React from 'react';
 
-import { BoardContainer, AddListButton, DelListButton } from './BoardContainer';
+import {
+  AddListButton,
+  BoardContainer,
+  DelAllListsButton,
+} from './BoardContainer';
 import { CardList } from './CardList';
 import {
   useAddListMutation,
@@ -24,10 +28,14 @@ const Board = (props) => {
   };
 
   return (
-    <BoardContainer boardName={name}>
-      <DelListButton action={() => deleteLists(lists.map((list) => list.id))}>
-        Delete All
-      </DelListButton>
+    <BoardContainer
+      boardName={name}
+      headerActions={
+        <DelAllListsButton
+          action={() => deleteLists(lists.map((list) => list.id))}>
+          Delete All
+        </DelAllListsButton>
+      }>
       {lists.map((list) => (
         <CardList
           key={list.id}

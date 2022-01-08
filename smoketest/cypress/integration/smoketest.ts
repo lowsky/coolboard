@@ -170,7 +170,11 @@ describe('Test coolboard', () => {
     cy.url().should('include', 'board/');
 
     // clear all lists:
+
+    cy.dataCy('board-header-menu').first().click();
+
     cy.get('button', LogAndWaitLong).contains('Delete All').click();
+    cy.get('button', LogAndWaitLong).contains('This will be permanent').click();
 
     sections(LogAndWaitLong).should('not.exist');
 

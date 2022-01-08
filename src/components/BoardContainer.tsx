@@ -1,26 +1,55 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Button, Container, Header, Icon } from 'semantic-ui-react';
+import { Button, Container, Header, Icon, Popup } from 'semantic-ui-react';
 
-export const BoardContainer = ({ boardName, children }) => (
+import { useConfirmAction } from './UseConfirmAction';
+
+type Props = {
+  boardName: string;
+  children: React.ReactNode;
+  headerActions: React.ReactNode;
+};
+
+export const BoardContainer = ({
+  boardName,
+  children,
+  headerActions,
+}: Props) => (
   <Container
     fluid
     style={{
       display: 'flex',
       flexDirection: 'column',
       flexGrow: 1,
-      marginTop: '1em',
+      marginTop: '1rem',
     }}>
     <Header textAlign="center" as="h1">
       Board: {boardName}
+      {headerActions && (
+        <Popup
+          trigger={
+            <Button
+              data-cy="board-header-menu"
+              style={{
+                flexGrow: 0,
+                verticalAlign: 'middle',
+                marginLeft: '1rem',
+              }}
+              icon="ellipsis vertical"
+              size="mini"
+            />
+          }
+          on="click"
+          content={headerActions}
+          basic
+        />
+      )}
     </Header>
     <div
       data-cy="board-container-inner"
       style={{
         textAlign: 'left',
         backgroundColor: 'blue',
-        padding: '1em',
+        padding: '1rem',
         display: 'flex',
         flex: 1,
         overflow: 'auto',
@@ -30,12 +59,11 @@ export const BoardContainer = ({ boardName, children }) => (
   </Container>
 );
 
-BoardContainer.propTypes = {
-  boardName: PropTypes.string.isRequired,
-  children: PropTypes.array.isRequired,
-};
-
-export const AddListButton = ({ onAddNewList }) => (
+export const AddListButton = ({
+  onAddNewList,
+}: {
+  onAddNewList: () => void;
+}) => (
   <Button
     onClick={onAddNewList}
     style={{
@@ -48,23 +76,27 @@ export const AddListButton = ({ onAddNewList }) => (
   </Button>
 );
 
-export const DelListButton = ({ action, children }) => (
-  <Button
-    onClick={() => action()}
-    style={{
-      flexShrink: 0,
-      flexGrow: 0,
-      alignSelf: 'flex-start',
-    }}>
-    <Icon name="delete" />
-    {children}
-  </Button>
-);
+export const DelAllListsButton = ({
+  action,
+  children,
+}: {
+  action: () => void;
+  children: React.ReactNode;
+}) => {
+  const [showWarning, showWarningThenCallAction] = useConfirmAction(action);
 
-DelListButton.propTypes = {
-  onAddNewList: PropTypes.func,
-  children: PropTypes.oneOfType([PropTypes.array, PropTypes.string]).isRequired,
-};
-AddListButton.propTypes = {
-  onAddNewList: PropTypes.func,
+  return (
+    <Button
+      onClick={showWarningThenCallAction}
+      color={showWarning ? 'red' : undefined}
+      style={{
+        flexShrink: 0,
+        flexGrow: 0,
+        alignSelf: 'flex-start',
+      }}>
+      {showWarning && <div>This will be permanent!</div>}
+      <Icon name="trash" color={showWarning ? undefined : 'red'} />
+      {children}
+    </Button>
+  );
 };
