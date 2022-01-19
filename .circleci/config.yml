@@ -41,7 +41,7 @@ jobs:
 #          command: npm run build
   build:
     docker:
-      - image: cypress/included:9.3.0
+      - image: cypress/included:9.3.1
     steps:
       - checkout
       - run:
@@ -114,7 +114,7 @@ jobs:
 
   prebuild_diag:
     docker:
-      - image: cypress/included:9.3.0
+      - image: cypress/included:9.3.1
     steps:
       - checkout
       - run:
