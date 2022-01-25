@@ -10,7 +10,7 @@
   },
   "homepage": "/",
   "dependencies": {
-    "@apollo/client": "3.5.7",
+    "@apollo/client": "3.5.8",
     "@auth0/nextjs-auth0": "1.7.0",
     "@instana/aws-lambda": "1.137.4",
     "@instana/opentelemetry-exporter": "1.137.4",
