@@ -15,7 +15,7 @@
     "@instana/aws-lambda": "1.137.5",
     "@instana/opentelemetry-exporter": "1.137.5",
     "@netlify/functions": "0.11.0",
-    "@opentelemetry/api": "1.0.4",
+    "@opentelemetry/api": "1.1.0",
     "@opentelemetry/core": "1.0.1",
     "@opentelemetry/instrumentation-express": "0.27.1",
     "@opentelemetry/instrumentation-graphql": "0.27.2",
