@@ -1177,18 +1177,32 @@
   resolved "https://registry.yarnpkg.com/@iarna/toml/-/toml-2.2.5.tgz#b32366c89b43c6f8cefbdefac778b9c828e3ba8c"
   integrity sha512-trnsAYxU3xnS1gPHPyU961coFyLkh4gAD/0zQ5mymY4yOZ+CYvsPqUbOFSw0aDM4y0tV7tiFxL/1XfXPNC6IPg==
 
-"@instana/aws-lambda@1.137.5":
-  version "1.137.5"
-  resolved "https://registry.yarnpkg.com/@instana/aws-lambda/-/aws-lambda-1.137.5.tgz#26a1fc6d81e98fb21c95356187eb043411d3b33a"
-  integrity sha512-kovCx0m+BwsiRMA5UMACxWpYJItEc9qvjgnlgXU4vX3wyDjbrKClJs91DP45dWeWfsygfD0381v3t/tyFMev+g==
+"@instana/aws-lambda@1.138.0":
+  version "1.138.0"
+  resolved "https://registry.yarnpkg.com/@instana/aws-lambda/-/aws-lambda-1.138.0.tgz#fdc3be7c2e69ea61b6b95f64cd572426af3d2f33"
+  integrity sha512-PN5/i8Dv0WgtsgTV98pB56aFv++YLHnk6DOWg4qhNeTW2+B7PyvXiOYB/1XrcuEyM6C/QcSliJ9pv2o0SrQVjQ==
   dependencies:
-    "@instana/core" "1.137.5"
-    "@instana/serverless" "1.137.5"
+    "@instana/core" "1.138.0"
+    "@instana/serverless" "1.138.0"
 
 "@instana/core@1.137.5":
   version "1.137.5"
   resolved "https://registry.yarnpkg.com/@instana/core/-/core-1.137.5.tgz#3151e29ffca99802d9529600d91ce7a68fe05638"
   integrity sha512-1g9pBNNn0g9uIIXuljkSggHllYbcr48Dhse3+Ln73MqEZ5rl+ospF8W/S05QceD4MeqmJSCAzPnlvACOzB/VoA==
+  dependencies:
+    async-hook-jl "^1.7.6"
+    cls-bluebird "^2.1.0"
+    lru-cache "6.0.0"
+    methods "^1.1.2"
+    opentracing "^0.14.5"
+    redis-commands "^1.7.0"
+    semver "7.3.3"
+    shimmer "1.2.1"
+
+"@instana/core@1.138.0":
+  version "1.138.0"
+  resolved "https://registry.yarnpkg.com/@instana/core/-/core-1.138.0.tgz#fc354bd6bbf3f80b5ab1e949f4572763f3ee08b1"
+  integrity sha512-UjFfQF6nECwaolZ67FOk14mxvJCHMj3SkxuGePnSVIhJSlROf8ZXUQ+ugEiXQuWfWr+2YOas4/9Eh2E/rlCiAA==
   dependencies:
     async-hook-jl "^1.7.6"
     cls-bluebird "^2.1.0"
@@ -1214,6 +1228,16 @@
   integrity sha512-xlLAT4twoF0+ODTljclth04bGvDQdcHVIhRf2Sn2RNjZEuqmbWq3wz+mrN75SjkmZWecAirY7XqMdg8P9zWCoA==
   dependencies:
     "@instana/core" "1.137.5"
+    agent-base "^6.0.2"
+    https-proxy-agent "^5.0.0"
+    semver "7.3.3"
+
+"@instana/serverless@1.138.0":
+  version "1.138.0"
+  resolved "https://registry.yarnpkg.com/@instana/serverless/-/serverless-1.138.0.tgz#25b6626c6ff697c28817ae1896a24ff808b17995"
+  integrity sha512-DxGf0voQjWoHh1xSdPifR3c/9WdWv0S21XXs+8zABCFyO1ZlBkI8eGlr8TIEsuohIrn1ha0U+ENhk/Yv0Bk6nw==
+  dependencies:
+    "@instana/core" "1.138.0"
     agent-base "^6.0.2"
     https-proxy-agent "^5.0.0"
     semver "7.3.3"
