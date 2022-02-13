@@ -69,7 +69,9 @@
     "fomantic:watch": "gulp -f src/fomantic/gulpfile.js watch",
     "fomantic:build": "echo temporary disabled: using pre-built files in src/fomantic/dist",
     "fomantic:build:manual": "gulp -f src/fomantic/gulpfile.js build",
-    "build": "npm run metainfo && prisma generate && yarn fomantic:build && next build",
+    "build": "yarn run metainfo && yarn prisma:generate && yarn fomantic:build && next build",
+    "prisma:generate": "PRISMA_CLIENT_ENGINE_TYPE='dataproxy' prisma generate",
+    "prisma:migrate": "DATABASE_URL=\"$MIGRATE_DATABASE_URL\" prisma migrate deploy",
     "metainfo": "sh storeMetaInfo.sh",
     "vercel-build": "COMMIT_REF=$VERCEL_GITHUB_COMMIT_SHA yarn run build ; yarn lint; yarn trigger-e2e-smoke",
     "codegen": "graphql-codegen --config codegen.yml"
