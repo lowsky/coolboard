@@ -14,7 +14,7 @@
     "@auth0/nextjs-auth0": "1.7.0",
     "@instana/aws-lambda": "1.138.0",
     "@instana/opentelemetry-exporter": "1.138.0",
-    "@netlify/functions": "0.11.0",
+    "@netlify/functions": "0.11.1",
     "@opentelemetry/api": "1.1.0",
     "@opentelemetry/core": "1.0.1",
     "@opentelemetry/instrumentation-express": "0.28.0",
