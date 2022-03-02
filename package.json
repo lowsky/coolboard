@@ -32,7 +32,7 @@
     "bcryptjs": "2.4.3",
     "bufferutil": "4.0.6",
     "emitter-listener": "1.1.2",
-    "eslint-config-prettier": "8.4.0",
+    "eslint-config-prettier": "8.5.0",
     "eslint-plugin-prettier": "4.0.0",
     "fomantic-ui": "2.8.8",
     "fomantic-ui-css": "2.8.8",
