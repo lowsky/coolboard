@@ -4,10 +4,7 @@ import {
   verifyAuth0HeaderToken,
   verifyUserIsAuthenticated,
 } from './utils';
-import {
-  injectUserIdByAuth0id,
-  userIdByAuth0id,
-} from '../helpers/userIdByAuth0id';
+import { injectUserIdByAuth0id } from '../helpers/userIdByAuth0id';
 import { createNewUser } from '../helpers/registerNewUser';
 import { isLocalDev } from '../helpers/logging';
 
@@ -59,7 +56,7 @@ const Query = {
     // user signed in, but not created in DB yet:
     const u = await createNewUser(userToken, prisma.user.create);
 
-    if (isLocalDev) log('created prisma user:', u);
+    if (isLocalDev) console.log('created prisma user:', u);
 
     if (u && u.id) {
       injectUserIdByAuth0id(u.id, auth0id);

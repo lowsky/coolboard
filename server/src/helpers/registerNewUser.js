@@ -6,7 +6,7 @@ export const createNewUser = async (idToken, createPersistentUser) => {
     identity: idToken.sub.split(`|`)[0],
     auth0id: idToken.sub.split(`|`)[1],
     name: idToken.name,
-    email: idToken.email,
+    email: idToken.email ?? idToken.name,
     avatarUrl: idToken.picture,
   };
 

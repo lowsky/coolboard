@@ -99,7 +99,9 @@ export const Boards = () => {
               }}
             />
           ) : (
-            <span>There a no boards, yet. You need need to create one.</span>
+            <span>
+              There a no boards, yet. You can create new boards now...
+            </span>
           )}
         </Container>
       </Segment>

@@ -50,13 +50,6 @@ const auth0 = {
       return userByAuth0id;
     }
 
-    /*
-    let userByEmail = await ctx.prisma.query.user(
-      { where: { email: userToken.email } },
-      info
-    );
-    */
-
     return createNewUser(userToken, prisma.createUser);
   },
 };
