@@ -5,7 +5,6 @@ import resolvers from '../../../server/src/resolvers/resolvers';
 import { typeDefs } from '../../../server/src/schema/apiSchema';
 
 import { isLocalDev } from '../../../server/src/helpers/logging';
-import { Handler as NetlifyFunctionHandler } from '@netlify/functions';
 
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient({
@@ -14,11 +13,7 @@ const prisma = new PrismaClient({
     : ['info', 'warn', 'error'],
 });
 
-const unmonitoredHandler: NetlifyFunctionHandler = (
-  event,
-  context,
-  callback
-) => {
+const unmonitoredHandler = (event, context, callback) => {
   const lambdaServer = new ApolloServer({
     typeDefs,
     resolvers,
@@ -48,19 +43,9 @@ const unmonitoredHandler: NetlifyFunctionHandler = (
         // "Unable to determine event source based on event." (in @vendia/serverless-express)
         requestContext: {},
       },
-      // @ts-expect-error TS2345: identity: missing the following properties from type 'CognitoIdentity': cognitoIdentityId, cognitoIdentityPoolId
       context,
       callback
     );
-
-    if (result) {
-      return result.then((data) => {
-        // avoid db pool limit hit
-        prisma.$disconnect();
-        return data;
-      });
-    }
-
     return result;
   } catch (e) {
     console.error(e);
@@ -70,6 +55,9 @@ const unmonitoredHandler: NetlifyFunctionHandler = (
         message: 'GraphQL server: sorry, an error: ' + e,
       }),
     };
+  } finally {
+    // avoid db pool limit hit
+    prisma.$disconnect();
   }
 };
 
