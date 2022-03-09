@@ -1392,13 +1392,13 @@
     nan "^2.14.2"
     node-abi "^2.30.0"
 
-"@instana/collector@1.138.0":
-  version "1.138.0"
-  resolved "https://registry.yarnpkg.com/@instana/collector/-/collector-1.138.0.tgz#6f2c3a084a9a6679a7d0ae0e0c6fd3dbc11a634b"
-  integrity sha512-TSt9OqOsDg/EzB0TFfEMBp7w6FfBsZ7m2JqpX5DmW2OWCRYM+JkmCW4p0Xp5+lkTHpB0nqVDQJnzS2jVpaXYtg==
+"@instana/collector@1.139.0":
+  version "1.139.0"
+  resolved "https://registry.yarnpkg.com/@instana/collector/-/collector-1.139.0.tgz#d69b0bda56a0216250f16c1b64cdaf1b083df91a"
+  integrity sha512-1YcqghzAnvxfC6OdJnLNdOXYbrWbDwt9hT9TjwgrZ+nNMmiaOzIg9A2SSB2y1v+d7B2cAYL5720l5GI/n7NrjQ==
   dependencies:
-    "@instana/core" "1.138.0"
-    "@instana/shared-metrics" "1.138.0"
+    "@instana/core" "1.139.0"
+    "@instana/shared-metrics" "1.139.0"
     bunyan "^1.8.15"
     semver "7.3.3"
     serialize-error "^3.0.0"
@@ -1406,10 +1406,10 @@
   optionalDependencies:
     "@instana/autoprofile" "1.137.5"
 
-"@instana/core@1.138.0":
-  version "1.138.0"
-  resolved "https://registry.yarnpkg.com/@instana/core/-/core-1.138.0.tgz#fc354bd6bbf3f80b5ab1e949f4572763f3ee08b1"
-  integrity sha512-UjFfQF6nECwaolZ67FOk14mxvJCHMj3SkxuGePnSVIhJSlROf8ZXUQ+ugEiXQuWfWr+2YOas4/9Eh2E/rlCiAA==
+"@instana/core@1.139.0":
+  version "1.139.0"
+  resolved "https://registry.yarnpkg.com/@instana/core/-/core-1.139.0.tgz#9207bc40c13f84050d66fd565dcd33f9a05e667a"
+  integrity sha512-acthUpETBM4vH7caPDVXKn1v0N767dQtULBvg6b+AGFId3MGaisqJ+nXtC6HWcVe7ZRO1UMn9MHXLUnLTGEIgg==
   dependencies:
     async-hook-jl "^1.7.6"
     cls-bluebird "^2.1.0"
@@ -1420,12 +1420,12 @@
     semver "7.3.3"
     shimmer "1.2.1"
 
-"@instana/shared-metrics@1.138.0":
-  version "1.138.0"
-  resolved "https://registry.yarnpkg.com/@instana/shared-metrics/-/shared-metrics-1.138.0.tgz#681db3bddf4ea08076586c59a795cc7996fa8e60"
-  integrity sha512-kYMfI622Rhlfwp91/iHt1xbZrJkXPOIDqSSM8OzPk1byFrpLuD1VpC6AKr+9l0DX2Ll1QV3l8+hNz2PhUWlC0Q==
+"@instana/shared-metrics@1.139.0":
+  version "1.139.0"
+  resolved "https://registry.yarnpkg.com/@instana/shared-metrics/-/shared-metrics-1.139.0.tgz#b19bdb575ce41e23ad85bacba5a0290e1b78eecd"
+  integrity sha512-g8IeAdXU0fou+HI9t5hBc38iFat5ECwOW2fb6WrMaaiGT7+tyvtufvjaANpvYvGs36dRHOCf1DUeN2EoRLCR/w==
   dependencies:
-    "@instana/core" "1.138.0"
+    "@instana/core" "1.139.0"
     detect-libc "^1.0.3"
     event-loop-lag "^1.4.0"
     recursive-copy "^2.0.13"
