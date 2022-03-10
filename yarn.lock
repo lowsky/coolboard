@@ -1209,20 +1209,6 @@
     "@instana/core" "1.139.0"
     "@instana/serverless" "1.139.0"
 
-"@instana/core@1.138.0":
-  version "1.138.0"
-  resolved "https://registry.yarnpkg.com/@instana/core/-/core-1.138.0.tgz#fc354bd6bbf3f80b5ab1e949f4572763f3ee08b1"
-  integrity sha512-UjFfQF6nECwaolZ67FOk14mxvJCHMj3SkxuGePnSVIhJSlROf8ZXUQ+ugEiXQuWfWr+2YOas4/9Eh2E/rlCiAA==
-  dependencies:
-    async-hook-jl "^1.7.6"
-    cls-bluebird "^2.1.0"
-    lru-cache "6.0.0"
-    methods "^1.1.2"
-    opentracing "^0.14.5"
-    redis-commands "^1.7.0"
-    semver "7.3.3"
-    shimmer "1.2.1"
-
 "@instana/core@1.139.0":
   version "1.139.0"
   resolved "https://registry.yarnpkg.com/@instana/core/-/core-1.139.0.tgz#9207bc40c13f84050d66fd565dcd33f9a05e667a"
@@ -1237,24 +1223,14 @@
     semver "7.3.3"
     shimmer "1.2.1"
 
-"@instana/opentelemetry-exporter@1.138.0":
-  version "1.138.0"
-  resolved "https://registry.yarnpkg.com/@instana/opentelemetry-exporter/-/opentelemetry-exporter-1.138.0.tgz#1f6f583675fa23b0ec17eacd545afcb179eb9cd3"
-  integrity sha512-QQsrdKzz19xNLTu3u7F5YZ1m99ulOOY71633YM/VlXfqFSscqOYwROh8LtEgLYLl47ULjIY6ThhJb55XOLS6QA==
+"@instana/opentelemetry-exporter@1.139.0":
+  version "1.139.0"
+  resolved "https://registry.yarnpkg.com/@instana/opentelemetry-exporter/-/opentelemetry-exporter-1.139.0.tgz#126d594aa2b43f956161eb63e0f7e321c4b8b3d5"
+  integrity sha512-Y40sQwrsq9GW7GgjrIvfzLjkj5BpdxYZETooEPDndTheh7d7vWJ5V8H2UpiF5W52XezDRQK65lkr0mMnN6yIbw==
   dependencies:
-    "@instana/serverless" "1.138.0"
+    "@instana/serverless" "1.139.0"
     "@opentelemetry/api" "1.0.4"
     "@opentelemetry/core" "1.0.1"
-
-"@instana/serverless@1.138.0":
-  version "1.138.0"
-  resolved "https://registry.yarnpkg.com/@instana/serverless/-/serverless-1.138.0.tgz#25b6626c6ff697c28817ae1896a24ff808b17995"
-  integrity sha512-DxGf0voQjWoHh1xSdPifR3c/9WdWv0S21XXs+8zABCFyO1ZlBkI8eGlr8TIEsuohIrn1ha0U+ENhk/Yv0Bk6nw==
-  dependencies:
-    "@instana/core" "1.138.0"
-    agent-base "^6.0.2"
-    https-proxy-agent "^5.0.0"
-    semver "7.3.3"
 
 "@instana/serverless@1.139.0":
   version "1.139.0"
