@@ -18,16 +18,10 @@ const unmonitoredHandler = (event, context, callback) => {
     typeDefs,
     resolvers,
 
-    debug: isLocalDev,
-    introspection: isLocalDev,
-
-    context: ({ event, express }) => {
+    context: ({ express: { req, res } }) => {
       return {
-        event: {
-          headers: event?.headers,
-        },
-        req: express.req,
-        res: express.res,
+        req,
+        res,
         prisma,
       };
     },
