@@ -91,7 +91,7 @@ jobs:
             echo using GIT_SHA1=${EXPECTED_GIT_SHA:-$CIRCLE_SHA1}
             echo running GIT_SHA1=${EXPECTED_GIT_SHA:-$CIRCLE_SHA1} npm run wait:valid-version
             echo
-            GIT_SHA1=${EXPECTED_GIT_SHA:-$CIRCLE_SHA1} npm run wait:valid-version
+            # will be done in next step: # GIT_SHA1=${EXPECTED_GIT_SHA:-$CIRCLE_SHA1} npm run wait:valid-version
       - run:
           name: run cypress
           command: |
@@ -102,7 +102,7 @@ jobs:
             cd smoketest
             mkdir -p cypress/results
             yarn
-            CYPRESS_branch=${CIRCLE_BRANCH} yarn cypress run --record --key $CYPRESS_API_KEY --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
+            (GIT_SHA1=${EXPECTED_GIT_SHA:-$CIRCLE_SHA1} npm run wait:valid-version && CYPRESS_branch=${CIRCLE_BRANCH} yarn cypress run --record --key $CYPRESS_API_KEY --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true) || true
       - store_test_results:
           path: smoketest/cypress/results
       - store_artifacts:
