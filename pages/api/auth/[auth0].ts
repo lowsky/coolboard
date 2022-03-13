@@ -5,7 +5,12 @@ export default auth0.handleAuth({
     try {
       await auth0.handleCallback(req, res, {});
     } catch (error) {
-      console.error('handleCallback failed:', error);
+      console.error(
+        'auth0 handleCallback failed:',
+        error,
+        req.headers,
+        req.url
+      );
       res
         // @ts-ignore
         .status(error?.status ?? 500)
