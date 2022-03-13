@@ -1,7 +1,8 @@
 import { getUserId, verifyUserIsAuthenticated } from '../utils';
+import { Ctxt } from '../Context';
 
 const board = {
-  async updateBoard(parent, args, ctx) {
+  async updateBoard(_parent: any, args: any, ctx: Ctxt) {
     const userId = await getUserId(ctx);
     const { prisma } = ctx;
 
@@ -47,7 +48,7 @@ const board = {
       throw e;
     }
   },
-  async createBoard(parent, args, ctx) {
+  async createBoard(_parent: any, args: any, ctx: Ctxt) {
     const { name } = args;
     const { prisma } = ctx;
     const id = await getUserId(ctx);
@@ -66,7 +67,7 @@ const board = {
       include: { boards: true },
     });
   },
-  async deleteBoard(parent, args, ctx) {
+  async deleteBoard(_parent: any, args: any, ctx: Ctxt) {
     const { id } = args;
     const { prisma } = ctx;
 

@@ -1,3 +1,2 @@
 .env*
 !/.env.local
-/apollo.config.js

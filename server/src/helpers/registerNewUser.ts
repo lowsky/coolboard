@@ -1,14 +1,29 @@
 import { RegistrationFailed } from '../resolvers/utils';
 import { isLocalDev } from './logging';
+import { JwtPayload } from 'jsonwebtoken';
+import { User } from '@prisma/client';
 
-export const createNewUser = async (idToken, createPersistentUser) => {
+export const createNewUser = async (
+  idToken: JwtPayload,
+  createPersistentUser: ({
+    data: { identity, auth0id, name, email, avatarUrl },
+  }: {
+    data: {
+      auth0id: string;
+      name: string;
+      email: string;
+      identity?: string;
+      avatarUrl?: string | undefined;
+    };
+  }) => User
+) => {
   const data = {
-    identity: idToken.sub.split(`|`)[0],
-    auth0id: idToken.sub.split(`|`)[1],
+    identity: idToken.sub?.split(`|`)[0],
+    auth0id: idToken.sub?.split(`|`)[1],
     name: idToken.name,
     email: idToken.email ?? idToken.name,
     avatarUrl: idToken.picture,
-  };
+  } as const;
 
   if (!data.email || !data.name || !data.auth0id) {
     throw new RegistrationFailed({
@@ -24,11 +39,13 @@ export const createNewUser = async (idToken, createPersistentUser) => {
   }
 
   try {
+    // @ts-expect-error not exactly matching: identity is optional
     return createPersistentUser({ data });
   } catch (err) {
     if (isLocalDev) console.error('Failed to create this new user:', data, err);
 
-    if (err.message.includes('unique constraint')) {
+    // @ts-expect-error err of unknown type
+    if (err?.message?.includes('unique constraint')) {
       throw new RegistrationFailed({
         data: {
           message: `Error signing in, a user with same email ${data.email} already exist. Plz contact support!`,

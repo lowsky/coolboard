@@ -1,5 +1,5 @@
 .footer {
-  flex: 0;
+  font-size: 0.75em;
   color: black;
   background: lightgray;
   padding: 1em;
@@ -9,7 +9,12 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: center;
+}
+
+.row  span > img  {
+  padding: 0 0.25rem !important;
 }
 
 .spacer {

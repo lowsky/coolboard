@@ -16,9 +16,6 @@ const getGraphqlServer = async () => {
   const apolloServer = new ApolloServer({
     typeDefs,
     resolvers,
-    debug: isLocalDev,
-    // playground: isLocalDev,
-    introspection: isLocalDev,
 
     /*
   engine: {
@@ -31,11 +28,6 @@ const getGraphqlServer = async () => {
   },
    */
 
-    /*
-  resolverValidationOptions: {
-    requireResolversForResolveType: false,
-  },
-  */
     context: ({ req, res }) => {
       return {
         req,

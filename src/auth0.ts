@@ -30,7 +30,6 @@ const params: ConfigParameters = {
   },
   enableTelemetry: false,
 };
-console.log('DEBUG: ', auth0config);
 
 export function initializeInstance(): SignInWithAuth0 {
   console.log('initializeInstance', params);

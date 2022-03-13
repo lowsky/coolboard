@@ -3,7 +3,10 @@ import Query from './Query';
 import board from './Mutation/board';
 import list from './Mutation/list';
 import card from './Mutation/card';
+import { Ctxt } from './Context';
+import { User, Board, List } from '@prisma/client';
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   Query,
   Mutation: {
@@ -12,7 +15,7 @@ export default {
     ...card,
   },
   User: {
-    async boards(parent, args, ctx) {
+    async boards(parent: User, _args: any, ctx: Ctxt) {
       const { prisma } = ctx;
       return prisma.board.findMany({
         orderBy: {
@@ -23,7 +26,7 @@ export default {
     },
   },
   Board: {
-    async lists(parent, args, ctx) {
+    async lists(parent: Board, _args: any, ctx: Ctxt) {
       const { prisma } = ctx;
       return prisma.list.findMany({
         orderBy: {
@@ -37,7 +40,7 @@ export default {
     },
   },
   List: {
-    async cards(parent, args, ctx) {
+    async cards(parent: List, _args: any, ctx: Ctxt) {
       const { prisma } = ctx;
       return prisma.card.findMany({
         orderBy: {

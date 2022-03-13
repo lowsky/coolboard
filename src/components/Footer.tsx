@@ -2,7 +2,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Popup } from 'semantic-ui-react';
 
-import coolboardLogo from './CoolBoardLogo.png';
 import netlifyLogo from './netlify-logo.svg';
 import nextLogo from './nextjs-logo.svg';
 import prismaLogo from './prisma-logo.svg';
@@ -13,13 +12,12 @@ export function Footer() {
   return (
     <footer className={'ui fluid container ' + styles.footer}>
       <div className={styles.row}>
-        <Image height={20} width={20} src={coolboardLogo} /> Coolboard, powered
-        by
-        <Image height={20} width={20} src={prismaLogo} /> Prisma, GraphQL,
-        Apollo, React,
-        <Image height={20} width={20} src={netlifyLogo} /> Netlify and
-        <Image height={20} src={nextLogo} alt="Next.js" />
-        <span className={styles.spacer} />
+        <span>Powered by</span>
+        <Image height={20} width={20} src={prismaLogo} alt="prisma logo" />
+        <span>Prisma, GraphQL, Apollo, </span>
+        <Image height={20} width={20} src={netlifyLogo} alt="netlify logo" />
+        <span>Netlify and</span>
+        <Image height={20} src={nextLogo} alt="Nextjs logo" />
         <div>
           <Link href="/imprint">
             <a>Imprint</a>
@@ -29,11 +27,10 @@ export function Footer() {
           </Link>{' '}
           <a href="mailto:coolboard@protonmail.com">
             <i className="icon mail" />
-            Mail
+            Support
           </a>{' '}
           <a href="https://twitter.com/rhosts" target="_blank" rel="noreferrer">
             <i className="icon twitter" />
-            Twitter
           </a>{' '}
           <Popup
             style={{ cursor: 'pointer' }}
@@ -48,15 +45,7 @@ export function Footer() {
               </a>
             }
             on="click"
-            trigger={
-              <a
-                href="https://www.github.com/lowsky"
-                target="_blank"
-                rel="noreferrer">
-                <i className="icon github" />
-                Sources
-              </a>
-            }
+            trigger={<i className="icon github" />}
           />
         </div>
       </div>
