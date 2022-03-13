@@ -1,4 +1,5 @@
 import { getUserId } from '../utils';
+import { Ctxt } from '../Context';
 
 const card = {
   /*
@@ -14,7 +15,7 @@ const card = {
     # ...
   }
   */
-  async updateCard(parent, { where, data }, ctx) {
+  async updateCard(_parent: any, { where, data }: any, ctx: Ctxt) {
     const userId = await getUserId(ctx);
     const { prisma } = ctx;
 

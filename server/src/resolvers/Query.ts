@@ -1,15 +1,16 @@
 import {
-  auth0idFromUserToken,
   getUserId,
+  verifyAndRetrieveAuth0HeaderToken,
   verifyAuth0HeaderToken,
   verifyUserIsAuthenticated,
 } from './utils';
 import { injectUserIdByAuth0id } from '../helpers/userIdByAuth0id';
 import { createNewUser } from '../helpers/registerNewUser';
 import { isLocalDev } from '../helpers/logging';
+import { Ctxt } from './Context';
 
 const Query = {
-  async board(parent, { where }, ctx) {
+  async board(_parent: any, { where }: any, ctx: Ctxt) {
     if (process.env.OPTIMIZED === 'false') {
       await getUserId(ctx);
     } else {
@@ -20,7 +21,7 @@ const Query = {
     return prisma.board.findUnique({ where: { id: where.id } });
   },
 
-  async list(parent, { where }, ctx) {
+  async list(_parent: any, { where }: any, ctx: Ctxt) {
     if (process.env.OPTIMIZED === 'false') {
       await getUserId(ctx);
     } else {
@@ -30,7 +31,7 @@ const Query = {
     return prisma.list.findUnique({ where });
   },
 
-  me: async function (parent, args, ctx) {
+  me: async function (_parent: any, args: any, ctx: Ctxt) {
     const { prisma } = ctx;
     if (false && process.env.OPTIMIZED === 'false') {
       const userId = await getUserId(ctx);
@@ -39,9 +40,8 @@ const Query = {
       });
     }
 
-    const userToken = await verifyAuth0HeaderToken(ctx);
-    const auth0id = auth0idFromUserToken(userToken);
 
+    const auth0id = await verifyAndRetrieveAuth0HeaderToken(ctx);
     const user = await prisma.user.findFirst({
       where: { auth0id },
     });
@@ -52,9 +52,13 @@ const Query = {
       }
       return user;
     }
+    const userToken = await verifyAuth0HeaderToken(ctx);
 
     // user signed in, but not created in DB yet:
-    const u = await createNewUser(userToken, prisma.user.create);
+    const u = await createNewUser(userToken, (data) =>
+      // @ts-expect-error needs small adaption
+      prisma.user.create({ data })
+    );
 
     if (isLocalDev) console.log('created prisma user:', u);
 

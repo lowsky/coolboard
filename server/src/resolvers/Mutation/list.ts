@@ -1,7 +1,8 @@
 import { getUserId, verifyUserIsAuthenticated } from '../utils';
+import { Ctxt } from '../Context';
 
 const list = {
-  async updateList(parent, { where, data }, ctx) {
+  async updateList(_parent: any, { where, data }: any, ctx: Ctxt) {
     const userId = await getUserId(ctx);
     const { prisma } = ctx;
     const { create, connect, disconnect, ...otherCardOperation } =
@@ -15,6 +16,7 @@ const list = {
 
     let cards = {};
     if (create?.[0]) {
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'create' does not exist on type '{}'.
       cards.create = {
         name: create[0].name,
         createdById: userId,
@@ -23,11 +25,13 @@ const list = {
     }
     if (connect?.[0]) {
       const id = connect[0].id;
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'connect' does not exist on type '{}'.
       cards.connect = {
         id,
       };
     }
     if (disconnect?.[0]) {
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'disconnect' does not exist on type '{}'.
       cards.disconnect = {
         id: disconnect[0].id,
       };
@@ -44,7 +48,7 @@ const list = {
       },
     });
   },
-  async deleteList(parent, { where }, ctx) {
+  async deleteList(_parent: any, { where }: any, ctx: Ctxt) {
     await verifyUserIsAuthenticated(ctx);
     const { prisma } = ctx;
     return prisma.list.delete({ where });
