@@ -47,7 +47,7 @@ export default function Index() {
             <Image
               src={screenshot}
               placeholder="blur"
-              width="1000"
+              width="1099"
               alt="screenshot"
             />
           </Link>

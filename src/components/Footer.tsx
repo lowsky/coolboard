@@ -12,12 +12,12 @@ export function Footer() {
   return (
     <footer className={'ui fluid container ' + styles.footer}>
       <div className={styles.row}>
-        Powered by
-        <Image height={20} width={20} src={prismaLogo} /> Prisma, GraphQL,
-        Apollo, React,
-        <Image height={20} width={20} src={netlifyLogo} /> Netlify and
-        <Image height={20} src={nextLogo} alt="Next.js" />
-        <span className={styles.spacer} />
+        <span>Powered by</span>
+        <Image height={20} width={20} src={prismaLogo} alt="prisma logo" />
+        <span>Prisma, GraphQL, Apollo, </span>
+        <Image height={20} width={20} src={netlifyLogo} alt="netlify logo" />
+        <span>Netlify and</span>
+        <Image height={20} src={nextLogo} alt="Nextjs logo" />
         <div>
           <Link href="/imprint">
             <a>Imprint</a>
