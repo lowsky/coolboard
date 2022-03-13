@@ -92,6 +92,7 @@ jobs:
             echo running GIT_SHA1=${EXPECTED_GIT_SHA:-$CIRCLE_SHA1} npm run wait:valid-version
             echo
             echo this is currently skipped ...
+
             # will be done in next step: # GIT_SHA1=${EXPECTED_GIT_SHA:-$CIRCLE_SHA1} npm run wait:valid-version
       - run:
           name: run cypress
