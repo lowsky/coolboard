@@ -31,7 +31,7 @@ const Query = {
     return prisma.list.findUnique({ where });
   },
 
-  me: async function (_parent: any, args: any, ctx: Ctxt) {
+  me: async function (_parent: any, _args: any, ctx: Ctxt) {
     const { prisma } = ctx;
     if (false && process.env.OPTIMIZED === 'false') {
       const userId = await getUserId(ctx);
@@ -39,7 +39,6 @@ const Query = {
         where: { id: userId },
       });
     }
-
 
     const auth0id = await verifyAndRetrieveAuth0HeaderToken(ctx);
     const user = await prisma.user.findFirst({

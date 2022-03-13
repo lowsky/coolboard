@@ -15,7 +15,7 @@ export default {
     ...card,
   },
   User: {
-    async boards(parent: User, args: any, ctx: Ctxt) {
+    async boards(parent: User, _args: any, ctx: Ctxt) {
       const { prisma } = ctx;
       return prisma.board.findMany({
         orderBy: {
@@ -26,7 +26,7 @@ export default {
     },
   },
   Board: {
-    async lists(parent: Board, args: any, ctx: Ctxt) {
+    async lists(parent: Board, _args: any, ctx: Ctxt) {
       const { prisma } = ctx;
       return prisma.list.findMany({
         orderBy: {
@@ -40,7 +40,7 @@ export default {
     },
   },
   List: {
-    async cards(parent: List, args: any, ctx: Ctxt) {
+    async cards(parent: List, _args: any, ctx: Ctxt) {
       const { prisma } = ctx;
       return prisma.card.findMany({
         orderBy: {
