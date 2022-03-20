@@ -1,4 +1,4 @@
-import { createError } from 'apollo-errors';
+import { AuthenticationError } from 'apollo-server-errors';
 
 import { User } from '@prisma/client';
 import auth0 from '../../../src/auth0';
@@ -10,16 +10,6 @@ import {
 import { createNewUser } from '../helpers/registerNewUser';
 import { isLocalDev } from '../helpers/logging';
 import { Ctxt } from './Context';
-
-const NotAuthorizedError = 'NotAuthorizedError';
-
-const AuthError = createError(NotAuthorizedError, {
-  message: NotAuthorizedError,
-});
-
-export const RegistrationFailed = createError('RegistrationFailed', {
-  message: 'RegistrationFailed',
-});
 
 export const getUserId = async (ctx: Ctxt) => {
   const userToken = await verifyAuth0HeaderToken(ctx);
@@ -45,9 +35,7 @@ export const getUserId = async (ctx: Ctxt) => {
     return id;
   }
 
-  throw new AuthError({
-    message: 'Not authorized: no user in current request',
-  });
+  throw new AuthenticationError('Not authorized: no user in current request');
 };
 
 /**
@@ -100,9 +88,7 @@ async function verifyAuth0HeaderToken(ctx: Ctxt): Promise<UserToken> {
     }
   }
 
-  throw new AuthError({
-    message: 'Not authorized, no valid auth token',
-  });
+  throw new AuthenticationError('Not authorized, no valid auth token');
 }
 
 const verifyUserIsAuthenticated = async (ctx: Ctxt) => {

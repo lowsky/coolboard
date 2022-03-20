@@ -1,6 +1,8 @@
 //LATER import instana from '@instana/aws-lambda';
 import { ApolloServer } from 'apollo-server-lambda';
 
+import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core';
+
 import resolvers from '../../../server/src/resolvers/resolvers';
 import { typeDefs } from '../../../server/src/schema/apiSchema';
 
@@ -17,6 +19,14 @@ const unmonitoredHandler = (event, context, callback) => {
   const lambdaServer = new ApolloServer({
     typeDefs,
     resolvers,
+    plugins: [
+      ApolloServerPluginLandingPageGraphQLPlayground({
+        endpoint: '/api/graphql',
+      }),
+    ],
+    // If you'd like to have GraphQL Playground and introspection enabled in production,
+    // install the Playground plugin and set the `introspection` option explicitly to `true`.
+    introspection: true,
 
     context: ({ express: { req, res } }) => {
       return {

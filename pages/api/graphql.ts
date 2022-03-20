@@ -1,4 +1,5 @@
 import { ApolloServer } from 'apollo-server-micro';
+import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core';
 
 import resolvers from '../../server/src/resolvers/resolvers';
 import { typeDefs } from '../../server/src/schema/apiSchema';
@@ -18,16 +19,14 @@ const getGraphqlServer = async () => {
     resolvers,
 
     /*
-  engine: {
-    // The Graph Manager API key
-    apiKey: process.env.ENGINE_API_KEY,
-
-    // For more information on schema tags/variants, see
-    // https://www.apollographql.com/docs/platform/schema-registry/#associating-metrics-with-a-variant
-    schemaTag: process.env.ENGINE_SCHEMA_TAG || 'undefined',
-  },
+    APOLLO_GRAPH_VARIANT
    */
 
+    plugins: [
+      ApolloServerPluginLandingPageGraphQLPlayground({
+        endpoint: '/api/graphql',
+      }),
+    ],
     context: ({ req, res }) => {
       return {
         req,
