@@ -1,4 +1,4 @@
-import { RegistrationFailed } from '../resolvers/utils';
+import { AuthenticationError } from 'apollo-server-errors';
 import { isLocalDev } from './logging';
 import { JwtPayload } from 'jsonwebtoken';
 import { User } from '@prisma/client';
@@ -26,16 +26,16 @@ export const createNewUser = async (
   } as const;
 
   if (!data.email || !data.name || !data.auth0id) {
-    throw new RegistrationFailed({
-      data: {
-        message: `Error while signing in: Missing any of (email, name, auth0id). Plz contact support!`,
-      },
-      internalData: {
-        email: data.email,
-        name: data.name,
-        auth0id: data.auth0id,
-      },
-    });
+    throw new AuthenticationError(
+      `Error while signing in: Missing any of (email, name, auth0id). Plz contact support!`,
+      {
+        internalData: {
+          email: data.email,
+          name: data.name,
+          auth0id: data.auth0id,
+        },
+      }
+    );
   }
 
   try {
@@ -46,14 +46,14 @@ export const createNewUser = async (
 
     // @ts-expect-error err of unknown type
     if (err?.message?.includes('unique constraint')) {
-      throw new RegistrationFailed({
-        data: {
-          message: `Error signing in, a user with same email ${data.email} already exist. Plz contact support!`,
-        },
-        internalData: {
-          error: err,
-        },
-      });
+      throw new AuthenticationError(
+        `Error signing in, a user with same email ${data.email} already exist. Plz contact support!`,
+        {
+          internalData: {
+            error: err,
+          },
+        }
+      );
     }
     throw err;
   }

@@ -42,7 +42,10 @@ server/express/build/
 # debug
 # local env files
 # vercel.next
+
+src/fomantic/dist/components
 !/src/fomantic/dist/semantic.min.css
+
 /src/auth0config.json
 
 # yarn2 (berry)
@@ -57,19 +60,10 @@ server/express/build/
 !.yarn/sdks
 !.yarn/versions
 
+smoketest/.yarn/*
+smoketest/!.yarn/patches
+smoketest/!.yarn/plugins
+smoketest/!.yarn/releases
+smoketest/!.yarn/sdks
+smoketest/!.yarn/versions
 
-# yarn2 (berry)
-#
-# not using Zero-Installs
-# https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
-.pnp.*
-
-.yarn/*
-*/.yarn/*
-*/!.yarn/patches
-*/!.yarn/plugins
-*/!.yarn/releases
-*/!.yarn/sdks
-*/!.yarn/versions
-
-src/fomantic/dist/components
