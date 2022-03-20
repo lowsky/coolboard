@@ -3240,7 +3240,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"apollo-server-core@npm:^3.6.4":
+"apollo-server-core@npm:3.6.4, apollo-server-core@npm:^3.6.4":
   version: 3.6.4
   resolution: "apollo-server-core@npm:3.6.4"
   dependencies:
@@ -4865,6 +4865,7 @@ __metadata:
     "@types/styled-components": 5.1.24
     "@types/zen-observable": 0.8.3
     "@typescript-eslint/parser": 5.15.0
+    apollo-server-core: 3.6.4
     apollo-server-errors: 3.3.1
     apollo-server-lambda: 3.6.4
     apollo-server-micro: 3.6.4
