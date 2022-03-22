@@ -1805,15 +1805,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-tools/merge@npm:8.2.4":
-  version: 8.2.4
-  resolution: "@graphql-tools/merge@npm:8.2.4"
+"@graphql-tools/merge@npm:8.2.5":
+  version: 8.2.5
+  resolution: "@graphql-tools/merge@npm:8.2.5"
   dependencies:
-    "@graphql-tools/utils": 8.6.3
+    "@graphql-tools/utils": 8.6.4
     tslib: ~2.3.0
   peerDependencies:
     graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
-  checksum: aa5aac531289aedc88e3bc6d369846d1918abd1627a2cd2676a3eb55ef8c7c1208a287897b7360fb30535bca8fb631794a0c321bee360058b5ed49404a3163de
+  checksum: fccc509293d2326426ba828dcb887d76ac8cff8aece3d4e334ea5ee1eb9e31801c57d53f7d0ad6d7ea1b8829c38122028cdc1ba0f6beb1f0e9b56ea63dfdaed8
   languageName: node
   linkType: hard
 
@@ -1832,17 +1832,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-tools/schema@npm:8.3.3":
-  version: 8.3.3
-  resolution: "@graphql-tools/schema@npm:8.3.3"
+"@graphql-tools/schema@npm:8.3.4":
+  version: 8.3.4
+  resolution: "@graphql-tools/schema@npm:8.3.4"
   dependencies:
-    "@graphql-tools/merge": 8.2.4
-    "@graphql-tools/utils": 8.6.3
+    "@graphql-tools/merge": 8.2.5
+    "@graphql-tools/utils": 8.6.4
     tslib: ~2.3.0
     value-or-promise: 1.0.11
   peerDependencies:
     graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
-  checksum: a4c0bdce558ee36a4759efe636eb6cbec0dfa83b6b2e4315c5c366e1fbed2fdaf3082dfb70b491a5d3d594dc763f8b46770d2c13269001664c06b9922e400b26
+  checksum: a19537c6d4d1ecb0078dc07b35eca07a68ca7fc180017acbdd600956f868a39c2f4b5a8d5c4160ddf7f8e8734ef5f6be032cf89c20f0ed764a6349b70b340a1e
   languageName: node
   linkType: hard
 
@@ -1896,14 +1896,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-tools/utils@npm:8.6.3":
-  version: 8.6.3
-  resolution: "@graphql-tools/utils@npm:8.6.3"
+"@graphql-tools/utils@npm:8.6.4":
+  version: 8.6.4
+  resolution: "@graphql-tools/utils@npm:8.6.4"
   dependencies:
     tslib: ~2.3.0
   peerDependencies:
     graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
-  checksum: 9903d3df3f59140391ef810cc01c1bf4f59f3f889cc7da05942483fc5d3822f1c92f42015334a6f143ef419a14382a7404e5ef5fca986cf425a1947f63243b53
+  checksum: 51a77fdbdf9f8909e5b42aef388c4a00f3e455dc7e9c1285f5149b53b0494dc5e078b1fff1273cf15bfe876e50fd8c6bc190120e0f0041fa436776cf14956b28
   languageName: node
   linkType: hard
 
@@ -3863,7 +3863,7 @@ __metadata:
     "@babel/node": 7.16.8
     "@babel/polyfill": 7.12.1
     "@babel/preset-env": 7.16.11
-    "@graphql-tools/schema": 8.3.3
+    "@graphql-tools/schema": 8.3.4
     "@instana/collector": 1.139.0
     apollo-errors: 1.9.0
     apollo-server-express: 3.6.5
