@@ -39,7 +39,7 @@
     "jwks-rsa": "2.0.5",
     "lodash": "4.17.21",
     "micro": "9.3.4",
-    "next": "12.1.0",
+    "next": "12.1.1",
     "prisma": "3.11.1",
     "prop-types": "15.8.1",
     "react": "17.0.2",
@@ -85,7 +85,7 @@
     "@typescript-eslint/parser": "5.16.0",
     "apollo-server-core": "3.6.6",
     "eslint": "8.11.0",
-    "eslint-config-next": "12.1.0",
+    "eslint-config-next": "12.1.1",
     "prettier": "2.6.1",
     "typescript": "4.5.5"
   },
