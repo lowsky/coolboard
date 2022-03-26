@@ -19,6 +19,13 @@ module.exports = {
 
     return config;
   },
+  compiler: {
+    // see https://nextjs.org/docs/advanced-features/compiler#styled-components
+    // ssr and displayName are configured by default
+    styledComponents: true,
+  },
+
+  reactStrictMode: true,
 
   // "For faster deploy times, build IDs should be set to a static value..."
   generateBuildId: () => 'build',
