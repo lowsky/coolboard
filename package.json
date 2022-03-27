@@ -70,6 +70,7 @@
     "prisma:migrate": "DATABASE_URL=\"$MIGRATE_DATABASE_URL\" prisma migrate deploy",
     "metainfo": "sh storeMetaInfo.sh",
     "vercel-build": "COMMIT_REF=$VERCEL_GITHUB_COMMIT_SHA yarn run build ; yarn lint; yarn trigger-e2e-smoke",
+    "vercel-fast-build": "COMMIT_REF=$VERCEL_GITHUB_COMMIT_SHA yarn run build",
     "codegen": "graphql-codegen --config codegen.yml"
   },
   "devDependencies": {
