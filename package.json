@@ -55,7 +55,7 @@
     "start-production": "next start",
     "lint": "next lint",
     "trigger-e2e-smoke": "sh trigger-circleci-smoke.sh",
-    "build": "yarn run metainfo && yarn prisma:generate && next build",
+    "build": "yarn run metainfo && next build",
     "prisma:generate": "PRISMA_CLIENT_ENGINE_TYPE='dataproxy' prisma generate",
     "prisma:migrate": "DATABASE_URL=\"$MIGRATE_DATABASE_URL\" prisma migrate deploy",
     "metainfo": "sh storeMetaInfo.sh",
