@@ -9,8 +9,15 @@ const auth0LockInputEmail =
 const auth0LockInputPassword =
   'div > div > .auth0-lock-input-password > .auth0-lock-input-wrap > .auth0-lock-input';
 
+// needs prefix when set per env: CYPRESS_LOGIN
+const login = Cypress.env('CYPRESS_LOGIN') ?? Cypress.env('LOGIN');
+
 // needs prefix when set per env: CYPRESS_USER_PASSWORD
-const password = Cypress.env('USER_PASSWORD');
+const password =
+  Cypress.env('CYPRESS_PASSWORD') ??
+  Cypress.env('PASSWORD') ??
+  Cypress.env('CYPRESS_USER_PASSWORD') ??
+  Cypress.env('USER_PASSWORD');
 
 // will be set by cypress.json, or via env: CYPRESS_baseUrl
 const baseUrl = Cypress.config('baseUrl') ?? 'missing env CYPRESS_baseUrl';
@@ -20,11 +27,16 @@ const branch = Cypress.env('branch') || 'missing-CYPRESS_branch-env';
 const newBoardName = branch;
 
 before(() => {
+  Cypress.Cookies.debug(true); // now Cypress will log when it alters cookies
+
   assert(
     baseUrl.endsWith('localhost:8888') ||
       baseUrl.endsWith('localhost:3000') ||
       baseUrl.endsWith('coolboard.netlify.app') ||
       baseUrl.startsWith('https://localhost') ||
+      baseUrl.startsWith(
+        'https://hands-on-application-building-with-graph-ql-and-reac'
+      ) ||
       (baseUrl.startsWith('https://coolboard-') &&
         baseUrl.endsWith('.vercel.app')) ||
       baseUrl.endsWith('coolboard.fun'),
@@ -70,19 +82,21 @@ const sections = (options: Partial<Loggable & Timeoutable>) =>
 const add_a_card = () => cardListButtons().contains('Add a card');
 
 function fillLoginForm() {
-  cy.get(auth0LockInputEmail, LogAndWaitLong).type('skylab@nurfuerspam.de');
-  cy.get(auth0LockInputPassword).type(password, {
+  cy.get('#text-field-identifier', LogAndWaitLong).type(login + '{enter}');
+  cy.contains('Welcome, ', {
+    log: true,
+    timeout: 6000,
+  });
+  cy.get('#password').type(password + '{enter}', {
     log: false,
   });
 
-  cy.get('button.auth0-lock-submit').click();
-
-  // helps to wait for auth0 process of redirecting with to the /callback url
+  // helps to wait for authentication process of redirecting with to the /callback url
   return cy
-    .wait(1000)
+    .wait(2000)
     .url(LogAndWaitLong)
     .should('not.include', 'callback')
-    .should('equal', baseUrl + '/boards')
+    .should('equal', baseUrl + '/')
     .wait(2000);
 }
 function fillLoginFormNew() {
@@ -134,10 +148,26 @@ let WaitVeryLong = {
   timeout: 5000 * 4,
 };
 
+// if you want to debug when any test fails
+// You likely want to put this in a support file,
+// or at the top of an individual spec file
+Cypress.on('uncaught:exception', (error, runnable, promise) => {
+  if (promise) {
+    return false;
+  }
+});
+
 describe('Test coolboard', () => {
+  beforeEach(() => {
+    cy.intercept('*', (req) => {
+      req.headers['origin'] = 'https://clerkauth.coolboard.fun';
+    }).as('addOriginHeader');
+  });
+
   it('need to login to show boards', () => {
-    doLogin();
-    // gotoBoards();
+    gotoBoards();
+    clickLogin();
+    fillLoginForm();
   });
 
   it('user can create a board for branch', () => {
@@ -226,10 +256,27 @@ describe('Test coolboard', () => {
       .find('.button > .trash')
       .click();
     getBoardsList_FirstEntry(newBoardName).should('not.exist');
+  });
+
+  it('user can log-out', () => {
+    /* not sure:
+    cy.visit('/sign-out');
+
+    cy.get('.segment > .ui').should(
+      'have.text',
+      'Your are currently signed-in.'
+    );
+
+    cy.get('[data-cy="sign-out-button"]').should('have.text', 'Sign Out');
+    cy.get('[data-cy="sign-out-button"]').click();
+
+    cy.get('.segment > .ui').should(
+      'have.text',
+      'You are currently signed-out.'
+    );
+     */
 
     // logout
     cy.get('[data-cy=profile-header]').contains('Logout').click();
   });
 });
-
-export {};
