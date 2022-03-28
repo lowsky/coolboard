@@ -16,7 +16,7 @@ const BoardListItem = ({ name, id, deleteBoard }) => {
   const [deleting, setDeleting] = useState(false);
   return (
     <List.Item as={'li'} className={styles.listItem} data-cy="board-list-item">
-      <Link href={`/board/${id}`}>
+      <Link href={`/board/${id}`} passHref>
         <a className={styles.wideColumn}>{name}</a>
       </Link>
 

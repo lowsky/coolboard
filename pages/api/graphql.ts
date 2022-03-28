@@ -5,7 +5,7 @@ import resolvers from '../../server/src/resolvers/resolvers';
 import { typeDefs } from '../../server/src/schema/apiSchema';
 
 import { isLocalDev } from '../../server/src/helpers/logging';
-
+import { withAuth } from '@clerk/nextjs/api';
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient({
   log: isLocalDev
@@ -76,8 +76,25 @@ const handler = instana.wrap((event, context, callback) => {
 // will be stored here for re-use
 let server: ApolloServer | null = null;
 
+export default withAuth(async (req, res) => {
+  if (req.session) {
+    console.log('req.session', req.session);
+    return handleGraphqlRequest(req, res);
+  } else {
+    if (req.auth) {
+      const { userId, sessionId, getToken } = req.auth;
+      console.log('req.auth', req.auth);
+      console.log('req.auth', userId, sessionId, await getToken?.());
+      return handleGraphqlRequest(req, res);
+    } else {
+      console.log('no request.auth or req.session');
+      res.status(401).json({ id: null });
+    }
+  }
+});
+
 // eslint-disable-next-line import/no-anonymous-default-export
-export default async (req, res) => {
+async function handleGraphqlRequest(req, res) {
   const apolloServer = server || (await getGraphqlServer());
   server = apolloServer;
 
@@ -86,7 +103,7 @@ export default async (req, res) => {
   });
 
   await handler(req, res);
-};
+}
 
 export const config = {
   api: {

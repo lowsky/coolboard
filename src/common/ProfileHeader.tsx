@@ -1,10 +1,15 @@
 import React, { ReactNode } from 'react';
-import { Container, Icon, Image, Loader } from 'semantic-ui-react';
+import { Container, Icon, Loader } from 'semantic-ui-react';
 import Link from 'next/link';
+import {
+  ClerkLoaded,
+  ClerkLoading,
+  SignedIn,
+  SignOutButton,
+  SignedOut,
+} from '@clerk/clerk-react';
+import { UserButton } from '@clerk/nextjs';
 
-import { useUser } from '@auth0/nextjs-auth0';
-
-import { AuthLoading, SignedIn, SignedOut } from '../auth/AuthControl';
 import LoginButton from '../auth/LoginButton';
 
 const ProfileHeaderContainer = ({
@@ -58,36 +63,31 @@ const ProfileHeaderContainer = ({
   </Container>
 );
 
-const UserButton = () => {
-  const { user } = useUser();
-  if (!user) return null;
-
-  const { picture, name } = user;
+export const ClerkProfileHeader = () => {
   return (
     <>
-      <span>{name} </span>;
-      {picture && <Image src={picture} avatar spaced alt="user avatar" />}
+      <SignedOut>Logout</SignedOut>
+      <UserButton />
     </>
   );
 };
-
 export const ProfileHeader = ({ isBoardsPage }: { isBoardsPage?: boolean }) => {
   return (
     <ProfileHeaderContainer isBoardsPage={isBoardsPage}>
-      <AuthLoading>
+      <ClerkLoading>
         <Loader active />
         Loading user...
-      </AuthLoading>
-      <SignedOut>
-        <LoginButton />
-      </SignedOut>
+      </ClerkLoading>
+      <ClerkLoaded>
+        <SignedOut>
+          <LoginButton />
+        </SignedOut>
+      </ClerkLoaded>
       <SignedIn>
-        <UserButton />
-        {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-        <a href="/api/auth/logout">
-          <Icon size="big" name="sign out" />
-          Logout
-        </a>
+        <div>
+          <UserButton />
+          <SignOutButton>Logout</SignOutButton>
+        </div>
       </SignedIn>
     </ProfileHeaderContainer>
   );

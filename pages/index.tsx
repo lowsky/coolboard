@@ -1,4 +1,5 @@
 import React from 'react';
+import { ClerkLoaded, SignedIn, SignedOut } from '@clerk/clerk-react';
 import { Container, Icon, Segment } from 'semantic-ui-react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -18,6 +19,10 @@ export default function Index() {
         style={{
           textAlign: 'left',
         }}>
+        <ClerkLoaded>
+          <SignedIn>SIGNED in</SignedIn>
+          <SignedOut>SIGNED out</SignedOut>
+        </ClerkLoaded>
         <h1>
           <Image src={coolBoardLogo} width="100" alt="logo" />
           Welcome to CoolBoard - manage your tasks in a kanban style
@@ -25,7 +30,7 @@ export default function Index() {
         <Segment basic>
           <p>
             You can go to your list of
-            <Link href="/boards">
+            <Link href="/boards" passHref prefetch>
               <a>
                 boards <Icon size="big" name="list" />
               </a>
@@ -34,7 +39,7 @@ export default function Index() {
           <p>
             At the first time, you will need to{' '}
             {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-            <a href="/api/auth/login?returnTo=/boards">
+            <a href="/sign-in/sign-in?returnTo=/boards">
               <Icon name="sign in" />
               <span>sign in</span>
             </a>

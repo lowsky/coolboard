@@ -9,6 +9,8 @@
   "dependencies": {
     "@apollo/client": "3.5.10",
     "@auth0/nextjs-auth0": "1.7.0",
+    "@clerk/clerk-sdk-node": "3.2.2",
+    "@clerk/nextjs": "3.2.2",
     "@instana/aws-lambda": "2.0.0",
     "@instana/opentelemetry-exporter": "2.0.0",
     "@netlify/functions": "1.0.0",
@@ -32,7 +34,6 @@
     "inter-ui": "3.19.3",
     "jsonwebtoken": "8.5.1",
     "jwks-rsa": "2.0.5",
-    "lodash": "4.17.21",
     "micro": "9.3.4",
     "next": "12.1.5",
     "prisma": "3.12.0",

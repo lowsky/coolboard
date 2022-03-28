@@ -1,7 +1,9 @@
+import clerk from '@clerk/clerk-sdk-node';
+import { User as ClerkUser } from '@clerk/clerk-sdk-node';
 import { AuthenticationError } from 'apollo-server-errors';
 
 import { User } from '@prisma/client';
-import auth0 from '../../../src/auth0';
+
 import validateAndParseIdToken from '../helpers/validateAndParseIdToken';
 import {
   injectUserIdByAuth0id,
@@ -29,12 +31,22 @@ export const getUserId = async (ctx: Ctxt) => {
       return userId;
     }
 
-    // @ts-expect-error needs small adaption
-    const user: User = await createNewUser(userToken, ctx.prisma.user.create);
-    if (isLocalDev) console.log('--- created prisma user (+id)', user);
-    const { id } = user;
-    if (id) injectUserIdByAuth0id(user.id, auth0id);
-    return id;
+    if (userToken.email) {
+      const userWithEmailExists = await ctx.prisma.user.findUnique({
+        where: {
+          email: userToken.email,
+        },
+      });
+      if (userWithEmailExists) {
+        throw new AuthenticationError('User with this email already exists');
+      }
+
+      const user: User = await createNewUser(userToken, ctx.prisma.user.create);
+      if (isLocalDev) console.log('--- created prisma user (+id)', user);
+      const { id } = user;
+      if (id) injectUserIdByAuth0id(user.id, auth0id);
+      return id;
+    }
   }
 
   throw new AuthenticationError('Not authorized: no user in current request');
@@ -46,8 +58,21 @@ export const getUserId = async (ctx: Ctxt) => {
 const auth0idFromUserToken = (userToken: { sub: string }) =>
   userToken && userToken.sub?.split('|')[1];
 
+export const userTokenFromClerkSessionUserId = (user: ClerkUser): UserToken => {
+  let email = user.emailAddresses.find(Boolean)?.emailAddress ?? undefined;
+  return {
+    email: email,
+    name: email,
+    sub: 'xxx|' + user.id,
+    picture: user.profileImageUrl ?? undefined,
+  };
+};
+
 type UserToken = {
   sub: string;
+  name?: string;
+  email?: string;
+  picture?: string;
 };
 
 /**
@@ -60,17 +85,27 @@ export const verifyAndRetrieveAuth0HeaderToken = async (ctx: Ctxt) => {
 
 async function verifyAuth0HeaderToken(ctx: Ctxt): Promise<UserToken> {
   try {
+    /*
     const session = auth0.getSession(ctx.req, ctx.res);
-    const userToken = session?.user as UserToken;
-    if (userToken) {
-      const auth0id = auth0idFromUserToken(userToken);
-      if (auth0id) {
-        return userToken;
-      }
+    const userToken = session?.user;
+    const auth0id = auth0idFromUserToken(userToken);
+    if (auth0id) {
+      return userToken;
     }
+     */
   } catch (error) {
     throw new Error(
       'Not authenticated or auth info in cookie invalid:' + error
+    );
+  }
+  if (ctx.req?.auth?.userId) {
+    console.log(
+      'verifyAuth0HeaderToken: Session, userid:',
+      ctx.req?.auth.userId
+    );
+
+    return userTokenFromClerkSessionUserId(
+      await clerk.users.getUser(ctx.req?.auth.userId)
     );
   }
 
