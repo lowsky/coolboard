@@ -55,10 +55,10 @@
     "start-production": "next start",
     "lint": "next lint",
     "trigger-e2e-smoke": "sh trigger-circleci-smoke.sh",
-    "build": "yarn run metainfo && next build",
+    "build": "yarn run metainfo && DEPLOY_PRIME_URL=https://$NEXT_PUBLIC_VERCEL_URL next build",
     "prisma:generate": "PRISMA_CLIENT_ENGINE_TYPE='dataproxy' prisma generate",
     "prisma:migrate": "DATABASE_URL=\"$MIGRATE_DATABASE_URL\" prisma migrate deploy",
-    "metainfo": "sh storeMetaInfo.sh",
+    "metainfo": "DEPLOY_PRIME_URL=https://$NEXT_PUBLIC_VERCEL_URL sh storeMetaInfo.sh",
     "vercel-build": "COMMIT_REF=$VERCEL_GITHUB_COMMIT_SHA yarn run build ; yarn lint; yarn trigger-e2e-smoke",
     "vercel-fast-build": "COMMIT_REF=$VERCEL_GITHUB_COMMIT_SHA yarn run build",
     "codegen": "graphql-codegen --config codegen.yml"
