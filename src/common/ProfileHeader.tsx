@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { Container, Icon, Loader } from 'semantic-ui-react';
+import { Button, Container, Icon, Loader } from 'semantic-ui-react';
 import Link from 'next/link';
 import {
   ClerkLoaded,
@@ -7,10 +7,10 @@ import {
   SignedIn,
   SignOutButton,
   SignedOut,
-} from '@clerk/clerk-react';
-import { UserButton } from '@clerk/nextjs';
+  UserButton,
+} from '@clerk/nextjs';
 
-import LoginButton from '../auth/LoginButton';
+import { LoginButton } from './LoginButton';
 
 const ProfileHeaderContainer = ({
   children,
@@ -63,14 +63,6 @@ const ProfileHeaderContainer = ({
   </Container>
 );
 
-export const ClerkProfileHeader = () => {
-  return (
-    <>
-      <SignedOut>Logout</SignedOut>
-      <UserButton />
-    </>
-  );
-};
 export const ProfileHeader = ({ isBoardsPage }: { isBoardsPage?: boolean }) => {
   return (
     <ProfileHeaderContainer isBoardsPage={isBoardsPage}>
@@ -84,9 +76,21 @@ export const ProfileHeader = ({ isBoardsPage }: { isBoardsPage?: boolean }) => {
         </SignedOut>
       </ClerkLoaded>
       <SignedIn>
-        <div>
-          <UserButton />
-          <SignOutButton>Logout</SignOutButton>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5em',
+          }}>
+          <UserButton showName />
+          <SignOutButton>
+            <Button
+              compact
+              data-cy="sign-out-button"
+              icon="sign out"
+              content="Sign Out"
+            />
+          </SignOutButton>
         </div>
       </SignedIn>
     </ProfileHeaderContainer>
