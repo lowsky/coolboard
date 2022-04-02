@@ -37,6 +37,7 @@ curl --request POST \
 	"parameters":
     {
 			"deployed-sha": "'$VERCEL_GITHUB_COMMIT_SHA'",
+			"VERCEL_URL": "'$VERCEL_URL'",
 			"test-url": "'$TEST_URL'"
 		}
 }'

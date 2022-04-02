@@ -13,7 +13,7 @@
   "scripts": {
     "cy": "cypress",
     "test": "yarn run cy run",
-    "wait:valid-version": "yarn --frozen-lockfile ; echo install done with exit code $? ; node wait-for-deployment.mjs"
+    "wait:valid-version": "yarn --immutable ; echo install done with exit code $? ; node wait-for-deployment.mjs"
   },
   "devDependencies": {
     "got": "12.0.4"
