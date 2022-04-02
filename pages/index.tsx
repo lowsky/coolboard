@@ -30,7 +30,7 @@ export default function Index() {
         <Segment basic>
           <p>
             You can go to your list of
-            <Link href="/boards" passHref prefetch>
+            <Link href="/boards">
               <a>
                 boards <Icon size="big" name="list" />
               </a>
@@ -39,22 +39,26 @@ export default function Index() {
           <p>
             At the first time, you will need to{' '}
             {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+            {/*
             <a href="/sign-in/sign-in?returnTo=/boards">
               <Icon name="sign in" />
               <span>sign in</span>
             </a>
             first via Google or any email/password.
+            */}
           </p>
         </Segment>
 
         <Segment basic className="zoomOnHover">
-          <Link href="/boards" passHref>
-            <Image
-              src={screenshot}
-              placeholder="blur"
-              width="1099"
-              alt="screenshot"
-            />
+          <Link href="/boards">
+            <a>
+              <Image
+                src={screenshot}
+                placeholder="blur"
+                width="1099"
+                alt="screenshot"
+              />
+            </a>
           </Link>
         </Segment>
 
