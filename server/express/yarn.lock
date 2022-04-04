@@ -1935,25 +1935,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@instana/autoprofile@npm:1.140.0":
-  version: 1.140.0
-  resolution: "@instana/autoprofile@npm:1.140.0"
+"@instana/autoprofile@npm:1.140.1":
+  version: 1.140.1
+  resolution: "@instana/autoprofile@npm:1.140.1"
   dependencies:
     detect-libc: ^1.0.3
     nan: ^2.14.2
     node-abi: ^2.30.0
     node-gyp: latest
-  checksum: b1f89b86bc818e49339b75326cda769c7fb99e25c9b15aa8588f78317ad055a0d890edfc4a8215b4550bb97f66201515dd4536875bbd733c5725ef8377186fad
+  checksum: d79d7422c0ec428fb5324d387425d9153e02a059faf9faafb84a7d2c61ef40d7b65eb40e86b9d437b191430e88c0e48e0441b612083943d29d897ae34c752de7
   languageName: node
   linkType: hard
 
-"@instana/collector@npm:1.140.0":
-  version: 1.140.0
-  resolution: "@instana/collector@npm:1.140.0"
+"@instana/collector@npm:1.140.1":
+  version: 1.140.1
+  resolution: "@instana/collector@npm:1.140.1"
   dependencies:
-    "@instana/autoprofile": 1.140.0
-    "@instana/core": 1.140.0
-    "@instana/shared-metrics": 1.140.0
+    "@instana/autoprofile": 1.140.1
+    "@instana/core": 1.140.1
+    "@instana/shared-metrics": 1.140.1
     bunyan: ^1.8.15
     semver: 7.3.3
     serialize-error: ^3.0.0
@@ -1963,13 +1963,13 @@ __metadata:
       optional: true
   bin:
     instana-instrument-edgemicro-cli: src/bin/instrument-edgemicro-cli.js
-  checksum: f1e2ce0cb769c6bcceab9cf8625019f19decf0ba65644ca28ef641dc3db591688f75feec204c9bee1a71323862bbe7d0618f1c771e671c2b4f82339aec5a0473
+  checksum: 465676a68e6a8508903dcfa5e37323b63792b3ee9b5e07a996884f55dedc029aa070a171268ef5fce6c938447616ff46c88b0ea5de69115526c83a631db2e386
   languageName: node
   linkType: hard
 
-"@instana/core@npm:1.140.0":
-  version: 1.140.0
-  resolution: "@instana/core@npm:1.140.0"
+"@instana/core@npm:1.140.1":
+  version: 1.140.1
+  resolution: "@instana/core@npm:1.140.1"
   dependencies:
     async-hook-jl: ^1.7.6
     cls-bluebird: ^2.1.0
@@ -1979,15 +1979,15 @@ __metadata:
     redis-commands: ^1.7.0
     semver: 7.3.3
     shimmer: 1.2.1
-  checksum: ef0aba18d0f0df554349bb665f17bade8e273ac9a67602630290428e980c43455fd2ff82289b472b98fe6f0274475a62459094dbc2777c26d9e1d7e084f2df30
+  checksum: 8597493ad4d443eef9c42f26c0a8e32efe0816d51abc2d588925e14d6f9d792f7db7d5a85be95461c514c82f312f47abe2cf79ababb81b338a4b2c25cb9d2a3e
   languageName: node
   linkType: hard
 
-"@instana/shared-metrics@npm:1.140.0":
-  version: 1.140.0
-  resolution: "@instana/shared-metrics@npm:1.140.0"
+"@instana/shared-metrics@npm:1.140.1":
+  version: 1.140.1
+  resolution: "@instana/shared-metrics@npm:1.140.1"
   dependencies:
-    "@instana/core": 1.140.0
+    "@instana/core": 1.140.1
     detect-libc: ^1.0.3
     event-loop-lag: ^1.4.0
     event-loop-stats: 1.4.1
@@ -2000,7 +2000,7 @@ __metadata:
       optional: true
     gcstats.js:
       optional: true
-  checksum: 2aec56a155299fca0ca60b6d7b0bb6e288c715ff35314f59e850fd5ef9434c61ffd045d989ab30be62093044e0c80dde853824e8918d272fe820f476d23c5d54
+  checksum: 766f596281d353fcb8f481c1fcccf5eeb9cff4be96700696aa0b60ff5de890de4ad19d27cef0f9a270fd62cb50e05d5774bc56153a9d81e56a2662daa2c74476
   languageName: node
   linkType: hard
 
@@ -3866,7 +3866,7 @@ __metadata:
     "@babel/polyfill": 7.12.1
     "@babel/preset-env": 7.16.11
     "@graphql-tools/schema": 8.3.6
-    "@instana/collector": 1.140.0
+    "@instana/collector": 1.140.1
     apollo-errors: 1.9.0
     apollo-server-express: 3.6.7
     apollo-server-micro: 3.6.7
