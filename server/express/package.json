@@ -24,7 +24,7 @@
     "apollo-errors": "1.9.0",
     "apollo-server-express": "3.6.7",
     "apollo-server-micro": "3.6.7",
-    "aws-sdk": "2.1108.0",
+    "aws-sdk": "2.1109.0",
     "bcryptjs": "2.4.3",
     "bufferutil": "4.0.6",
     "jsonwebtoken": "8.5.1",
