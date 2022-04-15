@@ -53,17 +53,11 @@ src/fomantic/dist/components
 # not using Zero-Installs
 # https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
 .pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
 
-smoketest/.yarn/*
-smoketest/!.yarn/patches
-smoketest/!.yarn/plugins
-smoketest/!.yarn/releases
-smoketest/!.yarn/sdks
-smoketest/!.yarn/versions
+**/.yarn/*
+**/!.yarn/patches
+**/!.yarn/plugins
+**/!.yarn/releases
+**/!.yarn/sdks
+**/!.yarn/versions
 
