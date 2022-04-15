@@ -2534,7 +2534,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:17.0.41":
+"@types/react@npm:*":
   version: 17.0.41
   resolution: "@types/react@npm:17.0.41"
   dependencies:
@@ -2542,6 +2542,17 @@ __metadata:
     "@types/scheduler": "*"
     csstype: ^3.0.2
   checksum: 1b086ec0ea5d666f05e19e0724e41278d27a2ca29a2cd71b9d9ab3fe27dba233806eb728d744e092c9fe9637ac738d8c5a05983cde84d215342949b47ecba2ef
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:18.0.5":
+  version: 18.0.5
+  resolution: "@types/react@npm:18.0.5"
+  dependencies:
+    "@types/prop-types": "*"
+    "@types/scheduler": "*"
+    csstype: ^3.0.2
+  checksum: 70d3336d43ef25509fa89ef3278f57fdf1945fc921e69b7890a78ab9a52a55ee38e2f13aa71eb4f6032b7311e7557860ce8836c1acf3028304989571c9736a96
   languageName: node
   linkType: hard
 
@@ -3988,7 +3999,7 @@ __metadata:
     "@opentelemetry/instrumentation-http": 0.27.0
     "@opentelemetry/node": 0.24.0
     "@prisma/client": 3.12.0
-    "@types/react": 17.0.41
+    "@types/react": 18.0.5
     "@types/react-dom": 18.0.0
     "@types/zen-observable": 0.8.3
     "@typescript-eslint/parser": 5.19.0
