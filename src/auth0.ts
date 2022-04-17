@@ -10,12 +10,12 @@ type META_INFO = {
 
 const {
   // e.g. branch-deploy
-  context,
+  context, // Vercel env: production/preview/development
   // e.g. DEPLOY_PRIME_URL=https://migrate-to-nextjs-auth0--coolboard.netlify.app
   // e.g. DEPLOY_URL=https://61d389db82d39a00078dbf33--coolboard.netlify.app
   DEPLOY_PRIME_URL,
   // e.g. https://coolboard.fun
-  URL,
+  URL, // VERCEL_URL
   // later: DEPLOY_URL
 } = auth0config as META_INFO;
 
