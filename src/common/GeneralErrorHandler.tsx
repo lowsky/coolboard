@@ -1,7 +1,9 @@
 import React from 'react';
+import { ServerError, ServerParseError } from '@apollo/client';
 
-import { Icon, Message } from 'semantic-ui-react';
+import { Message } from 'semantic-ui-react';
 import { useApolloNetworkStatus } from '../setupGraphQLClient';
+import LoginButton from '../auth/LoginButton';
 
 const ErrorMessage = ({ children }) => (
   <Message error style={{ flexShrink: 0 }}>
@@ -35,12 +37,7 @@ export const GeneralErrorHandler = () => {
               exist with the same email.
             </strong>
             <p>
-              Please try to
-              <a href="/api/auth/login?returnTo=/boards">
-                <Icon size="big" name="sign in" />
-                Log in
-              </a>{' '}
-              again or <br />
+              Retry to <LoginButton /> or <br />
               <strong>contact the support</strong>
             </p>
           </ErrorMessage>
@@ -54,39 +51,14 @@ export const GeneralErrorHandler = () => {
       );
 
       if (notAuthErr) {
-        if (!localStorage.getItem('expires_at')) {
-          return (
-            <Message style={{ flexShrink: 0 }}>
-              <strong>
-                You will need to be authenticated to see or create Boards or
-                change any items.
-              </strong>
-              <p>
-                You can{' '}
-                <a href="/api/auth/login?returnTo=/boards">
-                  <Icon size="big" name="sign in" />
-                  Sign in
-                </a>
-                via Auth0 service.
-              </p>
-            </Message>
-          );
-        }
-
         return (
-          <ErrorMessage>
+          <Message style={{ flexShrink: 0, gap: '0.5rem' }}>
             <strong>
               You will need to be authenticated to see or create Boards or
               change any items.
             </strong>
-            <p>
-              Please
-              <a href="/api/auth/login?returnTo=/boards">
-                <Icon size="big" name="sign in" />
-                Log in
-              </a>
-            </p>
-          </ErrorMessage>
+            <LoginButton />
+          </Message>
         );
       }
 
@@ -104,6 +76,22 @@ export const GeneralErrorHandler = () => {
       );
     } else if (networkError) {
       console.log({ networkError });
+
+      if (
+        (networkError as ServerError | ServerParseError)?.statusCode === 401
+      ) {
+        return (
+          <ErrorMessage>
+            <p>
+              <strong>User not authorized!</strong>
+            </p>
+            <p>
+              <LoginButton />
+            </p>
+          </ErrorMessage>
+        );
+      }
+
       return (
         <ErrorMessage>
           <p>
