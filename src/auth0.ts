@@ -23,6 +23,7 @@ const baseURL = context === 'production' ? URL : DEPLOY_PRIME_URL;
 console.log('auth0config=', auth0config);
 console.log('DEPLOY_PRIME_URL=', DEPLOY_PRIME_URL);
 console.log('resulting baseURL=', baseURL);
+
 const params: ConfigParameters = {
   authorizationParams: {
     ///response_type: 'id_token' | 'code id_token' | 'code';

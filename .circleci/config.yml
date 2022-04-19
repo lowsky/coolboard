@@ -84,19 +84,6 @@ jobs:
 
             echo VERCEL_URL = $VERCEL_URL
             yarn --immutable
-            yarn vercel -t $VTOKEN ls coolboard
-            yarn vercel -t $VTOKEN alias ls
-            echo yarn vercel -t $TOKEN alias set $VERCEL_URL $CIRCLE_BRANCH.coolboard.fun
-            yarn vercel -t $VTOKEN alias set $VERCEL_URL $CIRCLE_BRANCH.coolboard.fun
-            yarn vercel -t $VTOKEN ls coolboard
-      - run:
-          name: create vercel aliases
-          command: |
-            cd smoketest
-
-            VERCEL_URL=<< pipeline.parameters.VERCEL_URL >>
-            echo VERCEL_URL = $VERCEL_URL
-
       - run:
           name: verify fully deployed web site via git-commit (prep)
           command: |
