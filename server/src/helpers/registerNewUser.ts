@@ -27,7 +27,7 @@ export const createNewUser = async (
     );
   }
 
-  const userData = {
+  const userData: Prisma.UserCreateInput = {
     identity,
     auth0id,
     name,
