@@ -82,8 +82,9 @@ export const ProfileHeader = ({ isBoardsPage }: { isBoardsPage?: boolean }) => {
         <LoginButton />
       </SignedOut>
       <SignedIn>
+        <UserButton />
+        {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
         <a href="/api/auth/logout">
-          <UserButton />
           <Icon size="big" name="sign out" />
           Logout
         </a>
