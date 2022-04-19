@@ -6,7 +6,7 @@ export const SignedOut = ({ children }) => {
 };
 export const SignedIn = ({ children }) => {
   const { user, isLoading } = useUser();
-  return <>{user && isLoading && children}</>;
+  return <>{user && !isLoading && children}</>;
 };
 export const AuthLoading = ({ children }) => {
   const { isLoading } = useUser();
