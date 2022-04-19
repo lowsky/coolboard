@@ -9,7 +9,7 @@ export async function userIdByAuth0id(
   fetchUserByAuth0id: (auth0id: string) => Promise<{ id: string } | null>
 ) {
   let cachedUserId = cache[auth0id];
-  if (cachedUserId && !(process.env.OPTIMIZED === 'false')) {
+  if (cachedUserId) {
     return cachedUserId;
   }
 
