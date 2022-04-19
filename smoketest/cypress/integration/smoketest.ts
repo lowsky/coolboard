@@ -51,7 +51,7 @@ const gotoBoards = () =>
 
 const clickLogin = () =>
   cy
-    .contains('Sign in', {
+    .contains('Log in', {
       log: true,
       timeout: 6000,
     })
@@ -228,7 +228,7 @@ describe('Test coolboard', () => {
     getBoardsList_FirstEntry(newBoardName).should('not.exist');
 
     // logout
-    cy.get('[data-cy=profile-header] > div > a').click();
+    cy.get('[data-cy=profile-header]').contains('Logout').click();
   });
 });
 
