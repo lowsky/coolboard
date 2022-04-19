@@ -11,6 +11,8 @@ import { createNewUser } from '../helpers/registerNewUser';
 import { isLocalDev } from '../helpers/logging';
 import { Ctxt } from './Context';
 
+// only used below...
+// @ts-ignore
 export const getUserId = async (ctx: Ctxt) => {
   const userToken = await verifyAuth0HeaderToken(ctx);
   if (userToken) {
