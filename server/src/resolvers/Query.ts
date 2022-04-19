@@ -41,7 +41,6 @@ const Query = {
 
     // user signed in, but not created in DB yet:
     const u = await createNewUser(userToken, (data) =>
-      // @ts-expect-error needs small adaption
       prisma.user.create({ data })
     );
 

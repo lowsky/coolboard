@@ -1,53 +1,49 @@
 import { AuthenticationError } from 'apollo-server-errors';
 import { isLocalDev } from './logging';
 import { JwtPayload } from 'jsonwebtoken';
-import { User } from '@prisma/client';
+import { User, Prisma } from '@prisma/client';
+
+/* identity, auth0id, name, email, avatarUrl */
+type UserCreator = (user: Prisma.UserCreateInput) => Promise<User>;
 
 export const createNewUser = async (
   idToken: JwtPayload,
-  createPersistentUser: ({
-    data: { identity, auth0id, name, email, avatarUrl },
-  }: {
-    data: {
-      auth0id: string;
-      name: string;
-      email: string;
-      identity?: string;
-      avatarUrl?: string | undefined;
-    };
-  }) => User
-) => {
-  const data = {
-    identity: idToken.sub?.split(`|`)[0],
-    auth0id: idToken.sub?.split(`|`)[1],
-    name: idToken.name,
-    email: idToken.email ?? idToken.name,
-    avatarUrl: idToken.picture,
-  } as const;
+  createPersistentUser: UserCreator
+): Promise<User> => {
+  const { sub, name, email, picture } = idToken;
+  const auth0id = sub?.split(`|`)[1];
+  const identity = sub?.split(`|`)[0];
 
-  if (!data.email || !data.name || !data.auth0id) {
+  if (!email || !name || !auth0id) {
     throw new AuthenticationError(
       `Error while signing in: Missing any of (email, name, auth0id). Plz contact support!`,
       {
         internalData: {
-          email: data.email,
-          name: data.name,
-          auth0id: data.auth0id,
+          email: email,
+          name: name,
+          auth0id: auth0id,
         },
       }
     );
   }
 
+  const userData = {
+    identity,
+    auth0id,
+    name,
+    email: email ?? name,
+    avatarUrl: picture,
+  } as const;
   try {
-    // @ts-expect-error not exactly matching: identity is optional
-    return createPersistentUser({ data });
+    return createPersistentUser(userData);
   } catch (err) {
-    if (isLocalDev) console.error('Failed to create this new user:', data, err);
+    if (isLocalDev)
+      console.error('Failed to create this new user:', userData, err);
 
     // @ts-expect-error err of unknown type
     if (err?.message?.includes('unique constraint')) {
       throw new AuthenticationError(
-        `Error signing in, a user with same email ${data.email} already exist. Plz contact support!`,
+        `Error signing in, a user with same email ${email} already exist. Plz contact support!`,
         {
           internalData: {
             error: err,
