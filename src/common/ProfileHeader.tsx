@@ -4,6 +4,9 @@ import Link from 'next/link';
 
 import { useUser } from '@auth0/nextjs-auth0';
 
+import { AuthLoading, SignedIn, SignedOut } from '../auth/AuthControl';
+import LoginButton from '../auth/LoginButton';
+
 const ProfileHeaderContainer = ({
   children,
   isBoardsPage,
@@ -55,52 +58,36 @@ const ProfileHeaderContainer = ({
   </Container>
 );
 
-export const ProfileHeader = ({ isBoardsPage }: { isBoardsPage?: boolean }) => {
-  const { user, error, isLoading } = useUser();
-
-  if (isLoading) {
-    return (
-      <ProfileHeaderContainer isBoardsPage={isBoardsPage}>
-        <Loader active />
-        Loading user...
-      </ProfileHeaderContainer>
-    );
-  }
-
-  if (error) {
-    return (
-      <ProfileHeaderContainer isBoardsPage={isBoardsPage}>
-        <a href="/api/auth/login">
-          <Icon size="big" name="sign in" />
-          Log in
-        </a>
-      </ProfileHeaderContainer>
-    );
-  }
-
-  if (!user) {
-    return (
-      <ProfileHeaderContainer isBoardsPage={isBoardsPage}>
-        <a href="/api/auth/login">
-          <Icon size="big" name="sign in" />
-          Login
-        </a>
-      </ProfileHeaderContainer>
-    );
-  }
+const UserButton = () => {
+  const { user } = useUser();
+  if (!user) return null;
 
   const { picture, name } = user;
+  return (
+    <>
+      <span>{name} </span>;
+      {picture && <Image src={picture} avatar spaced alt="user avatar" />}
+    </>
+  );
+};
 
+export const ProfileHeader = ({ isBoardsPage }: { isBoardsPage?: boolean }) => {
   return (
     <ProfileHeaderContainer isBoardsPage={isBoardsPage}>
-      <div>
-        <span>{name} </span>
-        {picture && <Image src={picture} avatar spaced alt="user avatar" />}
+      <AuthLoading>
+        <Loader active />
+        Loading user...
+      </AuthLoading>
+      <SignedOut>
+        <LoginButton />
+      </SignedOut>
+      <SignedIn>
         <a href="/api/auth/logout">
+          <UserButton />
           <Icon size="big" name="sign out" />
           Logout
         </a>
-      </div>
+      </SignedIn>
     </ProfileHeaderContainer>
   );
 };
