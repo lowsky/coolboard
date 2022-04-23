@@ -1915,14 +1915,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@opentelemetry/core@npm:1.1.1":
-  version: 1.1.1
-  resolution: "@opentelemetry/core@npm:1.1.1"
+"@opentelemetry/core@npm:1.2.0":
+  version: 1.2.0
+  resolution: "@opentelemetry/core@npm:1.2.0"
   dependencies:
-    "@opentelemetry/semantic-conventions": 1.1.1
+    "@opentelemetry/semantic-conventions": 1.2.0
   peerDependencies:
     "@opentelemetry/api": ">=1.0.0 <1.2.0"
-  checksum: 5cd4cc49517e0c740cb335def90d8e30713b5475d5d66efc5d87f35f90870d09656d036cf40e64278b08a06ea9fb16e4be14cfcb8d0d8599aa439d95cd6fd35c
+  checksum: 3cd57e02aa18d46d36570e825abfd8c0800a30a1935462686af0f735a577b7e6d9a094e83b298795e066bd059abc3a01bdb9bfeb34f32e4a20131d66246c800c
   languageName: node
   linkType: hard
 
@@ -2044,10 +2044,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@opentelemetry/semantic-conventions@npm:1.1.1":
-  version: 1.1.1
-  resolution: "@opentelemetry/semantic-conventions@npm:1.1.1"
-  checksum: ccae7f72573dd141248123597a5ee06195e017c7a4b17c9f2d37f0f5a54c4e63ab28dae744ae5f1b04397ee363df9873129e71df9791a7c36af9748dceec1692
+"@opentelemetry/semantic-conventions@npm:1.2.0":
+  version: 1.2.0
+  resolution: "@opentelemetry/semantic-conventions@npm:1.2.0"
+  checksum: ba8ebaaecab15e7aff26b59e028e9ceb73eba2fda6c8c3b9957277d66205a56781ab2a5d1f7bf321b92e0ca44d3e247336665ac4ccaef195455f838cbcab44ff
   languageName: node
   linkType: hard
 
@@ -3993,7 +3993,7 @@ __metadata:
     "@instana/opentelemetry-exporter": 2.0.0
     "@netlify/functions": 1.0.0
     "@opentelemetry/api": 1.1.0
-    "@opentelemetry/core": 1.1.1
+    "@opentelemetry/core": 1.2.0
     "@opentelemetry/instrumentation-express": 0.28.0
     "@opentelemetry/instrumentation-graphql": 0.27.4
     "@opentelemetry/instrumentation-http": 0.27.0
