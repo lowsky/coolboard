@@ -44,7 +44,7 @@ jobs:
 #          command: npm run build
   build:
     docker:
-      - image: cypress/included:9.5.4
+      - image: cypress/included:9.6.0
     steps:
       - checkout
       - run:
