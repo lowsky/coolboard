@@ -730,7 +730,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/backend-core@npm:^1.1.0, @clerk/backend-core@npm:^1.5.2":
+"@clerk/backend-core@npm:^1.5.2":
   version: 1.5.2
   resolution: "@clerk/backend-core@npm:1.5.2"
   dependencies:
@@ -743,7 +743,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/clerk-react@npm:^3.2.0":
+"@clerk/clerk-react@npm:^3.2.8":
   version: 3.2.8
   resolution: "@clerk/clerk-react@npm:3.2.8"
   dependencies:
@@ -755,26 +755,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/clerk-sdk-node@npm:3.2.2":
-  version: 3.2.2
-  resolution: "@clerk/clerk-sdk-node@npm:3.2.2"
-  dependencies:
-    "@clerk/backend-core": ^1.1.0
-    "@clerk/types": ^2.2.0
-    "@peculiar/webcrypto": ^1.2.3
-    camelcase-keys: ^6.2.2
-    cookies: ^0.8.0
-    deepmerge: ^4.2.2
-    got: ^11.8.2
-    jsonwebtoken: ^8.5.1
-    jwks-rsa: ^2.0.4
-    snakecase-keys: ^3.2.1
-    tslib: ^2.3.1
-  checksum: 79e615dc1eb4f42c4d8ca3290c49fa34d3e378ae9cfc9c0a1b106f488a3100fa4451b2866d463497e12fb2ac0440a8ae66b6632b710ac3ca44d101e529f403d4
-  languageName: node
-  linkType: hard
-
-"@clerk/clerk-sdk-node@npm:^3.2.2":
+"@clerk/clerk-sdk-node@npm:3.3.7, @clerk/clerk-sdk-node@npm:^3.3.7":
   version: 3.3.7
   resolution: "@clerk/clerk-sdk-node@npm:3.3.7"
   dependencies:
@@ -793,7 +774,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/edge@npm:^1.2.2":
+"@clerk/edge@npm:^1.3.4":
   version: 1.3.4
   resolution: "@clerk/edge@npm:1.3.4"
   dependencies:
@@ -804,22 +785,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/nextjs@npm:3.2.2":
-  version: 3.2.2
-  resolution: "@clerk/nextjs@npm:3.2.2"
+"@clerk/nextjs@npm:3.3.7":
+  version: 3.3.7
+  resolution: "@clerk/nextjs@npm:3.3.7"
   dependencies:
-    "@clerk/clerk-react": ^3.2.0
-    "@clerk/clerk-sdk-node": ^3.2.2
-    "@clerk/edge": ^1.2.2
-    "@clerk/types": ^2.2.0
+    "@clerk/clerk-react": ^3.2.8
+    "@clerk/clerk-sdk-node": ^3.3.7
+    "@clerk/edge": ^1.3.4
+    "@clerk/types": ^2.7.1
     tslib: ^2.3.1
   peerDependencies:
     next: ">=10"
-  checksum: 567bf4edee965c598dd5dcab5e39a4ad317271c28f24d2392cc6a1d184cd51499b3f5d369ebf8ceff4088aa9aed15a9069909b2174cdd7cc55fce6b768d34dd6
+  checksum: 7676dd0f769912ad40fe77b522eab3303b40764aa5bae45511d07417b368ca9cec8d209e47b0087351c82f0dfacbb646e8847ed9fd1eb139b43592fcf216377f
   languageName: node
   linkType: hard
 
-"@clerk/types@npm:^2.2.0, @clerk/types@npm:^2.7.1":
+"@clerk/types@npm:^2.7.1":
   version: 2.7.1
   resolution: "@clerk/types@npm:2.7.1"
   checksum: 2bc0e72c37050e2c104a80d2c636225441963531bfd4d6e50820bf5277a969cce8fb9606fb7ff46de9be3d7d35e34919ae10c8a80e070f5f6c821b94455c51c6
@@ -2408,27 +2389,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:18.0.2":
-  version: 18.0.2
-  resolution: "@types/react-dom@npm:18.0.2"
+"@types/react-dom@npm:17.0.16":
+  version: 17.0.16
+  resolution: "@types/react-dom@npm:17.0.16"
   dependencies:
-    "@types/react": "*"
-  checksum: 2b0b138d8634ccfd8a86b17cb5414b122ee0cb6f650377d772f6008761a27e4c2531c08e3cab71aaa19b6893af6a508c664aa314db3ebcff5b8179173c9c9307
+    "@types/react": ^17
+  checksum: 2f41a45ef955c8f68a7bcd22343715f15e1560a5e5ba941568b3c970d9151f78fe0975ecf4df7f691339af546555e0f23fa423a0a5bcd7ea4dd4f9c245509936
   languageName: node
   linkType: hard
 
-"@types/react@npm:*":
-  version: 18.0.7
-  resolution: "@types/react@npm:18.0.7"
-  dependencies:
-    "@types/prop-types": "*"
-    "@types/scheduler": "*"
-    csstype: ^3.0.2
-  checksum: 0cbbfc118227a8bd25cbec253f6ace46c1af0c9b1a4abfe5a51ed1977b93c3e82af2a70d38ba77fc36075e886d303dd57f3302447b70152702028f20a4675e32
-  languageName: node
-  linkType: hard
-
-"@types/react@npm:17.0.44":
+"@types/react@npm:17.0.44, @types/react@npm:^17":
   version: 17.0.44
   resolution: "@types/react@npm:17.0.44"
   dependencies:
@@ -3893,8 +3863,8 @@ __metadata:
   dependencies:
     "@apollo/client": 3.5.10
     "@auth0/nextjs-auth0": 1.7.0
-    "@clerk/clerk-sdk-node": 3.2.2
-    "@clerk/nextjs": 3.2.2
+    "@clerk/clerk-sdk-node": 3.3.7
+    "@clerk/nextjs": 3.3.7
     "@graphql-codegen/cli": 2.6.2
     "@graphql-codegen/introspection": 2.1.1
     "@graphql-codegen/typescript": 2.4.8
@@ -3912,7 +3882,7 @@ __metadata:
     "@opentelemetry/node": 0.24.0
     "@prisma/client": 3.12.0
     "@types/react": 17.0.44
-    "@types/react-dom": 18.0.2
+    "@types/react-dom": 17.0.16
     "@types/zen-observable": 0.8.3
     "@typescript-eslint/parser": 5.21.0
     apollo-server-core: 3.6.7
