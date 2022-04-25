@@ -2799,13 +2799,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"async@npm:^3.2.2":
-  version: 3.2.3
-  resolution: "async@npm:3.2.3"
-  checksum: c4bee57ab2249af3dc83ca3ef9acfa8e822c0d5e5aa41bae3eaf7f673648343cd64ecd7d26091ffd357f3f044428b17b5f00098494b6cf8b6b3e9681f0636ca1
-  languageName: node
-  linkType: hard
-
 "asynckit@npm:^0.4.0":
   version: 0.4.0
   resolution: "asynckit@npm:0.4.0"
@@ -3865,15 +3858,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"express-jwt@npm:6.1.2":
-  version: 6.1.2
-  resolution: "express-jwt@npm:6.1.2"
+"express-jwt@npm:7.5.0":
+  version: 7.5.0
+  resolution: "express-jwt@npm:7.5.0"
   dependencies:
-    async: ^3.2.2
     express-unless: ^1.0.0
-    jsonwebtoken: ^8.1.0
-    lodash: ^4.17.21
-  checksum: 3263e10197e1d94585adc8c0e3b2d857a37443ae3feb7612264ac7bacfe348b0d8b9d80c6306c7172c7257a0fe2e9abc5983207524a1b51cb258b3efe866e76b
+    jsonwebtoken: ^8.5.1
+  checksum: aee57e2d8b569767ff2b35582bff90b1a02f6328c45cef0ebbe7d0d65fca55be901d369f66f6a8b84c17f74c85b6887b934d382c1594638838a2135fe2e13eab
   languageName: node
   linkType: hard
 
@@ -3903,7 +3894,7 @@ __metadata:
     bufferutil: 4.0.6
     core-js: 3.22.2
     dotenv: 16.0.0
-    express-jwt: 6.1.2
+    express-jwt: 7.5.0
     jsonwebtoken: 8.5.1
     jwks-rsa: 2.0.5
     nodemon: 2.0.15
@@ -4794,7 +4785,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jsonwebtoken@npm:8.5.1, jsonwebtoken@npm:^8.1.0, jsonwebtoken@npm:^8.3.0":
+"jsonwebtoken@npm:8.5.1, jsonwebtoken@npm:^8.3.0, jsonwebtoken@npm:^8.5.1":
   version: 8.5.1
   resolution: "jsonwebtoken@npm:8.5.1"
   dependencies:
@@ -4984,7 +4975,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:^4.17.19, lodash@npm:^4.17.21":
+"lodash@npm:^4.17.19":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
   checksum: eb835a2e51d381e561e508ce932ea50a8e5a68f4ebdd771ea240d3048244a8d13658acbd502cd4829768c56f2e16bdd4340b9ea141297d472517b83868e677f7
