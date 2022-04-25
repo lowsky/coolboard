@@ -27,7 +27,7 @@
     "emitter-listener": "1.1.2",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-prettier": "4.0.0",
-    "graphql": "16.3.0",
+    "graphql": "16.4.0",
     "graphql-tag": "2.12.6",
     "inter-ui": "3.19.3",
     "jsonwebtoken": "8.5.1",
