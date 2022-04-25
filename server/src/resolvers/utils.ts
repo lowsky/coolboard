@@ -4,7 +4,6 @@ import { AuthenticationError } from 'apollo-server-errors';
 
 import { User } from '@prisma/client';
 
-import validateAndParseIdToken from '../helpers/validateAndParseIdToken';
 import {
   injectUserIdByAuth0id,
   userIdByAuth0id,
@@ -52,12 +51,6 @@ export const getUserId = async (ctx: Ctxt) => {
   throw new AuthenticationError('Not authorized: no user in current request');
 };
 
-/**
- * Extracts auth0 from second part of the sub ('xxx|auth0id')
- */
-const auth0idFromUserToken = (userToken: { sub: string }) =>
-  userToken && userToken.sub?.split('|')[1];
-
 export const userTokenFromClerkSessionUserId = (user: ClerkUser): UserToken => {
   let email = user.emailAddresses.find(Boolean)?.emailAddress ?? undefined;
   return {
@@ -84,20 +77,6 @@ export const verifyAndRetrieveAuth0HeaderToken = async (ctx: Ctxt) => {
 };
 
 async function verifyAuth0HeaderToken(ctx: Ctxt): Promise<UserToken> {
-  try {
-    /*
-    const session = auth0.getSession(ctx.req, ctx.res);
-    const userToken = session?.user;
-    const auth0id = auth0idFromUserToken(userToken);
-    if (auth0id) {
-      return userToken;
-    }
-     */
-  } catch (error) {
-    throw new Error(
-      'Not authenticated or auth info in cookie invalid:' + error
-    );
-  }
   if (ctx.req?.auth?.userId) {
     console.log(
       'verifyAuth0HeaderToken: Session, userid:',
@@ -107,22 +86,6 @@ async function verifyAuth0HeaderToken(ctx: Ctxt): Promise<UserToken> {
     return userTokenFromClerkSessionUserId(
       await clerk.users.getUser(ctx.req?.auth.userId)
     );
-  }
-
-  const authorization = ctx.req?.get?.('Authorization') ?? undefined;
-
-  if (authorization) {
-    const token = authorization.replace('Bearer ', '');
-
-    try {
-      const userToken = (await validateAndParseIdToken(token)) as UserToken;
-      const auth0id = auth0idFromUserToken(userToken);
-      if (auth0id) {
-        return userToken as UserToken;
-      }
-    } catch (error) {
-      throw new Error('invalid auth token was sent: ' + error);
-    }
   }
 
   throw new AuthenticationError('Not authorized, no valid auth token');
