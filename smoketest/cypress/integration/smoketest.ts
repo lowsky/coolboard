@@ -4,11 +4,6 @@
 import Loggable = Cypress.Loggable;
 import Timeoutable = Cypress.Timeoutable;
 
-const auth0LockInputEmail =
-  'div > div > .auth0-lock-input-email > .auth0-lock-input-wrap > .auth0-lock-input';
-const auth0LockInputPassword =
-  'div > div > .auth0-lock-input-password > .auth0-lock-input-wrap > .auth0-lock-input';
-
 // needs prefix when set per env: CYPRESS_LOGIN
 const login = Cypress.env('CYPRESS_LOGIN') ?? Cypress.env('LOGIN');
 
@@ -93,11 +88,9 @@ function fillLoginForm() {
 
   // helps to wait for authentication process of redirecting with to the /callback url
   return cy
-    .wait(2000)
-    .url(LogAndWaitLong)
-    .should('not.include', 'callback')
-    .should('equal', baseUrl + '/')
-    .wait(2000);
+      .wait(1000)
+      .url(LogAndWaitLong)
+      .should('not.include', 'callback')
 }
 function fillLoginFormNew() {
   cy.get('#username').clear();
@@ -115,15 +108,6 @@ function fillLoginFormNew() {
     .should('not.include', 'callback')
     .should('equal', baseUrl + '/boards')
     .wait(2000);
-}
-
-function doLogin() {
-  gotoBoards();
-  clickLogin();
-  // Classic auth0 login
-  fillLoginForm();
-  // New, modern auth0 login
-  // ... fillLoginFormNew();
 }
 
 const getBoardsList = () => {
