@@ -52,7 +52,8 @@ beforeEach(() => {});
 
 const gotoBoards = () =>
   cy
-    .visit(baseUrl + '/boards')
+    .visit(baseUrl)
+    .get('img[alt="screenshot"]').click()
     .url()
     .should('include', 'boards');
 
@@ -245,24 +246,8 @@ describe('Test coolboard', () => {
   });
 
   it('user can log-out', () => {
-    /* not sure:
-    cy.visit('/sign-out');
+    gotoBoards();
 
-    cy.get('.segment > .ui').should(
-      'have.text',
-      'Your are currently signed-in.'
-    );
-
-    cy.get('[data-cy="sign-out-button"]').should('have.text', 'Sign Out');
-    cy.get('[data-cy="sign-out-button"]').click();
-
-    cy.get('.segment > .ui').should(
-      'have.text',
-      'You are currently signed-out.'
-    );
-     */
-
-    // logout
-    cy.get('[data-cy=profile-header]').contains('Logout').click();
+    cy.get('[data-cy=profile-header]').contains('Sign Out').click();
   });
 });
