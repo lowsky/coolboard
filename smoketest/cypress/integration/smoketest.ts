@@ -48,23 +48,24 @@ before(() => {
   cy.clearLocalStorage();
 });
 
-beforeEach(() => {});
-
-const gotoBoards = () =>
-  cy
+const gotoBoards = () => {
+  return cy
     .visit(baseUrl)
-    .get('img[alt="screenshot"]').click()
+    .get('img[alt="screenshot"]')
+    .click()
     .url()
     .should('include', 'boards');
+};
 
-const clickLogin = () =>
-  cy
+const clickLogin = () => {
+  return cy
     .contains('Log in', {
       log: true,
       timeout: 6000,
     })
     .first()
     .click();
+};
 
 const _boardListContainer = () => cy.dataCy('board-container-inner');
 
