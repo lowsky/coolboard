@@ -4,7 +4,7 @@ import { JwtPayload } from 'jsonwebtoken';
 import { User, Prisma } from '@prisma/client';
 
 /* identity, auth0id, name, email, avatarUrl */
-type UserCreator = (user: Prisma.UserCreateInput) => Promise<User>;
+type UserCreator = (data: Prisma.UserCreateArgs) => Promise<User>;
 
 export const createNewUser = async (
   idToken: JwtPayload,
@@ -27,13 +27,15 @@ export const createNewUser = async (
     );
   }
 
-  const userData = {
-    identity,
-    auth0id,
-    name,
-    email: email ?? name,
-    avatarUrl: picture,
-  } as const;
+  const userData: Prisma.UserCreateArgs = {
+    data: {
+      identity,
+      auth0id,
+      name,
+      email: email ?? name,
+      avatarUrl: picture,
+    },
+  };
   try {
     return createPersistentUser(userData);
   } catch (err) {

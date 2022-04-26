@@ -3,7 +3,7 @@ import { ServerError, ServerParseError } from '@apollo/client';
 
 import { Message } from 'semantic-ui-react';
 import { useApolloNetworkStatus } from '../setupGraphQLClient';
-import LoginButton from '../auth/LoginButton';
+import { LoginButton } from './LoginButton';
 
 const ErrorMessage = ({ children }) => (
   <Message error style={{ flexShrink: 0 }}>

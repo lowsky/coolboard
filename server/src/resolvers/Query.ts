@@ -41,7 +41,7 @@ const Query = {
 
     // user signed in, but not created in DB yet:
     const u = await createNewUser(userToken, (data) =>
-      prisma.user.create({ data })
+      prisma.user.create(data)
     );
 
     if (isLocalDev) console.log('created prisma user:', u);

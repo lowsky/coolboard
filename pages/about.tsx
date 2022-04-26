@@ -62,7 +62,7 @@ export default function About() {
           <p>
             You will need to Sign-up via email and{' '}
             {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-            <a href="/api/auth/login">
+            <a href="/sign-in/sign-in">
               <Icon size="big" name="sign in" />
               authenticate here
             </a>
