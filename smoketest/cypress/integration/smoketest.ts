@@ -4,13 +4,15 @@
 import Loggable = Cypress.Loggable;
 import Timeoutable = Cypress.Timeoutable;
 
-const auth0LockInputEmail =
-  'div > div > .auth0-lock-input-email > .auth0-lock-input-wrap > .auth0-lock-input';
-const auth0LockInputPassword =
-  'div > div > .auth0-lock-input-password > .auth0-lock-input-wrap > .auth0-lock-input';
+// needs prefix when set per env: CYPRESS_LOGIN
+const login = Cypress.env('CYPRESS_LOGIN') ?? Cypress.env('LOGIN');
 
 // needs prefix when set per env: CYPRESS_USER_PASSWORD
-const password = Cypress.env('USER_PASSWORD');
+const password =
+  Cypress.env('CYPRESS_PASSWORD') ??
+  Cypress.env('PASSWORD') ??
+  Cypress.env('CYPRESS_USER_PASSWORD') ??
+  Cypress.env('USER_PASSWORD');
 
 // will be set by cypress.json, or via env: CYPRESS_baseUrl
 const baseUrl = Cypress.config('baseUrl') ?? 'missing env CYPRESS_baseUrl';
@@ -20,11 +22,16 @@ const branch = Cypress.env('branch') || 'missing-CYPRESS_branch-env';
 const newBoardName = branch;
 
 before(() => {
+  Cypress.Cookies.debug(true); // now Cypress will log when it alters cookies
+
   assert(
     baseUrl.endsWith('localhost:8888') ||
       baseUrl.endsWith('localhost:3000') ||
       baseUrl.endsWith('coolboard.netlify.app') ||
       baseUrl.startsWith('https://localhost') ||
+      baseUrl.startsWith(
+        'https://hands-on-application-building-with-graph-ql-and-reac'
+      ) ||
       (baseUrl.startsWith('https://coolboard-') &&
         baseUrl.endsWith('.vercel.app')) ||
       baseUrl.endsWith('coolboard.fun'),
@@ -41,22 +48,24 @@ before(() => {
   cy.clearLocalStorage();
 });
 
-beforeEach(() => {});
-
-const gotoBoards = () =>
-  cy
-    .visit(baseUrl + '/boards')
+const gotoBoards = () => {
+  return cy
+    .visit(baseUrl)
+    .get('img[alt="screenshot"]')
+    .click()
     .url()
     .should('include', 'boards');
+};
 
-const clickLogin = () =>
-  cy
+const clickLogin = () => {
+  return cy
     .contains('Log in', {
       log: true,
       timeout: 6000,
     })
     .first()
     .click();
+};
 
 const _boardListContainer = () => cy.dataCy('board-container-inner');
 
@@ -70,20 +79,20 @@ const sections = (options: Partial<Loggable & Timeoutable>) =>
 const add_a_card = () => cardListButtons().contains('Add a card');
 
 function fillLoginForm() {
-  cy.get(auth0LockInputEmail, LogAndWaitLong).type('skylab@nurfuerspam.de');
-  cy.get(auth0LockInputPassword).type(password, {
+  cy.get('#text-field-identifier', LogAndWaitLong).type(login + '{enter}');
+  cy.contains('Welcome, ', {
+    log: true,
+    timeout: 6000,
+  });
+  cy.get('#password').type(password + '{enter}', {
     log: false,
   });
 
-  cy.get('button.auth0-lock-submit').click();
-
-  // helps to wait for auth0 process of redirecting with to the /callback url
+  // helps to wait for authentication process of redirecting with to the /callback url
   return cy
-    .wait(1000)
-    .url(LogAndWaitLong)
-    .should('not.include', 'callback')
-    .should('equal', baseUrl + '/boards')
-    .wait(2000);
+      .wait(1000)
+      .url(LogAndWaitLong)
+      .should('not.include', 'callback')
 }
 function fillLoginFormNew() {
   cy.get('#username').clear();
@@ -101,15 +110,6 @@ function fillLoginFormNew() {
     .should('not.include', 'callback')
     .should('equal', baseUrl + '/boards')
     .wait(2000);
-}
-
-function doLogin() {
-  gotoBoards();
-  clickLogin();
-  // Classic auth0 login
-  fillLoginForm();
-  // New, modern auth0 login
-  // ... fillLoginFormNew();
 }
 
 const getBoardsList = () => {
@@ -134,10 +134,28 @@ let WaitVeryLong = {
   timeout: 5000 * 4,
 };
 
+// if you want to debug when any test fails
+// You likely want to put this in a support file,
+// or at the top of an individual spec file
+Cypress.on('uncaught:exception', (error, runnable, promise) => {
+  if (promise) {
+    return false;
+  }
+});
+
 describe('Test coolboard', () => {
+  beforeEach(() => {
+    /* remove, when not needed anymore
+    cy.intercept('*', (req) => {
+      req.headers['origin'] = 'https://clerkauth.coolboard.fun';
+    }).as('addOriginHeader');
+     */
+  });
+
   it('need to login to show boards', () => {
-    doLogin();
-    // gotoBoards();
+    gotoBoards();
+    clickLogin();
+    fillLoginForm();
   });
 
   it('user can create a board for branch', () => {
@@ -226,10 +244,11 @@ describe('Test coolboard', () => {
       .find('.button > .trash')
       .click();
     getBoardsList_FirstEntry(newBoardName).should('not.exist');
+  });
 
-    // logout
-    cy.get('[data-cy=profile-header]').contains('Logout').click();
+  it('user can log-out', () => {
+    gotoBoards();
+
+    cy.get('[data-cy=profile-header]').contains('Sign Out').click();
   });
 });
-
-export {};

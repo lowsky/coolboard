@@ -16,7 +16,7 @@ CIRCLE_API_USER_TOKEN=1851154c07ebcb2a01c99a5851a79fe9e8ca893c
 #BRANCH=activate-vercel-serverless
 BRANCH=$VERCEL_GITHUB_COMMIT_REF
 
-#SUT_URL=https://hands-on-application-building-with-graph-ql-and-reac-790uxmthz.vercel.app/
+#SUT_URL=https://coolboard-790uxmthz.vercel.app/
 TEST_URL=https://$VERCEL_URL
 echo
 echo testing "$TEST_URL"
@@ -37,6 +37,7 @@ curl --request POST \
 	"parameters":
     {
 			"deployed-sha": "'$VERCEL_GITHUB_COMMIT_SHA'",
+			"VERCEL_URL": "'$VERCEL_URL'",
 			"test-url": "'$TEST_URL'"
 		}
 }'

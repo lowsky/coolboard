@@ -1,6 +1,7 @@
 import Head from 'next/head';
 //import Script from 'next/script'
-import { UserProvider } from '@auth0/nextjs-auth0';
+import type { AppProps } from 'next/app';
+import { ClerkProvider } from '@clerk/nextjs';
 
 import '../public/index.css';
 import '../src/fomantic/dist/semantic.min.css';
@@ -8,9 +9,7 @@ import { Footer } from '../src/components/Footer';
 
 // Head's title and view-port-meta needs to go here, see https://nextjs.org/docs/messages/no-document-viewport-meta
 
-export default function App({ Component, pageProps }) {
-  const { user } = pageProps;
-
+export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
@@ -42,9 +41,9 @@ export default function App({ Component, pageProps }) {
           overflow: 'auto',
           flex: 1,
         }}>
-        <UserProvider user={user}>
+        <ClerkProvider {...pageProps}>
           <Component {...pageProps} />
-        </UserProvider>
+        </ClerkProvider>
       </div>
 
       <Footer />
