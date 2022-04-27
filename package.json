@@ -7,7 +7,7 @@
   },
   "homepage": "/",
   "dependencies": {
-    "@apollo/client": "3.5.10",
+    "@apollo/client": "3.6.0",
     "@auth0/nextjs-auth0": "1.7.0",
     "@clerk/clerk-sdk-node": "3.3.7",
     "@clerk/nextjs": "3.3.7",
