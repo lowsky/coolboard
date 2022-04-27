@@ -1,8 +1,9 @@
+import { Board, User } from '@prisma/client';
 import { getUserId, verifyUserIsAuthenticated } from '../utils';
 import { Ctxt } from '../Context';
 
 const board = {
-  async updateBoard(_parent: any, args: any, ctx: Ctxt) {
+  async updateBoard(_parent: any, args: any, ctx: Ctxt): Promise<Board>{
     const userId = await getUserId(ctx);
     const { prisma } = ctx;
 
@@ -48,7 +49,11 @@ const board = {
       throw e;
     }
   },
-  async createBoard(_parent: any, args: any, ctx: Ctxt) {
+  async createBoard(
+    _parent: any,
+    args: any,
+    ctx: Ctxt
+  ): Promise<(User & { boards: Board[] }) | null> {
     const { name } = args;
     const { prisma } = ctx;
     const id = await getUserId(ctx);
@@ -67,7 +72,7 @@ const board = {
       include: { boards: true },
     });
   },
-  async deleteBoard(_parent: any, args: any, ctx: Ctxt) {
+  async deleteBoard(_parent: any, args: any, ctx: Ctxt): Promise<Board> {
     const { id } = args;
     const { prisma } = ctx;
 

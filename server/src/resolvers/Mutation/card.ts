@@ -1,3 +1,4 @@
+import { Card } from '@prisma/client';
 import { getUserId } from '../utils';
 import { Ctxt } from '../Context';
 
@@ -15,7 +16,11 @@ const card = {
     # ...
   }
   */
-  async updateCard(_parent: any, { where, data }: any, ctx: Ctxt) {
+  async updateCard(
+    _parent: any,
+    { where, data }: any,
+    ctx: Ctxt
+  ): Promise<Card | null> {
     const userId = await getUserId(ctx);
     const { prisma } = ctx;
 
