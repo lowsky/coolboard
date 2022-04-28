@@ -142,14 +142,6 @@ Cypress.on('uncaught:exception', (error, runnable, promise) => {
 });
 
 describe('Test coolboard', () => {
-  beforeEach(() => {
-    /* remove, when not needed anymore
-    cy.intercept('*', (req) => {
-      req.headers['origin'] = 'https://clerkauth.coolboard.fun';
-    }).as('addOriginHeader');
-     */
-  });
-
   it('need to login to show boards', () => {
     gotoBoards();
     clickLogin();
