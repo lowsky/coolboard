@@ -50,9 +50,7 @@ before(() => {
 
 const gotoBoards = () => {
   return cy
-    .visit(baseUrl)
-    .get('img[alt="screenshot"]')
-    .click()
+    .visit(baseUrl + "/boards")
     .url()
     .should('include', 'boards');
 };
