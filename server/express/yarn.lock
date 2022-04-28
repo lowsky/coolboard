@@ -2813,9 +2813,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"aws-sdk@npm:2.1122.0":
-  version: 2.1122.0
-  resolution: "aws-sdk@npm:2.1122.0"
+"aws-sdk@npm:2.1124.0":
+  version: 2.1124.0
+  resolution: "aws-sdk@npm:2.1124.0"
   dependencies:
     buffer: 4.9.2
     events: 1.1.1
@@ -2826,7 +2826,7 @@ __metadata:
     url: 0.10.3
     uuid: 3.3.2
     xml2js: 0.4.19
-  checksum: 6b5130fb255c42b7da09415ae8230e4ea673e29b998f5765a1f1f2f01d74b7441a14c2238f90d58a9f87b58be0ffe2ac46174e9366d27d9ecdd381e1d3f6f01b
+  checksum: a6ca56ff65d7c2769bc33c3c210cdb4f11d6e7e090d28f9a17f5b5b265542f2e4d62b970e240676f4e41b3ce03b0ef82a3d23aa5fd9df7cad700349441fcc184
   languageName: node
   linkType: hard
 
@@ -3898,7 +3898,7 @@ __metadata:
     apollo-errors: 1.9.0
     apollo-server-express: 3.6.7
     apollo-server-micro: 3.6.7
-    aws-sdk: 2.1122.0
+    aws-sdk: 2.1124.0
     bcryptjs: 2.4.3
     bufferutil: 4.0.6
     core-js: 3.22.3
