@@ -731,19 +731,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/backend-core@npm:^1.5.3":
-  version: 1.5.3
-  resolution: "@clerk/backend-core@npm:1.5.3"
-  dependencies:
-    "@clerk/types": ^2.7.1
-    camelcase-keys: ^7.0.1
-    query-string: ^7.0.1
-    snakecase-keys: ^5.1.2
-    tslib: ^2.3.1
-  checksum: 99320d5ac576cd2a0de5ca3456c5467839ce8740c226940e9a1971012636a1332d36a7cee212e58016e977e2573334e25c3e4b3d7b6f811ba362bfa5f91496c2
-  languageName: node
-  linkType: hard
-
 "@clerk/backend-core@npm:^1.5.4":
   version: 1.5.4
   resolution: "@clerk/backend-core@npm:1.5.4"
@@ -754,6 +741,19 @@ __metadata:
     snakecase-keys: ^5.1.2
     tslib: ^2.3.1
   checksum: 9a0c7f26163dc9e293b756df87c9f853c9824335c5ea4611ede10c9dcf8577ca533b941d17e49b3b5d3e761b25e65b04cee34975182f960ad884d6d4e5a28096
+  languageName: node
+  linkType: hard
+
+"@clerk/backend-core@npm:^1.5.5":
+  version: 1.5.5
+  resolution: "@clerk/backend-core@npm:1.5.5"
+  dependencies:
+    "@clerk/types": ^2.8.0
+    camelcase-keys: ^7.0.1
+    query-string: ^7.0.1
+    snakecase-keys: ^5.1.2
+    tslib: ^2.3.1
+  checksum: 36cf7106bb18b3e7a5a18b88abe8dfe0dfffbcbc6d037605d0d5aee22bdd612ffabbc9fee10ad3aa230f99a24e5b5b1592f5441becc591524b4bf64a2e9ddd5e
   languageName: node
   linkType: hard
 
@@ -769,12 +769,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/clerk-sdk-node@npm:3.3.8":
-  version: 3.3.8
-  resolution: "@clerk/clerk-sdk-node@npm:3.3.8"
+"@clerk/clerk-sdk-node@npm:3.3.10":
+  version: 3.3.10
+  resolution: "@clerk/clerk-sdk-node@npm:3.3.10"
   dependencies:
-    "@clerk/backend-core": ^1.5.3
-    "@clerk/types": ^2.7.1
+    "@clerk/backend-core": ^1.5.5
+    "@clerk/types": ^2.8.0
     "@peculiar/webcrypto": ^1.2.3
     camelcase-keys: ^6.2.2
     cookies: ^0.8.0
@@ -784,7 +784,7 @@ __metadata:
     jwks-rsa: ^2.0.4
     snakecase-keys: ^3.2.1
     tslib: ^2.3.1
-  checksum: 3cc8f77139977c524bfe5e511fb80ebbfc9ecf6b9165df582663018b4376d6bbd0201409cd84a822eb99e0b992c54dc2e974962f425b25e90e1a9ec0fc2afff0
+  checksum: 3238267999b3d4d0554b0f963a2268c73743d66c6089a153e5b5898fc346254058cae1c21b29285196c1a11eec19d1679d65bf40a0b4d952900ed5e7dfafc0b6
   languageName: node
   linkType: hard
 
@@ -837,6 +837,13 @@ __metadata:
   version: 2.7.1
   resolution: "@clerk/types@npm:2.7.1"
   checksum: 2bc0e72c37050e2c104a80d2c636225441963531bfd4d6e50820bf5277a969cce8fb9606fb7ff46de9be3d7d35e34919ae10c8a80e070f5f6c821b94455c51c6
+  languageName: node
+  linkType: hard
+
+"@clerk/types@npm:^2.8.0":
+  version: 2.8.0
+  resolution: "@clerk/types@npm:2.8.0"
+  checksum: b11906221b0e2666cab41d52fe6803bd69062bd812f1ddeb81176aca6b2b0a7ce6773b2698f3e5c91dad61f501be505b1eeda45e97e6338ec1586c1d3fe89809
   languageName: node
   linkType: hard
 
@@ -3919,7 +3926,7 @@ __metadata:
   dependencies:
     "@apollo/client": 3.6.0
     "@auth0/nextjs-auth0": 1.7.0
-    "@clerk/clerk-sdk-node": 3.3.8
+    "@clerk/clerk-sdk-node": 3.3.10
     "@clerk/nextjs": 3.4.1
     "@graphql-codegen/cli": 2.6.2
     "@graphql-codegen/introspection": 2.1.1
