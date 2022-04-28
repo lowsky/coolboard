@@ -10,7 +10,7 @@
     "@apollo/client": "3.6.0",
     "@auth0/nextjs-auth0": "1.7.0",
     "@clerk/clerk-sdk-node": "3.3.8",
-    "@clerk/nextjs": "3.4.0",
+    "@clerk/nextjs": "3.4.1",
     "@instana/aws-lambda": "2.0.0",
     "@instana/opentelemetry-exporter": "2.0.0",
     "@netlify/functions": "1.0.0",
