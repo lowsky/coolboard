@@ -11,6 +11,8 @@ import {
 } from '@clerk/nextjs';
 
 import { LoginButton } from './LoginButton';
+import { useRouter } from 'next/router';
+import { useApolloClient } from '@apollo/client';
 
 const ProfileHeaderContainer = ({
   children,
@@ -64,6 +66,9 @@ const ProfileHeaderContainer = ({
 );
 
 export const ProfileHeader = ({ isBoardsPage }: { isBoardsPage?: boolean }) => {
+  const apolloClient = useApolloClient();
+  const { reload } = useRouter();
+
   return (
     <ProfileHeaderContainer isBoardsPage={isBoardsPage}>
       <ClerkLoading>
@@ -83,7 +88,11 @@ export const ProfileHeader = ({ isBoardsPage }: { isBoardsPage?: boolean }) => {
             gap: '0.5em',
           }}>
           <UserButton showName />
-          <SignOutButton>
+          <SignOutButton
+            signOutCallback={async () => {
+              await apolloClient.clearStore?.();
+              reload();
+            }}>
             <Button
               compact
               data-cy="sign-out-button"

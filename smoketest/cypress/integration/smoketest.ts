@@ -50,9 +50,7 @@ before(() => {
 
 const gotoBoards = () => {
   return cy
-    .visit(baseUrl)
-    .get('img[alt="screenshot"]')
-    .click()
+    .visit(baseUrl + "/boards")
     .url()
     .should('include', 'boards');
 };
@@ -113,7 +111,7 @@ function fillLoginFormNew() {
 }
 
 const getBoardsList = () => {
-  cy.dataCy('full-container').dataCy('boards-list').first();
+  cy.dataCy('full-container').dataCy('boards-list', WaitVeryLong).first();
 
   return cy
     .dataCy('full-container')
@@ -144,14 +142,6 @@ Cypress.on('uncaught:exception', (error, runnable, promise) => {
 });
 
 describe('Test coolboard', () => {
-  beforeEach(() => {
-    /* remove, when not needed anymore
-    cy.intercept('*', (req) => {
-      req.headers['origin'] = 'https://clerkauth.coolboard.fun';
-    }).as('addOriginHeader');
-     */
-  });
-
   it('need to login to show boards', () => {
     gotoBoards();
     clickLogin();
