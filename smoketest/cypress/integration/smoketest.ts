@@ -111,7 +111,7 @@ function fillLoginFormNew() {
 }
 
 const getBoardsList = () => {
-  cy.dataCy('full-container').dataCy('boards-list').first();
+  cy.dataCy('full-container').dataCy('boards-list', WaitVeryLong).first();
 
   return cy
     .dataCy('full-container')
