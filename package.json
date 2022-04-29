@@ -37,7 +37,6 @@
     "micro": "9.3.4",
     "next": "12.1.5",
     "prisma": "3.13.0",
-    "prop-types": "15.8.1",
     "react": "17.0.2",
     "react-apollo-network-status": "5.1.0",
     "react-dnd": "15.1.2",
