@@ -13,8 +13,6 @@ export function ReloadAfterLogin({ client }: Props) {
   useEffect(() => {
     if (isLoaded) {
       if (isSignedIn && sessionId) {
-        console.log("refetching...")
-        // apolloClient.clearStore?.();
         apolloClient.refetchQueries({
           include: 'all',
         });
