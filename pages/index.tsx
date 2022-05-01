@@ -3,6 +3,7 @@ import { ClerkLoaded, SignedIn, SignedOut } from '@clerk/clerk-react';
 import { Container, Icon, Segment } from 'semantic-ui-react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { FaCamera, FaExternalLinkAlt, FaLink, FaList } from 'react-icons/fa';
 
 import { FullVerticalContainer } from '../src/common/FullVerticalContainer';
 import { trackPage } from '../src/common/tracking';
@@ -32,20 +33,12 @@ export default function Index() {
             You can go to your list of
             <Link href="/boards">
               <a>
-                boards <Icon size="big" name="list" />
+                boards{' '}
+                <Icon width="24">
+                  <FaList />
+                </Icon>
               </a>
             </Link>
-          </p>
-          <p>
-            At the first time, you will need to{' '}
-            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-            {/*
-            <a href="/sign-in/sign-in?returnTo=/boards">
-              <Icon name="sign in" />
-              <span>sign in</span>
-            </a>
-            first via Google or any email/password.
-            */}
           </p>
         </Segment>
 
@@ -66,21 +59,38 @@ export default function Index() {
           <p>This is the demo of the app which we built in this video course</p>
           <h3>
             <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
-              <Icon name="video camera" size="large" />
+              <Icon size="large">
+                <FaCamera />
+              </Icon>
               <b>Hands-on Application building with GraphQL and React</b>
             </a>
           </h3>
           <p>
             <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
+              <Icon>
+                <FaExternalLinkAlt />
+              </Icon>
               <b>Available</b> e.g. at
               <Image
                 src={'/packt-logo.svg'}
-                height={20}
+                height={24}
                 width="100%"
-                alt="packt-logo"
+                alt="packt publishing"
               />
             </a>{' '}
-            or Udemy, Safari online, etc.
+            or{' '}
+            <a href="https://www.udemy.com/course/hands-on-application-development-with-graphql-3-in-1/">
+              <Icon>
+                <FaExternalLinkAlt />
+              </Icon>
+              <Image
+                src={'/logo-udemy-inverted.svg'}
+                height={24}
+                width="100%"
+                alt="udemy"
+              />
+            </a>{' '}
+            or Safari online, etc.
           </p>
         </Segment>
         <Segment basic>
@@ -88,7 +98,9 @@ export default function Index() {
           <Link href="/about">
             <a>
               {' '}
-              <Icon name="linkify" />
+              <Icon>
+                <FaLink />
+              </Icon>
               details about
             </a>
           </Link>{' '}

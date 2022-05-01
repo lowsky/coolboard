@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Container, Header, Icon, Popup } from 'semantic-ui-react';
+import { FaPlus, FaTrash } from 'react-icons/fa';
 
 import { useConfirmAction } from './UseConfirmAction';
 
@@ -71,7 +72,9 @@ export const AddListButton = ({
       flexGrow: 0,
       alignSelf: 'flex-start',
     }}>
-    <Icon name="plus" />
+    <Icon>
+      <FaPlus />
+    </Icon>
     Add a list
   </Button>
 );
@@ -95,7 +98,9 @@ export const DelAllListsButton = ({
         alignSelf: 'flex-start',
       }}>
       {showWarning && <div>This will be permanent!</div>}
-      <Icon name="trash" color={showWarning ? undefined : 'red'} />
+      <Icon color={showWarning ? undefined : 'red'}>
+        <FaTrash />
+      </Icon>
       {children}
     </Button>
   );

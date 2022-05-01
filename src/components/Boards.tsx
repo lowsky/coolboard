@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
-import { Button, Container, List, Loader, Segment } from 'semantic-ui-react';
+import { Button, Container, Icon, List, Loader, Segment } from 'semantic-ui-react';
+import { FaTrash } from 'react-icons/fa';
 
 import { FullVerticalContainer } from '../common/FullVerticalContainer';
 import { CreateBoardModal } from './CreateBoardModal';
@@ -28,9 +29,11 @@ const BoardListItem = ({ name, id, deleteBoard }) => {
           deleteBoard(id).finally(() => setDeleting(false));
         }}
         loading={deleting}
-        size="mini"
-        icon="trash"
-      />
+        size="mini">
+        <Icon>
+          <FaTrash />
+        </Icon>
+      </Button>
     </List.Item>
   );
 };

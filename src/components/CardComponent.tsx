@@ -10,6 +10,7 @@ import {
 } from 'semantic-ui-react';
 import TimeAgo from 'react-timeago';
 import styled from 'styled-components';
+import { FaSave, FaTimes } from 'react-icons/fa';
 
 type State = {
   conflict: boolean;
@@ -225,7 +226,10 @@ export const CardComponent = (props) => {
                 saveAndHide();
               }}
               inverted>
-              <Icon name="save" /> Overwrite
+              <Icon>
+                <FaSave />
+              </Icon>
+              Overwrite
             </Button>
           )}
           {!conflict && (
@@ -235,11 +239,17 @@ export const CardComponent = (props) => {
                 saveAndHide();
               }}
               inverted>
-              <Icon name="save" /> Save
+              <Icon>
+                <FaSave />
+              </Icon>
+              Save
             </Button>
           )}
           <Button color="red" onClick={hide} inverted>
-            <Icon name="cancel" /> Close/cancel
+            <Icon>
+              <FaTimes />
+            </Icon>
+            Close/cancel
           </Button>
         </Modal.Actions>
       </Modal>
