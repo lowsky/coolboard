@@ -204,7 +204,7 @@ describe('Test coolboard', () => {
       .dataCy('card-list-header-menu')
       .first()
       .click();
-    cy.get('.ui > .button > .trash').first().click();
+    cy.get('.top .ui').contains('delete list').click()
   });
 
   it('user can delete board', () => {
@@ -213,7 +213,7 @@ describe('Test coolboard', () => {
     // open first board named XXX
     getBoardsList_FirstEntry(newBoardName)
       .parent()
-      .find('.button > .trash')
+      .find('.icon')
       .click();
     getBoardsList_FirstEntry(newBoardName).should('not.exist');
   });
