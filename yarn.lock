@@ -3929,7 +3929,6 @@ __metadata:
     next: 12.1.5
     prettier: 2.6.2
     prisma: 3.13.0
-    prop-types: 15.8.1
     react: 17.0.2
     react-apollo-network-status: 5.1.0
     react-dnd: 15.1.2
@@ -7802,7 +7801,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:15.8.1, prop-types@npm:^15.6.2, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
+"prop-types@npm:^15.6.2, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
