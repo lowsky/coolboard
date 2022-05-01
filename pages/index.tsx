@@ -1,9 +1,14 @@
 import React from 'react';
-import { ClerkLoaded, SignedIn, SignedOut } from '@clerk/clerk-react';
 import { Container, Icon, Segment } from 'semantic-ui-react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { FaCamera, FaExternalLinkAlt, FaLink, FaList } from 'react-icons/fa';
+import {
+  FaChalkboardTeacher,
+  FaExternalLinkAlt,
+  FaFilm,
+  FaLink,
+  FaList,
+} from 'react-icons/fa';
 
 import { FullVerticalContainer } from '../src/common/FullVerticalContainer';
 import { trackPage } from '../src/common/tracking';
@@ -20,13 +25,11 @@ export default function Index() {
         style={{
           textAlign: 'left',
         }}>
-        <ClerkLoaded>
-          <SignedIn>SIGNED in</SignedIn>
-          <SignedOut>SIGNED out</SignedOut>
-        </ClerkLoaded>
         <h1>
           <Image src={coolBoardLogo} width="100" alt="logo" />
-          Welcome to CoolBoard - manage your tasks in a kanban style
+          Welcome to CoolBoard
+          <br />
+          <span> manage your tasks in a kanban style</span>
         </h1>
         <Segment basic>
           <p>
@@ -60,9 +63,12 @@ export default function Index() {
           <h3>
             <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
               <Icon size="large">
-                <FaCamera />
+                <FaFilm />
               </Icon>
               <b>Hands-on Application building with GraphQL and React</b>
+              <Icon size="large">
+                <FaChalkboardTeacher />
+              </Icon>
             </a>
           </h3>
           <p>
@@ -70,7 +76,7 @@ export default function Index() {
               <Icon>
                 <FaExternalLinkAlt />
               </Icon>
-              <b>Available</b> e.g. at
+              <strong>Available</strong> at
               <Image
                 src={'/packt-logo.svg'}
                 height={24}
@@ -84,7 +90,7 @@ export default function Index() {
                 <FaExternalLinkAlt />
               </Icon>
               <Image
-                src={'/logo-udemy-inverted.svg'}
+                src={'/logo-udemy.svg'}
                 height={24}
                 width="100%"
                 alt="udemy"
