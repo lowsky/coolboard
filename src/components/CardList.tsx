@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDrop } from 'react-dnd';
 import { Button, Header, Icon, Loader, Popup } from 'semantic-ui-react';
+import { FaPlus, FaTrash } from 'react-icons/fa';
 
 import Card, { dndItemType } from './Card';
 
@@ -35,7 +36,9 @@ const CardListWithoutDnd = (props) => {
         }}>
         <CardListHeader name={name}>
           <CardListButton onButtonClick={() => deleteListWithId(id)}>
-            <Icon name="trash" color={'red'} />
+            <Icon color={'red'}>
+              <FaTrash />
+            </Icon>
             delete list
           </CardListButton>
         </CardListHeader>
@@ -53,7 +56,9 @@ const CardListWithoutDnd = (props) => {
         )}
 
         <CardListButton onButtonClick={() => addCardWithName(id)}>
-          <Icon name="plus" />
+          <Icon>
+            <FaPlus />
+          </Icon>
           Add a card
         </CardListButton>
       </div>

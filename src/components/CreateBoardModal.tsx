@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Form, Message, Modal, Icon } from 'semantic-ui-react';
+import { FaSave, FaTimes } from 'react-icons/fa';
 
 export const CreateBoardModal = (props) => {
   const [state, setState] = useState({ name: '' });
@@ -46,10 +47,16 @@ export const CreateBoardModal = (props) => {
             }).then(() => onHide());
           }}
           inverted>
-          <Icon name="save" /> Create
+          <Icon>
+            <FaSave />
+          </Icon>
+          Create
         </Button>
         <Button color="red" onClick={onHide} inverted>
-          <Icon name="cancel" /> cancel
+          <Icon>
+            <FaTimes />
+          </Icon>
+          cancel
         </Button>
       </Modal.Actions>
     </Modal>

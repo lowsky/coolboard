@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, Header, Icon, Segment } from 'semantic-ui-react';
 import Image from 'next/image';
 
+import { FaVideo, FaSignInAlt } from 'react-icons/fa';
 import { FullVerticalContainer } from '../src/common/FullVerticalContainer';
 
 export default function About() {
@@ -17,7 +18,9 @@ export default function About() {
           <p>
             This is the Live Demo of the full application which we build in this
             <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
-              <Icon name="video camera" size="large" />
+              <Icon size="large">
+                <FaVideo />
+              </Icon>
               Video Course:
             </a>
           </p>
@@ -63,7 +66,9 @@ export default function About() {
             You will need to Sign-up via email and{' '}
             {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
             <a href="/sign-in/sign-in">
-              <Icon size="big" name="sign in" />
+              <Icon size="big">
+                <FaSignInAlt />
+              </Icon>
               authenticate here
             </a>
           </p>

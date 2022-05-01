@@ -1,8 +1,14 @@
 import React from 'react';
-import { ClerkLoaded, SignedIn, SignedOut } from '@clerk/clerk-react';
 import { Container, Icon, Segment } from 'semantic-ui-react';
 import Link from 'next/link';
 import Image from 'next/image';
+import {
+  FaChalkboardTeacher,
+  FaExternalLinkAlt,
+  FaFilm,
+  FaLink,
+  FaList,
+} from 'react-icons/fa';
 
 import { FullVerticalContainer } from '../src/common/FullVerticalContainer';
 import { trackPage } from '../src/common/tracking';
@@ -19,33 +25,23 @@ export default function Index() {
         style={{
           textAlign: 'left',
         }}>
-        <ClerkLoaded>
-          <SignedIn>SIGNED in</SignedIn>
-          <SignedOut>SIGNED out</SignedOut>
-        </ClerkLoaded>
         <h1>
           <Image src={coolBoardLogo} width="100" alt="logo" />
-          Welcome to CoolBoard - manage your tasks in a kanban style
+          Welcome to CoolBoard
+          <br />
+          <span> manage your tasks in a kanban style</span>
         </h1>
         <Segment basic>
           <p>
             You can go to your list of
             <Link href="/boards">
               <a>
-                boards <Icon size="big" name="list" />
+                boards{' '}
+                <Icon width="24">
+                  <FaList />
+                </Icon>
               </a>
             </Link>
-          </p>
-          <p>
-            At the first time, you will need to{' '}
-            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-            {/*
-            <a href="/sign-in/sign-in?returnTo=/boards">
-              <Icon name="sign in" />
-              <span>sign in</span>
-            </a>
-            first via Google or any email/password.
-            */}
           </p>
         </Segment>
 
@@ -66,21 +62,41 @@ export default function Index() {
           <p>This is the demo of the app which we built in this video course</p>
           <h3>
             <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
-              <Icon name="video camera" size="large" />
+              <Icon size="large">
+                <FaFilm />
+              </Icon>
               <b>Hands-on Application building with GraphQL and React</b>
+              <Icon size="large">
+                <FaChalkboardTeacher />
+              </Icon>
             </a>
           </h3>
           <p>
             <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
-              <b>Available</b> e.g. at
+              <Icon>
+                <FaExternalLinkAlt />
+              </Icon>
+              <strong>Available</strong> at
               <Image
                 src={'/packt-logo.svg'}
-                height={20}
+                height={24}
                 width="100%"
-                alt="packt-logo"
+                alt="packt publishing"
               />
             </a>{' '}
-            or Udemy, Safari online, etc.
+            or{' '}
+            <a href="https://www.udemy.com/course/hands-on-application-development-with-graphql-3-in-1/">
+              <Icon>
+                <FaExternalLinkAlt />
+              </Icon>
+              <Image
+                src={'/logo-udemy.svg'}
+                height={24}
+                width="100%"
+                alt="udemy"
+              />
+            </a>{' '}
+            or Safari online, etc.
           </p>
         </Segment>
         <Segment basic>
@@ -88,7 +104,9 @@ export default function Index() {
           <Link href="/about">
             <a>
               {' '}
-              <Icon name="linkify" />
+              <Icon>
+                <FaLink />
+              </Icon>
               details about
             </a>
           </Link>{' '}

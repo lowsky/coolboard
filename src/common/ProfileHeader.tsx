@@ -13,6 +13,7 @@ import {
 import { LoginButton } from './LoginButton';
 import { useRouter } from 'next/router';
 import { useApolloClient } from '@apollo/client';
+import { FaList, FaQuestion, FaSignOutAlt } from 'react-icons/fa';
 
 const ProfileHeaderContainer = ({
   children,
@@ -39,7 +40,9 @@ const ProfileHeaderContainer = ({
       {isBoardsPage && (
         <Link href="/">
           <a>
-            <Icon size="big" name="home" />
+            <Icon size="big">
+              <FaList />
+            </Icon>
             Home
           </a>
         </Link>
@@ -47,7 +50,9 @@ const ProfileHeaderContainer = ({
       {!isBoardsPage && (
         <Link href="/boards">
           <a>
-            <Icon size="big" name="list" />
+            <Icon size="big">
+              <FaList />
+            </Icon>
             Boards
           </a>
         </Link>
@@ -55,7 +60,9 @@ const ProfileHeaderContainer = ({
 
       <Link href="/about">
         <a>
-          <Icon size="big" name="question" />
+          <Icon size="big">
+            <FaQuestion />
+          </Icon>
           About
         </a>
       </Link>
@@ -93,12 +100,12 @@ export const ProfileHeader = ({ isBoardsPage }: { isBoardsPage?: boolean }) => {
               await apolloClient.clearStore?.();
               reload();
             }}>
-            <Button
-              compact
-              data-cy="sign-out-button"
-              icon="sign out"
-              content="Sign Out"
-            />
+            <Button data-cy="sign-out-button">
+              <Icon>
+                <FaSignOutAlt />
+              </Icon>
+              Sign Out
+            </Button>
           </SignOutButton>
         </div>
       </SignedIn>

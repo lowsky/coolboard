@@ -1,16 +1,17 @@
 import React from 'react';
 import { SignInButton } from '@clerk/nextjs';
-import { Button } from 'semantic-ui-react';
+import { Button, Icon } from 'semantic-ui-react';
+import { FaSignInAlt } from 'react-icons/fa';
 
 export function LoginButton() {
   return (
     <SignInButton mode="modal" redirectUrl={window.location.href}>
-      <Button
-        compact
-        data-cy="sign-in-button"
-        icon="sign in"
-        content="Log in"
-      />
+      <Button data-cy="sign-in-button" compact>
+        <Icon>
+          <FaSignInAlt />
+        </Icon>
+        Log in
+      </Button>
     </SignInButton>
   );
 }
