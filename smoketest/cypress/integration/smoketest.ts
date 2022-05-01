@@ -50,7 +50,7 @@ before(() => {
 
 const gotoBoards = () => {
   return cy
-    .visit(baseUrl + "/boards")
+    .visit(baseUrl + '/boards')
     .url()
     .should('include', 'boards');
 };
@@ -88,26 +88,8 @@ function fillLoginForm() {
 
   // helps to wait for authentication process of redirecting with to the /callback url
   return cy
-      .wait(1000)
-      .url(LogAndWaitLong)
-      .should('not.include', 'callback')
-}
-function fillLoginFormNew() {
-  cy.get('#username').clear();
-  cy.get('#username').type('skylab@nurfuerspam.de');
-  cy.get('#password').click();
-  cy.get('#password').clear();
-  cy.get('#password').type(password + '{enter}', {
-    log: false,
-  });
-
-  // helps to wait for auth0 process of redirecting with to the /callback url
-  return cy
-    .wait(1000)
-    .url(LogAndWaitLong)
-    .should('not.include', 'callback')
-    .should('equal', baseUrl + '/boards')
-    .wait(2000);
+    .wait(1000) //
+    .url(LogAndWaitLong);
 }
 
 const getBoardsList = () => {
