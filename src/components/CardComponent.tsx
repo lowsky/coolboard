@@ -9,7 +9,6 @@ import {
   Segment,
 } from 'semantic-ui-react';
 import TimeAgo from 'react-timeago';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 type State = {
@@ -251,18 +250,6 @@ export const CardComponent = (props) => {
   );
 };
 
-CardComponent.propTypes = {
-  id: PropTypes.string.isRequired,
-  cardListId: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  description: PropTypes.string,
-  storeCard: PropTypes.func,
-  isDragging: PropTypes.bool,
-  createdAt: PropTypes.string,
-  updatedAt: PropTypes.string,
-  updatedBy: PropTypes.object,
-};
-
 const CardDiv = styled.div`
   border-radius: 3px;
   margin: 0.1em 0 0 0;
@@ -276,8 +263,3 @@ const ShowDiffWarning = ({ newValue, currentValue }) => (
     <b>New:</b> {newValue}
   </Message>
 );
-
-ShowDiffWarning.propTypes = {
-  newValue: PropTypes.string,
-  currentValue: PropTypes.string,
-};

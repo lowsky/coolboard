@@ -50,9 +50,7 @@ before(() => {
 
 const gotoBoards = () => {
   return cy
-    .visit(baseUrl)
-    .get('img[alt="screenshot"]')
-    .click()
+    .visit(baseUrl + '/boards')
     .url()
     .should('include', 'boards');
 };
@@ -90,30 +88,12 @@ function fillLoginForm() {
 
   // helps to wait for authentication process of redirecting with to the /callback url
   return cy
-      .wait(1000)
-      .url(LogAndWaitLong)
-      .should('not.include', 'callback')
-}
-function fillLoginFormNew() {
-  cy.get('#username').clear();
-  cy.get('#username').type('skylab@nurfuerspam.de');
-  cy.get('#password').click();
-  cy.get('#password').clear();
-  cy.get('#password').type(password + '{enter}', {
-    log: false,
-  });
-
-  // helps to wait for auth0 process of redirecting with to the /callback url
-  return cy
-    .wait(1000)
-    .url(LogAndWaitLong)
-    .should('not.include', 'callback')
-    .should('equal', baseUrl + '/boards')
-    .wait(2000);
+    .wait(1000) //
+    .url(LogAndWaitLong);
 }
 
 const getBoardsList = () => {
-  cy.dataCy('full-container').dataCy('boards-list').first();
+  cy.dataCy('full-container').dataCy('boards-list', WaitVeryLong).first();
 
   return cy
     .dataCy('full-container')
@@ -144,14 +124,6 @@ Cypress.on('uncaught:exception', (error, runnable, promise) => {
 });
 
 describe('Test coolboard', () => {
-  beforeEach(() => {
-    /* remove, when not needed anymore
-    cy.intercept('*', (req) => {
-      req.headers['origin'] = 'https://clerkauth.coolboard.fun';
-    }).as('addOriginHeader');
-     */
-  });
-
   it('need to login to show boards', () => {
     gotoBoards();
     clickLogin();

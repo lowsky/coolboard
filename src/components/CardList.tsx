@@ -1,6 +1,5 @@
 import React from 'react';
 import { useDrop } from 'react-dnd';
-import PropTypes from 'prop-types';
 import { Button, Header, Icon, Loader, Popup } from 'semantic-ui-react';
 
 import Card, { dndItemType } from './Card';
@@ -152,11 +151,3 @@ const CardListButton = ({ onButtonClick, children }) => (
     {children}
   </Button>
 );
-
-CardList.propTypes = {
-  name: PropTypes.string.isRequired,
-  id: PropTypes.string,
-  addCardWithName: PropTypes.func,
-  deleteListWithId: PropTypes.func,
-  moveCardToList: PropTypes.func,
-};

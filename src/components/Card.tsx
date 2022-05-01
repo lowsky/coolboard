@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useDrag } from 'react-dnd';
 
 import { CardComponent } from './CardComponent';
@@ -21,14 +20,6 @@ export const Card = (props) => {
       }
     />
   );
-};
-
-Card.propTypes = {
-  id: PropTypes.string.isRequired,
-  cardListId: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  description: PropTypes.string,
-  storeCard: PropTypes.func,
 };
 
 export const dndItemType = 'card';

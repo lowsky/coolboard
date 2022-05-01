@@ -1,8 +1,13 @@
+import { List } from '@prisma/client';
 import { getUserId, verifyUserIsAuthenticated } from '../utils';
 import { Ctxt } from '../Context';
 
 const list = {
-  async updateList(_parent: any, { where, data }: any, ctx: Ctxt) {
+  async updateList(
+    _parent: any,
+    { where, data }: any,
+    ctx: Ctxt
+  ): Promise<List> {
     const userId = await getUserId(ctx);
     const { prisma } = ctx;
     const { create, connect, disconnect, ...otherCardOperation } =
@@ -48,7 +53,7 @@ const list = {
       },
     });
   },
-  async deleteList(_parent: any, { where }: any, ctx: Ctxt) {
+  async deleteList(_parent: any, { where }: any, ctx: Ctxt): Promise<List> {
     await verifyUserIsAuthenticated(ctx);
     const { prisma } = ctx;
     return prisma.list.delete({ where });
