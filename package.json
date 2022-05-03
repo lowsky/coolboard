@@ -60,7 +60,7 @@
     "lint": "next lint",
     "trigger-e2e-smoke": "sh trigger-circleci-smoke.sh",
     "smoketest": "cd smoketest; yarn --immutable ; yarn cy open -C cypress-local.json",
-    "build": "yarn run metainfo && DEPLOY_PRIME_URL=https://$NEXT_PUBLIC_VERCEL_URL next build",
+    "build": "yarn run metainfo && next build",
     "prisma:generate": "PRISMA_CLIENT_ENGINE_TYPE='dataproxy' prisma generate",
     "prisma:migrate": "DATABASE_URL=\"$MIGRATE_DATABASE_URL\" prisma migrate deploy",
     "metainfo": "sh storeMetaInfo.sh",
