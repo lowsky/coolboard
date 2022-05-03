@@ -1,24 +1,25 @@
+import { Container, Heading, Text } from '@chakra-ui/react';
+
 import Link from 'next/link';
-import { Container } from 'semantic-ui-react';
 import { trackPage } from '../src/common/tracking';
 
 export default function Imprint() {
   trackPage('imprint');
 
   return (
-    <Container>
-      <h1>Impressum</h1>
-      <p>Angaben gemäß § 5 TMG:</p>
+    <Container maxW="980px">
+      <Heading as="h1">Impressum</Heading>
+      <Text>Angaben gemäß § 5 TMG:</Text>
 
-      <h2>Kontakt</h2>
-      <p>
+      <Heading as="h2">Kontakt</Heading>
+      <Text>
         <b>E-Mail:</b> coolboard @ protonmail.com
-      </p>
-      <p>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:</p>
-      <p>Robert Hostlowsky</p>
-      <h2>Hinweise zur Website</h2>
-      <h3>Urheberrechtliche Hinweise</h3>
-      <p>
+      </Text>
+      <Text>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:</Text>
+      <Text>Robert Hostlowsky</Text>
+      <Heading as="h2">Hinweise zur Website</Heading>
+      <Heading as="h3">Urheberrechtliche Hinweise</Heading>
+      <Text>
         Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen
         Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung,
         Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der
@@ -31,20 +32,20 @@ export default function Imprint() {
         Urheberrechtsverletzung aufmerksam werden, bitten wir um einen
         entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden
         wir derartige Inhalte umgehend entfernen.
-      </p>
-      <p>Das Logo und favicon basiert auf den Icons folgender Autoren:</p>
-      <p>
+      </Text>
+      <Text>Das Logo und favicon basiert auf den Icons folgender Autoren:</Text>
+      <Text>
         “Freezer Cold” icon by Creaticca Creative Agency from the Noun Project.
         <br />
         “Browser” icon by Didzis Gruznovs from the Noun Project.
-      </p>
-      <p>
+      </Text>
+      <Text>
         Diese Seite verwendet den Inter Typeface https://rsms.me/inter/
         (originated by Rasmus, @rsms on github), lizensiert unter der{' '}
         <a href="/sil-openfont-license.txt">Open Font License (OFL)</a>
-      </p>
-      <h3>Haftung für Inhalte</h3>
-      <p>
+      </Text>
+      <Heading as="h3">Haftung für Inhalte</Heading>
+      <Text>
         Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die
         Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir
         jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7
@@ -59,10 +60,10 @@ export default function Imprint() {
         Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von
         entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend
         entfernen.
-      </p>
+      </Text>
 
-      <h3>Haftung für Links</h3>
-      <p>
+      <Heading as="h3">Haftung für Links</Heading>
+      <Text>
         Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren
         Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden
         Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten
@@ -73,15 +74,15 @@ export default function Imprint() {
         inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete
         Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden
         von Rechtsverletzungen werden wir derartige Links umgehend entfernen.
-      </p>
-      <h3>Datenschutz</h3>
-      <p>
+      </Text>
+      <Heading as="h3">Datenschutz</Heading>
+      <Text>
         Siehe
         <Link href="/privacy">
           <a>Privacy</a>
         </Link>
         Seite
-      </p>
+      </Text>
     </Container>
   );
 }
