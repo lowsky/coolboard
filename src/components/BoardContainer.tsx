@@ -1,6 +1,17 @@
 import React from 'react';
-import { Button, Container, Header, Icon, Popup } from 'semantic-ui-react';
+import {
+  Button,
+  Container,
+  Heading,
+  Icon,
+  IconButton,
+  Menu,
+  MenuButton,
+  MenuList,
+} from '@chakra-ui/react';
+
 import { FaPlus, FaTrash } from 'react-icons/fa';
+import { HamburgerIcon } from '@chakra-ui/icons';
 
 import { useConfirmAction } from './UseConfirmAction';
 
@@ -16,35 +27,28 @@ export const BoardContainer = ({
   headerActions,
 }: Props) => (
   <Container
-    fluid
+    maxW="100%"
     style={{
       display: 'flex',
       flexDirection: 'column',
       flexGrow: 1,
       marginTop: '1rem',
     }}>
-    <Header textAlign="center" as="h1">
+    <Heading as="h1">
       Board: {boardName}
       {headerActions && (
-        <Popup
-          trigger={
-            <Button
-              data-cy="board-header-menu"
-              style={{
-                flexGrow: 0,
-                verticalAlign: 'middle',
-                marginLeft: '1rem',
-              }}
-              icon="ellipsis vertical"
-              size="mini"
-            />
-          }
-          on="click"
-          content={headerActions}
-          basic
-        />
+        <Menu>
+          <MenuButton
+            as={IconButton}
+            data-cy="board-header-menu"
+            aria-label="board options"
+            icon={<HamburgerIcon />}
+            variant="outline"
+          />
+          <MenuList>{headerActions}</MenuList>
+        </Menu>
       )}
-    </Header>
+    </Heading>
     <div
       data-cy="board-container-inner"
       style={{
@@ -71,10 +75,8 @@ export const AddListButton = ({
       flexShrink: 0,
       flexGrow: 0,
       alignSelf: 'flex-start',
-    }}>
-    <Icon>
-      <FaPlus />
-    </Icon>
+    }}
+    leftIcon={<FaPlus />}>
     Add a list
   </Button>
 );

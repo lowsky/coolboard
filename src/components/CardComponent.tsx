@@ -1,16 +1,31 @@
 import React, { CSSProperties, useState } from 'react';
 import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+  Avatar,
+  Box,
   Button,
-  Form,
-  Icon,
-  Image,
-  Message,
+  ButtonGroup,
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  Input,
   Modal,
-  Segment,
-} from 'semantic-ui-react';
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  Textarea,
+  useDisclosure,
+} from '@chakra-ui/react';
 import TimeAgo from 'react-timeago';
 import styled from 'styled-components';
 import { FaSave, FaTimes } from 'react-icons/fa';
+
+import { Segment } from '../common/Segment';
 
 type State = {
   conflict: boolean;
@@ -20,11 +35,10 @@ type State = {
   old_description: string;
   name: string;
   description: string;
-  showModal?: boolean;
 };
 
 export const CardComponent = (props) => {
-  const initialState = {
+  const initialState: State = {
     conflict: false,
     loading: false,
     error: false,
@@ -32,10 +46,9 @@ export const CardComponent = (props) => {
     old_description: props.description,
     name: props.name,
     description: props.description,
-    showModal: false,
   };
   const [state, setState] = useState<State>(initialState);
-
+  const { isOpen, onOpen, onClose } = useDisclosure();
   /*
   // LATER: reactivate when conflict handling will be needed again
   // (when syncing and subscriptions are actually available again)
@@ -67,8 +80,8 @@ export const CardComponent = (props) => {
 
   const showAndReset = () => {
     setState({
-      showModal: true,
       conflict: false,
+      loading: false,
       error: false,
       name: props.name,
       description: props.description,
@@ -77,7 +90,8 @@ export const CardComponent = (props) => {
     });
   };
 
-  const saveAndHide = () => {
+  const saveAndHide = (ev) => {
+    ev.preventDefault();
     const {
       id,
       storeCard = () =>
@@ -99,7 +113,7 @@ export const CardComponent = (props) => {
     })
       .then(() => {
         setLoading(false);
-        hide();
+        onClose();
       })
       .catch((e) => {
         setLoading(false);
@@ -117,30 +131,14 @@ export const CardComponent = (props) => {
     }));
   }
 
-  const hide = () => {
-    setState((prevState) => ({
-      ...prevState,
-      showModal: false,
-    }));
-  };
-
-  //        onChange?: (event: React.ChangeEvent<HTMLInputElement>, data: InputOnChangeData) => void
-  // @ts-ignore
-  const handleChange = (event, data) => {
+  const handleChange = (data) => {
     setState((previousState) => ({
       ...previousState,
-      [data.name]: data.value,
+      ...data,
     }));
   };
 
-  const {
-    loading = false,
-    error = false,
-    conflict = false,
-    name,
-    description,
-    showModal = false,
-  } = state;
+  const { loading, error = false, conflict, name, description } = state;
 
   const whenDraggingStyle: CSSProperties = {
     color: 'black',
@@ -150,108 +148,135 @@ export const CardComponent = (props) => {
   const { isDragging, createdAt, updatedAt, updatedBy = {} } = props;
 
   return (
-    <CardDiv data-cy="card" onClick={() => !showModal && showAndReset()}>
-      <Modal open={showModal} onClose={hide}>
-        <Modal.Header>Edit Card</Modal.Header>
-        <Modal.Content>
-          <Form
-            onSubmit={() => saveAndHide()}
-            error={Boolean(error)}
-            loading={loading}
-            warning={conflict}>
-            <Message
-              warning
-              header="Warning! Card was concurrently modified on server."
-            />
-            <Message error header="Saving Card failed" content={error} />
-            <Form.Input
-              fluid
-              label="Task Name"
-              placeholder="Enter title"
-              value={name}
-              name="name"
-              autoFocus
-              onChange={handleChange}
-              required
-            />
-            <ShowDiffWarning newValue={props.name} currentValue={name} />
-            <Form.TextArea
-              label="Task Description"
-              placeholder="Add some more details about this task ..."
-              value={description}
-              name="description"
-              onChange={handleChange}
-            />
-            <ShowDiffWarning
-              newValue={props.description}
-              currentValue={description}
-            />
-          </Form>
-          <Segment>
-            <Message>
-              <p>
-                <strong>created: </strong>
-                <TimeAgo date={createdAt} />
-              </p>
-              <p>
-                <strong>updated: </strong>
-                <TimeAgo date={updatedAt} />
-                {updatedBy && (
-                  <>
-                    <strong> by: </strong>
-                    <Image
-                      avatar
-                      alt="user-avatar-icon"
-                      src={updatedBy.avatarUrl}
-                    />
-                    <span>
-                      {updatedBy.name
-                        ? updatedBy.name
-                        : updatedBy.email
-                        ? updatedBy.email
-                        : '?'}
-                    </span>
-                  </>
-                )}
-              </p>
-            </Message>
-          </Segment>
-        </Modal.Content>
-        <Modal.Actions>
-          {conflict && (
-            <Button
-              color="green"
-              negative
-              onClick={() => {
-                saveAndHide();
-              }}
-              inverted>
-              <Icon>
-                <FaSave />
-              </Icon>
-              Overwrite
-            </Button>
-          )}
-          {!conflict && (
-            <Button
-              color="green"
-              onClick={() => {
-                saveAndHide();
-              }}
-              inverted>
-              <Icon>
-                <FaSave />
-              </Icon>
-              Save
-            </Button>
-          )}
-          <Button color="red" onClick={hide} inverted>
-            <Icon>
-              <FaTimes />
-            </Icon>
-            Close/cancel
-          </Button>
-        </Modal.Actions>
+    <CardDiv
+      data-cy="card"
+      onClick={() => {
+        showAndReset();
+        onOpen();
+      }}>
+      <Modal isOpen={isOpen} onClose={onClose} id="cardEditModal">
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Edit Card</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody pb={6}>
+            <form onSubmit={(ev) => saveAndHide(ev)}>
+              <FormControl isInvalid={conflict}>
+                <FormErrorMessage>
+                  <Alert status="warning">
+                    <AlertTitle>
+                      Warning! Card was concurrently modified on server.
+                    </AlertTitle>
+                  </Alert>
+                </FormErrorMessage>
+              </FormControl>
+              <FormControl isReadOnly={loading} isInvalid={conflict}>
+                <FormLabel htmlFor="title">Task Name</FormLabel>
+                <Input
+                  placeholder="Enter title"
+                  value={name}
+                  id="title"
+                  autoFocus
+                  onChange={(ev) => handleChange({ name: ev.target.value })}
+                  required
+                />
+                <FormErrorMessage>
+                  <ShowDiffWarning newValue={props.name} currentValue={name} />
+                </FormErrorMessage>
+              </FormControl>
+              <FormControl isReadOnly={loading} isInvalid={conflict}>
+                <FormLabel htmlFor="description">Task Description</FormLabel>
+                <Textarea
+                  placeholder="Add some more details about this task ..."
+                  value={description}
+                  id="description"
+                  onChange={(ev) =>
+                    handleChange({ description: ev.target.value })
+                  }
+                />
+                <FormErrorMessage>
+                  <ShowDiffWarning
+                    newValue={props.description}
+                    currentValue={description}
+                  />
+                </FormErrorMessage>
+              </FormControl>
+            </form>
+            <Segment>
+              <Alert status="info">
+                <AlertDescription>
+                  <Box>
+                    <strong>created: </strong>
+                    <TimeAgo date={createdAt} />
+                  </Box>
+                  <Box>
+                    <strong>updated: </strong>
+                    <TimeAgo date={updatedAt} />
+                    {updatedBy && (
+                      <>
+                        <strong> by: </strong>
+                        <Avatar src={updatedBy.avatarUrl} />
+                        <span>
+                          {updatedBy.name
+                            ? updatedBy.name
+                            : updatedBy.email
+                            ? updatedBy.email
+                            : '?'}
+                        </span>
+                      </>
+                    )}
+                  </Box>
+                </AlertDescription>
+              </Alert>
+            </Segment>
+            <FormControl>
+              <FormControl isInvalid={Boolean(error)}>
+                <FormErrorMessage>
+                  <Alert status="error">
+                    <AlertTitle>Saving Card failed</AlertTitle>
+                    <AlertDescription>{error}</AlertDescription>
+                  </Alert>
+                </FormErrorMessage>
+              </FormControl>
+            </FormControl>
+          </ModalBody>
+          <ModalFooter>
+            <ButtonGroup>
+              {conflict && (
+                <Button
+                  isLoading={loading}
+                  type="submit"
+                  color="green"
+                  onClick={(ev) => {
+                    saveAndHide(ev);
+                  }}
+                  leftIcon={<FaSave />}>
+                  Overwrite
+                </Button>
+              )}
+              {!conflict && (
+                <Button
+                  isLoading={loading}
+                  type="submit"
+                  color="green"
+                  onClick={(ev) => {
+                    saveAndHide(ev);
+                  }}
+                  leftIcon={<FaSave />}>
+                  Save
+                </Button>
+              )}
+              <Button
+                color="red"
+                onClick={() => {
+                  onClose();
+                }}
+                leftIcon={<FaTimes />}>
+                Close/cancel
+              </Button>
+            </ButtonGroup>
+          </ModalFooter>
+        </ModalContent>
       </Modal>
       <span style={isDragging ? whenDraggingStyle : undefined}>
         {props.name}
@@ -268,8 +293,15 @@ const CardDiv = styled.div`
   padding: 10px;
 `;
 
-const ShowDiffWarning = ({ newValue, currentValue }) => (
-  <Message warning size="mini" hidden={newValue === currentValue}>
-    <b>New:</b> {newValue}
-  </Message>
-);
+const ShowDiffWarning = ({ newValue, currentValue }) => {
+  if (newValue === currentValue) {
+    return null;
+  }
+
+  return (
+    <Alert status="warning" size="mini">
+      <AlertTitle>New:</AlertTitle>
+      <AlertDescription>{newValue}</AlertDescription>
+    </Alert>
+  );
+};

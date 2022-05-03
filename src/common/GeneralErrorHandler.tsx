@@ -1,14 +1,20 @@
 import React from 'react';
 import { ServerError, ServerParseError } from '@apollo/client';
+import {
+  Alert,
+  AlertDescription,
+  AlertIcon,
+  AlertTitle,
+} from '@chakra-ui/react';
 
-import { Message } from 'semantic-ui-react';
 import { useApolloNetworkStatus } from '../setupGraphQLClient';
 import { LoginButton } from './LoginButton';
 
 const ErrorMessage = ({ children }) => (
-  <Message error style={{ flexShrink: 0 }}>
+  <Alert status="error" style={{ flexShrink: 0 }}>
+    <AlertIcon />
     {children}
-  </Message>
+  </Alert>
 );
 
 export const GeneralErrorHandler = () => {
@@ -28,18 +34,18 @@ export const GeneralErrorHandler = () => {
       if (registrationFailed) {
         return (
           <ErrorMessage>
-            <p>
-              You will need to be authenticated to see or create Boards or
-              change any items...
-            </p>
-            <strong>
+            <AlertTitle>
               Registration failed. One reason may be that another user already
               exist with the same email.
-            </strong>
-            <p>
+            </AlertTitle>
+            <AlertDescription>
+              You will need to be authenticated to see or create Boards or
+              change any items...
+            </AlertDescription>
+            <AlertDescription>
               Retry to <LoginButton /> or <br />
               <strong>contact the support</strong>
-            </p>
+            </AlertDescription>
           </ErrorMessage>
         );
       }
@@ -52,13 +58,13 @@ export const GeneralErrorHandler = () => {
 
       if (notAuthErr) {
         return (
-          <Message style={{ flexShrink: 0, gap: '0.5rem' }}>
-            <strong>
+          <Alert status="info" style={{ flexShrink: 0, gap: '0.5rem' }}>
+            <AlertTitle>
               You will need to be authenticated to see or create Boards or
               change any items.
-            </strong>
+            </AlertTitle>
             <LoginButton />
-          </Message>
+          </Alert>
         );
       }
 
@@ -68,10 +74,12 @@ export const GeneralErrorHandler = () => {
 
       return (
         <ErrorMessage>
-          <strong>Error:</strong>{' '}
-          {errorMsgs.map((message, idx) => (
-            <span key={idx}>{message}</span>
-          ))}
+          <AlertTitle>Error:</AlertTitle>
+          <AlertDescription>
+            {errorMsgs.map((message, idx) => (
+              <span key={idx}>{message}</span>
+            ))}
+          </AlertDescription>
         </ErrorMessage>
       );
     } else if (networkError) {
@@ -82,31 +90,20 @@ export const GeneralErrorHandler = () => {
       ) {
         return (
           <ErrorMessage>
-            <p>
-              <strong>User not authorized!</strong>
-            </p>
-            <p>
-              <LoginButton />
-            </p>
+            <AlertTitle>User not authorized!</AlertTitle>
+            <LoginButton />
           </ErrorMessage>
         );
       }
 
       return (
         <ErrorMessage>
-          <p>
-            <strong>Communication with the GraphQL server failed!</strong>
-            <span>
-              {' '}
-              {/*(networkError typeof ServerError) ?
-                "(Status: {networkError?.statusCode}" :
-                ""
-                 */}
-              - find technical details in browser console)
-            </span>
+          <AlertTitle>Communication with the GraphQL server failed!</AlertTitle>
+          <AlertDescription>
+            <span>- find technical details in browser console</span>
             <br />
             Please, retry by reloading the page.
-          </p>
+          </AlertDescription>
         </ErrorMessage>
       );
     }

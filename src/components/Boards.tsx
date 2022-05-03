@@ -1,45 +1,46 @@
-import Link from 'next/link';
-import React, { useState } from 'react';
-import { Button, Container, Icon, List, Loader, Segment } from 'semantic-ui-react';
-import { FaTrash } from 'react-icons/fa';
+import React, { useState } from "react";
+import Link from "next/link";
+import { Container, IconButton, List, ListItem, Spinner } from "@chakra-ui/react";
+import { FaTrash } from "react-icons/fa";
 
-import { FullVerticalContainer } from '../common/FullVerticalContainer';
-import { CreateBoardModal } from './CreateBoardModal';
-import {
-  useCreateBoardMutation,
-  useDeleteBoardMutation,
-  useUserBoardsQuery,
-} from '../generated/graphql';
+import { useCreateBoardMutation, useDeleteBoardMutation, useUserBoardsQuery } from "../generated/graphql";
+import { Segment } from "../common/Segment";
+import { FullVerticalContainer } from "../common/FullVerticalContainer";
+import { CreateBoardModal } from "./CreateBoardModal";
 
-import styles from './Boards.module.css';
+import styles from "./Boards.module.css";
 
 const BoardListItem = ({ name, id, deleteBoard }) => {
   const [deleting, setDeleting] = useState(false);
   return (
-    <List.Item as={'li'} className={styles.listItem} data-cy="board-list-item">
+    <ListItem
+      // as={'li'}
+      className={styles.listItem}
+      data-cy="board-list-item">
       <Link href={`/board/${id}`} passHref>
         <a className={styles.wideColumn}>{name}</a>
       </Link>
 
-      <Button
-        compact
-        basic
+      <IconButton
+        //compact
+        //basic
         onClick={() => {
           setDeleting(true);
           deleteBoard(id).finally(() => setDeleting(false));
         }}
-        loading={deleting}
-        size="mini">
-        <Icon>
-          <FaTrash />
-        </Icon>
-      </Button>
-    </List.Item>
+        isLoading={deleting}
+        aria-label={'delete board'}
+        icon={<FaTrash />}
+        size="mini"></IconButton>
+    </ListItem>
   );
 };
 
 const BoardList = ({ boards, deleteBoard }) => (
-  <List celled divided>
+  <List
+  // celled
+  // divided
+  >
     {boards.map(({ id, name, ...info }) => (
       <BoardListItem
         key={id}
@@ -55,8 +56,6 @@ const BoardList = ({ boards, deleteBoard }) => (
 export const Boards = () => {
   const { loading, error, data, refetch } = useUserBoardsQuery();
 
-  const [showModal, setShowModal] = useState(false);
-
   const [deleteBoard] = useDeleteBoardMutation({
     onCompleted: () => refetch(),
   });
@@ -68,9 +67,9 @@ export const Boards = () => {
   if (loading) {
     return (
       <FullVerticalContainer>
-        <Segment textAlign="center" basic>
+        <Segment textAlign="center">
           <h1>Your Boards</h1>
-          <Loader />
+          <Spinner />
         </Segment>
       </FullVerticalContainer>
     );
@@ -79,7 +78,7 @@ export const Boards = () => {
   if (error) {
     return (
       <FullVerticalContainer>
-        <Segment textAlign="center" basic>
+        <Segment textAlign="center">
           <h1>Your Boards</h1>
           <p>list can not be loaded, please retry.</p>
         </Segment>
@@ -89,7 +88,7 @@ export const Boards = () => {
 
   return (
     <FullVerticalContainer>
-      <Segment textAlign="center" basic>
+      <Segment textAlign="center">
         <h1>Your Boards</h1>
         <Container data-cy="boards-list" textAlign="left">
           {data?.me?.boards && data?.me?.boards?.length > 0 ? (
@@ -109,17 +108,10 @@ export const Boards = () => {
         </Container>
       </Segment>
 
-      <Segment textAlign="center" basic>
+      <Segment textAlign="center">
         <CreateBoardModal
           loading={boardCreationState.loading}
           error={boardCreationState.error?.message}
-          open={showModal}
-          onOpen={() => {
-            setShowModal(true);
-          }}
-          onHide={() => {
-            setShowModal(false);
-          }}
           createBoard={({ name }) => {
             return createBoard({
               variables: { name },

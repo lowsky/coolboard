@@ -1,19 +1,12 @@
-import React, { ReactNode } from 'react';
-import { Button, Container, Icon, Loader } from 'semantic-ui-react';
-import Link from 'next/link';
-import {
-  ClerkLoaded,
-  ClerkLoading,
-  SignedIn,
-  SignOutButton,
-  SignedOut,
-  UserButton,
-} from '@clerk/nextjs';
+import React, { ReactNode } from "react";
+import { useRouter } from "next/router";
+import Link from "next/link";
+import { useApolloClient } from "@apollo/client";
+import { Box, Button, Container, Spinner } from "@chakra-ui/react";
+import { FaSignOutAlt } from "react-icons/fa";
+import { ClerkLoaded, ClerkLoading, SignedIn, SignedOut, SignOutButton, UserButton } from "@clerk/nextjs";
 
-import { LoginButton } from './LoginButton';
-import { useRouter } from 'next/router';
-import { useApolloClient } from '@apollo/client';
-import { FaList, FaQuestion, FaSignOutAlt } from 'react-icons/fa';
+import { LoginButton } from "./LoginButton";
 
 const ProfileHeaderContainer = ({
   children,
@@ -23,52 +16,36 @@ const ProfileHeaderContainer = ({
   isBoardsPage?: boolean;
 }) => (
   <Container
-    fluid
-    textAlign="right"
+    maxW='100%'
     style={{
-      color: 'white',
       padding: '1em',
       background: 'lightgrey',
     }}>
-    <div
+    <Box
       data-cy="profile-header"
       style={{
         display: 'flex',
         alignItems: 'center',
         placeContent: 'space-between',
       }}>
-      {isBoardsPage && (
-        <Link href="/">
-          <a>
-            <Icon size="big">
-              <FaList />
-            </Icon>
-            Home
-          </a>
+      <Box gap='2rem' display='flex'>
+        {isBoardsPage && (
+          <Link href="/">
+            <a>Home</a>
+          </Link>
+        )}
+        {!isBoardsPage && (
+          <Link href="/boards">
+            <a>Boards</a>
+          </Link>
+        )}
+        <Link href="/about">
+          <a>About</a>
         </Link>
-      )}
-      {!isBoardsPage && (
-        <Link href="/boards">
-          <a>
-            <Icon size="big">
-              <FaList />
-            </Icon>
-            Boards
-          </a>
-        </Link>
-      )}
-
-      <Link href="/about">
-        <a>
-          <Icon size="big">
-            <FaQuestion />
-          </Icon>
-          About
-        </a>
-      </Link>
+      </Box>
 
       {children}
-    </div>
+    </Box>
   </Container>
 );
 
@@ -79,7 +56,7 @@ export const ProfileHeader = ({ isBoardsPage }: { isBoardsPage?: boolean }) => {
   return (
     <ProfileHeaderContainer isBoardsPage={isBoardsPage}>
       <ClerkLoading>
-        <Loader active />
+        <Spinner />
         Loading user...
       </ClerkLoading>
       <ClerkLoaded>
@@ -100,10 +77,7 @@ export const ProfileHeader = ({ isBoardsPage }: { isBoardsPage?: boolean }) => {
               await apolloClient.clearStore?.();
               reload();
             }}>
-            <Button data-cy="sign-out-button">
-              <Icon>
-                <FaSignOutAlt />
-              </Icon>
+            <Button data-cy="sign-out-button" leftIcon={<FaSignOutAlt />}>
               Sign Out
             </Button>
           </SignOutButton>
