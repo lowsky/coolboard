@@ -20,7 +20,6 @@
 .title {
   flex-grow: 1;
   text-align: center;
-  margin-bottom: 0; /* reduce semantic-uis bottom border */
 }
 
 .list {
