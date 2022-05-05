@@ -8,7 +8,7 @@
   "homepage": "/",
   "dependencies": {
     "@apollo/client": "3.6.2",
-    "@auth0/nextjs-auth0": "1.7.0",
+    "@auth0/nextjs-auth0": "1.8.0",
     "@clerk/clerk-sdk-node": "3.3.10",
     "@clerk/nextjs": "3.5.0",
     "@instana/aws-lambda": "2.1.0",
