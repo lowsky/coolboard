@@ -29,7 +29,8 @@ const BoardListItem = ({ name, id, deleteBoard }) => {
           deleteBoard(id).finally(() => setDeleting(false));
         }}
         isLoading={deleting}
-        aria-label={'delete board'}
+        aria-label="delete board"
+        data-cy="delete-board"
         icon={<FaTrash />}
         size="mini"></IconButton>
     </ListItem>

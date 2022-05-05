@@ -149,7 +149,7 @@ const CardListHeader = ({ name, children }) => (
     <Popover isLazy>
       <PopoverTrigger>
         <IconButton
-          data-cy="card-list-headerø-menu"
+          data-cy="card-list-header-menu"
           icon={<HamburgerIcon />}
           size="sm"
           aria-label="delete list"

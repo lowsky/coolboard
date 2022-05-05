@@ -99,7 +99,7 @@ const getBoardsList = () => {
     .dataCy('full-container')
     .dataCy('boards-list', WaitVeryLong)
     .should('exist')
-    .find('a', WaitVeryLong);
+    .find('[data-cy="board-list-item"]', WaitVeryLong);
 };
 
 const getBoardsList_FirstEntry = (name: string) =>
@@ -138,7 +138,10 @@ describe('Test coolboard', () => {
     cy.get('#name').clear();
     cy.get('#name').type(newBoardName);
     cy.dataCy('create-board-submit').click();
-    getBoardsList_FirstEntry(newBoardName).click();
+    cy.log('wait until dialog closes');
+    cy.get('.chakra-modal__content-container', WaitVeryLong).should('not.exist');
+
+    getBoardsList_FirstEntry(newBoardName);
   });
 
   it('user can add lists and cards', () => {
@@ -146,7 +149,10 @@ describe('Test coolboard', () => {
 
     // open first board named XXX
     getBoardsList_FirstEntry(newBoardName).click();
-    cy.url().should('include', 'board/');
+    cy.url(LogAndWaitLong).should('include', 'board/');
+
+    //fully loaded?
+    cy.get('.chakra-heading', LogAndWaitLong).contains(newBoardName)
 
     // clear all lists:
     cy.dataCy('board-header-menu').first().click();
@@ -155,7 +161,6 @@ describe('Test coolboard', () => {
     cy.get('button').contains('This will be permanent').click();
 
     sections(LogAndWaitLong).should('not.exist');
-
     //add card
     add_a_list().click();
 
@@ -167,12 +172,12 @@ describe('Test coolboard', () => {
     cy.log('edit card');
     cy.get('.chakra-modal__content-container').get('#title').type('name-changed');
     cy.get('.chakra-modal__content-container').find('.chakra-button').contains('Save').click().wait(1500);
-
     cy.log('wait until dialog closes');
     cy.get('.chakra-modal__content-container', WaitVeryLong).should('not.exist');
 
     cy.log('add a new list');
     add_a_list().click();
+    sections(LogAndWaitLong).should('have.length', 2);
   });
 
   it('user can delete lists', () => {
@@ -180,7 +185,7 @@ describe('Test coolboard', () => {
 
     // open first board named XXX
     getBoardsList_FirstEntry(newBoardName).click();
-    cy.url().should('include', 'board/');
+    cy.url(LogAndWaitLong).should('include', 'board/');
 
     cy.log('delete first list');
     sections(LogAndWaitLong)
@@ -195,8 +200,10 @@ describe('Test coolboard', () => {
     gotoBoards();
 
     // open first board named XXX
-    getBoardsList_FirstEntry(newBoardName).parent().find('.icon').click();
-    getBoardsList_FirstEntry(newBoardName).should('not.exist');
+    getBoardsList_FirstEntry(newBoardName).parent().within(()=> {
+      cy.get('[data-cy="delete-board"]').click();
+    })
+    getBoardsList().contains(newBoardName, LogAndWaitLong).should('not.exist');
   });
 
   it('user can log-out', () => {
