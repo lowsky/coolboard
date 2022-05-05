@@ -1,14 +1,24 @@
-import React, { useState } from "react";
-import Link from "next/link";
-import { Container, IconButton, List, ListItem, Spinner } from "@chakra-ui/react";
-import { FaTrash } from "react-icons/fa";
+import React, { useState } from 'react';
+import Link from 'next/link';
+import {
+  Container,
+  IconButton,
+  List,
+  ListItem,
+  Spinner,
+} from '@chakra-ui/react';
+import { FaTrash } from 'react-icons/fa';
 
-import { useCreateBoardMutation, useDeleteBoardMutation, useUserBoardsQuery } from "../generated/graphql";
-import { Segment } from "../common/Segment";
-import { FullVerticalContainer } from "../common/FullVerticalContainer";
-import { CreateBoardModal } from "./CreateBoardModal";
+import {
+  useCreateBoardMutation,
+  useDeleteBoardMutation,
+  useUserBoardsQuery,
+} from '../generated/graphql';
+import { Segment } from '../common/Segment';
+import { FullVerticalContainer } from '../common/FullVerticalContainer';
+import { CreateBoardModal } from './CreateBoardModal';
 
-import styles from "./Boards.module.css";
+import styles from './Boards.module.css';
 
 const BoardListItem = ({ name, id, deleteBoard }) => {
   const [deleting, setDeleting] = useState(false);
