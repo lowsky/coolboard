@@ -1,16 +1,27 @@
 import React from 'react';
 import { useDrop } from 'react-dnd';
-import { Button, Header, Icon, Loader, Popup } from 'semantic-ui-react';
-import { FaPlus, FaTrash } from 'react-icons/fa';
+import {
+  Button,
+  Heading,
+  IconButton,
+  Popover,
+  PopoverBody,
+  PopoverContent,
+  PopoverTrigger,
+  Spinner,
+} from '@chakra-ui/react';
+import { HamburgerIcon, AddIcon } from '@chakra-ui/icons';
+import { FaTrash } from 'react-icons/fa';
 
 import Card, { dndItemType } from './Card';
 
-import styles from './CardList.module.css';
 import {
   useAddCardMutationMutation,
   useCardListQuery,
   useMoveCardMutation,
 } from '../generated/graphql';
+
+import styles from './CardList.module.css';
 
 const CardListWithoutDnd = (props) => {
   const {
@@ -35,16 +46,15 @@ const CardListWithoutDnd = (props) => {
           backgroundColor: isOver ? 'yellow' : 'lightgrey',
         }}>
         <CardListHeader name={name}>
-          <CardListButton onButtonClick={() => deleteListWithId(id)}>
-            <Icon color={'red'}>
-              <FaTrash />
-            </Icon>
+          <CardListButton
+            leftIcon={<FaTrash color="red" />}
+            onButtonClick={() => deleteListWithId(id)}>
             delete list
           </CardListButton>
         </CardListHeader>
 
         {loading ? (
-          <Loader active />
+          <Spinner />
         ) : (
           <div className={styles.inner}>
             <div className={styles.container}>
@@ -55,10 +65,9 @@ const CardListWithoutDnd = (props) => {
           </div>
         )}
 
-        <CardListButton onButtonClick={() => addCardWithName(id)}>
-          <Icon>
-            <FaPlus />
-          </Icon>
+        <CardListButton
+          onButtonClick={() => addCardWithName(id)}
+          leftIcon={<AddIcon />}>
           Add a card
         </CardListButton>
       </div>
@@ -134,25 +143,30 @@ export const CardList = ({ id, name, deleteListWithId }) => {
 
 const CardListHeader = ({ name, children }) => (
   <div className={styles.header} data-cy="card-list-header">
-    <Header className={styles.title}>{name}</Header>
-    <Popup
-      trigger={
-        <Button
+    <Heading size="md" mb={0} mt={0} className={styles.title}>
+      {name}
+    </Heading>
+    <Popover isLazy>
+      <PopoverTrigger>
+        <IconButton
           data-cy="card-list-header-menu"
-          style={{ flexGrow: 0 }}
-          icon="ellipsis vertical"
-          size="mini"
+          icon={<HamburgerIcon />}
+          size="sm"
+          aria-label="delete list"
         />
-      }
-      on="click"
-      basic>
-      {children}
-    </Popup>
+      </PopoverTrigger>
+      <PopoverContent>
+        <PopoverBody>{children}</PopoverBody>
+      </PopoverContent>
+    </Popover>
   </div>
 );
 
-const CardListButton = ({ onButtonClick, children }) => (
-  <Button className={styles.button} onClick={() => onButtonClick()}>
+const CardListButton = ({ onButtonClick, leftIcon, children }) => (
+  <Button
+    className={styles.button}
+    onClick={() => onButtonClick()}
+    leftIcon={leftIcon}>
     {children}
   </Button>
 );

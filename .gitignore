@@ -30,7 +30,6 @@ smoketest/cypress/screenshots
 
 .vercel
 /.netlify/
-server/express/build/
 
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 .pnp.js
@@ -42,11 +41,6 @@ server/express/build/
 # debug
 # local env files
 # vercel.next
-
-src/fomantic/dist/components
-!/src/fomantic/dist/semantic.min.css
-
-/src/auth0config.json
 
 # yarn2 (berry)
 #

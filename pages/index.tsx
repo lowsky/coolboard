@@ -1,5 +1,6 @@
 import React from 'react';
-import { Container, Icon, Segment } from 'semantic-ui-react';
+import { Container, Heading, Icon, Text } from '@chakra-ui/react';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import {
@@ -7,9 +8,9 @@ import {
   FaExternalLinkAlt,
   FaFilm,
   FaLink,
-  FaList,
 } from 'react-icons/fa';
 
+import { Segment } from '../src/common/Segment';
 import { FullVerticalContainer } from '../src/common/FullVerticalContainer';
 import { trackPage } from '../src/common/tracking';
 
@@ -21,31 +22,23 @@ export default function Index() {
 
   return (
     <FullVerticalContainer data-cy="home-container">
-      <Container
-        style={{
-          textAlign: 'left',
-        }}>
-        <h1>
+      <Container maxW="933px">
+        <Heading as="h1">
           <Image src={coolBoardLogo} width="100" alt="logo" />
           Welcome to CoolBoard
           <br />
           <span> manage your tasks in a kanban style</span>
-        </h1>
-        <Segment basic>
-          <p>
+        </Heading>
+        <Segment>
+          <Text>
             You can go to your list of
             <Link href="/boards">
-              <a>
-                boards{' '}
-                <Icon width="24">
-                  <FaList />
-                </Icon>
-              </a>
+              <a>boards</a>
             </Link>
-          </p>
+          </Text>
         </Segment>
 
-        <Segment basic className="zoomOnHover">
+        <Segment className="zoomOnHover">
           <Link href="/boards">
             <a>
               <Image
@@ -59,18 +52,24 @@ export default function Index() {
         </Segment>
 
         <Segment>
-          <p>This is the demo of the app which we built in this video course</p>
-          <h3>
+          <Text mb="1rem">
+            This is the demo of the app which we built in this video course
+          </Text>
+          <Heading
+            as="h3"
+            fontSize="2xl"
+            mt="calc(2rem - 0.142857em)"
+            mb="1rem">
             <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
-              <Icon size="large">
+              <Icon>
                 <FaFilm />
               </Icon>
-              <b>Hands-on Application building with GraphQL and React</b>
-              <Icon size="large">
+              <b>Hands-on Application building with GraphQL and React</b>{' '}
+              <Icon>
                 <FaChalkboardTeacher />
               </Icon>
             </a>
-          </h3>
+          </Heading>
           <p>
             <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
               <Icon>
@@ -78,7 +77,7 @@ export default function Index() {
               </Icon>
               <strong>Available</strong> at
               <Image
-                src={'/packt-logo.svg'}
+                src="/packt-logo.svg"
                 height={24}
                 width="100%"
                 alt="packt publishing"
@@ -90,16 +89,16 @@ export default function Index() {
                 <FaExternalLinkAlt />
               </Icon>
               <Image
-                src={'/logo-udemy.svg'}
+                src="/logo-udemy.svg"
                 height={24}
                 width="100%"
                 alt="udemy"
               />
-            </a>{' '}
+            </a>
             or Safari online, etc.
           </p>
         </Segment>
-        <Segment basic>
+        <Segment>
           There are more
           <Link href="/about">
             <a>

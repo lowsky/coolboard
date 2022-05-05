@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { ApolloClient, useApolloClient } from '@apollo/client';
+import { ApolloClient } from '@apollo/client';
 import { useAuth } from '@clerk/nextjs';
 
 interface Props {
@@ -7,13 +7,12 @@ interface Props {
 }
 
 export function ReloadAfterLogin({ client }: Props) {
-  const apolloClient = useApolloClient(client);
   const { isSignedIn, isLoaded, sessionId } = useAuth();
 
   useEffect(() => {
     if (isLoaded) {
       if (isSignedIn && sessionId) {
-        apolloClient.refetchQueries({
+        client?.refetchQueries({
           include: 'all',
         });
       }

@@ -1,45 +1,45 @@
-import { Container } from 'semantic-ui-react';
+import { Container, Heading, Text } from '@chakra-ui/react';
 import { trackPage } from '../src/common/tracking';
 
 export default function Privacy() {
   trackPage('privacy');
 
   return (
-    <Container>
-      <h1>Privacy Policy</h1>
+    <Container maxW='980px'>
+      <Heading as="h1">Privacy Policy</Heading>
 
-      <h1>An overview of data protection</h1>
-      <h2>General</h2>
-      <p>
+      <Heading as="h1">An overview of data protection</Heading>
+      <Heading as="h2">General</Heading>
+      <Text>
         At <b>coolboard</b> one of our main priorities is the privacy of our
         users. This Privacy Policy document contains types of information that
         is collected and recorded by coolboard and how we use it.
-      </p>
+      </Text>
 
-      <p>
+      <Text>
         If you have additional questions or require more information about our
         Privacy Policy, do not hesitate to contact us through email at coolboard
         @ protonmail.com
-      </p>
+      </Text>
 
-      <p>
+      <Text>
         The following gives a simple overview of what happens to your personal
         information when you visit our website. Personal information is any data
         with which you could be personally identified. Detailed information on
         the subject of data protection can be found in our privacy policy found
         below.
-      </p>
+      </Text>
 
-      <h2>Data Collection on our website</h2>
-      <h3>Analytics and third-party tools</h3>
-      <p>
+      <Heading as="h2">Data Collection on our website</Heading>
+      <Heading as="h3">Analytics and third-party tools</Heading>
+      <Text>
         For getting information about which other web pages have links to
         Coolboard, we are using <b>mixpanel</b> which is full GDPR compliant.
         For further details, please see their pages about{' '}
         <a href="https://mixpanel.com/legal/dpa/">DPA</a> or their{' '}
         <a href="https://mixpanel.com/legal/terms-of-use/">terms-of-use</a>.
-      </p>
-      <p>
+      </Text>
+      <Text>
         When visiting our website, statistical analyses may be made of your
         surfing behavior This happens primarily using cookies and analytics.
         However, being hosted at vercel.com, when you visit www.coolboard.fun,
@@ -56,28 +56,28 @@ export default function Privacy() {
             Vercel Privacy Policy
           </a>
         }
-      </p>
-      <p>
+      </Text>
+      <Text>
         The analysis of your surfing behavior is usually anonymous, i.e. we will
         not be able to identify you from this data. You can object to this
         analysis or prevent it by not using certain tools. Detailed information
         can be found in the following privacy policy.
-      </p>
-      <p>
+      </Text>
+      <Text>
         Note that www.coolboard.fun has no access to or control over these
         cookies and log files that are used by Vercel nor Auth0.
-      </p>
+      </Text>
 
-      <p>
+      <Text>
         You can choose to disable cookies through your individual browser
         options. To know more detailed information about cookie management with
         specific web browsers, it can be found at the browsers&apos; respective
         websites.
-      </p>
+      </Text>
 
-      <h2>Consent</h2>
+      <Heading as="h2">Consent</Heading>
 
-      <p>
+      <Text>
         By using our website, you hereby consent to our Privacy Policy and agree
         to its Terms and Conditions as well as to the{' '}
         <a
@@ -87,11 +87,11 @@ export default function Privacy() {
           Auth0 Privacy & Cookie Policy
         </a>{' '}
         and Vercel Privacy Statement and to its Terms and Conditions.
-      </p>
+      </Text>
 
-      <h2>Your entered data</h2>
+      <Heading as="h2">Your entered data</Heading>
 
-      <p>
+      <Text>
         If you like to work with this demo application, you need to supply some
         information for creating your own account by signing-in via a pop-up
         dialog using{' '}
@@ -140,19 +140,19 @@ export default function Privacy() {
           instana privacy
         </a>
         .
-      </p>
+      </Text>
 
-      <p>
+      <Text>
         Our team members could lookup this information in case of any technical
         issues to avoid data loss or when we need to transfer your data to a
         different page under same policy rules, or to inform you in these cases.
-      </p>
+      </Text>
 
-      <h2>Contact</h2>
-      <p>
+      <Heading as="h2">Contact</Heading>
+      <Text>
         In case of any questions, do not hesitate to ask for support by{' '}
         <b>E-Mail:</b> coolboard @ protonmail.com
-      </p>
+      </Text>
     </Container>
   );
 }

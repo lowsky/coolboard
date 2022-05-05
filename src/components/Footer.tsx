@@ -1,6 +1,17 @@
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Popup } from 'semantic-ui-react';
+
+import {
+  LinkBox,
+  LinkOverlay,
+  Popover,
+  PopoverBody,
+  PopoverContent,
+  PopoverTrigger,
+  Portal,
+} from '@chakra-ui/react';
+import { FaHeart } from 'react-icons/fa';
 
 import netlifyLogo from './netlify-logo.svg';
 import nextLogo from './nextjs-logo.svg';
@@ -32,21 +43,29 @@ export function Footer() {
           <a href="https://twitter.com/rhosts" target="_blank" rel="noreferrer">
             <i className="icon twitter" />
           </a>{' '}
-          <Popup
-            style={{ cursor: 'pointer' }}
-            content={
-              <a
-                href="https://twitter.com/rhosts"
-                target="_blank"
-                rel="noreferrer">
-                Interested?
-                <br />
-                ♥️ Please, drop me a message!
-              </a>
-            }
-            on="click"
-            trigger={<i className="icon github" />}
-          />
+          <Popover>
+            <PopoverTrigger>
+              <i className="icon github" />
+            </PopoverTrigger>
+            <Portal>
+              <PopoverContent background="white">
+                <PopoverBody>
+                  <LinkBox maxW="sm" p="5" borderWidth="1px" rounded="md">
+                    <LinkOverlay
+                      color="#777"
+                      href="https://twitter.com/rhosts"
+                      target="_blank"
+                      rel="noreferrer">
+                      Interested?
+                      <br />
+                      <FaHeart color="red" />
+                      Please, drop me a message!
+                    </LinkOverlay>
+                  </LinkBox>
+                </PopoverBody>
+              </PopoverContent>
+            </Portal>
+          </Popover>
         </div>
       </div>
     </footer>

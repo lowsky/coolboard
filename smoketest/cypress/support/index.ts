@@ -8,18 +8,18 @@ declare global {
     interface Chainable<Subject> {
       /**
        * Custom command to select DOM element by data-cy attribute.
-       * @example cy.dataCy('greeting')
+       * @example cy.dataCy('greeting') finds  <div data-cy="greeting">
        */
       dataCy(
-        value: string,
+        selector: string,
         options?: Partial<Loggable & Timeoutable>
       ): Chainable<JQuery<HTMLElement>>;
     }
   }
 }
 
-Cypress.Commands.add('dataCy', (value, options) =>
-  cy.get(`[data-cy="${value}"]`, options)
+Cypress.Commands.add('dataCy', (selector, options) =>
+  cy.get(`[data-cy="${selector}"]`, options)
 );
 
 Cypress.Cookies.defaults({
