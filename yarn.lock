@@ -5002,7 +5002,7 @@ __metadata:
     eslint-config-prettier: 8.5.0
     eslint-plugin-prettier: 4.0.0
     framer-motion: 6.3.3
-    graphql: 16.4.0
+    graphql: 16.5.0
     graphql-tag: 2.12.6
     inter-ui: 3.19.3
     jsonwebtoken: 8.5.1
@@ -6618,10 +6618,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graphql@npm:16.4.0":
-  version: 16.4.0
-  resolution: "graphql@npm:16.4.0"
-  checksum: 8cac2c466891b6c6ace2fa3807f93815dea53cbec372998c139e796a321a6882c2324cc605e5f9aa45356890239aa9e731a04d8c59ec524db82bd18fb48aafee
+"graphql@npm:16.5.0":
+  version: 16.5.0
+  resolution: "graphql@npm:16.5.0"
+  checksum: a82a926d085818934d04fdf303a269af170e79de943678bd2726370a96194f9454ade9d6d76c2de69afbd7b9f0b4f8061619baecbbddbe82125860e675ac219e
   languageName: node
   linkType: hard
 
