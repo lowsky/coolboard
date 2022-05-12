@@ -5107,7 +5107,7 @@ __metadata:
     graphql-tag: 2.12.6
     inter-ui: 3.19.3
     jsonwebtoken: 8.5.1
-    jwks-rsa: 2.1.1
+    jwks-rsa: 2.1.2
     micro: 9.3.4
     next: 12.1.6
     prettier: 2.6.2
@@ -7574,16 +7574,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jwks-rsa@npm:2.1.1":
-  version: 2.1.1
-  resolution: "jwks-rsa@npm:2.1.1"
+"jwks-rsa@npm:2.1.2":
+  version: 2.1.2
+  resolution: "jwks-rsa@npm:2.1.2"
   dependencies:
     "@types/express": ^4.17.13
     debug: ^4.3.4
     jose: ^2.0.5
     limiter: ^1.1.5
     lru-memoizer: ^2.1.4
-  checksum: d856e51596e148064e70f74d111392bab037f432ee258a927e399c0f04b6b2c4504ae7f2aef5101089e965c54fa17447d9287a5bd1e63a54f492e9ff74cf0ba9
+  checksum: 04d2c85c65dcc1c07307898a07fa6cd7814148a6629c45451f77882460b56e29e30fa59a40acf51795eadbe71b9bb841ed57ae5c2ac584824aaa08d2cc06edb7
   languageName: node
   linkType: hard
 
