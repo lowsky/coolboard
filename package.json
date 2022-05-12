@@ -38,7 +38,7 @@
     "graphql-tag": "2.12.6",
     "inter-ui": "3.19.3",
     "jsonwebtoken": "8.5.1",
-    "jwks-rsa": "2.1.1",
+    "jwks-rsa": "2.1.2",
     "micro": "9.3.4",
     "next": "12.1.6",
     "prisma": "3.14.0",
