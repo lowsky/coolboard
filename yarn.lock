@@ -2443,22 +2443,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@instana/core@npm:2.1.0":
-  version: 2.1.0
-  resolution: "@instana/core@npm:2.1.0"
-  dependencies:
-    async-hook-jl: ^1.7.6
-    cls-bluebird: ^2.1.0
-    lru-cache: 6.0.0
-    methods: ^1.1.2
-    opentracing: ^0.14.5
-    redis-commands: ^1.7.0
-    semver: 7.3.3
-    shimmer: 1.2.1
-  checksum: 7a1b01864ed52bf0f3dc74443628031e64604f62ff5fe3c56086a859989caeeabfc1db014708fb75158880554df1f116769256e9a351b254d3ff09d07431bbc4
-  languageName: node
-  linkType: hard
-
 "@instana/core@npm:2.2.0":
   version: 2.2.0
   resolution: "@instana/core@npm:2.2.0"
@@ -2475,26 +2459,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@instana/opentelemetry-exporter@npm:2.1.0":
-  version: 2.1.0
-  resolution: "@instana/opentelemetry-exporter@npm:2.1.0"
+"@instana/opentelemetry-exporter@npm:2.2.0":
+  version: 2.2.0
+  resolution: "@instana/opentelemetry-exporter@npm:2.2.0"
   dependencies:
-    "@instana/serverless": 2.1.0
+    "@instana/serverless": 2.2.0
     "@opentelemetry/api": 1.0.4
     "@opentelemetry/core": 1.0.1
-  checksum: dc8d0dcd00ba0588241c6e8a0dd77567e8678df7666a87a37059814cb8e387d9eecb92a7024bbdf2c1dd27002acaa14ee7a4efbb36c4805022808fa8f549a9af
-  languageName: node
-  linkType: hard
-
-"@instana/serverless@npm:2.1.0":
-  version: 2.1.0
-  resolution: "@instana/serverless@npm:2.1.0"
-  dependencies:
-    "@instana/core": 2.1.0
-    agent-base: ^6.0.2
-    https-proxy-agent: ^5.0.0
-    semver: 7.3.3
-  checksum: 58026ff9242314f081c845ede43ab1552ba453fbb83f431fefc8befa907bb556c58d4f9c1703040974893d515d3cc11f82c882b7fdc2ff0e83ef587c5d6cabc7
+  checksum: 4249edc3483e6960827cf3aa5a3f129bcae91fd75af307a328e7a44803254f4ca291a042d929d76c952c231f4959eb615cbf1e8922b0f9b2560d8d0852170fab
   languageName: node
   linkType: hard
 
@@ -5066,7 +5038,7 @@ __metadata:
     "@graphql-codegen/typescript-operations": 2.4.0
     "@graphql-codegen/typescript-react-apollo": 3.2.14
     "@instana/aws-lambda": 2.2.0
-    "@instana/opentelemetry-exporter": 2.1.0
+    "@instana/opentelemetry-exporter": 2.2.0
     "@netlify/functions": 1.0.0
     "@opentelemetry/api": 1.1.0
     "@opentelemetry/core": 1.2.0
