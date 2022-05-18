@@ -2433,13 +2433,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@instana/aws-lambda@npm:2.1.0":
-  version: 2.1.0
-  resolution: "@instana/aws-lambda@npm:2.1.0"
+"@instana/aws-lambda@npm:2.2.0":
+  version: 2.2.0
+  resolution: "@instana/aws-lambda@npm:2.2.0"
   dependencies:
-    "@instana/core": 2.1.0
-    "@instana/serverless": 2.1.0
-  checksum: 92e24d542a41f355f7ce74b265421c2d74a3f17c14157246af6a4473b174cec4493d6dd1b9eabf34c79c58f5838f0c508f83792e49886d52aad2309601f3ec6c
+    "@instana/core": 2.2.0
+    "@instana/serverless": 2.2.0
+  checksum: 38da586318a120e8ef6eab40dbce8010b96f47e93c67c7feaf8b3f59a1c0dc719c10a7b2a4abeb8f35336e99807bbb6957ddd6f7753b34ea420f90e72ce7e011
   languageName: node
   linkType: hard
 
@@ -2456,6 +2456,22 @@ __metadata:
     semver: 7.3.3
     shimmer: 1.2.1
   checksum: 7a1b01864ed52bf0f3dc74443628031e64604f62ff5fe3c56086a859989caeeabfc1db014708fb75158880554df1f116769256e9a351b254d3ff09d07431bbc4
+  languageName: node
+  linkType: hard
+
+"@instana/core@npm:2.2.0":
+  version: 2.2.0
+  resolution: "@instana/core@npm:2.2.0"
+  dependencies:
+    async-hook-jl: ^1.7.6
+    cls-bluebird: ^2.1.0
+    lru-cache: 6.0.0
+    methods: ^1.1.2
+    opentracing: ^0.14.5
+    redis-commands: ^1.7.0
+    semver: 7.3.3
+    shimmer: 1.2.1
+  checksum: afcfb11b1015b837e0e4ff33452cb69e173ccc76a049e2e68697dc34ccc121c4deb7d77df7d1ae65094f9d595ebccacaa44b28c1f0c77eefac5de87897083efd
   languageName: node
   linkType: hard
 
@@ -2479,6 +2495,18 @@ __metadata:
     https-proxy-agent: ^5.0.0
     semver: 7.3.3
   checksum: 58026ff9242314f081c845ede43ab1552ba453fbb83f431fefc8befa907bb556c58d4f9c1703040974893d515d3cc11f82c882b7fdc2ff0e83ef587c5d6cabc7
+  languageName: node
+  linkType: hard
+
+"@instana/serverless@npm:2.2.0":
+  version: 2.2.0
+  resolution: "@instana/serverless@npm:2.2.0"
+  dependencies:
+    "@instana/core": 2.2.0
+    agent-base: ^6.0.2
+    https-proxy-agent: ^5.0.0
+    semver: 7.3.3
+  checksum: 77048554e5c374e3fc0fc7ac4ac6dd915df9f1b1f738fd4fbe918c8d71459eaf00bc5de508f4bf77b56e8f9b3f971c438c9e1aa9d499fbc924127a69bfff2035
   languageName: node
   linkType: hard
 
@@ -5037,7 +5065,7 @@ __metadata:
     "@graphql-codegen/typescript-graphql-files-modules": 2.1.1
     "@graphql-codegen/typescript-operations": 2.4.0
     "@graphql-codegen/typescript-react-apollo": 3.2.14
-    "@instana/aws-lambda": 2.1.0
+    "@instana/aws-lambda": 2.2.0
     "@instana/opentelemetry-exporter": 2.1.0
     "@netlify/functions": 1.0.0
     "@opentelemetry/api": 1.1.0
