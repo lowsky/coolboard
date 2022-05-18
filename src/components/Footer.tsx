@@ -44,6 +44,7 @@ export function Footer() {
             <i className="icon twitter" />
           </a>{' '}
           <Popover>
+            {/* @ts-expect-error Type error: Type '{ children: Element; }' has no properties in common with type 'IntrinsicAttributes'.*/}
             <PopoverTrigger>
               <i className="icon github" />
             </PopoverTrigger>
