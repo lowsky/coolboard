@@ -147,7 +147,6 @@ const CardListHeader = ({ name, children }) => (
       {name}
     </Heading>
     <Popover isLazy>
-      {/* @ts-expect-error Type error: Type '{ children: Element; }' has no properties in common with type 'IntrinsicAttributes'.*/}
       <PopoverTrigger>
         <IconButton
           data-cy="card-list-header-menu"
