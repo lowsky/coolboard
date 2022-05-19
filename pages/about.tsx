@@ -101,7 +101,6 @@ export default function About() {
             }}>
             <Text>
               We are using the service of
-              <a href="https://auth0.com/">Auth0</a> or
               <a href="https://clerk.dev/">clerk</a>
               to allow signing-in via OAuth using Google or email/password
               automatically.

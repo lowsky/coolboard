@@ -40,12 +40,6 @@ type Subscription {
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
 }
 
-# old auth, without auth0
-#type AuthPayload {
-#  token: String!
-#  user: User!
-#}
-
 type AggregateBoard {
   count: Int!
 }

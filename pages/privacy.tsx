@@ -65,7 +65,7 @@ export default function Privacy() {
       </Text>
       <Text>
         Note that www.coolboard.fun has no access to or control over these
-        cookies and log files that are used by Vercel nor Auth0.
+        cookies and log files that are used by Vercel nor Clerk.dev.
       </Text>
 
       <Text>
@@ -83,9 +83,9 @@ export default function Privacy() {
         <a
           target="_blank"
           rel="noreferrer noopener"
-          href="https://auth0.com/privacy">
-          Auth0 Privacy & Cookie Policy
-        </a>{' '}
+          href="https://clerk.dev/privacy">
+          clerk.dev Privacy Policy
+        </a> (contains GDPA and CalOPPA)
         and Vercel Privacy Statement and to its Terms and Conditions.
       </Text>
 
@@ -95,8 +95,8 @@ export default function Privacy() {
         If you like to work with this demo application, you need to supply some
         information for creating your own account by signing-in via a pop-up
         dialog using{' '}
-        <a target="_blank" rel="noreferrer noopener" href="https://auth0.com/">
-          Auth0
+        <a target="_blank" rel="noreferrer noopener" href="https://clerk.dev/">
+          clerk.dev
         </a>{' '}
         service. The supplied data include:
         <br />
@@ -104,13 +104,14 @@ export default function Privacy() {
         <br />
         All this information could be visible in this application to other
         users, - if you share your created board with them or - enter data on
-        any other shared board. They are also stored by auth0 and prisma to
-        provide this service and is subject to the
+        any other shared board.
+
+        They are also stored by clerk.dev to provide this service and is subject to the
         <a
           target="_blank"
           rel="noreferrer noopener"
-          href="https://auth0.com/privaycy">
-          Auth0 Privacy Statement
+          href="https://clerk.dev/privaycy">
+          clerk.dev Privacy Statement
         </a>{' '}
         and
         {/*<a target="_blank" rel="noreferrer noopener" href="https://www.netlify.com/privacy/privacy.js">Netlify Privacy Policy</a>.*/}
@@ -122,24 +123,13 @@ export default function Privacy() {
         </a>
         . Please see their Statement and rules for details.
         <br />
-        Furthermore these data are transferred by a backend service running on
-        digital ocean, Inc with their
-        <a
-          target="_blank"
-          rel="noreferrer noopener"
-          href="https://www.digitalocean.com/legal/data-processing-agreement/">
-          digitalocean DPA
-        </a>
-        .
-        <br />
-        For monitoring data are transferred from the browser to instana
+        For monitoring(currently not active), data may be transferred from the browser to instana:
         <a
           target="_blank"
           rel="noreferrer noopener"
           href="https://www.instana.com/security/">
           instana privacy
         </a>
-        .
       </Text>
 
       <Text>
