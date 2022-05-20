@@ -203,7 +203,7 @@ describe('Test coolboard', () => {
     getBoardsList_FirstEntry(newBoardName).parent().within(()=> {
       cy.get('[data-cy="delete-board"]').click();
     })
-    getBoardsList().contains(newBoardName, LogAndWaitLong).should('not.exist');
+    getBoardsList().contains(newBoardName, WaitVeryLong).should('not.exist');
   });
 
   it('user can log-out', () => {
