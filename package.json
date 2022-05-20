@@ -8,7 +8,6 @@
   "homepage": "/",
   "dependencies": {
     "@apollo/client": "3.6.4",
-    "@auth0/nextjs-auth0": "1.9.0",
     "@chakra-ui/icons": "2.0.0",
     "@chakra-ui/react": "2.0.2",
     "@clerk/clerk-sdk-node": "3.5.0",
