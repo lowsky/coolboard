@@ -95,9 +95,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@auth0/nextjs-auth0@npm:1.8.0":
-  version: 1.8.0
-  resolution: "@auth0/nextjs-auth0@npm:1.8.0"
+"@auth0/nextjs-auth0@npm:1.9.0":
+  version: 1.9.0
+  resolution: "@auth0/nextjs-auth0@npm:1.9.0"
   dependencies:
     base64url: ^3.0.1
     cookie: ^0.5.0
@@ -108,11 +108,11 @@ __metadata:
     jose: ^2.0.5
     on-headers: ^1.0.2
     openid-client: ^4.9.1
-    tslib: ^2.3.1
+    tslib: ^2.4.0
     url-join: ^4.0.1
   peerDependencies:
     next: ">=10"
-  checksum: 41fed793be7938c415c0948d1dffc09bf3d896540b4071c3292ca5bc8390039f46e4375b8d396ad0ba6227904ceaf6855ffb5b62f1fcb6776c4e32d22aefc46a
+  checksum: f3cf182d18551f45ed0e38b1b615f496db2162de516282b993260148acf794e57adfcce72e9ff36030c727f2fb1f8669672c7a746bb9e4be24c5908142b5d7a4
   languageName: node
   linkType: hard
 
@@ -4964,7 +4964,7 @@ __metadata:
   resolution: "coolboard@workspace:."
   dependencies:
     "@apollo/client": 3.6.4
-    "@auth0/nextjs-auth0": 1.8.0
+    "@auth0/nextjs-auth0": 1.9.0
     "@chakra-ui/icons": 2.0.0
     "@chakra-ui/react": 2.0.2
     "@clerk/clerk-sdk-node": 3.5.0
@@ -10530,7 +10530,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^2, tslib@npm:^2.0.0, tslib@npm:^2.0.3, tslib@npm:^2.1.0, tslib@npm:^2.3.0, tslib@npm:^2.3.1, tslib@npm:~2.4.0":
+"tslib@npm:^2, tslib@npm:^2.0.0, tslib@npm:^2.0.3, tslib@npm:^2.1.0, tslib@npm:^2.3.0, tslib@npm:^2.3.1, tslib@npm:^2.4.0, tslib@npm:~2.4.0":
   version: 2.4.0
   resolution: "tslib@npm:2.4.0"
   checksum: 8c4aa6a3c5a754bf76aefc38026134180c053b7bd2f81338cb5e5ebf96fefa0f417bff221592bf801077f5bf990562f6264fecbc42cd3309b33872cb6fc3b113
