@@ -22,7 +22,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import TimeAgo from 'react-timeago';
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
 import { FaSave, FaTimes } from 'react-icons/fa';
 
 import { Segment } from '../common/Segment';

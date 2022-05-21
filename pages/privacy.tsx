@@ -5,7 +5,7 @@ export default function Privacy() {
   trackPage('privacy');
 
   return (
-    <Container maxW='980px'>
+    <Container maxW="980px">
       <Heading as="h1">Privacy Policy</Heading>
 
       <Heading as="h1">An overview of data protection</Heading>
@@ -85,8 +85,9 @@ export default function Privacy() {
           rel="noreferrer noopener"
           href="https://clerk.dev/privacy">
           clerk.dev Privacy Policy
-        </a> (contains GDPA and CalOPPA)
-        and Vercel Privacy Statement and to its Terms and Conditions.
+        </a>{' '}
+        (contains GDPA and CalOPPA) and Vercel Privacy Statement and to its
+        Terms and Conditions.
       </Text>
 
       <Heading as="h2">Your entered data</Heading>
@@ -104,9 +105,8 @@ export default function Privacy() {
         <br />
         All this information could be visible in this application to other
         users, - if you share your created board with them or - enter data on
-        any other shared board.
-
-        They are also stored by clerk.dev to provide this service and is subject to the
+        any other shared board. They are also stored by clerk.dev to provide
+        this service and is subject to the
         <a
           target="_blank"
           rel="noreferrer noopener"
@@ -123,7 +123,8 @@ export default function Privacy() {
         </a>
         . Please see their Statement and rules for details.
         <br />
-        For monitoring(currently not active), data may be transferred from the browser to instana:
+        For monitoring(currently not active), data may be transferred from the
+        browser to instana:
         <a
           target="_blank"
           rel="noreferrer noopener"
