@@ -19,11 +19,10 @@ module.exports = {
 
     return config;
   },
-  compiler: {
-    // see https://nextjs.org/docs/advanced-features/compiler#styled-components
-    // ssr and displayName are configured by default
-    styledComponents: true,
-  },
+
+  // https://nextjs.org/docs/advanced-features/compiler#minification
+  // faster minification
+  swcMinify: true,
 
   reactStrictMode: true,
 
