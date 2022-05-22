@@ -9,7 +9,7 @@
   "dependencies": {
     "@apollo/client": "3.6.4",
     "@chakra-ui/icons": "2.0.0",
-    "@chakra-ui/react": "2.0.2",
+    "@chakra-ui/react": "2.1.0",
     "@clerk/clerk-sdk-node": "3.6.0",
     "@clerk/nextjs": "3.6.5",
     "@emotion/react": "11.9.0",
