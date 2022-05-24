@@ -7,7 +7,7 @@
   },
   "homepage": "/",
   "dependencies": {
-    "@apollo/client": "3.6.4",
+    "@apollo/client": "3.6.5",
     "@chakra-ui/icons": "2.0.0",
     "@chakra-ui/react": "2.1.0",
     "@clerk/clerk-sdk-node": "3.6.0",
@@ -75,7 +75,7 @@
     "@types/react-dom": "18.0.5",
     "@types/zen-observable": "0.8.3",
     "@typescript-eslint/parser": "5.26.0",
-    "apollo-server-core": "3.7.0",
+    "apollo-server-core": "3.8.0",
     "eslint": "8.16.0",
     "eslint-config-next": "12.1.6",
     "prettier": "2.6.2",
