@@ -3915,7 +3915,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"apollo-server-core@npm:3.8.1, apollo-server-core@npm:^3.8.1":
+"apollo-server-core@npm:3.8.1, apollo-server-core@npm:^3.8.0, apollo-server-core@npm:^3.8.1":
   version: 3.8.1
   resolution: "apollo-server-core@npm:3.8.1"
   dependencies:
@@ -3965,9 +3965,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"apollo-server-express@npm:^3.8.1":
-  version: 3.8.1
-  resolution: "apollo-server-express@npm:3.8.1"
+"apollo-server-express@npm:^3.8.0":
+  version: 3.8.0
+  resolution: "apollo-server-express@npm:3.8.0"
   dependencies:
     "@types/accepts": ^1.3.5
     "@types/body-parser": 1.19.2
@@ -3975,7 +3975,7 @@ __metadata:
     "@types/express": 4.17.13
     "@types/express-serve-static-core": 4.17.28
     accepts: ^1.3.5
-    apollo-server-core: ^3.8.1
+    apollo-server-core: ^3.8.0
     apollo-server-types: ^3.6.0
     body-parser: ^1.19.0
     cors: ^2.8.5
@@ -3983,22 +3983,22 @@ __metadata:
   peerDependencies:
     express: ^4.17.1
     graphql: ^15.3.0 || ^16.0.0
-  checksum: c79dca1cf6204f261d47696b8c5a44a1286360f9f59b4343463b10487f474066dc2a464631958b59c14f09f2366ab27c3250e39a46a088725e21d7645616dceb
+  checksum: c829def539a6801d118f583fd67ead1039c5f874a800e01098dbf7b3fb1d5997d331bd2dad264d094489a116c50ca7c2a404434f044763febb0c48cf4f49f358
   languageName: node
   linkType: hard
 
-"apollo-server-lambda@npm:3.8.1":
-  version: 3.8.1
-  resolution: "apollo-server-lambda@npm:3.8.1"
+"apollo-server-lambda@npm:3.8.0":
+  version: 3.8.0
+  resolution: "apollo-server-lambda@npm:3.8.0"
   dependencies:
     "@types/aws-lambda": ^8.10.76
     "@vendia/serverless-express": ^4.3.9
-    apollo-server-core: ^3.8.1
-    apollo-server-express: ^3.8.1
+    apollo-server-core: ^3.8.0
+    apollo-server-express: ^3.8.0
     express: ^4.17.1
   peerDependencies:
     graphql: ^15.3.0 || ^16.0.0
-  checksum: 4163c429a740848748d5833b872d9f4688be54fe75bca06081adda52f3cde40104ff6aff039dde5bcc28dbea4672d202bee3259590271aa8d32aa34b352b8d09
+  checksum: 99b87acc2ae4fe39c7ea95ff77ed0b405f7fd8c22ee52d5a6e59700a39b91484d7a4b17ceab3fb253692e6019da57d8e7d3f92695a40345fa683acc329a2e408
   languageName: node
   linkType: hard
 
@@ -4964,7 +4964,7 @@ __metadata:
     "@typescript-eslint/parser": 5.26.0
     apollo-server-core: 3.8.1
     apollo-server-errors: 3.3.1
-    apollo-server-lambda: 3.8.1
+    apollo-server-lambda: 3.8.0
     apollo-server-micro: 3.8.1
     bcryptjs: 2.4.3
     bufferutil: 4.0.6
