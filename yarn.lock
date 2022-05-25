@@ -2482,29 +2482,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@instana/aws-lambda@npm:2.3.0":
-  version: 2.3.0
-  resolution: "@instana/aws-lambda@npm:2.3.0"
+"@instana/aws-lambda@npm:2.4.0":
+  version: 2.4.0
+  resolution: "@instana/aws-lambda@npm:2.4.0"
   dependencies:
-    "@instana/core": 2.3.0
-    "@instana/serverless": 2.3.0
-  checksum: 691b80c0b6dca14fd233567d77f9a8e2393c46f16fb24a6ad39d2a471beddc405b9bd60a3d9eba4b3f2d78553e178863ed0a5f496366086012cb3f39a4485423
-  languageName: node
-  linkType: hard
-
-"@instana/core@npm:2.3.0":
-  version: 2.3.0
-  resolution: "@instana/core@npm:2.3.0"
-  dependencies:
-    async-hook-jl: ^1.7.6
-    cls-bluebird: ^2.1.0
-    lru-cache: 6.0.0
-    methods: ^1.1.2
-    opentracing: ^0.14.5
-    redis-commands: ^1.7.0
-    semver: 7.3.3
-    shimmer: 1.2.1
-  checksum: c5c0246f233580d12ab72dd45230f2ac3e34db77353e1819f95732817422b3f4489afb63879c578870493957d0e58d9f8a742bc713ad1db0e6d7899719b33f49
+    "@instana/core": 2.4.0
+    "@instana/serverless": 2.4.0
+  checksum: 128886d16b39c25bf563b0644941f393ba3ccf983a95318240456e9d1a1b0c7bd719527ed2564a6154d9343e895d1e4c87d8a0c509f4f3065674b46cbb76a24f
   languageName: node
   linkType: hard
 
@@ -2532,18 +2516,6 @@ __metadata:
     "@opentelemetry/api": 1.0.4
     "@opentelemetry/core": 1.0.1
   checksum: 813321b3414b53b51088abff321268fe4b2b7819c90397d675085ab2d1ed7838f2d98ab0d6a5b3334ba9079e1e6f00cb83b3e9ac2e265772cffdb2190dbec1e4
-  languageName: node
-  linkType: hard
-
-"@instana/serverless@npm:2.3.0":
-  version: 2.3.0
-  resolution: "@instana/serverless@npm:2.3.0"
-  dependencies:
-    "@instana/core": 2.3.0
-    agent-base: ^6.0.2
-    https-proxy-agent: ^5.0.0
-    semver: 7.3.3
-  checksum: e597f026d2dc820412f3f62458fae7b7daae7076f4d80b12fb1375240adb3409a44f3bb89934c46cc4511fbc5880598704cd8f5c6ccd01bb0f616f03f1daed0a
   languageName: node
   linkType: hard
 
@@ -4976,7 +4948,7 @@ __metadata:
     "@graphql-codegen/typescript-graphql-files-modules": 2.1.1
     "@graphql-codegen/typescript-operations": 2.4.0
     "@graphql-codegen/typescript-react-apollo": 3.2.14
-    "@instana/aws-lambda": 2.3.0
+    "@instana/aws-lambda": 2.4.0
     "@instana/opentelemetry-exporter": 2.4.0
     "@netlify/functions": 1.0.0
     "@opentelemetry/api": 1.1.0
