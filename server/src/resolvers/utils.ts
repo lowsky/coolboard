@@ -15,7 +15,7 @@ import { Ctxt } from './Context';
 // only used below...
 // @ts-ignore
 export const getUserId = async (ctx: Ctxt) => {
-  const userToken = await verifyAuth0HeaderToken(ctx);
+  const userToken = await verifyUserIsAuthenticatedAndRetrieveUserToken(ctx);
   if (userToken) {
     const auth0id = userToken.sub.split('|')[1];
     const userId = await userIdByAuth0id(auth0id, (auth0id: string) =>
@@ -69,17 +69,21 @@ type UserToken = {
 };
 
 /**
- * Extracts auth0 from second part of the sub ('xxx|auth0id')
+ * Extracts user-id from UserToken e.g. the auth0id from 'xxx|auth0id'
  */
-export const verifyAndRetrieveAuth0HeaderToken = async (ctx: Ctxt) => {
-  const userToken = await verifyAuth0HeaderToken(ctx);
+export const verifyAndRetrieveAuthSubject = async (
+  ctx: Ctxt
+): Promise<string> => {
+  const userToken = await verifyUserIsAuthenticatedAndRetrieveUserToken(ctx);
   return userToken?.sub.split('|')[1];
 };
 
-async function verifyAuth0HeaderToken(ctx: Ctxt): Promise<UserToken> {
+export async function verifyUserIsAuthenticatedAndRetrieveUserToken(
+  ctx: Ctxt
+): Promise<UserToken> {
   if (ctx.req?.auth?.userId) {
     console.log(
-      'verifyAuth0HeaderToken: Session, userid:',
+      'verifyUserIsAuthenticatedAndRetrieveUserToken: Session, userid:',
       ctx.req?.auth.userId
     );
 
@@ -90,9 +94,3 @@ async function verifyAuth0HeaderToken(ctx: Ctxt): Promise<UserToken> {
 
   throw new AuthenticationError('Not authorized, no valid auth token');
 }
-
-const verifyUserIsAuthenticated = async (ctx: Ctxt) => {
-  await verifyAuth0HeaderToken(ctx);
-};
-
-export { verifyUserIsAuthenticated, verifyAuth0HeaderToken };
