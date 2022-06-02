@@ -1,8 +1,7 @@
 import {
-  verifyAndRetrieveAuth0HeaderToken,
-  verifyAuth0HeaderToken,
-  verifyUserIsAuthenticated,
-} from './utils';
+  verifyAndRetrieveAuthSubject,
+  verifyUserIsAuthenticatedAndRetrieveUserToken,
+} from '../helpers/auth';
 import { injectUserIdByAuth0id } from '../helpers/userIdByAuth0id';
 import { createNewUser } from '../helpers/registerNewUser';
 import { isLocalDev } from '../helpers/logging';
@@ -10,14 +9,14 @@ import { Ctxt } from './Context';
 
 const Query = {
   async board(_parent: any, { where }: any, ctx: Ctxt) {
-    await verifyUserIsAuthenticated(ctx);
+    await verifyUserIsAuthenticatedAndRetrieveUserToken(ctx);
 
     const { prisma } = ctx;
     return prisma.board.findUnique({ where: { id: where.id } });
   },
 
   async list(_parent: any, { where }: any, ctx: Ctxt) {
-    await verifyUserIsAuthenticated(ctx);
+    await verifyUserIsAuthenticatedAndRetrieveUserToken(ctx);
 
     const { prisma } = ctx;
     return prisma.list.findUnique({ where });
@@ -26,7 +25,7 @@ const Query = {
   me: async function (_parent: any, _args: any, ctx: Ctxt) {
     const { prisma } = ctx;
 
-    const auth0id = await verifyAndRetrieveAuth0HeaderToken(ctx);
+    const auth0id = await verifyAndRetrieveAuthSubject(ctx);
     const user = await prisma.user.findFirst({
       where: { auth0id },
     });
@@ -37,7 +36,7 @@ const Query = {
       }
       return user;
     }
-    const userToken = await verifyAuth0HeaderToken(ctx);
+    const userToken = await verifyUserIsAuthenticatedAndRetrieveUserToken(ctx);
 
     // user signed in, but not created in DB yet:
     const u = await createNewUser(userToken, (data) =>

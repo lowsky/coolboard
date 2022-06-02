@@ -1,5 +1,8 @@
 import { List } from '@prisma/client';
-import { getUserId, verifyUserIsAuthenticated } from '../utils';
+import {
+  getUserId,
+  verifyUserIsAuthenticatedAndRetrieveUserToken,
+} from '../../helpers/auth';
 import { Ctxt } from '../Context';
 
 const list = {
@@ -54,7 +57,7 @@ const list = {
     });
   },
   async deleteList(_parent: any, { where }: any, ctx: Ctxt): Promise<List> {
-    await verifyUserIsAuthenticated(ctx);
+    await verifyUserIsAuthenticatedAndRetrieveUserToken(ctx);
     const { prisma } = ctx;
     return prisma.list.delete({ where });
   },

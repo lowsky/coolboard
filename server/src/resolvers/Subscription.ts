@@ -1,10 +1,10 @@
-import { verifyUserIsAuthenticated } from './utils';
+import { verifyUserIsAuthenticatedAndRetrieveUserToken } from '../helpers/auth';
 import { Ctxt } from './Context';
 
 const Subscription = {
   board: {
     subscribe: async (_parent: any, args: any, ctx: Ctxt, info: any) => {
-      await verifyUserIsAuthenticated(ctx);
+      await verifyUserIsAuthenticatedAndRetrieveUserToken(ctx);
       const { prisma } = ctx;
       // @ts-ignore subscription support not used anymore, needs full rework
       return prisma.$subscribe.board(args);
@@ -12,7 +12,7 @@ const Subscription = {
   },
   list: {
     subscribe: async (_parent: any, args: any, ctx: Ctxt, info: any) => {
-      await verifyUserIsAuthenticated(ctx);
+      await verifyUserIsAuthenticatedAndRetrieveUserToken(ctx);
       const { prisma } = ctx;
       // @ts-ignore subscription support not used anymore, needs full rework
       return prisma.$subscribe.list(args);
@@ -20,7 +20,7 @@ const Subscription = {
   },
   card: {
     subscribe: async (_parent: any, args: any, ctx: Ctxt, info: any) => {
-      await verifyUserIsAuthenticated(ctx);
+      await verifyUserIsAuthenticatedAndRetrieveUserToken(ctx);
       const { prisma } = ctx;
       // @ts-ignore subscription support not used anymore, needs full rework
       return prisma.$subscribe.card(args);
@@ -28,7 +28,7 @@ const Subscription = {
   },
   user: {
     subscribe: async (_parent: any, args: any, ctx: Ctxt, info: any) => {
-      await verifyUserIsAuthenticated(ctx);
+      await verifyUserIsAuthenticatedAndRetrieveUserToken(ctx);
       const { prisma } = ctx;
       // @ts-ignore subscription support not used anymore, needs full rework
       return prisma.$subscribe.user(args);
