@@ -1,4 +1,4 @@
-import { verifyUserIsAuthenticatedAndRetrieveUserToken } from './utils';
+import { verifyUserIsAuthenticatedAndRetrieveUserToken } from '../helpers/auth';
 import { Ctxt } from './Context';
 
 const Subscription = {

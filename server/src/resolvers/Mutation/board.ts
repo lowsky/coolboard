@@ -2,7 +2,7 @@ import { Board, User } from '@prisma/client';
 import {
   getUserId,
   verifyUserIsAuthenticatedAndRetrieveUserToken,
-} from '../utils';
+} from '../../helpers/auth';
 import { Ctxt } from '../Context';
 
 const board = {

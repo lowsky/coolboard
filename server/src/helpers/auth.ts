@@ -7,14 +7,13 @@ import { User } from '@prisma/client';
 import {
   injectUserIdByAuth0id,
   userIdByAuth0id,
-} from '../helpers/userIdByAuth0id';
-import { createNewUser } from '../helpers/registerNewUser';
-import { isLocalDev } from '../helpers/logging';
-import { Ctxt } from './Context';
+} from './userIdByAuth0id';
+import { createNewUser } from './registerNewUser';
+import { isLocalDev } from './logging';
+import { Ctxt } from '../resolvers/Context';
 
-// only used below...
 // @ts-ignore
-export const getUserId = async (ctx: Ctxt) => {
+export const getUserId = async (ctx: Ctxt): Promise<string> => {
   const userToken = await verifyUserIsAuthenticatedAndRetrieveUserToken(ctx);
   if (userToken) {
     const auth0id = userToken.sub.split('|')[1];

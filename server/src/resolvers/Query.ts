@@ -1,7 +1,7 @@
 import {
   verifyAndRetrieveAuthSubject,
   verifyUserIsAuthenticatedAndRetrieveUserToken,
-} from './utils';
+} from '../helpers/auth';
 import { injectUserIdByAuth0id } from '../helpers/userIdByAuth0id';
 import { createNewUser } from '../helpers/registerNewUser';
 import { isLocalDev } from '../helpers/logging';

@@ -1,5 +1,5 @@
 import { Card } from '@prisma/client';
-import { getUserId } from '../utils';
+import { getUserId } from '../../helpers/auth';
 import { Ctxt } from '../Context';
 
 const card = {
