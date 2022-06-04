@@ -3905,9 +3905,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"apollo-server-core@npm:3.8.1, apollo-server-core@npm:^3.8.1":
-  version: 3.8.1
-  resolution: "apollo-server-core@npm:3.8.1"
+"apollo-server-core@npm:3.8.2, apollo-server-core@npm:^3.8.2":
+  version: 3.8.2
+  resolution: "apollo-server-core@npm:3.8.2"
   dependencies:
     "@apollo/utils.logger": ^1.0.0
     "@apollo/utils.usagereporting": ^1.0.0
@@ -3933,7 +3933,7 @@ __metadata:
     whatwg-mimetype: ^3.0.0
   peerDependencies:
     graphql: ^15.3.0 || ^16.0.0
-  checksum: ae0e1d17ddf8abed935b045861c6ec7747ee4ba15b2077f90ba4f615193b1b7ffd79f188bf6de87d42e1211755f136102bd176d459800b9e60fa8033f0fec6e7
+  checksum: 2d5894f1e5636e59c518a4c10347d0c0d48eb4e7a5fee73dfd8baa352e9fc0c341bb9a25ce92609809bb2641c600e38db56e44eeb5650260b76eabe076560fd3
   languageName: node
   linkType: hard
 
@@ -3955,9 +3955,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"apollo-server-express@npm:^3.8.1":
-  version: 3.8.1
-  resolution: "apollo-server-express@npm:3.8.1"
+"apollo-server-express@npm:^3.8.2":
+  version: 3.8.2
+  resolution: "apollo-server-express@npm:3.8.2"
   dependencies:
     "@types/accepts": ^1.3.5
     "@types/body-parser": 1.19.2
@@ -3965,7 +3965,7 @@ __metadata:
     "@types/express": 4.17.13
     "@types/express-serve-static-core": 4.17.28
     accepts: ^1.3.5
-    apollo-server-core: ^3.8.1
+    apollo-server-core: ^3.8.2
     apollo-server-types: ^3.6.0
     body-parser: ^1.19.0
     cors: ^2.8.5
@@ -3973,36 +3973,36 @@ __metadata:
   peerDependencies:
     express: ^4.17.1
     graphql: ^15.3.0 || ^16.0.0
-  checksum: c79dca1cf6204f261d47696b8c5a44a1286360f9f59b4343463b10487f474066dc2a464631958b59c14f09f2366ab27c3250e39a46a088725e21d7645616dceb
+  checksum: 966316cf901dd3d06ae597ffefe3f485df84414fd905211eeccf1e83ae4ae5e5174dede5225bf5ae0dcb45f6b20464d4fe9adc68521aaddc520e85af00ba1b44
   languageName: node
   linkType: hard
 
-"apollo-server-lambda@npm:3.8.1":
-  version: 3.8.1
-  resolution: "apollo-server-lambda@npm:3.8.1"
+"apollo-server-lambda@npm:3.8.2":
+  version: 3.8.2
+  resolution: "apollo-server-lambda@npm:3.8.2"
   dependencies:
     "@types/aws-lambda": ^8.10.76
     "@vendia/serverless-express": ^4.3.9
-    apollo-server-core: ^3.8.1
-    apollo-server-express: ^3.8.1
+    apollo-server-core: ^3.8.2
+    apollo-server-express: ^3.8.2
     express: ^4.17.1
   peerDependencies:
     graphql: ^15.3.0 || ^16.0.0
-  checksum: 4163c429a740848748d5833b872d9f4688be54fe75bca06081adda52f3cde40104ff6aff039dde5bcc28dbea4672d202bee3259590271aa8d32aa34b352b8d09
+  checksum: a6f9d73f4c96c090cf273f0bb2c1a43ca73e90576aa67f5f49022cda7f0d9d12d321239e0bee0697420e6a71d3397ba113eab68300c7e5fc4789714012e0a2de
   languageName: node
   linkType: hard
 
-"apollo-server-micro@npm:3.8.1":
-  version: 3.8.1
-  resolution: "apollo-server-micro@npm:3.8.1"
+"apollo-server-micro@npm:3.8.2":
+  version: 3.8.2
+  resolution: "apollo-server-micro@npm:3.8.2"
   dependencies:
     "@hapi/accept": ^5.0.2
-    apollo-server-core: ^3.8.1
+    apollo-server-core: ^3.8.2
     apollo-server-types: ^3.6.0
     type-is: ^1.6.18
   peerDependencies:
     micro: ^9.3.4
-  checksum: 328046d1a64b986450c667756ddcdd0631427a4e640f34547f481cd4f1bcf372f0bbd6b3e0741a37035d2aebad39a9dfd01bb04e84e6b8a83fb652dfe8a3f9c3
+  checksum: 05f582c3b5053c2cd536940081c2942f469f4f53ffa49caa0c90e67efd79c0bed81672b1757336c244bd72d1b40f23f25c4e94c020f2686c0aab912ac6066466
   languageName: node
   linkType: hard
 
@@ -4952,10 +4952,10 @@ __metadata:
     "@types/react-dom": 18.0.5
     "@types/zen-observable": 0.8.3
     "@typescript-eslint/parser": 5.27.0
-    apollo-server-core: 3.8.1
+    apollo-server-core: 3.8.2
     apollo-server-errors: 3.3.1
-    apollo-server-lambda: 3.8.1
-    apollo-server-micro: 3.8.1
+    apollo-server-lambda: 3.8.2
+    apollo-server-micro: 3.8.2
     bcryptjs: 2.4.3
     bufferutil: 4.0.6
     emitter-listener: 1.1.2
