@@ -11,7 +11,7 @@
     "@chakra-ui/icons": "2.0.1",
     "@chakra-ui/react": "2.1.2",
     "@clerk/clerk-sdk-node": "3.6.1",
-    "@clerk/nextjs": "3.6.5",
+    "@clerk/nextjs": "3.6.6",
     "@emotion/react": "11.9.0",
     "@emotion/styled": "11.8.1",
     "@instana/aws-lambda": "2.4.0",
