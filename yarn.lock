@@ -1659,6 +1659,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@clerk/backend-core@npm:^1.9.1":
+  version: 1.9.1
+  resolution: "@clerk/backend-core@npm:1.9.1"
+  dependencies:
+    "@clerk/types": ^2.15.0
+    query-string: ^7.0.1
+    snakecase-keys: ^5.1.2
+    tslib: ^2.3.1
+  checksum: 4f0af12ac418a64feb0e5cba9a9b090b3df212a5f1624f67ed6e377bdfb504e04b9d669acf859c0b68551ddfa32226041348790a036bd4404e1711fac9ec0d84
+  languageName: node
+  linkType: hard
+
 "@clerk/clerk-react@npm:^3.2.18":
   version: 3.2.18
   resolution: "@clerk/clerk-react@npm:3.2.18"
@@ -1671,7 +1683,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/clerk-sdk-node@npm:3.6.0, @clerk/clerk-sdk-node@npm:^3.6.0":
+"@clerk/clerk-sdk-node@npm:3.6.1":
+  version: 3.6.1
+  resolution: "@clerk/clerk-sdk-node@npm:3.6.1"
+  dependencies:
+    "@clerk/backend-core": ^1.9.1
+    "@clerk/types": ^2.15.0
+    "@peculiar/webcrypto": ^1.2.3
+    camelcase-keys: ^6.2.2
+    cookies: ^0.8.0
+    deepmerge: ^4.2.2
+    got: ^11.8.2
+    jsonwebtoken: ^8.5.1
+    jwks-rsa: ^2.0.4
+    snakecase-keys: ^3.2.1
+    tslib: ^2.3.1
+  checksum: 519b63dea742bbc520a52e1a765a8c07870f03c092ea465f1df38a4f4f5498ba9ebb65b7f7ff418b94fc16e1c3f1f106a0ff7408e1ff8d64dc675153ddcb6649
+  languageName: node
+  linkType: hard
+
+"@clerk/clerk-sdk-node@npm:^3.6.0":
   version: 3.6.0
   resolution: "@clerk/clerk-sdk-node@npm:3.6.0"
   dependencies:
@@ -1720,6 +1751,13 @@ __metadata:
   version: 2.14.0
   resolution: "@clerk/types@npm:2.14.0"
   checksum: d3cce31cc2439f164c042c193bd83848a241943601529fc8b8816e919984ab29846b1a6cbaa158342a73dcdd4557f902d4fb50bb1a7ba994f5eaf8db794f2670
+  languageName: node
+  linkType: hard
+
+"@clerk/types@npm:^2.15.0":
+  version: 2.15.0
+  resolution: "@clerk/types@npm:2.15.0"
+  checksum: cad39538a021e503538fced5250d1f8567052493a91cf4c0ad643114a543cde3d8096bd5b15c27a22954ec1ae29bc2a3d8c22ca3ba2d36e12382611bce3fc1ca
   languageName: node
   linkType: hard
 
@@ -4928,7 +4966,7 @@ __metadata:
     "@apollo/client": 3.6.6
     "@chakra-ui/icons": 2.0.1
     "@chakra-ui/react": 2.1.2
-    "@clerk/clerk-sdk-node": 3.6.0
+    "@clerk/clerk-sdk-node": 3.6.1
     "@clerk/nextjs": 3.6.5
     "@emotion/react": 11.9.0
     "@emotion/styled": 11.8.1
