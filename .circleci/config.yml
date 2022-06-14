@@ -109,20 +109,21 @@ jobs:
       - run:
           name: run cypress
           command: |
-            ##- echo PR: $CIRCLE_PR_NUMBER
-            ##- NETLIFY_URL=https://deploy-preview-${CIRCLE_PR_NUMBER}--coolboard.netlify.app
             export CIRCLE_PR_NUMBER=<< pipeline.parameters.gh-pr >>
             export CYPRESS_baseUrl=<< pipeline.parameters.test-url >>
             export EXPECTED_GIT_SHA=<< pipeline.parameters.deployed-sha >>
             export VERCEL_URL=<< pipeline.parameters.VERCEL_URL >>
 
-            ## working with vercel aliases did not work
-            ## export CYPRESS_baseUrl=$CIRCLE_BRANCH.coolboard.fun
-
             cd smoketest
             mkdir -p cypress/results
 
-            (GIT_SHA1=${EXPECTED_GIT_SHA:-$CIRCLE_SHA1} npm run wait:valid-version && CYPRESS_branch=${CIRCLE_BRANCH} yarn cypress run --record --key $CYPRESS_API_KEY --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true) || true
+            GIT_SHA1=${EXPECTED_GIT_SHA:-$CIRCLE_SHA1} npm run wait:valid-version ; CHECK_VERSION=$?
+            echo CHECK VERSION result: $CHECK_VERSION
+            if [  "$CHECK_VERSION" -eq "255"  ] ;  then
+              echo "Version does not match with $EXPECTED_GIT_SHA"
+            else
+              CYPRESS_branch=${CIRCLE_BRANCH} yarn cypress run --record --key $CYPRESS_API_KEY --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
+            fi
       - store_test_results:
           path: smoketest/cypress/results
       - store_artifacts:

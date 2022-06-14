@@ -9,13 +9,18 @@ const EXPECTED_GIT_SHA1 = process.env.GIT_SHA1 || '';
 // fast-fail
 if (!EXPECTED_GIT_SHA1) {
   console.error(
-    'git commit check failed: missing ENV variable: GIT_SHA1 !'
+    'git commit check failed: missing, or empty  ENV variable: GIT_SHA1 (' + EXPECTED_GIT_SHA1 + ') !'
   );
   process.exit(1);
 }
 
 console.log(
-  'Checking if deployed site is based on this GIT_SHA1:',
+  'Checking if deployed site on this url: ',
+  url,
+);
+
+console.log(
+  '...is based on this GIT_SHA1: ',
   EXPECTED_GIT_SHA1
 );
 
