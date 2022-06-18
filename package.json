@@ -57,7 +57,7 @@
     "trigger-e2e-smoke": "sh trigger-circleci-smoke.sh",
     "smoketest": "cd smoketest; yarn --immutable ; yarn cy open -C cypress-local.json",
     "build": "yarn run metainfo && next build",
-    "prisma:generate": "PRISMA_CLIENT_ENGINE_TYPE='dataproxy' prisma generate",
+    "prisma:generate": "prisma generate --data-proxy",
     "prisma:migrate": "DATABASE_URL=\"$MIGRATE_DATABASE_URL\" prisma migrate deploy",
     "metainfo": "sh storeMetaInfo.sh",
     "vercel-build": "COMMIT_REF=$VERCEL_GITHUB_COMMIT_SHA yarn run build ; yarn lint; yarn trigger-e2e-smoke",
