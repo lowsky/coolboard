@@ -5056,7 +5056,7 @@ __metadata:
     react-dom: 18.1.0
     react-icons: 4.4.0
     react-is: 18.1.0
-    react-timeago: 6.2.1
+    react-timeago: 7.1.0
     typescript: 4.7.3
     utf-8-validate: 5.0.9
   languageName: unknown
@@ -9287,12 +9287,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-timeago@npm:6.2.1":
-  version: 6.2.1
-  resolution: "react-timeago@npm:6.2.1"
+"react-timeago@npm:7.1.0":
+  version: 7.1.0
+  resolution: "react-timeago@npm:7.1.0"
   peerDependencies:
-    react: ^16.0.0 || ^17.0.0
-  checksum: 55c2c039cec58b40704d224b30ed0057291b5de089a15245915ed72d9d89237574d5e9db7a05529e95f5e4fa6788da2f12fa20ff589b637296dc285fccb93c09
+    react: ^16.0.0 || ^17.0.0 || ^18.0.0
+  checksum: cfc3959701f657f7d2766e8ef1a8c2f8b87fdb6e6aa60812dd9d6b68d096740f80976e0a69e08c1bd07f5514f6c82ed01905afea3bb08941dbb9cc49136810d9
   languageName: node
   linkType: hard
 
