@@ -31,7 +31,7 @@
     "bufferutil": "4.0.6",
     "emitter-listener": "1.1.2",
     "eslint-config-prettier": "8.5.0",
-    "eslint-plugin-prettier": "4.1.0",
+    "eslint-plugin-prettier": "4.2.1",
     "framer-motion": "6.3.16",
     "graphql": "16.5.0",
     "graphql-tag": "2.12.6",
