@@ -3147,6 +3147,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@opentelemetry/api-metrics@npm:0.30.0":
+  version: 0.30.0
+  resolution: "@opentelemetry/api-metrics@npm:0.30.0"
+  dependencies:
+    "@opentelemetry/api": ^1.0.0
+  checksum: 1d98d38967c57d50e5f9eb265964c379194b638b4a020454168bb14b6d72d1e9982e2b6b9a960c9103878b98c3b06a47907c6c773784ae17b1f0569e39c99275
+  languageName: node
+  linkType: hard
+
 "@opentelemetry/api@npm:1.0.4":
   version: 1.0.4
   resolution: "@opentelemetry/api@npm:1.0.4"
@@ -3193,14 +3202,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@opentelemetry/core@npm:1.3.1":
-  version: 1.3.1
-  resolution: "@opentelemetry/core@npm:1.3.1"
+"@opentelemetry/core@npm:1.4.0":
+  version: 1.4.0
+  resolution: "@opentelemetry/core@npm:1.4.0"
   dependencies:
-    "@opentelemetry/semantic-conventions": 1.3.1
+    "@opentelemetry/semantic-conventions": 1.4.0
   peerDependencies:
     "@opentelemetry/api": ">=1.0.0 <1.2.0"
-  checksum: a59d0e8b7af2054d4b741a076abb992fb9bb241b1e7e2563a7d03b8a810155eb5c5c4eab28ebae39ce67d9ae66ae2a8d5d038de3b7ddc6301ac636840ceb876c
+  checksum: f4973e35573ce298833cbe6cf051874073fe81372f7a14c35a9c5cd20706fb821015bdafdbf1ba132544d4b0346ad9b3a070d689372c3a3e9e7d29a5dd2fead3
   languageName: node
   linkType: hard
 
@@ -3241,21 +3250,35 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@opentelemetry/instrumentation-http@npm:0.29.2":
-  version: 0.29.2
-  resolution: "@opentelemetry/instrumentation-http@npm:0.29.2"
+"@opentelemetry/instrumentation-http@npm:0.30.0":
+  version: 0.30.0
+  resolution: "@opentelemetry/instrumentation-http@npm:0.30.0"
   dependencies:
-    "@opentelemetry/core": 1.3.1
-    "@opentelemetry/instrumentation": 0.29.2
-    "@opentelemetry/semantic-conventions": 1.3.1
+    "@opentelemetry/core": 1.4.0
+    "@opentelemetry/instrumentation": 0.30.0
+    "@opentelemetry/semantic-conventions": 1.4.0
     semver: ^7.3.5
   peerDependencies:
     "@opentelemetry/api": ^1.0.0
-  checksum: 2afe1ad2abbcf3daa94429ce4211bb80ebed98ed483a82e492572271f819acf13cc4880989b34a9cb3c87ab5dc51a1d43a4c07a2ba54918584b46c85ef683523
+  checksum: 9b521d48308ee2218d9de89235c24806f451d8cbda1dc581fd826636cd35e0c2b68a42d9df99c9b44a0524369fc9e8742c30803fa1b0b83e2bcb5e6aa3a74ec3
   languageName: node
   linkType: hard
 
-"@opentelemetry/instrumentation@npm:0.29.2, @opentelemetry/instrumentation@npm:^0.29.2":
+"@opentelemetry/instrumentation@npm:0.30.0":
+  version: 0.30.0
+  resolution: "@opentelemetry/instrumentation@npm:0.30.0"
+  dependencies:
+    "@opentelemetry/api-metrics": 0.30.0
+    require-in-the-middle: ^5.0.3
+    semver: ^7.3.2
+    shimmer: ^1.2.1
+  peerDependencies:
+    "@opentelemetry/api": ^1.0.0
+  checksum: f1f7fa5e2fdf226cda201e6a0fcc5a630e06e43fe33bf4a5ab82300eaff54bd26c30c09c2ebacfaf363bca14104d5f71f26b99c766b3c664b9affebcf236afce
+  languageName: node
+  linkType: hard
+
+"@opentelemetry/instrumentation@npm:^0.29.2":
   version: 0.29.2
   resolution: "@opentelemetry/instrumentation@npm:0.29.2"
   dependencies:
@@ -3340,10 +3363,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@opentelemetry/semantic-conventions@npm:1.3.1":
-  version: 1.3.1
-  resolution: "@opentelemetry/semantic-conventions@npm:1.3.1"
-  checksum: 83fa3b8a8198f6a5265a4191a89cfcce042240b92e034cf29631b0fe749993f4f74f4d21d89b10f6b05984246424adf8d037f8be507fcf0adf60933ab7143f07
+"@opentelemetry/semantic-conventions@npm:1.4.0":
+  version: 1.4.0
+  resolution: "@opentelemetry/semantic-conventions@npm:1.4.0"
+  checksum: 9e8ac93f048dd62d1ba93f38bf119720aa4da8d6b00f75fddda56c8c87c944d4d81d18438739c167c0133b25dabaa6ac7a3f4245f8ab4994dc25e7605d1faa0e
   languageName: node
   linkType: hard
 
@@ -5212,10 +5235,10 @@ __metadata:
     "@instana/opentelemetry-exporter": 2.6.0
     "@netlify/functions": 1.0.0
     "@opentelemetry/api": 1.1.0
-    "@opentelemetry/core": 1.3.1
+    "@opentelemetry/core": 1.4.0
     "@opentelemetry/instrumentation-express": 0.30.0
     "@opentelemetry/instrumentation-graphql": 0.29.0
-    "@opentelemetry/instrumentation-http": 0.29.2
+    "@opentelemetry/instrumentation-http": 0.30.0
     "@opentelemetry/node": 0.24.0
     "@prisma/client": 4.0.0
     "@types/react": 18.0.15
