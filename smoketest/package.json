@@ -16,7 +16,6 @@
     "wait:valid-version": "yarn --immutable ; echo install done with exit code $? ; node wait-for-deployment.mjs"
   },
   "devDependencies": {
-    "eslint-plugin-cypress": "2.12.1",
     "got": "12.2.0"
   }
 }
