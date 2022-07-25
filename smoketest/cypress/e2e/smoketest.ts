@@ -4,15 +4,21 @@
 import Loggable = Cypress.Loggable;
 import Timeoutable = Cypress.Timeoutable;
 
+// @ts-ignore
+let isMainBranch = 'main' === process.env['CYPRESS_branch'];
+
 // needs prefix when set per env: CYPRESS_LOGIN
-const login = Cypress.env('CYPRESS_LOGIN') ?? Cypress.env('LOGIN');
+const login = isMainBranch
+  ? Cypress.env('CYPRESS_MAIN_LOGIN')
+  : Cypress.env('CYPRESS_LOGIN') ?? Cypress.env('LOGIN');
 
 // needs prefix when set per env: CYPRESS_USER_PASSWORD
-const password =
-  Cypress.env('CYPRESS_PASSWORD') ??
-  Cypress.env('PASSWORD') ??
-  Cypress.env('CYPRESS_USER_PASSWORD') ??
-  Cypress.env('USER_PASSWORD');
+const password = isMainBranch
+  ? Cypress.env('CYPRESS_MAIN_PASSWORD')
+  : Cypress.env('CYPRESS_PASSWORD') ??
+    Cypress.env('PASSWORD') ??
+    Cypress.env('CYPRESS_USER_PASSWORD') ??
+    Cypress.env('USER_PASSWORD');
 
 // will be set by cypress.json, or via env: CYPRESS_baseUrl
 const baseUrl = Cypress.config('baseUrl') ?? 'missing env CYPRESS_baseUrl';
@@ -139,7 +145,9 @@ describe('Test coolboard', () => {
     cy.get('#name').type(newBoardName);
     cy.dataCy('create-board-submit').click();
     cy.log('wait until dialog closes');
-    cy.get('.chakra-modal__content-container', WaitVeryLong).should('not.exist');
+    cy.get('.chakra-modal__content-container', WaitVeryLong).should(
+      'not.exist'
+    );
 
     getBoardsList_FirstEntry(newBoardName);
   });
@@ -152,7 +160,7 @@ describe('Test coolboard', () => {
     cy.url(LogAndWaitLong).should('include', 'board/');
 
     //fully loaded?
-    cy.get('.chakra-heading', LogAndWaitLong).contains(newBoardName)
+    cy.get('.chakra-heading', LogAndWaitLong).contains(newBoardName);
 
     // clear all lists:
     cy.dataCy('board-header-menu').first().click();
@@ -170,10 +178,18 @@ describe('Test coolboard', () => {
 
     // edit card
     cy.log('edit card');
-    cy.get('.chakra-modal__content-container').get('#title').type('name-changed');
-    cy.get('.chakra-modal__content-container').find('.chakra-button').contains('Save').click().wait(1500);
+    cy.get('.chakra-modal__content-container')
+      .get('#title')
+      .type('name-changed');
+    cy.get('.chakra-modal__content-container')
+      .find('.chakra-button')
+      .contains('Save')
+      .click()
+      .wait(1500);
     cy.log('wait until dialog closes');
-    cy.get('.chakra-modal__content-container', WaitVeryLong).should('not.exist');
+    cy.get('.chakra-modal__content-container', WaitVeryLong).should(
+      'not.exist'
+    );
 
     cy.log('add a new list');
     add_a_list().click();
@@ -200,9 +216,11 @@ describe('Test coolboard', () => {
     gotoBoards();
 
     // open first board named XXX
-    getBoardsList_FirstEntry(newBoardName).parent().within(()=> {
-      cy.get('[data-cy="delete-board"]').click();
-    })
+    getBoardsList_FirstEntry(newBoardName)
+      .parent()
+      .within(() => {
+        cy.get('[data-cy="delete-board"]').click();
+      });
     getBoardsList().contains(newBoardName, WaitVeryLong).should('not.exist');
   });
 
