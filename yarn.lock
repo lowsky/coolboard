@@ -1712,15 +1712,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/backend-core@npm:^1.13.0":
-  version: 1.13.0
-  resolution: "@clerk/backend-core@npm:1.13.0"
+"@clerk/backend-core@npm:^1.14.0":
+  version: 1.14.0
+  resolution: "@clerk/backend-core@npm:1.14.0"
   dependencies:
     "@clerk/types": ^2.20.0
     query-string: ^7.0.1
     snakecase-keys: ^5.1.2
     tslib: ^2.3.1
-  checksum: 3e9eaa1004057154f6ea0c516ae0c67980a13d0b1faec05c5416ebce98438e6c7f2860c9f5bbc260e554fc23b20d0638285dfef38d90a5081f812e43456c3fe3
+  checksum: ca84e1a12bee759d59b2d3c414576cdd293b2d89d9458fa8a944c9ec4ed5030bbbcb190b86cc0783307728177137515a438ef8057c7bc539224457027bf79189
   languageName: node
   linkType: hard
 
@@ -1749,22 +1749,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/clerk-sdk-node@npm:3.8.6":
-  version: 3.8.6
-  resolution: "@clerk/clerk-sdk-node@npm:3.8.6"
+"@clerk/clerk-sdk-node@npm:3.9.0":
+  version: 3.9.0
+  resolution: "@clerk/clerk-sdk-node@npm:3.9.0"
   dependencies:
-    "@clerk/backend-core": ^1.13.0
+    "@clerk/backend-core": ^1.14.0
     "@clerk/types": ^2.20.0
     "@peculiar/webcrypto": ^1.2.3
     camelcase-keys: ^6.2.2
     cookies: ^0.8.0
     deepmerge: ^4.2.2
-    got: ^11.8.2
     jsonwebtoken: ^8.5.1
     jwks-rsa: ^2.0.4
+    node-fetch: ^2.6.0
     snakecase-keys: ^3.2.1
     tslib: ^2.3.1
-  checksum: 76b4726fc0bcdf6aab5eb430b36214b5410122f8e2a2601baf92083830877ac08bd2dd2adcad704aeb6bd9af378fcd4c1d8980e2d3497677f32298c001f6c96b
+  checksum: 26827c91c4a55d33f6f3254fba6a746d36ef7a514cb98b802bc0d548ec0238ca95b7ce83aa6755cd70858c3964c1b8ae5242327cead718968895339a70c5bcf0
   languageName: node
   linkType: hard
 
@@ -5291,7 +5291,7 @@ __metadata:
     "@apollo/client": 3.6.9
     "@chakra-ui/icons": 2.0.4
     "@chakra-ui/react": 2.2.4
-    "@clerk/clerk-sdk-node": 3.8.6
+    "@clerk/clerk-sdk-node": 3.9.0
     "@clerk/nextjs": 3.6.7
     "@emotion/react": 11.9.3
     "@emotion/styled": 11.9.3
@@ -8417,7 +8417,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-fetch@npm:2.6.7, node-fetch@npm:^2.6.1, node-fetch@npm:^2.6.7":
+"node-fetch@npm:2.6.7, node-fetch@npm:^2.6.0, node-fetch@npm:^2.6.1, node-fetch@npm:^2.6.7":
   version: 2.6.7
   resolution: "node-fetch@npm:2.6.7"
   dependencies:
