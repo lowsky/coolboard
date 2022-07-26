@@ -4,52 +4,57 @@
 import Loggable = Cypress.Loggable;
 import Timeoutable = Cypress.Timeoutable;
 
+const Git_Branch = Cypress.env('branch');
+
+// Cypress.env() will show any env, which had been set with cypress_ prefix
+// https://docs.cypress.io/guides/guides/environment-variables#Option-3-CYPRESS_
 // @ts-ignore
-let isMainBranch = 'main' === process.env['CYPRESS_branch'];
+const isMainBranch = 'main' === Git_Branch;
 
 // needs prefix when set per env: CYPRESS_LOGIN
 const login = isMainBranch
-  ? Cypress.env('CYPRESS_MAIN_LOGIN')
-  : Cypress.env('CYPRESS_LOGIN') ?? Cypress.env('LOGIN');
+  ? Cypress.env('MAIN_LOGIN')
+  : Cypress.env('LOGIN') ?? Cypress.env('LOGIN');
 
 // needs prefix when set per env: CYPRESS_USER_PASSWORD
 const password = isMainBranch
-  ? Cypress.env('CYPRESS_MAIN_PASSWORD')
-  : Cypress.env('CYPRESS_PASSWORD') ??
-    Cypress.env('PASSWORD') ??
-    Cypress.env('CYPRESS_USER_PASSWORD') ??
-    Cypress.env('USER_PASSWORD');
+  ? Cypress.env('MAIN_PASSWORD')
+  : Cypress.env('PASSWORD') ?? Cypress.env('USER_PASSWORD');
 
 // will be set by cypress.json, or via env: CYPRESS_baseUrl
-const baseUrl = Cypress.config('baseUrl') ?? 'missing env CYPRESS_baseUrl';
+const baseUrl = isMainBranch
+  ? 'https://coolboard.fun'
+  : Cypress.config('baseUrl') ?? 'missing env CYPRESS_baseUrl';
 // will be set by cypress.json, or via env: CYPRESS_branch
-const branch = Cypress.env('branch') || 'missing-CYPRESS_branch-env';
+const branch = Git_Branch || 'missing-CYPRESS_branch-env';
 
 const newBoardName = branch;
 
 before(() => {
   Cypress.Cookies.debug(true); // now Cypress will log when it alters cookies
 
-  assert(
-    baseUrl.endsWith('localhost:8888') ||
-      baseUrl.endsWith('localhost:3000') ||
-      baseUrl.endsWith('coolboard.netlify.app') ||
-      baseUrl.startsWith('https://localhost') ||
-      baseUrl.startsWith(
-        'https://hands-on-application-building-with-graph-ql-and-reac'
-      ) ||
-      (baseUrl.startsWith('https://coolboard-') &&
-        baseUrl.endsWith('.vercel.app')) ||
-      baseUrl.endsWith('coolboard.fun'),
-    `Check: Domain should be one of: ' +
+  cy.log('Testing project git branch is main ?' + isMainBranch);
+  cy.log('Testing project git branch: ' + branch);
+  cy.log(`Testing site on this base url: ${baseUrl}`).then(() => {
+    assert(
+      baseUrl.endsWith('localhost:8888') ||
+        baseUrl.endsWith('localhost:3000') ||
+        baseUrl.endsWith('coolboard.netlify.app') ||
+        baseUrl.startsWith('https://localhost') ||
+        baseUrl.startsWith(
+          'https://hands-on-application-building-with-graph-ql-and-reac'
+        ) ||
+        (baseUrl.startsWith('https://coolboard-') &&
+          baseUrl.endsWith('.vercel.app')) ||
+        baseUrl.endsWith('coolboard.fun'),
+      `Check: Domain should be one of: ' +
      localhost:3000 |localhost:8888 | coolboard.fun | coolboard.netlify.app , but not:
       ${baseUrl}`
-  );
-  cy.log(`Testing site on this base url: ${baseUrl}`);
-  cy.log('Testing project git branch: ' + branch);
+    );
 
-  assert(branch, 'CYPRESS_branch env var was not set');
-  assert(password, 'CYPRESS_USER_PASSWORD env var was not set');
+    assert(branch, 'branch cypress env var was not set');
+    assert(password, 'USER_PASSWORD cypress env var was not set');
+  });
   cy.clearCookies();
   cy.clearLocalStorage();
 });

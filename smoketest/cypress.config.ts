@@ -1,7 +1,6 @@
 import { defineConfig } from 'cypress';
 
 export default defineConfig({
-  experimentalStudio: true,
   chromeWebSecurity: true,
   projectId: '8p1ybc',
 
