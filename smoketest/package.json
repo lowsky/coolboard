@@ -16,6 +16,6 @@
     "wait:valid-version": "yarn --immutable ; echo install done with exit code $? ; node wait-for-deployment.mjs"
   },
   "devDependencies": {
-    "got": "12.2.0"
+    "got": "12.3.0"
   }
 }
