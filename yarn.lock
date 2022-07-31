@@ -5457,7 +5457,7 @@ __metadata:
     graphql: 16.5.0
     graphql-tag: 2.12.6
     inter-ui: 3.19.3
-    micro: 9.4.0
+    micro: 9.4.1
     next: 12.2.3
     prettier: 2.7.1
     prisma: 4.1.1
@@ -8124,16 +8124,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"micro@npm:9.4.0":
-  version: 9.4.0
-  resolution: "micro@npm:9.4.0"
+"micro@npm:9.4.1":
+  version: 9.4.1
+  resolution: "micro@npm:9.4.1"
   dependencies:
     arg: 4.1.0
     content-type: 1.0.4
     raw-body: 2.4.1
   bin:
     micro: bin/micro.js
-  checksum: b711d02ecb441a3e2c28b2e11bca654ab491125732952a6b8ea325209f9d1ba9fc92291ee8f3afe49e5dcc6d89d4aad0c83b1502fc9cd641f1e055eb51f777e2
+  checksum: 92eae8a68bd1883862d1bdb3a1d0340106a6ddb357dcbe7aaa095dd6947497ff1dd240db86195ab9aab8843f9ac3974accc76d767e9e58f95744ca558dd2d672
   languageName: node
   linkType: hard
 
