@@ -474,7 +474,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "coolboard-smoketests@workspace:."
   dependencies:
-    cypress: 10.3.1
+    cypress: 10.4.0
     got: 12.3.0
     typescript: 4.7.4
   languageName: unknown
@@ -498,9 +498,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cypress@npm:10.3.1":
-  version: 10.3.1
-  resolution: "cypress@npm:10.3.1"
+"cypress@npm:10.4.0":
+  version: 10.4.0
+  resolution: "cypress@npm:10.4.0"
   dependencies:
     "@cypress/request": ^2.88.10
     "@cypress/xvfb": ^1.2.4
@@ -546,7 +546,7 @@ __metadata:
     yauzl: ^2.10.0
   bin:
     cypress: bin/cypress
-  checksum: 7c76157195ec9409b9665aa9f7698ffd221c74c17f5026769fa20f90a60869cc8274282fa5b9b65e495429839f7a0ba05d69cf12a8af7a318ebcd704f96156c2
+  checksum: 3f7385e076ac936683d1d1d104a7183f2e61ad0f4c901aff07146ae2e10197e8314019dcdfb6c188312fbf1be05484291f1cf8d49c4c37cf6485103c4ac5303e
   languageName: node
   linkType: hard
 
