@@ -1724,15 +1724,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/backend-core@npm:^1.14.0":
-  version: 1.14.0
-  resolution: "@clerk/backend-core@npm:1.14.0"
+"@clerk/backend-core@npm:^1.14.2":
+  version: 1.14.2
+  resolution: "@clerk/backend-core@npm:1.14.2"
   dependencies:
-    "@clerk/types": ^2.20.0
+    "@clerk/types": ^2.21.0
     query-string: ^7.0.1
     snakecase-keys: ^5.1.2
     tslib: ^2.3.1
-  checksum: ca84e1a12bee759d59b2d3c414576cdd293b2d89d9458fa8a944c9ec4ed5030bbbcb190b86cc0783307728177137515a438ef8057c7bc539224457027bf79189
+  checksum: 856e5c7c4989203ac84c84e221d1d82f856bca7dff3fbe3f8f135ab7500157ccdd35fbfcdc431c5c14e4731b5ea3cd14f68654c8cd625d17c77a774257d59181
   languageName: node
   linkType: hard
 
@@ -1761,12 +1761,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/clerk-sdk-node@npm:3.9.0":
-  version: 3.9.0
-  resolution: "@clerk/clerk-sdk-node@npm:3.9.0"
+"@clerk/clerk-sdk-node@npm:3.9.2":
+  version: 3.9.2
+  resolution: "@clerk/clerk-sdk-node@npm:3.9.2"
   dependencies:
-    "@clerk/backend-core": ^1.14.0
-    "@clerk/types": ^2.20.0
+    "@clerk/backend-core": ^1.14.2
+    "@clerk/types": ^2.21.0
     "@peculiar/webcrypto": ^1.2.3
     camelcase-keys: ^6.2.2
     cookies: ^0.8.0
@@ -1776,7 +1776,7 @@ __metadata:
     node-fetch: ^2.6.0
     snakecase-keys: ^3.2.1
     tslib: ^2.3.1
-  checksum: 26827c91c4a55d33f6f3254fba6a746d36ef7a514cb98b802bc0d548ec0238ca95b7ce83aa6755cd70858c3964c1b8ae5242327cead718968895339a70c5bcf0
+  checksum: c7b4728f3a6d59514d80c0264e41cb163789e9ad69b74e768fdd4448aa2362a9da38165d8fd361636d6e703db43d8df9247859472f1fa2a67db13194d548c528
   languageName: node
   linkType: hard
 
@@ -1832,10 +1832,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/types@npm:^2.20.0":
-  version: 2.20.0
-  resolution: "@clerk/types@npm:2.20.0"
-  checksum: cd7fee7769d2e78583ef95981c1c18eba0567c262c02376e0b399cba1819fb3d4209e0ec1843f7e6d8aa1ca021e2d3cd99a791e6f7eeed15af5b21a69c422a1f
+"@clerk/types@npm:^2.21.0":
+  version: 2.21.0
+  resolution: "@clerk/types@npm:2.21.0"
+  checksum: 3fab948f8a06a070e160035e83c6c1e561f111680f4dfe33c9bcee140fcbee0a049e6577c199cb38318617b9b24cf623cb6b042fe34cc3688b34303efa63bd67
   languageName: node
   linkType: hard
 
@@ -5410,7 +5410,7 @@ __metadata:
     "@apollo/client": 3.6.9
     "@chakra-ui/icons": 2.0.6
     "@chakra-ui/react": 2.2.6
-    "@clerk/clerk-sdk-node": 3.9.0
+    "@clerk/clerk-sdk-node": 3.9.2
     "@clerk/nextjs": 3.6.7
     "@emotion/react": 11.10.0
     "@emotion/styled": 11.10.0
