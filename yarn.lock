@@ -2044,9 +2044,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-codegen/cli@npm:2.11.4":
-  version: 2.11.4
-  resolution: "@graphql-codegen/cli@npm:2.11.4"
+"@graphql-codegen/cli@npm:2.11.5":
+  version: 2.11.5
+  resolution: "@graphql-codegen/cli@npm:2.11.5"
   dependencies:
     "@graphql-codegen/core": 2.6.1
     "@graphql-codegen/plugin-helpers": ^2.6.2
@@ -2086,7 +2086,7 @@ __metadata:
     graphql-code-generator: cjs/bin.js
     graphql-codegen: cjs/bin.js
     graphql-codegen-esm: esm/bin.js
-  checksum: 25a293be7c2b144d2b6a9b5526d42186262b46d6a4a1e97f4d5bb775fc7c257c5aae469ece7348f2984d366428ceb1d472946c7fec1afa1919befff40689abeb
+  checksum: 1fd26390e92caed52249f78f87132fa86c3723c36d47f08657d19ea754eeebd85196e8549cf301f15aefbe4cd532698329803f5c1071e4f8306092b871123b92
   languageName: node
   linkType: hard
 
@@ -5362,7 +5362,7 @@ __metadata:
     "@clerk/nextjs": 3.6.7
     "@emotion/react": 11.10.0
     "@emotion/styled": 11.10.0
-    "@graphql-codegen/cli": 2.11.4
+    "@graphql-codegen/cli": 2.11.5
     "@graphql-codegen/introspection": 2.2.1
     "@graphql-codegen/typescript": 2.7.3
     "@graphql-codegen/typescript-graphql-files-modules": 2.2.1
