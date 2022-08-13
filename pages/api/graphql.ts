@@ -79,10 +79,7 @@ const handler = instana.wrap((event, context, callback) => {
 let server: ApolloServer | null = null;
 
 export default withAuth(async (req, res) => {
-  if (req.session) {
-    isLocalDev && console.log('req.session', req.session);
-    return handleGraphqlRequest(req, res);
-  } else {
+  {
     if (req.auth) {
       const { userId, sessionId, getToken } = req.auth;
       isLocalDev && console.log('req.auth', req.auth);
@@ -90,7 +87,7 @@ export default withAuth(async (req, res) => {
         console.log('req.auth', userId, sessionId, await getToken?.());
       return handleGraphqlRequest(req, res);
     } else {
-      isLocalDev && console.log('no request.auth or req.session');
+      isLocalDev && console.log('no request.auth');
       res.status(401).json({ id: null });
     }
   }
