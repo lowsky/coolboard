@@ -3077,12 +3077,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@netlify/functions@npm:1.1.0":
-  version: 1.1.0
-  resolution: "@netlify/functions@npm:1.1.0"
+"@netlify/functions@npm:1.2.0":
+  version: 1.2.0
+  resolution: "@netlify/functions@npm:1.2.0"
   dependencies:
     is-promise: ^4.0.0
-  checksum: bf8db69ef299ad74db51d13abd53954ae6e69a4c8ca610c9a98c7e3c3ba1a2783c69df4350c0b9a0fb8d5fa3e7f517e2ec38512d8a9995b381541143a2a39b40
+  checksum: 190187fd97314a20b98b6d65b37fd325df350ae683f5cf17ec73364604094b6c7150eb5d9524b4814e99a423ea67f5ee98746cd9a347a45586478e246007f31c
   languageName: node
   linkType: hard
 
@@ -5311,7 +5311,7 @@ __metadata:
     "@graphql-codegen/typescript-react-apollo": 3.3.3
     "@instana/aws-lambda": 2.6.1
     "@instana/opentelemetry-exporter": 2.6.1
-    "@netlify/functions": 1.1.0
+    "@netlify/functions": 1.2.0
     "@opentelemetry/api": 1.1.0
     "@opentelemetry/core": 1.5.0
     "@opentelemetry/instrumentation-express": 0.30.0
