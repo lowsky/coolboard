@@ -88,12 +88,12 @@ const sections = (options: Partial<Loggable & Timeoutable>) =>
 const add_a_card = () => cardListButtons().contains('Add a card');
 
 function fillLoginForm() {
-  cy.get('#text-field-identifier', LogAndWaitLong).type(login + '{enter}');
-  cy.contains('Welcome, ', {
+  cy.get('#identifier-field', LogAndWaitLong).type(login + '{enter}');
+  cy.contains('Enter your password', {
     log: true,
     timeout: 6000,
   });
-  cy.get('#password').type(password + '{enter}', {
+  cy.get('#password-field').type(password + '{enter}', {
     log: false,
   });
 
@@ -225,8 +225,12 @@ describe('Test coolboard', () => {
       .parent()
       .within(() => {
         cy.get('[data-cy="delete-board"]').click();
+      })
+      .then(() => {
+        getBoardsList()
+          .contains(newBoardName, WaitVeryLong)
+          .should('not.exist');
       });
-    getBoardsList().contains(newBoardName, WaitVeryLong).should('not.exist');
   });
 
   it('user can log-out', () => {

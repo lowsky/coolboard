@@ -39,6 +39,9 @@ const getGraphqlServer = async () => {
   });
 
   await apolloServer.start();
+
+  server = apolloServer;
+
   return apolloServer;
 };
 //LATER: exports.handler = instana.wrap((event, context, callback) => {
@@ -78,25 +81,9 @@ const handler = instana.wrap((event, context, callback) => {
 // will be stored here for re-use
 let server: ApolloServer | null = null;
 
-export default withAuth(async (req, res) => {
-  {
-    if (req.auth) {
-      const { userId, sessionId, getToken } = req.auth;
-      isLocalDev && console.log('req.auth', req.auth);
-      isLocalDev &&
-        console.log('req.auth', userId, sessionId, await getToken?.());
-      return handleGraphqlRequest(req, res);
-    } else {
-      isLocalDev && console.log('no request.auth');
-      res.status(401).json({ id: null });
-    }
-  }
-});
-
 // eslint-disable-next-line import/no-anonymous-default-export
 async function handleGraphqlRequest(req, res) {
   const apolloServer = server || (await getGraphqlServer());
-  server = apolloServer;
 
   const handler = apolloServer.createHandler({
     path: '/api/graphql',
@@ -104,6 +91,22 @@ async function handleGraphqlRequest(req, res) {
 
   await handler(req, res);
 }
+
+export default withAuth(async (req, res) => {
+  if (req.auth) {
+    const { userId, sessionId, getToken } = req.auth;
+
+    isLocalDev && console.log('req.auth', req.auth);
+    isLocalDev &&
+      console.log('req.auth', userId, sessionId, await getToken?.());
+
+    return handleGraphqlRequest(req, res);
+  } else {
+    isLocalDev && console.log('no request.auth');
+
+    res.status(401).json({ id: null });
+  }
+});
 
 export const config = {
   api: {
