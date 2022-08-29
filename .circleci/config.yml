@@ -47,7 +47,7 @@ jobs:
       - image: cypress/included:10.6.0
     when:
       condition:
-        and: [ << pipeline.parameters.deployed-sha >>, << pipeline.parameters.test >> ]
+        - and: [ << pipeline.parameters.deployed-sha >>, << pipeline.parameters.test >> ]
     steps:
       - checkout
       - run:
