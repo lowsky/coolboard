@@ -1,12 +1,19 @@
-import React, { ReactNode } from "react";
-import { useRouter } from "next/router";
-import Link from "next/link";
-import { useApolloClient } from "@apollo/client";
-import { Box, Button, Container, Spinner } from "@chakra-ui/react";
-import { FaSignOutAlt } from "react-icons/fa";
-import { ClerkLoaded, ClerkLoading, SignedIn, SignedOut, SignOutButton, UserButton } from "@clerk/nextjs";
+import React, { ReactNode } from 'react';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
+import { useApolloClient } from '@apollo/client';
+import { Box, Button, Container, Spinner } from '@chakra-ui/react';
+import { FaSignOutAlt } from 'react-icons/fa';
+import {
+  ClerkLoaded,
+  ClerkLoading,
+  SignedIn,
+  SignedOut,
+  SignOutButton,
+  UserButton,
+} from '@clerk/nextjs';
 
-import { LoginButton } from "./LoginButton";
+import { LoginButton } from './LoginButton';
 
 const ProfileHeaderContainer = ({
   children,
@@ -16,7 +23,7 @@ const ProfileHeaderContainer = ({
   isBoardsPage?: boolean;
 }) => (
   <Container
-    maxW='100%'
+    maxW="100%"
     style={{
       padding: '1em',
       background: 'lightgrey',
@@ -28,7 +35,7 @@ const ProfileHeaderContainer = ({
         alignItems: 'center',
         placeContent: 'space-between',
       }}>
-      <Box gap='2rem' display='flex'>
+      <Box gap="2rem" display="flex">
         {isBoardsPage && (
           <Link href="/">
             <a>Home</a>

@@ -37,6 +37,14 @@ type State = {
   description: string;
 };
 
+type StoreCardParams = {
+  id: string;
+  name: string;
+  description: string;
+  old_name: string;
+  old_description: string;
+};
+
 export const CardComponent = (props) => {
   const initialState: State = {
     conflict: false,
@@ -94,17 +102,7 @@ export const CardComponent = (props) => {
     ev.preventDefault();
     const {
       id,
-      storeCard = ({
-                     id,
-                     name,
-                     description,
-                     old_name,
-                     old_description,
-                   }: {id:string,
-                    name:string,
-                    description:string,
-                    old_name:string,
-                    old_description:string}) =>
+      storeCard = (_params: StoreCardParams) =>
         Promise.reject({
           message: 'Sorry, not implemented yet.',
         }),
@@ -267,7 +265,7 @@ export const CardComponent = (props) => {
               )}
               {!conflict && (
                 <Button
-                  isLoading={loading??false}
+                  isLoading={loading ?? false}
                   type="submit"
                   color="green"
                   onClick={(ev) => {
