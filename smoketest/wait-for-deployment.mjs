@@ -2,7 +2,7 @@ import got from 'got';
 
 const url =
   (process.env.CYPRESS_baseUrl ||
-    'http://localhost:3000') + '/meta.json';
+    'https://coolboard.fun') + '/meta.json';
 
 const EXPECTED_GIT_SHA1 = process.env.GIT_SHA1 || '';
 
