@@ -4,10 +4,7 @@ import { AuthenticationError } from 'apollo-server-errors';
 
 import { User } from '@prisma/client';
 
-import {
-  injectUserIdByAuth0id,
-  userIdByAuth0id,
-} from './userIdByAuth0id';
+import { injectUserIdByAuth0id, userIdByAuth0id } from './userIdByAuth0id';
 import { createNewUser } from './registerNewUser';
 import { isLocalDev } from './logging';
 import { Ctxt } from '../resolvers/Context';
