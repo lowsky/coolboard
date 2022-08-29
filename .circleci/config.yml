@@ -18,7 +18,6 @@ parameters:
 workflows:
   version: 2
   build:
-    when: << pipeline.parameters.deployed-sha >>
     jobs:
       - build
 
@@ -46,6 +45,9 @@ jobs:
   build:
     docker:
       - image: cypress/included:10.6.0
+    when:
+      condition:
+        and: [ << pipeline.parameters.deployed-sha >>, << pipeline.parameters.test >> ]
     steps:
       - checkout
       - run:
