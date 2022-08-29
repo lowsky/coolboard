@@ -94,7 +94,17 @@ export const CardComponent = (props) => {
     ev.preventDefault();
     const {
       id,
-      storeCard = () =>
+      storeCard = ({
+                     id,
+                     name,
+                     description,
+                     old_name,
+                     old_description,
+                   }: {id:string,
+                    name:string,
+                    description:string,
+                    old_name:string,
+                    old_description:string}) =>
         Promise.reject({
           message: 'Sorry, not implemented yet.',
         }),
@@ -138,7 +148,7 @@ export const CardComponent = (props) => {
     }));
   };
 
-  const { loading, error = false, conflict, name, description } = state;
+  const { loading = false, error = false, conflict, name, description } = state;
 
   const whenDraggingStyle: CSSProperties = {
     color: 'black',
@@ -245,6 +255,7 @@ export const CardComponent = (props) => {
               {conflict && (
                 <Button
                   isLoading={loading}
+                  disabled={loading}
                   type="submit"
                   color="green"
                   onClick={(ev) => {
@@ -256,7 +267,7 @@ export const CardComponent = (props) => {
               )}
               {!conflict && (
                 <Button
-                  isLoading={loading}
+                  isLoading={loading??false}
                   type="submit"
                   color="green"
                   onClick={(ev) => {
