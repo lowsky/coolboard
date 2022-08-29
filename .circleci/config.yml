@@ -74,21 +74,15 @@ jobs:
 
             if [ "X${CIRCLE_PR_NUMBER}${CYPRESS_baseUrl}${EXPECTED_GIT_SHA}" == "X" ]; then
               echo there are NO parameters. done.
-              exit 0
+              circleci-agent step halt
             fi
-      - run:
-          command: |
-            cd smoketest
-
-            CIRCLE_PR_NUMBER=<< pipeline.parameters.gh-pr >>
-            CYPRESS_baseUrl=<< pipeline.parameters.test-url >>
-            EXPECTED_GIT_SHA=<< pipeline.parameters.deployed-sha >>
-
-            if [ "X${CIRCLE_PR_NUMBER}${CYPRESS_baseUrl}${EXPECTED_GIT_SHA}" == "X" ]; then
-              echo there are NO parameters. done.
-            else
-              yarn --immutable
-            fi
+      - when:
+          condition: << pipeline.parameters.deployed-sha >>
+          steps:
+            - run:
+                command: |
+                  cd smoketest
+                  yarn --immutable
       - run:
           name: verify fully deployed web site via git-commit (prep)
           command: |
