@@ -1970,18 +1970,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/backend-core@npm:^2.1.1":
-  version: 2.1.1
-  resolution: "@clerk/backend-core@npm:2.1.1"
-  dependencies:
-    "@clerk/types": ^3.3.1
-    query-string: ^7.0.1
-    snakecase-keys: ^5.1.2
-    tslib: ^2.3.1
-  checksum: 6304afa4fc9443baf54a247f2c8c4b44092ccc56870bcadc8affeea075344e742ef1d201563f8962d0a75d936a7fd4c83ffe6471a636812315fde7aad3f6bd75
-  languageName: node
-  linkType: hard
-
 "@clerk/backend-core@npm:^2.3.0":
   version: 2.3.0
   resolution: "@clerk/backend-core@npm:2.3.0"
@@ -1998,20 +1986,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/clerk-react@npm:^4.0.6":
-  version: 4.0.6
-  resolution: "@clerk/clerk-react@npm:4.0.6"
+"@clerk/clerk-react@npm:^4.0.8":
+  version: 4.0.8
+  resolution: "@clerk/clerk-react@npm:4.0.8"
   dependencies:
-    "@clerk/types": ^3.3.1
+    "@clerk/types": ^3.4.1
     swr: ^1.3.0
     tslib: ^2.3.1
   peerDependencies:
     react: ">=16"
-  checksum: 97244010b63d8de3c152205f68028baaa20e033db1a6d16a7e54603c85c116d89c4edcdcf52d5976880adc290f99d72edbe506bfa57503b9ea0dab52797cab45
+  checksum: 5104ce0f029920206137b99d0126257fc4fc7d2401aa34547d703f915d0a00567e9571001953885ee2dc24f8d20ee3ede5efc6d6d353f808721ad3a8a70e7ea1
   languageName: node
   linkType: hard
 
-"@clerk/clerk-sdk-node@npm:4.1.3":
+"@clerk/clerk-sdk-node@npm:4.1.3, @clerk/clerk-sdk-node@npm:^4.1.3":
   version: 4.1.3
   resolution: "@clerk/clerk-sdk-node@npm:4.1.3"
   dependencies:
@@ -2034,56 +2022,31 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/clerk-sdk-node@npm:^4.1.1":
-  version: 4.1.1
-  resolution: "@clerk/clerk-sdk-node@npm:4.1.1"
+"@clerk/edge@npm:^1.8.3":
+  version: 1.8.3
+  resolution: "@clerk/edge@npm:1.8.3"
   dependencies:
-    "@clerk/backend-core": ^2.1.1
-    "@clerk/types": ^3.3.1
-    "@peculiar/webcrypto": ^1.2.3
-    camelcase-keys: ^6.2.2
-    cookies: ^0.8.0
-    deepmerge: ^4.2.2
-    jsonwebtoken: ^8.5.1
-    jwks-rsa: ^2.0.4
-    node-fetch: ^2.6.0
-    snakecase-keys: ^3.2.1
-    tslib: ^2.3.1
-  checksum: b30cd1d8042f16f8ce583e37e6fdc072e9b6a84ef1095cb39a933b2acb4a7d9ebb21318a24064ee0680794f66df182dcc7724d210227c12a6173393c3b4c5d26
-  languageName: node
-  linkType: hard
-
-"@clerk/edge@npm:^1.8.1":
-  version: 1.8.1
-  resolution: "@clerk/edge@npm:1.8.1"
-  dependencies:
-    "@clerk/backend-core": ^2.1.1
-    "@clerk/types": ^3.3.1
-    "@peculiar/webcrypto": ^1.2.3
+    "@clerk/backend-core": ^2.3.0
+    "@clerk/types": ^3.4.1
+    "@peculiar/webcrypto": ^1.4.0
+    "@types/node": ^16.11.55
     next: ^12.2.0
-  checksum: bde28c62c15d5599308b221b80af88791a3c945c9428d2d018808c7ceedc35faabfc4e84e27a9569118707ee029b2cefdd6cc7a2a269e2d1353fe8bde41fdf82
+  checksum: c0a6d60ae43b461ee54ad91e95af6dda78566ff10e9dc9bf6e5a86687d8085e41a1013e398d5fe31f5e59ea26a1d0dc11af6a43a5c0564ac5e153536df3d958a
   languageName: node
   linkType: hard
 
-"@clerk/nextjs@npm:4.1.1":
-  version: 4.1.1
-  resolution: "@clerk/nextjs@npm:4.1.1"
+"@clerk/nextjs@npm:4.1.3":
+  version: 4.1.3
+  resolution: "@clerk/nextjs@npm:4.1.3"
   dependencies:
-    "@clerk/clerk-react": ^4.0.6
-    "@clerk/clerk-sdk-node": ^4.1.1
-    "@clerk/edge": ^1.8.1
-    "@clerk/types": ^3.3.1
+    "@clerk/clerk-react": ^4.0.8
+    "@clerk/clerk-sdk-node": ^4.1.3
+    "@clerk/edge": ^1.8.3
+    "@clerk/types": ^3.4.1
     tslib: ^2.3.1
   peerDependencies:
     next: ">=10"
-  checksum: f9481dd00e5c52f36b01dfd38e6ce694aecbdccb1ea1847587d78424682e16bf15120092c623dd0ffcc0f94ea3bf5b0c87bd99efd0c509c9f1cef2765457eb78
-  languageName: node
-  linkType: hard
-
-"@clerk/types@npm:^3.3.1":
-  version: 3.3.1
-  resolution: "@clerk/types@npm:3.3.1"
-  checksum: 409823122e1ff4bc2fdeafc7dab65ae5e4cc65fccb3a50fc18470d5213a88a3e44e3eae85f0eef92754881aaa52a316145e48b787930c0cb2057ddec4967df0f
+  checksum: 30ce99e4b44d67d0fb2fae6da777a756d7045db04b5bc4a52cc2c44193312c9ea259dd81f531a0e78c23f9972a70b97870ecfbf4714eb3ea13187097b311f54a
   languageName: node
   linkType: hard
 
@@ -3648,18 +3611,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@peculiar/asn1-schema@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "@peculiar/asn1-schema@npm:2.1.0"
-  dependencies:
-    "@types/asn1js": ^2.0.2
-    asn1js: ^2.3.1
-    pvtsutils: ^1.2.1
-    tslib: ^2.3.1
-  checksum: f1e0edbaf8bde6255b3baa5307dc5805fa9549020514a0f98a5b253048567d309e84af6a0515370ae1dbe00e50fff83fcad37cfa6a01b1d654e7296539b1f560
-  languageName: node
-  linkType: hard
-
 "@peculiar/asn1-schema@npm:^2.1.6":
   version: 2.2.0
   resolution: "@peculiar/asn1-schema@npm:2.2.0"
@@ -3677,19 +3628,6 @@ __metadata:
   dependencies:
     tslib: ^2.0.0
   checksum: b26ececdc23c5ef25837f8be8d1eb5e1c8bb6e9ae7227ac59ffea57fff56bd05137734e7685e9100595d3d88d906dff638ef8d1df54264c388d3eac1b05aa060
-  languageName: node
-  linkType: hard
-
-"@peculiar/webcrypto@npm:^1.2.3":
-  version: 1.3.3
-  resolution: "@peculiar/webcrypto@npm:1.3.3"
-  dependencies:
-    "@peculiar/asn1-schema": ^2.1.0
-    "@peculiar/json-schema": ^1.1.12
-    pvtsutils: ^1.2.2
-    tslib: ^2.3.1
-    webcrypto-core: ^1.7.2
-  checksum: dc9e49ca74cc9b9ca7d2f6ade121f4fde434e5d0dddc87ee522445a76109bedb8c207fe493881666df7ed832e8db62ff0bee74307d34f461e91f223d1dd1cb5f
   languageName: node
   linkType: hard
 
@@ -3892,13 +3830,6 @@ __metadata:
   dependencies:
     "@types/node": "*"
   checksum: 590b7580570534a640510c071e09074cf63b5958b237a728f94322567350aea4d239f8a9d897a12b15c856b992ee4d7907e9812bb079886af2c00714e7fb3f60
-  languageName: node
-  linkType: hard
-
-"@types/asn1js@npm:^2.0.2":
-  version: 2.0.2
-  resolution: "@types/asn1js@npm:2.0.2"
-  checksum: 4079eca4c0916a0cea6bf490fec3bb5d64cd54e99efc0b32dfb1f6636712d47045042b9cd503afd2c0251e1095578dbb7f8d246a088fa1598fdb00ab4c05614f
   languageName: node
   linkType: hard
 
@@ -4811,15 +4742,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"asn1js@npm:^2.3.1, asn1js@npm:^2.3.2":
-  version: 2.3.3
-  resolution: "asn1js@npm:2.3.3"
-  dependencies:
-    pvutils: ^1.1.3
-  checksum: 70d378b43d8dde9fdc33204984340193f6303ce3970e4228206c510b56157b73febc3004d42eb45df084685a0b4141dd422db07e4c8f1c9de6e8fc3c141aa1c1
-  languageName: node
-  linkType: hard
-
 "asn1js@npm:^3.0.1, asn1js@npm:^3.0.5":
   version: 3.0.5
   resolution: "asn1js@npm:3.0.5"
@@ -5536,7 +5458,7 @@ __metadata:
     "@chakra-ui/icons": 2.0.9
     "@chakra-ui/react": 2.3.1
     "@clerk/clerk-sdk-node": 4.1.3
-    "@clerk/nextjs": 4.1.1
+    "@clerk/nextjs": 4.1.3
     "@emotion/react": 11.10.4
     "@emotion/styled": 11.10.4
     "@graphql-codegen/cli": 2.11.8
@@ -9112,15 +9034,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pvtsutils@npm:^1.2.1, pvtsutils@npm:^1.2.2":
-  version: 1.2.2
-  resolution: "pvtsutils@npm:1.2.2"
-  dependencies:
-    tslib: ^2.3.1
-  checksum: e1e7f91d96d07d7d3b9fa6142d7574302083d116f8485f6bc2a728202a296a98ef1adaf9161f3a1d055cf9e63f83a94adfbcd2c9b3b615836135ad2ec5215f40
-  languageName: node
-  linkType: hard
-
 "pvtsutils@npm:^1.3.2":
   version: 1.3.2
   resolution: "pvtsutils@npm:1.3.2"
@@ -10719,19 +10632,6 @@ __metadata:
   version: 3.2.1
   resolution: "web-streams-polyfill@npm:3.2.1"
   checksum: b119c78574b6d65935e35098c2afdcd752b84268e18746606af149e3c424e15621b6f1ff0b42b2676dc012fc4f0d313f964b41a4b5031e525faa03997457da02
-  languageName: node
-  linkType: hard
-
-"webcrypto-core@npm:^1.7.2":
-  version: 1.7.3
-  resolution: "webcrypto-core@npm:1.7.3"
-  dependencies:
-    "@peculiar/asn1-schema": ^2.1.0
-    "@peculiar/json-schema": ^1.1.12
-    asn1js: ^2.3.2
-    pvtsutils: ^1.2.2
-    tslib: ^2.3.1
-  checksum: 7a2c62a172454fc986693067b2abaaa50034fb15fb1a495e1544dadbedd19e26eac464650e4a8e1f085b165775516352aee5e1bd71cadd1c99e38bb141f1bac1
   languageName: node
   linkType: hard
 
