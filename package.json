@@ -14,7 +14,7 @@
     "@clerk/nextjs": "4.1.1",
     "@emotion/react": "11.10.4",
     "@emotion/styled": "11.10.4",
-    "@instana/aws-lambda": "2.6.2",
+    "@instana/aws-lambda": "2.7.0",
     "@instana/opentelemetry-exporter": "2.6.2",
     "@netlify/functions": "1.2.0",
     "@opentelemetry/api": "1.1.0",
