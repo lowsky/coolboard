@@ -1970,22 +1970,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/backend-core@npm:^2.3.0":
-  version: 2.3.0
-  resolution: "@clerk/backend-core@npm:2.3.0"
-  dependencies:
-    "@clerk/types": ^3.4.1
-    "@peculiar/webcrypto": ^1.4.0
-    "@types/node": ^16.11.55
-    "@types/node-fetch": ^2
-    node-fetch: ^2.6.0
-    query-string: ^7.0.1
-    snakecase-keys: ^5.1.2
-    tslib: ^2.3.1
-  checksum: 682dc1bff635f3e52e40b60497181df643677372ce6530f2742fb1671c8f295b38e375cf6524997b5b027e4b2d0302ced7ca02c02eb7cb863f575b91bd185701
-  languageName: node
-  linkType: hard
-
 "@clerk/backend-core@npm:^2.4.0":
   version: 2.4.0
   resolution: "@clerk/backend-core@npm:2.4.0"
@@ -2002,16 +1986,32 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/clerk-react@npm:^4.0.8":
-  version: 4.0.8
-  resolution: "@clerk/clerk-react@npm:4.0.8"
+"@clerk/backend-core@npm:^2.4.1":
+  version: 2.4.1
+  resolution: "@clerk/backend-core@npm:2.4.1"
   dependencies:
-    "@clerk/types": ^3.4.1
+    "@clerk/types": ^3.4.2
+    "@peculiar/webcrypto": ^1.4.0
+    "@types/node": ^16.11.55
+    "@types/node-fetch": ^2
+    node-fetch: ^2.6.0
+    query-string: ^7.0.1
+    snakecase-keys: ^5.1.2
+    tslib: ^2.3.1
+  checksum: 818bebb833bbb5024790723a610e232233e2de6368c12da800cf4ccdf5b34a5fd26c41895d0be9e4c5f80a015e94bed8e4f8a4747b9d35c112bcf581e4436b1b
+  languageName: node
+  linkType: hard
+
+"@clerk/clerk-react@npm:^4.0.10":
+  version: 4.0.10
+  resolution: "@clerk/clerk-react@npm:4.0.10"
+  dependencies:
+    "@clerk/types": ^3.4.2
     swr: ^1.3.0
     tslib: ^2.3.1
   peerDependencies:
     react: ">=16"
-  checksum: 5104ce0f029920206137b99d0126257fc4fc7d2401aa34547d703f915d0a00567e9571001953885ee2dc24f8d20ee3ede5efc6d6d353f808721ad3a8a70e7ea1
+  checksum: 025330bca8b0426b8f63c6382dfa2b13172da720b26ee6c8fc55c2093e46c44cb858ea36f892d05e28c02c7cd3b3e267669d3ac265cbe4c1cbb64d9d19fc6f0d
   languageName: node
   linkType: hard
 
@@ -2038,12 +2038,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/clerk-sdk-node@npm:^4.1.4":
-  version: 4.1.4
-  resolution: "@clerk/clerk-sdk-node@npm:4.1.4"
+"@clerk/clerk-sdk-node@npm:^4.1.6":
+  version: 4.1.6
+  resolution: "@clerk/clerk-sdk-node@npm:4.1.6"
   dependencies:
-    "@clerk/backend-core": ^2.3.0
-    "@clerk/types": ^3.4.1
+    "@clerk/backend-core": ^2.4.1
+    "@clerk/types": ^3.4.2
     "@peculiar/webcrypto": ^1.4.0
     "@types/cookies": ^0.7.7
     "@types/express": ^4.17.11
@@ -2057,35 +2057,35 @@ __metadata:
     node-fetch: ^2.6.0
     snakecase-keys: ^3.2.1
     tslib: ^2.3.1
-  checksum: 5c884cd3a495e823d85256301bcc95813232ded017ac4c163e98d1722737c3f730a4b1eb584ad0476fa9f901387d65f3bf3688c8f8fd1309b52cab4e429ef552
+  checksum: a98ed09c0ecaf84408a2bc4b379aeb4b656ccc494d0a4298cd4e2f7ff67d89fde76a678ea96fd42be0bb13ff2e0c95e77f32394dc80a23ab203b2cb02ba13cc7
   languageName: node
   linkType: hard
 
-"@clerk/edge@npm:^1.8.3":
-  version: 1.8.3
-  resolution: "@clerk/edge@npm:1.8.3"
+"@clerk/edge@npm:^1.8.5":
+  version: 1.8.5
+  resolution: "@clerk/edge@npm:1.8.5"
   dependencies:
-    "@clerk/backend-core": ^2.3.0
-    "@clerk/types": ^3.4.1
+    "@clerk/backend-core": ^2.4.1
+    "@clerk/types": ^3.4.2
     "@peculiar/webcrypto": ^1.4.0
     "@types/node": ^16.11.55
     next: ^12.2.0
-  checksum: c0a6d60ae43b461ee54ad91e95af6dda78566ff10e9dc9bf6e5a86687d8085e41a1013e398d5fe31f5e59ea26a1d0dc11af6a43a5c0564ac5e153536df3d958a
+  checksum: 897e42ec638d50a5a7b59174d1230eeeaf0998db66d16b09be15904c1f3e13a79547faee177d89603fca46c3fda40d34cedb968e64e21087e2e2a66a757250fb
   languageName: node
   linkType: hard
 
-"@clerk/nextjs@npm:4.1.4":
-  version: 4.1.4
-  resolution: "@clerk/nextjs@npm:4.1.4"
+"@clerk/nextjs@npm:4.1.6":
+  version: 4.1.6
+  resolution: "@clerk/nextjs@npm:4.1.6"
   dependencies:
-    "@clerk/clerk-react": ^4.0.8
-    "@clerk/clerk-sdk-node": ^4.1.4
-    "@clerk/edge": ^1.8.3
-    "@clerk/types": ^3.4.1
+    "@clerk/clerk-react": ^4.0.10
+    "@clerk/clerk-sdk-node": ^4.1.6
+    "@clerk/edge": ^1.8.5
+    "@clerk/types": ^3.4.2
     tslib: ^2.3.1
   peerDependencies:
     next: ">=10"
-  checksum: 6eedd23b7b91091fcd6434be9480498ae954bed5acd335e89962c75bccee55e962a4a1daa4c347b8f2414ffada59feafc560b4323383d8a6691f622c2f5d7657
+  checksum: fd9e0b93ffb7c866624655c5492130c981d960a8dc49e7fa48b13d4146f9378dcb2d03e99e2c6e1e7338fcb2d246fa78e3881fa55ed48b7f3c1709abdfb28414
   languageName: node
   linkType: hard
 
@@ -2095,6 +2095,15 @@ __metadata:
   dependencies:
     csstype: ^3.1.0
   checksum: 3088e1537bc0b8b1396e15d047185e65afa60043936c3f73b037f9f382fbd4f3b72375607ba43ad918aa927a254fb556ab42ce40642ea6fa32944bce16767593
+  languageName: node
+  linkType: hard
+
+"@clerk/types@npm:^3.4.2":
+  version: 3.4.2
+  resolution: "@clerk/types@npm:3.4.2"
+  dependencies:
+    csstype: ^3.1.0
+  checksum: 784084cba327e5146b8c23d110c43e829254ba5faec35c9ba1cd557ccfe8f5f2e66be9121ef95d3b2d71b67677df944873ad95ca2ead7d7e733ed7fa589bc4a0
   languageName: node
   linkType: hard
 
@@ -5498,7 +5507,7 @@ __metadata:
     "@chakra-ui/icons": 2.0.9
     "@chakra-ui/react": 2.3.1
     "@clerk/clerk-sdk-node": 4.1.5
-    "@clerk/nextjs": 4.1.4
+    "@clerk/nextjs": 4.1.6
     "@emotion/react": 11.10.4
     "@emotion/styled": 11.10.4
     "@graphql-codegen/cli": 2.12.0
