@@ -1999,7 +1999,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/clerk-sdk-node@npm:4.1.6, @clerk/clerk-sdk-node@npm:^4.1.6":
+"@clerk/clerk-sdk-node@npm:4.1.7":
+  version: 4.1.7
+  resolution: "@clerk/clerk-sdk-node@npm:4.1.7"
+  dependencies:
+    "@clerk/backend-core": ^2.4.1
+    "@clerk/types": ^3.4.2
+    "@peculiar/webcrypto": ^1.4.0
+    "@types/cookies": ^0.7.7
+    "@types/express": ^4.17.11
+    "@types/jsonwebtoken": ^8.5.6
+    "@types/node-fetch": ^2
+    camelcase-keys: ^6.2.2
+    cookies: ^0.8.0
+    deepmerge: ^4.2.2
+    jsonwebtoken: ^8.5.1
+    jwks-rsa: ^2.0.4
+    node-fetch: ^2.6.0
+    snakecase-keys: ^3.2.1
+    tslib: ^2.3.1
+  checksum: fa7b658d557303860f6ba6e18139d88f392b3831ac0ef6c989b4e3e259a74dcc48c68bb9ccd17f3475dc57726323f951db3c70ab911cc8397b054e7cd4c61657
+  languageName: node
+  linkType: hard
+
+"@clerk/clerk-sdk-node@npm:^4.1.6":
   version: 4.1.6
   resolution: "@clerk/clerk-sdk-node@npm:4.1.6"
   dependencies:
@@ -5458,7 +5481,7 @@ __metadata:
     "@apollo/client": 3.6.9
     "@chakra-ui/icons": 2.0.9
     "@chakra-ui/react": 2.3.2
-    "@clerk/clerk-sdk-node": 4.1.6
+    "@clerk/clerk-sdk-node": 4.1.7
     "@clerk/nextjs": 4.1.6
     "@emotion/react": 11.10.4
     "@emotion/styled": 11.10.4
