@@ -1989,6 +1989,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@clerk/backend-core@npm:^2.5.1":
+  version: 2.5.1
+  resolution: "@clerk/backend-core@npm:2.5.1"
+  dependencies:
+    "@clerk/types": ^3.7.1
+    "@peculiar/webcrypto": ^1.4.0
+    "@types/node": ^16.11.55
+    "@types/node-fetch": ^2
+    node-fetch: ^2.6.0
+    query-string: ^7.0.1
+    snakecase-keys: ^5.1.2
+    tslib: ^2.3.1
+  checksum: 271b9be4776f294e10038dca3b277cdf2cf56b95332f1b8de2db3827a14fdf7a95d681125b5381d4d5ea374a8d3d23ca15165d93646686bf54c0be302da47ab5
+  languageName: node
+  linkType: hard
+
 "@clerk/clerk-react@npm:^4.2.0":
   version: 4.2.0
   resolution: "@clerk/clerk-react@npm:4.2.0"
@@ -2002,7 +2018,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/clerk-sdk-node@npm:4.3.0, @clerk/clerk-sdk-node@npm:^4.3.0":
+"@clerk/clerk-sdk-node@npm:4.3.2":
+  version: 4.3.2
+  resolution: "@clerk/clerk-sdk-node@npm:4.3.2"
+  dependencies:
+    "@clerk/backend-core": ^2.5.1
+    "@clerk/types": ^3.7.1
+    "@peculiar/webcrypto": ^1.4.0
+    "@types/cookies": ^0.7.7
+    "@types/express": ^4.17.11
+    "@types/jsonwebtoken": ^8.5.6
+    "@types/node-fetch": ^2
+    camelcase-keys: ^6.2.2
+    cookies: ^0.8.0
+    deepmerge: ^4.2.2
+    jsonwebtoken: ^8.5.1
+    jwks-rsa: ^2.0.4
+    node-fetch: ^2.6.0
+    snakecase-keys: ^3.2.1
+    tslib: ^2.3.1
+  checksum: 8061eefdab86ed5741a3cb204894d8a8ceb4ec664d7e0b69af3ccf8f95fb3a8009af4a3c38efe69c1015af667bbc1b1352bb2806aaf13205c84c1cf833bed936
+  languageName: node
+  linkType: hard
+
+"@clerk/clerk-sdk-node@npm:^4.3.0":
   version: 4.3.0
   resolution: "@clerk/clerk-sdk-node@npm:4.3.0"
   dependencies:
@@ -2059,6 +2098,15 @@ __metadata:
   dependencies:
     csstype: ^3.1.0
   checksum: be396a9a10c0cd87fcb4f1096a5793d43ab8c21cb104e40f631aac3298b8f1096de04746b5564eddfe93dc1fdfcabf4b68d6a82e6fab10ce36e4e9b2d43cc37a
+  languageName: node
+  linkType: hard
+
+"@clerk/types@npm:^3.7.1":
+  version: 3.7.1
+  resolution: "@clerk/types@npm:3.7.1"
+  dependencies:
+    csstype: ^3.1.0
+  checksum: bcb05e068d66b75af1dd59e03fefb28362e6858fc181a9da6644730eeecbb701059c9f565ed4aeb63e334893074563a4897e2b87ec05feb0746ef58fb7c535f3
   languageName: node
   linkType: hard
 
@@ -5638,7 +5686,7 @@ __metadata:
     "@apollo/client": 3.6.9
     "@chakra-ui/icons": 2.0.10
     "@chakra-ui/react": 2.3.4
-    "@clerk/clerk-sdk-node": 4.3.0
+    "@clerk/clerk-sdk-node": 4.3.2
     "@clerk/nextjs": 4.3.0
     "@emotion/react": 11.10.4
     "@emotion/styled": 11.10.4
