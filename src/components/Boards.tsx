@@ -11,8 +11,8 @@ import { FaTrash } from 'react-icons/fa';
 
 import {
   useCreateBoardMutation,
-  useDeleteBoardMutation,
-  useUserBoardsQuery,
+  useDeleteBoardMutation, UserBoardsDocument, UserBoardsQuery,
+  useUserBoardsQuery
 } from '../generated/graphql';
 import { Segment } from '../common/Segment';
 import { FullVerticalContainer } from '../common/FullVerticalContainer';
@@ -66,10 +66,7 @@ const BoardList = ({ boards, deleteBoard }) => (
 
 export const Boards = () => {
   const { loading, error, data, refetch } = useUserBoardsQuery();
-
-  const [deleteBoard] = useDeleteBoardMutation({
-    onCompleted: () => refetch(),
-  });
+  const [deleteBoard] = useDeleteBoardMutation();
 
   const [createBoard, boardCreationState] = useCreateBoardMutation({
     onCompleted: () => refetch(),
@@ -108,6 +105,25 @@ export const Boards = () => {
               deleteBoard={(id) => {
                 return deleteBoard({
                   variables: { id },
+                  update: (store) => {
+                    const readData = store.readQuery({
+                      query: UserBoardsDocument
+                    }) as UserBoardsQuery;
+                    
+                    if(readData.me?.boards) {
+                      const newData = {
+                        ...readData,
+                        me: {
+                          ...readData.me,
+                          boards: readData.me.boards?.filter(board => board?.id !== id)
+                        },
+                      };
+                      store.writeQuery({
+                        query: UserBoardsDocument,
+                        data: newData,
+                      });
+                    }
+                  },
                 });
               }}
             />
