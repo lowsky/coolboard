@@ -3753,9 +3753,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@opentelemetry/instrumentation-express@npm:0.31.1":
-  version: 0.31.1
-  resolution: "@opentelemetry/instrumentation-express@npm:0.31.1"
+"@opentelemetry/instrumentation-express@npm:0.31.2":
+  version: 0.31.2
+  resolution: "@opentelemetry/instrumentation-express@npm:0.31.2"
   dependencies:
     "@opentelemetry/core": ^1.0.0
     "@opentelemetry/instrumentation": ^0.32.0
@@ -3763,7 +3763,7 @@ __metadata:
     "@types/express": 4.17.13
   peerDependencies:
     "@opentelemetry/api": ^1.0.0
-  checksum: 9356f53871edb130e6e48e93b72fd51f8d29cd38e0259c8384f4c5d0ca7ef0291f6f9dd5f31e425af52e3ef32be2b87cbdfedfde044fe2509333b40ab00343c0
+  checksum: 0ac41709c173490bf8ab83c32d38665690b33bad6becd3228d84747cd4f8444c98077f5297fc8924bfc2544309dee8619244c241a5e5e45f30d4835799b080a9
   languageName: node
   linkType: hard
 
@@ -5847,7 +5847,7 @@ __metadata:
     "@netlify/functions": 1.2.0
     "@opentelemetry/api": 1.2.0
     "@opentelemetry/core": 1.7.0
-    "@opentelemetry/instrumentation-express": 0.31.1
+    "@opentelemetry/instrumentation-express": 0.31.2
     "@opentelemetry/instrumentation-graphql": 0.31.0
     "@opentelemetry/instrumentation-http": 0.33.0
     "@opentelemetry/node": 0.24.0
