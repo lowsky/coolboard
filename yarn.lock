@@ -14,9 +14,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@apollo/client@npm:3.6.10":
-  version: 3.6.10
-  resolution: "@apollo/client@npm:3.6.10"
+"@apollo/client@npm:3.7.0":
+  version: 3.7.0
+  resolution: "@apollo/client@npm:3.7.0"
   dependencies:
     "@graphql-typed-document-node/core": ^3.1.1
     "@wry/context": ^0.7.0
@@ -26,6 +26,7 @@ __metadata:
     hoist-non-react-statics: ^3.3.2
     optimism: ^0.16.1
     prop-types: ^15.7.2
+    response-iterator: ^0.2.6
     symbol-observable: ^4.0.0
     ts-invariant: ^0.10.3
     tslib: ^2.3.0
@@ -45,7 +46,7 @@ __metadata:
       optional: true
     subscriptions-transport-ws:
       optional: true
-  checksum: a928492ae4acffb2c6d2941a6c56da3a92c956020eda59a1d3c4928741dbc0d2946379e2eafdd0798bc737b4d720db2353bb316c8051d61fcdcf4f7e88f8e64d
+  checksum: e6e2fb6c4f05509a0ec1c632fc8eeae7bd4831dbafd2db243bad1412b3c024476a3efb838e31568888cf6b07bd8833467343edac2309e58d60c7bf50f67d449c
   languageName: node
   linkType: hard
 
@@ -5739,7 +5740,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "coolboard@workspace:."
   dependencies:
-    "@apollo/client": 3.6.10
+    "@apollo/client": 3.7.0
     "@chakra-ui/icons": 2.0.10
     "@chakra-ui/react": 2.3.4
     "@clerk/clerk-sdk-node": 4.3.2
@@ -9932,6 +9933,13 @@ __metadata:
     is-core-module: ^2.2.0
     path-parse: ^1.0.6
   checksum: 21684b4d99a4877337cdbd5484311c811b3e8910edb5d868eec85c6e6550b0f570d911f9a384f9e176172d6713f2715bd0b0887fa512cb8c6aeece018de6a9f8
+  languageName: node
+  linkType: hard
+
+"response-iterator@npm:^0.2.6":
+  version: 0.2.6
+  resolution: "response-iterator@npm:0.2.6"
+  checksum: b0db3c0665a0d698d65512951de9623c086b9c84ce015a76076d4bd0bf733779601d0b41f0931d16ae38132fba29e1ce291c1f8e6550fc32daaa2dc3ab4f338d
   languageName: node
   linkType: hard
 
