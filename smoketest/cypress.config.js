@@ -1,6 +1,6 @@
-import { defineConfig } from 'cypress';
+const { defineConfig } = require('cypress')
 
-export default defineConfig({
+module.exports =  defineConfig({
   chromeWebSecurity: true,
   projectId: '8p1ybc',
 
