@@ -82,9 +82,9 @@ jobs:
             - run:
                 command: |
                   cd smoketest
-                  yarn --immutable
+                  ## no yarn --immutable
       - run:
-          name: verify fully deployed web site via git-commit (prep)
+          name: NOT YET - verify fully deployed web site via git-commit (prep)
           command: |
             cd smoketest
 
@@ -129,11 +129,13 @@ jobs:
             fi
 
             GIT_SHA1=${EXPECTED_GIT_SHA:-$CIRCLE_SHA1} npm run wait:valid-version ; CHECK_VERSION=$?
+
             echo CHECK VERSION result: $CHECK_VERSION
+
             if [  "$CHECK_VERSION" -eq "255"  ] ;  then
               echo "Version does not match with $EXPECTED_GIT_SHA"
             else
-              CYPRESS_branch=${CIRCLE_BRANCH} yarn cypress run --record --key $CYPRESS_API_KEY --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
+              CYPRESS_branch=${CIRCLE_BRANCH} cypress run --record --key $CYPRESS_API_KEY --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
             fi
       - store_test_results:
           path: smoketest/cypress/results

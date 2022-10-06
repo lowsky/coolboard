@@ -1,0 +1,16 @@
+{
+  "name": "check-deployed-version",
+  "version": "1.0.0",
+  "private": true,
+  "description": "sub project to be quickly installed and run",
+  "main": "wait-for-deployment.mjs",
+  "engines": {
+    "node": "16.x"
+  },
+  "scripts": {
+    "install_and_test": "npm install ; echo installing deps - exit code $?; echo ; node wait-for-deployment.mjs"
+  },
+  "devDependencies": {
+    "got": "12.5.1"
+  }
+}
