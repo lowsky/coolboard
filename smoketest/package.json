@@ -4,18 +4,14 @@
   "description": "run some browser tests via cypress",
   "private": true,
   "engines": {
-    "node": ">=12.1"
+    "node": "16.x"
   },
   "dependencies": {
-    "cypress": "10.9.0",
-    "typescript": "4.8.4"
+    "cypress": "10.9.0"
   },
   "scripts": {
     "cy": "cypress",
     "test": "yarn run cy run",
-    "wait:valid-version": "yarn --immutable ; echo install done with exit code $? ; node wait-for-deployment.mjs"
-  },
-  "devDependencies": {
-    "got": "12.5.1"
+    "wait:valid-version": "cd check-deployed-version ; npm run install_and_test"
   }
 }
