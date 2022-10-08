@@ -26,7 +26,7 @@ const BoardListItem = ({ name, id, deleteBoard }) => {
     <ListItem
       // as={'li'}
       className={styles.listItem}
-      data-cy="board-list-item">
+      data-cy={"board-list-item_"+name}>
       <Link href={`/board/${id}`} passHref>
         <a className={styles.wideColumn}>{name}</a>
       </Link>
@@ -109,7 +109,7 @@ export const Boards = () => {
                     const readData = store.readQuery({
                       query: UserBoardsDocument
                     }) as UserBoardsQuery;
-                    
+
                     if(readData.me?.boards) {
                       const newData = {
                         ...readData,

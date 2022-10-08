@@ -110,11 +110,18 @@ const getBoardsList = () => {
     .dataCy('full-container')
     .dataCy('boards-list', WaitVeryLong)
     .should('exist')
-    .find('[data-cy="board-list-item"]', WaitVeryLong);
+    //.find('[data-cy="board-list-item"]', WaitVeryLong);
 };
 
-const getBoardsList_FirstEntry = (name: string) =>
-  getBoardsList().contains(name).first();
+const getBoardsList_FirstEntry = (name: string) => {
+  cy.dataCy('full-container').dataCy('boards-list').first();
+
+  return cy
+    .dataCy('full-container')
+    .dataCy('boards-list', WaitVeryLong)
+    .should('exist')
+    .find('[data-cy="board-list-item_'+name+'"]').first();
+};
 
 let LogAndWaitLong = {
   log: true,
@@ -222,7 +229,6 @@ describe('Test coolboard', () => {
 
     // open first board named XXX
     getBoardsList_FirstEntry(newBoardName)
-      .parent()
       .within(() => {
         cy.get('[data-cy="delete-board"]').click();
       })
