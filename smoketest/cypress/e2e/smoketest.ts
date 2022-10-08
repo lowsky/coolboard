@@ -120,7 +120,7 @@ const getBoardsList_FirstEntry = (name: string) => {
     .dataCy('full-container')
     .dataCy('boards-list', WaitVeryLong)
     .should('exist')
-    .find('[data-cy="board-list-item_'+name+'"]').first();
+    .find('[data-cy="board-list-item_'+name+'"]', LogAndWaitLong).first();
 };
 
 let LogAndWaitLong = {
