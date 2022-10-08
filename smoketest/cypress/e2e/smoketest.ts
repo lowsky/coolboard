@@ -4,12 +4,12 @@
 import Loggable = Cypress.Loggable;
 import Timeoutable = Cypress.Timeoutable;
 
-const Git_Branch = Cypress.env('branch');
+const CYPRESS_branch = Cypress.env('branch');
 
 // Cypress.env() will show any env, which had been set with cypress_ prefix
 // https://docs.cypress.io/guides/guides/environment-variables#Option-3-CYPRESS_
 // @ts-ignore
-const isMainBranch = 'main' === Git_Branch;
+const isMainBranch = 'main' === CYPRESS_branch;
 
 // needs prefix when set per env: CYPRESS_LOGIN
 const login = isMainBranch
@@ -26,7 +26,7 @@ const baseUrl = isMainBranch
   ? 'https://coolboard.fun'
   : Cypress.config('baseUrl') ?? 'missing env CYPRESS_baseUrl';
 // will be set by cypress.json, or via env: CYPRESS_branch
-const branch = Git_Branch || 'missing-CYPRESS_branch-env';
+const branch = CYPRESS_branch || 'missing-CYPRESS_branch-env';
 
 const newBoardName = branch;
 
@@ -234,7 +234,7 @@ describe('Test coolboard', () => {
       })
       .then(() => {
         getBoardsList()
-          .contains(newBoardName, WaitVeryLong)
+          .contains(newBoardName)
           .should('not.exist');
       });
   });
