@@ -10,7 +10,7 @@
     "@apollo/client": "3.7.0",
     "@chakra-ui/icons": "2.0.11",
     "@chakra-ui/react": "2.3.5",
-    "@clerk/clerk-sdk-node": "4.3.2",
+    "@clerk/clerk-sdk-node": "4.4.2",
     "@clerk/nextjs": "4.5.2",
     "@emotion/react": "11.10.4",
     "@emotion/styled": "11.10.4",
