@@ -227,6 +227,10 @@ describe('Test coolboard', () => {
   it('user can delete board', () => {
     gotoBoards();
 
+    getBoardsList_FirstEntry(newBoardName).then(()=>
+      cy.reload()
+    )
+
     // open first board named XXX
     getBoardsList_FirstEntry(newBoardName)
       .within(() => {
