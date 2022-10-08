@@ -55,7 +55,7 @@
     "start-production": "next start",
     "lint": "next lint",
     "trigger-e2e-smoke": "sh trigger-circleci-smoke.sh",
-    "smoketest": "cd smoketest; yarn --immutable ; yarn cy open -C cypress-local.json",
+    "smoketest": "cd smoketest; yarn --immutable ; yarn cy open --e2e -b electron",
     "build": "yarn run metainfo && yarn run prisma:generate && next build",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "DATABASE_URL=\"$MIGRATE_DATABASE_URL\" prisma migrate deploy",
