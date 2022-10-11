@@ -7,7 +7,7 @@
     "node": "16.x"
   },
   "dependencies": {
-    "cypress": "10.9.0"
+    "cypress": "10.10.0"
   },
   "scripts": {
     "cy": "cypress",
