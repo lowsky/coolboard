@@ -65,12 +65,12 @@
     "codegen": "graphql-codegen --config codegen.yml"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "2.13.5",
+    "@graphql-codegen/cli": "2.13.6",
     "@graphql-codegen/introspection": "2.2.1",
-    "@graphql-codegen/typescript": "2.7.3",
+    "@graphql-codegen/typescript": "2.7.4",
     "@graphql-codegen/typescript-graphql-files-modules": "2.2.1",
-    "@graphql-codegen/typescript-operations": "2.5.3",
-    "@graphql-codegen/typescript-react-apollo": "3.3.3",
+    "@graphql-codegen/typescript-operations": "2.5.4",
+    "@graphql-codegen/typescript-react-apollo": "3.3.4",
     "@types/react": "18.0.21",
     "@types/react-dom": "18.0.6",
     "@types/zen-observable": "0.8.3",
