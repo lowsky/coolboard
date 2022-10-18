@@ -28,7 +28,7 @@
     "apollo-server-lambda": "3.10.3",
     "apollo-server-micro": "3.10.3",
     "bcryptjs": "2.4.3",
-    "bufferutil": "4.0.6",
+    "bufferutil": "4.0.7",
     "emitter-listener": "1.1.2",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-prettier": "4.2.1",
