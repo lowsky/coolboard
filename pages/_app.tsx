@@ -20,6 +20,7 @@ https://chakra-ui.com/docs/styled-system/theming/customize-theme#customizing-com
 
   const theme = extendTheme({
     config: {
+      useSystemColorMode: true,
       initialColorMode: 'light',
     },
     components: {
