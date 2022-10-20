@@ -16,6 +16,7 @@ export const setupGraphQLClient = () => {
 
   let httpLink = createHttpLink({
     uri,
+    credentials: 'same-origin',
   });
 
   return new ApolloClient({
