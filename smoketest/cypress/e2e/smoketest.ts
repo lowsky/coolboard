@@ -87,6 +87,11 @@ const sections = (options: Partial<Loggable & Timeoutable>) =>
 
 const add_a_card = () => cardListButtons().contains('Add a card');
 
+const LogAndWaitLong = {
+  log: true,
+  timeout: 8000,
+};
+
 function fillLoginForm() {
   cy.get('#identifier-field', LogAndWaitLong).type(login + '{enter}');
   cy.contains('Enter your password', {
@@ -103,14 +108,17 @@ function fillLoginForm() {
     .url(LogAndWaitLong);
 }
 
+const WaitVeryLong = {
+  log: true,
+  timeout: 5000 * 4,
+};
 const getBoardsList = () => {
   cy.dataCy('full-container').dataCy('boards-list', WaitVeryLong).first();
 
   return cy
     .dataCy('full-container')
     .dataCy('boards-list', WaitVeryLong)
-    .should('exist')
-    //.find('[data-cy="board-list-item"]', WaitVeryLong);
+    .should('exist');
 };
 
 const getBoardsList_FirstEntry = (name: string) => {
@@ -120,26 +128,9 @@ const getBoardsList_FirstEntry = (name: string) => {
     .dataCy('full-container')
     .dataCy('boards-list', WaitVeryLong)
     .should('exist')
-    .find('[data-cy="board-list-item_'+name+'"]', LogAndWaitLong).first();
+    .find('[data-cy="board-list-item_' + name + '"]', LogAndWaitLong)
+    .first();
 };
-
-let LogAndWaitLong = {
-  log: true,
-  timeout: 8000,
-};
-let WaitVeryLong = {
-  log: true,
-  timeout: 5000 * 4,
-};
-
-// if you want to debug when any test fails
-// You likely want to put this in a support file,
-// or at the top of an individual spec file
-Cypress.on('uncaught:exception', (error, runnable, promise) => {
-  if (promise) {
-    return false;
-  }
-});
 
 describe('Test coolboard', () => {
   it('need to login to show boards', () => {
@@ -227,9 +218,8 @@ describe('Test coolboard', () => {
   it('user can delete board', () => {
     gotoBoards();
 
-    getBoardsList_FirstEntry(newBoardName).then(()=>
-      cy.reload()
-    )
+    // enforce having cookies set properly for when trigging mutation
+    getBoardsList_FirstEntry(newBoardName).then(() => cy.reload());
 
     // open first board named XXX
     getBoardsList_FirstEntry(newBoardName)
@@ -237,15 +227,16 @@ describe('Test coolboard', () => {
         cy.get('[data-cy="delete-board"]').click();
       })
       .then(() => {
-        getBoardsList()
-          .contains(newBoardName)
-          .should('not.exist');
+        // this took some time typically, so need to wait longer
+        getBoardsList().contains(newBoardName, LogAndWaitLong).should('not.exist');
       });
   });
 
   it('user can log-out', () => {
     gotoBoards();
 
-    cy.get('[data-cy=profile-header]').contains('Sign Out').click();
+    cy.get('[data-cy=profile-header]')
+      .contains('Sign Out', LogAndWaitLong)
+      .click();
   });
 });
