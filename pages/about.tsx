@@ -15,7 +15,7 @@ export default function About() {
           <Heading as="h2">Welcome to CoolBoard</Heading>
           <Text>
             This is the Live Demo of the full application which we build in this
-            <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
+            <a href="https://www.packtpub.com/product/hands-on-application-building-with-graphql-video/9781788991865">
               <Icon>
                 <FaFilm />
               </Icon>
@@ -23,7 +23,7 @@ export default function About() {
             </a>
           </Text>
           <Text>
-            <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
+            <a href="https://www.packtpub.com/product/hands-on-application-building-with-graphql-video/9781788991865">
               <Image
                 src="/packt-page-v141.png"
                 width={473}
@@ -34,7 +34,7 @@ export default function About() {
           </Text>
           <Text verticalAlign="center">
             <strong>Published</strong> on{' '}
-            <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
+            <a href="https://www.packtpub.com/product/hands-on-application-building-with-graphql-video/9781788991865">
               <Image
                 src="/packt-logo.svg"
                 width={24}
@@ -77,8 +77,8 @@ export default function About() {
           </Text>
           <Text>
             GraphQL trello server running as{' '}
-            <a href="https://www.netlify.com/products/functions/">
-              lambda functions on Netlify
+            <a href="https://vercel.com/docs/concepts/functions/serverless-functions/">
+              serverless functions on Vercel
             </a>
           </Text>
           <Text>
@@ -88,7 +88,7 @@ export default function About() {
               Apollo
             </a>{' '}
             served by
-            <a href="https://www.netlify.com/">Netlify</a>
+            <a href="https://vercel.com/">Vercel</a>
           </Text>
         </Segment>
         <Segment variant="padded">
