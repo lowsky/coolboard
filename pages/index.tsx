@@ -60,7 +60,7 @@ export default function Index() {
             fontSize="2xl"
             mt="calc(2rem - 0.142857em)"
             mb="1rem">
-            <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
+            <a href="https://www.packtpub.com/product/hands-on-application-building-with-graphql-video/9781788991865">
               <Icon>
                 <FaFilm />
               </Icon>
@@ -71,7 +71,7 @@ export default function Index() {
             </a>
           </Heading>
           <p>
-            <a href="https://www.packtpub.com/web-development/hands-application-building-graphql-video">
+            <a href="https://www.packtpub.com/product/hands-on-application-building-with-graphql-video/9781788991865">
               <Icon>
                 <FaExternalLinkAlt />
               </Icon>
