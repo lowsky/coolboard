@@ -122,7 +122,7 @@ const getBoardsList = () => {
 };
 
 const getBoardsList_FirstEntry = (name: string) => {
-  cy.dataCy('full-container').dataCy('boards-list').first();
+  cy.dataCy('full-container').dataCy('boards-list', WaitVeryLong).first();
 
   return cy
     .dataCy('full-container')
@@ -228,7 +228,9 @@ describe('Test coolboard', () => {
       })
       .then(() => {
         // this took some time typically, so need to wait longer
-        getBoardsList().contains(newBoardName, LogAndWaitLong).should('not.exist');
+        getBoardsList()
+          .contains(newBoardName, LogAndWaitLong)
+          .should('not.exist');
       });
   });
 
