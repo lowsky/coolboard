@@ -97,15 +97,22 @@ export default withAuth(async (req, res) => {
     const { userId, sessionId, getToken } = req.auth;
 
     isLocalDev && console.log('req.auth', req.auth);
-    isLocalDev &&
-      console.log('req.auth', userId, sessionId, await getToken?.());
+    if (userId) {
+      return handleGraphqlRequest(req, res);
+    }
 
-    return handleGraphqlRequest(req, res);
+    isLocalDev &&
+      console.error(
+        '    req.auth: userId is not yet set!',
+        userId,
+        sessionId,
+        await getToken?.()
+      );
   } else {
     isLocalDev && console.log('no request.auth');
-
-    res.status(401).json({ id: null });
   }
+
+  res.status(401).json({ id: null });
 });
 
 export const config = {
