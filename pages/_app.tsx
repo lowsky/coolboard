@@ -37,15 +37,26 @@ https://chakra-ui.com/docs/styled-system/theming/customize-theme#customizing-com
       },
       Container: {
         variants: {
+          header: {
+            padding: '1em',
+            _dark: {
+              bg: 'gray.700',
+              color: 'gray.300',
+            },
+            _light: {
+              bg: 'lightgray',
+              color: 'black',
+            },
+          },
           footer: {
             fontSize: '0.75em',
             padding: '1em',
             _dark: {
-              background: 'gray',
+              bg: 'gray',
               color: 'lightgray',
             },
             _light: {
-              background: 'lightgray',
+              bg: 'lightgray',
               color: 'black',
             },
           },
@@ -63,7 +74,8 @@ https://chakra-ui.com/docs/styled-system/theming/customize-theme#customizing-com
             textDecoration: 'underline',
           },
           _dark: {
-            color: 'blue.500',
+            //color: 'blue.700',
+            color: '#3273dc',
           },
         },
       }),
