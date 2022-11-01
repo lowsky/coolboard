@@ -27,8 +27,10 @@ const BoardListItem = ({ name, id, deleteBoard }) => {
       // as={'li'}
       className={styles.listItem}
       data-cy={"board-list-item_"+name}>
-      <Link href={`/board/${id}`} passHref>
-        <a className={styles.wideColumn}>{name}</a>
+      <Link href={`/board/${id}`} passHref
+        //as={'a'}
+        className={styles.wideColumn}>
+        {name}
       </Link>
 
       <IconButton
