@@ -11,13 +11,8 @@ const networkStatusNotifier = createNetworkStatusNotifier();
 export const { useApolloNetworkStatus } = networkStatusNotifier;
 
 export const setupGraphQLClient = () => {
-  const GRAPHQL_URL = '/api/graphql';
-
-  const uri = GRAPHQL_URL;
-
-  let httpLink = createHttpLink({
-    uri,
-    credentials: 'same-origin',
+  const httpLink = createHttpLink({
+    uri: '/api/graphql',
   });
 
   const retryLink = new RetryLink({
