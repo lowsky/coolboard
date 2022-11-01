@@ -16,7 +16,7 @@ export const setupGraphQLClient = () => {
   });
 
   const retryLink = new RetryLink({
-    delay: { initial: 2000 },
+    delay: { initial: 3000 },
     attempts: {
       max: 3,
     },
