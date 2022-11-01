@@ -4873,9 +4873,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"apollo-server-core@npm:3.10.3, apollo-server-core@npm:^3.10.3":
-  version: 3.10.3
-  resolution: "apollo-server-core@npm:3.10.3"
+"apollo-server-core@npm:3.10.4, apollo-server-core@npm:^3.10.4":
+  version: 3.10.4
+  resolution: "apollo-server-core@npm:3.10.4"
   dependencies:
     "@apollo/utils.keyvaluecache": ^1.0.1
     "@apollo/utils.logger": ^1.0.0
@@ -4896,12 +4896,13 @@ __metadata:
     graphql-tag: ^2.11.0
     loglevel: ^1.6.8
     lru-cache: ^6.0.0
+    node-abort-controller: ^3.0.1
     sha.js: ^2.4.11
     uuid: ^9.0.0
     whatwg-mimetype: ^3.0.0
   peerDependencies:
     graphql: ^15.3.0 || ^16.0.0
-  checksum: 1a9c3ca29c1e664970737e83d76999d43ceb938e39026a329682fcc80fa17a564a69cb7b38110b1928d3d512ae77eeeb8ed6e160043521052c0360b0b00f0ada
+  checksum: 88256fa7bd8b48978a84e2ce9ddcea484066f11ff13c347855a891227824b4a58cd4297281be68cb385845b4c7dcac103548d92f0d4e24e7b86cdff027b7722e
   languageName: node
   linkType: hard
 
@@ -4923,9 +4924,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"apollo-server-express@npm:^3.10.3":
-  version: 3.10.3
-  resolution: "apollo-server-express@npm:3.10.3"
+"apollo-server-express@npm:^3.10.4":
+  version: 3.10.4
+  resolution: "apollo-server-express@npm:3.10.4"
   dependencies:
     "@types/accepts": ^1.3.5
     "@types/body-parser": 1.19.2
@@ -4933,7 +4934,7 @@ __metadata:
     "@types/express": 4.17.14
     "@types/express-serve-static-core": 4.17.31
     accepts: ^1.3.5
-    apollo-server-core: ^3.10.3
+    apollo-server-core: ^3.10.4
     apollo-server-types: ^3.6.3
     body-parser: ^1.19.0
     cors: ^2.8.5
@@ -4941,36 +4942,36 @@ __metadata:
   peerDependencies:
     express: ^4.17.1
     graphql: ^15.3.0 || ^16.0.0
-  checksum: c6dcfd8b61a558bd479d93d1c9cc4f436145b31e7f5e53d6c655d919c79f0b4b785788f0d16fc1d94c1929b85b034ae84a7332ce4e20603b67e0a4709e48b3a6
+  checksum: e312f70cb70c23c3be631fbeeb6c0dd559491c404a4f6f8c0e4259b195baee48b8b7827dd04d5259879b1b71502018a06b7bd6b390dd550969a30a3e01f39818
   languageName: node
   linkType: hard
 
-"apollo-server-lambda@npm:3.10.3":
-  version: 3.10.3
-  resolution: "apollo-server-lambda@npm:3.10.3"
+"apollo-server-lambda@npm:3.10.4":
+  version: 3.10.4
+  resolution: "apollo-server-lambda@npm:3.10.4"
   dependencies:
     "@types/aws-lambda": ^8.10.76
     "@vendia/serverless-express": ^4.3.9
-    apollo-server-core: ^3.10.3
-    apollo-server-express: ^3.10.3
+    apollo-server-core: ^3.10.4
+    apollo-server-express: ^3.10.4
     express: ^4.17.1
   peerDependencies:
     graphql: ^15.3.0 || ^16.0.0
-  checksum: ad59a27cfeddcc3e668d64a537f8c619bc7f2f23a4b96999e17f877a046deafe1b5ee46b25332eb034ef53fba472b7555f17e91afdd5c882ad0000fcdf661641
+  checksum: 1b35b780c919a12199d5d2fa8090f771eb74f60bd243bbab754f47fdbec89a7512baa1b8f0a49118e0af3de6d2c42e8dded0cf78d228d988500686de0756568b
   languageName: node
   linkType: hard
 
-"apollo-server-micro@npm:3.10.3":
-  version: 3.10.3
-  resolution: "apollo-server-micro@npm:3.10.3"
+"apollo-server-micro@npm:3.10.4":
+  version: 3.10.4
+  resolution: "apollo-server-micro@npm:3.10.4"
   dependencies:
     "@hapi/accept": ^5.0.2
-    apollo-server-core: ^3.10.3
+    apollo-server-core: ^3.10.4
     apollo-server-types: ^3.6.3
     type-is: ^1.6.18
   peerDependencies:
     micro: ^9.3.4
-  checksum: 25c064f44863691736c7bc775eb6507eff2a2aa338ee7a1ddaa83fa092394161687772a5909fe9a9966048e6de6a8c8cd95986ede0657674453eb36c2efbcca4
+  checksum: 01c185df0e04e9f73ea90b35a4511eeb547908c3e001418f9044fca395d466ffd6217909d4965a4e892ea5f250ce66cdcb604c190bd795b69e8a39f28458a353
   languageName: node
   linkType: hard
 
@@ -5880,10 +5881,10 @@ __metadata:
     "@types/react-dom": 18.0.8
     "@types/zen-observable": 0.8.3
     "@typescript-eslint/parser": 5.41.0
-    apollo-server-core: 3.10.3
+    apollo-server-core: 3.10.4
     apollo-server-errors: 3.3.1
-    apollo-server-lambda: 3.10.3
-    apollo-server-micro: 3.10.3
+    apollo-server-lambda: 3.10.4
+    apollo-server-micro: 3.10.4
     bcryptjs: 2.4.3
     bufferutil: 4.0.7
     emitter-listener: 1.1.2
@@ -8956,6 +8957,13 @@ __metadata:
     lower-case: ^2.0.2
     tslib: ^2.0.3
   checksum: 0b2ebc113dfcf737d48dde49cfebf3ad2d82a8c3188e7100c6f375e30eafbef9e9124aadc3becef237b042fd5eb0aad2fd78669c20972d045bbe7fea8ba0be5c
+  languageName: node
+  linkType: hard
+
+"node-abort-controller@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "node-abort-controller@npm:3.0.1"
+  checksum: 2b3d75c65249fea99e8ba22da3a8bc553f034f44dd12f5f4b38b520f718b01c88718c978f0c24c2a460fc01de9a80b567028f547b94440cb47adeacfeb82c2ee
   languageName: node
   linkType: hard
 
