@@ -4,14 +4,21 @@ import {
   Alert,
   AlertDescription,
   AlertIcon,
+  AlertStatus,
   AlertTitle,
 } from '@chakra-ui/react';
 
 import { useApolloNetworkStatus } from '../setupGraphQLClient';
 import { LoginButton } from './LoginButton';
 
-const ErrorMessage = ({ children }) => (
-  <Alert status="error" style={{ flexShrink: 0 }}>
+const ErrorMessage = ({
+  children,
+  status = 'error',
+}: {
+  children: React.ReactNode;
+  status?: AlertStatus;
+}) => (
+  <Alert status={status} style={{ flexShrink: 0 }}>
     <AlertIcon />
     {children}
   </Alert>
@@ -89,7 +96,7 @@ export const GeneralErrorHandler = () => {
         (networkError as ServerError | ServerParseError)?.statusCode === 401
       ) {
         return (
-          <ErrorMessage>
+          <ErrorMessage status='warning'>
             <AlertTitle>User not authorized!</AlertTitle>
             <LoginButton />
           </ErrorMessage>
