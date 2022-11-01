@@ -62,6 +62,9 @@ https://chakra-ui.com/docs/styled-system/theming/customize-theme#customizing-com
           _hover: {
             textDecoration: 'underline',
           },
+          _dark: {
+            color: 'blue.500',
+          },
         },
       }),
     },
