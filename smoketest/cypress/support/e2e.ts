@@ -26,5 +26,15 @@ Cypress.Cookies.defaults({
   preserve: () => true,
 });
 
+// This is catching this exception to avoid failing test:
+//
+// While we have a failing fetch request (because of expired, short living
+// clerk auth session cookie)
+Cypress.on('uncaught:exception', (error, runnable, promise) => {
+  if (promise) {
+    return false;
+  }
+});
+
 // Convert this to a module instead of script (allows import/export)
 export {};
