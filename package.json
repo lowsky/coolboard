@@ -32,7 +32,7 @@
     "emitter-listener": "1.1.2",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-prettier": "4.2.1",
-    "framer-motion": "7.6.2",
+    "framer-motion": "7.6.3",
     "graphql": "16.6.0",
     "graphql-tag": "2.12.6",
     "inter-ui": "3.19.3",
