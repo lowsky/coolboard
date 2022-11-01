@@ -3,12 +3,7 @@ import { Container, Flex, Heading, Icon, Text } from '@chakra-ui/react';
 
 import Link from 'next/link';
 import Image from 'next/image';
-import {
-  FaChalkboardTeacher,
-  FaExternalLinkAlt,
-  FaFilm,
-  FaLink,
-} from 'react-icons/fa';
+import { FaChalkboardTeacher, FaFilm, FaLink } from 'react-icons/fa';
 
 import { Segment } from '../src/common/Segment';
 import { FullVerticalContainer } from '../src/common/FullVerticalContainer';
