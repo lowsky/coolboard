@@ -32,22 +32,18 @@ export default function Index() {
         <Segment>
           <Text>
             You can go to your list of
-            <Link href="/boards">
-              <a>boards</a>
-            </Link>
+            <Link href="/boards">boards</Link>
           </Text>
         </Segment>
 
         <Segment className="zoomOnHover">
           <Link href="/boards">
-            <a>
-              <Image
-                src={screenshot}
-                placeholder="blur"
-                width="1099"
-                alt="screenshot"
-              />
-            </a>
+            <Image
+              src={screenshot}
+              placeholder="blur"
+              width="1099"
+              alt="screenshot"
+            />
           </Link>
         </Segment>
 
@@ -101,13 +97,11 @@ export default function Index() {
         <Segment>
           There are more
           <Link href="/about">
-            <a>
-              {' '}
-              <Icon>
-                <FaLink />
-              </Icon>
-              details about
-            </a>
+            {' '}
+            <Icon>
+              <FaLink />
+            </Icon>
+            details about
           </Link>{' '}
           this app.
         </Segment>

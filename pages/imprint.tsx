@@ -78,9 +78,7 @@ export default function Imprint() {
       <Heading as="h3">Datenschutz</Heading>
       <Text>
         Siehe
-        <Link href="/privacy">
-          <a>Privacy</a>
-        </Link>
+        <Link href="/privacy">Privacy</Link>
         Seite
       </Text>
     </Container>

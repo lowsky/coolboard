@@ -36,19 +36,9 @@ const ProfileHeaderContainer = ({
         placeContent: 'space-between',
       }}>
       <Box gap="2rem" display="flex">
-        {isBoardsPage && (
-          <Link href="/">
-            <a>Home</a>
-          </Link>
-        )}
-        {!isBoardsPage && (
-          <Link href="/boards">
-            <a>Boards</a>
-          </Link>
-        )}
-        <Link href="/about">
-          <a>About</a>
-        </Link>
+        {isBoardsPage && <Link href="/">Home</Link>}
+        {!isBoardsPage && <Link href="/boards">Boards</Link>}
+        <Link href="/about">About</Link>
       </Box>
 
       {children}

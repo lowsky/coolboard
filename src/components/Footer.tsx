@@ -30,12 +30,8 @@ export function Footer() {
         <span>Netlify and</span>
         <Image height={20} src={nextLogo} alt="Nextjs logo" />
         <div>
-          <Link href="/imprint">
-            <a>Imprint</a>
-          </Link>{' '}
-          <Link href="/privacy">
-            <a>Privacy</a>
-          </Link>{' '}
+          <Link href="/imprint">Imprint</Link>{' '}
+          <Link href="/privacy">Privacy</Link>{' '}
           <a href="mailto:coolboard@protonmail.com">
             <i className="icon mail" />
             Support
