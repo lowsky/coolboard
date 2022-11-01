@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Heading, Icon, Text } from '@chakra-ui/react';
+import { Container, Flex, Heading, Icon, Text } from '@chakra-ui/react';
 
 import Link from 'next/link';
 import Image from 'next/image';
@@ -49,7 +49,7 @@ export default function Index() {
 
         <Segment>
           <Text mb="1rem">
-            This is the demo of the app which we built in this video course
+            This is the demo of the app which we built in this video course:
           </Text>
           <Heading
             as="h3"
@@ -59,40 +59,40 @@ export default function Index() {
             <a href="https://www.packtpub.com/product/hands-on-application-building-with-graphql-video/9781788991865">
               <Icon>
                 <FaFilm />
-              </Icon>
+              </Icon>{' '}
               <b>Hands-on Application building with GraphQL and React</b>{' '}
               <Icon>
                 <FaChalkboardTeacher />
               </Icon>
             </a>
           </Heading>
-          <p>
+          <Flex
+            flexDir="row"
+            alignItems="center"
+            justifyContent={'flex-start'}
+            gap={'0.5rem'}>
+            <strong>Available</strong> at
             <a href="https://www.packtpub.com/product/hands-on-application-building-with-graphql-video/9781788991865">
-              <Icon>
-                <FaExternalLinkAlt />
-              </Icon>
-              <strong>Available</strong> at
               <Image
+                style={{ display: 'inline', verticalAlign: 'baseline' }}
                 src="/packt-logo.svg"
                 height={24}
-                width="100%"
+                width={80}
                 alt="packt publishing"
               />
-            </a>{' '}
-            or{' '}
+            </a>
+            or
             <a href="https://www.udemy.com/course/hands-on-application-development-with-graphql-3-in-1/">
-              <Icon>
-                <FaExternalLinkAlt />
-              </Icon>
               <Image
+                style={{ display: 'inline', verticalAlign: 'bottom' }}
                 src="/logo-udemy.svg"
                 height={24}
-                width="100%"
+                width={80}
                 alt="udemy"
               />
             </a>
             or Safari online, etc.
-          </p>
+          </Flex>
         </Segment>
         <Segment>
           There are more
