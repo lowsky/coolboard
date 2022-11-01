@@ -11,8 +11,10 @@ import { FaTrash } from 'react-icons/fa';
 
 import {
   useCreateBoardMutation,
-  useDeleteBoardMutation, UserBoardsDocument, UserBoardsQuery,
-  useUserBoardsQuery
+  useDeleteBoardMutation,
+  UserBoardsDocument,
+  UserBoardsQuery,
+  useUserBoardsQuery,
 } from '../generated/graphql';
 import { Segment } from '../common/Segment';
 import { FullVerticalContainer } from '../common/FullVerticalContainer';
@@ -26,8 +28,10 @@ const BoardListItem = ({ name, id, deleteBoard }) => {
     <ListItem
       // as={'li'}
       className={styles.listItem}
-      data-cy={"board-list-item_"+name}>
-      <Link href={`/board/${id}`} passHref
+      data-cy={'board-list-item_' + name}>
+      <Link
+        href={`/board/${id}`}
+        passHref
         //as={'a'}
         className={styles.wideColumn}>
         {name}
@@ -109,15 +113,17 @@ export const Boards = () => {
                   variables: { id },
                   update: (store) => {
                     const readData = store.readQuery({
-                      query: UserBoardsDocument
+                      query: UserBoardsDocument,
                     }) as UserBoardsQuery;
 
-                    if(readData.me?.boards) {
+                    if (readData.me?.boards) {
                       const newData = {
                         ...readData,
                         me: {
                           ...readData.me,
-                          boards: readData.me.boards?.filter(board => board?.id !== id)
+                          boards: readData.me.boards?.filter(
+                            (board) => board?.id !== id
+                          ),
                         },
                       };
                       store.writeQuery({

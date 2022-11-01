@@ -33,9 +33,3 @@
   flex-direction: column;
   display: flex;
 }
-
-.button {
-  margin: 0.1em 0 0 0;
-  border-bottom: 1px solid #ccc;
-  background-color: grey;
-}
