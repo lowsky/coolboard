@@ -58,7 +58,7 @@ export const GeneralErrorHandler = () => {
       }
       const notAuthErr = (graphQLErrors || []).find(
         (err) =>
-          // @ts-ignore
+          // @ts-expect-error name is not defined
           err.extensions?.exception?.name === 'NotAuthorizedError' ||
           err.message?.startsWith('Not authorized')
       );
@@ -96,7 +96,7 @@ export const GeneralErrorHandler = () => {
         (networkError as ServerError | ServerParseError)?.statusCode === 401
       ) {
         return (
-          <ErrorMessage status='warning'>
+          <ErrorMessage status="warning">
             <AlertTitle>User not authorized!</AlertTitle>
             <LoginButton />
           </ErrorMessage>
