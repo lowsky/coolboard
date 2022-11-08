@@ -26,20 +26,17 @@ const BoardListItem = ({ name, id, deleteBoard }) => {
   const [deleting, setDeleting] = useState(false);
   return (
     <ListItem
-      // as={'li'}
-      className={styles.listItem}
+      py="0.25rem"
+      px="0.5rem"
+      marginBottom="0.5px"
+      display="flex"
       data-cy={'board-list-item_' + name}>
-      <Link
-        href={`/board/${id}`}
-        passHref
-        //as={'a'}
-        className={styles.wideColumn}>
+      <Link href={`/board/${id}`} passHref className={styles.wideColumn}>
         {name}
       </Link>
 
       <IconButton
-        //compact
-        //basic
+        backgroundColor="transparent"
         onClick={() => {
           setDeleting(true);
           deleteBoard(id).finally(() => setDeleting(false));
@@ -48,7 +45,8 @@ const BoardListItem = ({ name, id, deleteBoard }) => {
         aria-label="delete board"
         data-cy="delete-board"
         icon={<FaTrash />}
-        size="mini"></IconButton>
+        size="mini"
+      />
     </ListItem>
   );
 };
