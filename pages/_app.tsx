@@ -51,15 +51,9 @@ https://chakra-ui.com/docs/styled-system/theming/customize-theme#customizing-com
           footer: (props) => ({
             fontSize: '0.75em',
             padding: '1em',
-            _dark: {
-              bg: 'gray',
-              color: 'lightgray',
-            },
-            _light: {
-              bg: 'lightgray',
-              color: 'black',
-            },
-          },
+            color: mode('black', 'lightgray')(props),
+            bg: mode('lightgray', 'gray')(props),
+          }),
         },
       },
     },
