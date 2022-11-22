@@ -11,6 +11,6 @@
     "install_and_test": "npm install ; echo installing deps - exit code $?; echo ; node wait-for-deployment.mjs"
   },
   "devDependencies": {
-    "got": "12.5.2"
+    "got": "12.5.3"
   }
 }
