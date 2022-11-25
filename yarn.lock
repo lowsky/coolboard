@@ -3831,15 +3831,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@opentelemetry/instrumentation-graphql@npm:0.32.0":
-  version: 0.32.0
-  resolution: "@opentelemetry/instrumentation-graphql@npm:0.32.0"
+"@opentelemetry/instrumentation-graphql@npm:0.33.0":
+  version: 0.33.0
+  resolution: "@opentelemetry/instrumentation-graphql@npm:0.33.0"
   dependencies:
-    "@opentelemetry/instrumentation": ^0.32.0
+    "@opentelemetry/instrumentation": ^0.34.0
   peerDependencies:
-    "@opentelemetry/api": ^1.0.0
-    graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
-  checksum: 3d9fe9566aa08663042ea1eea197fb21ec76cf49b42c93b6504180ffb2939af6a04103c3a8e6d9a06c5455961aa8b7a79935497c1f9154627124a5ef389300e8
+    "@opentelemetry/api": ^1.3.0
+  checksum: c88ceeec47687bd5d7356e3e3b7db35cf2612ab8d23ed7382426bff8406368011edb6c769507edcad061847ac314d92c8a420639c6d1618c18782756c0f6946a
   languageName: node
   linkType: hard
 
@@ -3857,7 +3856,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@opentelemetry/instrumentation@npm:0.34.0":
+"@opentelemetry/instrumentation@npm:0.34.0, @opentelemetry/instrumentation@npm:^0.34.0":
   version: 0.34.0
   resolution: "@opentelemetry/instrumentation@npm:0.34.0"
   dependencies:
@@ -5926,7 +5925,7 @@ __metadata:
     "@opentelemetry/api": 1.3.0
     "@opentelemetry/core": 1.8.0
     "@opentelemetry/instrumentation-express": 0.31.3
-    "@opentelemetry/instrumentation-graphql": 0.32.0
+    "@opentelemetry/instrumentation-graphql": 0.33.0
     "@opentelemetry/instrumentation-http": 0.34.0
     "@opentelemetry/node": 0.24.0
     "@prisma/client": 4.6.1
