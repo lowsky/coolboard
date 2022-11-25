@@ -20,7 +20,7 @@
     "@opentelemetry/api": "1.3.0",
     "@opentelemetry/core": "1.8.0",
     "@opentelemetry/instrumentation-express": "0.31.3",
-    "@opentelemetry/instrumentation-graphql": "0.32.0",
+    "@opentelemetry/instrumentation-graphql": "0.33.0",
     "@opentelemetry/instrumentation-http": "0.34.0",
     "@opentelemetry/node": "0.24.0",
     "@prisma/client": "4.6.1",
