@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Button,
-  Container,
+  Flex,
   Heading,
   Icon,
   IconButton,
@@ -25,43 +25,52 @@ export const BoardContainer = ({
   boardName,
   children,
   headerActions,
-}: Props) => (
-  <Container
-    maxW="100%"
-    style={{
-      display: 'flex',
-      flexDirection: 'column',
-      flexGrow: 1,
-      marginTop: '1rem',
-    }}>
-    <Heading as="h1">
-      Board: {boardName}
-      {headerActions && (
-        <Menu>
-          <MenuButton
-            as={IconButton}
-            data-cy="board-header-menu"
-            aria-label="board options"
-            icon={<HamburgerIcon />}
-            variant="outline"
-          />
-          <MenuList>{headerActions}</MenuList>
-        </Menu>
-      )}
-    </Heading>
-    <div
-      data-cy="board-container-inner"
-      style={{
-        textAlign: 'left',
-        backgroundColor: 'blue',
-        padding: '1rem',
-        display: 'flex',
-        flex: 1,
-        overflow: 'auto',
-      }}>
-      {children}
-    </div>
-  </Container>
+}: Props) => {
+  return (
+    <Flex flexDir="column" maxW="100%" flexGrow={1} mt="1rem">
+      <BoardTitle boardName={boardName} headerActions={headerActions} />
+      <BoardContent>{children}</BoardContent>
+    </Flex>
+  );
+};
+
+const BoardTitle = ({ boardName, headerActions }) => (
+  <Flex justifyContent="space-between">
+    <Heading as="h1">Board: {boardName}</Heading>
+    {headerActions && (
+      <Menu>
+        <MenuButton
+          as={IconButton}
+          data-cy="board-header-menu"
+          aria-label="board options"
+          icon={<HamburgerIcon />}
+          variant="outline"
+        />
+        <MenuList
+          rootProps={{
+            bg: 'transparent',
+          }}
+          margin={'0rem'}
+          minW={'unset'}
+          minH={'unset'}
+          padding={0}>
+          {headerActions}
+        </MenuList>
+      </Menu>
+    )}
+  </Flex>
+);
+
+const BoardContent = ({ children }) => (
+  <Flex
+    data-cy="board-container-inner"
+    textAlign="left"
+    bg="blue"
+    p="1rem"
+    flex="1"
+    overflow="auto">
+    {children}
+  </Flex>
 );
 
 export const AddListButton = ({
@@ -71,11 +80,8 @@ export const AddListButton = ({
 }) => (
   <Button
     onClick={onAddNewList}
-    style={{
-      flexShrink: 0,
-      flexGrow: 0,
-      alignSelf: 'flex-start',
-    }}
+    flexShrink={0}
+    flexGrow={0}
     leftIcon={<FaPlus />}>
     Add a list
   </Button>
@@ -94,13 +100,13 @@ export const DelAllListsButton = ({
     <Button
       onClick={showWarningThenCallAction}
       color={showWarning ? 'red' : undefined}
-      style={{
-        flexShrink: 0,
-        flexGrow: 0,
-        alignSelf: 'flex-start',
-      }}>
-      {showWarning && <div>This will be permanent!</div>}
-      <Icon color={showWarning ? undefined : 'red'}>
+      flexShrink={0}
+      flexGrow={0}
+      alignSelf={'flex-start'}>
+      {showWarning && <span>This will be permanent!</span>}
+      <Icon
+        color={showWarning ? undefined : 'red'}
+        ml={showWarning ? '1em' : undefined}>
         <FaTrash />
       </Icon>
       {children}

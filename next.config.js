@@ -20,10 +20,6 @@ module.exports = {
     return config;
   },
 
-  // https://nextjs.org/docs/advanced-features/compiler#minification
-  // faster minification
-  swcMinify: true,
-
   reactStrictMode: true,
 
   // "For faster deploy times, build IDs should be set to a static value..."
