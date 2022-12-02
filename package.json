@@ -38,7 +38,7 @@
     "graphql-tag": "2.12.6",
     "inter-ui": "3.19.3",
     "micro": "9.4.1",
-    "next": "13.0.5",
+    "next": "13.0.6",
     "prisma": "4.7.0",
     "react": "18.2.0",
     "react-apollo-network-status": "5.2.1",
@@ -78,7 +78,7 @@
     "@typescript-eslint/parser": "5.45.0",
     "apollo-server-core": "3.11.1",
     "eslint": "8.28.0",
-    "eslint-config-next": "13.0.5",
+    "eslint-config-next": "13.0.6",
     "prettier": "2.8.0",
     "typescript": "4.9.3"
   },
