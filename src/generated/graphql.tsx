@@ -780,17 +780,12 @@ export type ListWhereUniqueInput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  authenticate?: Maybe<User>;
   createBoard: User;
   deleteBoard: Board;
   deleteList?: Maybe<List>;
   updateBoard?: Maybe<Board>;
   updateCard: Card;
   updateList?: Maybe<List>;
-};
-
-export type MutationAuthenticateArgs = {
-  idToken: Scalars['String'];
 };
 
 export type MutationCreateBoardArgs = {
@@ -847,30 +842,6 @@ export type QueryBoardArgs = {
 
 export type QueryListArgs = {
   where: ListWhereUniqueInput;
-};
-
-export type Subscription = {
-  __typename?: 'Subscription';
-  board?: Maybe<BoardSubscriptionPayload>;
-  card?: Maybe<CardSubscriptionPayload>;
-  list?: Maybe<ListSubscriptionPayload>;
-  user?: Maybe<UserSubscriptionPayload>;
-};
-
-export type SubscriptionBoardArgs = {
-  where?: InputMaybe<BoardSubscriptionWhereInput>;
-};
-
-export type SubscriptionCardArgs = {
-  where?: InputMaybe<CardSubscriptionWhereInput>;
-};
-
-export type SubscriptionListArgs = {
-  where?: InputMaybe<ListSubscriptionWhereInput>;
-};
-
-export type SubscriptionUserArgs = {
-  where?: InputMaybe<UserSubscriptionWhereInput>;
 };
 
 export type User = {

@@ -26,13 +26,6 @@ type Mutation {
   deleteList(where: ListWhereUniqueInput!): List
 }
 
-type Subscription {
-  board(where: BoardSubscriptionWhereInput): BoardSubscriptionPayload
-  list(where: ListSubscriptionWhereInput): ListSubscriptionPayload
-  card(where: CardSubscriptionWhereInput): CardSubscriptionPayload
-  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
-}
-
 type AggregateBoard {
   count: Int!
 }
