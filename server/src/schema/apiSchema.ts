@@ -417,7 +417,6 @@ input CardUpdateDataInput {
 input CardUpdateInput {
   name: String
   description: String
-  updatedBy: UserUpdateOneInput
 }
 
 input CardUpdateManyDataInput {

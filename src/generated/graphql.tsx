@@ -430,7 +430,6 @@ export type CardUpdateDataInput = {
 export type CardUpdateInput = {
   description?: InputMaybe<Scalars['String']>;
   name?: InputMaybe<Scalars['String']>;
-  updatedBy?: InputMaybe<UserUpdateOneInput>;
 };
 
 export type CardUpdateManyDataInput = {
