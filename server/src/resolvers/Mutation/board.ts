@@ -5,7 +5,7 @@ import {
 } from '../../helpers/auth';
 import { Ctxt } from '../Context';
 
-const board = {
+export default {
   async updateBoard(_parent: any, args: any, ctx: Ctxt): Promise<Board> {
     const userId = await getUserId(ctx);
     const { prisma } = ctx;
@@ -86,5 +86,3 @@ const board = {
     });
   },
 };
-
-export default board;

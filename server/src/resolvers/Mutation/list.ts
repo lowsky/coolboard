@@ -5,7 +5,7 @@ import {
 } from '../../helpers/auth';
 import { Ctxt } from '../Context';
 
-const list = {
+export default {
   async updateList(
     _parent: any,
     { where, data }: any,
@@ -62,5 +62,3 @@ const list = {
     return prisma.list.delete({ where });
   },
 };
-
-export default list;

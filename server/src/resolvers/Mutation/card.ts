@@ -2,7 +2,7 @@ import { Card } from '@prisma/client';
 import { getUserId } from '../../helpers/auth';
 import { Ctxt } from '../Context';
 
-const card = {
+export default {
   /*
   mutation updateCard(data: CardUpdateInput!, where: CardWhereUniqueInput!): Card
   input CardUpdateInput {
@@ -61,5 +61,3 @@ const card = {
     */
   },
 };
-
-export default card;

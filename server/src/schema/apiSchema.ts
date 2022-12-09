@@ -1051,6 +1051,3 @@ type User {
   boards: [Board]
 }
 `;
-export default {
-  typeDefs,
-};

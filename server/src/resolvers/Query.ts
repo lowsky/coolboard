@@ -7,7 +7,7 @@ import { createNewUser } from '../helpers/registerNewUser';
 import { isLocalDev } from '../helpers/logging';
 import { Ctxt } from './Context';
 
-const Query = {
+export default {
   async board(_parent: any, { where }: any, ctx: Ctxt) {
     await verifyUserIsAuthenticatedAndRetrieveUserToken(ctx);
 
@@ -51,5 +51,3 @@ const Query = {
     return u;
   },
 };
-
-export default Query;
