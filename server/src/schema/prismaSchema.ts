@@ -21,7 +21,15 @@ type BatchPayload {
 
 type Board {
   id: ID!
-  lists(where: ListWhereInput, orderBy: ListOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [List!]
+  lists(
+    where: ListWhereInput
+    orderBy: ListOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [List!]
   name: String!
   updatedBy: User
   createdAt: DateTime!
@@ -35,7 +43,6 @@ type BoardConnection {
 }
 
 input BoardCreateInput {
-  id: ID
   lists: ListCreateManyInput
   name: String!
   updatedBy: UserCreateOneWithoutBoardsInput
@@ -118,7 +125,15 @@ input CardWhereUniqueInput {
 scalar DateTime
 
 type List {
-  cards(where: CardWhereInput, orderBy: CardOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Card!]
+  cards(
+    where: CardWhereInput
+    orderBy: CardOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Card!]
   id: ID!
   name: String!
   updatedBy: User
@@ -256,6 +271,7 @@ input ListUpdateManyInput {
   upsert: [ListUpsertWithWhereUniqueNestedInput!]
   delete: [ListWhereUniqueInput!]
   connect: [ListWhereUniqueInput!]
+  set: [ListWhereUniqueInput!]
   disconnect: [ListWhereUniqueInput!]
   deleteMany: [ListScalarWhereInput!]
   updateMany: [ListUpdateManyWithWhereNestedInput!]
@@ -347,7 +363,8 @@ enum MutationType {
   DELETED
 }
 
-interface Node {
+###
+#interface Node {
   id: ID!
 }
 
@@ -595,47 +612,6 @@ input UserWhereUniqueInput {
 
 
 
-
-
-type Query {
-  me: User
-  board(where: BoardWhereUniqueInput!): Board
-  list(where: ListWhereUniqueInput!): List
-}
-
-type Mutation {
-  createBoard(name: String!): User!
-  deleteBoard(id: ID!): Board!
-
-  authenticate(idToken: String!): User
-
-  # deprecated
-  signup(email: String!, password: String!, name: String!, avatarUrl: String): AuthPayload!
-  login(email: String!, password: String!): AuthPayload!
-
-  updateBoard(data: BoardUpdateInput!, where: BoardWhereUniqueInput!): Board
-  #used in:
-  #updateBoard(data: {lists: {create: {name: $name}}}, where: {id: $boardId})
-  #mutation deletelistsOfBoard($boardId: ID!, $listIds: [ListWhereUniqueInput!]!) {
-
-  updateList(data: ListUpdateInput!, where: ListWhereUniqueInput!): List
-  #used in:
-  #mutation AddCardMutation( $cardListId: ID! $name: String!
-  #mutation moveCard( $cardId: ID! $oldCardListId: ID! $cardListId: ID!
-
-  updateCard(data: CardUpdateInput!, where: CardWhereUniqueInput!): Card!
-  #used in:
-  #updateCard(data: CardUpdateInput!, where: CardWhereUniqueInput!): Card
-
-  deleteList(where: ListWhereUniqueInput!): List
-}
-
-type Subscription {
-  board(where: BoardSubscriptionWhereInput): BoardSubscriptionPayload
-  list(where: ListSubscriptionWhereInput): ListSubscriptionPayload
-  card(where: CardSubscriptionWhereInput): CardSubscriptionPayload
-  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
-}
 
 type AuthPayload {
   token: String!

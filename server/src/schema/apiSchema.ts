@@ -1,4 +1,37 @@
 export const typeDefs = `
+type Query {
+  me: User
+  board(where: BoardWhereUniqueInput!): Board
+  list(where: ListWhereUniqueInput!): List
+}
+
+type Mutation {
+  createBoard(name: String!): User!
+  deleteBoard(id: ID!): Board!
+
+  updateBoard(data: BoardUpdateInput!, where: BoardWhereUniqueInput!): Board
+  #used in:
+  #updateBoard(data: {lists: {create: {name: $name}}}, where: {id: $boardId})
+  #mutation deletelistsOfBoard($boardId: ID!, $listIds: [ListWhereUniqueInput!]!) {
+
+  updateList(data: ListUpdateInput!, where: ListWhereUniqueInput!): List
+  #used in:
+  #mutation AddCardMutation( $cardListId: ID! $name: String!
+  #mutation moveCard( $cardId: ID! $oldCardListId: ID! $cardListId: ID!
+
+  updateCard(data: CardUpdateInput!, where: CardWhereUniqueInput!): Card!
+  #used in:
+  #updateCard(data: CardUpdateInput!, where: CardWhereUniqueInput!): Card
+
+  deleteList(where: ListWhereUniqueInput!): List
+}
+
+type Subscription {
+  board(where: BoardSubscriptionWhereInput): BoardSubscriptionPayload
+  list(where: ListSubscriptionWhereInput): ListSubscriptionPayload
+  card(where: CardSubscriptionWhereInput): CardSubscriptionPayload
+  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+}
 
 type AggregateBoard {
   count: Int!
@@ -1014,54 +1047,6 @@ input UserWhereUniqueInput {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-type Query {
-  me: User
-  board(where: BoardWhereUniqueInput!): Board
-  list(where: ListWhereUniqueInput!): List
-}
-
-type Mutation {
-  createBoard(name: String!): User!
-  deleteBoard(id: ID!): Board!
-
-  updateBoard(data: BoardUpdateInput!, where: BoardWhereUniqueInput!): Board
-  #used in:
-  #updateBoard(data: {lists: {create: {name: $name}}}, where: {id: $boardId})
-  #mutation deletelistsOfBoard($boardId: ID!, $listIds: [ListWhereUniqueInput!]!) {
-
-  updateList(data: ListUpdateInput!, where: ListWhereUniqueInput!): List
-  #used in:
-  #mutation AddCardMutation( $cardListId: ID! $name: String!
-  #mutation moveCard( $cardId: ID! $oldCardListId: ID! $cardListId: ID!
-
-  updateCard(data: CardUpdateInput!, where: CardWhereUniqueInput!): Card!
-  #used in:
-  #updateCard(data: CardUpdateInput!, where: CardWhereUniqueInput!): Card
-
-  deleteList(where: ListWhereUniqueInput!): List
-}
-
-type Subscription {
-  board(where: BoardSubscriptionWhereInput): BoardSubscriptionPayload
-  list(where: ListSubscriptionWhereInput): ListSubscriptionPayload
-  card(where: CardSubscriptionWhereInput): CardSubscriptionPayload
-  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
-}
 
 
 type User {
