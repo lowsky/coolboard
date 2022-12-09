@@ -22,7 +22,15 @@ type BatchPayload {
 
 type Board {
   id: ID!
-  lists(where: ListWhereInput, orderBy: ListOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [List!]
+  lists(
+    where: ListWhereInput
+    orderBy: ListOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [List!]
   name: String!
   updatedBy: User
   createdAt: DateTime!
@@ -255,12 +263,6 @@ type Card {
   updatedAt: DateTime!
 }
 
-type CardConnection {
-  pageInfo: PageInfo!
-  edges: [CardEdge]!
-  aggregate: AggregateCard!
-}
-
 input CardCreateInput {
   name: String!
   description: String
@@ -403,6 +405,7 @@ input CardUpdateManyInput {
   upsert: [CardUpsertWithWhereUniqueNestedInput!]
   delete: [CardWhereUniqueInput!]
   connect: [CardWhereUniqueInput!]
+  set: [CardWhereUniqueInput!]
   disconnect: [CardWhereUniqueInput!]
   deleteMany: [CardScalarWhereInput!]
   updateMany: [CardUpdateManyWithWhereNestedInput!]
@@ -517,6 +520,7 @@ type ListConnection {
 
 input ListCreateInput {
   cards: CardCreateManyInput
+  id: ID
   name: String!
   updatedBy: UserCreateOneInput
 }
@@ -639,6 +643,7 @@ input ListUpdateManyInput {
   upsert: [ListUpsertWithWhereUniqueNestedInput!]
   delete: [ListWhereUniqueInput!]
   connect: [ListWhereUniqueInput!]
+  set: [ListWhereUniqueInput!]
   disconnect: [ListWhereUniqueInput!]
   deleteMany: [ListScalarWhereInput!]
   updateMany: [ListUpdateManyWithWhereNestedInput!]
@@ -770,10 +775,12 @@ input UserCreateOneWithoutBoardsInput {
 }
 
 input UserCreateWithoutBoardsInput {
+  id: ID
   email: String!
-  password: String!
   name: String!
   avatarUrl: String
+  auth0id: String
+  identity: String
 }
 
 type UserEdge {
@@ -786,12 +793,14 @@ enum UserOrderByInput {
   id_DESC
   email_ASC
   email_DESC
-  password_ASC
-  password_DESC
   name_ASC
   name_DESC
   avatarUrl_ASC
   avatarUrl_DESC
+  auth0id_ASC
+  auth0id_DESC
+  identity_ASC
+  identity_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -801,9 +810,12 @@ enum UserOrderByInput {
 type UserPreviousValues {
   id: ID!
   email: String!
-  password: String!
   name: String!
   avatarUrl: String
+  auth0id: String
+  identity: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type UserSubscriptionPayload {
@@ -826,25 +838,28 @@ input UserSubscriptionWhereInput {
 
 input UserUpdateDataInput {
   email: String
-  password: String
   name: String
   avatarUrl: String
   boards: BoardUpdateManyWithoutUpdatedByInput
+  auth0id: String
+  identity: String
 }
 
 input UserUpdateInput {
   email: String
-  password: String
   name: String
   avatarUrl: String
   boards: BoardUpdateManyWithoutUpdatedByInput
+  auth0id: String
+  identity: String
 }
 
 input UserUpdateManyMutationInput {
   email: String
-  password: String
   name: String
   avatarUrl: String
+  auth0id: String
+  identity: String
 }
 
 input UserUpdateOneInput {
@@ -867,9 +882,10 @@ input UserUpdateOneWithoutBoardsInput {
 
 input UserUpdateWithoutBoardsDataInput {
   email: String
-  password: String
   name: String
   avatarUrl: String
+  auth0id: String
+  identity: String
 }
 
 input UserUpsertNestedInput {
@@ -911,20 +927,6 @@ input UserWhereInput {
   email_not_starts_with: String
   email_ends_with: String
   email_not_ends_with: String
-  password: String
-  password_not: String
-  password_in: [String!]
-  password_not_in: [String!]
-  password_lt: String
-  password_lte: String
-  password_gt: String
-  password_gte: String
-  password_contains: String
-  password_not_contains: String
-  password_starts_with: String
-  password_not_starts_with: String
-  password_ends_with: String
-  password_not_ends_with: String
   name: String
   name_not: String
   name_in: [String!]
@@ -956,6 +958,50 @@ input UserWhereInput {
   boards_every: BoardWhereInput
   boards_some: BoardWhereInput
   boards_none: BoardWhereInput
+  auth0id: String
+  auth0id_not: String
+  auth0id_in: [String!]
+  auth0id_not_in: [String!]
+  auth0id_lt: String
+  auth0id_lte: String
+  auth0id_gt: String
+  auth0id_gte: String
+  auth0id_contains: String
+  auth0id_not_contains: String
+  auth0id_starts_with: String
+  auth0id_not_starts_with: String
+  auth0id_ends_with: String
+  auth0id_not_ends_with: String
+  identity: String
+  identity_not: String
+  identity_in: [String!]
+  identity_not_in: [String!]
+  identity_lt: String
+  identity_lte: String
+  identity_gt: String
+  identity_gte: String
+  identity_contains: String
+  identity_not_contains: String
+  identity_starts_with: String
+  identity_not_starts_with: String
+  identity_ends_with: String
+  identity_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]
@@ -964,6 +1010,7 @@ input UserWhereInput {
 input UserWhereUniqueInput {
   id: ID
   email: String
+  auth0id: String
 }
 
 
@@ -992,10 +1039,6 @@ type Mutation {
   createBoard(name: String!): User!
   deleteBoard(id: ID!): Board!
 
-  # deprecated
-  signup(email: String!, password: String!, name: String!, avatarUrl: String): AuthPayload!
-  login(email: String!, password: String!): AuthPayload!
-
   updateBoard(data: BoardUpdateInput!, where: BoardWhereUniqueInput!): Board
   #used in:
   #updateBoard(data: {lists: {create: {name: $name}}}, where: {id: $boardId})
@@ -1020,10 +1063,6 @@ type Subscription {
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
 }
 
-type AuthPayload {
-  token: String!
-  user: User!
-}
 
 type User {
   id: ID!
