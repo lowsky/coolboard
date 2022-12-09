@@ -537,7 +537,15 @@ input CardWhereUniqueInput {
 scalar DateTime
 
 type List {
-  cards(where: CardWhereInput, orderBy: CardOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Card!]
+  cards(
+    where: CardWhereInput
+    orderBy: CardOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Card!]
   id: ID!
   name: String!
   updatedBy: User
@@ -553,7 +561,6 @@ type ListConnection {
 
 input ListCreateInput {
   cards: CardCreateManyInput
-  id: ID
   name: String!
   updatedBy: UserCreateOneInput
 }
@@ -780,8 +787,6 @@ type PageInfo {
   startCursor: String
   endCursor: String
 }
-
-
 
 type UserConnection {
   pageInfo: PageInfo!
@@ -1045,9 +1050,6 @@ input UserWhereUniqueInput {
   email: String
   auth0id: String
 }
-
-
-
 
 type User {
   id: ID!
