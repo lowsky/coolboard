@@ -11,7 +11,7 @@ datasource db {
   url = env("DATABASE_URL")
 
   // used for planetscale:
-  referentialIntegrity = "prisma"
+  relationMode = "prisma"
 }
 
 model Card {
