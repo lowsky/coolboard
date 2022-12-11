@@ -54,7 +54,7 @@ export const ProfileHeader = ({ isBoardsPage }: { isBoardsPage?: boolean }) => {
   const { reload } = useRouter();
 
   const { colorMode } = useColorMode();
-  const clerkAppearance = colorMode === 'dark' ? { baseTheme: dark }: {};
+  const clerkAppearance = colorMode === 'dark' ? { baseTheme: dark } : {};
 
   return (
     <ProfileHeaderContainer isBoardsPage={isBoardsPage}>

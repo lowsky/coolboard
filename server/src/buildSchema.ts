@@ -199,6 +199,7 @@ builder.queryField('list', (t) =>
 builder.mutationField('createBoard', (t) => {
   return t.field({
     nullable: false,
+    // @ts-expect-error type is not exactly matching - still need investigation
     type: 'User',
     args: {
       name: t.arg.string({ required: true }),
@@ -215,6 +216,7 @@ builder.mutationField('createBoard', (t) => {
 builder.mutationField('deleteBoard', (t) => {
   return t.field({
     nullable: false,
+    // @ts-expect-error type is not exactly matching - still need investigation
     type: 'Board',
     args: {
       id: t.arg.id({ required: true }),
@@ -228,12 +230,14 @@ builder.mutationField('deleteBoard', (t) => {
 
 builder.mutationField('deleteList', (t) => {
   return t.field({
+    // @ts-expect-error type is not exactly matching - still need investigation
     type: 'List',
     args: {
       id: t.arg.id({ required: true }),
     },
     // @ts-expect-error resolver return type was never correct
     resolve: async (_parent, args, ctx, _info) => {
+      return resolvers.Mutation.deleteList(_parent, args, ctx);
     },
   });
 });
@@ -241,6 +245,7 @@ builder.mutationField('deleteList', (t) => {
 builder.mutationField('updateBoard', (t) => {
   return t.field({
     nullable: false,
+    // @ts-expect-error type is not exactly matching - still need investigation
     type: 'Board',
     args: {
       where: t.arg({ type: BoardWhereUniqueInput, required: true }),
@@ -256,6 +261,7 @@ builder.mutationField('updateBoard', (t) => {
 builder.mutationField('updateList', (t) => {
   return t.field({
     nullable: false,
+    // @ts-expect-error type is not exactly matching - still need investigation
     type: 'List',
     args: {
       where: t.arg({ type: ListWhereUniqueInput, required: true }),
@@ -263,13 +269,14 @@ builder.mutationField('updateList', (t) => {
     },
     resolve: async (_parent, { where, data }, ctx, _info) =>
       // @ts-expect-error resolver return type was never correct
-      resolvers.Mutation.updateList(_parent, { where, data }, ctx)
+      resolvers.Mutation.updateList(_parent, { where, data }, ctx),
   });
 });
 
 builder.mutationField('updateCard', (t) => {
   return t.field({
     nullable: false,
+    // @ts-expect-error type is not exactly matching - still need investigation
     type: 'Card',
     args: {
       where: t.arg({ type: CardWhereUniqueInput, required: true }),
@@ -277,7 +284,7 @@ builder.mutationField('updateCard', (t) => {
     },
     resolve: async (_parent, { where, data }, ctx, _info) =>
       // @ts-expect-error resolver return type was never correct
-      resolvers.Mutation.updateCard(_parent, { where, data }, ctx)
+      resolvers.Mutation.updateCard(_parent, { where, data }, ctx),
   });
 });
 
