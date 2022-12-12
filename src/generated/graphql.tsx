@@ -11,7 +11,7 @@ export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
   [SubKey in K]: Maybe<T[SubKey]>;
 };
-const defaultOptions = {};
+const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -430,7 +430,6 @@ export type CardUpdateDataInput = {
 export type CardUpdateInput = {
   description?: InputMaybe<Scalars['String']>;
   name?: InputMaybe<Scalars['String']>;
-  updatedBy?: InputMaybe<UserUpdateOneInput>;
 };
 
 export type CardUpdateManyDataInput = {
@@ -780,17 +779,12 @@ export type ListWhereUniqueInput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  authenticate?: Maybe<User>;
   createBoard: User;
   deleteBoard: Board;
   deleteList?: Maybe<List>;
   updateBoard?: Maybe<Board>;
   updateCard: Card;
   updateList?: Maybe<List>;
-};
-
-export type MutationAuthenticateArgs = {
-  idToken: Scalars['String'];
 };
 
 export type MutationCreateBoardArgs = {
@@ -847,30 +841,6 @@ export type QueryBoardArgs = {
 
 export type QueryListArgs = {
   where: ListWhereUniqueInput;
-};
-
-export type Subscription = {
-  __typename?: 'Subscription';
-  board?: Maybe<BoardSubscriptionPayload>;
-  card?: Maybe<CardSubscriptionPayload>;
-  list?: Maybe<ListSubscriptionPayload>;
-  user?: Maybe<UserSubscriptionPayload>;
-};
-
-export type SubscriptionBoardArgs = {
-  where?: InputMaybe<BoardSubscriptionWhereInput>;
-};
-
-export type SubscriptionCardArgs = {
-  where?: InputMaybe<CardSubscriptionWhereInput>;
-};
-
-export type SubscriptionListArgs = {
-  where?: InputMaybe<ListSubscriptionWhereInput>;
-};
-
-export type SubscriptionUserArgs = {
-  where?: InputMaybe<UserSubscriptionWhereInput>;
 };
 
 export type User = {
@@ -1153,16 +1123,13 @@ export type MeQueryQueryVariables = Exact<{ [key: string]: never }>;
 
 export type MeQueryQuery = {
   __typename?: 'Query';
-  me?:
-    | {
-        __typename?: 'User';
-        email: string;
-        id: string;
-        name: string;
-        avatarUrl?: string | null | undefined;
-      }
-    | null
-    | undefined;
+  me?: {
+    __typename?: 'User';
+    email: string;
+    id: string;
+    name: string;
+    avatarUrl?: string | null;
+  } | null;
 };
 
 export type BoardQueryVariables = Exact<{
@@ -1171,28 +1138,19 @@ export type BoardQueryVariables = Exact<{
 
 export type BoardQuery = {
   __typename?: 'Query';
-  board?:
-    | {
-        __typename?: 'Board';
-        name: string;
-        id: string;
-        lists?:
-          | Array<{ __typename?: 'List'; name: string; id: string }>
-          | null
-          | undefined;
-      }
-    | null
-    | undefined;
+  board?: {
+    __typename?: 'Board';
+    name: string;
+    id: string;
+    lists?: Array<{ __typename?: 'List'; name: string; id: string }> | null;
+  } | null;
 };
 
 export type Board_BoardFragment = {
   __typename?: 'Board';
   name: string;
   id: string;
-  lists?:
-    | Array<{ __typename?: 'List'; name: string; id: string }>
-    | null
-    | undefined;
+  lists?: Array<{ __typename?: 'List'; name: string; id: string }> | null;
 };
 
 export type CreateBoardMutationVariables = Exact<{
@@ -1205,12 +1163,11 @@ export type CreateBoardMutation = {
     __typename?: 'User';
     name: string;
     id: string;
-    boards?:
-      | Array<
-          { __typename?: 'Board'; name: string; id: string } | null | undefined
-        >
-      | null
-      | undefined;
+    boards?: Array<{
+      __typename?: 'Board';
+      name: string;
+      id: string;
+    } | null> | null;
   };
 };
 
@@ -1227,22 +1184,16 @@ export type UserBoardsQueryVariables = Exact<{ [key: string]: never }>;
 
 export type UserBoardsQuery = {
   __typename?: 'Query';
-  me?:
-    | {
-        __typename?: 'User';
-        name: string;
-        id: string;
-        boards?:
-          | Array<
-              | { __typename?: 'Board'; name: string; id: string }
-              | null
-              | undefined
-            >
-          | null
-          | undefined;
-      }
-    | null
-    | undefined;
+  me?: {
+    __typename?: 'User';
+    name: string;
+    id: string;
+    boards?: Array<{
+      __typename?: 'Board';
+      name: string;
+      id: string;
+    } | null> | null;
+  } | null;
 };
 
 export type AddListMutationVariables = Exact<{
@@ -1252,18 +1203,12 @@ export type AddListMutationVariables = Exact<{
 
 export type AddListMutation = {
   __typename?: 'Mutation';
-  updateBoard?:
-    | {
-        __typename?: 'Board';
-        name: string;
-        id: string;
-        lists?:
-          | Array<{ __typename?: 'List'; name: string; id: string }>
-          | null
-          | undefined;
-      }
-    | null
-    | undefined;
+  updateBoard?: {
+    __typename?: 'Board';
+    name: string;
+    id: string;
+    lists?: Array<{ __typename?: 'List'; name: string; id: string }> | null;
+  } | null;
 };
 
 export type DeleteListsOfBoardMutationVariables = Exact<{
@@ -1273,18 +1218,12 @@ export type DeleteListsOfBoardMutationVariables = Exact<{
 
 export type DeleteListsOfBoardMutation = {
   __typename?: 'Mutation';
-  updateBoard?:
-    | {
-        __typename?: 'Board';
-        name: string;
-        id: string;
-        lists?:
-          | Array<{ __typename?: 'List'; name: string; id: string }>
-          | null
-          | undefined;
-      }
-    | null
-    | undefined;
+  updateBoard?: {
+    __typename?: 'Board';
+    name: string;
+    id: string;
+    lists?: Array<{ __typename?: 'List'; name: string; id: string }> | null;
+  } | null;
 };
 
 export type DeleteListOfBoardMutationVariables = Exact<{
@@ -1294,18 +1233,12 @@ export type DeleteListOfBoardMutationVariables = Exact<{
 
 export type DeleteListOfBoardMutation = {
   __typename?: 'Mutation';
-  updateBoard?:
-    | {
-        __typename?: 'Board';
-        name: string;
-        id: string;
-        lists?:
-          | Array<{ __typename?: 'List'; name: string; id: string }>
-          | null
-          | undefined;
-      }
-    | null
-    | undefined;
+  updateBoard?: {
+    __typename?: 'Board';
+    name: string;
+    id: string;
+    lists?: Array<{ __typename?: 'List'; name: string; id: string }> | null;
+  } | null;
 };
 
 export type CardListQueryVariables = Exact<{
@@ -1314,35 +1247,26 @@ export type CardListQueryVariables = Exact<{
 
 export type CardListQuery = {
   __typename?: 'Query';
-  list?:
-    | {
-        __typename?: 'List';
+  list?: {
+    __typename?: 'List';
+    name: string;
+    id: string;
+    cards?: Array<{
+      __typename?: 'Card';
+      id: string;
+      name: string;
+      description?: string | null;
+      createdAt: any;
+      updatedAt: any;
+      updatedBy?: {
+        __typename?: 'User';
+        avatarUrl?: string | null;
+        email: string;
         name: string;
         id: string;
-        cards?:
-          | Array<{
-              __typename?: 'Card';
-              id: string;
-              name: string;
-              description?: string | null | undefined;
-              createdAt: any;
-              updatedAt: any;
-              updatedBy?:
-                | {
-                    __typename?: 'User';
-                    avatarUrl?: string | null | undefined;
-                    email: string;
-                    name: string;
-                    id: string;
-                  }
-                | null
-                | undefined;
-            }>
-          | null
-          | undefined;
-      }
-    | null
-    | undefined;
+      } | null;
+    }> | null;
+  } | null;
 };
 
 export type MoveCardMutationVariables = Exact<{
@@ -1353,64 +1277,46 @@ export type MoveCardMutationVariables = Exact<{
 
 export type MoveCardMutation = {
   __typename?: 'Mutation';
-  newList?:
-    | {
-        __typename?: 'List';
+  newList?: {
+    __typename?: 'List';
+    name: string;
+    id: string;
+    cards?: Array<{
+      __typename?: 'Card';
+      id: string;
+      name: string;
+      description?: string | null;
+      createdAt: any;
+      updatedAt: any;
+      updatedBy?: {
+        __typename?: 'User';
+        avatarUrl?: string | null;
+        email: string;
         name: string;
         id: string;
-        cards?:
-          | Array<{
-              __typename?: 'Card';
-              id: string;
-              name: string;
-              description?: string | null | undefined;
-              createdAt: any;
-              updatedAt: any;
-              updatedBy?:
-                | {
-                    __typename?: 'User';
-                    avatarUrl?: string | null | undefined;
-                    email: string;
-                    name: string;
-                    id: string;
-                  }
-                | null
-                | undefined;
-            }>
-          | null
-          | undefined;
-      }
-    | null
-    | undefined;
-  oldList?:
-    | {
-        __typename?: 'List';
+      } | null;
+    }> | null;
+  } | null;
+  oldList?: {
+    __typename?: 'List';
+    name: string;
+    id: string;
+    cards?: Array<{
+      __typename?: 'Card';
+      id: string;
+      name: string;
+      description?: string | null;
+      createdAt: any;
+      updatedAt: any;
+      updatedBy?: {
+        __typename?: 'User';
+        avatarUrl?: string | null;
+        email: string;
         name: string;
         id: string;
-        cards?:
-          | Array<{
-              __typename?: 'Card';
-              id: string;
-              name: string;
-              description?: string | null | undefined;
-              createdAt: any;
-              updatedAt: any;
-              updatedBy?:
-                | {
-                    __typename?: 'User';
-                    avatarUrl?: string | null | undefined;
-                    email: string;
-                    name: string;
-                    id: string;
-                  }
-                | null
-                | undefined;
-            }>
-          | null
-          | undefined;
-      }
-    | null
-    | undefined;
+      } | null;
+    }> | null;
+  } | null;
 };
 
 export type AddCardMutationMutationVariables = Exact<{
@@ -1420,35 +1326,26 @@ export type AddCardMutationMutationVariables = Exact<{
 
 export type AddCardMutationMutation = {
   __typename?: 'Mutation';
-  updateList?:
-    | {
-        __typename?: 'List';
+  updateList?: {
+    __typename?: 'List';
+    name: string;
+    id: string;
+    cards?: Array<{
+      __typename?: 'Card';
+      id: string;
+      name: string;
+      description?: string | null;
+      createdAt: any;
+      updatedAt: any;
+      updatedBy?: {
+        __typename?: 'User';
+        avatarUrl?: string | null;
+        email: string;
         name: string;
         id: string;
-        cards?:
-          | Array<{
-              __typename?: 'Card';
-              id: string;
-              name: string;
-              description?: string | null | undefined;
-              createdAt: any;
-              updatedAt: any;
-              updatedBy?:
-                | {
-                    __typename?: 'User';
-                    avatarUrl?: string | null | undefined;
-                    email: string;
-                    name: string;
-                    id: string;
-                  }
-                | null
-                | undefined;
-            }>
-          | null
-          | undefined;
-      }
-    | null
-    | undefined;
+      } | null;
+    }> | null;
+  } | null;
 };
 
 export type UpdateCardMutationVariables = Exact<{
@@ -1463,19 +1360,16 @@ export type UpdateCardMutation = {
     __typename?: 'Card';
     id: string;
     name: string;
-    description?: string | null | undefined;
+    description?: string | null;
     createdAt: any;
     updatedAt: any;
-    updatedBy?:
-      | {
-          __typename?: 'User';
-          avatarUrl?: string | null | undefined;
-          email: string;
-          name: string;
-          id: string;
-        }
-      | null
-      | undefined;
+    updatedBy?: {
+      __typename?: 'User';
+      avatarUrl?: string | null;
+      email: string;
+      name: string;
+      id: string;
+    } | null;
   };
 };
 
@@ -1483,46 +1377,37 @@ export type CardList_ListFragment = {
   __typename?: 'List';
   name: string;
   id: string;
-  cards?:
-    | Array<{
-        __typename?: 'Card';
-        id: string;
-        name: string;
-        description?: string | null | undefined;
-        createdAt: any;
-        updatedAt: any;
-        updatedBy?:
-          | {
-              __typename?: 'User';
-              avatarUrl?: string | null | undefined;
-              email: string;
-              name: string;
-              id: string;
-            }
-          | null
-          | undefined;
-      }>
-    | null
-    | undefined;
+  cards?: Array<{
+    __typename?: 'Card';
+    id: string;
+    name: string;
+    description?: string | null;
+    createdAt: any;
+    updatedAt: any;
+    updatedBy?: {
+      __typename?: 'User';
+      avatarUrl?: string | null;
+      email: string;
+      name: string;
+      id: string;
+    } | null;
+  }> | null;
 };
 
 export type Card_CardFragment = {
   __typename?: 'Card';
   id: string;
   name: string;
-  description?: string | null | undefined;
+  description?: string | null;
   createdAt: any;
   updatedAt: any;
-  updatedBy?:
-    | {
-        __typename?: 'User';
-        avatarUrl?: string | null | undefined;
-        email: string;
-        name: string;
-        id: string;
-      }
-    | null
-    | undefined;
+  updatedBy?: {
+    __typename?: 'User';
+    avatarUrl?: string | null;
+    email: string;
+    name: string;
+    id: string;
+  } | null;
 };
 
 export const Board_BoardFragmentDoc = gql`

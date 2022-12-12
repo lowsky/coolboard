@@ -1,24 +1,15 @@
 import { ApolloServer } from 'apollo-server-micro';
 import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core';
 import { withAuth } from '@clerk/nextjs/api';
-import { PrismaClient } from '@prisma/client';
-
-import resolvers from '../../server/src/resolvers/resolvers';
-import { typeDefs } from '../../server/src/schema/apiSchema';
 
 import { isLocalDev } from '../../server/src/helpers/logging';
 import { Ctxt } from '../../server/src/resolvers/Context';
 
-const prisma = new PrismaClient({
-  log: isLocalDev
-    ? ['query', 'info', `warn`, `error`]
-    : ['info', 'warn', 'error'],
-});
+import { buildSchema, prisma } from '../../server/src/buildSchema';
 
 const getGraphqlServer = async () => {
   const apolloServer = new ApolloServer({
-    typeDefs,
-    resolvers,
+    schema: buildSchema(),
 
     /*
     APOLLO_GRAPH_VARIANT

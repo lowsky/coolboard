@@ -7,7 +7,6 @@ import card from './Mutation/card';
 
 import { Ctxt } from './Context';
 
-// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   Query,
   Mutation: {
