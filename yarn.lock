@@ -2126,6 +2126,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@clerk/backend-core@npm:^2.11.12":
+  version: 2.11.12
+  resolution: "@clerk/backend-core@npm:2.11.12"
+  dependencies:
+    "@clerk/types": ^3.22.1
+    "@peculiar/webcrypto": 1.4.1
+    "@types/node": 16.18.6
+    "@types/node-fetch": 2.6.2
+    node-fetch: 2.6.7
+    query-string: 7.1.3
+    snakecase-keys: 5.4.4
+    tslib: 2.4.1
+  checksum: 0da4af9c2af09615f10661c9d33b2f4a4e3a19487269873878c4af6a93430e04775372116dc76aafcd522acdb7f55010409cc1acf38ca35c24ffbf125718c2b0
+  languageName: node
+  linkType: hard
+
 "@clerk/clerk-react@npm:^4.6.1":
   version: 4.6.1
   resolution: "@clerk/clerk-react@npm:4.6.1"
@@ -2141,7 +2157,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/clerk-sdk-node@npm:4.5.10, @clerk/clerk-sdk-node@npm:^4.5.10":
+"@clerk/clerk-sdk-node@npm:4.5.12":
+  version: 4.5.12
+  resolution: "@clerk/clerk-sdk-node@npm:4.5.12"
+  dependencies:
+    "@clerk/backend-core": ^2.11.12
+    "@clerk/types": ^3.22.1
+    "@peculiar/webcrypto": 1.4.1
+    "@types/cookies": 0.7.7
+    "@types/express": 4.17.14
+    "@types/jsonwebtoken": 8.5.9
+    "@types/node-fetch": 2.6.2
+    camelcase-keys: 6.2.2
+    cookies: 0.8.0
+    deepmerge: 4.2.2
+    jsonwebtoken: 8.5.1
+    jwks-rsa: 2.1.5
+    node-fetch: 2.6.7
+    snakecase-keys: 3.2.1
+    tslib: 2.4.1
+  checksum: 6fb0f900cb377fa0217b6650ab45d461c52cf5e343612c8e33c290100734285826de27af101d9393a54b86a01e9537b438c2f0241edf1707e17fd8ea881acd95
+  languageName: node
+  linkType: hard
+
+"@clerk/clerk-sdk-node@npm:^4.5.10":
   version: 4.5.10
   resolution: "@clerk/clerk-sdk-node@npm:4.5.10"
   dependencies:
@@ -2219,6 +2258,15 @@ __metadata:
   dependencies:
     csstype: ^3.1.0
   checksum: 23bf9dbecbbaafd2e4692b475801ccae8b4984e05742d1d25a9a54d6f2ee76a34f092784404de3ab2cc0c9c9c174ef8c79e8424398d5eef36e6918dd8ef6de91
+  languageName: node
+  linkType: hard
+
+"@clerk/types@npm:^3.22.1":
+  version: 3.22.1
+  resolution: "@clerk/types@npm:3.22.1"
+  dependencies:
+    csstype: 3.1.1
+  checksum: a0942eb7d362078fe082d9c2fd840378c10c4744701763343331977371afcdc84addb5f94a7083e29a0a57bae531171ea71fecd68f7334757f269ebfd79dab61
   languageName: node
   linkType: hard
 
@@ -3881,12 +3929,36 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@peculiar/asn1-schema@npm:^2.3.0":
+  version: 2.3.3
+  resolution: "@peculiar/asn1-schema@npm:2.3.3"
+  dependencies:
+    asn1js: ^3.0.5
+    pvtsutils: ^1.3.2
+    tslib: ^2.4.0
+  checksum: 2b1902543ec65d677c709f05a6a845b033490444dd7c9cbfba22290a26623c55f53a13995f8401cdb67e36b8182d55ca9278d50dd3f2d9ae757fbd9ddadab927
+  languageName: node
+  linkType: hard
+
 "@peculiar/json-schema@npm:^1.1.12":
   version: 1.1.12
   resolution: "@peculiar/json-schema@npm:1.1.12"
   dependencies:
     tslib: ^2.0.0
   checksum: b26ececdc23c5ef25837f8be8d1eb5e1c8bb6e9ae7227ac59ffea57fff56bd05137734e7685e9100595d3d88d906dff638ef8d1df54264c388d3eac1b05aa060
+  languageName: node
+  linkType: hard
+
+"@peculiar/webcrypto@npm:1.4.1":
+  version: 1.4.1
+  resolution: "@peculiar/webcrypto@npm:1.4.1"
+  dependencies:
+    "@peculiar/asn1-schema": ^2.3.0
+    "@peculiar/json-schema": ^1.1.12
+    pvtsutils: ^1.3.2
+    tslib: ^2.4.1
+    webcrypto-core: ^1.7.4
+  checksum: cfcd49f6bd199016de83445f1786b17c49d02aee74b400e7e03ba3bc3707457bdebd23bbaba0e2ff3becdcd769d71b79ec64ae35e0acb80b4ab3ed6326ab111c
   languageName: node
   linkType: hard
 
@@ -4190,7 +4262,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/cookies@npm:^0.7.7":
+"@types/cookies@npm:0.7.7, @types/cookies@npm:^0.7.7":
   version: 0.7.7
   resolution: "@types/cookies@npm:0.7.7"
   dependencies:
@@ -4280,7 +4352,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/express@npm:4.17.14":
+"@types/express@npm:4.17.14, @types/express@npm:^4.17.14":
   version: 4.17.14
   resolution: "@types/express@npm:4.17.14"
   dependencies:
@@ -4313,21 +4385,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/jsonwebtoken@npm:8.5.9, @types/jsonwebtoken@npm:^8.5.6, @types/jsonwebtoken@npm:^8.5.9":
+  version: 8.5.9
+  resolution: "@types/jsonwebtoken@npm:8.5.9"
+  dependencies:
+    "@types/node": "*"
+  checksum: 33815ab02d1371b423118316b7706d2f2ec03eeee5e1494be72da50425d2384e5e0a09ea193f7a5ab4b4f6a9c5847147305f50e965f3d927a95bdf8adb471b2a
+  languageName: node
+  linkType: hard
+
 "@types/jsonwebtoken@npm:^8.5.0":
   version: 8.5.8
   resolution: "@types/jsonwebtoken@npm:8.5.8"
   dependencies:
     "@types/node": "*"
   checksum: 56738a918c543dba30786066959f801212e7fb5cd4ec53cf7b8d227711ed358834feb9e5141f7f88ec7c642bb39757330a5a8917e3b22e0ff9084940d35f0d70
-  languageName: node
-  linkType: hard
-
-"@types/jsonwebtoken@npm:^8.5.6":
-  version: 8.5.9
-  resolution: "@types/jsonwebtoken@npm:8.5.9"
-  dependencies:
-    "@types/node": "*"
-  checksum: 33815ab02d1371b423118316b7706d2f2ec03eeee5e1494be72da50425d2384e5e0a09ea193f7a5ab4b4f6a9c5847147305f50e965f3d927a95bdf8adb471b2a
   languageName: node
   linkType: hard
 
@@ -4375,7 +4447,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node-fetch@npm:^2":
+"@types/node-fetch@npm:2.6.2, @types/node-fetch@npm:^2":
   version: 2.6.2
   resolution: "@types/node-fetch@npm:2.6.2"
   dependencies:
@@ -4389,6 +4461,13 @@ __metadata:
   version: 17.0.27
   resolution: "@types/node@npm:17.0.27"
   checksum: 6645ca813c24dcb9893729ed6f87a9e415d6df03cb3e1ececa3a03ca845d3324c3808b4dc79c08a4b3c7d1ccd515e6d7e004db9c9123c9333e963675238e39fc
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:16.18.6":
+  version: 16.18.6
+  resolution: "@types/node@npm:16.18.6"
+  checksum: 85b6a11c347e1edfe014eb2c520aec37117152c932b632f455d4e2a71a311fb25578602c7c25f825c6f1c3e4a912506857c1aa679717318296f5590ac0d33254
   languageName: node
   linkType: hard
 
@@ -5481,7 +5560,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"camelcase-keys@npm:^6.2.2":
+"camelcase-keys@npm:6.2.2, camelcase-keys@npm:^6.2.2":
   version: 6.2.2
   resolution: "camelcase-keys@npm:6.2.2"
   dependencies:
@@ -5869,7 +5948,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cookies@npm:^0.8.0":
+"cookies@npm:0.8.0, cookies@npm:^0.8.0":
   version: 0.8.0
   resolution: "cookies@npm:0.8.0"
   dependencies:
@@ -5886,7 +5965,7 @@ __metadata:
     "@apollo/client": 3.7.2
     "@chakra-ui/icons": 2.0.13
     "@chakra-ui/react": 2.4.3
-    "@clerk/clerk-sdk-node": 4.5.10
+    "@clerk/clerk-sdk-node": 4.5.12
     "@clerk/nextjs": 4.6.9
     "@clerk/themes": ^1.2.20
     "@emotion/react": 11.10.5
@@ -6076,6 +6155,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"csstype@npm:3.1.1":
+  version: 3.1.1
+  resolution: "csstype@npm:3.1.1"
+  checksum: 1f7b4f5fdd955b7444b18ebdddf3f5c699159f13e9cf8ac9027ae4a60ae226aef9bbb14a6e12ca7dba3358b007cee6354b116e720262867c398de6c955ea451d
+  languageName: node
+  linkType: hard
+
 "csstype@npm:^3.0.11, csstype@npm:^3.1.0":
   version: 3.1.0
   resolution: "csstype@npm:3.1.0"
@@ -6155,6 +6241,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"decode-uri-component@npm:^0.2.2":
+  version: 0.2.2
+  resolution: "decode-uri-component@npm:0.2.2"
+  checksum: 95476a7d28f267292ce745eac3524a9079058bbb35767b76e3ee87d42e34cd0275d2eb19d9d08c3e167f97556e8a2872747f5e65cbebcac8b0c98d83e285f139
+  languageName: node
+  linkType: hard
+
 "deep-is@npm:^0.1.3":
   version: 0.1.4
   resolution: "deep-is@npm:0.1.4"
@@ -6162,7 +6255,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"deepmerge@npm:^4.2.2":
+"deepmerge@npm:4.2.2, deepmerge@npm:^4.2.2":
   version: 4.2.2
   resolution: "deepmerge@npm:4.2.2"
   checksum: a8c43a1ed8d6d1ed2b5bf569fa4c8eb9f0924034baf75d5d406e47e157a451075c4db353efea7b6bcc56ec48116a8ce72fccf867b6e078e7c561904b5897530b
@@ -8168,6 +8261,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jose@npm:^2.0.6":
+  version: 2.0.6
+  resolution: "jose@npm:2.0.6"
+  dependencies:
+    "@panva/asn1.js": ^1.0.0
+  checksum: c13a95f38fc175eb7522579fc6490fd29e3ca08dd33454295af48ab096674f6e434f5784b1a8d6b8f361c38971c8fb8840b06efce3ce6128b032e2b3de55ea25
+  languageName: node
+  linkType: hard
+
 "js-sdsl@npm:^4.1.4":
   version: 4.1.4
   resolution: "js-sdsl@npm:4.1.4"
@@ -8269,7 +8371,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jsonwebtoken@npm:^8.5.1":
+"jsonwebtoken@npm:8.5.1, jsonwebtoken@npm:^8.5.1":
   version: 8.5.1
   resolution: "jsonwebtoken@npm:8.5.1"
   dependencies:
@@ -8305,6 +8407,20 @@ __metadata:
     ecdsa-sig-formatter: 1.0.11
     safe-buffer: ^5.0.1
   checksum: ff30ea7c2dcc61f3ed2098d868bf89d43701605090c5b21b5544b512843ec6fd9e028381a4dda466cbcdb885c2d1150f7c62e7168394ee07941b4098e1035e2f
+  languageName: node
+  linkType: hard
+
+"jwks-rsa@npm:2.1.5":
+  version: 2.1.5
+  resolution: "jwks-rsa@npm:2.1.5"
+  dependencies:
+    "@types/express": ^4.17.14
+    "@types/jsonwebtoken": ^8.5.9
+    debug: ^4.3.4
+    jose: ^2.0.6
+    limiter: ^1.1.5
+    lru-memoizer: ^2.1.4
+  checksum: 3fe49f0921cd2da9e1a486ab2d6c23b89b7c0058ac54ca1093a617042b15876dd98fd9bd81fcaa1ebbc10ab92589b81a9aaa5a9f3bf8716b68d217ba9b786f63
   languageName: node
   linkType: hard
 
@@ -9686,6 +9802,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"query-string@npm:7.1.3":
+  version: 7.1.3
+  resolution: "query-string@npm:7.1.3"
+  dependencies:
+    decode-uri-component: ^0.2.2
+    filter-obj: ^1.1.0
+    split-on-first: ^1.0.0
+    strict-uri-encode: ^2.0.0
+  checksum: 91af02dcd9cc9227a052841d5c2eecb80a0d6489d05625df506a097ef1c59037cfb5e907f39b84643cbfd535c955abec3e553d0130a7b510120c37d06e0f4346
+  languageName: node
+  linkType: hard
+
 "query-string@npm:^7.0.1":
   version: 7.1.1
   resolution: "query-string@npm:7.1.1"
@@ -10485,7 +10613,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"snakecase-keys@npm:^3.2.1":
+"snakecase-keys@npm:3.2.1, snakecase-keys@npm:^3.2.1":
   version: 3.2.1
   resolution: "snakecase-keys@npm:3.2.1"
   dependencies:
@@ -10495,7 +10623,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"snakecase-keys@npm:^5.4.4":
+"snakecase-keys@npm:5.4.4, snakecase-keys@npm:^5.4.4":
   version: 5.4.4
   resolution: "snakecase-keys@npm:5.4.4"
   dependencies:
@@ -11021,6 +11149,13 @@ __metadata:
   version: 2.4.0
   resolution: "tslib@npm:2.4.0"
   checksum: 8c4aa6a3c5a754bf76aefc38026134180c053b7bd2f81338cb5e5ebf96fefa0f417bff221592bf801077f5bf990562f6264fecbc42cd3309b33872cb6fc3b113
+  languageName: node
+  linkType: hard
+
+"tslib@npm:2.4.1, tslib@npm:^2.4.1":
+  version: 2.4.1
+  resolution: "tslib@npm:2.4.1"
+  checksum: 19480d6e0313292bd6505d4efe096a6b31c70e21cf08b5febf4da62e95c265c8f571f7b36fcc3d1a17e068032f59c269fab3459d6cd3ed6949eafecf64315fca
   languageName: node
   linkType: hard
 
