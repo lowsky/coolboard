@@ -7,7 +7,7 @@
   },
   "homepage": "/",
   "dependencies": {
-    "@apollo/client": "3.7.2",
+    "@apollo/client": "3.7.3",
     "@chakra-ui/icons": "2.0.13",
     "@chakra-ui/react": "2.4.3",
     "@clerk/clerk-sdk-node": "4.5.13",
