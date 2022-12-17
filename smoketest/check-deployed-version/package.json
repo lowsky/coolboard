@@ -5,7 +5,7 @@
   "description": "sub project to be quickly installed and run",
   "main": "wait-for-deployment.mjs",
   "engines": {
-    "node": "16.x"
+    "node": "18.x"
   },
   "scripts": {
     "install_and_test": "npm install ; echo installing deps - exit code $?; echo ; node wait-for-deployment.mjs"
