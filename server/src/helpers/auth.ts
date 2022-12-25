@@ -1,5 +1,5 @@
-import clerk from '@clerk/clerk-sdk-node';
-import { User as ClerkUser } from '@clerk/clerk-sdk-node';
+import clerk, { User as ClerkUser } from '@clerk/clerk-sdk-node';
+import { getAuth } from '@clerk/nextjs/server';
 import { AuthenticationError } from 'apollo-server-errors';
 
 import { User } from '@prisma/client';
@@ -9,7 +9,6 @@ import { createNewUser } from './registerNewUser';
 import { isLocalDev } from './logging';
 import { Ctxt } from '../resolvers/Context';
 
-// @ts-ignore
 export const getUserId = async (ctx: Ctxt): Promise<string> => {
   const userToken = await verifyUserIsAuthenticatedAndRetrieveUserToken(ctx);
   if (userToken) {
@@ -77,6 +76,9 @@ export const verifyAndRetrieveAuthSubject = async (
 export async function verifyUserIsAuthenticatedAndRetrieveUserToken(
   ctx: Ctxt
 ): Promise<UserToken> {
+  /* this was the old way to access the auth
+  before switching to middleware
+  TODO can be removed
   if (ctx.req?.auth?.userId) {
     console.log(
       'verifyUserIsAuthenticatedAndRetrieveUserToken: Session, userid:',
@@ -86,6 +88,18 @@ export async function verifyUserIsAuthenticatedAndRetrieveUserToken(
     return userTokenFromClerkSessionUserId(
       await clerk.users.getUser(ctx.req?.auth.userId)
     );
+  }
+   */
+
+  const { userId } = getAuth(ctx.req);
+
+  if (userId) {
+    console.log(
+      'verifyUserIsAuthenticatedAndRetrieveUserToken: clerk session userid:',
+      userId
+    );
+
+    return userTokenFromClerkSessionUserId(await clerk.users.getUser(userId));
   }
 
   throw new AuthenticationError('Not authorized, no valid auth token');
