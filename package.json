@@ -79,7 +79,7 @@
     "@types/react": "18.0.26",
     "@types/react-dom": "18.0.9",
     "@types/zen-observable": "0.8.3",
-    "@typescript-eslint/parser": "5.47.0",
+    "@typescript-eslint/parser": "5.47.1",
     "apollo-server-core": "3.11.1",
     "eslint": "8.30.0",
     "eslint-config-next": "13.1.1",
