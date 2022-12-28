@@ -36,7 +36,7 @@ export const getUserId = async (ctx: Ctxt): Promise<string> => {
       }
 
       const user: User = await createNewUser(userToken, ctx.prisma.user.create);
-      if (isLocalDev) console.log('--- created prisma user (+id)', user);
+      if (isLocalDev) console.log('--- created prisma user', user);
       const { id } = user;
       if (id) injectUserIdByAuth0id(user.id, auth0id);
       return id;
@@ -46,17 +46,21 @@ export const getUserId = async (ctx: Ctxt): Promise<string> => {
   throw new AuthenticationError('Not authorized: no user in current request');
 };
 
-export const userTokenFromClerkSessionUserId = (user: ClerkUser): UserToken => {
-  let email = user.emailAddresses.find(Boolean)?.emailAddress ?? undefined;
+export const userTokenFromClerkSessionUserId = (
+  user: ClerkUser,
+  identity: string = 'clerk'
+): UserToken => {
+  const email = user.emailAddresses.find(Boolean)?.emailAddress ?? undefined;
   return {
     email: email,
     name: email,
-    sub: 'xxx|' + user.id,
+    sub: identity + '|' + user.id,
     picture: user.profileImageUrl ?? undefined,
   };
 };
 
 type UserToken = {
+  // format: identity + '|' + userId
   sub: string;
   name?: string;
   email?: string;
@@ -69,33 +73,22 @@ type UserToken = {
 export const verifyAndRetrieveAuthSubject = async (
   ctx: Ctxt
 ): Promise<string> => {
-  const userToken = await verifyUserIsAuthenticatedAndRetrieveUserToken(ctx);
-  return userToken?.sub.split('|')[1];
+  const { userId } = getAuth(ctx.req);
+  if (userId) {
+    console.log('verifyAndRetrieveAuthSubject: userid:', userId);
+    // not really needed: const user = (await clerk.users.getUser(userId));
+    return userId;
+  }
+  throw new AuthenticationError('Not authorized, no valid auth token');
 };
 
 export async function verifyUserIsAuthenticatedAndRetrieveUserToken(
   ctx: Ctxt
 ): Promise<UserToken> {
-  /* this was the old way to access the auth
-  before switching to middleware
-  TODO can be removed
-  if (ctx.req?.auth?.userId) {
-    console.log(
-      'verifyUserIsAuthenticatedAndRetrieveUserToken: Session, userid:',
-      ctx.req?.auth.userId
-    );
-
-    return userTokenFromClerkSessionUserId(
-      await clerk.users.getUser(ctx.req?.auth.userId)
-    );
-  }
-   */
-
   const { userId } = getAuth(ctx.req);
-
   if (userId) {
     console.log(
-      'verifyUserIsAuthenticatedAndRetrieveUserToken: clerk session userid:',
+      'verifyUserIsAuthenticatedAndRetrieveUserToken: userid:',
       userId
     );
 
