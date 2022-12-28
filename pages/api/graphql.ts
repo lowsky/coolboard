@@ -1,6 +1,7 @@
+import type { NextApiRequest, NextApiResponse } from 'next';
 import { ApolloServer } from 'apollo-server-micro';
 import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core';
-import { withAuth } from '@clerk/nextjs/api';
+import { getAuth } from '@clerk/nextjs/server';
 
 import { isLocalDev } from '../../server/src/helpers/logging';
 import { Ctxt } from '../../server/src/resolvers/Context';
@@ -83,28 +84,19 @@ async function handleGraphqlRequest(req, res) {
   await handler(req, res);
 }
 
-export default withAuth(async (req, res) => {
-  if (req.auth) {
-    const { userId, sessionId, getToken } = req.auth;
-
-    isLocalDev && console.log('req.auth', req.auth);
-    if (userId) {
-      return handleGraphqlRequest(req, res);
-    }
-
-    isLocalDev &&
-      console.error(
-        '    req.auth: userId is not yet set!',
-        userId,
-        sessionId,
-        await getToken?.()
-      );
-  } else {
-    isLocalDev && console.log('no request.auth');
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  const { userId } = getAuth(req);
+  if (userId) {
+    return handleGraphqlRequest(req, res);
   }
 
+  isLocalDev && console.error('    userId is not yet set!');
+
   res.status(401).json({ id: null });
-});
+}
 
 export const config = {
   api: {
