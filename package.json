@@ -81,7 +81,7 @@
     "@types/zen-observable": "0.8.3",
     "@typescript-eslint/parser": "5.47.1",
     "apollo-server-core": "3.11.1",
-    "eslint": "8.30.0",
+    "eslint": "8.31.0",
     "eslint-config-next": "13.1.1",
     "prettier": "2.8.1",
     "typescript": "4.9.4"
