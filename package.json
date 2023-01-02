@@ -34,7 +34,7 @@
     "bcryptjs": "2.4.3",
     "bufferutil": "4.0.7",
     "emitter-listener": "1.1.2",
-    "eslint-config-prettier": "8.5.0",
+    "eslint-config-prettier": "8.6.0",
     "eslint-plugin-prettier": "4.2.1",
     "framer-motion": "8.0.2",
     "graphql": "16.6.0",
