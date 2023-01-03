@@ -12,7 +12,7 @@ const CYPRESS_branch = Cypress.env('branch');
 const isMainBranch = 'main' === CYPRESS_branch;
 
 // needs prefix when set per env: CYPRESS_LOGIN
-const login = isMainBranch
+const userLogin = isMainBranch
   ? Cypress.env('MAIN_LOGIN')
   : Cypress.env('LOGIN') ?? Cypress.env('LOGIN');
 
@@ -55,22 +55,7 @@ before(() => {
   });
 });
 
-const gotoBoards = () => {
-  return cy
-    .visit(baseUrl + '/boards')
-    .url()
-    .should('include', 'boards');
-};
-
-const clickLogin = () => {
-  return cy
-    .contains('Log in', {
-      log: true,
-      timeout: 6000,
-    })
-    .first()
-    .click();
-};
+const gotoBoards = () => cy.visit(baseUrl + '/boards');
 
 const _boardListContainer = () => cy.dataCy('board-container-inner');
 
@@ -89,7 +74,7 @@ const LogAndWaitLong = {
 };
 
 function fillLoginForm() {
-  cy.get('#identifier-field', LogAndWaitLong).type(login + '{enter}');
+  cy.get('#identifier-field', LogAndWaitLong).type(userLogin + '{enter}');
   cy.contains('Enter your password', {
     log: true,
     timeout: 6000,
@@ -103,6 +88,20 @@ function fillLoginForm() {
     .wait(1000) //
     .url(LogAndWaitLong);
 }
+
+const login = () => {
+  gotoBoards()
+    .contains('Log in', {
+      log: true,
+      timeout: 6000,
+    })
+    .first()
+    .click();
+
+  return fillLoginForm();
+};
+
+
 
 const WaitVeryLong = {
   log: true,
@@ -131,12 +130,12 @@ const getBoardsList_FirstEntry = (name: string) => {
 describe('Test coolboard', () => {
   it('need to login to show boards', () => {
     gotoBoards();
-    clickLogin();
-    fillLoginForm();
+    login();
   });
 
   it('user can create a board for branch', () => {
     gotoBoards();
+    login();
 
     getBoardsList().then((boards) => cy.log(String(boards.length + ' boards')));
     cy.dataCy('create-board-dialog').click();
@@ -153,6 +152,7 @@ describe('Test coolboard', () => {
 
   it('user can add lists and cards', () => {
     gotoBoards();
+    login();
 
     // open first board named XXX
     getBoardsList_FirstEntry(newBoardName).click();
@@ -197,6 +197,7 @@ describe('Test coolboard', () => {
 
   it('user can delete lists', () => {
     gotoBoards();
+    login();
 
     // open first board named XXX
     getBoardsList_FirstEntry(newBoardName).click();
@@ -213,8 +214,9 @@ describe('Test coolboard', () => {
 
   it('user can delete board', () => {
     gotoBoards();
+    login();
 
-    // enforce having cookies set properly for when trigging mutation
+    // enforce having cookies set properly for when triggering mutation
     getBoardsList_FirstEntry(newBoardName).then(() => cy.reload());
 
     // open first board named XXX
@@ -232,6 +234,7 @@ describe('Test coolboard', () => {
 
   it('user can log-out', () => {
     gotoBoards();
+    login();
 
     cy.get('[data-cy=profile-header]')
       .contains('Sign Out', LogAndWaitLong)
