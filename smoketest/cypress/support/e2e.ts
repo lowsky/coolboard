@@ -22,10 +22,6 @@ Cypress.Commands.add('dataCy', (selector, options) =>
   cy.get(`[data-cy="${selector}"]`, options)
 );
 
-Cypress.Cookies.defaults({
-  preserve: () => true,
-});
-
 // This is catching this exception to avoid failing test:
 //
 // While we have a failing fetch request (because of expired, short living
