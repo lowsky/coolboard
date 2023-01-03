@@ -31,8 +31,6 @@ const branch = CYPRESS_branch || 'missing-CYPRESS_branch-env';
 const newBoardName = branch;
 
 before(() => {
-  Cypress.Cookies.debug(true); // now Cypress will log when it alters cookies
-
   cy.log('Testing project git branch is main ?' + isMainBranch);
   cy.log('Testing project git branch: ' + branch);
   cy.log(`Testing site on this base url: ${baseUrl}`).then(() => {
