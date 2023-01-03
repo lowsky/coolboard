@@ -3,30 +3,17 @@
 
 import Loggable = Cypress.Loggable;
 import Timeoutable = Cypress.Timeoutable;
-
-const CYPRESS_branch = Cypress.env('branch');
-
-// Cypress.env() will show any env, which had been set with cypress_ prefix
-// https://docs.cypress.io/guides/guides/environment-variables#Option-3-CYPRESS_
-// @ts-ignore
-const isMainBranch = 'main' === CYPRESS_branch;
-
-// needs prefix when set per env: CYPRESS_LOGIN
-const userLogin = isMainBranch
-  ? Cypress.env('MAIN_LOGIN')
-  : Cypress.env('LOGIN') ?? Cypress.env('LOGIN');
-
-// needs prefix when set per env: CYPRESS_USER_PASSWORD
-const password = isMainBranch
-  ? Cypress.env('MAIN_PASSWORD')
-  : Cypress.env('PASSWORD') ?? Cypress.env('USER_PASSWORD');
-
-// will be set by cypress.json, or via env: CYPRESS_baseUrl
-const baseUrl = isMainBranch
-  ? 'https://www.coolboard.fun'
-  : Cypress.config('baseUrl') ?? 'missing env CYPRESS_baseUrl';
-// will be set by cypress.json, or via env: CYPRESS_branch
-const branch = CYPRESS_branch || 'missing-CYPRESS_branch-env';
+import {
+  baseUrl,
+  branch,
+  isMainBranch,
+  gotoBoards,
+  LogAndWaitLong,
+  login,
+  password,
+  userLogin,
+  WaitVeryLong,
+} from '../support/e2e';
 
 const newBoardName = branch;
 
@@ -55,8 +42,6 @@ before(() => {
   });
 });
 
-const gotoBoards = () => cy.visit(baseUrl + '/boards');
-
 const _boardListContainer = () => cy.dataCy('board-container-inner');
 
 const cardListButtons = () => _boardListContainer().find('button');
@@ -68,43 +53,6 @@ const sections = (options: Partial<Loggable & Timeoutable>) =>
 
 const add_a_card = () => cardListButtons().contains('Add a card');
 
-const LogAndWaitLong = {
-  log: true,
-  timeout: 8000,
-};
-
-function fillLoginForm(userLogin: string, password: string) {
-  cy.get('#identifier-field', LogAndWaitLong).type(userLogin + '{enter}');
-  cy.contains('Enter your password', {
-    log: true,
-    timeout: 6000,
-  });
-  cy.get('#password-field').type(password + '{enter}', {
-    log: false,
-  });
-
-  // helps to wait for authentication process of redirecting with to the /callback url
-  return cy
-    .wait(1000) //
-    .url(LogAndWaitLong);
-}
-
-const login = (userLogin: string, password: string) => {
-  gotoBoards()
-    .contains('Log in', {
-      log: true,
-      timeout: 6000,
-    })
-    .first()
-    .click();
-
-  return fillLoginForm(userLogin, password);
-};
-
-const WaitVeryLong = {
-  log: true,
-  timeout: 5000 * 4,
-};
 const getBoardsList = () => {
   cy.dataCy('full-container').dataCy('boards-list', WaitVeryLong).first();
 
@@ -126,14 +74,13 @@ const getBoardsList_FirstEntry = (name: string) => {
 };
 
 function logout() {
-  cy.get("[data-cy=profile-header]")
-    .contains("Sign Out", LogAndWaitLong)
+  cy.get('[data-cy=profile-header]')
+    .contains('Sign Out', LogAndWaitLong)
     .click();
 }
 
 describe('Test coolboard', () => {
   beforeEach(() => {
-    gotoBoards();
     login(userLogin, password);
   });
 

@@ -5,6 +5,7 @@ module.exports = defineConfig({
   projectId: '8p1ybc',
   defaultCommandTimeout: 2000,
   e2e: {
+    experimentalSessionAndOrigin: true,
     // We've imported your old cypress plugins here.
     // You may want to clean this up later by importing these.
     setupNodeEvents(on, config) {
