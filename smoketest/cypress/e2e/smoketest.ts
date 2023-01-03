@@ -55,8 +55,6 @@ before(() => {
     assert(branch, 'branch cypress env var was not set');
     assert(password, 'USER_PASSWORD cypress env var was not set');
   });
-  cy.clearCookies();
-  cy.clearLocalStorage();
 });
 
 const gotoBoards = () => {
