@@ -125,10 +125,21 @@ const getBoardsList_FirstEntry = (name: string) => {
     .first();
 };
 
+function logout() {
+  cy.get("[data-cy=profile-header]")
+    .contains("Sign Out", LogAndWaitLong)
+    .click();
+}
+
 describe('Test coolboard', () => {
   beforeEach(() => {
     gotoBoards();
     login(userLogin, password);
+  });
+
+  afterEach(() => {
+    gotoBoards();
+    logout();
   });
 
   it('user needs to login to show boards', () => {});
@@ -220,9 +231,7 @@ describe('Test coolboard', () => {
       });
   });
 
-  it('user can log-out', () => {
-    cy.get('[data-cy=profile-header]')
-      .contains('Sign Out', LogAndWaitLong)
-      .click();
+  xit('(already indirectly tested) user can log-out', () => {
+    logout();
   });
 });
