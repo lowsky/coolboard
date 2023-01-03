@@ -73,7 +73,7 @@ const LogAndWaitLong = {
   timeout: 8000,
 };
 
-function fillLoginForm() {
+function fillLoginForm(userLogin: string, password: string) {
   cy.get('#identifier-field', LogAndWaitLong).type(userLogin + '{enter}');
   cy.contains('Enter your password', {
     log: true,
@@ -89,7 +89,7 @@ function fillLoginForm() {
     .url(LogAndWaitLong);
 }
 
-const login = () => {
+const login = (userLogin: string, password: string) => {
   gotoBoards()
     .contains('Log in', {
       log: true,
@@ -98,10 +98,8 @@ const login = () => {
     .first()
     .click();
 
-  return fillLoginForm();
+  return fillLoginForm(userLogin, password);
 };
-
-
 
 const WaitVeryLong = {
   log: true,
@@ -128,15 +126,14 @@ const getBoardsList_FirstEntry = (name: string) => {
 };
 
 describe('Test coolboard', () => {
-  it('need to login to show boards', () => {
+  beforeEach(() => {
     gotoBoards();
-    login();
+    login(userLogin, password);
   });
 
-  it('user can create a board for branch', () => {
-    gotoBoards();
-    login();
+  it('user needs to login to show boards', () => {});
 
+  it('user can create a board for branch', () => {
     getBoardsList().then((boards) => cy.log(String(boards.length + ' boards')));
     cy.dataCy('create-board-dialog').click();
     cy.get('#name').clear();
@@ -151,9 +148,6 @@ describe('Test coolboard', () => {
   });
 
   it('user can add lists and cards', () => {
-    gotoBoards();
-    login();
-
     // open first board named XXX
     getBoardsList_FirstEntry(newBoardName).click();
     cy.url(LogAndWaitLong).should('include', 'board/');
@@ -196,9 +190,6 @@ describe('Test coolboard', () => {
   });
 
   it('user can delete lists', () => {
-    gotoBoards();
-    login();
-
     // open first board named XXX
     getBoardsList_FirstEntry(newBoardName).click();
     cy.url(LogAndWaitLong).should('include', 'board/');
@@ -213,9 +204,6 @@ describe('Test coolboard', () => {
   });
 
   it('user can delete board', () => {
-    gotoBoards();
-    login();
-
     // enforce having cookies set properly for when triggering mutation
     getBoardsList_FirstEntry(newBoardName).then(() => cy.reload());
 
@@ -233,9 +221,6 @@ describe('Test coolboard', () => {
   });
 
   it('user can log-out', () => {
-    gotoBoards();
-    login();
-
     cy.get('[data-cy=profile-header]')
       .contains('Sign Out', LogAndWaitLong)
       .click();
