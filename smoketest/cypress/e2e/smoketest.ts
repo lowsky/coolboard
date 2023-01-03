@@ -23,7 +23,7 @@ const password = isMainBranch
 
 // will be set by cypress.json, or via env: CYPRESS_baseUrl
 const baseUrl = isMainBranch
-  ? 'https://coolboard.fun'
+  ? 'https://www.coolboard.fun'
   : Cypress.config('baseUrl') ?? 'missing env CYPRESS_baseUrl';
 // will be set by cypress.json, or via env: CYPRESS_branch
 const branch = CYPRESS_branch || 'missing-CYPRESS_branch-env';
