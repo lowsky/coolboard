@@ -17,7 +17,7 @@ export default {
   User: {
     async boards(parent: User, _args: any, ctx: Ctxt): Promise<Board[]> {
       const { prisma } = ctx;
-      return prisma.board.findMany({
+      return await prisma.board.findMany({
         orderBy: {
           createdAt: 'asc',
         },
@@ -28,7 +28,7 @@ export default {
   Board: {
     async lists(parent: Board, _args: any, ctx: Ctxt): Promise<List[]> {
       const { prisma } = ctx;
-      return prisma.list.findMany({
+      return await prisma.list.findMany({
         orderBy: {
           createdAt: 'asc',
         },
@@ -42,7 +42,7 @@ export default {
   List: {
     async cards(parent: List, _args: any, ctx: Ctxt): Promise<Card[]> {
       const { prisma } = ctx;
-      return prisma.card.findMany({
+      return await prisma.card.findMany({
         orderBy: {
           createdAt: 'asc',
         },

@@ -3,13 +3,6 @@ import { getUserId } from '../../helpers/auth';
 import { Ctxt } from '../Context';
 
 export default {
-  /*
-  mutation updateCard(data: CardUpdateInput!, where: CardWhereUniqueInput!): Card
-  input CardUpdateInput {
-    name: String
-    description: String
-  }
-  */
   async updateCard(
     _parent: any,
     {
@@ -20,18 +13,15 @@ export default {
       data: { name: string; description: string };
     },
     ctx: Ctxt
-  ): Promise<Card | null> {
+  ): Promise<Card> {
     const userId = await getUserId(ctx);
-    const { prisma } = ctx;
+
     const { name, description } = data;
+    const { prisma } = ctx;
 
-    const updatedCard = await prisma.card.update({
+    return await prisma.card.update({
       data: { name, description, updatedBy: { connect: { id: userId } } },
-      where,
-    });
-
-    return prisma.card.findUnique({
-      where: { id: updatedCard.id },
+      where
     });
 
     /* Example:

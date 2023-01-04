@@ -44,7 +44,7 @@ export default {
         id: disconnect[0].id,
       };
     }
-    return prisma.list.update({
+    return await prisma.list.update({
       where,
       data: {
         cards,
@@ -59,6 +59,6 @@ export default {
   async deleteList(_parent: any, { where }: any, ctx: Ctxt): Promise<List> {
     await verifyUserIsAuthenticatedAndRetrieveUserToken(ctx);
     const { prisma } = ctx;
-    return prisma.list.delete({ where });
+    return await prisma.list.delete({ where });
   },
 };
