@@ -11,10 +11,10 @@ module.exports = defineConfig({
       // e.g. config.defaultCommandTimeout = 10000
 
       const branch = config.env.branch ?? 'missing-branch-env';
-      const isMainBranch = 'main' === config.env.branch;
+      const isMainBranch = 'main' === branch;
 
       // will be set by cypress.json, or via env: CYPRESS_baseUrl
-      const baseUrl = config.env.isMainBranch
+      const baseUrl = isMainBranch
         ? 'https://www.coolboard.fun'
         : config.baseUrl;
 
@@ -28,7 +28,6 @@ module.exports = defineConfig({
          but was: ${baseUrl}`
       );
 
-      //config.env.branch
       config.env.branch = branch;
       config.env.isMainBranch = isMainBranch;
       config.baseUrl = baseUrl;
