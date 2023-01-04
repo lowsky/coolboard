@@ -46,7 +46,27 @@ Cypress.on('uncaught:exception', (error, runnable, promise) => {
 // Convert this to a module instead of script (allows import/export)
 export {};
 
+export const login = (userLogin: string, password: string) => {
+  return cy.session(
+    'someSessionId',
+    () => {
+      cy.visit('/boards')
+        .contains('Log in', {
+          log: true,
+          timeout: 6000,
+        })
+        .first()
+        .click();
+      fillLoginForm(userLogin, password);
+    },
+    {
+      cacheAcrossSpecs: true,
+    }
+  );
+};
+
 export const isMainBranch = Cypress.env('isMainBranch');
+
 export const userLogin = isMainBranch
   ? Cypress.env('MAIN_LOGIN')
   : Cypress.env('LOGIN');
@@ -64,10 +84,7 @@ function fillLoginForm(
   password: string
 ): Cypress.Chainable<string> {
   cy.get('#identifier-field', LogAndWaitLong).type(userLogin + '{enter}');
-  cy.contains('Enter your password', {
-    log: true,
-    timeout: 6000,
-  });
+  cy.contains('Enter your password');
   cy.get('#password-field').type(password + '{enter}', {
     log: false,
   });
@@ -77,22 +94,3 @@ function fillLoginForm(
     .wait(1000) //
     .url(LogAndWaitLong);
 }
-
-export const login = (
-  userLogin: string,
-  password: string
-): Cypress.Chainable<string> => {
-  cy.visit('/boards')
-    .contains('Log in', {
-      log: true,
-      timeout: 6000,
-    })
-    .first()
-    .click();
-  return fillLoginForm(userLogin, password);
-};
-
-export const WaitVeryLong = {
-  log: true,
-  timeout: 5000 * 4,
-};

@@ -58,10 +58,7 @@ function logout() {
 describe('Test coolboard', () => {
   beforeEach(() => {
     cy.login(userLogin, password);
-  });
-
-  afterEach(() => {
-    logout();
+    cy.visit('/boards');
   });
 
   it('user needs to login to show boards', () => {});
@@ -137,9 +134,6 @@ describe('Test coolboard', () => {
   });
 
   it('user can delete board', () => {
-    // enforce having cookies set properly for when triggering mutation
-    getBoardsList_FirstEntry(newBoardName).then(() => cy.reload());
-
     // open first board named XXX
     getBoardsList_FirstEntry(newBoardName)
       .within(() => {
@@ -153,7 +147,9 @@ describe('Test coolboard', () => {
       });
   });
 
-  xit('(already indirectly tested) user can log-out', () => {
+  it('user can log-out', () => {
     logout();
+    cy.contains('Log in')
+    cy.contains('Please, login to see your boards.');
   });
 });
