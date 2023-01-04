@@ -7,13 +7,16 @@ import {
   baseUrl,
   branch,
   isMainBranch,
-  gotoBoards,
   LogAndWaitLong,
   login,
   password,
   userLogin,
-  WaitVeryLong,
 } from '../support/e2e';
+
+const WaitVeryLong = {
+  log: true,
+  timeout: 5000 * 4,
+};
 
 const newBoardName = branch;
 
@@ -81,11 +84,10 @@ function logout() {
 
 describe('Test coolboard', () => {
   beforeEach(() => {
-    login(userLogin, password);
+    cy.login(userLogin, password);
   });
 
   afterEach(() => {
-    gotoBoards();
     logout();
   });
 

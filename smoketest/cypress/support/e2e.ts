@@ -25,7 +25,7 @@ declare global {
   }
 }
 
-Cypress.Commands.add('login', (username, password) => {
+Cypress.Commands.add('login', (username, password): void => {
   login(username, password);
 });
 
@@ -45,11 +45,13 @@ Cypress.on('uncaught:exception', (error, runnable, promise) => {
 
 // Convert this to a module instead of script (allows import/export)
 export {};
-const CYPRESS_branch = Cypress.env('branch');
+
+export const branch = Cypress.env('branch') ?? 'missing-branch-env';
 // Cypress.env() will show any env, which had been set with cypress_ prefix
 // https://docs.cypress.io/guides/guides/environment-variables#Option-3-CYPRESS_
-// @ts-ignore
-export const isMainBranch = 'main' === CYPRESS_branch;
+
+export const isMainBranch = 'main' === branch;
+
 // needs prefix when set per env: CYPRESS_LOGIN
 export const userLogin = isMainBranch
   ? Cypress.env('MAIN_LOGIN')
@@ -58,19 +60,18 @@ export const userLogin = isMainBranch
 export const password = isMainBranch
   ? Cypress.env('MAIN_PASSWORD')
   : Cypress.env('PASSWORD') ?? Cypress.env('USER_PASSWORD');
+
 // will be set by cypress.json, or via env: CYPRESS_baseUrl
 export const baseUrl = isMainBranch
   ? 'https://www.coolboard.fun'
   : Cypress.config('baseUrl') ?? 'missing env CYPRESS_baseUrl';
-// will be set by cypress.json, or via env: CYPRESS_branch
-export const branch = CYPRESS_branch || 'missing-CYPRESS_branch-env';
-export const gotoBoards = () => cy.visit(baseUrl + '/boards');
+
 export const LogAndWaitLong = {
   log: true,
   timeout: 8000,
 };
 
-export function fillLoginForm(
+function fillLoginForm(
   userLogin: string,
   password: string
 ): Cypress.Chainable<string> {
@@ -93,16 +94,16 @@ export const login = (
   userLogin: string,
   password: string
 ): Cypress.Chainable<string> => {
-  gotoBoards()
+  cy.visit(baseUrl + '/boards')
     .contains('Log in', {
       log: true,
       timeout: 6000,
     })
     .first()
     .click();
-
   return fillLoginForm(userLogin, password);
 };
+
 export const WaitVeryLong = {
   log: true,
   timeout: 5000 * 4,
