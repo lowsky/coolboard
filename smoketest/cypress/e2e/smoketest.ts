@@ -30,8 +30,6 @@ const sections = (options: Partial<Loggable & Timeoutable>) =>
 const add_a_card = () => cardListButtons().contains('Add a card');
 
 const getBoardsList = () => {
-  cy.dataCy('full-container').dataCy('boards-list', WaitVeryLong).first();
-
   return cy
     .dataCy('full-container')
     .dataCy('boards-list', WaitVeryLong)
@@ -39,12 +37,7 @@ const getBoardsList = () => {
 };
 
 const getBoardsList_FirstEntry = (name: string) => {
-  cy.dataCy('full-container').dataCy('boards-list', WaitVeryLong).first();
-
-  return cy
-    .dataCy('full-container')
-    .dataCy('boards-list', WaitVeryLong)
-    .should('exist')
+  return getBoardsList()
     .find('[data-cy="board-list-item_' + name + '"]', LogAndWaitLong)
     .first();
 };
@@ -66,8 +59,7 @@ describe('Test coolboard', () => {
   it('user can create a board for branch', () => {
     getBoardsList().then((boards) => cy.log(String(boards.length + ' boards')));
     cy.dataCy('create-board-dialog').click();
-    cy.get('#name').clear();
-    cy.get('#name').type(newBoardName);
+    cy.get('#name').clear().type(newBoardName);
     cy.dataCy('create-board-submit').click();
     cy.log('wait until dialog closes');
     cy.get('.chakra-modal__content-container', WaitVeryLong).should(
