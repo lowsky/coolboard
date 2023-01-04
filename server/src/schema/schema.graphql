@@ -77,6 +77,10 @@ input ListUpdateManyInput {
   deleteMany: [ListScalarWhereInput!]
 }
 
+input ListWhereIdInput {
+  id: ID!
+}
+
 input ListWhereUniqueInput {
   id: ID!
 }
@@ -85,6 +89,7 @@ type Mutation {
   createBoard(name: String!): User!
   deleteBoard(id: ID!): Board!
   deleteList(id: ID!): List!
+  renameList(newName: String!, where: ListWhereUniqueInput!): List!
   updateBoard(data: BoardUpdateInput!, where: BoardWhereUniqueInput!): Board!
   updateCard(data: CardUpdateInput!, where: CardWhereUniqueInput!): Card!
   updateList(data: ListUpdateInput!, where: ListWhereUniqueInput!): List!
@@ -92,16 +97,12 @@ type Mutation {
 
 type Query {
   board(where: BoardWhereUniqueInput!): Board
-  list(where: QueryListInput!): List
+  list(where: ListWhereIdInput!): List
 
   """
   authenticated current user
   """
   me: User
-}
-
-input QueryListInput {
-  id: ID!
 }
 
 type User {

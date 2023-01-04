@@ -109,6 +109,7 @@ export type Mutation = {
   createBoard: User;
   deleteBoard: Board;
   deleteList: List;
+  renameList: List;
   updateBoard: Board;
   updateCard: Card;
   updateList: List;
@@ -124,6 +125,11 @@ export type MutationDeleteBoardArgs = {
 
 export type MutationDeleteListArgs = {
   id: Scalars['ID'];
+};
+
+export type MutationRenameListArgs = {
+  newName: Scalars['String'];
+  where: ListWhereUniqueInput;
 };
 
 export type MutationUpdateBoardArgs = {

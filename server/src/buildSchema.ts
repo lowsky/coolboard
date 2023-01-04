@@ -161,6 +161,9 @@ builder.queryField('list', (t) =>
       name: 'where',
     },
     nullable: true,
+    typeOptions: {
+      name: 'ListWhereIdInput',
+    },
     input: {
       id: t.input.id({ required: true }),
     },
@@ -233,6 +236,26 @@ builder.mutationField('updateList', (t) => {
     },
     resolve: async (_parent, _root, { where, data }, ctx, _info) =>
       resolvers.Mutation.updateList(_parent, { where, data }, ctx),
+  });
+});
+
+builder.mutationField('renameList', (t) => {
+  return t.prismaField({
+    nullable: false,
+    type: 'List',
+    args: {
+      where: t.arg({ type: ListWhereUniqueInput, required: true }),
+      newName: t.arg.string({ required: true }),
+    },
+    resolve: async (_parent, _root, { where, newName }, ctx, _info) => {
+      const { prisma } = ctx;
+      return await prisma.list.update({
+        where,
+        data: {
+          name: newName,
+        },
+      });
+    },
   });
 });
 
