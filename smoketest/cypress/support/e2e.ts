@@ -46,25 +46,13 @@ Cypress.on('uncaught:exception', (error, runnable, promise) => {
 // Convert this to a module instead of script (allows import/export)
 export {};
 
-export const branch = Cypress.env('branch') ?? 'missing-branch-env';
-// Cypress.env() will show any env, which had been set with cypress_ prefix
-// https://docs.cypress.io/guides/guides/environment-variables#Option-3-CYPRESS_
-
-export const isMainBranch = 'main' === branch;
-
-// needs prefix when set per env: CYPRESS_LOGIN
+export const isMainBranch = Cypress.env('isMainBranch');
 export const userLogin = isMainBranch
   ? Cypress.env('MAIN_LOGIN')
-  : Cypress.env('LOGIN') ?? Cypress.env('LOGIN');
-// needs prefix when set per env: CYPRESS_USER_PASSWORD
+  : Cypress.env('LOGIN');
 export const password = isMainBranch
   ? Cypress.env('MAIN_PASSWORD')
-  : Cypress.env('PASSWORD') ?? Cypress.env('USER_PASSWORD');
-
-// will be set by cypress.json, or via env: CYPRESS_baseUrl
-export const baseUrl = isMainBranch
-  ? 'https://www.coolboard.fun'
-  : Cypress.config('baseUrl') ?? 'missing env CYPRESS_baseUrl';
+  : Cypress.env('PASSWORD');
 
 export const LogAndWaitLong = {
   log: true,
@@ -94,7 +82,7 @@ export const login = (
   userLogin: string,
   password: string
 ): Cypress.Chainable<string> => {
-  cy.visit(baseUrl + '/boards')
+  cy.visit('/boards')
     .contains('Log in', {
       log: true,
       timeout: 6000,

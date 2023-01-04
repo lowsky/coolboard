@@ -3,46 +3,19 @@
 
 import Loggable = Cypress.Loggable;
 import Timeoutable = Cypress.Timeoutable;
-import {
-  baseUrl,
-  branch,
-  isMainBranch,
-  LogAndWaitLong,
-  login,
-  password,
-  userLogin,
-} from '../support/e2e';
+import { LogAndWaitLong, password, userLogin } from '../support/e2e';
 
 const WaitVeryLong = {
   log: true,
   timeout: 5000 * 4,
 };
 
-const newBoardName = branch;
+const isMainBranch = Cypress.env('isMainBranch');
+const newBoardName = Cypress.env('branch');
 
 before(() => {
+  cy.log('Testing project git branch: ' + Cypress.env('branch'));
   cy.log('Testing project git branch is main ?' + isMainBranch);
-  cy.log('Testing project git branch: ' + branch);
-  cy.log(`Testing site on this base url: ${baseUrl}`).then(() => {
-    assert(
-      baseUrl.endsWith('localhost:8888') ||
-        baseUrl.endsWith('localhost:3000') ||
-        baseUrl.endsWith('coolboard.netlify.app') ||
-        baseUrl.startsWith('https://localhost') ||
-        baseUrl.startsWith(
-          'https://hands-on-application-building-with-graph-ql-and-reac'
-        ) ||
-        (baseUrl.startsWith('https://coolboard-') &&
-          baseUrl.endsWith('.vercel.app')) ||
-        baseUrl.endsWith('coolboard.fun'),
-      `Check: Domain should be one of: ' +
-     localhost:3000 |localhost:8888 | coolboard.fun | coolboard.netlify.app , but not:
-      ${baseUrl}`
-    );
-
-    assert(branch, 'branch cypress env var was not set');
-    assert(password, 'USER_PASSWORD cypress env var was not set');
-  });
 });
 
 const _boardListContainer = () => cy.dataCy('board-container-inner');

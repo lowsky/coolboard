@@ -1,21 +1,37 @@
 const { defineConfig } = require('cypress');
+const assert = require('assert');
 
 module.exports = defineConfig({
   chromeWebSecurity: true,
   projectId: '8p1ybc',
   defaultCommandTimeout: 2000,
   e2e: {
-    // We've imported your old cypress plugins here.
-    // You may want to clean this up later by importing these.
     setupNodeEvents(on, config) {
-      console.log(config); // see everything in here!
-
       // modify config values
-      //config.defaultCommandTimeout = 10000
-      //config.baseUrl = 'https://staging.acme.com'
+      // e.g. config.defaultCommandTimeout = 10000
 
-      // modify env var value
-      config.env.ENVIRONMENT = 'staging';
+      const branch = config.env.branch ?? 'missing-branch-env';
+      const isMainBranch = 'main' === config.env.branch;
+
+      // will be set by cypress.json, or via env: CYPRESS_baseUrl
+      const baseUrl = config.env.isMainBranch
+        ? 'https://www.coolboard.fun'
+        : config.baseUrl;
+
+      assert(
+        baseUrl.endsWith('localhost:3000') ||
+          baseUrl.endsWith('www.coolboard.fun') ||
+          (baseUrl.startsWith('https://coolboard-') &&
+            baseUrl.endsWith('-lowsky.vercel.app')),
+        `Check: Domain or URL should be one of:
+            localhost:3000 | www.coolboard.fun | https://coolboard-...-lowsky.vercel.app
+         but was: ${baseUrl}`
+      );
+
+      //config.env.branch
+      config.env.branch = branch;
+      config.env.isMainBranch = isMainBranch;
+      config.baseUrl = baseUrl;
 
       return require('./cypress/plugins/index.js')(on, config);
     },
