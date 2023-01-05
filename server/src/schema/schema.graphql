@@ -17,6 +17,7 @@ input BoardWhereUniqueInput {
 
 type Card {
   createdAt: DateTime!
+  createdBy: User!
   description: String
   id: ID!
   name: String!

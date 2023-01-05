@@ -68,6 +68,7 @@ builder.prismaObject('Card', {
     }),
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
     updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
+    createdBy: t.relation('createdBy'),
     updatedBy: t.relation('updatedBy'),
   }),
 });

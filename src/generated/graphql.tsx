@@ -44,6 +44,7 @@ export type BoardWhereUniqueInput = {
 export type Card = {
   __typename?: 'Card';
   createdAt: Scalars['DateTime'];
+  createdBy: User;
   description?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   name: Scalars['String'];
