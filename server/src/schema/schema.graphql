@@ -75,7 +75,7 @@ input ListUpdateManyInput {
 }
 
 input ListWhereUniqueInput {
-  id: ID
+  id: ID!
 }
 
 type Mutation {

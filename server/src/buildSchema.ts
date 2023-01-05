@@ -88,7 +88,7 @@ const ListScalarWhereInput = builder.inputType('ListScalarWhereInput', {
   fields: (t) => ({ id_in: t.idList({ required: true }) }),
 });
 const ListWhereUniqueInput = builder.inputType('ListWhereUniqueInput', {
-  fields: (t) => ({ id: t.id({ required: false }) }),
+  fields: (t) => ({ id: t.id({ required: true }) }),
 });
 const ListUpdateManyInput = builder.inputType('ListUpdateManyInput', {
   fields: (t) => ({
