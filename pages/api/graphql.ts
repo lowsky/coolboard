@@ -87,7 +87,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   // do not check authentication when using graphql API locally
-  if(isLocalDev) {
+  if (isLocalDev) {
     return handleGraphqlRequest(req, res);
   }
 
