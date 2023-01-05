@@ -3,6 +3,8 @@ import { Board, List, User } from '@prisma/client';
 import builder from './schemaBuilder';
 import resolvers from './resolvers/resolvers';
 
+export { prisma } from './schemaBuilder';
+
 builder.prismaObject('User', {
   name: 'User',
   fields: (t) => ({
