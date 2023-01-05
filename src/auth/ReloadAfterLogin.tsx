@@ -17,7 +17,7 @@ export function ReloadAfterLogin({ client }: Props) {
         });
       }
     }
-  }, [isSignedIn, isLoaded, sessionId]);
+  }, [isSignedIn, isLoaded, sessionId, client]);
 
   return null;
 }

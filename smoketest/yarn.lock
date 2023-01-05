@@ -390,7 +390,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "coolboard-smoketests@workspace:."
   dependencies:
-    cypress: 10.10.0
+    cypress: 12.3.0
   languageName: unknown
   linkType: soft
 
@@ -412,9 +412,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cypress@npm:10.10.0":
-  version: 10.10.0
-  resolution: "cypress@npm:10.10.0"
+"cypress@npm:12.3.0":
+  version: 12.3.0
+  resolution: "cypress@npm:12.3.0"
   dependencies:
     "@cypress/request": ^2.88.10
     "@cypress/xvfb": ^1.2.4
@@ -460,7 +460,7 @@ __metadata:
     yauzl: ^2.10.0
   bin:
     cypress: bin/cypress
-  checksum: 668a32534a527dba79754abbf98af176b80c539a12ec00058932ba2a19c794c7888323e59e738c30f726ad740c5451c31d02548a0cb7c1b1c8ad01c55a984ca2
+  checksum: 00658996bcca918254348eb42bc03079ccf2d583e5c9c04190267edcbc542d4a22835d7399711c99f7aa7334412104b23cc5a1aa7f02b8b541c12298bf3f63f0
   languageName: node
   linkType: hard
 

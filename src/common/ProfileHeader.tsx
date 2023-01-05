@@ -2,7 +2,14 @@ import React, { ReactNode } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useApolloClient } from '@apollo/client';
-import { Box, Button, Container, Spinner } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Container,
+  Flex,
+  Spinner,
+  useColorMode,
+} from '@chakra-ui/react';
 import { FaSignOutAlt } from 'react-icons/fa';
 import {
   ClerkLoaded,
@@ -12,6 +19,7 @@ import {
   SignOutButton,
   UserButton,
 } from '@clerk/nextjs';
+import { dark } from '@clerk/themes';
 
 import { LoginButton } from './LoginButton';
 
@@ -22,12 +30,7 @@ const ProfileHeaderContainer = ({
   children: ReactNode;
   isBoardsPage?: boolean;
 }) => (
-  <Container
-    maxW="100%"
-    style={{
-      padding: '1em',
-      background: 'lightgrey',
-    }}>
+  <Container maxW="100%" variant="header">
     <Box
       data-cy="profile-header"
       style={{
@@ -36,19 +39,9 @@ const ProfileHeaderContainer = ({
         placeContent: 'space-between',
       }}>
       <Box gap="2rem" display="flex">
-        {isBoardsPage && (
-          <Link href="/">
-            <a>Home</a>
-          </Link>
-        )}
-        {!isBoardsPage && (
-          <Link href="/boards">
-            <a>Boards</a>
-          </Link>
-        )}
-        <Link href="/about">
-          <a>About</a>
-        </Link>
+        {isBoardsPage && <Link href="/">Home</Link>}
+        {!isBoardsPage && <Link href="/boards">Boards</Link>}
+        <Link href="/about">About</Link>
       </Box>
 
       {children}
@@ -59,6 +52,9 @@ const ProfileHeaderContainer = ({
 export const ProfileHeader = ({ isBoardsPage }: { isBoardsPage?: boolean }) => {
   const apolloClient = useApolloClient();
   const { reload } = useRouter();
+
+  const { colorMode } = useColorMode();
+  const clerkAppearance = colorMode === 'dark' ? { baseTheme: dark } : {};
 
   return (
     <ProfileHeaderContainer isBoardsPage={isBoardsPage}>
@@ -72,23 +68,21 @@ export const ProfileHeader = ({ isBoardsPage }: { isBoardsPage?: boolean }) => {
         </SignedOut>
       </ClerkLoaded>
       <SignedIn>
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5em',
-          }}>
-          <UserButton showName />
+        <Flex alignItems="center" gap="0.5em">
+          <UserButton appearance={clerkAppearance} showName />
           <SignOutButton
             signOutCallback={async () => {
               await apolloClient.clearStore?.();
               reload();
             }}>
-            <Button data-cy="sign-out-button" leftIcon={<FaSignOutAlt />}>
+            <Button
+              data-cy="sign-out-button"
+              leftIcon={<FaSignOutAlt />}
+              color={'unset'}>
               Sign Out
             </Button>
           </SignOutButton>
-        </div>
+        </Flex>
       </SignedIn>
     </ProfileHeaderContainer>
   );

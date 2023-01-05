@@ -1,61 +1,73 @@
 import React from 'react';
-import { Box, Container, Heading, Icon, Text } from '@chakra-ui/react';
-
+import { Box, Container, Heading, Icon, Link, Text } from '@chakra-ui/react';
 import Image from 'next/image';
 import { FaSignInAlt, FaFilm } from 'react-icons/fa';
 
-import { Segment } from '../src/common/Segment';
-import { FullVerticalContainer } from '../src/common/FullVerticalContainer';
+import FullPageWithApollo from '../src/common/FullPageWithApollo';
+import { ProfileHeader } from '../src/common/ProfileHeader';
 
 export default function About() {
   return (
-    <FullVerticalContainer data-cy="about-full-container">
+    <FullPageWithApollo data-cy="about-full-container">
+      <ProfileHeader />
       <Container maxW="700px">
-        <Segment>
+        <section>
           <Heading as="h2">Welcome to CoolBoard</Heading>
           <Text>
-            This is the Live Demo of the full application which we build in this
-            <a href="https://www.packtpub.com/product/hands-on-application-building-with-graphql-video/9781788991865">
-              <Icon>
-                <FaFilm />
-              </Icon>
-              Video Course:
-            </a>
+            This is the Live Demo of the full application which we build in this{' '}
+            <Icon>
+              <FaFilm size="small" />
+            </Icon>
+            <Link
+              href="https://www.packtpub.com/product/hands-on-application-building-with-graphql-video/9781788991865"
+              referrerPolicy="no-referrer"
+              isExternal>
+              Video Course
+            </Link>
           </Text>
           <Text>
-            <a href="https://www.packtpub.com/product/hands-on-application-building-with-graphql-video/9781788991865">
+            <Link
+              href="https://www.packtpub.com/product/hands-on-application-building-with-graphql-video/9781788991865"
+              referrerPolicy="no-referrer"
+              isExternal>
               <Image
                 src="/packt-page-v141.png"
                 width={473}
                 height={141}
                 alt="Packt Publishing logo"
               />
-            </a>
+            </Link>
           </Text>
-          <Text verticalAlign="center">
+          <Text>
             <strong>Published</strong> on{' '}
-            <a href="https://www.packtpub.com/product/hands-on-application-building-with-graphql-video/9781788991865">
+            <Link
+              href="https://www.packtpub.com/product/hands-on-application-building-with-graphql-video/9781788991865"
+              referrerPolicy="no-referrer"
+              isExternal>
               <Image
                 src="/packt-logo.svg"
-                width={24}
-                height={24}
+                width={115}
+                height={32}
                 alt="Packt Publishing logo"
               />
-            </a>
+            </Link>
           </Text>
-        </Segment>
-        <Segment>
+        </section>
+        <section>
           <Heading as="h2">What is it?</Heading>
           <Text>
             It is a{' '}
-            <a href="https://en.wikipedia.org/wiki/Kanban_(development)">
+            <Link
+              href="https://en.wikipedia.org/wiki/Kanban_(development)"
+              referrerPolicy="no-referrer"
+              isExternal>
               Kanban
-            </a>{' '}
+            </Link>{' '}
             Board, where you can share tasks
           </Text>
-          <p>and organise them together with real time updates.</p>
-        </Segment>
-        <Segment>
+          <Text>and organise them together with real time updates.</Text>
+        </section>
+        <section>
           <Heading as="h2">How does it work?</Heading>
           <Text>
             You will need to Sign-up via email and{' '}
@@ -67,46 +79,72 @@ export default function About() {
               authenticate here
             </a>
           </Text>
-          <p>Then you can create and share a board (via its URL)</p>
-        </Segment>
-        <Segment>
+          <Text>Then you can create and share a board (via its URL)</Text>
+        </section>
+        <section>
           <Heading as="h2">What technology is used?</Heading>
           <Text>
             GraphQL database powered by{' '}
-            <a href="https://www.prisma.io/">Prisma</a>
+            <Link
+              href="https://www.prisma.io/"
+              referrerPolicy="no-referrer"
+              isExternal>
+              Prisma
+            </Link>
           </Text>
           <Text>
             GraphQL trello server running as{' '}
-            <a href="https://vercel.com/docs/concepts/functions/serverless-functions/">
+            <Link
+              href="https://vercel.com/docs/concepts/functions/serverless-functions/"
+              referrerPolicy="no-referrer"
+              isExternal>
               serverless functions on Vercel
-            </a>
+            </Link>
           </Text>
           <Text>
-            <a href="https://www.react.org/">React</a>
+            <Link
+              href="https://www.react.org/"
+              referrerPolicy="no-referrer"
+              isExternal>
+              React
+            </Link>
             frontend with{' '}
-            <a href="https://www.apollographql.com/apollo-client">
+            <Link
+              href="https://www.apollographql.com/apollo-client"
+              referrerPolicy="no-referrer"
+              isExternal>
               Apollo
-            </a>{' '}
+            </Link>{' '}
             served by
-            <a href="https://vercel.com/">Vercel</a>
+            <Link
+              href="https://vercel.com/"
+              referrerPolicy="no-referrer"
+              isExternal>
+              Vercel
+            </Link>
           </Text>
-        </Segment>
-        <Segment variant="padded">
+        </section>
+        <section>
           <Heading>How to sign-in?</Heading>
           <Box
+            border={'solid 1px grey'}
             style={{
-              border: 'solid 1px grey',
               textAlign: 'left',
               padding: '8px',
             }}>
             <Text>
               We are using the service of
-              <a href="https://clerk.dev/">clerk</a>
+              <Link
+                href="https://clerk.dev/"
+                referrerPolicy="no-referrer"
+                isExternal>
+                clerk
+              </Link>
               to allow signing-in via OAuth using Google or email/password
               automatically.
             </Text>
             <Text>
-              <b>About Privacy:</b>
+              <strong>About Privacy:</strong>
               <br />
               We will use your account information for authenticating and
               storing your boards under your account.
@@ -116,8 +154,8 @@ export default function About() {
               or maintenance time) or updated to this.
             </Text>
           </Box>
-        </Segment>
-        <Segment>
+        </section>
+        <section>
           <Heading>Credits / Copyright</Heading>
           <Text>The logo and favicon was based on</Text>
           <Text>
@@ -125,8 +163,8 @@ export default function About() {
             Project.
           </Text>
           <Text>“Browser” icon by Didzis Gruznovs from the Noun Project.</Text>
-        </Segment>
+        </section>
       </Container>
-    </FullVerticalContainer>
+    </FullPageWithApollo>
   );
 }

@@ -1,24 +1,16 @@
+import type { NextApiRequest, NextApiResponse } from 'next';
 import { ApolloServer } from 'apollo-server-micro';
 import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core';
-import { withAuth } from '@clerk/nextjs/api';
-import { PrismaClient } from '@prisma/client';
-
-import resolvers from '../../server/src/resolvers/resolvers';
-import { typeDefs } from '../../server/src/schema/apiSchema';
+import { getAuth } from '@clerk/nextjs/server';
 
 import { isLocalDev } from '../../server/src/helpers/logging';
 import { Ctxt } from '../../server/src/resolvers/Context';
 
-const prisma = new PrismaClient({
-  log: isLocalDev
-    ? ['query', 'info', `warn`, `error`]
-    : ['info', 'warn', 'error'],
-});
+import { buildSchema, prisma } from '../../server/src/buildSchema';
 
 const getGraphqlServer = async () => {
   const apolloServer = new ApolloServer({
-    typeDefs,
-    resolvers,
+    schema: buildSchema(),
 
     /*
     APOLLO_GRAPH_VARIANT
@@ -92,21 +84,19 @@ async function handleGraphqlRequest(req, res) {
   await handler(req, res);
 }
 
-export default withAuth(async (req, res) => {
-  if (req.auth) {
-    const { userId, sessionId, getToken } = req.auth;
-
-    isLocalDev && console.log('req.auth', req.auth);
-    isLocalDev &&
-      console.log('req.auth', userId, sessionId, await getToken?.());
-
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  const { userId } = getAuth(req);
+  if (userId) {
     return handleGraphqlRequest(req, res);
-  } else {
-    isLocalDev && console.log('no request.auth');
-
-    res.status(401).json({ id: null });
   }
-});
+
+  isLocalDev && console.error('    userId is not yet set!');
+
+  res.status(401).json({ id: null });
+}
 
 export const config = {
   api: {

@@ -3,78 +3,20 @@
 
 import Loggable = Cypress.Loggable;
 import Timeoutable = Cypress.Timeoutable;
+import { LogAndWaitLong, password, userLogin } from '../support/e2e';
 
-const CYPRESS_branch = Cypress.env('branch');
+const WaitVeryLong = {
+  log: true,
+  timeout: 5000 * 4,
+};
 
-// Cypress.env() will show any env, which had been set with cypress_ prefix
-// https://docs.cypress.io/guides/guides/environment-variables#Option-3-CYPRESS_
-// @ts-ignore
-const isMainBranch = 'main' === CYPRESS_branch;
-
-// needs prefix when set per env: CYPRESS_LOGIN
-const login = isMainBranch
-  ? Cypress.env('MAIN_LOGIN')
-  : Cypress.env('LOGIN') ?? Cypress.env('LOGIN');
-
-// needs prefix when set per env: CYPRESS_USER_PASSWORD
-const password = isMainBranch
-  ? Cypress.env('MAIN_PASSWORD')
-  : Cypress.env('PASSWORD') ?? Cypress.env('USER_PASSWORD');
-
-// will be set by cypress.json, or via env: CYPRESS_baseUrl
-const baseUrl = isMainBranch
-  ? 'https://coolboard.fun'
-  : Cypress.config('baseUrl') ?? 'missing env CYPRESS_baseUrl';
-// will be set by cypress.json, or via env: CYPRESS_branch
-const branch = CYPRESS_branch || 'missing-CYPRESS_branch-env';
-
-const newBoardName = branch;
+const isMainBranch = Cypress.env('isMainBranch');
+const newBoardName = Cypress.env('branch');
 
 before(() => {
-  Cypress.Cookies.debug(true); // now Cypress will log when it alters cookies
-
+  cy.log('Testing project git branch: ' + Cypress.env('branch'));
   cy.log('Testing project git branch is main ?' + isMainBranch);
-  cy.log('Testing project git branch: ' + branch);
-  cy.log(`Testing site on this base url: ${baseUrl}`).then(() => {
-    assert(
-      baseUrl.endsWith('localhost:8888') ||
-        baseUrl.endsWith('localhost:3000') ||
-        baseUrl.endsWith('coolboard.netlify.app') ||
-        baseUrl.startsWith('https://localhost') ||
-        baseUrl.startsWith(
-          'https://hands-on-application-building-with-graph-ql-and-reac'
-        ) ||
-        (baseUrl.startsWith('https://coolboard-') &&
-          baseUrl.endsWith('.vercel.app')) ||
-        baseUrl.endsWith('coolboard.fun'),
-      `Check: Domain should be one of: ' +
-     localhost:3000 |localhost:8888 | coolboard.fun | coolboard.netlify.app , but not:
-      ${baseUrl}`
-    );
-
-    assert(branch, 'branch cypress env var was not set');
-    assert(password, 'USER_PASSWORD cypress env var was not set');
-  });
-  cy.clearCookies();
-  cy.clearLocalStorage();
 });
-
-const gotoBoards = () => {
-  return cy
-    .visit(baseUrl + '/boards')
-    .url()
-    .should('include', 'boards');
-};
-
-const clickLogin = () => {
-  return cy
-    .contains('Log in', {
-      log: true,
-      timeout: 6000,
-    })
-    .first()
-    .click();
-};
 
 const _boardListContainer = () => cy.dataCy('board-container-inner');
 
@@ -87,34 +29,7 @@ const sections = (options: Partial<Loggable & Timeoutable>) =>
 
 const add_a_card = () => cardListButtons().contains('Add a card');
 
-const LogAndWaitLong = {
-  log: true,
-  timeout: 8000,
-};
-
-function fillLoginForm() {
-  cy.get('#identifier-field', LogAndWaitLong).type(login + '{enter}');
-  cy.contains('Enter your password', {
-    log: true,
-    timeout: 6000,
-  });
-  cy.get('#password-field').type(password + '{enter}', {
-    log: false,
-  });
-
-  // helps to wait for authentication process of redirecting with to the /callback url
-  return cy
-    .wait(1000) //
-    .url(LogAndWaitLong);
-}
-
-const WaitVeryLong = {
-  log: true,
-  timeout: 5000 * 4,
-};
 const getBoardsList = () => {
-  cy.dataCy('full-container').dataCy('boards-list', WaitVeryLong).first();
-
   return cy
     .dataCy('full-container')
     .dataCy('boards-list', WaitVeryLong)
@@ -122,30 +37,29 @@ const getBoardsList = () => {
 };
 
 const getBoardsList_FirstEntry = (name: string) => {
-  cy.dataCy('full-container').dataCy('boards-list').first();
-
-  return cy
-    .dataCy('full-container')
-    .dataCy('boards-list', WaitVeryLong)
-    .should('exist')
+  return getBoardsList()
     .find('[data-cy="board-list-item_' + name + '"]', LogAndWaitLong)
     .first();
 };
 
+function logout() {
+  cy.get('[data-cy=profile-header]')
+    .contains('Sign Out', LogAndWaitLong)
+    .click();
+}
+
 describe('Test coolboard', () => {
-  it('need to login to show boards', () => {
-    gotoBoards();
-    clickLogin();
-    fillLoginForm();
+  beforeEach(() => {
+    cy.login(userLogin, password);
+    cy.visit('/boards');
   });
 
-  it('user can create a board for branch', () => {
-    gotoBoards();
+  it('user needs to login to show boards', () => {});
 
+  it('user can create a board for branch', () => {
     getBoardsList().then((boards) => cy.log(String(boards.length + ' boards')));
     cy.dataCy('create-board-dialog').click();
-    cy.get('#name').clear();
-    cy.get('#name').type(newBoardName);
+    cy.get('#name').clear().type(newBoardName);
     cy.dataCy('create-board-submit').click();
     cy.log('wait until dialog closes');
     cy.get('.chakra-modal__content-container', WaitVeryLong).should(
@@ -156,8 +70,6 @@ describe('Test coolboard', () => {
   });
 
   it('user can add lists and cards', () => {
-    gotoBoards();
-
     // open first board named XXX
     getBoardsList_FirstEntry(newBoardName).click();
     cy.url(LogAndWaitLong).should('include', 'board/');
@@ -200,8 +112,6 @@ describe('Test coolboard', () => {
   });
 
   it('user can delete lists', () => {
-    gotoBoards();
-
     // open first board named XXX
     getBoardsList_FirstEntry(newBoardName).click();
     cy.url(LogAndWaitLong).should('include', 'board/');
@@ -216,11 +126,6 @@ describe('Test coolboard', () => {
   });
 
   it('user can delete board', () => {
-    gotoBoards();
-
-    // enforce having cookies set properly for when trigging mutation
-    getBoardsList_FirstEntry(newBoardName).then(() => cy.reload());
-
     // open first board named XXX
     getBoardsList_FirstEntry(newBoardName)
       .within(() => {
@@ -228,15 +133,15 @@ describe('Test coolboard', () => {
       })
       .then(() => {
         // this took some time typically, so need to wait longer
-        getBoardsList().contains(newBoardName, LogAndWaitLong).should('not.exist');
+        getBoardsList()
+          .contains(newBoardName, LogAndWaitLong)
+          .should('not.exist');
       });
   });
 
   it('user can log-out', () => {
-    gotoBoards();
-
-    cy.get('[data-cy=profile-header]')
-      .contains('Sign Out', LogAndWaitLong)
-      .click();
+    logout();
+    cy.contains('Log in')
+    cy.contains('Please, login to see your boards.');
   });
 });

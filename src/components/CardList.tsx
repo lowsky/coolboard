@@ -155,7 +155,13 @@ const CardListHeader = ({ name, children }) => (
           aria-label="delete list"
         />
       </PopoverTrigger>
-      <PopoverContent>
+      <PopoverContent
+        rootProps={{
+          bg: 'transparent',
+          boxShadow: 'xl',
+        }}
+        w={'min-content'}
+        boxShadow={'xl'}>
         <PopoverBody>{children}</PopoverBody>
       </PopoverContent>
     </Popover>
@@ -163,10 +169,7 @@ const CardListHeader = ({ name, children }) => (
 );
 
 const CardListButton = ({ onButtonClick, leftIcon, children }) => (
-  <Button
-    className={styles.button}
-    onClick={() => onButtonClick()}
-    leftIcon={leftIcon}>
+  <Button m={'0.1em'} onClick={() => onButtonClick()} leftIcon={leftIcon}>
     {children}
   </Button>
 );

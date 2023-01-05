@@ -1,7 +1,10 @@
 generator client {
   provider = "prisma-client-js"
   binaryTargets = ["native", "rhel-openssl-1.0.x"]
-  previewFeatures = ["referentialIntegrity"]
+}
+
+generator pothos {
+  provider = "prisma-pothos-types"
 }
 
 datasource db {
@@ -11,7 +14,7 @@ datasource db {
   url = env("DATABASE_URL")
 
   // used for planetscale:
-  referentialIntegrity = "prisma"
+  relationMode = "prisma"
 }
 
 model Card {

@@ -21,7 +21,7 @@ https://chakra-ui.com/docs/styled-system/theming/customize-theme#customizing-com
   const theme = extendTheme({
     config: {
       useSystemColorMode: true,
-      initialColorMode: 'light',
+      initialColorMode: 'light', // fallback
     },
     components: {
       Text: {
@@ -35,6 +35,27 @@ https://chakra-ui.com/docs/styled-system/theming/customize-theme#customizing-com
           mb: '1rem',
         },
       },
+      Container: {
+        variants: {
+          header: {
+            padding: '1em',
+            _dark: {
+              bg: 'gray.700',
+              color: 'gray.300',
+            },
+            _light: {
+              bg: 'lightgray',
+              color: 'black',
+            },
+          },
+          footer: (props) => ({
+            fontSize: '0.75em',
+            padding: '1em',
+            color: mode('black', 'lightgray')(props),
+            bg: mode('lightgray', 'gray')(props),
+          }),
+        },
+      },
     },
     styles: {
       global: (props) => ({
@@ -46,6 +67,9 @@ https://chakra-ui.com/docs/styled-system/theming/customize-theme#customizing-com
           _hover: {
             textDecoration: 'underline',
           },
+        },
+        li: {
+          bg: mode('lightgrey', 'grey')(props),
         },
       }),
     },
@@ -61,19 +85,19 @@ https://chakra-ui.com/docs/styled-system/theming/customize-theme#customizing-com
         />
       </Head>
       {<InstanaEumScripts />}
-      <div
-        style={{
-          overflow: 'auto',
-          flex: 1,
-        }}>
-        <ChakraProvider theme={theme}>
+      <ChakraProvider theme={theme}>
+        <div
+          style={{
+            overflow: 'auto',
+            flex: 1,
+          }}>
           <ClerkProvider {...pageProps}>
             <Component {...pageProps} />
           </ClerkProvider>
-        </ChakraProvider>
-      </div>
+        </div>
 
-      <Footer />
+        <Footer />
+      </ChakraProvider>
     </>
   );
 }
