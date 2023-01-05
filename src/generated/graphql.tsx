@@ -38,7 +38,7 @@ export type BoardUpdateInput = {
 };
 
 export type BoardWhereUniqueInput = {
-  id?: InputMaybe<Scalars['ID']>;
+  id: Scalars['ID'];
 };
 
 export type Card = {
@@ -59,7 +59,7 @@ export type CardCreateInput = {
 
 export type CardUpdateInput = {
   description?: InputMaybe<Scalars['String']>;
-  name?: InputMaybe<Scalars['String']>;
+  name: Scalars['String'];
 };
 
 export type CardUpdateManyInput = {
@@ -158,7 +158,7 @@ export type QueryListArgs = {
 };
 
 export type QueryListInput = {
-  id?: InputMaybe<Scalars['ID']>;
+  id: Scalars['ID'];
 };
 
 export type User = {
@@ -184,7 +184,7 @@ export type MeQueryQuery = {
 };
 
 export type BoardQueryVariables = Exact<{
-  boardId?: InputMaybe<Scalars['ID']>;
+  boardId: Scalars['ID'];
 }>;
 
 export type BoardQuery = {
@@ -285,7 +285,7 @@ export type DeleteListOfBoardMutation = {
 };
 
 export type CardListQueryVariables = Exact<{
-  cardListId?: InputMaybe<Scalars['ID']>;
+  cardListId: Scalars['ID'];
 }>;
 
 export type CardListQuery = {
@@ -393,7 +393,7 @@ export type AddCardMutationMutation = {
 
 export type UpdateCardMutationVariables = Exact<{
   id: Scalars['ID'];
-  name?: InputMaybe<Scalars['String']>;
+  name: Scalars['String'];
   description?: InputMaybe<Scalars['String']>;
 }>;
 
@@ -539,7 +539,7 @@ export type MeQueryQueryResult = Apollo.QueryResult<
   MeQueryQueryVariables
 >;
 export const BoardDocument = gql`
-  query board($boardId: ID) {
+  query board($boardId: ID!) {
     board(where: { id: $boardId }) {
       ...Board_board
     }
@@ -564,7 +564,7 @@ export const BoardDocument = gql`
  * });
  */
 export function useBoardQuery(
-  baseOptions?: Apollo.QueryHookOptions<BoardQuery, BoardQueryVariables>
+  baseOptions: Apollo.QueryHookOptions<BoardQuery, BoardQueryVariables>
 ) {
   const options = { ...defaultOptions, ...baseOptions };
   return Apollo.useQuery<BoardQuery, BoardQueryVariables>(
@@ -915,7 +915,7 @@ export type DeleteListOfBoardMutationOptions = Apollo.BaseMutationOptions<
   DeleteListOfBoardMutationVariables
 >;
 export const CardListDocument = gql`
-  query CardList($cardListId: ID) {
+  query CardList($cardListId: ID!) {
     list(where: { id: $cardListId }) {
       ...CardList_list
     }
@@ -940,7 +940,7 @@ export const CardListDocument = gql`
  * });
  */
 export function useCardListQuery(
-  baseOptions?: Apollo.QueryHookOptions<CardListQuery, CardListQueryVariables>
+  baseOptions: Apollo.QueryHookOptions<CardListQuery, CardListQueryVariables>
 ) {
   const options = { ...defaultOptions, ...baseOptions };
   return Apollo.useQuery<CardListQuery, CardListQueryVariables>(
@@ -1083,7 +1083,7 @@ export type AddCardMutationMutationOptions = Apollo.BaseMutationOptions<
   AddCardMutationMutationVariables
 >;
 export const UpdateCardDocument = gql`
-  mutation updateCard($id: ID!, $name: String, $description: String) {
+  mutation updateCard($id: ID!, $name: String!, $description: String) {
     updateCard(
       where: { id: $id }
       data: { name: $name, description: $description }

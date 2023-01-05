@@ -12,7 +12,7 @@ input BoardUpdateInput {
 }
 
 input BoardWhereUniqueInput {
-  id: ID
+  id: ID!
 }
 
 type Card {
@@ -32,7 +32,7 @@ input CardCreateInput {
 
 input CardUpdateInput {
   description: String
-  name: String
+  name: String!
 }
 
 input CardUpdateManyInput {
@@ -101,7 +101,7 @@ type Query {
 }
 
 input QueryListInput {
-  id: ID
+  id: ID!
 }
 
 type User {

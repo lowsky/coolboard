@@ -63,7 +63,7 @@ builder.prismaObject('Card', {
     description: t.string({
       nullable: true,
       resolve: async (parent, _args, _ctx, _info) => {
-        return parent.description ?? '';
+        return parent.description;
       },
     }),
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
@@ -75,7 +75,7 @@ builder.prismaObject('Card', {
 
 const BoardWhereUniqueInput = builder.inputType('BoardWhereUniqueInput', {
   fields: (t) => ({
-    id: t.id({ required: false }),
+    id: t.id({ required: true }),
   }),
 });
 const ListCreateInput = builder.inputType('ListCreateInput', {
@@ -127,7 +127,7 @@ const ListUpdateInput = builder.inputType('ListUpdateInput', {
 
 const CardUpdateInput = builder.inputType('CardUpdateInput', {
   fields: (t) => ({
-    name: t.string({ required: false }),
+    name: t.string({ required: true }),
     description: t.string({ required: false }),
   }),
 });
@@ -162,7 +162,7 @@ builder.queryField('list', (t) =>
     },
     nullable: true,
     input: {
-      id: t.input.id({ required: false }),
+      id: t.input.id({ required: true }),
     },
     resolve: async (_query, _root, args, ctx) =>
       resolvers.Query.list(_root, args, ctx),

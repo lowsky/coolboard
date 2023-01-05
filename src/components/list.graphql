@@ -1,4 +1,4 @@
-query CardList($cardListId: ID) {
+query CardList($cardListId: ID!) {
   list(where: { id: $cardListId }) {
     ...CardList_list
   }
@@ -29,7 +29,7 @@ mutation addCardMutation($cardListId: ID!, $name: String!) {
 
 mutation updateCard(
   $id: ID!
-  $name: String
+  $name: String!
   $description: String #$old_name: String #$old_description: String
 ) {
   updateCard(
