@@ -220,7 +220,12 @@ function CardListHeader({ name, listId, children, renameListMutation }) {
 function EditableControls() {
   const { isEditing, getEditButtonProps } = useEditableControls();
   return isEditing ? null : (
-    <IconButton size="sm" icon={<EditIcon />} {...getEditButtonProps()} />
+    <IconButton
+      aria-label="edit the list title"
+      size="sm"
+      icon={<EditIcon />}
+      {...getEditButtonProps()}
+    />
   );
 }
 
