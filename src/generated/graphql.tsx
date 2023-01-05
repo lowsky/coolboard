@@ -19,270 +19,21 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  /** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
   DateTime: any;
-  Long: any;
-};
-
-export type AggregateBoard = {
-  __typename?: 'AggregateBoard';
-  count: Scalars['Int'];
-};
-
-export type AggregateCard = {
-  __typename?: 'AggregateCard';
-  count: Scalars['Int'];
-};
-
-export type AggregateList = {
-  __typename?: 'AggregateList';
-  count: Scalars['Int'];
-};
-
-export type AggregateUser = {
-  __typename?: 'AggregateUser';
-  count: Scalars['Int'];
-};
-
-export type BatchPayload = {
-  __typename?: 'BatchPayload';
-  count: Scalars['Long'];
 };
 
 export type Board = {
   __typename?: 'Board';
   createdAt: Scalars['DateTime'];
   id: Scalars['ID'];
-  lists?: Maybe<Array<List>>;
+  lists: Array<List>;
   name: Scalars['String'];
   updatedAt: Scalars['DateTime'];
-  updatedBy?: Maybe<User>;
-};
-
-export type BoardListsArgs = {
-  after?: InputMaybe<Scalars['String']>;
-  before?: InputMaybe<Scalars['String']>;
-  first?: InputMaybe<Scalars['Int']>;
-  last?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ListOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<ListWhereInput>;
-};
-
-export type BoardConnection = {
-  __typename?: 'BoardConnection';
-  aggregate: AggregateBoard;
-  edges: Array<Maybe<BoardEdge>>;
-  pageInfo: PageInfo;
-};
-
-export type BoardCreateInput = {
-  lists?: InputMaybe<ListCreateManyInput>;
-  name: Scalars['String'];
-  updatedBy?: InputMaybe<UserCreateOneWithoutBoardsInput>;
-};
-
-export type BoardCreateManyWithoutUpdatedByInput = {
-  connect?: InputMaybe<Array<BoardWhereUniqueInput>>;
-  create?: InputMaybe<Array<BoardCreateWithoutUpdatedByInput>>;
-};
-
-export type BoardCreateWithoutUpdatedByInput = {
-  lists?: InputMaybe<ListCreateManyInput>;
-  name: Scalars['String'];
-};
-
-export type BoardEdge = {
-  __typename?: 'BoardEdge';
-  cursor: Scalars['String'];
-  node: Board;
-};
-
-export enum BoardOrderByInput {
-  CreatedAtAsc = 'createdAt_ASC',
-  CreatedAtDesc = 'createdAt_DESC',
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  NameAsc = 'name_ASC',
-  NameDesc = 'name_DESC',
-  UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC',
-}
-
-export type BoardPreviousValues = {
-  __typename?: 'BoardPreviousValues';
-  createdAt: Scalars['DateTime'];
-  id: Scalars['ID'];
-  name: Scalars['String'];
-  updatedAt: Scalars['DateTime'];
-};
-
-export type BoardScalarWhereInput = {
-  AND?: InputMaybe<Array<BoardScalarWhereInput>>;
-  NOT?: InputMaybe<Array<BoardScalarWhereInput>>;
-  OR?: InputMaybe<Array<BoardScalarWhereInput>>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  createdAt_gt?: InputMaybe<Scalars['DateTime']>;
-  createdAt_gte?: InputMaybe<Scalars['DateTime']>;
-  createdAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  createdAt_lt?: InputMaybe<Scalars['DateTime']>;
-  createdAt_lte?: InputMaybe<Scalars['DateTime']>;
-  createdAt_not?: InputMaybe<Scalars['DateTime']>;
-  createdAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  id?: InputMaybe<Scalars['ID']>;
-  id_contains?: InputMaybe<Scalars['ID']>;
-  id_ends_with?: InputMaybe<Scalars['ID']>;
-  id_gt?: InputMaybe<Scalars['ID']>;
-  id_gte?: InputMaybe<Scalars['ID']>;
-  id_in?: InputMaybe<Array<Scalars['ID']>>;
-  id_lt?: InputMaybe<Scalars['ID']>;
-  id_lte?: InputMaybe<Scalars['ID']>;
-  id_not?: InputMaybe<Scalars['ID']>;
-  id_not_contains?: InputMaybe<Scalars['ID']>;
-  id_not_ends_with?: InputMaybe<Scalars['ID']>;
-  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
-  id_not_starts_with?: InputMaybe<Scalars['ID']>;
-  id_starts_with?: InputMaybe<Scalars['ID']>;
-  name?: InputMaybe<Scalars['String']>;
-  name_contains?: InputMaybe<Scalars['String']>;
-  name_ends_with?: InputMaybe<Scalars['String']>;
-  name_gt?: InputMaybe<Scalars['String']>;
-  name_gte?: InputMaybe<Scalars['String']>;
-  name_in?: InputMaybe<Array<Scalars['String']>>;
-  name_lt?: InputMaybe<Scalars['String']>;
-  name_lte?: InputMaybe<Scalars['String']>;
-  name_not?: InputMaybe<Scalars['String']>;
-  name_not_contains?: InputMaybe<Scalars['String']>;
-  name_not_ends_with?: InputMaybe<Scalars['String']>;
-  name_not_in?: InputMaybe<Array<Scalars['String']>>;
-  name_not_starts_with?: InputMaybe<Scalars['String']>;
-  name_starts_with?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
-  updatedAt_gte?: InputMaybe<Scalars['DateTime']>;
-  updatedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  updatedAt_lt?: InputMaybe<Scalars['DateTime']>;
-  updatedAt_lte?: InputMaybe<Scalars['DateTime']>;
-  updatedAt_not?: InputMaybe<Scalars['DateTime']>;
-  updatedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
-};
-
-export type BoardSubscriptionPayload = {
-  __typename?: 'BoardSubscriptionPayload';
-  mutation: MutationType;
-  node?: Maybe<Board>;
-  previousValues?: Maybe<BoardPreviousValues>;
-  updatedFields?: Maybe<Array<Scalars['String']>>;
-};
-
-export type BoardSubscriptionWhereInput = {
-  AND?: InputMaybe<Array<BoardSubscriptionWhereInput>>;
-  NOT?: InputMaybe<Array<BoardSubscriptionWhereInput>>;
-  OR?: InputMaybe<Array<BoardSubscriptionWhereInput>>;
-  mutation_in?: InputMaybe<Array<MutationType>>;
-  node?: InputMaybe<BoardWhereInput>;
-  updatedFields_contains?: InputMaybe<Scalars['String']>;
-  updatedFields_contains_every?: InputMaybe<Array<Scalars['String']>>;
-  updatedFields_contains_some?: InputMaybe<Array<Scalars['String']>>;
 };
 
 export type BoardUpdateInput = {
-  lists?: InputMaybe<ListUpdateManyInput>;
-  name?: InputMaybe<Scalars['String']>;
-  updatedBy?: InputMaybe<UserUpdateOneWithoutBoardsInput>;
-};
-
-export type BoardUpdateManyDataInput = {
-  name?: InputMaybe<Scalars['String']>;
-};
-
-export type BoardUpdateManyMutationInput = {
-  name?: InputMaybe<Scalars['String']>;
-};
-
-export type BoardUpdateManyWithWhereNestedInput = {
-  data: BoardUpdateManyDataInput;
-  where: BoardScalarWhereInput;
-};
-
-export type BoardUpdateManyWithoutUpdatedByInput = {
-  connect?: InputMaybe<Array<BoardWhereUniqueInput>>;
-  create?: InputMaybe<Array<BoardCreateWithoutUpdatedByInput>>;
-  delete?: InputMaybe<Array<BoardWhereUniqueInput>>;
-  deleteMany?: InputMaybe<Array<BoardScalarWhereInput>>;
-  disconnect?: InputMaybe<Array<BoardWhereUniqueInput>>;
-  update?: InputMaybe<Array<BoardUpdateWithWhereUniqueWithoutUpdatedByInput>>;
-  updateMany?: InputMaybe<Array<BoardUpdateManyWithWhereNestedInput>>;
-  upsert?: InputMaybe<Array<BoardUpsertWithWhereUniqueWithoutUpdatedByInput>>;
-};
-
-export type BoardUpdateWithWhereUniqueWithoutUpdatedByInput = {
-  data: BoardUpdateWithoutUpdatedByDataInput;
-  where: BoardWhereUniqueInput;
-};
-
-export type BoardUpdateWithoutUpdatedByDataInput = {
-  lists?: InputMaybe<ListUpdateManyInput>;
-  name?: InputMaybe<Scalars['String']>;
-};
-
-export type BoardUpsertWithWhereUniqueWithoutUpdatedByInput = {
-  create: BoardCreateWithoutUpdatedByInput;
-  update: BoardUpdateWithoutUpdatedByDataInput;
-  where: BoardWhereUniqueInput;
-};
-
-export type BoardWhereInput = {
-  AND?: InputMaybe<Array<BoardWhereInput>>;
-  NOT?: InputMaybe<Array<BoardWhereInput>>;
-  OR?: InputMaybe<Array<BoardWhereInput>>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  createdAt_gt?: InputMaybe<Scalars['DateTime']>;
-  createdAt_gte?: InputMaybe<Scalars['DateTime']>;
-  createdAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  createdAt_lt?: InputMaybe<Scalars['DateTime']>;
-  createdAt_lte?: InputMaybe<Scalars['DateTime']>;
-  createdAt_not?: InputMaybe<Scalars['DateTime']>;
-  createdAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  id?: InputMaybe<Scalars['ID']>;
-  id_contains?: InputMaybe<Scalars['ID']>;
-  id_ends_with?: InputMaybe<Scalars['ID']>;
-  id_gt?: InputMaybe<Scalars['ID']>;
-  id_gte?: InputMaybe<Scalars['ID']>;
-  id_in?: InputMaybe<Array<Scalars['ID']>>;
-  id_lt?: InputMaybe<Scalars['ID']>;
-  id_lte?: InputMaybe<Scalars['ID']>;
-  id_not?: InputMaybe<Scalars['ID']>;
-  id_not_contains?: InputMaybe<Scalars['ID']>;
-  id_not_ends_with?: InputMaybe<Scalars['ID']>;
-  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
-  id_not_starts_with?: InputMaybe<Scalars['ID']>;
-  id_starts_with?: InputMaybe<Scalars['ID']>;
-  lists_every?: InputMaybe<ListWhereInput>;
-  lists_none?: InputMaybe<ListWhereInput>;
-  lists_some?: InputMaybe<ListWhereInput>;
-  name?: InputMaybe<Scalars['String']>;
-  name_contains?: InputMaybe<Scalars['String']>;
-  name_ends_with?: InputMaybe<Scalars['String']>;
-  name_gt?: InputMaybe<Scalars['String']>;
-  name_gte?: InputMaybe<Scalars['String']>;
-  name_in?: InputMaybe<Array<Scalars['String']>>;
-  name_lt?: InputMaybe<Scalars['String']>;
-  name_lte?: InputMaybe<Scalars['String']>;
-  name_not?: InputMaybe<Scalars['String']>;
-  name_not_contains?: InputMaybe<Scalars['String']>;
-  name_not_ends_with?: InputMaybe<Scalars['String']>;
-  name_not_in?: InputMaybe<Array<Scalars['String']>>;
-  name_not_starts_with?: InputMaybe<Scalars['String']>;
-  name_starts_with?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
-  updatedAt_gte?: InputMaybe<Scalars['DateTime']>;
-  updatedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  updatedAt_lt?: InputMaybe<Scalars['DateTime']>;
-  updatedAt_lte?: InputMaybe<Scalars['DateTime']>;
-  updatedAt_not?: InputMaybe<Scalars['DateTime']>;
-  updatedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  updatedBy?: InputMaybe<UserWhereInput>;
+  lists: ListUpdateManyInput;
 };
 
 export type BoardWhereUniqueInput = {
@@ -296,135 +47,12 @@ export type Card = {
   id: Scalars['ID'];
   name: Scalars['String'];
   updatedAt: Scalars['DateTime'];
-  updatedBy?: Maybe<User>;
+  updatedBy: User;
 };
 
 export type CardCreateInput = {
   description?: InputMaybe<Scalars['String']>;
   name: Scalars['String'];
-  updatedBy?: InputMaybe<UserCreateOneInput>;
-};
-
-export type CardCreateManyInput = {
-  connect?: InputMaybe<Array<CardWhereUniqueInput>>;
-  create?: InputMaybe<Array<CardCreateInput>>;
-};
-
-export type CardEdge = {
-  __typename?: 'CardEdge';
-  cursor: Scalars['String'];
-  node: Card;
-};
-
-export enum CardOrderByInput {
-  CreatedAtAsc = 'createdAt_ASC',
-  CreatedAtDesc = 'createdAt_DESC',
-  DescriptionAsc = 'description_ASC',
-  DescriptionDesc = 'description_DESC',
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  NameAsc = 'name_ASC',
-  NameDesc = 'name_DESC',
-  UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC',
-}
-
-export type CardPreviousValues = {
-  __typename?: 'CardPreviousValues';
-  createdAt: Scalars['DateTime'];
-  description?: Maybe<Scalars['String']>;
-  id: Scalars['ID'];
-  name: Scalars['String'];
-  updatedAt: Scalars['DateTime'];
-};
-
-export type CardScalarWhereInput = {
-  AND?: InputMaybe<Array<CardScalarWhereInput>>;
-  NOT?: InputMaybe<Array<CardScalarWhereInput>>;
-  OR?: InputMaybe<Array<CardScalarWhereInput>>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  createdAt_gt?: InputMaybe<Scalars['DateTime']>;
-  createdAt_gte?: InputMaybe<Scalars['DateTime']>;
-  createdAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  createdAt_lt?: InputMaybe<Scalars['DateTime']>;
-  createdAt_lte?: InputMaybe<Scalars['DateTime']>;
-  createdAt_not?: InputMaybe<Scalars['DateTime']>;
-  createdAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  description?: InputMaybe<Scalars['String']>;
-  description_contains?: InputMaybe<Scalars['String']>;
-  description_ends_with?: InputMaybe<Scalars['String']>;
-  description_gt?: InputMaybe<Scalars['String']>;
-  description_gte?: InputMaybe<Scalars['String']>;
-  description_in?: InputMaybe<Array<Scalars['String']>>;
-  description_lt?: InputMaybe<Scalars['String']>;
-  description_lte?: InputMaybe<Scalars['String']>;
-  description_not?: InputMaybe<Scalars['String']>;
-  description_not_contains?: InputMaybe<Scalars['String']>;
-  description_not_ends_with?: InputMaybe<Scalars['String']>;
-  description_not_in?: InputMaybe<Array<Scalars['String']>>;
-  description_not_starts_with?: InputMaybe<Scalars['String']>;
-  description_starts_with?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['ID']>;
-  id_contains?: InputMaybe<Scalars['ID']>;
-  id_ends_with?: InputMaybe<Scalars['ID']>;
-  id_gt?: InputMaybe<Scalars['ID']>;
-  id_gte?: InputMaybe<Scalars['ID']>;
-  id_in?: InputMaybe<Array<Scalars['ID']>>;
-  id_lt?: InputMaybe<Scalars['ID']>;
-  id_lte?: InputMaybe<Scalars['ID']>;
-  id_not?: InputMaybe<Scalars['ID']>;
-  id_not_contains?: InputMaybe<Scalars['ID']>;
-  id_not_ends_with?: InputMaybe<Scalars['ID']>;
-  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
-  id_not_starts_with?: InputMaybe<Scalars['ID']>;
-  id_starts_with?: InputMaybe<Scalars['ID']>;
-  name?: InputMaybe<Scalars['String']>;
-  name_contains?: InputMaybe<Scalars['String']>;
-  name_ends_with?: InputMaybe<Scalars['String']>;
-  name_gt?: InputMaybe<Scalars['String']>;
-  name_gte?: InputMaybe<Scalars['String']>;
-  name_in?: InputMaybe<Array<Scalars['String']>>;
-  name_lt?: InputMaybe<Scalars['String']>;
-  name_lte?: InputMaybe<Scalars['String']>;
-  name_not?: InputMaybe<Scalars['String']>;
-  name_not_contains?: InputMaybe<Scalars['String']>;
-  name_not_ends_with?: InputMaybe<Scalars['String']>;
-  name_not_in?: InputMaybe<Array<Scalars['String']>>;
-  name_not_starts_with?: InputMaybe<Scalars['String']>;
-  name_starts_with?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
-  updatedAt_gte?: InputMaybe<Scalars['DateTime']>;
-  updatedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  updatedAt_lt?: InputMaybe<Scalars['DateTime']>;
-  updatedAt_lte?: InputMaybe<Scalars['DateTime']>;
-  updatedAt_not?: InputMaybe<Scalars['DateTime']>;
-  updatedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
-};
-
-export type CardSubscriptionPayload = {
-  __typename?: 'CardSubscriptionPayload';
-  mutation: MutationType;
-  node?: Maybe<Card>;
-  previousValues?: Maybe<CardPreviousValues>;
-  updatedFields?: Maybe<Array<Scalars['String']>>;
-};
-
-export type CardSubscriptionWhereInput = {
-  AND?: InputMaybe<Array<CardSubscriptionWhereInput>>;
-  NOT?: InputMaybe<Array<CardSubscriptionWhereInput>>;
-  OR?: InputMaybe<Array<CardSubscriptionWhereInput>>;
-  mutation_in?: InputMaybe<Array<MutationType>>;
-  node?: InputMaybe<CardWhereInput>;
-  updatedFields_contains?: InputMaybe<Scalars['String']>;
-  updatedFields_contains_every?: InputMaybe<Array<Scalars['String']>>;
-  updatedFields_contains_some?: InputMaybe<Array<Scalars['String']>>;
-};
-
-export type CardUpdateDataInput = {
-  description?: InputMaybe<Scalars['String']>;
-  name?: InputMaybe<Scalars['String']>;
-  updatedBy?: InputMaybe<UserUpdateOneInput>;
 };
 
 export type CardUpdateInput = {
@@ -432,345 +60,41 @@ export type CardUpdateInput = {
   name?: InputMaybe<Scalars['String']>;
 };
 
-export type CardUpdateManyDataInput = {
-  description?: InputMaybe<Scalars['String']>;
-  name?: InputMaybe<Scalars['String']>;
-};
-
 export type CardUpdateManyInput = {
   connect?: InputMaybe<Array<CardWhereUniqueInput>>;
   create?: InputMaybe<Array<CardCreateInput>>;
-  delete?: InputMaybe<Array<CardWhereUniqueInput>>;
-  deleteMany?: InputMaybe<Array<CardScalarWhereInput>>;
   disconnect?: InputMaybe<Array<CardWhereUniqueInput>>;
-  set?: InputMaybe<Array<CardWhereUniqueInput>>;
-  update?: InputMaybe<Array<CardUpdateWithWhereUniqueNestedInput>>;
-  updateMany?: InputMaybe<Array<CardUpdateManyWithWhereNestedInput>>;
-  upsert?: InputMaybe<Array<CardUpsertWithWhereUniqueNestedInput>>;
-};
-
-export type CardUpdateManyMutationInput = {
-  description?: InputMaybe<Scalars['String']>;
-  name?: InputMaybe<Scalars['String']>;
-};
-
-export type CardUpdateManyWithWhereNestedInput = {
-  data: CardUpdateManyDataInput;
-  where: CardScalarWhereInput;
-};
-
-export type CardUpdateWithWhereUniqueNestedInput = {
-  data: CardUpdateDataInput;
-  where: CardWhereUniqueInput;
-};
-
-export type CardUpsertWithWhereUniqueNestedInput = {
-  create: CardCreateInput;
-  update: CardUpdateDataInput;
-  where: CardWhereUniqueInput;
-};
-
-export type CardWhereInput = {
-  AND?: InputMaybe<Array<CardWhereInput>>;
-  NOT?: InputMaybe<Array<CardWhereInput>>;
-  OR?: InputMaybe<Array<CardWhereInput>>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  createdAt_gt?: InputMaybe<Scalars['DateTime']>;
-  createdAt_gte?: InputMaybe<Scalars['DateTime']>;
-  createdAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  createdAt_lt?: InputMaybe<Scalars['DateTime']>;
-  createdAt_lte?: InputMaybe<Scalars['DateTime']>;
-  createdAt_not?: InputMaybe<Scalars['DateTime']>;
-  createdAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  description?: InputMaybe<Scalars['String']>;
-  description_contains?: InputMaybe<Scalars['String']>;
-  description_ends_with?: InputMaybe<Scalars['String']>;
-  description_gt?: InputMaybe<Scalars['String']>;
-  description_gte?: InputMaybe<Scalars['String']>;
-  description_in?: InputMaybe<Array<Scalars['String']>>;
-  description_lt?: InputMaybe<Scalars['String']>;
-  description_lte?: InputMaybe<Scalars['String']>;
-  description_not?: InputMaybe<Scalars['String']>;
-  description_not_contains?: InputMaybe<Scalars['String']>;
-  description_not_ends_with?: InputMaybe<Scalars['String']>;
-  description_not_in?: InputMaybe<Array<Scalars['String']>>;
-  description_not_starts_with?: InputMaybe<Scalars['String']>;
-  description_starts_with?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['ID']>;
-  id_contains?: InputMaybe<Scalars['ID']>;
-  id_ends_with?: InputMaybe<Scalars['ID']>;
-  id_gt?: InputMaybe<Scalars['ID']>;
-  id_gte?: InputMaybe<Scalars['ID']>;
-  id_in?: InputMaybe<Array<Scalars['ID']>>;
-  id_lt?: InputMaybe<Scalars['ID']>;
-  id_lte?: InputMaybe<Scalars['ID']>;
-  id_not?: InputMaybe<Scalars['ID']>;
-  id_not_contains?: InputMaybe<Scalars['ID']>;
-  id_not_ends_with?: InputMaybe<Scalars['ID']>;
-  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
-  id_not_starts_with?: InputMaybe<Scalars['ID']>;
-  id_starts_with?: InputMaybe<Scalars['ID']>;
-  name?: InputMaybe<Scalars['String']>;
-  name_contains?: InputMaybe<Scalars['String']>;
-  name_ends_with?: InputMaybe<Scalars['String']>;
-  name_gt?: InputMaybe<Scalars['String']>;
-  name_gte?: InputMaybe<Scalars['String']>;
-  name_in?: InputMaybe<Array<Scalars['String']>>;
-  name_lt?: InputMaybe<Scalars['String']>;
-  name_lte?: InputMaybe<Scalars['String']>;
-  name_not?: InputMaybe<Scalars['String']>;
-  name_not_contains?: InputMaybe<Scalars['String']>;
-  name_not_ends_with?: InputMaybe<Scalars['String']>;
-  name_not_in?: InputMaybe<Array<Scalars['String']>>;
-  name_not_starts_with?: InputMaybe<Scalars['String']>;
-  name_starts_with?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
-  updatedAt_gte?: InputMaybe<Scalars['DateTime']>;
-  updatedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  updatedAt_lt?: InputMaybe<Scalars['DateTime']>;
-  updatedAt_lte?: InputMaybe<Scalars['DateTime']>;
-  updatedAt_not?: InputMaybe<Scalars['DateTime']>;
-  updatedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  updatedBy?: InputMaybe<UserWhereInput>;
 };
 
 export type CardWhereUniqueInput = {
-  id?: InputMaybe<Scalars['ID']>;
+  id: Scalars['ID'];
 };
 
 export type List = {
   __typename?: 'List';
-  cards?: Maybe<Array<Card>>;
+  cards: Array<Card>;
   createdAt: Scalars['DateTime'];
   id: Scalars['ID'];
   name: Scalars['String'];
   updatedAt: Scalars['DateTime'];
-  updatedBy?: Maybe<User>;
-};
-
-export type ListCardsArgs = {
-  after?: InputMaybe<Scalars['String']>;
-  before?: InputMaybe<Scalars['String']>;
-  first?: InputMaybe<Scalars['Int']>;
-  last?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<CardOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<CardWhereInput>;
-};
-
-export type ListConnection = {
-  __typename?: 'ListConnection';
-  aggregate: AggregateList;
-  edges: Array<Maybe<ListEdge>>;
-  pageInfo: PageInfo;
 };
 
 export type ListCreateInput = {
-  cards?: InputMaybe<CardCreateManyInput>;
   name: Scalars['String'];
-  updatedBy?: InputMaybe<UserCreateOneInput>;
-};
-
-export type ListCreateManyInput = {
-  connect?: InputMaybe<Array<ListWhereUniqueInput>>;
-  create?: InputMaybe<Array<ListCreateInput>>;
-};
-
-export type ListEdge = {
-  __typename?: 'ListEdge';
-  cursor: Scalars['String'];
-  node: List;
-};
-
-export enum ListOrderByInput {
-  CreatedAtAsc = 'createdAt_ASC',
-  CreatedAtDesc = 'createdAt_DESC',
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  NameAsc = 'name_ASC',
-  NameDesc = 'name_DESC',
-  UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC',
-}
-
-export type ListPreviousValues = {
-  __typename?: 'ListPreviousValues';
-  createdAt: Scalars['DateTime'];
-  id: Scalars['ID'];
-  name: Scalars['String'];
-  updatedAt: Scalars['DateTime'];
 };
 
 export type ListScalarWhereInput = {
-  AND?: InputMaybe<Array<ListScalarWhereInput>>;
-  NOT?: InputMaybe<Array<ListScalarWhereInput>>;
-  OR?: InputMaybe<Array<ListScalarWhereInput>>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  createdAt_gt?: InputMaybe<Scalars['DateTime']>;
-  createdAt_gte?: InputMaybe<Scalars['DateTime']>;
-  createdAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  createdAt_lt?: InputMaybe<Scalars['DateTime']>;
-  createdAt_lte?: InputMaybe<Scalars['DateTime']>;
-  createdAt_not?: InputMaybe<Scalars['DateTime']>;
-  createdAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  id?: InputMaybe<Scalars['ID']>;
-  id_contains?: InputMaybe<Scalars['ID']>;
-  id_ends_with?: InputMaybe<Scalars['ID']>;
-  id_gt?: InputMaybe<Scalars['ID']>;
-  id_gte?: InputMaybe<Scalars['ID']>;
-  id_in?: InputMaybe<Array<Scalars['ID']>>;
-  id_lt?: InputMaybe<Scalars['ID']>;
-  id_lte?: InputMaybe<Scalars['ID']>;
-  id_not?: InputMaybe<Scalars['ID']>;
-  id_not_contains?: InputMaybe<Scalars['ID']>;
-  id_not_ends_with?: InputMaybe<Scalars['ID']>;
-  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
-  id_not_starts_with?: InputMaybe<Scalars['ID']>;
-  id_starts_with?: InputMaybe<Scalars['ID']>;
-  name?: InputMaybe<Scalars['String']>;
-  name_contains?: InputMaybe<Scalars['String']>;
-  name_ends_with?: InputMaybe<Scalars['String']>;
-  name_gt?: InputMaybe<Scalars['String']>;
-  name_gte?: InputMaybe<Scalars['String']>;
-  name_in?: InputMaybe<Array<Scalars['String']>>;
-  name_lt?: InputMaybe<Scalars['String']>;
-  name_lte?: InputMaybe<Scalars['String']>;
-  name_not?: InputMaybe<Scalars['String']>;
-  name_not_contains?: InputMaybe<Scalars['String']>;
-  name_not_ends_with?: InputMaybe<Scalars['String']>;
-  name_not_in?: InputMaybe<Array<Scalars['String']>>;
-  name_not_starts_with?: InputMaybe<Scalars['String']>;
-  name_starts_with?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
-  updatedAt_gte?: InputMaybe<Scalars['DateTime']>;
-  updatedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  updatedAt_lt?: InputMaybe<Scalars['DateTime']>;
-  updatedAt_lte?: InputMaybe<Scalars['DateTime']>;
-  updatedAt_not?: InputMaybe<Scalars['DateTime']>;
-  updatedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
-};
-
-export type ListSubscriptionPayload = {
-  __typename?: 'ListSubscriptionPayload';
-  mutation: MutationType;
-  node?: Maybe<List>;
-  previousValues?: Maybe<ListPreviousValues>;
-  updatedFields?: Maybe<Array<Scalars['String']>>;
-};
-
-export type ListSubscriptionWhereInput = {
-  AND?: InputMaybe<Array<ListSubscriptionWhereInput>>;
-  NOT?: InputMaybe<Array<ListSubscriptionWhereInput>>;
-  OR?: InputMaybe<Array<ListSubscriptionWhereInput>>;
-  mutation_in?: InputMaybe<Array<MutationType>>;
-  node?: InputMaybe<ListWhereInput>;
-  updatedFields_contains?: InputMaybe<Scalars['String']>;
-  updatedFields_contains_every?: InputMaybe<Array<Scalars['String']>>;
-  updatedFields_contains_some?: InputMaybe<Array<Scalars['String']>>;
-};
-
-export type ListUpdateDataInput = {
-  cards?: InputMaybe<CardUpdateManyInput>;
-  name?: InputMaybe<Scalars['String']>;
-  updatedBy?: InputMaybe<UserUpdateOneInput>;
+  id_in: Array<Scalars['ID']>;
 };
 
 export type ListUpdateInput = {
   cards?: InputMaybe<CardUpdateManyInput>;
-  name?: InputMaybe<Scalars['String']>;
-  updatedBy?: InputMaybe<UserUpdateOneInput>;
-};
-
-export type ListUpdateManyDataInput = {
-  name?: InputMaybe<Scalars['String']>;
 };
 
 export type ListUpdateManyInput = {
-  connect?: InputMaybe<Array<ListWhereUniqueInput>>;
   create?: InputMaybe<Array<ListCreateInput>>;
   delete?: InputMaybe<Array<ListWhereUniqueInput>>;
   deleteMany?: InputMaybe<Array<ListScalarWhereInput>>;
-  disconnect?: InputMaybe<Array<ListWhereUniqueInput>>;
-  set?: InputMaybe<Array<ListWhereUniqueInput>>;
-  update?: InputMaybe<Array<ListUpdateWithWhereUniqueNestedInput>>;
-  updateMany?: InputMaybe<Array<ListUpdateManyWithWhereNestedInput>>;
-  upsert?: InputMaybe<Array<ListUpsertWithWhereUniqueNestedInput>>;
-};
-
-export type ListUpdateManyMutationInput = {
-  name?: InputMaybe<Scalars['String']>;
-};
-
-export type ListUpdateManyWithWhereNestedInput = {
-  data: ListUpdateManyDataInput;
-  where: ListScalarWhereInput;
-};
-
-export type ListUpdateWithWhereUniqueNestedInput = {
-  data: ListUpdateDataInput;
-  where: ListWhereUniqueInput;
-};
-
-export type ListUpsertWithWhereUniqueNestedInput = {
-  create: ListCreateInput;
-  update: ListUpdateDataInput;
-  where: ListWhereUniqueInput;
-};
-
-export type ListWhereInput = {
-  AND?: InputMaybe<Array<ListWhereInput>>;
-  NOT?: InputMaybe<Array<ListWhereInput>>;
-  OR?: InputMaybe<Array<ListWhereInput>>;
-  cards_every?: InputMaybe<CardWhereInput>;
-  cards_none?: InputMaybe<CardWhereInput>;
-  cards_some?: InputMaybe<CardWhereInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  createdAt_gt?: InputMaybe<Scalars['DateTime']>;
-  createdAt_gte?: InputMaybe<Scalars['DateTime']>;
-  createdAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  createdAt_lt?: InputMaybe<Scalars['DateTime']>;
-  createdAt_lte?: InputMaybe<Scalars['DateTime']>;
-  createdAt_not?: InputMaybe<Scalars['DateTime']>;
-  createdAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  id?: InputMaybe<Scalars['ID']>;
-  id_contains?: InputMaybe<Scalars['ID']>;
-  id_ends_with?: InputMaybe<Scalars['ID']>;
-  id_gt?: InputMaybe<Scalars['ID']>;
-  id_gte?: InputMaybe<Scalars['ID']>;
-  id_in?: InputMaybe<Array<Scalars['ID']>>;
-  id_lt?: InputMaybe<Scalars['ID']>;
-  id_lte?: InputMaybe<Scalars['ID']>;
-  id_not?: InputMaybe<Scalars['ID']>;
-  id_not_contains?: InputMaybe<Scalars['ID']>;
-  id_not_ends_with?: InputMaybe<Scalars['ID']>;
-  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
-  id_not_starts_with?: InputMaybe<Scalars['ID']>;
-  id_starts_with?: InputMaybe<Scalars['ID']>;
-  name?: InputMaybe<Scalars['String']>;
-  name_contains?: InputMaybe<Scalars['String']>;
-  name_ends_with?: InputMaybe<Scalars['String']>;
-  name_gt?: InputMaybe<Scalars['String']>;
-  name_gte?: InputMaybe<Scalars['String']>;
-  name_in?: InputMaybe<Array<Scalars['String']>>;
-  name_lt?: InputMaybe<Scalars['String']>;
-  name_lte?: InputMaybe<Scalars['String']>;
-  name_not?: InputMaybe<Scalars['String']>;
-  name_not_contains?: InputMaybe<Scalars['String']>;
-  name_not_ends_with?: InputMaybe<Scalars['String']>;
-  name_not_in?: InputMaybe<Array<Scalars['String']>>;
-  name_not_starts_with?: InputMaybe<Scalars['String']>;
-  name_starts_with?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
-  updatedAt_gte?: InputMaybe<Scalars['DateTime']>;
-  updatedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  updatedAt_lt?: InputMaybe<Scalars['DateTime']>;
-  updatedAt_lte?: InputMaybe<Scalars['DateTime']>;
-  updatedAt_not?: InputMaybe<Scalars['DateTime']>;
-  updatedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  updatedBy?: InputMaybe<UserWhereInput>;
 };
 
 export type ListWhereUniqueInput = {
@@ -779,12 +103,12 @@ export type ListWhereUniqueInput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  createBoard: User;
+  createBoard?: Maybe<User>;
   deleteBoard: Board;
-  deleteList?: Maybe<List>;
-  updateBoard?: Maybe<Board>;
+  deleteList: List;
+  updateBoard: Board;
   updateCard: Card;
-  updateList?: Maybe<List>;
+  updateList: List;
 };
 
 export type MutationCreateBoardArgs = {
@@ -796,7 +120,7 @@ export type MutationDeleteBoardArgs = {
 };
 
 export type MutationDeleteListArgs = {
-  where: ListWhereUniqueInput;
+  id: Scalars['ID'];
 };
 
 export type MutationUpdateBoardArgs = {
@@ -814,24 +138,11 @@ export type MutationUpdateListArgs = {
   where: ListWhereUniqueInput;
 };
 
-export enum MutationType {
-  Created = 'CREATED',
-  Deleted = 'DELETED',
-  Updated = 'UPDATED',
-}
-
-export type PageInfo = {
-  __typename?: 'PageInfo';
-  endCursor?: Maybe<Scalars['String']>;
-  hasNextPage: Scalars['Boolean'];
-  hasPreviousPage: Scalars['Boolean'];
-  startCursor?: Maybe<Scalars['String']>;
-};
-
 export type Query = {
   __typename?: 'Query';
   board?: Maybe<Board>;
   list?: Maybe<List>;
+  /** authenticated current user */
   me?: Maybe<User>;
 };
 
@@ -840,283 +151,20 @@ export type QueryBoardArgs = {
 };
 
 export type QueryListArgs = {
-  where: ListWhereUniqueInput;
+  where: QueryListInput;
+};
+
+export type QueryListInput = {
+  id?: InputMaybe<Scalars['ID']>;
 };
 
 export type User = {
   __typename?: 'User';
   avatarUrl?: Maybe<Scalars['String']>;
-  boards?: Maybe<Array<Maybe<Board>>>;
+  boards: Array<Board>;
   email: Scalars['String'];
   id: Scalars['ID'];
   name: Scalars['String'];
-};
-
-export type UserConnection = {
-  __typename?: 'UserConnection';
-  aggregate: AggregateUser;
-  edges: Array<Maybe<UserEdge>>;
-  pageInfo: PageInfo;
-};
-
-export type UserCreateInput = {
-  avatarUrl?: InputMaybe<Scalars['String']>;
-  boards?: InputMaybe<BoardCreateManyWithoutUpdatedByInput>;
-  email: Scalars['String'];
-  name: Scalars['String'];
-  password: Scalars['String'];
-};
-
-export type UserCreateOneInput = {
-  connect?: InputMaybe<UserWhereUniqueInput>;
-  create?: InputMaybe<UserCreateInput>;
-};
-
-export type UserCreateOneWithoutBoardsInput = {
-  connect?: InputMaybe<UserWhereUniqueInput>;
-  create?: InputMaybe<UserCreateWithoutBoardsInput>;
-};
-
-export type UserCreateWithoutBoardsInput = {
-  auth0id?: InputMaybe<Scalars['String']>;
-  avatarUrl?: InputMaybe<Scalars['String']>;
-  email: Scalars['String'];
-  id?: InputMaybe<Scalars['ID']>;
-  identity?: InputMaybe<Scalars['String']>;
-  name: Scalars['String'];
-};
-
-export type UserEdge = {
-  __typename?: 'UserEdge';
-  cursor: Scalars['String'];
-  node: User;
-};
-
-export enum UserOrderByInput {
-  Auth0idAsc = 'auth0id_ASC',
-  Auth0idDesc = 'auth0id_DESC',
-  AvatarUrlAsc = 'avatarUrl_ASC',
-  AvatarUrlDesc = 'avatarUrl_DESC',
-  CreatedAtAsc = 'createdAt_ASC',
-  CreatedAtDesc = 'createdAt_DESC',
-  EmailAsc = 'email_ASC',
-  EmailDesc = 'email_DESC',
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  IdentityAsc = 'identity_ASC',
-  IdentityDesc = 'identity_DESC',
-  NameAsc = 'name_ASC',
-  NameDesc = 'name_DESC',
-  UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC',
-}
-
-export type UserPreviousValues = {
-  __typename?: 'UserPreviousValues';
-  auth0id?: Maybe<Scalars['String']>;
-  avatarUrl?: Maybe<Scalars['String']>;
-  createdAt: Scalars['DateTime'];
-  email: Scalars['String'];
-  id: Scalars['ID'];
-  identity?: Maybe<Scalars['String']>;
-  name: Scalars['String'];
-  updatedAt: Scalars['DateTime'];
-};
-
-export type UserSubscriptionPayload = {
-  __typename?: 'UserSubscriptionPayload';
-  mutation: MutationType;
-  node?: Maybe<User>;
-  previousValues?: Maybe<UserPreviousValues>;
-  updatedFields?: Maybe<Array<Scalars['String']>>;
-};
-
-export type UserSubscriptionWhereInput = {
-  AND?: InputMaybe<Array<UserSubscriptionWhereInput>>;
-  NOT?: InputMaybe<Array<UserSubscriptionWhereInput>>;
-  OR?: InputMaybe<Array<UserSubscriptionWhereInput>>;
-  mutation_in?: InputMaybe<Array<MutationType>>;
-  node?: InputMaybe<UserWhereInput>;
-  updatedFields_contains?: InputMaybe<Scalars['String']>;
-  updatedFields_contains_every?: InputMaybe<Array<Scalars['String']>>;
-  updatedFields_contains_some?: InputMaybe<Array<Scalars['String']>>;
-};
-
-export type UserUpdateDataInput = {
-  auth0id?: InputMaybe<Scalars['String']>;
-  avatarUrl?: InputMaybe<Scalars['String']>;
-  boards?: InputMaybe<BoardUpdateManyWithoutUpdatedByInput>;
-  email?: InputMaybe<Scalars['String']>;
-  identity?: InputMaybe<Scalars['String']>;
-  name?: InputMaybe<Scalars['String']>;
-};
-
-export type UserUpdateInput = {
-  auth0id?: InputMaybe<Scalars['String']>;
-  avatarUrl?: InputMaybe<Scalars['String']>;
-  boards?: InputMaybe<BoardUpdateManyWithoutUpdatedByInput>;
-  email?: InputMaybe<Scalars['String']>;
-  identity?: InputMaybe<Scalars['String']>;
-  name?: InputMaybe<Scalars['String']>;
-};
-
-export type UserUpdateManyMutationInput = {
-  auth0id?: InputMaybe<Scalars['String']>;
-  avatarUrl?: InputMaybe<Scalars['String']>;
-  email?: InputMaybe<Scalars['String']>;
-  identity?: InputMaybe<Scalars['String']>;
-  name?: InputMaybe<Scalars['String']>;
-};
-
-export type UserUpdateOneInput = {
-  connect?: InputMaybe<UserWhereUniqueInput>;
-  create?: InputMaybe<UserCreateInput>;
-  delete?: InputMaybe<Scalars['Boolean']>;
-  disconnect?: InputMaybe<Scalars['Boolean']>;
-  update?: InputMaybe<UserUpdateDataInput>;
-  upsert?: InputMaybe<UserUpsertNestedInput>;
-};
-
-export type UserUpdateOneWithoutBoardsInput = {
-  connect?: InputMaybe<UserWhereUniqueInput>;
-  create?: InputMaybe<UserCreateWithoutBoardsInput>;
-  delete?: InputMaybe<Scalars['Boolean']>;
-  disconnect?: InputMaybe<Scalars['Boolean']>;
-  update?: InputMaybe<UserUpdateWithoutBoardsDataInput>;
-  upsert?: InputMaybe<UserUpsertWithoutBoardsInput>;
-};
-
-export type UserUpdateWithoutBoardsDataInput = {
-  auth0id?: InputMaybe<Scalars['String']>;
-  avatarUrl?: InputMaybe<Scalars['String']>;
-  email?: InputMaybe<Scalars['String']>;
-  identity?: InputMaybe<Scalars['String']>;
-  name?: InputMaybe<Scalars['String']>;
-};
-
-export type UserUpsertNestedInput = {
-  create: UserCreateInput;
-  update: UserUpdateDataInput;
-};
-
-export type UserUpsertWithoutBoardsInput = {
-  create: UserCreateWithoutBoardsInput;
-  update: UserUpdateWithoutBoardsDataInput;
-};
-
-export type UserWhereInput = {
-  AND?: InputMaybe<Array<UserWhereInput>>;
-  NOT?: InputMaybe<Array<UserWhereInput>>;
-  OR?: InputMaybe<Array<UserWhereInput>>;
-  auth0id?: InputMaybe<Scalars['String']>;
-  auth0id_contains?: InputMaybe<Scalars['String']>;
-  auth0id_ends_with?: InputMaybe<Scalars['String']>;
-  auth0id_gt?: InputMaybe<Scalars['String']>;
-  auth0id_gte?: InputMaybe<Scalars['String']>;
-  auth0id_in?: InputMaybe<Array<Scalars['String']>>;
-  auth0id_lt?: InputMaybe<Scalars['String']>;
-  auth0id_lte?: InputMaybe<Scalars['String']>;
-  auth0id_not?: InputMaybe<Scalars['String']>;
-  auth0id_not_contains?: InputMaybe<Scalars['String']>;
-  auth0id_not_ends_with?: InputMaybe<Scalars['String']>;
-  auth0id_not_in?: InputMaybe<Array<Scalars['String']>>;
-  auth0id_not_starts_with?: InputMaybe<Scalars['String']>;
-  auth0id_starts_with?: InputMaybe<Scalars['String']>;
-  avatarUrl?: InputMaybe<Scalars['String']>;
-  avatarUrl_contains?: InputMaybe<Scalars['String']>;
-  avatarUrl_ends_with?: InputMaybe<Scalars['String']>;
-  avatarUrl_gt?: InputMaybe<Scalars['String']>;
-  avatarUrl_gte?: InputMaybe<Scalars['String']>;
-  avatarUrl_in?: InputMaybe<Array<Scalars['String']>>;
-  avatarUrl_lt?: InputMaybe<Scalars['String']>;
-  avatarUrl_lte?: InputMaybe<Scalars['String']>;
-  avatarUrl_not?: InputMaybe<Scalars['String']>;
-  avatarUrl_not_contains?: InputMaybe<Scalars['String']>;
-  avatarUrl_not_ends_with?: InputMaybe<Scalars['String']>;
-  avatarUrl_not_in?: InputMaybe<Array<Scalars['String']>>;
-  avatarUrl_not_starts_with?: InputMaybe<Scalars['String']>;
-  avatarUrl_starts_with?: InputMaybe<Scalars['String']>;
-  boards_every?: InputMaybe<BoardWhereInput>;
-  boards_none?: InputMaybe<BoardWhereInput>;
-  boards_some?: InputMaybe<BoardWhereInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  createdAt_gt?: InputMaybe<Scalars['DateTime']>;
-  createdAt_gte?: InputMaybe<Scalars['DateTime']>;
-  createdAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  createdAt_lt?: InputMaybe<Scalars['DateTime']>;
-  createdAt_lte?: InputMaybe<Scalars['DateTime']>;
-  createdAt_not?: InputMaybe<Scalars['DateTime']>;
-  createdAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  email?: InputMaybe<Scalars['String']>;
-  email_contains?: InputMaybe<Scalars['String']>;
-  email_ends_with?: InputMaybe<Scalars['String']>;
-  email_gt?: InputMaybe<Scalars['String']>;
-  email_gte?: InputMaybe<Scalars['String']>;
-  email_in?: InputMaybe<Array<Scalars['String']>>;
-  email_lt?: InputMaybe<Scalars['String']>;
-  email_lte?: InputMaybe<Scalars['String']>;
-  email_not?: InputMaybe<Scalars['String']>;
-  email_not_contains?: InputMaybe<Scalars['String']>;
-  email_not_ends_with?: InputMaybe<Scalars['String']>;
-  email_not_in?: InputMaybe<Array<Scalars['String']>>;
-  email_not_starts_with?: InputMaybe<Scalars['String']>;
-  email_starts_with?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['ID']>;
-  id_contains?: InputMaybe<Scalars['ID']>;
-  id_ends_with?: InputMaybe<Scalars['ID']>;
-  id_gt?: InputMaybe<Scalars['ID']>;
-  id_gte?: InputMaybe<Scalars['ID']>;
-  id_in?: InputMaybe<Array<Scalars['ID']>>;
-  id_lt?: InputMaybe<Scalars['ID']>;
-  id_lte?: InputMaybe<Scalars['ID']>;
-  id_not?: InputMaybe<Scalars['ID']>;
-  id_not_contains?: InputMaybe<Scalars['ID']>;
-  id_not_ends_with?: InputMaybe<Scalars['ID']>;
-  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
-  id_not_starts_with?: InputMaybe<Scalars['ID']>;
-  id_starts_with?: InputMaybe<Scalars['ID']>;
-  identity?: InputMaybe<Scalars['String']>;
-  identity_contains?: InputMaybe<Scalars['String']>;
-  identity_ends_with?: InputMaybe<Scalars['String']>;
-  identity_gt?: InputMaybe<Scalars['String']>;
-  identity_gte?: InputMaybe<Scalars['String']>;
-  identity_in?: InputMaybe<Array<Scalars['String']>>;
-  identity_lt?: InputMaybe<Scalars['String']>;
-  identity_lte?: InputMaybe<Scalars['String']>;
-  identity_not?: InputMaybe<Scalars['String']>;
-  identity_not_contains?: InputMaybe<Scalars['String']>;
-  identity_not_ends_with?: InputMaybe<Scalars['String']>;
-  identity_not_in?: InputMaybe<Array<Scalars['String']>>;
-  identity_not_starts_with?: InputMaybe<Scalars['String']>;
-  identity_starts_with?: InputMaybe<Scalars['String']>;
-  name?: InputMaybe<Scalars['String']>;
-  name_contains?: InputMaybe<Scalars['String']>;
-  name_ends_with?: InputMaybe<Scalars['String']>;
-  name_gt?: InputMaybe<Scalars['String']>;
-  name_gte?: InputMaybe<Scalars['String']>;
-  name_in?: InputMaybe<Array<Scalars['String']>>;
-  name_lt?: InputMaybe<Scalars['String']>;
-  name_lte?: InputMaybe<Scalars['String']>;
-  name_not?: InputMaybe<Scalars['String']>;
-  name_not_contains?: InputMaybe<Scalars['String']>;
-  name_not_ends_with?: InputMaybe<Scalars['String']>;
-  name_not_in?: InputMaybe<Array<Scalars['String']>>;
-  name_not_starts_with?: InputMaybe<Scalars['String']>;
-  name_starts_with?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
-  updatedAt_gte?: InputMaybe<Scalars['DateTime']>;
-  updatedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  updatedAt_lt?: InputMaybe<Scalars['DateTime']>;
-  updatedAt_lte?: InputMaybe<Scalars['DateTime']>;
-  updatedAt_not?: InputMaybe<Scalars['DateTime']>;
-  updatedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
-};
-
-export type UserWhereUniqueInput = {
-  auth0id?: InputMaybe<Scalars['String']>;
-  email?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['ID']>;
 };
 
 export type MeQueryQueryVariables = Exact<{ [key: string]: never }>;
@@ -1142,7 +190,7 @@ export type BoardQuery = {
     __typename?: 'Board';
     name: string;
     id: string;
-    lists?: Array<{ __typename?: 'List'; name: string; id: string }> | null;
+    lists: Array<{ __typename?: 'List'; name: string; id: string }>;
   } | null;
 };
 
@@ -1150,7 +198,7 @@ export type Board_BoardFragment = {
   __typename?: 'Board';
   name: string;
   id: string;
-  lists?: Array<{ __typename?: 'List'; name: string; id: string }> | null;
+  lists: Array<{ __typename?: 'List'; name: string; id: string }>;
 };
 
 export type CreateBoardMutationVariables = Exact<{
@@ -1159,16 +207,12 @@ export type CreateBoardMutationVariables = Exact<{
 
 export type CreateBoardMutation = {
   __typename?: 'Mutation';
-  createBoard: {
+  createBoard?: {
     __typename?: 'User';
     name: string;
     id: string;
-    boards?: Array<{
-      __typename?: 'Board';
-      name: string;
-      id: string;
-    } | null> | null;
-  };
+    boards: Array<{ __typename?: 'Board'; name: string; id: string }>;
+  } | null;
 };
 
 export type DeleteBoardMutationVariables = Exact<{
@@ -1188,11 +232,7 @@ export type UserBoardsQuery = {
     __typename?: 'User';
     name: string;
     id: string;
-    boards?: Array<{
-      __typename?: 'Board';
-      name: string;
-      id: string;
-    } | null> | null;
+    boards: Array<{ __typename?: 'Board'; name: string; id: string }>;
   } | null;
 };
 
@@ -1203,12 +243,12 @@ export type AddListMutationVariables = Exact<{
 
 export type AddListMutation = {
   __typename?: 'Mutation';
-  updateBoard?: {
+  updateBoard: {
     __typename?: 'Board';
     name: string;
     id: string;
-    lists?: Array<{ __typename?: 'List'; name: string; id: string }> | null;
-  } | null;
+    lists: Array<{ __typename?: 'List'; name: string; id: string }>;
+  };
 };
 
 export type DeleteListsOfBoardMutationVariables = Exact<{
@@ -1218,12 +258,12 @@ export type DeleteListsOfBoardMutationVariables = Exact<{
 
 export type DeleteListsOfBoardMutation = {
   __typename?: 'Mutation';
-  updateBoard?: {
+  updateBoard: {
     __typename?: 'Board';
     name: string;
     id: string;
-    lists?: Array<{ __typename?: 'List'; name: string; id: string }> | null;
-  } | null;
+    lists: Array<{ __typename?: 'List'; name: string; id: string }>;
+  };
 };
 
 export type DeleteListOfBoardMutationVariables = Exact<{
@@ -1233,12 +273,12 @@ export type DeleteListOfBoardMutationVariables = Exact<{
 
 export type DeleteListOfBoardMutation = {
   __typename?: 'Mutation';
-  updateBoard?: {
+  updateBoard: {
     __typename?: 'Board';
     name: string;
     id: string;
-    lists?: Array<{ __typename?: 'List'; name: string; id: string }> | null;
-  } | null;
+    lists: Array<{ __typename?: 'List'; name: string; id: string }>;
+  };
 };
 
 export type CardListQueryVariables = Exact<{
@@ -1251,21 +291,21 @@ export type CardListQuery = {
     __typename?: 'List';
     name: string;
     id: string;
-    cards?: Array<{
+    cards: Array<{
       __typename?: 'Card';
       id: string;
       name: string;
       description?: string | null;
       createdAt: any;
       updatedAt: any;
-      updatedBy?: {
+      updatedBy: {
         __typename?: 'User';
         avatarUrl?: string | null;
         email: string;
         name: string;
         id: string;
-      } | null;
-    }> | null;
+      };
+    }>;
   } | null;
 };
 
@@ -1277,46 +317,46 @@ export type MoveCardMutationVariables = Exact<{
 
 export type MoveCardMutation = {
   __typename?: 'Mutation';
-  newList?: {
+  newList: {
     __typename?: 'List';
     name: string;
     id: string;
-    cards?: Array<{
+    cards: Array<{
       __typename?: 'Card';
       id: string;
       name: string;
       description?: string | null;
       createdAt: any;
       updatedAt: any;
-      updatedBy?: {
+      updatedBy: {
         __typename?: 'User';
         avatarUrl?: string | null;
         email: string;
         name: string;
         id: string;
-      } | null;
-    }> | null;
-  } | null;
-  oldList?: {
+      };
+    }>;
+  };
+  oldList: {
     __typename?: 'List';
     name: string;
     id: string;
-    cards?: Array<{
+    cards: Array<{
       __typename?: 'Card';
       id: string;
       name: string;
       description?: string | null;
       createdAt: any;
       updatedAt: any;
-      updatedBy?: {
+      updatedBy: {
         __typename?: 'User';
         avatarUrl?: string | null;
         email: string;
         name: string;
         id: string;
-      } | null;
-    }> | null;
-  } | null;
+      };
+    }>;
+  };
 };
 
 export type AddCardMutationMutationVariables = Exact<{
@@ -1326,26 +366,26 @@ export type AddCardMutationMutationVariables = Exact<{
 
 export type AddCardMutationMutation = {
   __typename?: 'Mutation';
-  updateList?: {
+  updateList: {
     __typename?: 'List';
     name: string;
     id: string;
-    cards?: Array<{
+    cards: Array<{
       __typename?: 'Card';
       id: string;
       name: string;
       description?: string | null;
       createdAt: any;
       updatedAt: any;
-      updatedBy?: {
+      updatedBy: {
         __typename?: 'User';
         avatarUrl?: string | null;
         email: string;
         name: string;
         id: string;
-      } | null;
-    }> | null;
-  } | null;
+      };
+    }>;
+  };
 };
 
 export type UpdateCardMutationVariables = Exact<{
@@ -1363,13 +403,13 @@ export type UpdateCardMutation = {
     description?: string | null;
     createdAt: any;
     updatedAt: any;
-    updatedBy?: {
+    updatedBy: {
       __typename?: 'User';
       avatarUrl?: string | null;
       email: string;
       name: string;
       id: string;
-    } | null;
+    };
   };
 };
 
@@ -1377,21 +417,21 @@ export type CardList_ListFragment = {
   __typename?: 'List';
   name: string;
   id: string;
-  cards?: Array<{
+  cards: Array<{
     __typename?: 'Card';
     id: string;
     name: string;
     description?: string | null;
     createdAt: any;
     updatedAt: any;
-    updatedBy?: {
+    updatedBy: {
       __typename?: 'User';
       avatarUrl?: string | null;
       email: string;
       name: string;
       id: string;
-    } | null;
-  }> | null;
+    };
+  }>;
 };
 
 export type Card_CardFragment = {
@@ -1401,13 +441,13 @@ export type Card_CardFragment = {
   description?: string | null;
   createdAt: any;
   updatedAt: any;
-  updatedBy?: {
+  updatedBy: {
     __typename?: 'User';
     avatarUrl?: string | null;
     email: string;
     name: string;
     id: string;
-  } | null;
+  };
 };
 
 export const Board_BoardFragmentDoc = gql`
