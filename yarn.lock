@@ -6170,7 +6170,7 @@ __metadata:
     eslint-config-next: 13.1.1
     eslint-config-prettier: 8.6.0
     eslint-plugin-prettier: 4.2.1
-    framer-motion: 8.1.8
+    framer-motion: 8.1.9
     graphql: 16.6.0
     graphql-scalars: ^1.20.1
     graphql-tag: 2.12.6
@@ -7438,9 +7438,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"framer-motion@npm:8.1.8":
-  version: 8.1.8
-  resolution: "framer-motion@npm:8.1.8"
+"framer-motion@npm:8.1.9":
+  version: 8.1.9
+  resolution: "framer-motion@npm:8.1.9"
   dependencies:
     "@emotion/is-prop-valid": ^0.8.2
     "@motionone/dom": ^10.15.3
@@ -7452,7 +7452,7 @@ __metadata:
   dependenciesMeta:
     "@emotion/is-prop-valid":
       optional: true
-  checksum: fd90ad7528fb5a01bf417f1c5cd07bedd4169be908bc0fc7e88861f410a085ed27cf01e96b271b3cc3eda188afc13e8be7fea555201434f2a50ad0d4a788349b
+  checksum: 6bb52e1daff78660b1c1610c02fa2a8ecf7ecf00c7b303dd2ce9672c56e4cb2636a2c2ee7a6d5b0443a451b39746c6cdfe4222df84c01f1871380abeb14373f4
   languageName: node
   linkType: hard
 
