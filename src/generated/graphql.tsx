@@ -26,6 +26,7 @@ export type Scalars = {
 export type Board = {
   __typename?: 'Board';
   createdAt: Scalars['DateTime'];
+  createdBy: User;
   id: Scalars['ID'];
   lists: Array<List>;
   name: Scalars['String'];
@@ -74,6 +75,7 @@ export type List = {
   __typename?: 'List';
   cards: Array<Card>;
   createdAt: Scalars['DateTime'];
+  createdBy: User;
   id: Scalars['ID'];
   name: Scalars['String'];
   updatedAt: Scalars['DateTime'];
@@ -98,12 +100,12 @@ export type ListUpdateManyInput = {
 };
 
 export type ListWhereUniqueInput = {
-  id?: InputMaybe<Scalars['ID']>;
+  id: Scalars['ID'];
 };
 
 export type Mutation = {
   __typename?: 'Mutation';
-  createBoard?: Maybe<User>;
+  createBoard: User;
   deleteBoard: Board;
   deleteList: List;
   updateBoard: Board;
@@ -207,12 +209,12 @@ export type CreateBoardMutationVariables = Exact<{
 
 export type CreateBoardMutation = {
   __typename?: 'Mutation';
-  createBoard?: {
+  createBoard: {
     __typename?: 'User';
     name: string;
     id: string;
     boards: Array<{ __typename?: 'Board'; name: string; id: string }>;
-  } | null;
+  };
 };
 
 export type DeleteBoardMutationVariables = Exact<{

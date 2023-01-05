@@ -1,5 +1,6 @@
 type Board {
   createdAt: DateTime!
+  createdBy: User!
   id: ID!
   lists: [List!]!
   name: String!
@@ -51,6 +52,7 @@ scalar DateTime
 type List {
   cards: [Card!]!
   createdAt: DateTime!
+  createdBy: User!
   id: ID!
   name: String!
   updatedAt: DateTime!
@@ -79,7 +81,7 @@ input ListWhereUniqueInput {
 }
 
 type Mutation {
-  createBoard(name: String!): User
+  createBoard(name: String!): User!
   deleteBoard(id: ID!): Board!
   deleteList(id: ID!): List!
   updateBoard(data: BoardUpdateInput!, where: BoardWhereUniqueInput!): Board!

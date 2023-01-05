@@ -1,14 +1,6 @@
 import { Board, List, User } from '@prisma/client';
 
-import { isLocalDev } from './helpers/logging';
-import builder, { prisma } from './schemaBuilder';
-export { prisma } from './schemaBuilder';
-import {
-  verifyAndRetrieveAuthSubject,
-  verifyUserIsAuthenticatedAndRetrieveUserToken,
-} from './helpers/auth';
-import { injectUserIdByAuth0id } from './helpers/userIdByAuth0id';
-import { createNewUser } from './helpers/registerNewUser';
+import builder from './schemaBuilder';
 import resolvers from './resolvers/resolvers';
 
 builder.prismaObject('User', {
@@ -41,6 +33,7 @@ builder.prismaObject('Board', {
     }),
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
     updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
+    createdBy: t.relation('createdBy'),
   }),
 });
 
@@ -56,6 +49,7 @@ builder.prismaObject('List', {
     }),
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
     updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
+    createdBy: t.relation('createdBy'),
   }),
 });
 
@@ -140,31 +134,8 @@ builder.queryField('me', (t) =>
     description: 'authenticated current user',
     type: 'User',
     nullable: true,
-    resolve: async (_query, _root, _args, ctx) => {
-      const auth0id = await verifyAndRetrieveAuthSubject(ctx);
-      const user = await prisma.user.findFirst({
-        ..._query,
-        where: { auth0id },
-      });
-      if (user) {
-        if (user!.id) injectUserIdByAuth0id(user!.id, auth0id);
-        return user;
-      }
-      const userToken = await verifyUserIsAuthenticatedAndRetrieveUserToken(
-        ctx
-      );
-
-      // user signed in, but not created in DB yet:
-      const newUser = await createNewUser(userToken, (data) =>
-        prisma.user.create(data)
-      );
-
-      if (isLocalDev) console.log('created prisma user:', newUser);
-
-      if (newUser?.id) injectUserIdByAuth0id(newUser.id, auth0id);
-
-      return newUser;
-    },
+    resolve: async (_query, _root, _args, ctx) =>
+      resolvers.Query.me(_root, _args, ctx),
   })
 );
 
@@ -197,7 +168,7 @@ builder.queryField('list', (t) =>
 
 builder.mutationField('createBoard', (t) => {
   return t.prismaField({
-    nullable: true,
+    nullable: false,
     type: 'User',
     args: {
       name: t.arg.string({ required: true }),
