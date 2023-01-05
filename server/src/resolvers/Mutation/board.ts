@@ -37,20 +37,15 @@ export default {
       };
     }
 
-    try {
-      return await prisma.board.update({
-        where: args.where,
-        data: {
-          lists,
-        },
-        include: {
-          createdBy: true,
-        },
-      });
-    } catch (e) {
-      console.log(e);
-      throw e;
-    }
+    return await prisma.board.update({
+      where: args.where,
+      data: {
+        lists,
+      },
+      include: {
+        createdBy: true,
+      },
+    });
   },
   async createBoard(
     _parent: any,
@@ -70,18 +65,22 @@ export default {
         },
       },
     });
-    return prisma.user.findUnique({
+    return await prisma.user.findUnique({
       where: { id },
       include: { boards: true },
     });
   },
-  async deleteBoard(_parent: any, args: any, ctx: Ctxt): Promise<Board> {
+  async deleteBoard(
+    _parent: any,
+    args: { id: string },
+    ctx: Ctxt
+  ): Promise<Board> {
     const { id } = args;
     const { prisma } = ctx;
 
     await verifyUserIsAuthenticatedAndRetrieveUserToken(ctx);
 
-    return prisma.board.delete({
+    return await prisma.board.delete({
       where: { id },
     });
   },

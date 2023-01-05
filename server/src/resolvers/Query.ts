@@ -1,3 +1,5 @@
+import { Board, List, User } from '@prisma/client';
+
 import {
   verifyAndRetrieveAuthSubject,
   verifyUserIsAuthenticatedAndRetrieveUserToken,
@@ -8,21 +10,27 @@ import { isLocalDev } from '../helpers/logging';
 import { Ctxt } from './Context';
 
 export default {
-  async board(_parent: any, { where }: any, ctx: Ctxt) {
+  async board(_parent: any, { where }: any, ctx: Ctxt): Promise<Board | null> {
+    await verifyUserIsAuthenticatedAndRetrieveUserToken(ctx);
+    const { prisma } = ctx;
+
+    return await prisma.board.findUnique({
+      where: { id: where.id },
+    });
+  },
+
+  async list(_parent: any, { where }: any, ctx: Ctxt): Promise<List | null> {
     await verifyUserIsAuthenticatedAndRetrieveUserToken(ctx);
 
     const { prisma } = ctx;
-    return prisma.board.findUnique({ where: { id: where.id } });
+    return await prisma.list.findUnique({ where });
   },
 
-  async list(_parent: any, { where }: any, ctx: Ctxt) {
-    await verifyUserIsAuthenticatedAndRetrieveUserToken(ctx);
-
-    const { prisma } = ctx;
-    return prisma.list.findUnique({ where });
-  },
-
-  me: async function (_parent: any, _args: any, ctx: Ctxt) {
+  me: async function (
+    _parent: any,
+    _args: any,
+    ctx: Ctxt
+  ): Promise<User | null> {
     const { prisma } = ctx;
 
     const auth0id = await verifyAndRetrieveAuthSubject(ctx);
@@ -39,15 +47,15 @@ export default {
     const userToken = await verifyUserIsAuthenticatedAndRetrieveUserToken(ctx);
 
     // user signed in, but not created in DB yet:
-    const u = await createNewUser(userToken, (data) =>
+    const newUser = await createNewUser(userToken, (data) =>
       prisma.user.create(data)
     );
 
-    if (isLocalDev) console.log('created prisma user:', u);
+    if (isLocalDev) console.log('created prisma user:', newUser);
 
-    if (u?.id) {
-      injectUserIdByAuth0id(u.id, auth0id);
+    if (newUser?.id) {
+      injectUserIdByAuth0id(newUser.id, auth0id);
     }
-    return u;
+    return newUser;
   },
 };

@@ -1,14 +1,15 @@
 import { AuthenticationError } from 'apollo-server-errors';
-import { isLocalDev } from './logging';
 import { JwtPayload } from 'jsonwebtoken';
 import { User, Prisma } from '@prisma/client';
 
+import { isLocalDev } from './logging';
+
 /* identity, auth0id, name, email, avatarUrl */
-type UserCreator = (data: Prisma.UserCreateArgs) => Promise<User>;
+type PrismaUserCreator = (data: Prisma.UserCreateArgs) => Promise<User>;
 
 export const createNewUser = async (
   idToken: JwtPayload,
-  createPersistentUser: UserCreator
+  createPersistentUser: PrismaUserCreator
 ): Promise<User> => {
   const { sub, name, email, picture } = idToken;
   const auth0id = sub?.split(`|`)[1];
@@ -37,7 +38,7 @@ export const createNewUser = async (
     },
   };
   try {
-    return createPersistentUser(userData);
+    return await createPersistentUser(userData);
   } catch (err) {
     if (isLocalDev)
       console.error('Failed to create this new user:', userData, err);

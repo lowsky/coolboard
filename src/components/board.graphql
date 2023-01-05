@@ -1,4 +1,4 @@
-query board($boardId: ID) {
+query board($boardId: ID!) {
   board(where: { id: $boardId }) {
     ...Board_board
   }

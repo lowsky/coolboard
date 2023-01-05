@@ -12,9 +12,7 @@ const getGraphqlServer = async () => {
   const apolloServer = new ApolloServer({
     schema: buildSchema(),
 
-    /*
-    APOLLO_GRAPH_VARIANT
-   */
+    introspection: Boolean(isLocalDev),
 
     plugins: [
       ApolloServerPluginLandingPageGraphQLPlayground({
@@ -88,6 +86,11 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  // do not check authentication when using graphql API locally
+  if (isLocalDev) {
+    return handleGraphqlRequest(req, res);
+  }
+
   const { userId } = getAuth(req);
   if (userId) {
     return handleGraphqlRequest(req, res);

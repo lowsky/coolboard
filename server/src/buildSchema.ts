@@ -1,13 +1,9 @@
-import { isLocalDev } from './helpers/logging';
-import builder, { prisma } from './schemaBuilder';
-export { prisma } from './schemaBuilder';
-import {
-  verifyAndRetrieveAuthSubject,
-  verifyUserIsAuthenticatedAndRetrieveUserToken,
-} from './helpers/auth';
-import { injectUserIdByAuth0id } from './helpers/userIdByAuth0id';
-import { createNewUser } from './helpers/registerNewUser';
+import { Board, List, User } from '@prisma/client';
+
+import builder from './schemaBuilder';
 import resolvers from './resolvers/resolvers';
+
+export { prisma } from './schemaBuilder';
 
 builder.prismaObject('User', {
   name: 'User',
@@ -39,6 +35,7 @@ builder.prismaObject('Board', {
     }),
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
     updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
+    createdBy: t.relation('createdBy'),
   }),
 });
 
@@ -54,6 +51,7 @@ builder.prismaObject('List', {
     }),
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
     updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
+    createdBy: t.relation('createdBy'),
   }),
 });
 
@@ -65,18 +63,19 @@ builder.prismaObject('Card', {
     description: t.string({
       nullable: true,
       resolve: async (parent, _args, _ctx, _info) => {
-        return parent.description ?? '';
+        return parent.description;
       },
     }),
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
     updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
+    createdBy: t.relation('createdBy'),
     updatedBy: t.relation('updatedBy'),
   }),
 });
 
 const BoardWhereUniqueInput = builder.inputType('BoardWhereUniqueInput', {
   fields: (t) => ({
-    id: t.id({ required: false }),
+    id: t.id({ required: true }),
   }),
 });
 const ListCreateInput = builder.inputType('ListCreateInput', {
@@ -128,7 +127,7 @@ const ListUpdateInput = builder.inputType('ListUpdateInput', {
 
 const CardUpdateInput = builder.inputType('CardUpdateInput', {
   fields: (t) => ({
-    name: t.string({ required: false }),
+    name: t.string({ required: true }),
     description: t.string({ required: false }),
   }),
 });
@@ -138,31 +137,8 @@ builder.queryField('me', (t) =>
     description: 'authenticated current user',
     type: 'User',
     nullable: true,
-    resolve: async (_query, _root, _args, ctx) => {
-      const auth0id = await verifyAndRetrieveAuthSubject(ctx);
-      const user = await prisma.user.findFirst({
-        ..._query,
-        where: { auth0id },
-      });
-      if (user) {
-        if (user!.id) injectUserIdByAuth0id(user!.id, auth0id);
-        return user;
-      }
-      const userToken = await verifyUserIsAuthenticatedAndRetrieveUserToken(
-        ctx
-      );
-
-      // user signed in, but not created in DB yet:
-      const newUser = await createNewUser(userToken, (data) =>
-        prisma.user.create(data)
-      );
-
-      if (isLocalDev) console.log('created prisma user:', newUser);
-
-      if (newUser?.id) injectUserIdByAuth0id(newUser.id, auth0id);
-
-      return newUser;
-    },
+    resolve: async (_query, _root, _args, ctx) =>
+      resolvers.Query.me(_root, _args, ctx),
   })
 );
 
@@ -185,11 +161,8 @@ builder.queryField('list', (t) =>
       name: 'where',
     },
     nullable: true,
-    typeOptions: {
-      name: 'ListWhereUniqueInput2',
-    },
     input: {
-      id: t.input.id({ required: false }),
+      id: t.input.id({ required: true }),
     },
     resolve: async (_query, _root, args, ctx) =>
       resolvers.Query.list(_root, args, ctx),
@@ -197,93 +170,81 @@ builder.queryField('list', (t) =>
 );
 
 builder.mutationField('createBoard', (t) => {
-  return t.field({
+  return t.prismaField({
     nullable: false,
-    // @ts-expect-error type is not exactly matching - still need investigation
     type: 'User',
     args: {
       name: t.arg.string({ required: true }),
     },
-    // @ts-expect-error resolver return type was never correct
-    resolve: async (_parent, args, ctx, _info) => {
-      const board = await resolvers.Mutation.createBoard(_parent, args, ctx);
-      if (!board) throw 'Sorry, board was not created';
-      return board;
+    resolve: async (_parent, _root, args, ctx, _info): Promise<User> => {
+      const user = await resolvers.Mutation.createBoard(_parent, args, ctx);
+      if (!user) throw 'Sorry, board was not created';
+      return user;
     },
   });
 });
 
 builder.mutationField('deleteBoard', (t) => {
-  return t.field({
+  return t.prismaField({
     nullable: false,
-    // @ts-expect-error type is not exactly matching - still need investigation
     type: 'Board',
     args: {
       id: t.arg.id({ required: true }),
     },
-    // @ts-expect-error resolver return type was never correct
-    resolve: async (_parent, args, ctx, _info) => {
+    resolve: async (_parent, _root, args, ctx, _info): Promise<Board> => {
       return resolvers.Mutation.deleteBoard(_parent, args, ctx);
     },
   });
 });
 
 builder.mutationField('deleteList', (t) => {
-  return t.field({
-    // @ts-expect-error type is not exactly matching - still need investigation
+  return t.prismaField({
     type: 'List',
     args: {
       id: t.arg.id({ required: true }),
     },
-    // @ts-expect-error resolver return type was never correct
-    resolve: async (_parent, args, ctx, _info) => {
+    resolve: async (_parent, _root, args, ctx, _info): Promise<List> => {
       return resolvers.Mutation.deleteList(_parent, args, ctx);
     },
   });
 });
 
 builder.mutationField('updateBoard', (t) => {
-  return t.field({
+  return t.prismaField({
     nullable: false,
-    // @ts-expect-error type is not exactly matching - still need investigation
     type: 'Board',
     args: {
       where: t.arg({ type: BoardWhereUniqueInput, required: true }),
       data: t.arg({ type: BoardUpdateInput, required: true }),
     },
-    // @ts-expect-error resolver return type was never correct
-    resolve: async (_parent, args, ctx, _info) => {
+    resolve: async (_parent, _root, args, ctx, _info) => {
       return resolvers.Mutation.updateBoard(_parent, args, ctx);
     },
   });
 });
 
 builder.mutationField('updateList', (t) => {
-  return t.field({
+  return t.prismaField({
     nullable: false,
-    // @ts-expect-error type is not exactly matching - still need investigation
     type: 'List',
     args: {
       where: t.arg({ type: ListWhereUniqueInput, required: true }),
       data: t.arg({ type: ListUpdateInput, required: true }),
     },
-    resolve: async (_parent, { where, data }, ctx, _info) =>
-      // @ts-expect-error resolver return type was never correct
+    resolve: async (_parent, _root, { where, data }, ctx, _info) =>
       resolvers.Mutation.updateList(_parent, { where, data }, ctx),
   });
 });
 
 builder.mutationField('updateCard', (t) => {
-  return t.field({
+  return t.prismaField({
     nullable: false,
-    // @ts-expect-error type is not exactly matching - still need investigation
     type: 'Card',
     args: {
       where: t.arg({ type: CardWhereUniqueInput, required: true }),
       data: t.arg({ type: CardUpdateInput, required: true }),
     },
-    resolve: async (_parent, { where, data }, ctx, _info) =>
-      // @ts-expect-error resolver return type was never correct
+    resolve: async (_parent, _root, { where, data }, ctx, _info) =>
       resolvers.Mutation.updateCard(_parent, { where, data }, ctx),
   });
 });
