@@ -10,7 +10,10 @@ export default {
       data,
     }: {
       where: { id: string };
-      data: { name: string; description: string };
+      data: {
+        name?: string | null;
+        description?: string | null;
+      };
     },
     ctx: Ctxt
   ): Promise<Card> {
@@ -20,8 +23,12 @@ export default {
     const { prisma } = ctx;
 
     return await prisma.card.update({
-      data: { name, description, updatedBy: { connect: { id: userId } } },
-      where
+      data: {
+        name: name ?? undefined,
+        description,
+        updatedBy: { connect: { id: userId } },
+      },
+      where,
     });
 
     /* Example:

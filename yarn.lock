@@ -2605,7 +2605,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-codegen/schema-ast@npm:^2.6.1":
+"@graphql-codegen/schema-ast@npm:2.6.1, @graphql-codegen/schema-ast@npm:^2.6.1":
   version: 2.6.1
   resolution: "@graphql-codegen/schema-ast@npm:2.6.1"
   dependencies:
@@ -6137,6 +6137,7 @@ __metadata:
     "@emotion/styled": 11.10.5
     "@graphql-codegen/cli": 2.16.3
     "@graphql-codegen/introspection": 2.2.3
+    "@graphql-codegen/schema-ast": 2.6.1
     "@graphql-codegen/typescript": 2.8.7
     "@graphql-codegen/typescript-graphql-files-modules": 2.2.1
     "@graphql-codegen/typescript-operations": 2.5.12

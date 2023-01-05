@@ -1,10 +1,17 @@
 import type { CodegenConfig } from '@graphql-codegen/cli';
+import { printSchema } from 'graphql';
+
+import { buildSchema } from './server/src/buildSchema';
 
 const config: CodegenConfig = {
-  schema: 'server/src/schema/schema.graphql',
   overwrite: true,
   generates: {
+    'server/src/schema/schema.new.graphql': {
+      schema: printSchema(buildSchema()),
+      plugins: ['schema-ast'],
+    },
     'src/generated/graphql.tsx': {
+      schema: 'server/src/schema/schema.new.graphql',
       documents: ['src/**/*.graphql'],
       plugins: [
         'typescript',

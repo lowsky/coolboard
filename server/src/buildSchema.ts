@@ -1,4 +1,4 @@
-import { Board, List, User } from "@prisma/client";
+import { Board, List, User } from '@prisma/client';
 
 import { isLocalDev } from './helpers/logging';
 import builder, { prisma } from './schemaBuilder';
@@ -88,7 +88,7 @@ const ListScalarWhereInput = builder.inputType('ListScalarWhereInput', {
   fields: (t) => ({ id_in: t.idList({ required: true }) }),
 });
 const ListWhereUniqueInput = builder.inputType('ListWhereUniqueInput', {
-  fields: (t) => ({ id: t.id({ required: true }) }),
+  fields: (t) => ({ id: t.id({ required: false }) }),
 });
 const ListUpdateManyInput = builder.inputType('ListUpdateManyInput', {
   fields: (t) => ({
@@ -130,8 +130,8 @@ const ListUpdateInput = builder.inputType('ListUpdateInput', {
 
 const CardUpdateInput = builder.inputType('CardUpdateInput', {
   fields: (t) => ({
-    name: t.string({ required: true }),
-    description: t.string({ required: true }),
+    name: t.string({ required: false }),
+    description: t.string({ required: false }),
   }),
 });
 
@@ -187,9 +187,6 @@ builder.queryField('list', (t) =>
       name: 'where',
     },
     nullable: true,
-    typeOptions: {
-      name: 'ListWhereUniqueInput2',
-    },
     input: {
       id: t.input.id({ required: false }),
     },
