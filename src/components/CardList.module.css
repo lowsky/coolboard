@@ -4,24 +4,6 @@
   overflow: auto;
 }
 
-.container {
-  border: 1em;
-  display: flex;
-  flex-direction: column;
-}
-
-.header {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 0.4em 0;
-}
-
-.title {
-  flex-grow: 1;
-  text-align: center;
-}
-
 .list {
   background-color: lightgrey;
   padding: 0.4em;

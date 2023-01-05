@@ -296,8 +296,6 @@ export const CardComponent = (props) => {
 
 const CardDiv = styled.div`
   border-radius: 3px;
-  margin: 0.1em 0 0 0;
-  border-bottom: 1px solid #ccc;
   background-color: #fff;
   padding: 10px;
 `;
