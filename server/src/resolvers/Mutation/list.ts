@@ -44,6 +44,7 @@ export default {
         id: disconnect[0].id,
       };
     }
+
     return await prisma.list.update({
       where,
       data: {

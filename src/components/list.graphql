@@ -3,6 +3,13 @@ query CardList($cardListId: ID!) {
     ...CardList_list
   }
 }
+mutation renameList($newName: String! $listId: ID! ) {
+  renameList(newName: $newName where:{id: $listId}) {
+    id
+    name
+  }
+}
+
 mutation moveCard($cardId: ID!, $oldCardListId: ID!, $cardListId: ID!) {
   newList: updateList(
     data: { cards: { connect: { id: $cardId } } }
