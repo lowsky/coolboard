@@ -63,7 +63,7 @@ const handler = instana.wrap((event, context, callback) => {
 let server: ApolloServer<Ctxt> | null = null;
 
 // eslint-disable-next-line import/no-anonymous-default-export
-async function handleGraphqlRequest(req, res){
+async function handleGraphqlRequest(req, res) {
   const apolloServer = server || (await getGraphqlServer());
 
   const graphqlHandler = startServerAndCreateNextHandler(apolloServer, {
