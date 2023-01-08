@@ -57,20 +57,20 @@ builder.prismaObject('List', {
 
 builder.prismaObject('Card', {
   name: 'Card',
-  fields: (t) => ({
-    id: t.exposeID('id'),
-    name: t.exposeString('name'),
-    description: t.string({
-      nullable: true,
-      resolve: async (parent, _args, _ctx, _info) => {
-        return parent.description;
-      },
-    }),
-    createdAt: t.expose('createdAt', { type: 'DateTime' }),
-    updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
-    createdBy: t.relation('createdBy'),
-    updatedBy: t.relation('updatedBy'),
-  }),
+  fields: (t) => {
+    return {
+      id: t.exposeID('id'),
+      name: t.exposeString('name'),
+      description: t.string({
+        nullable: true,
+        resolve: async (parent, _args, _ctx, _info) => parent.description,
+      }),
+      createdAt: t.expose('createdAt', { type: 'DateTime' }),
+      updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
+      createdBy: t.relation('createdBy'),
+      updatedBy: t.relation('updatedBy'),
+    };
+  },
 });
 
 const BoardWhereUniqueInput = builder.inputType('BoardWhereUniqueInput', {
@@ -172,8 +172,8 @@ builder.queryField('list', (t) =>
   })
 );
 
-builder.mutationField('createBoard', (t) => {
-  return t.prismaField({
+builder.mutationField('createBoard', (t) =>
+  t.prismaField({
     nullable: false,
     type: 'User',
     args: {
@@ -184,50 +184,47 @@ builder.mutationField('createBoard', (t) => {
       if (!user) throw 'Sorry, board was not created';
       return user;
     },
-  });
-});
+  })
+);
 
-builder.mutationField('deleteBoard', (t) => {
-  return t.prismaField({
+builder.mutationField('deleteBoard', (t) =>
+  t.prismaField({
     nullable: false,
     type: 'Board',
     args: {
       id: t.arg.id({ required: true }),
     },
-    resolve: async (_parent, _root, args, ctx, _info): Promise<Board> => {
-      return resolvers.Mutation.deleteBoard(_parent, args, ctx);
-    },
-  });
-});
+    resolve: async (_parent, _root, args, ctx, _info): Promise<Board> =>
+      resolvers.Mutation.deleteBoard(_parent, args, ctx),
+  })
+);
 
-builder.mutationField('deleteList', (t) => {
-  return t.prismaField({
+builder.mutationField('deleteList', (t) =>
+  t.prismaField({
     type: 'List',
     args: {
       id: t.arg.id({ required: true }),
     },
-    resolve: async (_parent, _root, args, ctx, _info): Promise<List> => {
-      return resolvers.Mutation.deleteList(_parent, args, ctx);
-    },
-  });
-});
+    resolve: async (_parent, _root, args, ctx, _info): Promise<List> =>
+      resolvers.Mutation.deleteList(_parent, args, ctx),
+  })
+);
 
-builder.mutationField('updateBoard', (t) => {
-  return t.prismaField({
+builder.mutationField('updateBoard', (t) =>
+  t.prismaField({
     nullable: false,
     type: 'Board',
     args: {
       where: t.arg({ type: BoardWhereUniqueInput, required: true }),
       data: t.arg({ type: BoardUpdateInput, required: true }),
     },
-    resolve: async (_parent, _root, args, ctx, _info) => {
-      return resolvers.Mutation.updateBoard(_parent, args, ctx);
-    },
-  });
-});
+    resolve: async (_parent, _root, args, ctx, _info) =>
+      resolvers.Mutation.updateBoard(_parent, args, ctx),
+  })
+);
 
-builder.mutationField('updateList', (t) => {
-  return t.prismaField({
+builder.mutationField('updateList', (t) =>
+  t.prismaField({
     nullable: false,
     type: 'List',
     args: {
@@ -236,31 +233,29 @@ builder.mutationField('updateList', (t) => {
     },
     resolve: async (_parent, _root, { where, data }, ctx, _info) =>
       resolvers.Mutation.updateList(_parent, { where, data }, ctx),
-  });
-});
+  })
+);
 
-builder.mutationField('renameList', (t) => {
-  return t.prismaField({
+builder.mutationField('renameList', (t) =>
+  t.prismaField({
     nullable: false,
     type: 'List',
     args: {
       where: t.arg({ type: ListWhereUniqueInput, required: true }),
       newName: t.arg.string({ required: true }),
     },
-    resolve: async (_parent, _root, { where, newName }, ctx, _info) => {
-      const { prisma } = ctx;
-      return await prisma.list.update({
+    resolve: async (_parent, _root, { where, newName }, { prisma }, _info) =>
+      await prisma.list.update({
         where,
         data: {
           name: newName,
         },
-      });
-    },
-  });
-});
+      }),
+  })
+);
 
-builder.mutationField('updateCard', (t) => {
-  return t.prismaField({
+builder.mutationField('updateCard', (t) =>
+  t.prismaField({
     nullable: false,
     type: 'Card',
     args: {
@@ -269,7 +264,7 @@ builder.mutationField('updateCard', (t) => {
     },
     resolve: async (_parent, _root, { where, data }, ctx, _info) =>
       resolvers.Mutation.updateCard(_parent, { where, data }, ctx),
-  });
-});
+  })
+);
 
 export const buildSchema = () => builder.toSchema();
