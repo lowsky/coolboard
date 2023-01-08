@@ -8,6 +8,9 @@
   "homepage": "/",
   "dependencies": {
     "@apollo/client": "3.7.3",
+    "@apollo/server": "4.3.0",
+    "@apollo/server-plugin-landing-page-graphql-playground": "4.0.0",
+    "@as-integrations/next": "1.2.0",
     "@chakra-ui/icons": "2.0.15",
     "@chakra-ui/react": "2.4.6",
     "@clerk/clerk-sdk-node": "4.5.14",
@@ -81,7 +84,6 @@
     "@types/react-dom": "18.0.10",
     "@types/zen-observable": "0.8.3",
     "@typescript-eslint/parser": "5.48.0",
-    "apollo-server-core": "3.11.1",
     "eslint": "8.31.0",
     "eslint-config-next": "13.1.1",
     "prettier": "2.8.2",

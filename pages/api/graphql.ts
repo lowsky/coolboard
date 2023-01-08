@@ -1,6 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { ApolloServer } from 'apollo-server-micro';
-import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core';
+import { ApolloServer } from '@apollo/server';
+import { startServerAndCreateNextHandler } from '@as-integrations/next';
+
+import { ApolloServerPluginLandingPageGraphQLPlayground } from '@apollo/server-plugin-landing-page-graphql-playground';
 import { getAuth } from '@clerk/nextjs/server';
 
 import { isLocalDev } from '../../server/src/helpers/logging';
@@ -9,7 +11,7 @@ import { Ctxt } from '../../server/src/resolvers/Context';
 import { buildSchema, prisma } from '../../server/src/buildSchema';
 
 const getGraphqlServer = async () => {
-  const apolloServer = new ApolloServer({
+  const apolloServer = new ApolloServer<Ctxt>({
     schema: buildSchema(),
 
     introspection: Boolean(isLocalDev),
@@ -19,18 +21,7 @@ const getGraphqlServer = async () => {
         endpoint: '/api/graphql',
       }),
     ],
-    context: ({ req, res }): Ctxt => {
-      return {
-        req,
-        res,
-        prisma,
-      };
-    },
   });
-
-  await apolloServer.start();
-
-  server = apolloServer;
 
   return apolloServer;
 };
@@ -69,17 +60,23 @@ const handler = instana.wrap((event, context, callback) => {
 */
 
 // will be stored here for re-use
-let server: ApolloServer | null = null;
+let server: ApolloServer<Ctxt> | null = null;
 
 // eslint-disable-next-line import/no-anonymous-default-export
-async function handleGraphqlRequest(req, res) {
+async function handleGraphqlRequest(req, res){
   const apolloServer = server || (await getGraphqlServer());
 
-  const handler = apolloServer.createHandler({
-    path: '/api/graphql',
+  const graphqlHandler = startServerAndCreateNextHandler(apolloServer, {
+    context: async (req, res) => {
+      return {
+        req,
+        res,
+        prisma,
+      };
+    },
   });
 
-  await handler(req, res);
+  return await graphqlHandler(req, res);
 }
 
 export default async function handler(
@@ -88,12 +85,12 @@ export default async function handler(
 ) {
   // do not check authentication when using graphql API locally
   if (isLocalDev) {
-    return handleGraphqlRequest(req, res);
+    return await handleGraphqlRequest(req, res);
   }
 
   const { userId } = getAuth(req);
   if (userId) {
-    return handleGraphqlRequest(req, res);
+    return await handleGraphqlRequest(req, res);
   }
 
   isLocalDev && console.error('    userId is not yet set!');
@@ -103,6 +100,6 @@ export default async function handler(
 
 export const config = {
   api: {
-    bodyParser: false,
+    bodyParser: true,
   },
 };
