@@ -2411,9 +2411,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/clerk-react@npm:^4.8.1":
-  version: 4.8.1
-  resolution: "@clerk/clerk-react@npm:4.8.1"
+"@clerk/clerk-react@npm:^4.8.2":
+  version: 4.8.2
+  resolution: "@clerk/clerk-react@npm:4.8.2"
   dependencies:
     "@clerk/shared": ^0.9.0
     "@clerk/types": ^3.24.0
@@ -2422,7 +2422,7 @@ __metadata:
   peerDependencies:
     react: ">=16"
     react-dom: ">=16"
-  checksum: 20f50bf1172928f4a8dd208a4b59a14c9e1f6319d6bf097daf77204d41a869662f892154944a9cdd91d9f2c17b5caca1075dea83f952dee05dd605b7b30e9617
+  checksum: 019aba59cd336f1cbb69a63289d58a8e726bbc6bdbad896e90b582d4bfd62b20a2554872efae71a6ac98e8ab42a451dcad866a6928b9bea2d37a89ff8eed85c1
   languageName: node
   linkType: hard
 
@@ -2444,18 +2444,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/nextjs@npm:4.7.3":
-  version: 4.7.3
-  resolution: "@clerk/nextjs@npm:4.7.3"
+"@clerk/nextjs@npm:4.7.4":
+  version: 4.7.4
+  resolution: "@clerk/nextjs@npm:4.7.4"
   dependencies:
     "@clerk/backend": ^0.4.1
-    "@clerk/clerk-react": ^4.8.1
+    "@clerk/clerk-react": ^4.8.2
     "@clerk/clerk-sdk-node": ^4.6.1
     "@clerk/types": ^3.24.0
     tslib: 2.4.1
   peerDependencies:
     next: ">=10"
-  checksum: 6ad4f847ca24e7021e87f10666d42c809f158324b1c5c112a57d5b772688666fdba47cfb946f656425e42f6f6cb874b1ccc2084816c48fa083d984a881ee0942
+  checksum: 2cf69f2c976c45cf5f45ce19bd63cc37ff40b12e7f7351330b8df5e83392e9b2b0659d4f75b732528a1a885fe6c7ef75bb08db8025b68f0aaa1a81fd38853bb1
   languageName: node
   linkType: hard
 
@@ -6384,7 +6384,7 @@ __metadata:
     "@chakra-ui/icons": 2.0.16
     "@chakra-ui/react": 2.4.9
     "@clerk/clerk-sdk-node": 4.6.1
-    "@clerk/nextjs": 4.7.3
+    "@clerk/nextjs": 4.7.4
     "@clerk/themes": ^1.2.20
     "@emotion/react": 11.10.5
     "@emotion/styled": 11.10.5
