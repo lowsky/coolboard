@@ -1483,18 +1483,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chakra-ui/icon@npm:3.0.15":
-  version: 3.0.15
-  resolution: "@chakra-ui/icon@npm:3.0.15"
-  dependencies:
-    "@chakra-ui/shared-utils": 2.0.4
-  peerDependencies:
-    "@chakra-ui/system": ">=2.0.0"
-    react: ">=18"
-  checksum: ab9d40e90dbde6754b242605fef9abf272275b66417e27b46e948d4afc58ef3e74aedda202b23f6a3800b0938b6037f4cab9c5080dd2f42775edd27cef9301cd
-  languageName: node
-  linkType: hard
-
 "@chakra-ui/icon@npm:3.0.16":
   version: 3.0.16
   resolution: "@chakra-ui/icon@npm:3.0.16"
@@ -1507,15 +1495,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chakra-ui/icons@npm:2.0.16":
-  version: 2.0.16
-  resolution: "@chakra-ui/icons@npm:2.0.16"
+"@chakra-ui/icons@npm:2.0.17":
+  version: 2.0.17
+  resolution: "@chakra-ui/icons@npm:2.0.17"
   dependencies:
-    "@chakra-ui/icon": 3.0.15
+    "@chakra-ui/icon": 3.0.16
   peerDependencies:
     "@chakra-ui/system": ">=2.0.0"
     react: ">=18"
-  checksum: b4d08898485300fe5f08eaba2cc64dea22ed05149adfc2d27c397718877b343f8a136f0cf9fcc3b2d616c5cc08a5334731fc0e5d92b3a147a49dbac7a292497c
+  checksum: cb0d6f431d162f7d8d50ee33b887bb64f490109cc077bf176bea17ddca32c926b0caaab1013f05186be52ee42f261ff9d4e7af50744a03d51de356b4470e0ee2
   languageName: node
   linkType: hard
 
@@ -2099,13 +2087,6 @@ __metadata:
     "@chakra-ui/system": ">=2.0.0"
     react: ">=18"
   checksum: 8487d9890636fd34e5712aa8d2e88d498917ca1e0a04acca43c84603c5c5b8ed492a95feb213b8d5e3b39d3b686eaa9a605eaaf6eedae88d69259f8655e7b7ea
-  languageName: node
-  linkType: hard
-
-"@chakra-ui/shared-utils@npm:2.0.4":
-  version: 2.0.4
-  resolution: "@chakra-ui/shared-utils@npm:2.0.4"
-  checksum: 8de5e224e01c8cd109321796524ddbbfe92d48fe9de4781dcecac90d4b7e9838dfd5ef9164e7e1ed87b2031988392d3b2d5f55bda3dd2347f92e91d292700d2b
   languageName: node
   linkType: hard
 
@@ -6425,7 +6406,7 @@ __metadata:
     "@apollo/server": 4.3.1
     "@apollo/server-plugin-landing-page-graphql-playground": 4.0.0
     "@as-integrations/next": 1.2.0
-    "@chakra-ui/icons": 2.0.16
+    "@chakra-ui/icons": 2.0.17
     "@chakra-ui/react": 2.4.9
     "@clerk/clerk-sdk-node": 4.6.2
     "@clerk/nextjs": 4.7.4
