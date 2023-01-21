@@ -55,7 +55,7 @@
     "react-icons": "4.7.1",
     "react-is": "18.2.0",
     "react-timeago": "7.1.0",
-    "utf-8-validate": "6.0.0"
+    "utf-8-validate": "6.0.1"
   },
   "scripts": {
     "dev": "echo you wanna run:  yarn start  instead; yarn start",
