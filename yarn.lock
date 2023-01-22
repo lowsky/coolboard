@@ -2407,7 +2407,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/clerk-sdk-node@npm:4.6.2, @clerk/clerk-sdk-node@npm:^4.6.2":
+"@clerk/clerk-sdk-node@npm:4.6.3":
+  version: 4.6.3
+  resolution: "@clerk/clerk-sdk-node@npm:4.6.3"
+  dependencies:
+    "@clerk/backend": ^0.4.2
+    "@clerk/types": ^3.24.1
+    "@types/cookies": 0.7.7
+    "@types/express": 4.17.14
+    "@types/jsonwebtoken": 8.5.9
+    "@types/node-fetch": 2.6.2
+    camelcase-keys: 6.2.2
+    cookie: 0.5.0
+    snakecase-keys: 3.2.1
+    tslib: 2.4.1
+  checksum: c462f37c4656e63711360a4ae7c22e3b9ba0d25e3da3d2ddba947b05e676e2fa28d0272e7e18431aaf52d7514a465e32f2867499f6e15cc25f71ef22888d054c
+  languageName: node
+  linkType: hard
+
+"@clerk/clerk-sdk-node@npm:^4.6.2":
   version: 4.6.2
   resolution: "@clerk/clerk-sdk-node@npm:4.6.2"
   dependencies:
@@ -6364,7 +6382,7 @@ __metadata:
     "@as-integrations/next": 1.2.0
     "@chakra-ui/icons": 2.0.17
     "@chakra-ui/react": 2.4.9
-    "@clerk/clerk-sdk-node": 4.6.2
+    "@clerk/clerk-sdk-node": 4.6.3
     "@clerk/nextjs": 4.7.5
     "@clerk/themes": ^1.2.20
     "@emotion/react": 11.10.5
