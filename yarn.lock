@@ -130,17 +130,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@apollo/server-gateway-interface@npm:^1.0.7":
-  version: 1.0.7
-  resolution: "@apollo/server-gateway-interface@npm:1.0.7"
+"@apollo/server-gateway-interface@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "@apollo/server-gateway-interface@npm:1.1.0"
   dependencies:
     "@apollo/usage-reporting-protobuf": ^4.0.0
     "@apollo/utils.fetcher": ^2.0.0
-    "@apollo/utils.keyvaluecache": ^2.0.1
+    "@apollo/utils.keyvaluecache": ^2.1.0
     "@apollo/utils.logger": ^2.0.0
   peerDependencies:
     graphql: 14.x || 15.x || 16.x
-  checksum: 081d398a7c3d1138679f05706ceb9ef1a444597de01912ce3b5e73c532d52da8ae94c3fd9fb00bd44946dce8b82d903faa0887896628994a80433995a3a2526d
+  checksum: 0ad0b3b9dfb53cc664245acac638b3a3db0d56c496c8bf6c56928a92c21e9b3062bec47bd42c2c0f85a4469443467b245c772bb558c2733c1c0dde194722c82b
   languageName: node
   linkType: hard
 
@@ -155,12 +155,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@apollo/server@npm:4.3.1":
-  version: 4.3.1
-  resolution: "@apollo/server@npm:4.3.1"
+"@apollo/server@npm:4.3.2":
+  version: 4.3.2
+  resolution: "@apollo/server@npm:4.3.2"
   dependencies:
     "@apollo/cache-control-types": ^1.0.2
-    "@apollo/server-gateway-interface": ^1.0.7
+    "@apollo/server-gateway-interface": ^1.1.0
     "@apollo/usage-reporting-protobuf": ^4.0.0
     "@apollo/utils.createhash": ^2.0.0
     "@apollo/utils.fetcher": ^2.0.0
@@ -181,13 +181,13 @@ __metadata:
     loglevel: ^1.6.8
     lru-cache: ^7.10.1
     negotiator: ^0.6.3
-    node-abort-controller: ^3.0.1
+    node-abort-controller: 3.0.1
     node-fetch: ^2.6.7
     uuid: ^9.0.0
     whatwg-mimetype: ^3.0.0
   peerDependencies:
     graphql: ^16.6.0
-  checksum: 986fa94f595b2a89077ac74a6e555e8217434ec0cfacf2fd0266360f6315c4c91637c49a5ae79e347637f1ddbcb0c630f63c24de9d55e9996b1e4516e5e09dc1
+  checksum: 7e1db45238348e756baf3dd0fc51df788f6024416708899112892d0349af93d9ab816fb64673ede03a0b70f24084102e7294a906b680c639a54f5decb90fd684
   languageName: node
   linkType: hard
 
@@ -252,7 +252,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@apollo/utils.keyvaluecache@npm:^2.0.1, @apollo/utils.keyvaluecache@npm:^2.1.0":
+"@apollo/utils.keyvaluecache@npm:^2.1.0":
   version: 2.1.0
   resolution: "@apollo/utils.keyvaluecache@npm:2.1.0"
   dependencies:
@@ -6375,7 +6375,7 @@ __metadata:
   resolution: "coolboard@workspace:."
   dependencies:
     "@apollo/client": 3.7.5
-    "@apollo/server": 4.3.1
+    "@apollo/server": 4.3.2
     "@apollo/server-plugin-landing-page-graphql-playground": 4.0.0
     "@as-integrations/next": 1.2.0
     "@chakra-ui/icons": 2.0.17
@@ -9479,7 +9479,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-abort-controller@npm:^3.0.1":
+"node-abort-controller@npm:3.0.1, node-abort-controller@npm:^3.0.1":
   version: 3.0.1
   resolution: "node-abort-controller@npm:3.0.1"
   checksum: 2b3d75c65249fea99e8ba22da3a8bc553f034f44dd12f5f4b38b520f718b01c88718c978f0c24c2a460fc01de9a80b567028f547b94440cb47adeacfeb82c2ee
