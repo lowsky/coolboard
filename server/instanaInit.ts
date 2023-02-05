@@ -4,6 +4,8 @@ if (!disabled) {
   require('@instana/collector')({
     debug: true,
     reportUnhandledPromiseRejections: true,
-    autoProfile: true, // currently in beta
+    tracing: false,
+    autoTracing: false,
+    autoProfile: false, // currently in beta
   });
 }
