@@ -1,18 +1,10 @@
-module.exports = {
-  webpack: (config, { isServer }) => {
-    config.module.rules.push({
-      test: /\.(graphql|gql)$/,
-      exclude: /node_modules/,
-      loader: 'graphql-tag/loader',
-    });
+// @ts-check
 
-    return config;
-  },
-
+/**
+ * @type {import('next').NextConfig}
+ **/
+const nextConfig = {
   reactStrictMode: true,
-
-  // "For faster deploy times, build IDs should be set to a static value..."
-  generateBuildId: () => 'build',
 
   eslint: {
     // Warning: This allows production builds to successfully complete even if
@@ -20,3 +12,5 @@ module.exports = {
     ignoreDuringBuilds: true,
   },
 };
+
+module.exports = nextConfig;
