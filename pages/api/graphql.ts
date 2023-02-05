@@ -1,3 +1,5 @@
+import '../../server/instanaInit.ts';
+
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { ApolloServer } from '@apollo/server';
 import { startServerAndCreateNextHandler } from '@as-integrations/next';
