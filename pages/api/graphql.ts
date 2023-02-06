@@ -1,3 +1,5 @@
+import { startTracing } from '../../server/openTelemetry';
+
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { ApolloServer } from '@apollo/server';
 import { startServerAndCreateNextHandler } from '@as-integrations/next';
@@ -25,41 +27,8 @@ const getGraphqlServer = async () => {
 
   return apolloServer;
 };
-//LATER: exports.handler = instana.wrap((event, context, callback) => {
 
-/*
-const handler = instana.wrap((event, context, callback) => {
-  const callbackFilter = function (error, output) {
-    if (error) {
-      console.error('error:', error);
-    } else {
-      isLocalDev &&
-      console.info(
-        'no error. -----------------------------------------------------------------------'
-      );
-    }
-
-    isLocalDev &&
-    console.log(
-      'Environment: ',
-      process && process.env && process.env.NODE_ENV
-    );
-    isLocalDev &&
-      console.log('Environment: LOCAL DEV mode');
-
-    isLocalDev && console.log('result', output);
-    callback(error, output);
-    isLocalDev && console.info('done');
-  };
-
-  const handler = lambda.createHandler();
-  isLocalDev && console.info('handler created');
-
-  return handler(event, context, callbackFilter);
-});
-*/
-
-// will be stored here for re-use
+// will be stored for re-use
 let server: ApolloServer<Ctxt> | null = null;
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -83,7 +52,10 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  await startTracing();
+
   // do not check authentication when using graphql API locally
+  // just for easier debugging/testing the gql schema ...
   if (isLocalDev) {
     return await handleGraphqlRequest(req, res);
   }
