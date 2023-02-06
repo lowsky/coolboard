@@ -7643,6 +7643,7 @@ __metadata:
     "@opentelemetry/api": 1.4.0
     "@opentelemetry/auto-instrumentations-node": 0.36.0
     "@opentelemetry/core": 1.9.0
+    "@opentelemetry/exporter-trace-otlp-http": 0.35.1
     "@opentelemetry/instrumentation-express": 0.32.0
     "@opentelemetry/instrumentation-graphql": 0.33.0
     "@opentelemetry/instrumentation-http": 0.35.0
