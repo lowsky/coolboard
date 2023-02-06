@@ -1,3 +1,5 @@
+import { startTracing } from '../../server/initTracing';
+
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { ApolloServer } from '@apollo/server';
 import { startServerAndCreateNextHandler } from '@as-integrations/next';
@@ -50,6 +52,8 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  await startTracing();
+
   // do not check authentication when using graphql API locally
   // just for easier debugging/testing the gql schema ...
   if (isLocalDev) {
