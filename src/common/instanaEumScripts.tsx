@@ -1,6 +1,6 @@
 import Script from 'next/script';
 
-const NEXT_INSTANA_EUM_KEY = process.env.NEXT_INSTANA_EUM_KEY;
+const NEXT_PUBLIC_INSTANA_EUM_KEY = process.env.NEXT_PUBLIC_INSTANA_EUM_KEY;
 
 export const InstanaEumScripts = () => (
   <>
@@ -12,7 +12,7 @@ export const InstanaEumScripts = () => (
           n.q = [], n.v = 2, n.l = 1 * new Date)})(window,'InstanaEumObject','ineum');
 
           ineum('reportingUrl', 'https://eum-pink-saas.instana.rocks');
-          ineum('key', '${NEXT_INSTANA_EUM_KEY}');
+          ineum('key', '${NEXT_PUBLIC_INSTANA_EUM_KEY}');
           ineum('trackSessions');
       `}
     </Script>
