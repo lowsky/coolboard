@@ -1,4 +1,4 @@
-import { startTracing } from '../../server/initTracing';
+import { startTracing } from '../../server/openTelemetry';
 
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { ApolloServer } from '@apollo/server';
