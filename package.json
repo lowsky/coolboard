@@ -42,7 +42,7 @@
     "eslint-config-prettier": "8.7.0",
     "eslint-plugin-prettier": "4.2.1",
     "event-loop-stats": "^1.4.1",
-    "framer-motion": "10.0.2",
+    "framer-motion": "10.2.3",
     "gcstats.js": "^1.0.0",
     "graphql": "16.6.0",
     "graphql-scalars": "^1.20.1",
