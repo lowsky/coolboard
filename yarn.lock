@@ -5173,10 +5173,10 @@ __metadata:
   linkType: hard
 
 "@pothos/plugin-prisma@npm:^3.38.0":
-  version: 3.38.0
-  resolution: "@pothos/plugin-prisma@npm:3.38.0"
+  version: 3.44.0
+  resolution: "@pothos/plugin-prisma@npm:3.44.0"
   dependencies:
-    "@prisma/generator-helper": ^4.7.1
+    "@prisma/generator-helper": ^4.11.0
   peerDependencies:
     "@pothos/core": "*"
     "@prisma/client": "*"
@@ -5184,7 +5184,7 @@ __metadata:
     typescript: ">=4.7.2"
   bin:
     prisma-pothos-types: bin/generator.js
-  checksum: 141addc4ba71becac700fa33471c02fe4528414956696d24bd95e3c854d17a9f2ad2a65dd1d540faab216753a6cbb036feec2fbcbff12d047001e1e2846c5bcd
+  checksum: e2048c953ef30711b975cd7662ff21aa532eab4dbf2cd56074fd812c71351f0e3b37061aa3cf0d9b78a9e0c855b09c1d3c070c443f11d62a3d0f8cfbe7aa1ab5
   languageName: node
   linkType: hard
 
@@ -5212,14 +5212,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prisma/debug@npm:4.7.1":
-  version: 4.7.1
-  resolution: "@prisma/debug@npm:4.7.1"
+"@prisma/debug@npm:4.11.0":
+  version: 4.11.0
+  resolution: "@prisma/debug@npm:4.11.0"
   dependencies:
     "@types/debug": 4.1.7
     debug: 4.3.4
     strip-ansi: 6.0.1
-  checksum: 19fcc4806ac6277a6754857a770cb45bc8bb072294c8f6ab38113e75a68bb94fe9cd48aa2fc9e60c2144f609844b8a6b242de7cbbf3e46e464f9857efb511d49
+  checksum: 170adb225d6e8e0e0df26d441d550607c7fecb97969b47ca19264d65636564c774ba60b9cefab196bb86d358cdd06a289e2ad8d3f70201cb3becb79547343bf5
   languageName: node
   linkType: hard
 
@@ -5237,15 +5237,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prisma/generator-helper@npm:^4.7.1":
-  version: 4.7.1
-  resolution: "@prisma/generator-helper@npm:4.7.1"
+"@prisma/generator-helper@npm:^4.11.0":
+  version: 4.11.0
+  resolution: "@prisma/generator-helper@npm:4.11.0"
   dependencies:
-    "@prisma/debug": 4.7.1
+    "@prisma/debug": 4.11.0
     "@types/cross-spawn": 6.0.2
     chalk: 4.1.2
     cross-spawn: 7.0.3
-  checksum: 88b788cca984ba1263e7dd8855354fca1acf074a58af2aa36666d6451e7bf753aed0d3f2f818cd8a40840dc86007e1920072d4485e41d79fcce7cab884619c3c
+  checksum: 4d8cb919893cc22a743e625c7d077e3cbd67e4541500025d253dfd6df2452d294d05bbd0a0599007c562796badba92d57191ecfb980e3c29c906ba0038d37faf
   languageName: node
   linkType: hard
 
