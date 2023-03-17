@@ -3870,42 +3870,39 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@instana/core@npm:2.18.1":
-  version: 2.18.1
-  resolution: "@instana/core@npm:2.18.1"
+"@instana/core@npm:2.19.0":
+  version: 2.19.0
+  resolution: "@instana/core@npm:2.19.0"
   dependencies:
-    async-hook-jl: ^1.7.6
     cls-bluebird: ^2.1.0
     lru-cache: 6.0.0
     methods: ^1.1.2
     opentracing: ^0.14.5
-    redis-commands: ^1.7.0
     semver: 7.3.3
     shimmer: 1.2.1
-  checksum: 7987663d6a6da15754690c0b75f46048b0fb39aa2bd77844903ecc11493fa317b9452c531e3d3061d8c59d005cb1541676efbbfa326c265db6243255be6ea93c
+  checksum: 7274dc70669231f8bde0dec18738f4e55a30949c767fbaa71ec41d273e3ca33d0ee60e31d390e9a5293548ca77242a40b9a09439cb4fa9a3143085968ef4dbdb
   languageName: node
   linkType: hard
 
-"@instana/opentelemetry-exporter@npm:2.18.1":
-  version: 2.18.1
-  resolution: "@instana/opentelemetry-exporter@npm:2.18.1"
+"@instana/opentelemetry-exporter@npm:2.19.0":
+  version: 2.19.0
+  resolution: "@instana/opentelemetry-exporter@npm:2.19.0"
   dependencies:
-    "@instana/serverless": 2.18.1
+    "@instana/serverless": 2.19.0
     "@opentelemetry/api": 1.0.4
     "@opentelemetry/core": 1.8.0
-  checksum: d4ac71dffaaf43bfed611886c62a22271997b343cb7f2e3c0db5992b6449dd6fa6c28bfcd34476d81e3d4cc73b597a8c5c21be0d15761d2c4bdcd1e4c54fa343
+  checksum: 9354bd6707d99c9b1a9b2791971da9f2500b7b237ce563076daa1f34174af57d5e131f08d72b9ec4e21b187fc340259a224802d1b0f1475122ff8ae3ffeceec4
   languageName: node
   linkType: hard
 
-"@instana/serverless@npm:2.18.1":
-  version: 2.18.1
-  resolution: "@instana/serverless@npm:2.18.1"
+"@instana/serverless@npm:2.19.0":
+  version: 2.19.0
+  resolution: "@instana/serverless@npm:2.19.0"
   dependencies:
-    "@instana/core": 2.18.1
+    "@instana/core": 2.19.0
     agent-base: ^6.0.2
     https-proxy-agent: ^5.0.0
-    semver: 7.3.3
-  checksum: de5beb6cbe1b8b1950f51d00ee71d3116c3ebc8f370728753c948af308bc33a2dfdccaecde6b243506aad6270ad9da6f8fbf5f242c426c74ad9194af445b62f5
+  checksum: 13d87ff03aafd4f5fcb64b8fa1feeebf8611672609f70291a5593c70d7bd540a87c0fb6e085b643387b096f2e6019ae8c4b4d8cd9118d0f4ddc2479d7b571bb7
   languageName: node
   linkType: hard
 
@@ -6651,15 +6648,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"async-hook-jl@npm:^1.7.6":
-  version: 1.7.6
-  resolution: "async-hook-jl@npm:1.7.6"
-  dependencies:
-    stack-chain: ^1.3.7
-  checksum: f84421c83ad5bc4e54a3a6ad7be4fb911840a17c01e5ee3f8e4e9cd077a42c7bc206dbc6b36d52eaca5fa37f16a15f83d63135976cf3e17d5bdc2824f6002705
-  languageName: node
-  linkType: hard
-
 "async-retry@npm:^1.2.1":
   version: 1.3.3
   resolution: "async-retry@npm:1.3.3"
@@ -7426,7 +7414,7 @@ __metadata:
     "@graphql-codegen/typescript-operations": 3.0.2
     "@graphql-codegen/typescript-react-apollo": 3.3.7
     "@instana/autoprofile": ^2.15.0
-    "@instana/opentelemetry-exporter": 2.18.1
+    "@instana/opentelemetry-exporter": 2.19.0
     "@netlify/functions": 1.4.0
     "@opentelemetry/api": 1.4.0
     "@opentelemetry/auto-instrumentations-node": 0.36.3
@@ -11752,13 +11740,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"redis-commands@npm:^1.7.0":
-  version: 1.7.0
-  resolution: "redis-commands@npm:1.7.0"
-  checksum: d1ff7fbcb5e54768c77f731f1d49679d2a62c3899522c28addb4e2e5813aea8bcac3f22519d71d330224c3f2937f935dfc3d8dc65e90db0f5fe22dc2c1515aa7
-  languageName: node
-  linkType: hard
-
 "redux@npm:^4.2.0":
   version: 4.2.0
   resolution: "redux@npm:4.2.0"
@@ -12410,13 +12391,6 @@ __metadata:
   dependencies:
     minipass: ^3.1.1
   checksum: bf33174232d07cc64e77ab1c51b55d28352273380c503d35642a19627e88a2c5f160039bb0a28608a353485075dda084dbf0390c7070f9f284559eb71d01b84b
-  languageName: node
-  linkType: hard
-
-"stack-chain@npm:^1.3.7":
-  version: 1.3.7
-  resolution: "stack-chain@npm:1.3.7"
-  checksum: c2428e794a60e1f8e3b66898657d10b81ea18eefd0842d65f18bad6f53fbca597075079bbda8df5b409aebb82d2055bf9c4a8d439df18c554756ead197fc2260
   languageName: node
   linkType: hard
 
