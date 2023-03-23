@@ -12,7 +12,7 @@
     "@apollo/server-plugin-landing-page-graphql-playground": "4.0.0",
     "@as-integrations/next": "1.2.0",
     "@chakra-ui/icons": "2.0.17",
-    "@chakra-ui/react": "2.5.2",
+    "@chakra-ui/react": "2.5.3",
     "@clerk/clerk-sdk-node": "4.7.16",
     "@clerk/nextjs": "4.11.13",
     "@clerk/themes": "^1.2.20",
