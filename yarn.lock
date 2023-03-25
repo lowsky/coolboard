@@ -3802,9 +3802,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@instana/core@npm:2.19.0":
-  version: 2.19.0
-  resolution: "@instana/core@npm:2.19.0"
+"@instana/core@npm:2.20.0":
+  version: 2.20.0
+  resolution: "@instana/core@npm:2.20.0"
   dependencies:
     cls-bluebird: ^2.1.0
     lru-cache: 6.0.0
@@ -3812,29 +3812,29 @@ __metadata:
     opentracing: ^0.14.5
     semver: 7.3.3
     shimmer: 1.2.1
-  checksum: 7274dc70669231f8bde0dec18738f4e55a30949c767fbaa71ec41d273e3ca33d0ee60e31d390e9a5293548ca77242a40b9a09439cb4fa9a3143085968ef4dbdb
+  checksum: 2d57094ac403cb7212fb5f49cd0cabf54ad5f168a5eaf142a88d8f9c8e78cb4a45619d25a1aed3960635e63c3377125338b741b4ff2a3d51f4f6cf22186d1465
   languageName: node
   linkType: hard
 
-"@instana/opentelemetry-exporter@npm:2.19.0":
-  version: 2.19.0
-  resolution: "@instana/opentelemetry-exporter@npm:2.19.0"
+"@instana/opentelemetry-exporter@npm:2.20.0":
+  version: 2.20.0
+  resolution: "@instana/opentelemetry-exporter@npm:2.20.0"
   dependencies:
-    "@instana/serverless": 2.19.0
+    "@instana/serverless": 2.20.0
     "@opentelemetry/api": 1.0.4
     "@opentelemetry/core": 1.8.0
-  checksum: 9354bd6707d99c9b1a9b2791971da9f2500b7b237ce563076daa1f34174af57d5e131f08d72b9ec4e21b187fc340259a224802d1b0f1475122ff8ae3ffeceec4
+  checksum: 308dd10ab13d7d1959f5ccd1f35f89a0b4fef18e8bf98fba8a59e786fc060bb13ef0dfc8dddcec1da9a6086f26aac8756f81c17f8faae736840f5332811ee6b2
   languageName: node
   linkType: hard
 
-"@instana/serverless@npm:2.19.0":
-  version: 2.19.0
-  resolution: "@instana/serverless@npm:2.19.0"
+"@instana/serverless@npm:2.20.0":
+  version: 2.20.0
+  resolution: "@instana/serverless@npm:2.20.0"
   dependencies:
-    "@instana/core": 2.19.0
+    "@instana/core": 2.20.0
     agent-base: ^6.0.2
     https-proxy-agent: ^5.0.0
-  checksum: 13d87ff03aafd4f5fcb64b8fa1feeebf8611672609f70291a5593c70d7bd540a87c0fb6e085b643387b096f2e6019ae8c4b4d8cd9118d0f4ddc2479d7b571bb7
+  checksum: 402f5ebbfaeb223323bf7882bfa33360aa1b2f987ac9123202698ad656904ad46337bacbf668ae9c6404f002c874c9e9d64e1da099ef40853adb49b82914843f
   languageName: node
   linkType: hard
 
@@ -7403,7 +7403,7 @@ __metadata:
     "@graphql-codegen/typescript-operations": 3.0.2
     "@graphql-codegen/typescript-react-apollo": 3.3.7
     "@instana/autoprofile": ^2.15.0
-    "@instana/opentelemetry-exporter": 2.19.0
+    "@instana/opentelemetry-exporter": 2.20.0
     "@netlify/functions": 1.4.0
     "@opentelemetry/api": 1.4.1
     "@opentelemetry/auto-instrumentations-node": 0.36.4
