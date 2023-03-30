@@ -3792,13 +3792,13 @@ __metadata:
   linkType: hard
 
 "@instana/autoprofile@npm:^2.15.0":
-  version: 2.20.0
-  resolution: "@instana/autoprofile@npm:2.20.0"
+  version: 2.20.1
+  resolution: "@instana/autoprofile@npm:2.20.1"
   dependencies:
     detect-libc: ^1.0.3
     nan: ^2.14.2
     node-gyp: latest
-  checksum: 92e17e269a5f05a03a1ae658be248fbf68f28e688b061b584ba09d32fe68efbd5d7cd0add1a0c302108c8fd0e19c040b046a57b17943d1d0930412ed3bd918c9
+  checksum: 1bf7d0d7fa926cae8ea05259b9d9b1c21b0195c48c709d877b938531bc25abbfc42d900084605aa2d1690257d7059e30b07825d563bb39b2534f7c74ded6b220
   languageName: node
   linkType: hard
 
