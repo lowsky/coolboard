@@ -93,7 +93,7 @@
     "eslint-config-next": "13.2.4",
     "prettier": "2.8.7",
     "sharp": "0.32.0",
-    "typescript": "4.9.5"
+    "typescript": "5.0.3"
   },
   "browserslist": [
     ">0.2%",
