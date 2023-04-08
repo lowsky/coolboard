@@ -1,14 +1,14 @@
 #if 0 == echo VERCEL_GITHUB_DEPLOYMENT $VERCEL_GITHUB_DEPLOYMENT
 # exit ...
 
-env | sort -u |grep -v SECRET
+env | sort -u |grep -vi SECRET|grep -vi TOKEN
 
 echo VERCEL_GITHUB_COMMIT_SHA: commit: $VERCEL_GITHUB_COMMIT_SHA
 echo VERCEL_GITHUB_COMMIT_REF: branch: $VERCEL_GITHUB_COMMIT_REF
 echo VERCEL_URL:  $VERCEL_URL
 
 # token: "trigger-from-netlify-hook"
-CIRCLE_API_USER_TOKEN=1851154c07ebcb2a01c99a5851a79fe9e8ca893c
+# old: CIRCLE_API_USER_TOKEN=1851154c07ebcb2a01c99a5851a79fe9e8ca893c
 
 #COMMIT
 #VERCEL_GITHUB_COMMIT_SHA=b0d003070bbbd81bf1e8b15f3cd76cd389b13d72
@@ -30,7 +30,8 @@ echo triggering url : $URL
 echo
 
 curl --request POST \
-  -u ${CIRCLE_API_USER_TOKEN}: $URL \
+  --header "Circle-Token: $CIRCLE_API_USER_TOKEN" \
+  $URL \
   --header 'Content-Type: application/json' \
   --data '{
 	"branch": "'$BRANCH'",
