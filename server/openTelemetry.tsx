@@ -17,7 +17,8 @@ import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http';
 // Import the Instana OpenTelemetry Exporter
 const { InstanaExporter } = require('@instana/opentelemetry-exporter');
 
-import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node';
+// might be obsolete: import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node';
+
 import { GraphQLInstrumentation } from '@opentelemetry/instrumentation-graphql';
 import { HttpInstrumentation } from '@opentelemetry/instrumentation-http';
 
@@ -48,14 +49,14 @@ const sdk = new opentelemetry.NodeSDK({
   instrumentations: [
     new HttpInstrumentation(),
     new GraphQLInstrumentation(),
-    getNodeAutoInstrumentations({
-      '@opentelemetry/instrumentation-fs': { enabled: false },
-    }),
+    // This was already installed.
+    // getNodeAutoInstrumentations({ '@opentelemetry/instrumentation-fs': { enabled: false }, }),
+    // Is it still needed?
+    // 🤷
   ],
-})
-  .start()
-  .then(() => console.log('Tracing initialized'));
+});
+sdk.start();
 
 export async function startTracing() {
-  return sdk.catch((error) => console.log('Error initializing tracing', error));
+  console.log('Tracing (has already been) initialized');
 }
