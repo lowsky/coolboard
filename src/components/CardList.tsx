@@ -17,7 +17,7 @@ import {
   useEditableControls,
 } from '@chakra-ui/react';
 import { AddIcon, EditIcon, HamburgerIcon } from '@chakra-ui/icons';
-import { FaEdit, FaTrash } from 'react-icons/fa';
+import { FaTrash } from 'react-icons/fa';
 
 import Card, { dndItemType } from './Card';
 
@@ -57,11 +57,6 @@ const CardListWithoutDnd = (props) => {
           name={name}
           listId={id}
           renameListMutation={renameListMutation}>
-          <CardListButton
-            leftIcon={<FaEdit color="green" />}
-            onButtonClick={() => {}}>
-            delete list
-          </CardListButton>
           <CardListButton
             leftIcon={<FaTrash color="red" />}
             onButtonClick={() => deleteListWithId(id)}>
