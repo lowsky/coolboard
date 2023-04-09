@@ -21,6 +21,7 @@ import { FullVerticalContainer } from '../common/FullVerticalContainer';
 import { CreateBoardModal } from './CreateBoardModal';
 
 import styles from './Boards.module.css';
+import { ApolloCache } from '@apollo/client';
 
 const BoardListItem = ({ name, id, deleteBoard }) => {
   const [deleting, setDeleting] = useState(false);
@@ -68,6 +69,28 @@ const BoardList = ({ boards, deleteBoard }) => (
   </List>
 );
 
+function overrideCachedUserBoardsRemovingBoard(
+  userBoardsData: UserBoardsQuery,
+  boardId,
+  store: ApolloCache<any>
+) {
+  const me = userBoardsData.me;
+  if (me?.boards) {
+    const oldBoards = me.boards;
+    const newUserBoards = {
+      ...userBoardsData,
+      me: {
+        ...me,
+        boards: oldBoards.filter((board) => board?.id !== boardId),
+      },
+    };
+    store.writeQuery({
+      query: UserBoardsDocument,
+      data: newUserBoards,
+    });
+  }
+}
+
 export const Boards = () => {
   const { loading, error, data, refetch } = useUserBoardsQuery();
   const [deleteBoard] = useDeleteBoardMutation();
@@ -76,7 +99,7 @@ export const Boards = () => {
     onCompleted: () => refetch(),
   });
 
-  if (loading) {
+  if (loading || data?.me?.boards === undefined) {
     return (
       <FullVerticalContainer>
         <Segment textAlign="center">
@@ -98,14 +121,20 @@ export const Boards = () => {
     );
   }
 
+  const { boards } = data.me;
+
   return (
     <FullVerticalContainer>
       <Segment textAlign="center">
-        <h1>Your Boards</h1>
+        {boards.length === 0 ? (
+          <span>You can create new boards now!</span>
+        ) : (
+          <h1>Your Boards</h1>
+        )}
         <Container data-cy="boards-list" textAlign="left">
-          {data?.me?.boards && data?.me?.boards?.length > 0 ? (
+          {boards?.length > 0 && (
             <BoardList
-              boards={data.me.boards}
+              boards={boards}
               deleteBoard={(id) => {
                 return deleteBoard({
                   variables: { id },
@@ -113,30 +142,11 @@ export const Boards = () => {
                     const readData = store.readQuery({
                       query: UserBoardsDocument,
                     }) as UserBoardsQuery;
-
-                    if (readData.me?.boards) {
-                      const newData = {
-                        ...readData,
-                        me: {
-                          ...readData.me,
-                          boards: readData.me.boards?.filter(
-                            (board) => board?.id !== id
-                          ),
-                        },
-                      };
-                      store.writeQuery({
-                        query: UserBoardsDocument,
-                        data: newData,
-                      });
-                    }
+                    overrideCachedUserBoardsRemovingBoard(readData, id, store);
                   },
                 });
               }}
             />
-          ) : (
-            <span>
-              There a no boards, yet. You can create new boards now...
-            </span>
           )}
         </Container>
       </Segment>
