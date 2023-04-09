@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "cypress": "12.9.0",
+    "playwright-webkit": "1.32.2",
     "typescript": "5.0.4"
   },
   "scripts": {

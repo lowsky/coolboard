@@ -2,6 +2,7 @@ const { defineConfig } = require('cypress');
 const assert = require('assert');
 
 module.exports = defineConfig({
+  experimentalWebKitSupport: true,
   chromeWebSecurity: true,
   projectId: '8p1ybc',
   defaultCommandTimeout: 2000,
