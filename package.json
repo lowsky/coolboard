@@ -84,7 +84,7 @@
     "@graphql-codegen/typescript-operations": "3.0.3",
     "@graphql-codegen/typescript-react-apollo": "3.3.7",
     "@opentelemetry/exporter-trace-otlp-http": "0.37.0",
-    "@types/react": "18.0.34",
+    "@types/react": "18.0.35",
     "@types/react-dom": "18.0.11",
     "@types/zen-observable": "0.8.3",
     "@typescript-eslint/parser": "5.58.0",
