@@ -391,7 +391,7 @@ __metadata:
   resolution: "coolboard-smoketests@workspace:."
   dependencies:
     cypress: 12.9.0
-    playwright-webkit: 1.32.2
+    playwright-webkit: 1.32.3
     typescript: 5.0.4
   languageName: unknown
   linkType: soft
@@ -1118,23 +1118,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"playwright-core@npm:1.32.2":
-  version: 1.32.2
-  resolution: "playwright-core@npm:1.32.2"
+"playwright-core@npm:1.32.3":
+  version: 1.32.3
+  resolution: "playwright-core@npm:1.32.3"
   bin:
     playwright: cli.js
-  checksum: ff000cbf280e5d558fe70fd3edf14910a2e86ec68b04e28327176268345be7b3f88a5d22d78e8dae677dd633dce6cd493237df199773b55312f2ae1ab85d711f
+  checksum: 7ea091c41a7d1bb97b445bc541a85b123ffcf167bcc00fb7e13e9079f06c92f59fd27caf9d1c1d7e0054f2b5765d1a16d198833c2be7266cebb9dbb916cd90f4
   languageName: node
   linkType: hard
 
-"playwright-webkit@npm:1.32.2":
-  version: 1.32.2
-  resolution: "playwright-webkit@npm:1.32.2"
+"playwright-webkit@npm:1.32.3":
+  version: 1.32.3
+  resolution: "playwright-webkit@npm:1.32.3"
   dependencies:
-    playwright-core: 1.32.2
+    playwright-core: 1.32.3
   bin:
     playwright: cli.js
-  checksum: 11be19e56f5d0c09e7df349cf3a22c403524c27e91affa0b68f39bd30ebb4475ce92185c44d1fe5e620977c8375500d38f1b4a2b123aafa43409a2351b3ba47b
+  checksum: c257c951a312be028f531bbb06c254389edc03ddcffcf45fb59d0c8d27838d4cce9b128762d800bc41ed34126fb85b2c344f5fdf872a8945e03adb108b635206
   languageName: node
   linkType: hard
 
