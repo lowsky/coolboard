@@ -2440,11 +2440,11 @@ __metadata:
   linkType: hard
 
 "@clerk/themes@npm:^1.2.20":
-  version: 1.6.0
-  resolution: "@clerk/themes@npm:1.6.0"
+  version: 1.6.1
+  resolution: "@clerk/themes@npm:1.6.1"
   peerDependencies:
     react: ">=16"
-  checksum: f7ed9513b10f307d84825d18e4de6270d323554ad2be9856af4ae1de1dc2682af2bcea7a470531f7ac09571b40124c312f753f789f1a2e3a9c667901d4059e3f
+  checksum: 3371b385d00e8eebb301061554f0a9cd44e6b3831826f2f93cb7db3c979228ef97ad53dd29ea60329de0a174245e05faad0ee3080f98ab8a0776780e13727a07
   languageName: node
   linkType: hard
 
