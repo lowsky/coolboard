@@ -3,20 +3,15 @@
 
 import Loggable = Cypress.Loggable;
 import Timeoutable = Cypress.Timeoutable;
-import { LogAndWaitLong, password, userLogin } from '../support/e2e';
+import {
+  isProduction,
+  LogAndWaitLong,
+  password,
+  userLogin,
+  WaitVeryLong,
+} from '../support/e2e';
 
-const WaitVeryLong = {
-  log: true,
-  timeout: 5000 * 4,
-};
-
-const isMainBranch = Cypress.env('isMainBranch');
-const newBoardName = Cypress.env('branch');
-
-before(() => {
-  cy.log('Testing project git branch: ' + Cypress.env('branch'));
-  cy.log('Testing project git branch is main ?' + isMainBranch);
-});
+const newBoardName = Cypress.env('branch') ?? 'missing-branch-env';
 
 const _boardListContainer = () => cy.dataCy('board-container-inner');
 
@@ -36,10 +31,15 @@ const getBoardsList = () => {
     .should('exist');
 };
 
+function getBoardListItem(name: string) {
+  return getBoardsList().find(
+    '[data-cy="board-list-item_' + name + '"]',
+    LogAndWaitLong
+  );
+}
+
 const getBoardsList_FirstEntry = (name: string) => {
-  return getBoardsList()
-    .find('[data-cy="board-list-item_' + name + '"]', LogAndWaitLong)
-    .first();
+  return getBoardListItem(name).first();
 };
 
 function logout() {
@@ -49,6 +49,9 @@ function logout() {
 }
 
 describe('Test coolboard', () => {
+  before(() => {
+    cy.log('Testing production page? ' + isProduction);
+  });
   beforeEach(() => {
     cy.login(userLogin, password);
     cy.visit('/boards');
@@ -133,15 +136,13 @@ describe('Test coolboard', () => {
       })
       .then(() => {
         // this took some time typically, so need to wait longer
-        getBoardsList()
-          .contains(newBoardName, LogAndWaitLong)
-          .should('not.exist');
+        getBoardListItem(newBoardName).should('not.exist');
       });
   });
 
   it('user can log-out', () => {
     logout();
-    cy.contains('Log in')
+    cy.contains('Log in');
     cy.contains('Please, login to see your boards.');
   });
 });

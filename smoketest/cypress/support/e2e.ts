@@ -7,7 +7,7 @@ declare global {
   namespace Cypress {
     interface Chainable<Subject> {
       /**
-       * Custom command to select DOM element by data-cy attribute.
+       * Custom command to select the DOM element by data-cy attribute.
        * @example cy.dataCy('greeting') finds  <div data-cy="greeting">
        */
       dataCy(
@@ -43,12 +43,15 @@ Cypress.on('uncaught:exception', (error, runnable, promise) => {
   }
 });
 
-// Convert this to a module instead of script (allows import/export)
+// Convert this to a module instead of a script to enable import/export
 export {};
 
-export const login = (userLogin: string, password: string) => {
-  return cy.session(
-    'someSessionId',
+export const login = (
+  userLogin: string,
+  password: string
+): Cypress.Chainable<null> =>
+  cy.session(
+    'coolboardSessionId',
     () => {
       cy.visit('/boards')
         .contains('Log in', {
@@ -63,20 +66,22 @@ export const login = (userLogin: string, password: string) => {
       cacheAcrossSpecs: true,
     }
   );
-};
 
-export const isMainBranch = Cypress.env('isMainBranch');
+export const isProduction =
+  Cypress.config().baseUrl === 'https://www.coolboard.fun';
 
-export const userLogin = isMainBranch
-  ? Cypress.env('MAIN_LOGIN')
-  : Cypress.env('LOGIN');
-export const password = isMainBranch
-  ? Cypress.env('MAIN_PASSWORD')
-  : Cypress.env('PASSWORD');
+const credPrefix = isProduction ? 'PRODUCTION_' : '';
+export const userLogin = Cypress.env(credPrefix + 'LOGIN');
+export const password = Cypress.env(credPrefix + 'PASSWORD');
 
 export const LogAndWaitLong = {
   log: true,
   timeout: 8000,
+};
+
+export const WaitVeryLong = {
+  log: true,
+  timeout: 5000 * 4,
 };
 
 function fillLoginForm(
@@ -89,7 +94,7 @@ function fillLoginForm(
     log: false,
   });
 
-  // helps to wait for authentication process of redirecting with to the /callback url
+  // helps to wait for the authentication process of redirecting with to the /callback url
   return cy
     .wait(1000) //
     .url(LogAndWaitLong);
