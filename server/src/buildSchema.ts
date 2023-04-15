@@ -128,7 +128,7 @@ const ListUpdateInput = builder.inputType('ListUpdateInput', {
 const CardUpdateInput = builder.inputType('CardUpdateInput', {
   fields: (t) => ({
     name: t.string({ required: true }),
-    description: t.string({ required: false }),
+    description: t.string({ required: true }),
   }),
 });
 
