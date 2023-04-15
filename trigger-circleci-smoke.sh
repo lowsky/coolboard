@@ -18,6 +18,12 @@ BRANCH=$VERCEL_GITHUB_COMMIT_REF
 
 #SUT_URL=https://coolboard-790uxmthz.vercel.app/
 TEST_URL=https://$VERCEL_URL
+
+if [ "${BRANCH}" == "main" ]; then
+  echo testing main page: www.coolboard.fun
+  // no TEST_URL="https://www.coolboard.fun"
+fi
+
 echo
 echo testing "$TEST_URL"
 echo
