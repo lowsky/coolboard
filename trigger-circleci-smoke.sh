@@ -21,7 +21,7 @@ TEST_URL=https://$VERCEL_URL
 
 if [ "${BRANCH}" == "main" ]; then
   echo testing main page: www.coolboard.fun
-  // no TEST_URL="https://www.coolboard.fun"
+  TEST_URL="https://www.coolboard.fun"
 fi
 
 echo
