@@ -24,7 +24,7 @@ workflows:
 jobs:
   check:
     docker:
-      - image:  cypress/base:18.12.1
+      - image:  cypress/base:18.16.0
     parallelism: 1
     steps:
       - checkout
@@ -41,7 +41,7 @@ jobs:
             - ~/smoketest/.cache
   build:
     docker:
-      - image: cypress/base:18.12.1
+      - image: cypress/base:18.16.0
     steps:
       - checkout
       - run:
