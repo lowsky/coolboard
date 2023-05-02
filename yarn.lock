@@ -5235,12 +5235,12 @@ __metadata:
   linkType: hard
 
 "@pothos/plugin-with-input@npm:^3.9.7":
-  version: 3.10.0
-  resolution: "@pothos/plugin-with-input@npm:3.10.0"
+  version: 3.10.1
+  resolution: "@pothos/plugin-with-input@npm:3.10.1"
   peerDependencies:
     "@pothos/core": "*"
     graphql: ">=15.1.0"
-  checksum: 3cd19bf0dff23517a92f71b5818f9a7aaec2130fea8591d6b165ea9950af841f019a931523a8096e7a06a3ec432d4f2296c2b56531a56309cb36b0f212058dba
+  checksum: 12f6d2cd89a605f338d4a8fb18e065d3f69a1acbb2e387c7feeb23e447ccc516f503434ca06638dfc2cda7442db9e16910c46547f18e8c12d852f4edef8a5534
   languageName: node
   linkType: hard
 
