@@ -7467,7 +7467,7 @@ __metadata:
     eslint-config-prettier: 8.8.0
     eslint-plugin-prettier: 4.2.1
     event-loop-stats: ^1.4.1
-    framer-motion: 10.12.4
+    framer-motion: 10.12.6
     gcstats.js: ^1.0.0
     graphql: 16.6.0
     graphql-scalars: ^1.20.1
@@ -8747,9 +8747,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"framer-motion@npm:10.12.4":
-  version: 10.12.4
-  resolution: "framer-motion@npm:10.12.4"
+"framer-motion@npm:10.12.6":
+  version: 10.12.6
+  resolution: "framer-motion@npm:10.12.6"
   dependencies:
     "@emotion/is-prop-valid": ^0.8.2
     tslib: ^2.4.0
@@ -8764,7 +8764,7 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: c131b546539937b5dbec6a89f2e3db946d5127f1cbf2f88268ef75089df30e81cdd0f4a5786f84b1bc98397d43a99aa6f7e187e6bba178548a9eeb3d39df7b91
+  checksum: 50b59de3bc0cd17d89a96fed3d066a76be2997f11306d3a9d1ab502cf56dd7c0d903848bc6318679b74b6e04b33bb92c5de555d8d224a467df2f92a47e42cbaa
   languageName: node
   linkType: hard
 
