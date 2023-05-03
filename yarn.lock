@@ -5219,8 +5219,8 @@ __metadata:
   linkType: hard
 
 "@pothos/plugin-prisma@npm:^3.38.0":
-  version: 3.48.0
-  resolution: "@pothos/plugin-prisma@npm:3.48.0"
+  version: 3.49.1
+  resolution: "@pothos/plugin-prisma@npm:3.49.1"
   dependencies:
     "@prisma/generator-helper": ^4.11.0
   peerDependencies:
@@ -5230,7 +5230,7 @@ __metadata:
     typescript: ">=4.7.2"
   bin:
     prisma-pothos-types: bin/generator.js
-  checksum: 63fc911ce9c7e13ce3597faaf3f1f262dac55e390098d984e71a8e70810b7b5d1d3c6a943aa4807fc6d0e2a409d126a72f2002d18c64ad707bdb3ef13962ee60
+  checksum: 267b8ad65dee68493e65efbe03ca374c6d6693279a2daa03c5cbfddb48b95ddd4a0cb819a66639795a20d052b59be45d7eb371ef6ff2b286633b88ef0ad5e9a7
   languageName: node
   linkType: hard
 
