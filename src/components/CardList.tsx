@@ -216,10 +216,10 @@ function EditableControls() {
   const { isEditing, getEditButtonProps } = useEditableControls();
   return isEditing ? null : (
     <IconButton
+      {...getEditButtonProps()}
       aria-label="edit the list title"
       size="sm"
       icon={<EditIcon />}
-      {...getEditButtonProps()}
     />
   );
 }

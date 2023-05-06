@@ -11,8 +11,8 @@ export default {
     }: {
       where: { id: string };
       data: {
-        name?: string | null;
-        description?: string | null;
+        name: string;
+        description: string | null;
       };
     },
     ctx: Ctxt
@@ -24,7 +24,7 @@ export default {
 
     return await prisma.card.update({
       data: {
-        name: name ?? undefined,
+        name,
         description,
         updatedBy: { connect: { id: userId } },
       },

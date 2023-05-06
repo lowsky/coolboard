@@ -2,8 +2,6 @@ import clerk, { User as ClerkUser } from '@clerk/clerk-sdk-node';
 import { getAuth } from '@clerk/nextjs/server';
 import { AuthenticationError } from 'apollo-server-errors';
 
-import { User } from '@prisma/client';
-
 import { injectUserIdByAuth0id, userIdByAuth0id } from './userIdByAuth0id';
 import { createNewUser } from './registerNewUser';
 import { isLocalDev } from './logging';
@@ -13,7 +11,7 @@ export const getUserId = async (ctx: Ctxt): Promise<string> => {
   const userToken = await verifyUserIsAuthenticatedAndRetrieveUserToken(ctx);
   if (userToken) {
     const auth0id = userToken.sub.split('|')[1];
-    const userId = await userIdByAuth0id(auth0id, (auth0id: string) =>
+    const userId = await userIdByAuth0id(auth0id, (auth0id) =>
       ctx.prisma.user.findUnique({
         where: {
           auth0id,
@@ -35,8 +33,9 @@ export const getUserId = async (ctx: Ctxt): Promise<string> => {
         throw new AuthenticationError('User with this email already exists');
       }
 
-      const user: User = await createNewUser(userToken, ctx.prisma.user.create);
+      const user = await createNewUser(userToken, ctx.prisma.user.create);
       if (isLocalDev) console.log('--- created prisma user', user);
+
       const { id } = user;
       if (id) injectUserIdByAuth0id(user.id, auth0id);
       return id;
@@ -48,15 +47,15 @@ export const getUserId = async (ctx: Ctxt): Promise<string> => {
 
 export const userTokenFromClerkSessionUserId = (
   user: ClerkUser,
-  identity: string = 'clerk'
+  identity = 'clerk'
 ): UserToken => {
   const email = user.emailAddresses.find(Boolean)?.emailAddress ?? undefined;
-  return {
-    email: email,
-    name: email,
-    sub: identity + '|' + user.id,
-    picture: user.profileImageUrl ?? undefined,
-  };
+  const picture = user.profileImageUrl ?? undefined;
+  const sub = identity + '|' + user.id;
+  if (email) {
+    return { name: email, email, sub, picture };
+  }
+  return { sub, picture };
 };
 
 type UserToken = {
@@ -75,7 +74,8 @@ export const verifyAndRetrieveAuthSubject = async (
 ): Promise<string> => {
   const { userId } = getAuth(ctx.req);
   if (userId) {
-    console.log('verifyAndRetrieveAuthSubject: userid:', userId);
+    if (isLocalDev)
+      console.log('verifyAndRetrieveAuthSubject: userid:', userId);
     // not really needed: const user = (await clerk.users.getUser(userId));
     return userId;
   }
@@ -87,10 +87,11 @@ export async function verifyUserIsAuthenticatedAndRetrieveUserToken(
 ): Promise<UserToken> {
   const { userId } = getAuth(ctx.req);
   if (userId) {
-    console.log(
-      'verifyUserIsAuthenticatedAndRetrieveUserToken: userid:',
-      userId
-    );
+    if (isLocalDev)
+      console.log(
+        'verifyUserIsAuthenticatedAndRetrieveUserToken: userid:',
+        userId
+      );
 
     return userTokenFromClerkSessionUserId(await clerk.users.getUser(userId));
   }

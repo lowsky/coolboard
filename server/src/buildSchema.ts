@@ -262,8 +262,21 @@ builder.mutationField('updateCard', (t) =>
       where: t.arg({ type: CardWhereUniqueInput, required: true }),
       data: t.arg({ type: CardUpdateInput, required: true }),
     },
-    resolve: async (_parent, _root, { where, data }, ctx, _info) =>
-      resolvers.Mutation.updateCard(_parent, { where, data }, ctx),
+    resolve: async (_parent, _root, { where, data }, ctx, _info) => {
+      const { name, description = null } = data;
+      const { id } = where;
+      return resolvers.Mutation.updateCard(
+        _parent,
+        {
+          where: { id },
+          data: {
+            name,
+            description,
+          },
+        },
+        ctx
+      );
+    },
   })
 );
 

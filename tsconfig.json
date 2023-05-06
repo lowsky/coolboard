@@ -1,5 +1,8 @@
 {
   "compilerOptions": {
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "exactOptionalPropertyTypes": true,
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
     "alwaysStrict": true,

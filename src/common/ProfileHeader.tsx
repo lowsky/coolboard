@@ -25,19 +25,16 @@ import { LoginButton } from './LoginButton';
 
 const ProfileHeaderContainer = ({
   children,
-  isBoardsPage,
+  isBoardsPage = false,
 }: {
   children: ReactNode;
   isBoardsPage?: boolean;
 }) => (
   <Container maxW="100%" variant="header">
-    <Box
-      data-cy="profile-header"
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        placeContent: 'space-between',
-      }}>
+    <Flex
+      alignItems="center"
+      placeContent="space-between"
+      data-cy="profile-header">
       <Box gap="2rem" display="flex">
         {isBoardsPage && <Link href="/">Home</Link>}
         {!isBoardsPage && <Link href="/boards">Boards</Link>}
@@ -45,11 +42,15 @@ const ProfileHeaderContainer = ({
       </Box>
 
       {children}
-    </Box>
+    </Flex>
   </Container>
 );
 
-export const ProfileHeader = ({ isBoardsPage }: { isBoardsPage?: boolean }) => {
+export const ProfileHeader = ({
+  isBoardsPage = false,
+}: {
+  isBoardsPage?: boolean;
+}) => {
   const apolloClient = useApolloClient();
   const { reload } = useRouter();
 
@@ -78,7 +79,7 @@ export const ProfileHeader = ({ isBoardsPage }: { isBoardsPage?: boolean }) => {
             <Button
               data-cy="sign-out-button"
               leftIcon={<FaSignOutAlt />}
-              color={'unset'}>
+              color="unset">
               Sign Out
             </Button>
           </SignOutButton>

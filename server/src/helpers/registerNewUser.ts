@@ -30,7 +30,7 @@ export const createNewUser = async (
 
   const userData: Prisma.UserCreateArgs = {
     data: {
-      identity,
+      identity: identity ?? null,
       auth0id,
       name,
       email: email ?? name,

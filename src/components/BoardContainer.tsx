@@ -99,14 +99,12 @@ export const DelAllListsButton = ({
   return (
     <Button
       onClick={showWarningThenCallAction}
-      color={showWarning ? 'red' : undefined}
+      color={showWarning ? 'red' : ''}
       flexShrink={0}
       flexGrow={0}
       alignSelf={'flex-start'}>
       {showWarning && <span>This will be permanent!</span>}
-      <Icon
-        color={showWarning ? undefined : 'red'}
-        ml={showWarning ? '1em' : undefined}>
+      <Icon color={showWarning ? '' : 'red'} ml={showWarning ? '1em' : ''}>
         <FaTrash />
       </Icon>
       {children}
