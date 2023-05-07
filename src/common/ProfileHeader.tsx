@@ -79,13 +79,11 @@ export const ProfileHeader = ({
               await apolloClient.clearStore?.();
               await signOut();
               await replace('/boards');
-            }}>
-            <Button
-              data-cy="sign-out-button"
-              leftIcon={<FaSignOutAlt />}
-              color="unset">
-              Sign Out
-            </Button>
+            }}
+            data-cy="sign-out-button"
+            leftIcon={<FaSignOutAlt />}
+            color="unset">
+            Sign Out
           </Button>
         </Flex>
       </SignedIn>
