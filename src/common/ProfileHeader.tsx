@@ -16,7 +16,7 @@ import {
   ClerkLoading,
   SignedIn,
   SignedOut,
-  SignOutButton,
+  useClerk,
   UserButton,
 } from '@clerk/nextjs';
 import { dark } from '@clerk/themes';
@@ -51,8 +51,10 @@ export const ProfileHeader = ({
 }: {
   isBoardsPage?: boolean;
 }) => {
+  const { replace } = useRouter();
+
   const apolloClient = useApolloClient();
-  const { reload } = useRouter();
+  const { signOut } = useClerk();
 
   const { colorMode } = useColorMode();
   const clerkAppearance = colorMode === 'dark' ? { baseTheme: dark } : {};
@@ -71,10 +73,12 @@ export const ProfileHeader = ({
       <SignedIn>
         <Flex alignItems="center" gap="0.5em">
           <UserButton appearance={clerkAppearance} showName />
-          <SignOutButton
-            signOutCallback={async () => {
+          <Button
+            onClick={async (event) => {
+              event.preventDefault();
               await apolloClient.clearStore?.();
-              reload();
+              await signOut();
+              await replace('/boards');
             }}>
             <Button
               data-cy="sign-out-button"
@@ -82,7 +86,7 @@ export const ProfileHeader = ({
               color="unset">
               Sign Out
             </Button>
-          </SignOutButton>
+          </Button>
         </Flex>
       </SignedIn>
     </ProfileHeaderContainer>
