@@ -144,14 +144,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@apollo/server-plugin-landing-page-graphql-playground@npm:4.0.0":
-  version: 4.0.0
-  resolution: "@apollo/server-plugin-landing-page-graphql-playground@npm:4.0.0"
+"@apollo/server-plugin-landing-page-graphql-playground@npm:4.0.1":
+  version: 4.0.1
+  resolution: "@apollo/server-plugin-landing-page-graphql-playground@npm:4.0.1"
   dependencies:
     "@apollographql/graphql-playground-html": 1.6.29
   peerDependencies:
     "@apollo/server": ^4.0.0
-  checksum: cae96c7db61fe4699e2f5cc701fae3027260668a025cb2108219744cdb8f6bfdf22284bdf9e2ce946f1983168963b11df637aec1e44f046f3824de2863a1db82
+  checksum: 1817c0615938f47d5da2de661131f49470c68027cec40e9207d74d0b7877360333ebfe08b4f7754bba3037c5b104766021b0c0d438ce5e2dd7cad6fabd5d6216
   languageName: node
   linkType: hard
 
@@ -7522,7 +7522,7 @@ __metadata:
   dependencies:
     "@apollo/client": 3.7.14
     "@apollo/server": 4.7.1
-    "@apollo/server-plugin-landing-page-graphql-playground": 4.0.0
+    "@apollo/server-plugin-landing-page-graphql-playground": 4.0.1
     "@as-integrations/next": 2.0.0
     "@chakra-ui/icons": 2.0.19
     "@chakra-ui/react": 2.6.1
