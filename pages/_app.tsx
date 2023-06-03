@@ -75,7 +75,6 @@ https://chakra-ui.com/docs/styled-system/theming/customize-theme#customizing-com
     },
   });
 
-  // @ts-ignore
   return (
     <>
       <Head>
@@ -93,22 +92,7 @@ https://chakra-ui.com/docs/styled-system/theming/customize-theme#customizing-com
             flex: 1,
           }}>
           <ClerkProvider {...pageProps}>
-            {
-              /*
-              TS2786: 'Component' cannot be used as a JSX component.
-
-              Its element type 'Component<any, any, any> | ReactElement<any, any> | null' is not a valid JSX element.
-              Type 'Component<any, any, any>' is not assignable to type 'Element | ElementClass | null'.
-              Type 'Component<any, any, any>' is not assignable to type 'ElementClass'.
-              The types returned by 'render()' are incompatible between these types.
-              Type 'ReactElement<any, string | JSXElementConstructor<any>>' is not assignable to type 'ReactNode'.
-              Property 'children' is missing in type 'ReactElement<any, string | JSXElementConstructor<any>>' but required
-                ... in type 'ReactPortal'.
-                            ---^^^ ReactPortal ???
-              */
-              // @ts-expect-error TS2786: 'Component' cannot be used as a JSX component.
-              <Component {...pageProps} />
-            }
+            <Component {...pageProps} />
           </ClerkProvider>
         </div>
 
