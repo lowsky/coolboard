@@ -2409,6 +2409,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@clerk/backend@npm:^0.23.5":
+  version: 0.23.5
+  resolution: "@clerk/backend@npm:0.23.5"
+  dependencies:
+    "@clerk/types": ^3.46.0
+    "@peculiar/webcrypto": 1.4.1
+    "@types/node": 16.18.6
+    deepmerge: 4.2.2
+    node-fetch-native: 1.0.1
+    snakecase-keys: 5.4.4
+    tslib: 2.4.1
+  checksum: eb16b63ca6a01f53f9b47a7273e6400672e627dba0b07ee567f4fe8a66d41272381480ebeda80c0795d6d1f44a967b0e77b01468c7b616c03de22ea2a0b3deae
+  languageName: node
+  linkType: hard
+
 "@clerk/clerk-react@npm:^4.20.4":
   version: 4.20.4
   resolution: "@clerk/clerk-react@npm:4.20.4"
@@ -2423,7 +2438,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/clerk-sdk-node@npm:4.10.11, @clerk/clerk-sdk-node@npm:^4.10.11":
+"@clerk/clerk-sdk-node@npm:4.10.12":
+  version: 4.10.12
+  resolution: "@clerk/clerk-sdk-node@npm:4.10.12"
+  dependencies:
+    "@clerk/backend": ^0.23.5
+    "@clerk/types": ^3.46.0
+    "@types/cookies": 0.7.7
+    "@types/express": 4.17.14
+    "@types/node-fetch": 2.6.2
+    camelcase-keys: 6.2.2
+    cookie: 0.5.0
+    snakecase-keys: 3.2.1
+    tslib: 2.4.1
+  checksum: a1c48176fec2f6d05ad2fe8060c78a59afe2a454123bbbeead24a3462868fbd380f2ae016b8945c9fccc2958df8101a38ffff034d9b1eec390d40f21aba493b2
+  languageName: node
+  linkType: hard
+
+"@clerk/clerk-sdk-node@npm:^4.10.11":
   version: 4.10.11
   resolution: "@clerk/clerk-sdk-node@npm:4.10.11"
   dependencies:
@@ -2486,6 +2518,15 @@ __metadata:
   dependencies:
     csstype: 3.1.1
   checksum: 96a91bb1677018a7a8c360302644dcf6402592dd83c18a119bac4da4a89e90f35488317ddce6b12652f89464c2b07345159a5d923631616fdb1aa5dbf2ebe70c
+  languageName: node
+  linkType: hard
+
+"@clerk/types@npm:^3.46.0":
+  version: 3.46.0
+  resolution: "@clerk/types@npm:3.46.0"
+  dependencies:
+    csstype: 3.1.1
+  checksum: 8d277a29f64126257d3684d5f72332c7f2f47517510ad28c44ce7515afa70a318b235c851746823bff3a1159fc0432730ef8f403f3fade0b65be75914e5354f5
   languageName: node
   linkType: hard
 
@@ -7269,7 +7310,7 @@ __metadata:
     "@as-integrations/next": 2.0.0
     "@chakra-ui/icons": 2.0.19
     "@chakra-ui/react": 2.7.1
-    "@clerk/clerk-sdk-node": 4.10.11
+    "@clerk/clerk-sdk-node": 4.10.12
     "@clerk/nextjs": 4.21.7
     "@clerk/themes": ^1.2.20
     "@emotion/react": 11.11.1
