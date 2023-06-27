@@ -3614,14 +3614,14 @@ __metadata:
   linkType: hard
 
 "@instana/autoprofile@npm:^2.15.0":
-  version: 2.25.2
-  resolution: "@instana/autoprofile@npm:2.25.2"
+  version: 2.25.3
+  resolution: "@instana/autoprofile@npm:2.25.3"
   dependencies:
-    "@instana/core": 2.25.2
+    "@instana/core": 2.25.3
     detect-libc: ^1.0.3
     nan: ^2.14.2
     node-gyp: latest
-  checksum: aff31294e25468fcf47629fbd99dd205acbafdf29df39aa8c66a8d10d7a0bd22c37da20d6fbb8484578e692556c8e6aa854f7ce00ebd2ea0ecd3d57f4723ff7b
+  checksum: 9780202493d72550498522d31956f7636fa953d5530bea511f4fbc57cfeef82f7a1aef922beb90c4a275a40e76776dd531802ee852aa064d8b39ecc55f2d0364
   languageName: node
   linkType: hard
 
@@ -3642,6 +3642,26 @@ __metadata:
     semver: 7.3.3
     shimmer: 1.2.1
   checksum: 1d70da64db1e7a026e570a9ef421ac7eff83948f6fe636e449d99008c3b8d0f7afae4fc392be1fe0d8ab651d1e0a8945e703551324877f40d4844d6665ef8201
+  languageName: node
+  linkType: hard
+
+"@instana/core@npm:2.25.3":
+  version: 2.25.3
+  resolution: "@instana/core@npm:2.25.3"
+  dependencies:
+    "@opentelemetry/api": 1.4.1
+    "@opentelemetry/context-async-hooks": 1.9.1
+    "@opentelemetry/instrumentation-fs": 0.7.3
+    "@opentelemetry/instrumentation-restify": 0.32.3
+    "@opentelemetry/instrumentation-socket.io": 0.33.3
+    "@opentelemetry/sdk-trace-base": 1.14.0
+    cls-bluebird: ^2.1.0
+    lru-cache: 6.0.0
+    methods: ^1.1.2
+    opentracing: ^0.14.5
+    semver: 7.5.3
+    shimmer: 1.2.1
+  checksum: 570f2bf9efe50113329c269326280923d69453116249341cbbf3d71e1ce6a651fb49bd7d35043808e90cc57eaba6722f025a3d1bf8c38bf0e26b721202197a9f
   languageName: node
   linkType: hard
 
@@ -11846,6 +11866,17 @@ __metadata:
   bin:
     semver: bin/semver.js
   checksum: 11e16b31ed21c389e1ac695092657a39504638a80b93698183efe185a4ca88e0c481c25f2e3cca5c497aa4a3dcc7770dd49a9aa97b3aeee886e12aa6b7881cfa
+  languageName: node
+  linkType: hard
+
+"semver@npm:7.5.3":
+  version: 7.5.3
+  resolution: "semver@npm:7.5.3"
+  dependencies:
+    lru-cache: ^6.0.0
+  bin:
+    semver: bin/semver.js
+  checksum: 9d58db16525e9f749ad0a696a1f27deabaa51f66e91d2fa2b0db3de3e9644e8677de3b7d7a03f4c15bc81521e0c3916d7369e0572dbde250d9bedf5194e2a8a7
   languageName: node
   linkType: hard
 
