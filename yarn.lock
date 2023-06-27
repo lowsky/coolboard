@@ -3625,26 +3625,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@instana/core@npm:2.25.2":
-  version: 2.25.2
-  resolution: "@instana/core@npm:2.25.2"
-  dependencies:
-    "@opentelemetry/api": 1.4.1
-    "@opentelemetry/context-async-hooks": 1.9.1
-    "@opentelemetry/instrumentation-fs": 0.7.3
-    "@opentelemetry/instrumentation-restify": 0.32.3
-    "@opentelemetry/instrumentation-socket.io": 0.33.3
-    "@opentelemetry/sdk-trace-base": 1.14.0
-    cls-bluebird: ^2.1.0
-    lru-cache: 6.0.0
-    methods: ^1.1.2
-    opentracing: ^0.14.5
-    semver: 7.3.3
-    shimmer: 1.2.1
-  checksum: 1d70da64db1e7a026e570a9ef421ac7eff83948f6fe636e449d99008c3b8d0f7afae4fc392be1fe0d8ab651d1e0a8945e703551324877f40d4844d6665ef8201
-  languageName: node
-  linkType: hard
-
 "@instana/core@npm:2.25.3":
   version: 2.25.3
   resolution: "@instana/core@npm:2.25.3"
@@ -3665,25 +3645,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@instana/opentelemetry-exporter@npm:2.25.2":
-  version: 2.25.2
-  resolution: "@instana/opentelemetry-exporter@npm:2.25.2"
+"@instana/opentelemetry-exporter@npm:2.25.3":
+  version: 2.25.3
+  resolution: "@instana/opentelemetry-exporter@npm:2.25.3"
   dependencies:
-    "@instana/serverless": 2.25.2
+    "@instana/serverless": 2.25.3
     "@opentelemetry/api": 1.4.1
     "@opentelemetry/core": 1.12.0
-  checksum: eb7a33fa305e248cbf02de1e6401fbf2f772fc45a2699e916a74a981351318a1461e396fc692bb9c8497bd9d43a9c1d2f6eff6f12b1aee6af52b389d07b96818
+  checksum: 13bdf28cef42c98cb22a2d5042fdca9365d5542e74daafa893800ca7750bd837d6de16098961546ecd3681c66a50d7e15196df3124fc5dc23e83ddf6fcb913ac
   languageName: node
   linkType: hard
 
-"@instana/serverless@npm:2.25.2":
-  version: 2.25.2
-  resolution: "@instana/serverless@npm:2.25.2"
+"@instana/serverless@npm:2.25.3":
+  version: 2.25.3
+  resolution: "@instana/serverless@npm:2.25.3"
   dependencies:
-    "@instana/core": 2.25.2
+    "@instana/core": 2.25.3
     agent-base: ^6.0.2
     https-proxy-agent: ^5.0.0
-  checksum: 2043537a1be7abba742fef9605748e66dfeea5e715c29019c6481bfc025670a5a5089dd8dd099084ed59287a427a7741186d150605bcc87c0aa441374d5ab662
+  checksum: 506d57f12d253b7471610eba626bcd3f6b636fcfa4764cbdd405bb5fed6c63438345a83526b6c185b05b50302767edd772524eefd5b2f9108d0ddb8c7d036b0d
   languageName: node
   linkType: hard
 
@@ -7302,7 +7282,7 @@ __metadata:
     "@graphql-codegen/typescript-operations": 4.0.1
     "@graphql-codegen/typescript-react-apollo": 3.3.7
     "@instana/autoprofile": ^2.15.0
-    "@instana/opentelemetry-exporter": 2.25.2
+    "@instana/opentelemetry-exporter": 2.25.3
     "@netlify/functions": 1.6.0
     "@opentelemetry/api": 1.4.1
     "@opentelemetry/auto-instrumentations-node": 0.37.0
@@ -10019,16 +9999,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lru-cache@npm:^4.1.5":
-  version: 4.1.5
-  resolution: "lru-cache@npm:4.1.5"
-  dependencies:
-    pseudomap: ^1.0.2
-    yallist: ^2.1.2
-  checksum: 4bb4b58a36cd7dc4dcec74cbe6a8f766a38b7426f1ff59d4cf7d82a2aa9b9565cd1cb98f6ff60ce5cd174524868d7bc9b7b1c294371851356066ca9ac4cf135a
-  languageName: node
-  linkType: hard
-
 "lru-cache@npm:^7.10.1":
   version: 7.10.1
   resolution: "lru-cache@npm:7.10.1"
@@ -11247,13 +11217,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pseudomap@npm:^1.0.2":
-  version: 1.0.2
-  resolution: "pseudomap@npm:1.0.2"
-  checksum: 856c0aae0ff2ad60881168334448e898ad7a0e45fe7386d114b150084254c01e200c957cf378378025df4e052c7890c5bd933939b0e0d2ecfcc1dc2f0b2991f5
-  languageName: node
-  linkType: hard
-
 "pump@npm:^3.0.0":
   version: 3.0.0
   resolution: "pump@npm:3.0.0"
@@ -11855,17 +11818,6 @@ __metadata:
   version: 1.1.0
   resolution: "scuid@npm:1.1.0"
   checksum: cd094ac3718b0070a222f9a499b280c698fdea10268cc163fa244421099544c1766dd893fdee0e2a8eba5d53ab9d0bcb11067bedff166665030fa6fda25a096b
-  languageName: node
-  linkType: hard
-
-"semver@npm:7.3.3":
-  version: 7.3.3
-  resolution: "semver@npm:7.3.3"
-  dependencies:
-    lru-cache: ^4.1.5
-  bin:
-    semver: bin/semver.js
-  checksum: 11e16b31ed21c389e1ac695092657a39504638a80b93698183efe185a4ca88e0c481c25f2e3cca5c497aa4a3dcc7770dd49a9aa97b3aeee886e12aa6b7881cfa
   languageName: node
   linkType: hard
 
@@ -13166,13 +13118,6 @@ __metadata:
   version: 5.0.8
   resolution: "y18n@npm:5.0.8"
   checksum: 54f0fb95621ee60898a38c572c515659e51cc9d9f787fb109cef6fde4befbe1c4602dc999d30110feee37456ad0f1660fa2edcfde6a9a740f86a290999550d30
-  languageName: node
-  linkType: hard
-
-"yallist@npm:^2.1.2":
-  version: 2.1.2
-  resolution: "yallist@npm:2.1.2"
-  checksum: 9ba99409209f485b6fcb970330908a6d41fa1c933f75e08250316cce19383179a6b70a7e0721b89672ebb6199cc377bf3e432f55100da6a7d6e11902b0a642cb
   languageName: node
   linkType: hard
 
