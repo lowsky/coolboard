@@ -3621,14 +3621,14 @@ __metadata:
   linkType: hard
 
 "@instana/autoprofile@npm:^2.15.0":
-  version: 2.26.0
-  resolution: "@instana/autoprofile@npm:2.26.0"
+  version: 2.26.1
+  resolution: "@instana/autoprofile@npm:2.26.1"
   dependencies:
-    "@instana/core": 2.26.0
+    "@instana/core": 2.26.1
     detect-libc: ^1.0.3
     nan: ^2.14.2
     node-gyp: latest
-  checksum: 3a6fe3cb9b2e495b4e83d1f620766756cd853fff684bb24119bc09897f7ef89dabc2b1b3b147bd49cd1874c5c057a15ecba862c6098f24f47f84baf3de7a3f59
+  checksum: 39f4cd5b4876be5513efc2efc823fbf7d29b4ccdf304ca204cbd73576f0da2d3f053598271f458741514579cefaf2b16322a8e8e01f76ab81e03c929113b516c
   languageName: node
   linkType: hard
 
@@ -3649,6 +3649,26 @@ __metadata:
     semver: 7.5.3
     shimmer: 1.2.1
   checksum: 03d806b974b61dee7b7bbe44ebcb5ef060eb75ceca31b7bddb397db08481b0dca9dbead454c09000ef7bc843d10213d69e390bd36e688cc255d872534e5bf376
+  languageName: node
+  linkType: hard
+
+"@instana/core@npm:2.26.1":
+  version: 2.26.1
+  resolution: "@instana/core@npm:2.26.1"
+  dependencies:
+    "@opentelemetry/api": 1.4.1
+    "@opentelemetry/context-async-hooks": 1.9.1
+    "@opentelemetry/instrumentation-fs": 0.7.3
+    "@opentelemetry/instrumentation-restify": 0.32.3
+    "@opentelemetry/instrumentation-socket.io": 0.33.3
+    "@opentelemetry/sdk-trace-base": 1.14.0
+    cls-bluebird: ^2.1.0
+    lru-cache: 6.0.0
+    methods: ^1.1.2
+    opentracing: ^0.14.5
+    semver: 7.5.3
+    shimmer: 1.2.1
+  checksum: 6622b021c73f90386760090f52a6a1325fc9a1bd6aa7473b4b50a5c635f9114e718ab934b3302f0b8d0366ac21df99e993f0791a6907c0f7c450d46346793648
   languageName: node
   linkType: hard
 
