@@ -3632,6 +3632,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@instana/aws-lambda@npm:2.26.2":
+  version: 2.26.2
+  resolution: "@instana/aws-lambda@npm:2.26.2"
+  dependencies:
+    "@instana/core": 2.26.2
+    "@instana/serverless": 2.26.2
+  checksum: fc7cfb5ab9d7791aa41b077841d8e3eb6ee75b342bcf9a501178c3208e665e167d503098ea4dabfe9eb96e2549477d8a8174755af83dd19db5a05b44c8014088
+  languageName: node
+  linkType: hard
+
 "@instana/core@npm:2.26.2":
   version: 2.26.2
   resolution: "@instana/core@npm:2.26.2"
@@ -7298,6 +7308,7 @@ __metadata:
     "@graphql-codegen/typescript-operations": 4.0.1
     "@graphql-codegen/typescript-react-apollo": 3.3.7
     "@instana/autoprofile": ^2.15.0
+    "@instana/aws-lambda": 2.26.2
     "@instana/opentelemetry-exporter": 2.26.2
     "@netlify/functions": 1.6.0
     "@opentelemetry/api": 1.4.1
