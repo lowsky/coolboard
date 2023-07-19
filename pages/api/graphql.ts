@@ -1,8 +1,79 @@
-// load this first for instrumenting all other modules
-// DISABLED temporary const instana = require('@instana/aws-lambda');
+import type { NextApiRequest, NextApiResponse } from 'next';
+import { ApolloServer } from '@apollo/server';
+import { startServerAndCreateNextHandler } from '@as-integrations/next';
 
-const graphqlHandler = require('../../server/graphql');
+import { ApolloServerPluginLandingPageGraphQLPlayground } from '@apollo/server-plugin-landing-page-graphql-playground';
+import { getAuth } from '@clerk/nextjs/server';
 
-// DISABLED temporary export default instana.wrap(graphqlHandler);
+import { isLocalDev } from '../../server/src/helpers/logging';
+import { Ctxt } from '../../server/src/resolvers/Context';
 
-export default graphqlHandler;
+import { buildSchema, prisma } from '../../server/src/buildSchema';
+
+const getGraphqlServer = async () => {
+  const apolloServer = new ApolloServer<Ctxt>({
+    schema: buildSchema(),
+
+    introspection: Boolean(isLocalDev),
+
+    plugins: [
+      ApolloServerPluginLandingPageGraphQLPlayground({
+        endpoint: '/api/graphql',
+      }),
+    ],
+  });
+
+  return apolloServer;
+};
+
+// will be stored for re-use
+let server: ApolloServer<Ctxt> | null = null;
+
+// eslint-disable-next-line import/no-anonymous-default-export
+async function handleGraphqlRequest(req, res) {
+  const apolloServer = server || (await getGraphqlServer());
+
+  const graphqlHandler = startServerAndCreateNextHandler(apolloServer, {
+    context: async (req, res) => {
+      return {
+        req,
+        res,
+        prisma,
+      };
+    },
+  });
+
+  return await graphqlHandler(req, res);
+}
+
+const handler = instana.wrap(async function (
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  // do not check authentication when using graphql API locally
+  // just for easier debugging/testing the gql schema ...
+  if (isLocalDev) {
+    return await handleGraphqlRequest(req, res);
+  }
+
+  try {
+    const { userId } = getAuth(req);
+    if (userId) {
+      return await handleGraphqlRequest(req, res);
+    }
+  } catch (e) {
+    console.error(e);
+  }
+
+  isLocalDev && console.error('    userId is not yet set!');
+
+  res.status(401).json({ id: null });
+});
+
+export default handler;
+
+export const config = {
+  api: {
+    bodyParser: true,
+  },
+};
