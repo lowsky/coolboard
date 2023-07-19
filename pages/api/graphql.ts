@@ -1,6 +1,8 @@
 // load this first for instrumenting all other modules
-const instana = require('@instana/aws-lambda');
+// DISABLED temporary const instana = require('@instana/aws-lambda');
 
 const graphqlHandler = require('../../server/graphql');
 
-export default instana.wrap(graphqlHandler);
+// DISABLED temporary export default instana.wrap(graphqlHandler);
+
+export default graphqlHandler;
