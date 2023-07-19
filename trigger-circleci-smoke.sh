@@ -29,7 +29,7 @@ echo testing "$TEST_URL"
 echo
 
 CIRCLE="https://circleci.com/api/v2/project"
-URL="$CIRCLE/gh/lowsky/Hands-on-Application-Building-with-GraphQL-and-React/pipeline"
+URL="$CIRCLE/gh/lowsky/coolboard/pipeline"
 
 echo
 echo triggering url : $URL
