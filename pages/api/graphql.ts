@@ -1,7 +1,3 @@
-// LATER: re-enable OTEL: import { startTracing } from '../../server/openTelemetry';
-
-const instana = require('@instana/aws-lambda');
-
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { ApolloServer } from '@apollo/server';
 import { startServerAndCreateNextHandler } from '@as-integrations/next';
@@ -50,13 +46,8 @@ async function handleGraphqlRequest(req, res) {
   return await graphqlHandler(req, res);
 }
 
-const handler = instana.wrap(async function (
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
-  // LATER: reenable OTEL await startTracing();
-
-  // do not check authentication when using graphql API locally
+const handler = async function (req: NextApiRequest, res: NextApiResponse) {
+  // don't check authentication when using graphql API locally
   // just for easier debugging/testing the gql schema ...
   if (isLocalDev) {
     return await handleGraphqlRequest(req, res);
@@ -74,7 +65,7 @@ const handler = instana.wrap(async function (
   isLocalDev && console.error('    userId is not yet set!');
 
   res.status(401).json({ id: null });
-});
+};
 
 export default handler;
 
