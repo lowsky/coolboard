@@ -2,13 +2,18 @@
 /*
 LATER: evaluate vercel solution:
 
-import { registerOTel } from '@vercel/otel'
+//import { registerOTel } from '@vercel/otel';
+
+//fails while importing
+//import pkg from '@opentelemetry/semantic-conventions'
 
 export function register() {
-  registerOTel('next-app')
+  registerOTel('next-otel')
 }
 */
 
 export function register() {
-  require('@instana/aws-lambda');
+  if (process.env.NEXT_RUNTIME === 'nodejs') {
+    require('@instana/serverless');
+  }
 }
