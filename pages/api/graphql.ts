@@ -46,11 +46,8 @@ async function handleGraphqlRequest(req, res) {
   return await graphqlHandler(req, res);
 }
 
-const handler = instana.wrap(async function (
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
-  // do not check authentication when using graphql API locally
+const handler = async function (req: NextApiRequest, res: NextApiResponse) {
+  // don't check authentication when using graphql API locally
   // just for easier debugging/testing the gql schema ...
   if (isLocalDev) {
     return await handleGraphqlRequest(req, res);
@@ -68,7 +65,7 @@ const handler = instana.wrap(async function (
   isLocalDev && console.error('    userId is not yet set!');
 
   res.status(401).json({ id: null });
-});
+};
 
 export default handler;
 

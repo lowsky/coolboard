@@ -4,6 +4,12 @@
  * @type {import('next').NextConfig}
  **/
 const nextConfig = {
+  experimental: {
+    // see https://nextjs.org/docs/app/building-your-application/optimizing/instrumentation
+    instrumentationHook: true,
+  },
+  poweredByHeader: false,
+
   reactStrictMode: true,
 
   eslint: {
