@@ -40,7 +40,7 @@
     "bufferutil": "4.0.7",
     "emitter-listener": "1.1.2",
     "eslint-config-prettier": "8.8.0",
-    "eslint-plugin-prettier": "4.2.1",
+    "eslint-plugin-prettier": "5.0.0",
     "event-loop-stats": "^1.4.1",
     "framer-motion": "10.12.22",
     "gcstats.js": "^1.0.0",
