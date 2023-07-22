@@ -5114,10 +5114,10 @@ __metadata:
   linkType: hard
 
 "@pothos/plugin-prisma@npm:^3.38.0":
-  version: 3.52.0
-  resolution: "@pothos/plugin-prisma@npm:3.52.0"
+  version: 3.53.0
+  resolution: "@pothos/plugin-prisma@npm:3.53.0"
   dependencies:
-    "@prisma/generator-helper": ^4.11.0
+    "@prisma/generator-helper": ^5.0.0
   peerDependencies:
     "@pothos/core": "*"
     "@prisma/client": "*"
@@ -5125,7 +5125,7 @@ __metadata:
     typescript: ">=4.7.2"
   bin:
     prisma-pothos-types: bin/generator.js
-  checksum: 95f72d7cd7cd330761fd9a811d1bd86984720ac4e1b31a29e06546d6936497ae3b1c02cb6c341b7eb7582686267a1932efae7fc868702345881c7997df19187f
+  checksum: a0e36394886811fe53cb761660b11d739cfb4b45293b948e8644b2a5e065f0c8320faac4f66af9d014ad602ef0cd55211297e89a37ff2c7c1254090d02af281c
   languageName: node
   linkType: hard
 
@@ -5153,14 +5153,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prisma/debug@npm:4.11.0":
-  version: 4.11.0
-  resolution: "@prisma/debug@npm:4.11.0"
+"@prisma/debug@npm:5.0.0":
+  version: 5.0.0
+  resolution: "@prisma/debug@npm:5.0.0"
   dependencies:
-    "@types/debug": 4.1.7
+    "@types/debug": 4.1.8
     debug: 4.3.4
     strip-ansi: 6.0.1
-  checksum: 170adb225d6e8e0e0df26d441d550607c7fecb97969b47ca19264d65636564c774ba60b9cefab196bb86d358cdd06a289e2ad8d3f70201cb3becb79547343bf5
+  checksum: 17d720717fab190a94762b90f93cfde799f419bfd2fee05c145566d6fa31d59d86dede80417234094afc5fff6d684ce350c17d40c302b26610ee60fe56c704e9
   languageName: node
   linkType: hard
 
@@ -5178,15 +5178,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prisma/generator-helper@npm:^4.11.0":
-  version: 4.11.0
-  resolution: "@prisma/generator-helper@npm:4.11.0"
+"@prisma/generator-helper@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "@prisma/generator-helper@npm:5.0.0"
   dependencies:
-    "@prisma/debug": 4.11.0
+    "@prisma/debug": 5.0.0
     "@types/cross-spawn": 6.0.2
-    chalk: 4.1.2
     cross-spawn: 7.0.3
-  checksum: 4d8cb919893cc22a743e625c7d077e3cbd67e4541500025d253dfd6df2452d294d05bbd0a0599007c562796badba92d57191ecfb980e3c29c906ba0038d37faf
+    kleur: 4.1.5
+  checksum: 3506c9f23d2a7afcf4b99ad264f15efc7873f5e2ff9a7246a770c9ea7e7df627226a2e736890556c495cae3b0d1feaa3fd087417974500feaea14fb6da9dd0b0
   languageName: node
   linkType: hard
 
@@ -5423,12 +5423,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/debug@npm:4.1.7":
-  version: 4.1.7
-  resolution: "@types/debug@npm:4.1.7"
+"@types/debug@npm:4.1.8":
+  version: 4.1.8
+  resolution: "@types/debug@npm:4.1.8"
   dependencies:
     "@types/ms": "*"
-  checksum: 0a7b89d8ed72526858f0b61c6fd81f477853e8c4415bb97f48b1b5545248d2ae389931680b94b393b993a7cfe893537a200647d93defe6d87159b96812305adc
+  checksum: a9a9bb40a199e9724aa944e139a7659173a9b274798ea7efbc277cb084bc37d32fc4c00877c3496fac4fed70a23243d284adb75c00b5fdabb38a22154d18e5df
   languageName: node
   linkType: hard
 
@@ -6989,16 +6989,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chalk@npm:4.1.2, chalk@npm:^4.0.0, chalk@npm:^4.1.0, chalk@npm:^4.1.1":
-  version: 4.1.2
-  resolution: "chalk@npm:4.1.2"
-  dependencies:
-    ansi-styles: ^4.1.0
-    supports-color: ^7.1.0
-  checksum: fe75c9d5c76a7a98d45495b91b2172fa3b7a09e0cc9370e5c8feb1c567b85c4288e2b3fded7cfdd7359ac28d6b3844feb8b82b8686842e93d23c827c417e83fc
-  languageName: node
-  linkType: hard
-
 "chalk@npm:^2.0.0":
   version: 2.4.2
   resolution: "chalk@npm:2.4.2"
@@ -7007,6 +6997,16 @@ __metadata:
     escape-string-regexp: ^1.0.5
     supports-color: ^5.3.0
   checksum: ec3661d38fe77f681200f878edbd9448821924e0f93a9cefc0e26a33b145f1027a2084bf19967160d11e1f03bfe4eaffcabf5493b89098b2782c3fe0b03d80c2
+  languageName: node
+  linkType: hard
+
+"chalk@npm:^4.0.0, chalk@npm:^4.1.0, chalk@npm:^4.1.1":
+  version: 4.1.2
+  resolution: "chalk@npm:4.1.2"
+  dependencies:
+    ansi-styles: ^4.1.0
+    supports-color: ^7.1.0
+  checksum: fe75c9d5c76a7a98d45495b91b2172fa3b7a09e0cc9370e5c8feb1c567b85c4288e2b3fded7cfdd7359ac28d6b3844feb8b82b8686842e93d23c827c417e83fc
   languageName: node
   linkType: hard
 
@@ -9892,6 +9892,13 @@ __metadata:
     jwa: ^1.4.1
     safe-buffer: ^5.0.1
   checksum: f0213fe5b79344c56cd443428d8f65c16bf842dc8cb8f5aed693e1e91d79c20741663ad6eff07a6d2c433d1831acc9814e8d7bada6a0471fbb91d09ceb2bf5c2
+  languageName: node
+  linkType: hard
+
+"kleur@npm:4.1.5":
+  version: 4.1.5
+  resolution: "kleur@npm:4.1.5"
+  checksum: 1dc476e32741acf0b1b5b0627ffd0d722e342c1b0da14de3e8ae97821327ca08f9fb944542fb3c126d90ac5f27f9d804edbe7c585bf7d12ef495d115e0f22c12
   languageName: node
   linkType: hard
 
