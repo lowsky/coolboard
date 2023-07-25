@@ -5263,11 +5263,11 @@ __metadata:
   linkType: hard
 
 "@pothos/core@npm:^3.23.1":
-  version: 3.31.1
-  resolution: "@pothos/core@npm:3.31.1"
+  version: 3.31.2
+  resolution: "@pothos/core@npm:3.31.2"
   peerDependencies:
     graphql: ">=15.1.0"
-  checksum: 98366c6d49b02c9694c4c29caabfc3994be2cba536deb682845d0107ecccb15cc49851cc3eee8b8b736fa25d5b2b61e2d3c57626a77bbe122304e165a0555bb2
+  checksum: c429f066b0e6421ffcc20ade2fd490832735865bf20e96c92882b2fecdb9fec89c7e3c675e005e87ec657072df95ac0fc86981d53b03073629e7b9233628a582
   languageName: node
   linkType: hard
 
