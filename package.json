@@ -90,7 +90,7 @@
     "@types/react-dom": "18.2.7",
     "@types/zen-observable": "0.8.3",
     "@typescript-eslint/parser": "6.2.0",
-    "eslint": "8.45.0",
+    "eslint": "8.46.0",
     "eslint-config-next": "13.4.12",
     "prettier": "3.0.0",
     "sharp": "0.32.4",
