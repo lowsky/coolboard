@@ -20,15 +20,14 @@ import { AddIcon, EditIcon, HamburgerIcon } from '@chakra-ui/icons';
 import { FaTrash } from 'react-icons/fa';
 
 import Card, { dndItemType } from './Card';
-
 import {
   useAddCardMutationMutation,
   useCardListQuery,
   useMoveCardMutation,
   useRenameListMutation,
-} from '../generated/graphql';
+} from '../../generated/graphql';
 
-import styles from './CardList.module.css';
+import styles from '../CardList.module.css';
 
 const CardListWithoutDnd = (props) => {
   const {

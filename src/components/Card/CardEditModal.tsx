@@ -23,9 +23,9 @@ import {
   Textarea,
 } from '@chakra-ui/react';
 
-import { Card, User } from '../generated/graphql';
+import { Card, User } from '../../generated/graphql';
 import { ShowDiffWarning } from './ShowDiffWarning';
-import { Segment } from '../common/Segment';
+import { Segment } from '../../common/Segment';
 
 export function CardEditModal({
   isOpen,

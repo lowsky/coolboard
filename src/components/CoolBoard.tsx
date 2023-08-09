@@ -5,7 +5,7 @@ import {
   BoardContainer,
   DelAllListsButton,
 } from './BoardContainer';
-import { CardList } from './CardList';
+import { CardList } from './Card/CardList';
 import {
   useAddListMutation,
   useBoardQuery,

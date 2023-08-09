@@ -1,8 +1,11 @@
 import React from 'react';
-import { useDrag } from 'react-dnd';
+import { DragSourceMonitor, useDrag } from 'react-dnd';
 
 import { CardComponent } from './CardComponent';
-import { useUpdateCardMutation } from '../generated/graphql';
+import {
+  UpdateCardMutationVariables,
+  useUpdateCardMutation,
+} from '../../generated/graphql';
 
 export const Card = (props) => {
   const [mutation] = useUpdateCardMutation({
@@ -10,10 +13,11 @@ export const Card = (props) => {
       ...props,
     },
   });
+
   return (
     <CardComponent
       {...props}
-      storeCard={(vars) =>
+      storeCard={(vars: UpdateCardMutationVariables) =>
         mutation({
           variables: vars,
         })
@@ -31,9 +35,8 @@ export const CardForDragging = (props) => {
       id: props.id,
       cardListId: props.cardListId,
     },
-    //((monitor: DragSourceMonitor<DragObject, DropResult>) => boolean);
-    // @ts-ignore
-    canDrag: () => (props) => !!props.cardListId,
+    // @ts-expect-error needs additional generic attrib
+    canDrag: () => (props: DragSourceMonitor) => Boolean(props.cardListId),
   });
 
   return (
