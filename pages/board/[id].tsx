@@ -8,7 +8,7 @@ import { trackPage } from '../../src/common/tracking';
 import { ProfileHeader } from '../../src/common/ProfileHeader';
 import { GeneralErrorHandler } from '../../src/common/GeneralErrorHandler';
 import FullPageWithApollo from '../../src/common/FullPageWithApollo';
-import { CoolBoard } from '../../src/components/CoolBoard';
+import { CoolBoard } from '../../src/components/Board/CoolBoard';
 
 export default function Board() {
   const router = useRouter();

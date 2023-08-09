@@ -9,11 +9,10 @@ import {
   MenuButton,
   MenuList,
 } from '@chakra-ui/react';
-
-import { FaPlus, FaTrash } from 'react-icons/fa';
 import { HamburgerIcon } from '@chakra-ui/icons';
+import { FaPlus, FaTrash } from 'react-icons/fa';
 
-import { useConfirmAction } from './UseConfirmAction';
+import { useConfirmAction } from '../UseConfirmAction';
 
 type Props = {
   boardName: string;

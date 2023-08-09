@@ -5,13 +5,13 @@ import {
   BoardContainer,
   DelAllListsButton,
 } from './BoardContainer';
-import { CardList } from './Card/CardList';
+import { CardList } from '../Card/CardList';
 import {
   useAddListMutation,
   useBoardQuery,
   useDeleteListOfBoardMutation,
   useDeleteListsOfBoardMutation,
-} from '../generated/graphql';
+} from '../../generated/graphql';
 
 const Board = (props) => {
   const { board = {}, addList, deleteLists, deleteList, boardId } = props;
