@@ -8,8 +8,6 @@ import {
   ButtonGroup,
   FormControl,
   FormErrorMessage,
-  FormLabel,
-  Input,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -17,12 +15,27 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  Textarea,
 } from '@chakra-ui/react';
 
 import { Card, User } from '../../generated/graphql';
-import { ShowDiffWarning } from './ShowDiffWarning';
 import { AuthorTimeInfo } from './AuthorTimeInfo';
+import { CardEditForm } from './CardEditForm';
+
+type CardEditModalProps = {
+  isOpen: boolean;
+  onClose: () => void;
+  saveAndHide: () => void;
+  conflict: boolean;
+  loading: boolean;
+  handleChange: (data: { [key: string]: string }) => void;
+  props: Card;
+  name: string;
+  description: string | null | undefined;
+  createdAt: number;
+  updatedAt: number;
+  updatedBy: User;
+  error: string | undefined;
+};
 
 export function CardEditModal({
   isOpen,
@@ -38,21 +51,7 @@ export function CardEditModal({
   updatedAt,
   updatedBy,
   error,
-}: {
-  isOpen: boolean;
-  onClose: () => void;
-  saveAndHide: () => void;
-  conflict: boolean;
-  loading: boolean;
-  handleChange: (data: { [key: string]: string }) => void;
-  props: Card;
-  name: string;
-  description: string | null | undefined;
-  createdAt: number;
-  updatedAt: number;
-  updatedBy: User;
-  error: string | undefined;
-}) {
+}: CardEditModalProps) {
   return (
     <Modal isOpen={isOpen} onClose={onClose} id="cardEditModal">
       <ModalOverlay />
@@ -60,52 +59,15 @@ export function CardEditModal({
         <ModalHeader>Edit Card</ModalHeader>
         <ModalCloseButton />
         <ModalBody pb={6}>
-          <form
-            onSubmit={(ev) => {
-              ev.preventDefault();
-              saveAndHide();
-            }}>
-            <FormControl isInvalid={conflict}>
-              <FormErrorMessage>
-                <Alert status="warning">
-                  <AlertTitle>
-                    Warning! Card was concurrently modified on server.
-                  </AlertTitle>
-                </Alert>
-              </FormErrorMessage>
-            </FormControl>
-            <FormControl isReadOnly={loading} isInvalid={conflict}>
-              <FormLabel htmlFor="title">Task Name</FormLabel>
-              <Input
-                placeholder="Enter title"
-                value={name}
-                id="title"
-                autoFocus
-                onChange={(ev) => handleChange({ name: ev.target.value })}
-                required
-              />
-              <FormErrorMessage>
-                <ShowDiffWarning newValue={props.name} currentValue={name} />
-              </FormErrorMessage>
-            </FormControl>
-            <FormControl isReadOnly={loading} isInvalid={conflict}>
-              <FormLabel htmlFor="description">Task Description</FormLabel>
-              <Textarea
-                placeholder="Add some more details about this task ..."
-                value={description ?? ''}
-                id="description"
-                onChange={(ev) =>
-                  handleChange({ description: ev.target.value })
-                }
-              />
-              <FormErrorMessage>
-                <ShowDiffWarning
-                  newValue={props.description}
-                  currentValue={description}
-                />
-              </FormErrorMessage>
-            </FormControl>
-          </form>
+          {CardEditForm({
+            saveAndHide,
+            conflict,
+            loading,
+            name,
+            handleChange,
+            serverData: props,
+            description,
+          })}
           <AuthorTimeInfo
             createdAt={createdAt}
             updatedAt={updatedAt}
