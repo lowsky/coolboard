@@ -1,63 +1,20 @@
 import React from 'react';
-
 import {
-  AddListButton,
-  BoardContainer,
-  DelAllListsButton,
-} from './BoardContainer';
-import { CardList } from '../Card/CardList';
-import {
+  Board,
   useAddListMutation,
   useBoardQuery,
   useDeleteListOfBoardMutation,
   useDeleteListsOfBoardMutation,
 } from '../../generated/graphql';
 
-const Board = (props) => {
-  const { board = {}, addList, deleteLists, deleteList, boardId } = props;
-
-  const { name, lists = [] } = board;
-
-  const onBoardAddItem = () => {
-    addList({
-      variables: {
-        boardId,
-        name: 'new list',
-      },
-    });
-  };
-
-  return (
-    <BoardContainer
-      boardName={name}
-      headerActions={
-        <DelAllListsButton
-          action={() => deleteLists(lists.map((list) => list.id))}>
-          Delete All
-        </DelAllListsButton>
-      }>
-      {lists.map((list) => (
-        <CardList
-          key={list.id}
-          name={list.name}
-          id={list.id}
-          deleteListWithId={(id) => deleteList(id)}
-        />
-      ))}
-      <AddListButton onAddNewList={onBoardAddItem} />
-    </BoardContainer>
-  );
-};
+import { BoardContainer } from './BoardContainer';
 
 export const CoolBoard = ({ boardId }) => {
   const { loading, error, data } = useBoardQuery({
     variables: { boardId },
   });
-
-  const [addList] = useAddListMutation();
-
+  const [addListToBoard] = useAddListMutation();
   const [deleteListsOfBoard] = useDeleteListsOfBoardMutation();
-
   const [deleteListOfBoard] = useDeleteListOfBoardMutation();
 
   if (loading) {
@@ -68,12 +25,12 @@ export const CoolBoard = ({ boardId }) => {
     return null;
   }
 
-  const { board } = data ?? {};
-  if (!board) {
+  if (!data || !data.board) {
     return <div>Board does not exist.</div>;
   }
+  const { board } = data;
 
-  const deleteLists = (ids) =>
+  const deleteLists = (ids: string[]) =>
     deleteListsOfBoard({
       variables: {
         boardId,
@@ -81,7 +38,7 @@ export const CoolBoard = ({ boardId }) => {
       },
     });
 
-  const deleteList = (listId) =>
+  const deleteList = (listId: string) =>
     deleteListOfBoard({
       variables: {
         boardId,
@@ -89,13 +46,20 @@ export const CoolBoard = ({ boardId }) => {
       },
     });
 
+  const addList = () =>
+    addListToBoard({
+      variables: {
+        boardId,
+        name: 'new list',
+      },
+    });
+
   return (
-    <Board
-      boardId={boardId}
+    <BoardContainer
       addList={addList}
       deleteLists={deleteLists}
       deleteList={deleteList}
-      board={board}
+      board={board as Board}
     />
   );
 };

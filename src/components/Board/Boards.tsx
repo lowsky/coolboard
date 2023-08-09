@@ -71,7 +71,7 @@ const BoardList = ({ boards, deleteBoard }) => (
 
 function overrideCachedUserBoardsRemovingBoard(
   userBoardsData: UserBoardsQuery,
-  boardId,
+  boardId: string,
   store: ApolloCache<any>
 ) {
   const me = userBoardsData.me;
@@ -135,7 +135,7 @@ export const Boards = () => {
           {boards?.length > 0 && (
             <BoardList
               boards={boards}
-              deleteBoard={(id) => {
+              deleteBoard={(id: string) => {
                 return deleteBoard({
                   variables: { id },
                   update: (store) => {

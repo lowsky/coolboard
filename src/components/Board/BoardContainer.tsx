@@ -1,76 +1,47 @@
 import React from 'react';
-import {
-  Button,
-  Flex,
-  Heading,
-  Icon,
-  IconButton,
-  Menu,
-  MenuButton,
-  MenuList,
-} from '@chakra-ui/react';
-import { HamburgerIcon } from '@chakra-ui/icons';
+import { Button, Flex, Icon } from '@chakra-ui/react';
 import { FaPlus, FaTrash } from 'react-icons/fa';
 
+import { Board } from '../../generated/graphql';
+import { BoardTitle } from './BoardTitle';
+import { BoardContent } from './BoardContent';
+import { CardList } from '../Card/CardList';
 import { useConfirmAction } from '../UseConfirmAction';
 
-type Props = {
-  boardName: string;
-  children: React.ReactNode;
-  headerActions: React.ReactNode;
-};
+export const BoardContainer = (props: {
+  board: Board;
+  addList: () => Promise<any>;
+  deleteLists: (ids: string[]) => Promise<any>;
+  deleteList: (id: string) => Promise<any>;
+}) => {
+  const { board, addList, deleteLists, deleteList } = props;
+  const { name, lists } = board;
 
-export const BoardContainer = ({
-  boardName,
-  children,
-  headerActions,
-}: Props) => {
   return (
     <Flex flexDir="column" maxW="100%" flexGrow={1} mt="1rem">
-      <BoardTitle boardName={boardName} headerActions={headerActions} />
-      <BoardContent>{children}</BoardContent>
+      <BoardTitle
+        boardName={name}
+        headerActions={
+          <DelAllListsButton
+            action={() => deleteLists(lists.map((list) => list.id))}>
+            Delete All
+          </DelAllListsButton>
+        }
+      />
+      <BoardContent>
+        {lists.map((list) => (
+          <CardList
+            key={list.id}
+            name={list.name}
+            id={list.id}
+            deleteListWithId={(id) => deleteList(id)}
+          />
+        ))}
+        <AddListButton onAddNewList={addList} />
+      </BoardContent>
     </Flex>
   );
 };
-
-const BoardTitle = ({ boardName, headerActions }) => (
-  <Flex justifyContent="space-between">
-    <Heading as="h1">Board: {boardName}</Heading>
-    {headerActions && (
-      <Menu>
-        <MenuButton
-          as={IconButton}
-          data-cy="board-header-menu"
-          aria-label="board options"
-          icon={<HamburgerIcon />}
-          variant="outline"
-        />
-        <MenuList
-          rootProps={{
-            bg: 'transparent',
-          }}
-          margin={'0rem'}
-          minW={'unset'}
-          minH={'unset'}
-          padding={0}>
-          {headerActions}
-        </MenuList>
-      </Menu>
-    )}
-  </Flex>
-);
-
-const BoardContent = ({ children }) => (
-  <Flex
-    data-cy="board-container-inner"
-    textAlign="left"
-    bg="blue"
-    p="1rem"
-    flex="1"
-    overflow="auto">
-    {children}
-  </Flex>
-);
 
 export const AddListButton = ({
   onAddNewList,
@@ -85,12 +56,11 @@ export const AddListButton = ({
     Add a list
   </Button>
 );
-
 export const DelAllListsButton = ({
   action,
   children,
 }: {
-  action: () => void;
+  action: VoidFunction;
   children: React.ReactNode;
 }) => {
   const [showWarning, showWarningThenCallAction] = useConfirmAction(action);
@@ -101,7 +71,7 @@ export const DelAllListsButton = ({
       color={showWarning ? 'red' : ''}
       flexShrink={0}
       flexGrow={0}
-      alignSelf={'flex-start'}>
+      alignSelf="flex-start">
       {showWarning && <span>This will be permanent!</span>}
       <Icon color={showWarning ? '' : 'red'} ml={showWarning ? '1em' : ''}>
         <FaTrash />
