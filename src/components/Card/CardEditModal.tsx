@@ -1,12 +1,9 @@
 import React from 'react';
-import TimeAgo from 'react-timeago';
 import { FaSave, FaTimes } from 'react-icons/fa';
 import {
   Alert,
   AlertDescription,
   AlertTitle,
-  Avatar,
-  Box,
   Button,
   ButtonGroup,
   FormControl,
@@ -25,7 +22,7 @@ import {
 
 import { Card, User } from '../../generated/graphql';
 import { ShowDiffWarning } from './ShowDiffWarning';
-import { Segment } from '../../common/Segment';
+import { AuthorTimeInfo } from './AuthorTimeInfo';
 
 export function CardEditModal({
   isOpen,
@@ -109,35 +106,11 @@ export function CardEditModal({
               </FormErrorMessage>
             </FormControl>
           </form>
-          <Segment>
-            <Alert status="info">
-              <AlertDescription>
-                <Box>
-                  <strong>created: </strong>
-                  <TimeAgo date={createdAt} />
-                </Box>
-                <Box>
-                  <strong>updated: </strong>
-                  <TimeAgo date={updatedAt} />
-                  {updatedBy && (
-                    <>
-                      <strong> by: </strong>
-                      {updatedBy.avatarUrl && (
-                        <Avatar src={updatedBy.avatarUrl!} />
-                      )}
-                      <span>
-                        {updatedBy.name
-                          ? updatedBy.name
-                          : updatedBy.email
-                          ? updatedBy.email
-                          : '?'}
-                      </span>
-                    </>
-                  )}
-                </Box>
-              </AlertDescription>
-            </Alert>
-          </Segment>
+          <AuthorTimeInfo
+            createdAt={createdAt}
+            updatedAt={updatedAt}
+            updatedBy={updatedBy}
+          />
           <FormControl isInvalid={Boolean(error)}>
             <FormErrorMessage>
               <Alert status="error">
