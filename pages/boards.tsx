@@ -1,12 +1,12 @@
 import React from 'react';
-
-import { trackPage } from '../src/common/tracking';
-import { ProfileHeader } from '../src/common/ProfileHeader';
-import { GeneralErrorHandler } from '../src/common/GeneralErrorHandler';
-import FullPageWithApollo from '../src/common/FullPageWithApollo';
-import { Boards as BoardList } from '../src/components/Boards';
 import { useAuth } from '@clerk/nextjs';
 import { Container, Text } from '@chakra-ui/react';
+
+import { trackPage } from 'common/tracking';
+import { ProfileHeader } from 'common/ProfileHeader';
+import { GeneralErrorHandler } from 'common/GeneralErrorHandler';
+import FullPageWithApollo from 'common/FullPageWithApollo';
+import { Boards as BoardList } from 'components/Board/Boards';
 
 export default function Boards() {
   trackPage('boards');

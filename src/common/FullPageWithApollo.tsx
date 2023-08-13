@@ -1,9 +1,9 @@
 import React from 'react';
 import { ApolloProvider } from '@apollo/client';
 
-import { FullVerticalContainer } from './FullVerticalContainer';
+import { FullVerticalContainer } from 'common/FullVerticalContainer';
 import { setupGraphQLClient } from '../setupGraphQLClient';
-import { ReloadAfterLogin } from '../auth/ReloadAfterLogin';
+import { ReloadAfterLogin } from 'auth/ReloadAfterLogin';
 
 const client = setupGraphQLClient();
 

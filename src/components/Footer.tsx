@@ -16,7 +16,6 @@ import {
 } from '@chakra-ui/react';
 import { FaGithub, FaHeart, FaTwitter } from 'react-icons/fa';
 
-// import netlifyLogo from './netlify-logo.svg';
 import nextLogo from './nextjs-logo.svg';
 import prismaLogo from './prisma-logo.svg';
 
@@ -31,12 +30,7 @@ export function Footer() {
         flexWrap="wrap">
         Powered by
         <Image height={20} width={20} src={prismaLogo} alt="prisma logo" />
-        Prisma, GraphQL, Apollo,
-        {
-          //<Image height={20} width={20} src={netlifyLogo} alt="netlify logo" />
-          // Netlify
-        }
-        and
+        Prisma, GraphQL, Apollo, and
         <Image height={20} src={nextLogo} alt="Nextjs logo" />
         <Link href="/imprint">Imprint(de)</Link>
         <Link href="/privacy">Privacy</Link>

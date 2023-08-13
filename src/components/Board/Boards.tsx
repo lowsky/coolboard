@@ -8,6 +8,7 @@ import {
   Spinner,
 } from '@chakra-ui/react';
 import { FaTrash } from 'react-icons/fa';
+import { ApolloCache } from '@apollo/client';
 
 import {
   useCreateBoardMutation,
@@ -15,13 +16,12 @@ import {
   UserBoardsDocument,
   UserBoardsQuery,
   useUserBoardsQuery,
-} from '../generated/graphql';
-import { Segment } from '../common/Segment';
-import { FullVerticalContainer } from '../common/FullVerticalContainer';
+} from 'generated/graphql';
+import { Segment } from 'common/Segment';
+import { FullVerticalContainer } from 'common/FullVerticalContainer';
 import { CreateBoardModal } from './CreateBoardModal';
 
 import styles from './Boards.module.css';
-import { ApolloCache } from '@apollo/client';
 
 const BoardListItem = ({ name, id, deleteBoard }) => {
   const [deleting, setDeleting] = useState(false);
@@ -71,7 +71,7 @@ const BoardList = ({ boards, deleteBoard }) => (
 
 function overrideCachedUserBoardsRemovingBoard(
   userBoardsData: UserBoardsQuery,
-  boardId,
+  boardId: string,
   store: ApolloCache<any>
 ) {
   const me = userBoardsData.me;
@@ -135,7 +135,7 @@ export const Boards = () => {
           {boards?.length > 0 && (
             <BoardList
               boards={boards}
-              deleteBoard={(id) => {
+              deleteBoard={(id: string) => {
                 return deleteBoard({
                   variables: { id },
                   update: (store) => {

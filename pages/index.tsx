@@ -5,12 +5,12 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { FaChalkboardTeacher, FaFilm, FaLink } from 'react-icons/fa';
 
-import { Segment } from '../src/common/Segment';
-import { FullVerticalContainer } from '../src/common/FullVerticalContainer';
-import { trackPage } from '../src/common/tracking';
+import { Segment } from 'src/common/Segment';
+import { FullVerticalContainer } from 'src/common/FullVerticalContainer';
+import { trackPage } from 'src/common/tracking';
 
-import coolBoardLogo from '../public/CoolBoardLogo100.png';
-import screenshot from '../public/screenshot.png';
+import coolBoardLogo from 'public/CoolBoardLogo100.png';
+import screenshot from 'public/screenshot.png';
 
 export default function Index() {
   trackPage('Index');

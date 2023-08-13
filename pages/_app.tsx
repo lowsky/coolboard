@@ -4,12 +4,12 @@ import { ClerkProvider } from '@clerk/nextjs';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import { mode } from '@chakra-ui/theme-tools';
 
-import '../public/index.css';
+import 'public/index.css';
 
-import { InstanaEumScripts } from '../src/common/instanaEumScripts';
-import { Footer } from '../src/components/Footer';
+import { InstanaEumScripts } from 'common/instanaEumScripts';
+import { Footer } from 'components/Footer';
 
-// Head's title and view-port-meta needs to go here, see https://nextjs.org/docs/messages/no-document-viewport-meta
+// The title of the Head and view-port-meta needs to go here, see https://nextjs.org/docs/messages/no-document-viewport-meta
 
 export default function App({ Component, pageProps }: AppProps) {
   /*
