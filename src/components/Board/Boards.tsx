@@ -16,9 +16,9 @@ import {
   UserBoardsDocument,
   UserBoardsQuery,
   useUserBoardsQuery,
-} from '../../generated/graphql';
-import { Segment } from '../../common/Segment';
-import { FullVerticalContainer } from '../../common/FullVerticalContainer';
+} from 'generated/graphql';
+import { Segment } from 'common/Segment';
+import { FullVerticalContainer } from 'common/FullVerticalContainer';
 import { CreateBoardModal } from './CreateBoardModal';
 
 import styles from './Boards.module.css';

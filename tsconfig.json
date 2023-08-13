@@ -6,6 +6,13 @@
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
     "alwaysStrict": true,
+    "baseUrl": ".",
+    "paths": {
+      "auth/*": ["src/auth/*"],
+      "components/*": ["src/components/*"],
+      "common/*": ["src/common/*"],
+      "generated/*": ["src/generated/*"]
+    },
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "incremental": true,

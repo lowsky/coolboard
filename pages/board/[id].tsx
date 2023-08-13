@@ -4,11 +4,11 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { useRouter } from 'next/router';
 
-import { trackPage } from '../../src/common/tracking';
-import { ProfileHeader } from '../../src/common/ProfileHeader';
-import { GeneralErrorHandler } from '../../src/common/GeneralErrorHandler';
-import FullPageWithApollo from '../../src/common/FullPageWithApollo';
-import { CoolBoard } from '../../src/components/Board/CoolBoard';
+import { trackPage } from 'src/common/tracking';
+import { ProfileHeader } from 'src/common/ProfileHeader';
+import { GeneralErrorHandler } from 'src/common/GeneralErrorHandler';
+import FullPageWithApollo from 'src/common/FullPageWithApollo';
+import { CoolBoard } from 'src/components/Board/CoolBoard';
 
 export default function Board() {
   const router = useRouter();

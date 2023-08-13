@@ -3,8 +3,8 @@ import { Box, Container, Heading, Icon, Link, Text } from '@chakra-ui/react';
 import Image from 'next/image';
 import { FaSignInAlt, FaFilm } from 'react-icons/fa';
 
-import FullPageWithApollo from '../src/common/FullPageWithApollo';
-import { ProfileHeader } from '../src/common/ProfileHeader';
+import FullPageWithApollo from 'common/FullPageWithApollo';
+import { ProfileHeader } from 'common/ProfileHeader';
 
 export default function About() {
   return (

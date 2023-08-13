@@ -2,8 +2,8 @@ import React from 'react';
 import TimeAgo from 'react-timeago';
 import { Alert, AlertDescription, Avatar, Box } from '@chakra-ui/react';
 
-import { Segment } from '../../common/Segment';
-import { User } from '../../generated/graphql';
+import { Segment } from 'common/Segment';
+import { User } from 'generated/graphql';
 
 export type AuthorTimeInfoProps = {
   createdAt: number;

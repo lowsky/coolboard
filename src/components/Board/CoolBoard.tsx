@@ -5,7 +5,7 @@ import {
   useBoardQuery,
   useDeleteListOfBoardMutation,
   useDeleteListsOfBoardMutation,
-} from '../../generated/graphql';
+} from 'generated/graphql';
 
 import { BoardContainer } from './BoardContainer';
 

@@ -2,11 +2,11 @@ import React from 'react';
 import { Button, Flex, Icon } from '@chakra-ui/react';
 import { FaPlus, FaTrash } from 'react-icons/fa';
 
-import { Board } from '../../generated/graphql';
+import { Board } from 'generated/graphql';
 import { BoardTitle } from './BoardTitle';
 import { BoardContent } from './BoardContent';
-import { CardList } from '../Card/CardList';
-import { useConfirmAction } from '../UseConfirmAction';
+import { CardList } from 'components/Card/CardList';
+import { useConfirmAction } from 'components/UseConfirmAction';
 
 export const BoardContainer = (props: {
   board: Board;

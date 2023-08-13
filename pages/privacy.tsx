@@ -1,7 +1,8 @@
 import { Container, Heading, Link, Text } from '@chakra-ui/react';
-import { trackPage } from '../src/common/tracking';
-import { ProfileHeader } from '../src/common/ProfileHeader';
-import FullPageWithApollo from '../src/common/FullPageWithApollo';
+
+import { trackPage } from 'src/common/tracking';
+import { ProfileHeader } from 'src/common/ProfileHeader';
+import FullPageWithApollo from 'src/common/FullPageWithApollo';
 
 export default function Privacy() {
   trackPage('privacy');

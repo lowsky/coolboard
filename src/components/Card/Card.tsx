@@ -5,7 +5,7 @@ import { CardComponent } from './CardComponent';
 import {
   UpdateCardMutationVariables,
   useUpdateCardMutation,
-} from '../../generated/graphql';
+} from 'generated/graphql';
 
 export const Card = (props) => {
   const [mutation] = useUpdateCardMutation({

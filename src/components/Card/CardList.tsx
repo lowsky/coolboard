@@ -25,7 +25,7 @@ import {
   useCardListQuery,
   useMoveCardMutation,
   useRenameListMutation,
-} from '../../generated/graphql';
+} from 'generated/graphql';
 
 import styles from '../CardList.module.css';
 

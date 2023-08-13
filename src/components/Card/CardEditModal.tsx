@@ -17,7 +17,7 @@ import {
   ModalOverlay,
 } from '@chakra-ui/react';
 
-import { Card, User } from '../../generated/graphql';
+import { Card, User } from 'generated/graphql';
 import { AuthorTimeInfo } from './AuthorTimeInfo';
 import { CardEditForm } from './CardEditForm';
 

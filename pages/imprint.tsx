@@ -1,10 +1,10 @@
+import React from 'react';
+import Link from 'next/link';
 import { Container, Heading, Text } from '@chakra-ui/react';
 
-import Link from 'next/link';
-import { trackPage } from '../src/common/tracking';
-import React from 'react';
-import FullPageWithApollo from '../src/common/FullPageWithApollo';
-import { ProfileHeader } from '../src/common/ProfileHeader';
+import { trackPage } from 'common/tracking';
+import FullPageWithApollo from 'common/FullPageWithApollo';
+import { ProfileHeader } from 'common/ProfileHeader';
 
 export default function Imprint() {
   trackPage('imprint');
