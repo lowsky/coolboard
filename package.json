@@ -25,7 +25,7 @@
     "@opentelemetry/api": "1.4.1",
     "@opentelemetry/auto-instrumentations-node": "0.38.0",
     "@opentelemetry/core": "1.15.2",
-    "@opentelemetry/instrumentation-express": "0.33.0",
+    "@opentelemetry/instrumentation-express": "0.33.1",
     "@opentelemetry/instrumentation-graphql": "0.35.0",
     "@opentelemetry/instrumentation-http": "0.41.2",
     "@opentelemetry/node": "0.24.0",
