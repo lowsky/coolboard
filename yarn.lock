@@ -4338,19 +4338,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@opentelemetry/instrumentation-graphql@npm:0.35.0":
-  version: 0.35.0
-  resolution: "@opentelemetry/instrumentation-graphql@npm:0.35.0"
-  dependencies:
-    "@opentelemetry/instrumentation": ^0.41.0
-    tslib: ^2.3.1
-  peerDependencies:
-    "@opentelemetry/api": ^1.3.0
-  checksum: 22708bfe6e965a8dd14a58a75a70f99847943c2d568c6d3e090921de621c5c82bbd16063a6f8d455b9191ce2e236a479589a394613d91b2110098fafb52b93ae
-  languageName: node
-  linkType: hard
-
-"@opentelemetry/instrumentation-graphql@npm:^0.35.1":
+"@opentelemetry/instrumentation-graphql@npm:0.35.1, @opentelemetry/instrumentation-graphql@npm:^0.35.1":
   version: 0.35.1
   resolution: "@opentelemetry/instrumentation-graphql@npm:0.35.1"
   dependencies:
@@ -4706,22 +4694,6 @@ __metadata:
   peerDependencies:
     "@opentelemetry/api": ^1.3.0
   checksum: 74918f90d6f195fdbe24e8576095305239263341c996f84c3856972c7cae968a20edcd7f075bcd10847f8337dbb36288894a71913d9734b9622f8d1a5c5d495b
-  languageName: node
-  linkType: hard
-
-"@opentelemetry/instrumentation@npm:^0.41.0":
-  version: 0.41.0
-  resolution: "@opentelemetry/instrumentation@npm:0.41.0"
-  dependencies:
-    "@types/shimmer": ^1.0.2
-    import-in-the-middle: 1.4.1
-    require-in-the-middle: ^7.1.1
-    semver: ^7.5.1
-    shimmer: ^1.2.1
-    tslib: ^2.3.1
-  peerDependencies:
-    "@opentelemetry/api": ^1.3.0
-  checksum: ea6cf28ad6ce34549eef0501928a5070a7289a86431709ec2dde1c7f6e7e593137599d31c5de22269a259a3fca5116287e3b74bc717cdba0df1b072726265b8c
   languageName: node
   linkType: hard
 
@@ -7578,7 +7550,7 @@ __metadata:
     "@opentelemetry/core": 1.15.2
     "@opentelemetry/exporter-trace-otlp-http": 0.41.2
     "@opentelemetry/instrumentation-express": 0.33.1
-    "@opentelemetry/instrumentation-graphql": 0.35.0
+    "@opentelemetry/instrumentation-graphql": 0.35.1
     "@opentelemetry/instrumentation-http": 0.41.2
     "@opentelemetry/node": 0.24.0
     "@opentelemetry/sdk-node": 0.41.2
@@ -9508,18 +9480,6 @@ __metadata:
   version: 4.0.0
   resolution: "import-from@npm:4.0.0"
   checksum: 1fa29c05b048da18914e91d9a529e5d9b91774bebbfab10e53f59bcc1667917672b971cf102fee857f142e5e433ce69fa1f0a596e1c7d82f9947a5ec352694b9
-  languageName: node
-  linkType: hard
-
-"import-in-the-middle@npm:1.4.1":
-  version: 1.4.1
-  resolution: "import-in-the-middle@npm:1.4.1"
-  dependencies:
-    acorn: ^8.8.2
-    acorn-import-assertions: ^1.9.0
-    cjs-module-lexer: ^1.2.2
-    module-details-from-path: ^1.0.3
-  checksum: 39cf8ba24f660dfd7f57cd871ea39b0162cb80d6fefd9150988b8836e50c3c64d9ea8793777f631730de929e90d8bd5cf18bcb65338d05e810c8d26075cddb26
   languageName: node
   linkType: hard
 
