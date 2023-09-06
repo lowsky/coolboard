@@ -59,7 +59,7 @@
     "react-dom": "18.2.0",
     "react-icons": "4.10.1",
     "react-is": "18.2.0",
-    "react-timeago": "7.1.0",
+    "react-timeago": "7.2.0",
     "utf-8-validate": "6.0.3"
   },
   "scripts": {
