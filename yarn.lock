@@ -3650,13 +3650,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@instana/aws-lambda@npm:2.32.0":
-  version: 2.32.0
-  resolution: "@instana/aws-lambda@npm:2.32.0"
+"@instana/aws-lambda@npm:2.33.0":
+  version: 2.33.0
+  resolution: "@instana/aws-lambda@npm:2.33.0"
   dependencies:
-    "@instana/core": 2.32.0
-    "@instana/serverless": 2.32.0
-  checksum: a110e3bdcf41ae5a3066a5fb0a1267d303944d6ddbaadb1c2a4c9b961ab5bae7c055f1f209809289cc2771b5fb600a0c179161764d8ac41c097d515bdeef689f
+    "@instana/core": 2.33.0
+    "@instana/serverless": 2.33.0
+  checksum: 62fe5bb4c6f5bbbc9ef890fe99460f6be1d40ccaa9b48eea69fa651c6b9b02d6903fb2c77d162427e0d7900325d5a5572f9dfa69ae67607d18b0744bffc8884a
   languageName: node
   linkType: hard
 
@@ -3719,6 +3719,17 @@ __metadata:
     agent-base: ^6.0.2
     https-proxy-agent: ^5.0.0
   checksum: b8ccfbfde319be73b53bb5e8385cb475c4a4b088452e614e047b28ab7e54824c86a9d2a69d397ee97819adbb2fa6a3009b15abf285e1d13902f28c3912e15377
+  languageName: node
+  linkType: hard
+
+"@instana/serverless@npm:2.33.0":
+  version: 2.33.0
+  resolution: "@instana/serverless@npm:2.33.0"
+  dependencies:
+    "@instana/core": 2.33.0
+    agent-base: ^6.0.2
+    https-proxy-agent: ^5.0.0
+  checksum: 02cdce864fcf9980556fecd5afc7215559fad67b807400be580988fcfc0e3fa8b68dd35cdd7cf3d0bac6a44fc63be64f40b92f945b1de6cdbc4af30d2bffa864
   languageName: node
   linkType: hard
 
@@ -7888,7 +7899,7 @@ __metadata:
     "@graphql-codegen/typescript-operations": 4.0.1
     "@graphql-codegen/typescript-react-apollo": 3.3.7
     "@instana/autoprofile": ^2.15.0
-    "@instana/aws-lambda": 2.32.0
+    "@instana/aws-lambda": 2.33.0
     "@instana/opentelemetry-exporter": 2.32.0
     "@netlify/functions": 2.0.2
     "@opentelemetry/api": 1.6.0
