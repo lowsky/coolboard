@@ -3760,13 +3760,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@netlify/functions@npm:2.0.2":
-  version: 2.0.2
-  resolution: "@netlify/functions@npm:2.0.2"
+"@netlify/functions@npm:2.1.0":
+  version: 2.1.0
+  resolution: "@netlify/functions@npm:2.1.0"
   dependencies:
     "@netlify/serverless-functions-api": 1.7.3
     is-promise: ^4.0.0
-  checksum: 20df0e917afd86f2620e05f95f555571a00338046a7e9a23dea60152064fd4ef00d87034c622b696f7e83707ac731c6e385f8c625cb46361d79dcb574cc2a798
+  checksum: f68691789deff4ebf47af2ec0aa0fb2df2a0b679b98946db58ddec902a4a157ca89df8c4f0a4898de260003034f6082b5df16e8fc856ffcd22e68ffe41b779a1
   languageName: node
   linkType: hard
 
@@ -7937,7 +7937,7 @@ __metadata:
     "@instana/autoprofile": ^2.15.0
     "@instana/aws-lambda": 2.33.1
     "@instana/opentelemetry-exporter": 2.33.1
-    "@netlify/functions": 2.0.2
+    "@netlify/functions": 2.1.0
     "@opentelemetry/api": 1.6.0
     "@opentelemetry/auto-instrumentations-node": 0.39.2
     "@opentelemetry/core": 1.17.0
