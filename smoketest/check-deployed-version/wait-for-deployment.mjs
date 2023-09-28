@@ -1,7 +1,7 @@
 import got from 'got';
 
 const baseUrl = process.env.CYPRESS_baseUrl || 'https://coolboard.fun';
-const url = `${baseUrl}/meta.jsonx`;
+const url = `${baseUrl}/meta.json`;
 
 const EXPECTED_GIT_SHA1 = process.env.GIT_SHA1;
 
@@ -54,7 +54,7 @@ const runCheck = async (noRetries) => {
   );
 
   await delay(intTimeMs);
-  await runCheck(noRetries - 1);
+  return await runCheck(noRetries - 1);
 };
 
 async function delay(timeMs) {
