@@ -9,8 +9,6 @@ module.exports = defineConfig({
     baseUrl: 'https://www.coolboard.fun',
     specPattern: 'cypress/e2e/**/*.{js,jsx,ts,tsx}',
   },
-  videoUploadOnPasses: false,
-
 
   component: {
     devServer: {
