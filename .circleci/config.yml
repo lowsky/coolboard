@@ -72,12 +72,6 @@ jobs:
               echo there are NO parameters. done.
               circleci-agent step halt
             fi
-      - when:
-          condition: << pipeline.parameters.deployed-sha >>
-          steps:
-            - run:
-                command: |
-                  cd smoketest
       - run:
           name: more messages
           command: |
@@ -89,16 +83,16 @@ jobs:
             EXPECTED_GIT_SHA=<< pipeline.parameters.deployed-sha >>
 
             echo VERCEL_URL=$VERCEL_URL
-
             echo
             echo SUT:
             echo CYPRESS_baseUrl=$CYPRESS_baseUrl
             echo
-            echo current CIRCLE_SHA1=$CIRCLE_SHA1
-            echo expected EXPECTED_GIT_SHA=$EXPECTED_GIT_SHA
+            echo circle.ci - CIRCLE_SHA1=$CIRCLE_SHA1
+            echo expected
+            echo EXPECTED_GIT_SHA=$EXPECTED_GIT_SHA
             echo
-            echo using GIT_SHA1=${EXPECTED_GIT_SHA:-$CIRCLE_SHA1}
-            echo running GIT_SHA1=${EXPECTED_GIT_SHA:-$CIRCLE_SHA1} npm run wait:valid-version
+            echo running GIT_SHA1=${EXPECTED_GIT_SHA:-$CIRCLE_SHA1} check-deployed-version/check-deployed-version
+            GIT_SHA1=${EXPECTED_GIT_SHA:-$CIRCLE_SHA1} check-deployed-version/check-deployed-version
       - run:
           name: run cypress
           command: |
