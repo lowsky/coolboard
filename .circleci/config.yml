@@ -92,7 +92,7 @@ jobs:
             echo EXPECTED_GIT_SHA=$EXPECTED_GIT_SHA
             echo
             echo running GIT_SHA1=${EXPECTED_GIT_SHA:-$CIRCLE_SHA1} check-deployed-version/check-deployed-version
-            GIT_SHA1=${EXPECTED_GIT_SHA:-$CIRCLE_SHA1} check-deployed-version/check-deployed-version
+            CYPRESS_baseUrl=$CYPRESS_baseUrl GIT_SHA1=${EXPECTED_GIT_SHA:-$CIRCLE_SHA1} check-deployed-version/check-deployed-version
       - run:
           name: run cypress
           command: |
