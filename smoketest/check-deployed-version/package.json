@@ -8,9 +8,11 @@
     "node": "20.x"
   },
   "scripts": {
-    "install_and_test": "npm install ; echo installing deps - exit code $?; echo ; node wait-for-deployment.mjs"
+    "install_and_test": "./check-deployed-version"
   },
   "devDependencies": {
-    "got": "13.0.0"
+  },
+  "bin": "wait-for-deployment.mjs",
+  "dependencies": {
   }
 }

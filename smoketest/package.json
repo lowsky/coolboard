@@ -13,6 +13,6 @@
   "scripts": {
     "cy": "cypress",
     "test": "yarn run cy run",
-    "wait:valid-version": "cd check-deployed-version ; npm run install_and_test"
+    "wait:valid-version": "check-deployed-version/check-deployed-version"
   }
 }
