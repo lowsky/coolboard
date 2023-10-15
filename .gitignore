@@ -55,3 +55,5 @@ smoketest/cypress/screenshots
 !.yarn/sdks
 !.yarn/versions
 
+/smoketest/check-deployed-version/target/
+/smoketest/cypress/results/test-results.xml
