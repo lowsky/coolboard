@@ -25,7 +25,8 @@ jobs:
   check:
     docker:
       - image:  cypress/base:20.6.1
-    parallelism: 1
+    resource_class: lowsky/selfhosted
+    parallelism: 3
     steps:
       - checkout
       - restore_cache:
@@ -42,6 +43,8 @@ jobs:
   build:
     docker:
       - image: cypress/base:20.6.1
+    resource_class: lowsky/selfhosted
+    parallelism: 2
     steps:
       - checkout
       - run:
