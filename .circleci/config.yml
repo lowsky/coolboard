@@ -130,6 +130,18 @@ jobs:
 
               PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 yarn --immutable
 
+              # show Cypress cache folder and binary versions
+              # to check if we are caching previous binary versions
+              npx cypress info
+              npx cypress cache path
+              npx cypress cache list
+              # let's print version info
+              npx cypress version
+              npx cypress version --component package
+              npx cypress version --component binary
+              npx cypress version --component electron
+              npx cypress version --component node
+
               echo running CYPRESS_branch=${CIRCLE_BRANCH} npm run cy run -- --record --key ...
               # CYPRESS_branch=${CIRCLE_BRANCH} npm run cy run -- --record --key $CYPRESS_API_KEY --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
               # without reporting to cypress.io
