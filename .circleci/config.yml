@@ -24,25 +24,25 @@ workflows:
 jobs:
   check:
     docker:
-      - image:  cypress/base:20.6.1
+      - image:  cypress/base:20.5.0
     resource_class: lowsky/selfhosted
     parallelism: 3
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - cache-{{ .Branch }}-{{ checksum "smoketest/yarn.lock" }}
+      #- restore_cache:
+      #    keys:
+      #      - cache-{{ .Branch }}-{{ checksum "smoketest/yarn.lock" }}
       - run:
           name: web client - yarn
           command: yarn
-      - save_cache:
-          key: cache-{{ .Branch }}-{{ checksum "smoketest/yarn.lock" }}
-          paths:
-            - ~/smoketest/.node_modules
-            - ~/smoketest/.cache
+      #- save_cache:
+      #    key: cache-{{ .Branch }}-{{ checksum "smoketest/yarn.lock" }}
+      #    paths:
+      #      - ~/smoketest/.node_modules
+      #      - ~/smoketest/.cache
   build:
     docker:
-      - image: cypress/base:20.6.1
+      - image: cypress/base:20.5.0
     resource_class: lowsky/selfhosted
     parallelism: 2
     steps:
