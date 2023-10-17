@@ -112,7 +112,7 @@ jobs:
 
             if [  "$CHECK_VERSION" -eq "255"  ] ;  then
               echo "Version does not match with $EXPECTED_GIT_SHA"
-              circleci-agent step halt
+              exit -1
             fi
 
       - run:
