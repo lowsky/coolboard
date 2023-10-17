@@ -22,26 +22,33 @@ workflows:
       - build
 
 jobs:
-  check:
+  install_and_cache:
     docker:
-      - image:  cypress/base:20.6.1
+      - image:  cypress/base:20.5.0
+    resource_class: lowsky/selfhosted
     parallelism: 1
     steps:
       - checkout
       - restore_cache:
           keys:
-            - cache-{{ .Branch }}-{{ checksum "smoketest/yarn.lock" }}
+            - cache-smoketest-{{ checksum "smoketest/yarn.lock" }}
       - run:
-          name: web client - yarn
-          command: yarn
+          name: smoketest - yarn install
+          command: |
+            cd smoketest
+            PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 yarn --immutable
       - save_cache:
-          key: cache-{{ .Branch }}-{{ checksum "smoketest/yarn.lock" }}
+          key: cache-smoketest-{{ checksum "smoketest/yarn.lock" }}
           paths:
-            - ~/smoketest/.node_modules
-            - ~/smoketest/.cache
+            - smoketest/.node_modules
+            - smoketest/.yarn/install-state.gz
+            - smoketest/.cache
+            - ~/.cache/Cypress/
   build:
     docker:
-      - image: cypress/base:20.6.1
+      - image: cypress/base:20.5.0
+    resource_class: lowsky/selfhosted
+    parallelism: 1
     steps:
       - checkout
       - run:
@@ -62,7 +69,7 @@ jobs:
             EXPECTED_GIT_SHA=<< pipeline.parameters.deployed-sha >>
             VERCEL_URL=<< pipeline.parameters.VERCEL_URL >>
 
-            env | grep CIRCLE | grep -v '\*\*\*' | sort
+            # env | grep CIRCLE | grep -v '\*\*\*' | sort
 
             if [ -n "$CIRCLE_PR_NUMBER" ]; then
               echo " there is this PR number: $CIRCLE_PR_NUMBER"
@@ -73,26 +80,59 @@ jobs:
               circleci-agent step halt
             fi
       - run:
-          name: more messages
+          name: check matching of versions
           command: |
             cd smoketest
 
-            VERCEL_URL=<< pipeline.parameters.VERCEL_URL >>
-            CIRCLE_PR_NUMBER=<< pipeline.parameters.gh-pr >>
-            CYPRESS_baseUrl=<< pipeline.parameters.test-url >>
-            EXPECTED_GIT_SHA=<< pipeline.parameters.deployed-sha >>
+            export VERCEL_URL=<< pipeline.parameters.VERCEL_URL >>
+            export CIRCLE_PR_NUMBER=<< pipeline.parameters.gh-pr >>
+            export CYPRESS_baseUrl=<< pipeline.parameters.test-url >>
+            export EXPECTED_GIT_SHA=<< pipeline.parameters.deployed-sha >>
 
             echo VERCEL_URL=$VERCEL_URL
             echo
             echo SUT:
-            echo CYPRESS_baseUrl=$CYPRESS_baseUrl
+            echo export CYPRESS_baseUrl=$CYPRESS_baseUrl
             echo
-            echo circle.ci - CIRCLE_SHA1=$CIRCLE_SHA1
-            echo expected
-            echo EXPECTED_GIT_SHA=$EXPECTED_GIT_SHA
+            echo circle.ci -
+            echo   CIRCLE_SHA1=$CIRCLE_SHA1
             echo
-            echo running GIT_SHA1=${EXPECTED_GIT_SHA:-$CIRCLE_SHA1} check-deployed-version/check-deployed-version
-            CYPRESS_baseUrl=$CYPRESS_baseUrl GIT_SHA1=${EXPECTED_GIT_SHA:-$CIRCLE_SHA1} check-deployed-version/check-deployed-version
+            echo expecting
+            echo export EXPECTED_GIT_SHA=$EXPECTED_GIT_SHA
+            echo export GIT_SHA1=${EXPECTED_GIT_SHA:-$CIRCLE_SHA1}
+            echo
+            echo running
+            echo    check-deployed-version/check-deployed-version
+
+            export GIT_SHA1=${EXPECTED_GIT_SHA:-$CIRCLE_SHA1}
+
+            check-deployed-version/check-deployed-version || CHECK_VERSION=$?
+
+            echo DEBUG check - result: $CHECK_VERSION
+
+            if [  "$CHECK_VERSION" -eq "255"  ] ;  then
+              echo "Version does not match with $EXPECTED_GIT_SHA"
+              exit -1
+            fi
+
+      - restore_cache:
+          keys:
+            - cache-smoketest-{{ checksum "smoketest/yarn.lock" }}
+      - run:
+          name: smoketest - yarn install
+          command: |
+            cd smoketest
+            PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 yarn --immutable
+            yarn cypress verify
+            yarn cypress cache path
+      - save_cache:
+          key: cache-smoketest-{{ checksum "smoketest/yarn.lock" }}
+          paths:
+            - smoketest/.node_modules
+            - smoketest/.yarn/install-state.gz
+            - smoketest/.cache
+            - ~/.cache/Cypress/
+
       - run:
           name: run cypress
           command: |
@@ -100,34 +140,16 @@ jobs:
             export CYPRESS_baseUrl=<< pipeline.parameters.test-url >>
             export EXPECTED_GIT_SHA=<< pipeline.parameters.deployed-sha >>
             export VERCEL_URL=<< pipeline.parameters.VERCEL_URL >>
+            export CYPRESS_branch=${CIRCLE_BRANCH}
 
             cd smoketest
             mkdir -p cypress/results
+            npx cypress info
 
-            CIRCLE_PR_NUMBER=<< pipeline.parameters.gh-pr >>
-            CYPRESS_baseUrl=<< pipeline.parameters.test-url >>
-            EXPECTED_GIT_SHA=<< pipeline.parameters.deployed-sha >>
-
-            if [ "X${CIRCLE_PR_NUMBER}${CYPRESS_baseUrl}${EXPECTED_GIT_SHA}" == "X" ]; then
-              echo there are NO parameters. done.
-              exit 0
-            fi
-
-            GIT_SHA1=${EXPECTED_GIT_SHA:-$CIRCLE_SHA1} npm run wait:valid-version ; CHECK_VERSION=$?
-
-            echo CHECK VERSION result: $CHECK_VERSION
-
-            if [  "$CHECK_VERSION" -eq "255"  ] ;  then
-              echo "Version does not match with $EXPECTED_GIT_SHA"
-            else
-              export CYPRESS_branch=${CIRCLE_BRANCH}
-
-              echo yarn install - need to install cypress!
-              PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 yarn --immutable
-
-              echo running CYPRESS_branch=${CIRCLE_BRANCH} npm run cy run -- --record --key ...
-              CYPRESS_branch=${CIRCLE_BRANCH} npm run cy run -- --record --key $CYPRESS_API_KEY --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
-            fi
+            echo running CYPRESS_branch=${CIRCLE_BRANCH} npm run cy run -- --record
+            # CYPRESS_branch=${CIRCLE_BRANCH} npm run cy run -- --record --key $CYPRESS_API_KEY --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
+            # without reporting to cypress.io
+            CYPRESS_branch=${CIRCLE_BRANCH} npm run cy run -- --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
       - store_test_results:
           path: smoketest/cypress/results
       - store_artifacts:
