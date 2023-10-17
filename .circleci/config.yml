@@ -22,24 +22,28 @@ workflows:
       - build
 
 jobs:
-  check:
+  install_and_cache:
     docker:
       - image:  cypress/base:20.5.0
     resource_class: lowsky/selfhosted
     parallelism: 3
     steps:
       - checkout
-      #- restore_cache:
-      #    keys:
-      #      - cache-{{ .Branch }}-{{ checksum "smoketest/yarn.lock" }}
+      - restore_cache:
+          keys:
+            - cache-cy-{{ checksum "smoketest/yarn.lock" }}
       - run:
-          name: web client - yarn
-          command: yarn
-      #- save_cache:
-      #    key: cache-{{ .Branch }}-{{ checksum "smoketest/yarn.lock" }}
-      #    paths:
-      #      - ~/smoketest/.node_modules
-      #      - ~/smoketest/.cache
+          name: smoketest - yarn install
+          command: |
+            cd smoketest
+            PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 yarn --immutable
+      - save_cache:
+          key: cache-cy-{{ checksum "smoketest/yarn.lock" }}
+          paths:
+            - ~/smoketest/.node_modules
+            - ~/smoketest/.yarn/install-state.gz
+            - ~/smoketest/.cache
+            - ~/.cache/Cypress/
   build:
     docker:
       - image: cypress/base:20.5.0
@@ -96,6 +100,23 @@ jobs:
             echo
             echo running GIT_SHA1=${EXPECTED_GIT_SHA:-$CIRCLE_SHA1} check-deployed-version/check-deployed-version
             CYPRESS_baseUrl=$CYPRESS_baseUrl GIT_SHA1=${EXPECTED_GIT_SHA:-$CIRCLE_SHA1} check-deployed-version/check-deployed-version
+
+      - restore_cache:
+          keys:
+            - cache-cy-{{ checksum "smoketest/yarn.lock" }}
+      - run:
+          name: smoketest - yarn install
+          command: |
+            cd smoketest
+            PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 yarn --immutable
+      - save_cache:
+          key: cache-cy-{{ checksum "smoketest/yarn.lock" }}
+          paths:
+            - ~/smoketest/.node_modules
+            - ~/smoketest/.yarn/install-state.gz
+            - ~/smoketest/.cache
+            - ~/.cache/Cypress/
+
       - run:
           name: run cypress
           command: |
@@ -128,7 +149,7 @@ jobs:
 
               echo yarn install - need to install cypress!
 
-              PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 yarn --immutable
+              ## still needed?? PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 yarn --immutable
 
               # show Cypress cache folder and binary versions
               # to check if we are caching previous binary versions
