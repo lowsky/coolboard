@@ -40,9 +40,9 @@ jobs:
       - save_cache:
           key: cache-cy-{{ checksum "smoketest/yarn.lock" }}
           paths:
-            - ~/smoketest/.node_modules
-            - ~/smoketest/.yarn/install-state.gz
-            - ~/smoketest/.cache
+            - smoketest/.node_modules
+            - smoketest/.yarn/install-state.gz
+            - smoketest/.cache
             - ~/.cache/Cypress/
   build:
     docker:
@@ -112,9 +112,9 @@ jobs:
       - save_cache:
           key: cache-cy-{{ checksum "smoketest/yarn.lock" }}
           paths:
-            - ~/smoketest/.node_modules
-            - ~/smoketest/.yarn/install-state.gz
-            - ~/smoketest/.cache
+            - smoketest/.node_modules
+            - smoketest/.yarn/install-state.gz
+            - smoketest/.cache
             - ~/.cache/Cypress/
 
       - run:
