@@ -48,7 +48,7 @@ jobs:
     docker:
       - image: cypress/base:20.5.0
     resource_class: lowsky/selfhosted
-    parallelism: 2
+    parallelism: 1
     steps:
       - checkout
       - run:
@@ -137,8 +137,8 @@ jobs:
           name: smoketest - yarn install
           command: |
             cd smoketest
-            #PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 yarn --immutable
-            #yarn cypress verify
+            PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 yarn --immutable
+            yarn cypress verify
             yarn cypress cache path
       - save_cache:
           key: cache-cy2-{{ checksum "smoketest/yarn.lock" }}
