@@ -30,9 +30,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@apollo/client@npm:3.8.4":
-  version: 3.8.4
-  resolution: "@apollo/client@npm:3.8.4"
+"@apollo/client@npm:3.8.6":
+  version: 3.8.6
+  resolution: "@apollo/client@npm:3.8.6"
   dependencies:
     "@graphql-typed-document-node/core": ^3.1.1
     "@wry/context": ^0.7.3
@@ -62,7 +62,7 @@ __metadata:
       optional: true
     subscriptions-transport-ws:
       optional: true
-  checksum: 509e37cdce7462cacda0a86c413ce471cd8f618625fb8ac3a60d6347d12f37a4fc60e12fc3fc1a375799caa21e56ff58d709e13ef5e13ab15e4dfc828a527848
+  checksum: 34a917d3456c1f728834eaaee00a98f82c7f60de8e0e0c62154667f7e95a635740a2d43fe43f51f85950eb2abe06a3d326f32393a48dd4afc6e4fb4357876dc1
   languageName: node
   linkType: hard
 
@@ -162,9 +162,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@apollo/server@npm:4.9.3":
-  version: 4.9.3
-  resolution: "@apollo/server@npm:4.9.3"
+"@apollo/server@npm:4.9.4":
+  version: 4.9.4
+  resolution: "@apollo/server@npm:4.9.4"
   dependencies:
     "@apollo/cache-control-types": ^1.0.3
     "@apollo/server-gateway-interface": ^1.1.1
@@ -194,7 +194,7 @@ __metadata:
     whatwg-mimetype: ^3.0.0
   peerDependencies:
     graphql: ^16.6.0
-  checksum: 28537d7646669a5dc1302cfd75d8a9bf473459ee585c6b778d174628a2cfb3f89a5ac742eca7de2a779b6c9e3f30da509a8787a71227520d009ac190aa7a9207
+  checksum: bf7105ffceaed6e3c54f1506513944bb324ae32e92b1aabb3ec7de1b9fee1373bdec6e1a3f5efb7c7f8090671f1ba2d37c01f5b1456c93127ffede1a0b554bac
   languageName: node
   linkType: hard
 
@@ -7972,8 +7972,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "coolboard@workspace:."
   dependencies:
-    "@apollo/client": 3.8.4
-    "@apollo/server": 4.9.3
+    "@apollo/client": 3.8.6
+    "@apollo/server": 4.9.4
     "@apollo/server-plugin-landing-page-graphql-playground": 4.0.1
     "@as-integrations/next": 2.0.2
     "@chakra-ui/icons": 2.1.1
