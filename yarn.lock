@@ -3819,13 +3819,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@netlify/functions@npm:2.1.0":
-  version: 2.1.0
-  resolution: "@netlify/functions@npm:2.1.0"
+"@netlify/functions@npm:2.3.0":
+  version: 2.3.0
+  resolution: "@netlify/functions@npm:2.3.0"
   dependencies:
-    "@netlify/serverless-functions-api": 1.7.3
+    "@netlify/serverless-functions-api": 1.9.0
     is-promise: ^4.0.0
-  checksum: f68691789deff4ebf47af2ec0aa0fb2df2a0b679b98946db58ddec902a4a157ca89df8c4f0a4898de260003034f6082b5df16e8fc856ffcd22e68ffe41b779a1
+  checksum: 0e6bc87c1aed072366ea6b883436ec5a345aea73d02f8a46e936f217bbab93f5c143d75177f7519054452af7773bafaf59fb3acffff147bcbb002ce9e9586100
   languageName: node
   linkType: hard
 
@@ -3836,13 +3836,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@netlify/serverless-functions-api@npm:1.7.3":
-  version: 1.7.3
-  resolution: "@netlify/serverless-functions-api@npm:1.7.3"
+"@netlify/serverless-functions-api@npm:1.9.0":
+  version: 1.9.0
+  resolution: "@netlify/serverless-functions-api@npm:1.9.0"
   dependencies:
     "@netlify/node-cookies": ^0.1.0
     urlpattern-polyfill: 8.0.2
-  checksum: bce343496145e2e8afab2d979d5ec212b96899708dc84ca4ee9bc759042795e39cc1b6f8b59e1c01371adaf52a30594665f5e4b9d3dff0144a6e5d89578d8827
+  checksum: abc18901bea18c9979d16134c2f25e663474fa6012512132b21b378f87a44d297e18ed453e22082d148ffeae1811a3f0ff78b54556e53837004dde8f9a34d3c7
   languageName: node
   linkType: hard
 
@@ -7724,7 +7724,7 @@ __metadata:
     "@instana/autoprofile": ^2.15.0
     "@instana/aws-lambda": 2.34.0
     "@instana/opentelemetry-exporter": 2.34.0
-    "@netlify/functions": 2.1.0
+    "@netlify/functions": 2.3.0
     "@opentelemetry/api": 1.6.0
     "@opentelemetry/auto-instrumentations-node": 0.39.4
     "@opentelemetry/core": 1.17.1
