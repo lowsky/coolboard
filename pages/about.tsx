@@ -72,7 +72,7 @@ export default function About() {
           <Text>
             You will need to Sign-up via email and{' '}
             {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-            <a href="/sign-in/sign-in">
+            <a href="/sign-in">
               <Icon>
                 <FaSignInAlt />
               </Icon>

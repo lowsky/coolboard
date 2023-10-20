@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import {
   Container,
+  Heading,
   IconButton,
   List,
   ListItem,
@@ -103,7 +104,9 @@ export const Boards = () => {
     return (
       <FullVerticalContainer>
         <Segment textAlign="center">
-          <h1>Your Boards</h1>
+          <Heading as="h1" my={2}>
+            Your Boards
+          </Heading>
           <Spinner />
         </Segment>
       </FullVerticalContainer>
@@ -114,7 +117,9 @@ export const Boards = () => {
     return (
       <FullVerticalContainer>
         <Segment textAlign="center">
-          <h1>Your Boards</h1>
+          <Heading as="h1" my={2}>
+            Your Boards
+          </Heading>
           <p>list can not be loaded, please retry.</p>
         </Segment>
       </FullVerticalContainer>
@@ -126,11 +131,10 @@ export const Boards = () => {
   return (
     <FullVerticalContainer>
       <Segment textAlign="center">
-        {boards.length === 0 ? (
-          <span>You can create new boards now!</span>
-        ) : (
-          <h1>Your Boards</h1>
-        )}
+        <Heading as="h1" my={2}>
+          Your Boards
+        </Heading>
+        {boards.length === 0 && <span>You can create new boards now!</span>}
         <Container data-cy="boards-list" textAlign="left">
           {boards?.length > 0 && (
             <BoardList

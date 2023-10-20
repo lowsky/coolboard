@@ -72,7 +72,11 @@ export const ProfileHeader = ({
       </ClerkLoaded>
       <SignedIn>
         <Flex alignItems="center" gap="0.5em">
-          <UserButton appearance={clerkAppearance} showName />
+          <UserButton
+            appearance={clerkAppearance}
+            afterSignOutUrl="/"
+            showName
+          />
           <Button
             onClick={async (event) => {
               event.preventDefault();
