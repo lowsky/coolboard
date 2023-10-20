@@ -7700,7 +7700,6 @@ __metadata:
     eslint-plugin-prettier: 5.0.1
     event-loop-stats: ^1.4.1
     framer-motion: 10.16.4
-    gcstats.js: ^1.0.0
     graphql: 16.8.1
     graphql-scalars: ^1.20.1
     graphql-tag: 2.12.6
@@ -9212,16 +9211,6 @@ __metadata:
     gaxios: ^5.0.0
     json-bigint: ^1.0.0
   checksum: 4e7ed589c814bb79cbf052b0eda1d5e219fbee030f4772eca27ec1e6e1faa85ba0ef3b17ea5c3fd51a54fc5429c924b4edbb260ac147701f211fb9807b893544
-  languageName: node
-  linkType: hard
-
-"gcstats.js@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "gcstats.js@npm:1.0.0"
-  dependencies:
-    nan: ^2.0.5
-    node-gyp: latest
-  checksum: d745399b3985079f8a6b3c90de52da92a5df850d200441a2fb4cf47c6573da732398758e4eeb834cac273c3025ce4389379b60250054d9e7e398fa8f5e586cd2
   languageName: node
   linkType: hard
 
@@ -11112,7 +11101,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nan@npm:^2.0.5, nan@npm:^2.14.0, nan@npm:^2.14.2":
+"nan@npm:^2.14.0, nan@npm:^2.14.2":
   version: 2.17.0
   resolution: "nan@npm:2.17.0"
   dependencies:
