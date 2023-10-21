@@ -1,15 +1,21 @@
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
-import { withClerkMiddleware } from '@clerk/nextjs/server';
-import { getAuth } from '@clerk/nextjs/server';
+import { authMiddleware } from '@clerk/nextjs';
 
-export default withClerkMiddleware((req: NextRequest) => {
-  const { userId } = getAuth(req);
-
-  // console.log('userId', userId);
-
-  return NextResponse.next();
+export default authMiddleware({
+  publicRoutes: ['/', '/boards', '/about', '/imprint', '/privacy'],
+  debug: true,
 });
 
-// Stop Middleware running on static files
-export const config = { matcher: '/((?!.*\\.).*)' };
+// Stop Middleware running on static files - more performant than ignoreRoutes
+export const config = {
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - _next
+     * - static (static files)
+     * - favicon.ico (favicon file)
+     * - public folder
+     */
+    '/((?!static|.*\\..*|_next|favicon.ico).*)',
+    '/',
+  ],
+};

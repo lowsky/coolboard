@@ -10,7 +10,7 @@ import {
 import { HamburgerIcon } from '@chakra-ui/icons';
 
 export const BoardTitle = ({ boardName, headerActions }) => (
-  <Flex justifyContent="space-between">
+  <Flex justifyContent="space-between" mx={4}>
     <Heading as="h1">Board: {boardName}</Heading>
     {headerActions && (
       <Menu>

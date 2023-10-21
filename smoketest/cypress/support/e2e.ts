@@ -53,7 +53,9 @@ export const login = (
   cy.session(
     'coolboardSessionId',
     () => {
-      cy.visit('/boards')
+      cy.visit('/boards', {
+        failOnStatusCode: false,
+      })
         .contains('Log in', {
           log: true,
           timeout: 6000,
