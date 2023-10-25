@@ -2400,23 +2400,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/backend@npm:0.31.2":
-  version: 0.31.2
-  resolution: "@clerk/backend@npm:0.31.2"
-  dependencies:
-    "@clerk/shared": 0.24.5
-    "@clerk/types": 3.56.1
-    "@peculiar/webcrypto": 1.4.1
-    "@types/node": 16.18.6
-    cookie: 0.5.0
-    deepmerge: 4.2.2
-    node-fetch-native: 1.0.1
-    snakecase-keys: 5.4.4
-    tslib: 2.4.1
-  checksum: f7371d53f84a3f585062ed53f145531aa971b682bed0f7aec53441e76987315acc2db28fb688ca2ae5d961bf2d77042dae2cac23f0c1518f76192a6a978796e7
-  languageName: node
-  linkType: hard
-
 "@clerk/backend@npm:0.31.3":
   version: 0.31.3
   resolution: "@clerk/backend@npm:0.31.3"
@@ -2434,33 +2417,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/clerk-react@npm:4.26.6":
-  version: 4.26.6
-  resolution: "@clerk/clerk-react@npm:4.26.6"
+"@clerk/clerk-react@npm:4.27.0":
+  version: 4.27.0
+  resolution: "@clerk/clerk-react@npm:4.27.0"
   dependencies:
-    "@clerk/shared": 0.24.5
-    "@clerk/types": 3.56.1
+    "@clerk/shared": 1.0.0
+    "@clerk/types": 3.57.0
     tslib: 2.4.1
   peerDependencies:
     react: ">=16"
-  checksum: 5116c2e1fdf6a4789b38d9db8b71790a5b9fe51dcc9e8f21c2fdc52312850fa0622cd3046195bc04be109f67393d0d1d6669a81a0c7930953eacd24ebef55f2b
-  languageName: node
-  linkType: hard
-
-"@clerk/clerk-sdk-node@npm:4.12.15":
-  version: 4.12.15
-  resolution: "@clerk/clerk-sdk-node@npm:4.12.15"
-  dependencies:
-    "@clerk/backend": 0.31.2
-    "@clerk/shared": 0.24.5
-    "@clerk/types": 3.56.1
-    "@types/cookies": 0.7.7
-    "@types/express": 4.17.14
-    "@types/node-fetch": 2.6.2
-    camelcase-keys: 6.2.2
-    snakecase-keys: 3.2.1
-    tslib: 2.4.1
-  checksum: 6e64c9fa722bc3129145a0f371f636126e620b4abcfb52d5008564e1e1f86848ed9eb580fc48617cbdfd0fa719bafd5587e7ba8561f33e06b77161fe6f80d400
+  checksum: e5cece56b3c4fb7613e74f98a3e3b4eae08634432c66c63d5a11c4cc0d4b3963cde8c2dc5a63762b0721dc5482ecccdaefb9ec4b7ec5bf8024019a62759fd8c3
   languageName: node
   linkType: hard
 
@@ -2481,38 +2447,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/nextjs@npm:4.25.6":
-  version: 4.25.6
-  resolution: "@clerk/nextjs@npm:4.25.6"
+"@clerk/nextjs@npm:4.25.7":
+  version: 4.25.7
+  resolution: "@clerk/nextjs@npm:4.25.7"
   dependencies:
-    "@clerk/backend": 0.31.2
-    "@clerk/clerk-react": 4.26.6
-    "@clerk/clerk-sdk-node": 4.12.15
-    "@clerk/shared": 0.24.5
-    "@clerk/types": 3.56.1
+    "@clerk/backend": 0.31.3
+    "@clerk/clerk-react": 4.27.0
+    "@clerk/clerk-sdk-node": 4.12.16
+    "@clerk/shared": 1.0.0
+    "@clerk/types": 3.57.0
     path-to-regexp: 6.2.1
     tslib: 2.4.1
   peerDependencies:
     next: ">=10"
     react: ^17.0.2 || ^18.0.0-0
     react-dom: ^17.0.2 || ^18.0.0-0
-  checksum: 7c04a42f435e15aa130287ae968267e6f2584ffc1aee03467e6d6ad0d3248b08855dd6a028e10e5bd67242fea4337d0a5224ef00e148a13aad8700ac3f0b0d9d
-  languageName: node
-  linkType: hard
-
-"@clerk/shared@npm:0.24.5":
-  version: 0.24.5
-  resolution: "@clerk/shared@npm:0.24.5"
-  dependencies:
-    glob-to-regexp: 0.4.1
-    js-cookie: 3.0.1
-    swr: 2.2.0
-  peerDependencies:
-    react: ">=16"
-  peerDependenciesMeta:
-    react:
-      optional: true
-  checksum: 9705f95efb2a84caed46eab0e4402bf97ed851f576b520bbcad17d196bb69b0e0f509cf032fe212fa080e8e2666a6a4e5d5961575ee936fda12578d7e92971b2
+  checksum: 9123cf5997a4d4882e595f2a8aa55db4fd5f3922279c2dea1ab210c7da039b0dbd8f3c197e022cff5390609cdfd06e8afd2be5f84f0d3b249e920f5efb155af3
   languageName: node
   linkType: hard
 
@@ -2538,15 +2488,6 @@ __metadata:
   peerDependencies:
     react: ">=16"
   checksum: 6b6d7c3c4b3f6e8418a4a2268391373d4a1ae4b959147aba60bec1225d3e53d825c467c4672a8c6d8e3579324d17bfda8f804ece5582a2ca47d52d9eca51c1f7
-  languageName: node
-  linkType: hard
-
-"@clerk/types@npm:3.56.1":
-  version: 3.56.1
-  resolution: "@clerk/types@npm:3.56.1"
-  dependencies:
-    csstype: 3.1.1
-  checksum: ca748105dd2dfb04fb7ef6eff487843899fee942f8860aeabd7bd168a1fce0051b7a1ed06802b57c19d20ad7475564b019d07b2afdd84a3e59c73e8630aee2b5
   languageName: node
   linkType: hard
 
@@ -7754,7 +7695,7 @@ __metadata:
     "@chakra-ui/icons": 2.1.1
     "@chakra-ui/react": 2.8.1
     "@clerk/clerk-sdk-node": 4.12.16
-    "@clerk/nextjs": 4.25.6
+    "@clerk/nextjs": 4.25.7
     "@clerk/themes": ^1.2.20
     "@emotion/react": 11.11.1
     "@emotion/styled": 11.11.0
