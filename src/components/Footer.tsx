@@ -14,7 +14,7 @@ import {
   PopoverTrigger,
   Portal,
 } from '@chakra-ui/react';
-import { FaGithub, FaHeart, FaTwitter } from 'react-icons/fa';
+import { FaGithub, FaHeart, FaMastodonr } from 'react-icons/fa';
 
 import nextLogo from './nextjs-logo.svg';
 import prismaLogo from './prisma-logo.svg';
@@ -35,9 +35,10 @@ export function Footer() {
         <Link href="/imprint">Imprint(de)</Link>
         <Link href="/privacy">Privacy</Link>
         <Link href="mailto:coolboard@protonmail.com">Support</Link>
-        <a href="https://twitter.com/rhosts" target="_blank" rel="noreferrer">
-          <FaTwitter />
-        </a>
+        <a
+          href="https://mastodontech.de/@lowsky"
+          target="_blank"
+          rel="noreferrer"></a>
         <Popover>
           <PopoverTrigger>
             <span>
@@ -50,15 +51,15 @@ export function Footer() {
                 <LinkBox maxW="sm" p="5" borderWidth="1px" rounded="md">
                   <LinkOverlay
                     color="#777"
-                    href="https://twitter.com/rhosts"
+                    href="https://mastodontech.de/@lowsky"
                     target="_blank"
                     rel="noreferrer">
                     Interested?
                     <br />
                     <FaHeart color="red" />
-                    You can drop me a message on Twitter{' '}
+                    You can drop me a message on Mastodon{' '}
                     <Icon>
-                      <FaTwitter />
+                      <FaMastoon />
                     </Icon>{' '}
                     by clicking this box.
                     <br />

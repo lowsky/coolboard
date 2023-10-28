@@ -2,8 +2,8 @@
 
 # coolboard
 
-This repo contains the client and the server code for the 
-https://www.coolboard.fun 
+This repo contains the client and the server code for the
+https://www.coolboard.fun
 
 ---
 
@@ -14,4 +14,4 @@ Video Course:
 
 Publish by [Packt](https://www.packtpub.com/).
 
-Author: Robert Hostlowsky [@rhosts](https://www.twitter.com/rhosts)
+Author: Robert Hostlowsky https://mastodontech.de/@lowsky
