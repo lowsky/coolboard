@@ -14,7 +14,7 @@ import {
   PopoverTrigger,
   Portal,
 } from '@chakra-ui/react';
-import { FaGithub, FaHeart, FaMastodonr } from 'react-icons/fa';
+import { FaGithub, FaHeart, FaMastodon } from 'react-icons/fa';
 
 import nextLogo from './nextjs-logo.svg';
 import prismaLogo from './prisma-logo.svg';
@@ -59,7 +59,7 @@ export function Footer() {
                     <FaHeart color="red" />
                     You can drop me a message on Mastodon{' '}
                     <Icon>
-                      <FaMastoon />
+                      <FaMastodon />
                     </Icon>{' '}
                     by clicking this box.
                     <br />
