@@ -3920,13 +3920,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@opentelemetry/api@npm:1.6.0":
-  version: 1.6.0
-  resolution: "@opentelemetry/api@npm:1.6.0"
-  checksum: b8daefad2c862ed4e1e6b50df8946f08339a27aa83ac3b081bd4ed92e9ae2c365ecfc200f936ce08a1278b9a3c4103b5f33c2c19a495f68e245f727bba41af75
-  languageName: node
-  linkType: hard
-
 "@opentelemetry/auto-instrumentations-node@npm:0.39.4":
   version: 0.39.4
   resolution: "@opentelemetry/auto-instrumentations-node@npm:0.39.4"
@@ -7621,7 +7614,6 @@ __metadata:
     "@instana/autoprofile": "npm:^2.15.0"
     "@instana/aws-lambda": "npm:2.34.1"
     "@instana/opentelemetry-exporter": "npm:2.34.1"
-    "@opentelemetry/api": "npm:1.6.0"
     "@opentelemetry/auto-instrumentations-node": "npm:0.39.4"
     "@opentelemetry/core": "npm:1.17.1"
     "@opentelemetry/exporter-trace-otlp-http": "npm:0.44.0"
