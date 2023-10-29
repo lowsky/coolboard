@@ -6992,13 +6992,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bcryptjs@npm:2.4.3":
-  version: 2.4.3
-  resolution: "bcryptjs@npm:2.4.3"
-  checksum: f6798e57eacfe86960d31af9b8fbc15dc73281c42cfb2a294e2d737e0e9bb7e402dbd39ac68b114867b234fd841ae689dbac031cc6af822b9e72099f52157a8c
-  languageName: node
-  linkType: hard
-
 "bignumber.js@npm:^9.0.0":
   version: 9.1.1
   resolution: "bignumber.js@npm:9.1.1"
@@ -7648,7 +7641,6 @@ __metadata:
     "@typescript-eslint/parser": "npm:6.9.1"
     apollo-server-lambda: "npm:3.12.1"
     apollo-server-micro: "npm:3.12.1"
-    bcryptjs: "npm:2.4.3"
     emitter-listener: "npm:1.1.2"
     eslint: "npm:8.52.0"
     eslint-config-next: "npm:14.0.1"
