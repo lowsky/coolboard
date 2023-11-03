@@ -1,4 +1,3 @@
-// LATER: re-enable OTEL: import { startTracing } from '../../server/openTelemetry';
 /*
 LATER: evaluate vercel solution:
 
@@ -13,7 +12,16 @@ export function register() {
 */
 
 export function register() {
+import { isLocalDev } from './server/src/helpers/logging';
+
+export async function register() {
   if (process.env.NEXT_RUNTIME === 'nodejs') {
     require('@instana/serverless');
+    const otel = await import('./server/openTelemetry');
+    const { startTracing } = otel;
+
+    await startTracing();
+
+    isLocalDev && console.log(' instana instrumentation loaded');
   }
 }

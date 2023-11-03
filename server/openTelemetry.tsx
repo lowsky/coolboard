@@ -1,26 +1,32 @@
 'use strict';
 
+// Import the Instana OpenTelemetry Exporter
+import { Resource } from '@opentelemetry/resources';
+
+const { InstanaExporter } = require('@instana/opentelemetry-exporter');
 import { isLocalDev } from './src/helpers/logging';
 
-require('@opentelemetry/api');
-
 const opentelemetry = require('@opentelemetry/sdk-node');
-const { Resource } = require('@opentelemetry/resources');
-const {
-  SemanticResourceAttributes,
-} = require('@opentelemetry/semantic-conventions');
+
+const { registerInstrumentations } = require('@opentelemetry/instrumentation');
 
 // something like jaeger, see https://opentelemetry.io/docs/instrumentation/js/exporters/
 // localhost:16686/search?limit=20&lookback=5m&service=otel-graphql-coolboard
 import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http';
 
-// Import the Instana OpenTelemetry Exporter
-const { InstanaExporter } = require('@instana/opentelemetry-exporter');
-
 // might be obsolete: import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node';
 
 import { GraphQLInstrumentation } from '@opentelemetry/instrumentation-graphql';
 import { HttpInstrumentation } from '@opentelemetry/instrumentation-http';
+
+import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions';
+
+import {
+  ConsoleSpanExporter,
+  SimpleSpanProcessor,
+} from '@opentelemetry/sdk-trace-base';
+
+import { NodeTracerProvider } from '@opentelemetry/sdk-trace-node';
 
 const { diag, DiagConsoleLogger, DiagLogLevel } = require('@opentelemetry/api');
 
@@ -31,6 +37,7 @@ diag.setLogger(
 );
 
 const sdk = new opentelemetry.NodeSDK({
+  autoDetectResources: false,
   resource: new Resource({
     [SemanticResourceAttributes.SERVICE_NAME]: 'otel-graphql-coolboard',
   }),
@@ -51,12 +58,10 @@ const sdk = new opentelemetry.NodeSDK({
     new GraphQLInstrumentation(),
     // This was already installed.
     // getNodeAutoInstrumentations({ '@opentelemetry/instrumentation-fs': { enabled: false }, }),
-    // Is it still needed?
-    // 🤷
   ],
 });
-sdk.start();
 
 export async function startTracing() {
-  console.log('Tracing (has already been) initialized');
+  sdk.start();
+  console.log('OTel initialized');
 }
