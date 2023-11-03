@@ -11,16 +11,17 @@ export function register() {
 }
 */
 
-export function register() {
 import { isLocalDev } from './server/src/helpers/logging';
 
 export async function register() {
   if (process.env.NEXT_RUNTIME === 'nodejs') {
-    require('@instana/serverless');
-    const otel = await import('./server/openTelemetry');
+    const otel = await require('./server/openTelemetry');
     const { startTracing } = otel;
 
     await startTracing();
+    // Import the Instana OpenTelemetry Exporter
+    //const { InstanaExporter } = require('@instana/opentelemetry-exporter');
+    //await import('@instana/serverless');
 
     isLocalDev && console.log(' instana instrumentation loaded');
   }

@@ -49,6 +49,9 @@ const sdk = new opentelemetry.NodeSDK({
         headers: {},
       })
     : // Instantiate the Instana Exporter.
+    : //
+      // Creates the Instana Exporter.
+      //
       // Make sure to provide the agent key and backend endpoint URL environment variables:
       // * INSTANA_AGENT_KEY
       // * INSTANA_ENDPOINT_URL
