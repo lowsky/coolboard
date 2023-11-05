@@ -41,7 +41,6 @@ jobs:
           key: cache-smoketest-y4-{{ checksum "smoketest/yarn.lock" }}
           paths:
             - smoketest/.node_modules
-            - smoketest/.cache
             - ~/.cache/Cypress/
   build:
     docker:
@@ -123,7 +122,6 @@ jobs:
             cd smoketest
             yarn install --immutable --check-cache --inline-builds --mode=skip-build
             yarn cypress cache path
-            yarn cypress verify
             yarn cypress install
             yarn cypress verify
       - save_cache:
