@@ -30,7 +30,8 @@ const autoInstrumentations = getNodeAutoInstrumentations({
 });
 
 const sdk = new NodeSDK({
-  autoDetectResources: false,
+  // add more details when running in cloud
+  autoDetectResources: !isLocalDev,
   resource: new Resource({
     [SemanticResourceAttributes.SERVICE_NAME]: 'otel-graphql-coolboard',
   }),
