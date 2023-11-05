@@ -123,6 +123,7 @@ jobs:
           command: |
             cd smoketest
             PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 yarn --immutable
+            yarn cypress install
             yarn cypress verify
             yarn cypress cache path
       - save_cache:
