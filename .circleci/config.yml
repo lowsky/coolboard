@@ -121,15 +121,15 @@ jobs:
           name: smoketest - yarn install
           command: |
             cd smoketest
-            yarn y install --immutable --check-cache --inline-builds --mode=skip-build
+            yarn install --immutable --check-cache --inline-builds --mode=skip-build
+            yarn cypress cache path
+            yarn cypress verify
             yarn cypress install
             yarn cypress verify
-            yarn cypress cache path
       - save_cache:
           key: cache-smoketest-y4-{{ checksum "smoketest/yarn.lock" }}
           paths:
             - smoketest/.node_modules
-            - smoketest/.cache
             - ~/.cache/Cypress/
 
       - run:
