@@ -12,9 +12,10 @@ import { Ctxt } from './resolvers/Context';
 import { isLocalDev } from './helpers/logging';
 
 export const prisma = new PrismaClient({
-  log: isLocalDev
-    ? ['query', 'info', `warn`, `error`]
-    : ['info', 'warn', 'error'],
+  log:
+    false && isLocalDev
+      ? ['query', 'info', `warn`, `error`]
+      : ['info', 'warn', 'error'],
 });
 
 const builder = new SchemaBuilder<{

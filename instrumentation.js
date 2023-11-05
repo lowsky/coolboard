@@ -14,7 +14,13 @@ export function register() {
 import { isLocalDev } from './server/src/helpers/logging';
 
 export async function register() {
+  console.log(
+    'Diagnosis: Instrumentation:register, NEXT_RUNTIME=',
+    process.env.NEXT_RUNTIME
+  );
   if (process.env.NEXT_RUNTIME === 'nodejs') {
+    console.log('Diagnosis: lets start hOtel instru');
+
     const otel = await require('./server/openTelemetry');
     const { startTracing } = otel;
 

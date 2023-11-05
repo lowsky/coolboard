@@ -48,7 +48,6 @@ const sdk = new opentelemetry.NodeSDK({
         // optional - collection of custom headers to be sent with each request, empty by default
         headers: {},
       })
-    : // Instantiate the Instana Exporter.
     : //
       // Creates the Instana Exporter.
       //
