@@ -14,21 +14,11 @@ export function register() {
 import { isLocalDev } from './server/src/helpers/logging';
 
 export async function register() {
-  console.log(
-    'Diagnosis: Instrumentation:register, NEXT_RUNTIME=',
-    process.env.NEXT_RUNTIME
-  );
   if (process.env.NEXT_RUNTIME === 'nodejs') {
-    console.log('Diagnosis: lets start hOtel instru');
-
-    const otel = await require('./server/openTelemetry');
-    const { startTracing } = otel;
+    const { startTracing } = await import('./server/openTelemetry');
 
     await startTracing();
-    // Import the Instana OpenTelemetry Exporter
-    //const { InstanaExporter } = require('@instana/opentelemetry-exporter');
-    //await import('@instana/serverless');
 
-    isLocalDev && console.log(' instana instrumentation loaded');
+    isLocalDev && console.log('otel+instana instrumentation loaded');
   }
 }

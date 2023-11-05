@@ -1,32 +1,21 @@
 'use strict';
-
-// Import the Instana OpenTelemetry Exporter
-import { Resource } from '@opentelemetry/resources';
-
-const { InstanaExporter } = require('@instana/opentelemetry-exporter');
 import { isLocalDev } from './src/helpers/logging';
 
-const opentelemetry = require('@opentelemetry/sdk-node');
+// Import the Instana OpenTelemetry Exporter
+const { InstanaExporter } = require('@instana/opentelemetry-exporter');
 
-const { registerInstrumentations } = require('@opentelemetry/instrumentation');
+import { NodeSDK } from '@opentelemetry/sdk-node';
+import { Resource } from '@opentelemetry/resources';
 
 // something like jaeger, see https://opentelemetry.io/docs/instrumentation/js/exporters/
 // localhost:16686/search?limit=20&lookback=5m&service=otel-graphql-coolboard
-import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http';
+//import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http';
 
-// might be obsolete: import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node';
-
-import { GraphQLInstrumentation } from '@opentelemetry/instrumentation-graphql';
-import { HttpInstrumentation } from '@opentelemetry/instrumentation-http';
+import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node';
 
 import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions';
 
-import {
-  ConsoleSpanExporter,
-  SimpleSpanProcessor,
-} from '@opentelemetry/sdk-trace-base';
-
-import { NodeTracerProvider } from '@opentelemetry/sdk-trace-node';
+import { ConsoleSpanExporter } from '@opentelemetry/sdk-trace-base';
 
 const { diag, DiagConsoleLogger, DiagLogLevel } = require('@opentelemetry/api');
 
@@ -36,18 +25,25 @@ diag.setLogger(
   isLocalDev ? DiagLogLevel.INFO : DiagLogLevel.WARN
 );
 
-const sdk = new opentelemetry.NodeSDK({
+const autoInstrumentations = getNodeAutoInstrumentations({
+  '@opentelemetry/instrumentation-fs': { enabled: false },
+});
+
+const sdk = new NodeSDK({
   autoDetectResources: false,
   resource: new Resource({
     [SemanticResourceAttributes.SERVICE_NAME]: 'otel-graphql-coolboard',
   }),
   traceExporter: isLocalDev
+    ? /*
     ? new OTLPTraceExporter({
         // optional - default url is http://localhost:4318/v1/traces
         // url: 'http://localhost:4318/v1/traces',
         // optional - collection of custom headers to be sent with each request, empty by default
         headers: {},
       })
+     */
+      new ConsoleSpanExporter()
     : //
       // Creates the Instana Exporter.
       //
@@ -55,15 +51,10 @@ const sdk = new opentelemetry.NodeSDK({
       // * INSTANA_AGENT_KEY
       // * INSTANA_ENDPOINT_URL
       new InstanaExporter(),
-  instrumentations: [
-    new HttpInstrumentation(),
-    new GraphQLInstrumentation(),
-    // This was already installed.
-    // getNodeAutoInstrumentations({ '@opentelemetry/instrumentation-fs': { enabled: false }, }),
-  ],
+  instrumentations: [...autoInstrumentations],
 });
 
 export async function startTracing() {
   sdk.start();
-  console.log('OTel initialized');
+  console.log('OTel initialized 3');
 }
