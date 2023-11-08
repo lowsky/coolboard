@@ -10,7 +10,7 @@
     "@apollo/client": "3.8.7",
     "@apollo/server": "4.9.5",
     "@apollo/server-plugin-landing-page-graphql-playground": "4.0.1",
-    "@as-integrations/next": "2.0.2",
+    "@as-integrations/next": "3.0.0",
     "@chakra-ui/icons": "2.1.1",
     "@chakra-ui/react": "2.8.1",
     "@clerk/clerk-sdk-node": "4.12.19",
