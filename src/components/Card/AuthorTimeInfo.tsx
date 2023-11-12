@@ -22,11 +22,17 @@ export function AuthorTimeInfo({
         <AlertDescription>
           <Box>
             <strong>created: </strong>
-            <TimeAgo date={createdAt} />
+            {
+              // @ts-expect-error TS2786: TimeAgo cannot be used as a JSX component.
+              <TimeAgo date={createdAt} />
+            }
           </Box>
           <Box>
             <strong>updated: </strong>
-            <TimeAgo date={updatedAt} />
+            {
+              // @ts-expect-error TS2786: TimeAgo cannot be used as a JSX component.
+              <TimeAgo date={updatedAt} />
+            }
             {updatedBy && (
               <>
                 <strong> by: </strong>
