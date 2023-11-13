@@ -16,6 +16,7 @@ import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentation
 import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions';
 
 import { ConsoleSpanExporter } from '@opentelemetry/sdk-trace-base';
+import { PrismaInstrumentation } from '@prisma/instrumentation';
 
 const { diag, DiagConsoleLogger, DiagLogLevel } = require('@opentelemetry/api');
 
@@ -52,7 +53,7 @@ const sdk = new NodeSDK({
       // * INSTANA_AGENT_KEY
       // * INSTANA_ENDPOINT_URL
       new InstanaExporter(),
-  instrumentations: [...autoInstrumentations],
+  instrumentations: [new PrismaInstrumentation(), ...autoInstrumentations],
 });
 
 export async function startTracing() {
