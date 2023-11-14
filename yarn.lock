@@ -6476,9 +6476,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"apollo-server-core@npm:^3.12.1":
-  version: 3.12.1
-  resolution: "apollo-server-core@npm:3.12.1"
+"apollo-server-core@npm:^3.13.0":
+  version: 3.13.0
+  resolution: "apollo-server-core@npm:3.13.0"
   dependencies:
     "@apollo/utils.keyvaluecache": "npm:^1.0.1"
     "@apollo/utils.logger": "npm:^1.0.0"
@@ -6505,7 +6505,7 @@ __metadata:
     whatwg-mimetype: "npm:^3.0.0"
   peerDependencies:
     graphql: ^15.3.0 || ^16.0.0
-  checksum: 8187652dd46d0c28a0183186cf09a90d05d6a76d3fcf092fea2e2cfd062f8c802aaaffacd2f4bc6275a9d0892fe5abd6572da9ca0ea4b8f2caa57ddf99113ea6
+  checksum: 60f2265af914c56621840e8375ba1f3ec9f95c3d827b6ccecaaa69d64f970e03d617421049a0f4038de8f9748e2f8fbfd6487f4d83ca01190fc4f52fbe15fc33
   languageName: node
   linkType: hard
 
@@ -6527,9 +6527,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"apollo-server-express@npm:^3.12.1":
-  version: 3.12.1
-  resolution: "apollo-server-express@npm:3.12.1"
+"apollo-server-express@npm:^3.13.0":
+  version: 3.13.0
+  resolution: "apollo-server-express@npm:3.13.0"
   dependencies:
     "@types/accepts": "npm:^1.3.5"
     "@types/body-parser": "npm:1.19.2"
@@ -6537,7 +6537,7 @@ __metadata:
     "@types/express": "npm:4.17.14"
     "@types/express-serve-static-core": "npm:4.17.31"
     accepts: "npm:^1.3.5"
-    apollo-server-core: "npm:^3.12.1"
+    apollo-server-core: "npm:^3.13.0"
     apollo-server-types: "npm:^3.8.0"
     body-parser: "npm:^1.19.0"
     cors: "npm:^2.8.5"
@@ -6545,36 +6545,36 @@ __metadata:
   peerDependencies:
     express: ^4.17.1
     graphql: ^15.3.0 || ^16.0.0
-  checksum: 11fdf9c1768caac3145e47b689433959fd0eb96d4642c2e5a6559b47d0e7c73cc1564e10e2a6b80dac154947902550aebd5c849e7547c23b73295a4ea5e262d2
+  checksum: b2c741a6f78350886913b606471d86704b3015ab8ed8a3035df5652c27e0ee12e3d52f927af06546ac8f6c89f424b6773e5214dadab2bc474212e80f6b329feb
   languageName: node
   linkType: hard
 
-"apollo-server-lambda@npm:3.12.1":
-  version: 3.12.1
-  resolution: "apollo-server-lambda@npm:3.12.1"
+"apollo-server-lambda@npm:3.13.0":
+  version: 3.13.0
+  resolution: "apollo-server-lambda@npm:3.13.0"
   dependencies:
     "@types/aws-lambda": "npm:^8.10.76"
     "@vendia/serverless-express": "npm:^4.3.9"
-    apollo-server-core: "npm:^3.12.1"
-    apollo-server-express: "npm:^3.12.1"
+    apollo-server-core: "npm:^3.13.0"
+    apollo-server-express: "npm:^3.13.0"
     express: "npm:^4.17.1"
   peerDependencies:
     graphql: ^15.3.0 || ^16.0.0
-  checksum: bf72ec6c11f68bd8778a5c6a6e43a05bac9fa418d549436d67a174bb63d6605f697d11adfae135f31cfb77bcc984f473eee78b9208e3dbb20296a8a910e64889
+  checksum: e953c50874b61429df10c58192bc86f8b3e8213e7e5409a310310653a8199c2bbecc5f77453b56b304669aabfbc516b6692a5c3a3007cc889e24c0aae6f9f667
   languageName: node
   linkType: hard
 
-"apollo-server-micro@npm:3.12.1":
-  version: 3.12.1
-  resolution: "apollo-server-micro@npm:3.12.1"
+"apollo-server-micro@npm:3.13.0":
+  version: 3.13.0
+  resolution: "apollo-server-micro@npm:3.13.0"
   dependencies:
     "@hapi/accept": "npm:^5.0.2"
-    apollo-server-core: "npm:^3.12.1"
+    apollo-server-core: "npm:^3.13.0"
     apollo-server-types: "npm:^3.8.0"
     type-is: "npm:^1.6.18"
   peerDependencies:
     micro: ^9.3.4
-  checksum: e9f64f37dc0ba2e0e41563db0a42e609fee7aa07456f849b4c774baa72664a4c289b51abd5ff70589de733f50429b1c137a180c6a7d8a0e414c5d03f2bb4ab75
+  checksum: f6ae80db39c604c4cced9a10ff198d58c5d89b1c63a17f257b9184c034c3e28f879b9eb2567427b002720c6d5cdf5496b36c51b3c2b94f657e7652d2feaae460
   languageName: node
   linkType: hard
 
@@ -7566,8 +7566,8 @@ __metadata:
     "@types/react-timeago": "npm:^4.1.3"
     "@types/zen-observable": "npm:0.8.6"
     "@typescript-eslint/parser": "npm:6.9.1"
-    apollo-server-lambda: "npm:3.12.1"
-    apollo-server-micro: "npm:3.12.1"
+    apollo-server-lambda: "npm:3.13.0"
+    apollo-server-micro: "npm:3.13.0"
     emitter-listener: "npm:1.1.2"
     eslint: "npm:8.53.0"
     eslint-config-next: "npm:14.0.2"
