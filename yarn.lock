@@ -3685,14 +3685,34 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@instana/opentelemetry-exporter@npm:2.34.1":
-  version: 2.34.1
-  resolution: "@instana/opentelemetry-exporter@npm:2.34.1"
+"@instana/core@npm:2.35.0":
+  version: 2.35.0
+  resolution: "@instana/core@npm:2.35.0"
   dependencies:
-    "@instana/serverless": "npm:2.34.1"
     "@opentelemetry/api": "npm:1.4.1"
-    "@opentelemetry/core": "npm:1.12.0"
-  checksum: 2ab91d5c1689975d73a923f023eabafb665668d8c4adb41213c1d299ad42c600d1453e129f6e86de59c3d755057d1695b92917c2436d4365324934b833b27231
+    "@opentelemetry/context-async-hooks": "npm:1.9.1"
+    "@opentelemetry/instrumentation-fs": "npm:0.8.1"
+    "@opentelemetry/instrumentation-restify": "npm:0.34.0"
+    "@opentelemetry/instrumentation-socket.io": "npm:0.33.3"
+    "@opentelemetry/sdk-trace-base": "npm:1.14.0"
+    cls-bluebird: "npm:^2.1.0"
+    lru-cache: "npm:6.0.0"
+    methods: "npm:^1.1.2"
+    opentracing: "npm:^0.14.5"
+    semver: "npm:7.5.3"
+    shimmer: "npm:1.2.1"
+  checksum: a023b26c126269ffdb53e928044746fbfd28059306720efa00dd97aa8c2473337f136fb504fe4566caf82bcddfc569dfdb83024d58039635b2bc7093a8704a10
+  languageName: node
+  linkType: hard
+
+"@instana/opentelemetry-exporter@npm:2.35.0":
+  version: 2.35.0
+  resolution: "@instana/opentelemetry-exporter@npm:2.35.0"
+  dependencies:
+    "@instana/serverless": "npm:2.35.0"
+    "@opentelemetry/api": "npm:1.4.1"
+    "@opentelemetry/core": "npm:1.17.1"
+  checksum: 53aafb1ee5c1a12e7cb095c2e331369bd9be1e70c004ab05fda3878dd3f1f93ff6b74223600e70f1c0f5811a095d4bd857fca0c344cdabdd641f37119b43f158
   languageName: node
   linkType: hard
 
@@ -3704,6 +3724,17 @@ __metadata:
     agent-base: "npm:^6.0.2"
     https-proxy-agent: "npm:^5.0.0"
   checksum: c69a77cfd4647e3fad42e68c8f0c1eb8d2bbce66601c6877df8c81274d10057e1a9a589dca0c3baea62ac85923b2123940980dae680b7bce494550e516d3284e
+  languageName: node
+  linkType: hard
+
+"@instana/serverless@npm:2.35.0":
+  version: 2.35.0
+  resolution: "@instana/serverless@npm:2.35.0"
+  dependencies:
+    "@instana/core": "npm:2.35.0"
+    agent-base: "npm:^6.0.2"
+    https-proxy-agent: "npm:^5.0.0"
+  checksum: c3bd7168215c8deb2d5711a38291142ca515a0d3453a2bb33d1191fc79cd208365bc3fd2ec6a3534f9f95ca31c94a64316874ea8fed7db8a95cd3ee9b3e64193
   languageName: node
   linkType: hard
 
@@ -3991,17 +4022,6 @@ __metadata:
   peerDependencies:
     "@opentelemetry/api": ">=1.0.0 <1.5.0"
   checksum: 099276c0191cc1626341b8f8fa413dcb84646fe3ccd8edae05b79e13947121249660ebcb9d87804f76e339e96e81132a26260a20c4cdcaef8162fc854c45e3be
-  languageName: node
-  linkType: hard
-
-"@opentelemetry/core@npm:1.12.0":
-  version: 1.12.0
-  resolution: "@opentelemetry/core@npm:1.12.0"
-  dependencies:
-    "@opentelemetry/semantic-conventions": "npm:1.12.0"
-  peerDependencies:
-    "@opentelemetry/api": ">=1.0.0 <1.5.0"
-  checksum: 2fa217d4aaa6c31be4b672c814fe25d4e14eff6429a78c28190f87ecf2d2c47c3b0b3e20e53f3f2724c068dbb6c7e87deb4008bb3855d7e2687f78d12247cee7
   languageName: node
   linkType: hard
 
@@ -5036,13 +5056,6 @@ __metadata:
   peerDependencies:
     "@opentelemetry/api": ">=1.0.0 <1.8.0"
   checksum: 1b9f4718b12da439e8147a3bba8d7902cd9fd316954fbdbc51b72b90f2eede3ae17f97331f7cf888df9994f4c7cd63f4b64286a74c0cfc8695e7df0b913d1349
-  languageName: node
-  linkType: hard
-
-"@opentelemetry/semantic-conventions@npm:1.12.0":
-  version: 1.12.0
-  resolution: "@opentelemetry/semantic-conventions@npm:1.12.0"
-  checksum: d1fa8361b347ee8cf66da7caea3e0feb52ebdb02cfae294c5d4e0e5caedb56abd384706d51317f768b828cfab46b6dde66623ce2a6602c2720abda317d6b144d
   languageName: node
   linkType: hard
 
@@ -7547,7 +7560,7 @@ __metadata:
     "@graphql-codegen/typescript-operations": "npm:4.0.1"
     "@graphql-codegen/typescript-react-apollo": "npm:4.1.0"
     "@instana/aws-lambda": "npm:2.34.1"
-    "@instana/opentelemetry-exporter": "npm:2.34.1"
+    "@instana/opentelemetry-exporter": "npm:2.35.0"
     "@opentelemetry/api": "npm:1.7.0"
     "@opentelemetry/auto-instrumentations-node": "npm:^0.40.0"
     "@opentelemetry/core": "npm:1.18.1"
