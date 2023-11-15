@@ -3655,33 +3655,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@instana/aws-lambda@npm:2.34.1":
-  version: 2.34.1
-  resolution: "@instana/aws-lambda@npm:2.34.1"
+"@instana/aws-lambda@npm:2.35.0":
+  version: 2.35.0
+  resolution: "@instana/aws-lambda@npm:2.35.0"
   dependencies:
-    "@instana/core": "npm:2.34.1"
-    "@instana/serverless": "npm:2.34.1"
-  checksum: b48917d00aee4a297e4cd8f648c76a44d6440ac91edb62a20c2bb57f8249a92af422f58b2b501c0c79999b0f1ce17ad61ad2e64854d3495de7aec5206ac54b75
-  languageName: node
-  linkType: hard
-
-"@instana/core@npm:2.34.1":
-  version: 2.34.1
-  resolution: "@instana/core@npm:2.34.1"
-  dependencies:
-    "@opentelemetry/api": "npm:1.4.1"
-    "@opentelemetry/context-async-hooks": "npm:1.9.1"
-    "@opentelemetry/instrumentation-fs": "npm:0.8.1"
-    "@opentelemetry/instrumentation-restify": "npm:0.34.0"
-    "@opentelemetry/instrumentation-socket.io": "npm:0.33.3"
-    "@opentelemetry/sdk-trace-base": "npm:1.14.0"
-    cls-bluebird: "npm:^2.1.0"
-    lru-cache: "npm:6.0.0"
-    methods: "npm:^1.1.2"
-    opentracing: "npm:^0.14.5"
-    semver: "npm:7.5.3"
-    shimmer: "npm:1.2.1"
-  checksum: adfa59c64fc945c58af980dee857c63a0412dc8973776b754d2b137db9d26a0e30fbcecd301a532ac4ad37a410023d30ba9d6f4464c31c0be6646e2fd306dac0
+    "@instana/core": "npm:2.35.0"
+    "@instana/serverless": "npm:2.35.0"
+  checksum: e06a157716055f0851e3f1111e0f3e4d5e9b064d21ed9e9e27307b2db850a0eaf6a6a4041ed3359dd48ae9236b391727c5ac7cf87cfff1e4dc4fecd1e8489722
   languageName: node
   linkType: hard
 
@@ -3713,17 +3693,6 @@ __metadata:
     "@opentelemetry/api": "npm:1.4.1"
     "@opentelemetry/core": "npm:1.17.1"
   checksum: 53aafb1ee5c1a12e7cb095c2e331369bd9be1e70c004ab05fda3878dd3f1f93ff6b74223600e70f1c0f5811a095d4bd857fca0c344cdabdd641f37119b43f158
-  languageName: node
-  linkType: hard
-
-"@instana/serverless@npm:2.34.1":
-  version: 2.34.1
-  resolution: "@instana/serverless@npm:2.34.1"
-  dependencies:
-    "@instana/core": "npm:2.34.1"
-    agent-base: "npm:^6.0.2"
-    https-proxy-agent: "npm:^5.0.0"
-  checksum: c69a77cfd4647e3fad42e68c8f0c1eb8d2bbce66601c6877df8c81274d10057e1a9a589dca0c3baea62ac85923b2123940980dae680b7bce494550e516d3284e
   languageName: node
   linkType: hard
 
@@ -7552,7 +7521,7 @@ __metadata:
     "@graphql-codegen/typescript-graphql-files-modules": "npm:3.0.0"
     "@graphql-codegen/typescript-operations": "npm:4.0.1"
     "@graphql-codegen/typescript-react-apollo": "npm:4.1.0"
-    "@instana/aws-lambda": "npm:2.34.1"
+    "@instana/aws-lambda": "npm:2.35.0"
     "@instana/opentelemetry-exporter": "npm:2.35.0"
     "@opentelemetry/api": "npm:1.7.0"
     "@opentelemetry/auto-instrumentations-node": "npm:^0.40.0"
