@@ -7,16 +7,13 @@ parameters:
   deployed-sha:
     type: string
     default: ""
-  VERCEL_URL:
-    type: string
-    default: ""
 
 # have a filter to disable regular builds.
 workflows:
   all:
     jobs:
+      #- install_and_cache
       - test
-      - install_and_cache:
 
 jobs:
   install_and_cache:
@@ -49,7 +46,6 @@ jobs:
           command: |
             echo parameters:
             echo test-url: << pipeline.parameters.test-url >>
-            echo VERCEL_URL=<<pipeline.parameters.VERCEL_URL>>
             echo deployed-sha: <<pipeline.parameters.deployed-sha>>
       - run:
           name: build env and parameter diagnosis
@@ -58,20 +54,15 @@ jobs:
 
             CYPRESS_baseUrl=<< pipeline.parameters.test-url >>
             EXPECTED_GIT_SHA=<< pipeline.parameters.deployed-sha >>
-            VERCEL_URL=<< pipeline.parameters.VERCEL_URL >>
 
       - run:
           name: check matching of versions
           command: |
             cd smoketest
 
-            export VERCEL_URL=<< pipeline.parameters.VERCEL_URL >>
             export CYPRESS_baseUrl=<< pipeline.parameters.test-url >>
             export EXPECTED_GIT_SHA=<< pipeline.parameters.deployed-sha >>
 
-            echo VERCEL_URL=$VERCEL_URL
-            echo
-            echo _DEBUG:  SUT:
             echo export CYPRESS_baseUrl=$CYPRESS_baseUrl
             echo
             echo _DEBUG:  circle.ci -
@@ -117,7 +108,6 @@ jobs:
           command: |
             export CYPRESS_baseUrl=<< pipeline.parameters.test-url >>
             export EXPECTED_GIT_SHA=<< pipeline.parameters.deployed-sha >>
-            export VERCEL_URL=<< pipeline.parameters.VERCEL_URL >>
             export CYPRESS_branch=${CIRCLE_BRANCH}
 
             cd smoketest
