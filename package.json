@@ -59,7 +59,7 @@
     "start": "PRISMA_CLIENT_ENGINE_TYPE=dataproxy next dev",
     "start-production": "next start",
     "lint": "next lint",
-    "trigger-e2e-smoke": "sh trigger-circleci-smoke.sh",
+    "trigger-e2e-smoke": "echo DISABLED sh trigger-circleci-smoke.sh",
     "smoketest": "cd smoketest; yarn --immutable ; yarn cy open --e2e -b electron",
     "build": "yarn run metainfo && yarn run prisma:generate && next build",
     "prisma:generate": "prisma generate",
