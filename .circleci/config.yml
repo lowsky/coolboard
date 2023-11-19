@@ -36,7 +36,7 @@ jobs:
       - save_cache:
           key: cache-smoketest-nocypress-y5-{{ checksum "smoketest/yarn.lock" }}
           paths:
-            - smoketest/.node_modules
+            - smoketest/node_modules
   test:
     docker:
       - image: cypress/base:20.9.0
