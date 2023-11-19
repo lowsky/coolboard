@@ -11,7 +11,7 @@ echo Branch:
 echo VERCEL_GITHUB_COMMIT_REF=$VERCEL_GITHUB_COMMIT_REF
 BRANCH=$VERCEL_GITHUB_COMMIT_REF
 echo
-echo Deployment on vercel (if not main branch...)
+echo Deployment on vercel - if not main branch...
 echo VERCEL_URL=$VERCEL_URL
 TEST_URL=https://$VERCEL_URL
 
