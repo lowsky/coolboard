@@ -4219,21 +4219,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@opentelemetry/instrumentation-express@npm:0.33.2":
-  version: 0.33.2
-  resolution: "@opentelemetry/instrumentation-express@npm:0.33.2"
-  dependencies:
-    "@opentelemetry/core": "npm:^1.8.0"
-    "@opentelemetry/instrumentation": "npm:^0.44.0"
-    "@opentelemetry/semantic-conventions": "npm:^1.0.0"
-    "@types/express": "npm:4.17.18"
-  peerDependencies:
-    "@opentelemetry/api": ^1.3.0
-  checksum: 6f9d45729f9ef17189fd4561ab475d62297f342e38936201b0808b0121bc29cbf0d905a8d5d142c8d71eb6645564906d72d7031c044f3b0cd17939975f74d824
-  languageName: node
-  linkType: hard
-
-"@opentelemetry/instrumentation-express@npm:^0.33.3":
+"@opentelemetry/instrumentation-express@npm:0.33.3, @opentelemetry/instrumentation-express@npm:^0.33.3":
   version: 0.33.3
   resolution: "@opentelemetry/instrumentation-express@npm:0.33.3"
   dependencies:
@@ -4684,21 +4670,6 @@ __metadata:
   peerDependencies:
     "@opentelemetry/api": ^1.3.0
   checksum: 005a4fbdf5ab5a8f61608430c7c3b93ca5b6570246ed8408dfb92cbd6e3b093c8d66c443778f51223f11ca4cf6ca48d447ab9ea5c37c5bc874ee28a0c191fcbe
-  languageName: node
-  linkType: hard
-
-"@opentelemetry/instrumentation@npm:^0.44.0":
-  version: 0.44.0
-  resolution: "@opentelemetry/instrumentation@npm:0.44.0"
-  dependencies:
-    "@types/shimmer": "npm:^1.0.2"
-    import-in-the-middle: "npm:1.4.2"
-    require-in-the-middle: "npm:^7.1.1"
-    semver: "npm:^7.5.2"
-    shimmer: "npm:^1.2.1"
-  peerDependencies:
-    "@opentelemetry/api": ^1.3.0
-  checksum: 37742e60be37c72ab42da18156c8c09444a61b9714ca7571f0b2a435f54c7d4b494d411a3c3537ec3f6064af30d9841bd36c0e2c7d27e499ddf81acaf9dc3870
   languageName: node
   linkType: hard
 
@@ -7527,7 +7498,7 @@ __metadata:
     "@opentelemetry/auto-instrumentations-node": "npm:^0.40.0"
     "@opentelemetry/core": "npm:1.18.1"
     "@opentelemetry/exporter-trace-otlp-http": "npm:0.45.1"
-    "@opentelemetry/instrumentation-express": "npm:0.33.2"
+    "@opentelemetry/instrumentation-express": "npm:0.33.3"
     "@opentelemetry/instrumentation-graphql": "npm:0.36.0"
     "@opentelemetry/instrumentation-http": "npm:0.45.1"
     "@opentelemetry/sdk-node": "npm:0.45.1"
