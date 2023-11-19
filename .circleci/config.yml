@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  cypress: cypress-io/cypress@3.2.0
+
 parameters:
   test-url:
     type: string
@@ -16,7 +19,7 @@ workflows:
   all:
     jobs:
       - test
-      - install_and_cache
+      # - install_and_cache
 
 jobs:
   install_and_cache:
@@ -27,16 +30,17 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - cache-smoketest-nocypress-y5-{{ checksum "smoketest/yarn.lock" }}
+            - cache-smoketest-nocypress-y5-{{ arch }}-{{ checksum "smoketest/yarn.lock" }}
       - run:
           name: smoketest - yarn install
           command: |
             cd smoketest
             PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 yarn --immutable
       - save_cache:
-          key: cache-smoketest-nocypress-y5-{{ checksum "smoketest/yarn.lock" }}
+          key: cache-smoketest-nocypress-y5-{{ arch }}-{{ checksum "smoketest/yarn.lock" }}
           paths:
             - smoketest/node_modules
+            - ~/.cache/Cypress
   test:
     docker:
       - image: cypress/base:20.9.0
@@ -96,7 +100,7 @@ jobs:
 
       - restore_cache:
           keys:
-            - cache-smoketest-nocypress-y5-{{ checksum "smoketest/yarn.lock" }}
+            - cache-smoketest-nocypress-y5-{{ arch }}-{{ checksum "smoketest/yarn.lock" }}
       - run:
           name: smoketest - yarn install
           command: |
@@ -106,9 +110,10 @@ jobs:
             yarn cypress install
             yarn cypress verify
       - save_cache:
-          key: cache-smoketest-nocypress-y5-{{ checksum "smoketest/yarn.lock" }}
+          key: cache-smoketest-nocypress-y5-{{ arch }}-{{ checksum "smoketest/yarn.lock" }}
           paths:
             - smoketest/node_modules
+            - ~/.cache/Cypress
 
       - run:
           name: run cypress
@@ -120,13 +125,14 @@ jobs:
 
             cd smoketest
             mkdir -p cypress/results
-            npx cypress info
+            ### npx cypress info
 
             echo _DEBUG:  running CYPRESS_branch=${CIRCLE_BRANCH} npm run cy run -- --record
             # CYPRESS_branch=${CIRCLE_BRANCH} npm run cy run -- --record --key $CYPRESS_API_KEY --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
             # CYPRESS_branch=${CIRCLE_BRANCH} npm run cy run -- --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
             # without reporting to cypress.io
-            CYPRESS_branch=${CIRCLE_BRANCH} npm run cy run -- --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
+
+            ### CYPRESS_branch=${CIRCLE_BRANCH} npm run cy run -- --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
       - store_test_results:
           path: smoketest/cypress/results
       - store_artifacts:
