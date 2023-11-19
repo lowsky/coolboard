@@ -112,7 +112,7 @@ jobs:
 
             cd smoketest
             mkdir -p cypress/results
-            npx cypress info
+            yarn dlx cypress info
 
             echo _DEBUG:  running CYPRESS_branch=${CIRCLE_BRANCH} npm run cy run -- --record
             # CYPRESS_branch=${CIRCLE_BRANCH} npm run cy run -- --record --key $CYPRESS_API_KEY --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
