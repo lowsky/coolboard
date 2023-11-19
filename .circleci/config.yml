@@ -40,6 +40,20 @@ jobs:
       - image: cypress/base:20.9.0
     resource_class: lowsky/selfhosted
     steps:
+      - run:
+          name: Use parameters
+          command: |
+            echo parameters:
+            echo test-url: << pipeline.parameters.test-url >>
+            echo deployed-sha: <<pipeline.parameters.deployed-sha>>
+      - run:
+          name: pre-check for params
+          command: |
+            TEST_URL=<< pipeline.parameters.test-url >>
+            if [  "x" == "x${TEST_URL}"  ] ;  then
+              echo "No parameters -skipping build ..."
+              exit -1
+            fi
       - checkout
       - run:
           name: Use parameters
