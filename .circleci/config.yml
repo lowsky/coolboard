@@ -122,14 +122,13 @@ jobs:
 
             cd smoketest
             mkdir -p cypress/results
-            ### npx cypress info
+            npx cypress info
 
             echo _DEBUG:  running CYPRESS_branch=${CIRCLE_BRANCH} npm run cy run -- --record
             # CYPRESS_branch=${CIRCLE_BRANCH} npm run cy run -- --record --key $CYPRESS_API_KEY --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
             # CYPRESS_branch=${CIRCLE_BRANCH} npm run cy run -- --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
             # without reporting to cypress.io
-
-            ### CYPRESS_branch=${CIRCLE_BRANCH} npm run cy run -- --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
+            CYPRESS_branch=${CIRCLE_BRANCH} npm run cy run -- --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
       - store_test_results:
           path: smoketest/cypress/results
       - store_artifacts:
