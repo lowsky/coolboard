@@ -4,22 +4,15 @@
 # - SUT base url
 # - current commit aka version of given branch
 
-env | sort -u |grep -vi SECRET|grep -vi TOKEN |grep -vi key
-
-echo VERCEL_GITHUB_COMMIT_SHA: commit: $VERCEL_GITHUB_COMMIT_SHA
-echo VERCEL_GITHUB_COMMIT_REF: branch: $VERCEL_GITHUB_COMMIT_REF
-echo VERCEL_URL:  $VERCEL_URL
-
-# TOKEN: "trigger-from-netlify-hook"
-# old: CIRCLE_API_USER_TOKEN=1851154c07ebcb2a01c99a5851a79fe9e8ca893c
-
-#COMMIT
-#VERCEL_GITHUB_COMMIT_SHA=b0d003070bbbd81bf1e8b15f3cd76cd389b13d72
-
-#BRANCH=activate-vercel-serverless
+echo Git Commit:
+echo VERCEL_GITHUB_COMMIT_SHA=$VERCEL_GITHUB_COMMIT_SHA
+echo
+echo Branch:
+echo VERCEL_GITHUB_COMMIT_REF=$VERCEL_GITHUB_COMMIT_REF
 BRANCH=$VERCEL_GITHUB_COMMIT_REF
-
-#SUT_URL=https://coolboard-790uxmthz.vercel.app/
+echo
+echo Deployment on vercel - if not main branch...
+echo VERCEL_URL=$VERCEL_URL
 TEST_URL=https://$VERCEL_URL
 
 if [ "${BRANCH}" == "main" ]; then
@@ -47,7 +40,6 @@ curl --request POST \
 	"parameters":
     {
 			"deployed-sha": "'$VERCEL_GITHUB_COMMIT_SHA'",
-			"VERCEL_URL": "'$VERCEL_URL'",
 			"test-url": "'$TEST_URL'"
 		}
 }'
