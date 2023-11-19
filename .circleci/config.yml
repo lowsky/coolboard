@@ -18,7 +18,6 @@ parameters:
 workflows:
   all:
     jobs:
-      - build
       - test
 
 jobs:
