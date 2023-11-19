@@ -1,8 +1,5 @@
 version: 2.1
 
-orbs:
-  cypress: cypress-io/cypress@3.2.0
-
 parameters:
   test-url:
     type: string
@@ -19,7 +16,10 @@ workflows:
   all:
     jobs:
       - test
-      # - install_and_cache
+      - install_and_cache:
+          filters:
+            tags:
+              only: build
 
 jobs:
   install_and_cache:
