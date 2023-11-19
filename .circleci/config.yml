@@ -17,9 +17,6 @@ workflows:
     jobs:
       - test
       - install_and_cache:
-          filters:
-            tags:
-              only: build
 
 jobs:
   install_and_cache:
@@ -93,7 +90,7 @@ jobs:
 
             echo _DEBUG: check - result: $CHECK_VERSION
 
-            if [  "x-$CHECK_VERSION" -eq "x-255"  ] ;  then
+            if [  "x-$CHECK_VERSION" == "x-255"  ] ;  then
               echo "Version does not match with $EXPECTED_GIT_SHA"
               exit -1
             fi
