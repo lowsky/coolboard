@@ -16,17 +16,16 @@ parameters:
 
 # have a filter to disable regular builds.
 workflows:
-  version: 2
-  build:
+  all:
     jobs:
       - build
+      - test
 
 jobs:
   install_and_cache:
     docker:
       - image:  cypress/base:20.9.0
     resource_class: lowsky/selfhosted
-    parallelism: 1
     steps:
       - checkout
       - restore_cache:
@@ -41,11 +40,10 @@ jobs:
           key: cache-smoketest-nocypress-y4-{{ checksum "smoketest/yarn.lock" }}
           paths:
             - smoketest/.node_modules
-  build:
+  test:
     docker:
       - image: cypress/base:20.9.0
     resource_class: lowsky/selfhosted
-    parallelism: 1
     steps:
       - checkout
       - run:
