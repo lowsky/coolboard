@@ -6113,10 +6113,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/zen-observable@npm:0.8.6":
-  version: 0.8.6
-  resolution: "@types/zen-observable@npm:0.8.6"
-  checksum: 4212fac3382daa5909097434c2666c28255e8f81bd32603375fd059838a249b69040a309409fbe22eac879d2c65f24e1833743be5fa1033ffecfbf75f16811db
+"@types/zen-observable@npm:0.8.7":
+  version: 0.8.7
+  resolution: "@types/zen-observable@npm:0.8.7"
+  checksum: c6c5ef1d759e1dae5bc598f9ef40a10a9535fd85d65cd7e236ad28fca627866d30b1db6b430d213161e946c5001799caf8293e7831de6841d8ac2e65400ff48f
   languageName: node
   linkType: hard
 
@@ -7638,7 +7638,7 @@ __metadata:
     "@types/react": "npm:18.2.39"
     "@types/react-dom": "npm:18.2.17"
     "@types/react-timeago": "npm:^4.1.3"
-    "@types/zen-observable": "npm:0.8.6"
+    "@types/zen-observable": "npm:0.8.7"
     "@typescript-eslint/parser": "npm:6.13.1"
     apollo-server-lambda: "npm:3.13.0"
     apollo-server-micro: "npm:3.13.0"
