@@ -7,7 +7,7 @@
   },
   "homepage": "/",
   "dependencies": {
-    "@apollo/client": "3.8.7",
+    "@apollo/client": "3.8.8",
     "@apollo/server": "4.9.5",
     "@apollo/server-plugin-landing-page-graphql-playground": "4.0.1",
     "@as-integrations/next": "3.0.0",
