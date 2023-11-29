@@ -3759,13 +3759,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@instana/aws-lambda@npm:2.35.0":
-  version: 2.35.0
-  resolution: "@instana/aws-lambda@npm:2.35.0"
+"@instana/aws-lambda@npm:2.36.0":
+  version: 2.36.0
+  resolution: "@instana/aws-lambda@npm:2.36.0"
   dependencies:
-    "@instana/core": "npm:2.35.0"
-    "@instana/serverless": "npm:2.35.0"
-  checksum: e06a157716055f0851e3f1111e0f3e4d5e9b064d21ed9e9e27307b2db850a0eaf6a6a4041ed3359dd48ae9236b391727c5ac7cf87cfff1e4dc4fecd1e8489722
+    "@instana/core": "npm:2.36.0"
+    "@instana/serverless": "npm:2.36.0"
+  checksum: 8927374fdf895754349aa5523b48fce66fde7149c23e6b8cc1ddf2d181a4a0cae53cc08b501c7134c108176a8153a6fb30a15705d0d08c923bf7a6253cef90c8
   languageName: node
   linkType: hard
 
@@ -3789,6 +3789,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@instana/core@npm:2.36.0":
+  version: 2.36.0
+  resolution: "@instana/core@npm:2.36.0"
+  dependencies:
+    "@opentelemetry/api": "npm:1.4.1"
+    "@opentelemetry/context-async-hooks": "npm:1.9.1"
+    "@opentelemetry/instrumentation-fs": "npm:0.8.1"
+    "@opentelemetry/instrumentation-restify": "npm:0.34.0"
+    "@opentelemetry/instrumentation-socket.io": "npm:0.33.3"
+    "@opentelemetry/sdk-trace-base": "npm:1.14.0"
+    cls-bluebird: "npm:^2.1.0"
+    lru-cache: "npm:6.0.0"
+    methods: "npm:^1.1.2"
+    opentracing: "npm:^0.14.5"
+    semver: "npm:7.5.3"
+    shimmer: "npm:1.2.1"
+  checksum: daa45620d0b486a4e897c267116f95e3854a872be65423e21b3b115a73b21d008d01e06c488f0d0b57ca4b35ec3afe82ead27bada5146d0c76bb95722d10b70c
+  languageName: node
+  linkType: hard
+
 "@instana/opentelemetry-exporter@npm:2.35.0":
   version: 2.35.0
   resolution: "@instana/opentelemetry-exporter@npm:2.35.0"
@@ -3808,6 +3828,17 @@ __metadata:
     agent-base: "npm:^6.0.2"
     https-proxy-agent: "npm:^5.0.0"
   checksum: c3bd7168215c8deb2d5711a38291142ca515a0d3453a2bb33d1191fc79cd208365bc3fd2ec6a3534f9f95ca31c94a64316874ea8fed7db8a95cd3ee9b3e64193
+  languageName: node
+  linkType: hard
+
+"@instana/serverless@npm:2.36.0":
+  version: 2.36.0
+  resolution: "@instana/serverless@npm:2.36.0"
+  dependencies:
+    "@instana/core": "npm:2.36.0"
+    agent-base: "npm:^6.0.2"
+    https-proxy-agent: "npm:^5.0.0"
+  checksum: 19f56897c15691cc2d777a1050e43ce824b4f9ee2e6667ad64fd6f000e9daf4f90751a15c5c008184c5ce0137b73b45695c3b88f0f43c1eb75a8c781880923c2
   languageName: node
   linkType: hard
 
@@ -7620,7 +7651,7 @@ __metadata:
     "@graphql-codegen/typescript-graphql-files-modules": "npm:3.0.0"
     "@graphql-codegen/typescript-operations": "npm:4.0.1"
     "@graphql-codegen/typescript-react-apollo": "npm:4.1.0"
-    "@instana/aws-lambda": "npm:2.35.0"
+    "@instana/aws-lambda": "npm:2.36.0"
     "@instana/opentelemetry-exporter": "npm:2.35.0"
     "@opentelemetry/api": "npm:1.7.0"
     "@opentelemetry/auto-instrumentations-node": "npm:^0.40.0"
