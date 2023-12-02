@@ -34,7 +34,7 @@
     "apollo-server-lambda": "3.13.0",
     "apollo-server-micro": "3.13.0",
     "emitter-listener": "1.1.2",
-    "eslint-config-prettier": "9.0.0",
+    "eslint-config-prettier": "9.1.0",
     "eslint-plugin-prettier": "5.0.1",
     "framer-motion": "10.16.12",
     "graphql": "16.8.1",
