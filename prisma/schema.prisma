@@ -9,10 +9,9 @@ generator pothos {
 }
 
 datasource db {
-  provider = "mysql"
-
-  // OLD, with postgres -  url      = env("PROXIED_DATABASE_URL")
-  url = env("DATABASE_URL")
+  provider  = "mysql"
+  directUrl = env("DIRECT_DATABASE_URL")
+  url       = env("DATABASE_URL")
 
   // used for planetscale:
   relationMode = "prisma"

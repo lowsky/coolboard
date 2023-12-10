@@ -5757,6 +5757,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@prisma/extension-accelerate@npm:0.6.2":
+  version: 0.6.2
+  resolution: "@prisma/extension-accelerate@npm:0.6.2"
+  peerDependencies:
+    "@prisma/client": ">=4.16.1"
+  checksum: 026ff6572e864ba26d1704ae0c51629696496e89776a55c662b105bd934dddf8ec7725dbbebdf4240ccc59956226452ca2870da2bf4577c50265b77ef88313ff
+  languageName: node
+  linkType: hard
+
 "@prisma/fetch-engine@npm:5.7.1":
   version: 5.7.1
   resolution: "@prisma/fetch-engine@npm:5.7.1"
@@ -8072,6 +8081,7 @@ __metadata:
     "@pothos/plugin-prisma": "npm:^3.38.0"
     "@pothos/plugin-with-input": "npm:^3.9.7"
     "@prisma/client": "npm:5.7.1"
+    "@prisma/extension-accelerate": "npm:0.6.2"
     "@prisma/instrumentation": "npm:5.7.1"
     "@types/react": "npm:18.2.45"
     "@types/react-dom": "npm:18.2.18"
