@@ -19,7 +19,7 @@
     "@emotion/react": "11.11.1",
     "@emotion/styled": "11.11.0",
     "@instana/aws-lambda": "2.36.1",
-    "@instana/opentelemetry-exporter": "2.36.1",
+    "@instana/opentelemetry-exporter": "3.0.0",
     "@opentelemetry/auto-instrumentations-node": "^0.40.0",
     "@opentelemetry/core": "1.18.1",
     "@opentelemetry/instrumentation-express": "0.34.0",
