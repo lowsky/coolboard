@@ -2503,23 +2503,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/backend@npm:0.35.1":
-  version: 0.35.1
-  resolution: "@clerk/backend@npm:0.35.1"
-  dependencies:
-    "@clerk/shared": "npm:1.1.1"
-    "@clerk/types": "npm:3.59.0"
-    "@peculiar/webcrypto": "npm:1.4.1"
-    "@types/node": "npm:16.18.6"
-    cookie: "npm:0.5.0"
-    deepmerge: "npm:4.2.2"
-    node-fetch-native: "npm:1.0.1"
-    snakecase-keys: "npm:5.4.4"
-    tslib: "npm:2.4.1"
-  checksum: 83d89ab874304a334b9c49884d2194a1c09fe85634e734b5c086f464db433527f19cfea685d1aef3e7705827c5369bc3f61f07eb4b7875b06a574e9441c19ef0
-  languageName: node
-  linkType: hard
-
 "@clerk/backend@npm:0.36.0":
   version: 0.36.0
   resolution: "@clerk/backend@npm:0.36.0"
@@ -2537,33 +2520,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/clerk-react@npm:4.29.0":
-  version: 4.29.0
-  resolution: "@clerk/clerk-react@npm:4.29.0"
+"@clerk/clerk-react@npm:4.30.0":
+  version: 4.30.0
+  resolution: "@clerk/clerk-react@npm:4.30.0"
   dependencies:
     "@clerk/shared": "npm:1.1.1"
-    "@clerk/types": "npm:3.59.0"
+    "@clerk/types": "npm:3.60.0"
     tslib: "npm:2.4.1"
   peerDependencies:
     react: ">=16"
-  checksum: 9a6ae94d75932fdd392b6b4a5695bb73928801ca9db2b019124eccc3508b0910e0647e99a3b8bc7f9be9599f892b899cb0b6e08cbe8305d9f3e67af6b2267798
-  languageName: node
-  linkType: hard
-
-"@clerk/clerk-sdk-node@npm:4.13.1":
-  version: 4.13.1
-  resolution: "@clerk/clerk-sdk-node@npm:4.13.1"
-  dependencies:
-    "@clerk/backend": "npm:0.35.1"
-    "@clerk/shared": "npm:1.1.1"
-    "@clerk/types": "npm:3.59.0"
-    "@types/cookies": "npm:0.7.7"
-    "@types/express": "npm:4.17.14"
-    "@types/node-fetch": "npm:2.6.2"
-    camelcase-keys: "npm:6.2.2"
-    snakecase-keys: "npm:3.2.1"
-    tslib: "npm:2.4.1"
-  checksum: 6ef16ff5edc84563883f141935bc0c34d1c69dfa09a23cda135cd48feb5521d0cbcd6d6f275bb710f10a5dcb322750ddafda408a6ab01903af430104219e6309
+  checksum: 42a271310843e7b6f943032f4b379bc8407ab4eeb6b949b99afe4bd868d87b810638bcea26cbaed907f4ae4f0c31418ad2aaa2e0cf6dfed1136f13c1b6845626
   languageName: node
   linkType: hard
 
@@ -2584,22 +2550,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/nextjs@npm:4.27.7":
-  version: 4.27.7
-  resolution: "@clerk/nextjs@npm:4.27.7"
+"@clerk/nextjs@npm:4.28.0":
+  version: 4.28.0
+  resolution: "@clerk/nextjs@npm:4.28.0"
   dependencies:
-    "@clerk/backend": "npm:0.35.1"
-    "@clerk/clerk-react": "npm:4.29.0"
-    "@clerk/clerk-sdk-node": "npm:4.13.1"
+    "@clerk/backend": "npm:0.36.0"
+    "@clerk/clerk-react": "npm:4.30.0"
+    "@clerk/clerk-sdk-node": "npm:4.13.2"
     "@clerk/shared": "npm:1.1.1"
-    "@clerk/types": "npm:3.59.0"
+    "@clerk/types": "npm:3.60.0"
     path-to-regexp: "npm:6.2.1"
     tslib: "npm:2.4.1"
   peerDependencies:
     next: ">=10"
     react: ^17.0.2 || ^18.0.0-0
     react-dom: ^17.0.2 || ^18.0.0-0
-  checksum: 67615669cc51e93fb1fbc5b809c2f63dd82fbe7f763aecef7f1bd1f23531bef11bd4b65ebc7b62ac8d7a684b9e75423f4d15518697672cf57ec5d34a67d52fae
+  checksum: 8e6c895b29e32458fafd360dcb2e4da8a0b4189cfd3234ae988a0897e34903788de49a2a6100305cf0b80ef48abe4be5a774918fcc44fe53a1de6499020399e1
   languageName: node
   linkType: hard
 
@@ -2625,15 +2591,6 @@ __metadata:
   peerDependencies:
     react: ">=16"
   checksum: 7bd51665aeb65a9b6b22ded4ceda386e3cfa6d9c01f79a10eb11f75228af475d0025969435a2e9b1c188af59020c3e4298f38c1b6fc583de21893623686cd0be
-  languageName: node
-  linkType: hard
-
-"@clerk/types@npm:3.59.0":
-  version: 3.59.0
-  resolution: "@clerk/types@npm:3.59.0"
-  dependencies:
-    csstype: "npm:3.1.1"
-  checksum: 1ca212fd94ddc22386a5151e51584d96dd62738916b8bf88269c6459bc87d62913f9e80c88a8ea27a4724fe6511fcc9923e68fd54f1467f620a88ce1c345bfe9
   languageName: node
   linkType: hard
 
@@ -7806,7 +7763,7 @@ __metadata:
     "@chakra-ui/icons": "npm:2.1.1"
     "@chakra-ui/react": "npm:2.8.2"
     "@clerk/clerk-sdk-node": "npm:4.13.2"
-    "@clerk/nextjs": "npm:4.27.7"
+    "@clerk/nextjs": "npm:4.28.0"
     "@clerk/themes": "npm:^1.2.20"
     "@emotion/react": "npm:11.11.1"
     "@emotion/styled": "npm:11.11.0"
