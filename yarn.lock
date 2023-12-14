@@ -2550,9 +2550,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/nextjs@npm:4.28.0":
-  version: 4.28.0
-  resolution: "@clerk/nextjs@npm:4.28.0"
+"@clerk/nextjs@npm:4.28.1":
+  version: 4.28.1
+  resolution: "@clerk/nextjs@npm:4.28.1"
   dependencies:
     "@clerk/backend": "npm:0.36.0"
     "@clerk/clerk-react": "npm:4.30.0"
@@ -2565,7 +2565,7 @@ __metadata:
     next: ">=10"
     react: ^17.0.2 || ^18.0.0-0
     react-dom: ^17.0.2 || ^18.0.0-0
-  checksum: 8e6c895b29e32458fafd360dcb2e4da8a0b4189cfd3234ae988a0897e34903788de49a2a6100305cf0b80ef48abe4be5a774918fcc44fe53a1de6499020399e1
+  checksum: 91624add5b89b42147b3f6aff8c64a7499e22ba9a10ed3e8ee95443d2d3eddb32b3ac4cd1595d1ae8338aabf4e8ddb117b1e44de0ddc787786a252bb5c0e418e
   languageName: node
   linkType: hard
 
@@ -7763,7 +7763,7 @@ __metadata:
     "@chakra-ui/icons": "npm:2.1.1"
     "@chakra-ui/react": "npm:2.8.2"
     "@clerk/clerk-sdk-node": "npm:4.13.2"
-    "@clerk/nextjs": "npm:4.28.0"
+    "@clerk/nextjs": "npm:4.28.1"
     "@clerk/themes": "npm:^1.2.20"
     "@emotion/react": "npm:11.11.1"
     "@emotion/styled": "npm:11.11.0"
