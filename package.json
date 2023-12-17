@@ -87,7 +87,7 @@
     "eslint": "8.56.0",
     "eslint-config-next": "14.0.4",
     "prettier": "3.1.1",
-    "sharp": "0.33.0",
+    "sharp": "0.33.1",
     "typescript": "5.3.3"
   },
   "browserslist": [
