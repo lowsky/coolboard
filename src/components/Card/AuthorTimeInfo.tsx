@@ -41,8 +41,8 @@ export function AuthorTimeInfo({
                   {updatedBy.name
                     ? updatedBy.name
                     : updatedBy.email
-                    ? updatedBy.email
-                    : '?'}
+                      ? updatedBy.email
+                      : '?'}
                 </span>
               </>
             )}
