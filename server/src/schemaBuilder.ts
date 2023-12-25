@@ -2,6 +2,7 @@ import SchemaBuilder from '@pothos/core';
 import PrismaPlugin from '@pothos/plugin-prisma';
 import WithInputPlugin from '@pothos/plugin-with-input';
 import { Prisma, PrismaClient } from '@prisma/client';
+import { withAccelerate } from '@prisma/extension-accelerate';
 import { DateTimeResolver } from 'graphql-scalars';
 
 // Using a type only import will help avoid issues with undeclared
@@ -16,7 +17,7 @@ export const prisma = new PrismaClient({
     false && isLocalDev
       ? ['query', 'info', `warn`, `error`]
       : ['info', 'warn', 'error'],
-});
+}).$extends(withAccelerate());
 
 const builder = new SchemaBuilder<{
   Context: Ctxt;

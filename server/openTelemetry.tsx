@@ -8,8 +8,8 @@ import { NodeSDK } from '@opentelemetry/sdk-node';
 import { Resource } from '@opentelemetry/resources';
 
 // something like jaeger, see https://opentelemetry.io/docs/instrumentation/js/exporters/
-// localhost:16686/search?limit=20&lookback=5m&service=otel-graphql-coolboard
-//import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http';
+// http://localhost:16686/search?limit=20&lookback=5m&service=otel-graphql-coolboard
+import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http';
 
 import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node';
 
@@ -37,23 +37,26 @@ const sdk = new NodeSDK({
     [SemanticResourceAttributes.SERVICE_NAME]: 'otel-graphql-coolboard',
   }),
   traceExporter: isLocalDev
-    ? /*
-    ? new OTLPTraceExporter({
+    ? // ? /*
+      new OTLPTraceExporter({
         // optional - default url is http://localhost:4318/v1/traces
         // url: 'http://localhost:4318/v1/traces',
         // optional - collection of custom headers to be sent with each request, empty by default
-        headers: {},
+        //headers: {},
       })
-     */
-      new ConsoleSpanExporter()
-    : //
+    : //*/
+      //new ConsoleSpanExporter()
+      //
       // Creates the Instana Exporter.
       //
       // Make sure to provide the agent key and backend endpoint URL environment variables:
       // * INSTANA_AGENT_KEY
       // * INSTANA_ENDPOINT_URL
       new InstanaExporter(),
-  instrumentations: [new PrismaInstrumentation(), ...autoInstrumentations],
+  instrumentations: [
+    new PrismaInstrumentation({ middleware: true }),
+    ...autoInstrumentations,
+  ],
 });
 
 export async function startTracing() {

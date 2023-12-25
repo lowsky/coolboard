@@ -1,7 +1,6 @@
 generator client {
   provider        = "prisma-client-js"
   previewFeatures = ["tracing"]
-  binaryTargets   = ["native", "rhel-openssl-1.0.x"]
 }
 
 generator pothos {
@@ -9,10 +8,9 @@ generator pothos {
 }
 
 datasource db {
-  provider = "mysql"
-
-  // OLD, with postgres -  url      = env("PROXIED_DATABASE_URL")
-  url = env("DATABASE_URL")
+  provider  = "mysql"
+  directUrl = env("DIRECT_DATABASE_URL")
+  url       = env("DATABASE_URL")
 
   // used for planetscale:
   relationMode = "prisma"
@@ -32,6 +30,10 @@ model Card {
 
   listId String @db.VarChar(25)
   list   List?  @relation(fields: [listId], references: [id], onDelete: Cascade)
+
+  @@index([createdById])
+  @@index([updatedById])
+  @@index([listId])
 }
 
 model List {
@@ -45,6 +47,9 @@ model List {
 
   createdBy   User   @relation(fields: [createdById], references: [id])
   createdById String @db.VarChar(25)
+
+  @@index([boardId])
+  @@index([createdById])
 }
 
 model Board {
@@ -56,6 +61,8 @@ model Board {
   createdById String   @db.VarChar(25)
 
   lists List[]
+
+  @@index([createdById])
 }
 
 model User {

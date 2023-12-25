@@ -9,6 +9,7 @@ import { isLocalDev } from '../../server/src/helpers/logging';
 import { Ctxt } from '../../server/src/resolvers/Context';
 
 import { buildSchema, prisma } from '../../server/src/buildSchema';
+import { PrismaClient } from '@prisma/client';
 
 const getGraphqlServer = async () => {
   const apolloServer = new ApolloServer<Ctxt>({
@@ -38,7 +39,7 @@ async function handleGraphqlRequest(req, res) {
       return {
         req,
         res,
-        prisma,
+        prisma: prisma as unknown as PrismaClient,
       };
     },
   });
