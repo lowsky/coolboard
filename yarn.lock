@@ -8100,7 +8100,7 @@ __metadata:
     graphql: "npm:16.8.1"
     graphql-scalars: "npm:^1.20.1"
     graphql-tag: "npm:2.12.6"
-    inter-ui: "npm:4.0.0"
+    inter-ui: "npm:4.0.1"
     jsonwebtoken: "npm:9.0.2"
     next: "npm:14.0.4"
     prettier: "npm:3.1.1"
@@ -10236,10 +10236,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"inter-ui@npm:4.0.0":
-  version: 4.0.0
-  resolution: "inter-ui@npm:4.0.0"
-  checksum: 53a1fe90c96ae49081d963822b6026636e2839d75504c175fe2a6cf3b3ba4421ae808965a95b69394759f213c4095c6d7154a8fe1836b700efc994fbb94f8ce7
+"inter-ui@npm:4.0.1":
+  version: 4.0.1
+  resolution: "inter-ui@npm:4.0.1"
+  checksum: 698dae7474ae49772afe05686c268b37a1ca118384caf5a9bc773d0c328931aed54aec2713f4be6d1c856c48477360fc16a89e355bcf98c5efb420ee5cba5ced
   languageName: node
   linkType: hard
 
