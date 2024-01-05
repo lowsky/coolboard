@@ -9,7 +9,6 @@
   "dependencies": {
     "@apollo/client": "3.8.8",
     "@apollo/server": "4.9.5",
-    "@apollo/server-plugin-landing-page-graphql-playground": "4.0.1",
     "@as-integrations/next": "3.0.0",
     "@chakra-ui/icons": "2.1.1",
     "@chakra-ui/react": "2.8.2",
@@ -32,8 +31,7 @@
     "@prisma/client": "5.7.1",
     "@prisma/extension-accelerate": "0.6.2",
     "@prisma/instrumentation": "5.7.1",
-    "apollo-server-lambda": "3.13.0",
-    "apollo-server-micro": "3.13.0",
+    "apollo-server-errors": "3.3.1",
     "emitter-listener": "1.1.2",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-prettier": "5.1.2",

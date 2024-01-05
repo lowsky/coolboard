@@ -1,8 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { ApolloServer } from '@apollo/server';
+import { ApolloServer, ContextFunction } from '@apollo/server';
 import { startServerAndCreateNextHandler } from '@as-integrations/next';
 
-import { ApolloServerPluginLandingPageGraphQLPlayground } from '@apollo/server-plugin-landing-page-graphql-playground';
+import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 import { getAuth } from '@clerk/nextjs/server';
 
 import { isLocalDev } from '../../server/src/helpers/logging';
@@ -12,37 +12,41 @@ import { buildSchema, prisma } from '../../server/src/buildSchema';
 import { PrismaClient } from '@prisma/client';
 
 const getGraphqlServer = async () => {
-  const apolloServer = new ApolloServer<Ctxt>({
+  return new ApolloServer<Ctxt>({
     schema: buildSchema(),
 
     introspection: Boolean(isLocalDev),
+    allowBatchedHttpRequests: true,
 
     plugins: [
-      ApolloServerPluginLandingPageGraphQLPlayground({
-        endpoint: '/api/graphql',
+      ApolloServerPluginLandingPageLocalDefault({
+        embed: true,
       }),
     ],
   });
-
-  return apolloServer;
 };
 
 // will be stored for re-use
 let server: ApolloServer<Ctxt> | null = null;
 
 // eslint-disable-next-line import/no-anonymous-default-export
-async function handleGraphqlRequest(req, res) {
-  const apolloServer = server || (await getGraphqlServer());
+async function handleGraphqlRequest(req: NextApiRequest, res: NextApiResponse) {
+  const apolloServer = server ?? (await getGraphqlServer());
 
-  const graphqlHandler = startServerAndCreateNextHandler(apolloServer, {
-    context: async (req, res) => {
+  const options: {
+    context: ContextFunction<[NextApiRequest], Ctxt>;
+  } = {
+    context: async (req: NextApiRequest) => {
       return {
         req,
-        res,
         prisma: prisma as unknown as PrismaClient,
       };
     },
-  });
+  };
+  const graphqlHandler = startServerAndCreateNextHandler<NextApiRequest, Ctxt>(
+    apolloServer,
+    options
+  );
 
   return await graphqlHandler(req, res);
 }
