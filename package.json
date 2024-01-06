@@ -21,7 +21,7 @@
     "@instana/opentelemetry-exporter": "3.1.0",
     "@opentelemetry/auto-instrumentations-node": "^0.40.0",
     "@opentelemetry/core": "1.19.0",
-    "@opentelemetry/instrumentation-express": "0.34.0",
+    "@opentelemetry/instrumentation-express": "0.34.1",
     "@opentelemetry/instrumentation-graphql": "0.36.0",
     "@opentelemetry/instrumentation-http": "0.46.0",
     "@opentelemetry/sdk-node": "0.46.0",
