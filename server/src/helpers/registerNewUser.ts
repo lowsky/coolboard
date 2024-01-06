@@ -2,15 +2,16 @@ import { GraphQLError } from 'graphql';
 import { User, Prisma } from '@prisma/client';
 
 import { isLocalDev } from './logging';
+import { UserToken } from './auth';
 
 /* identity, auth0id, name, email, avatarUrl */
 type PrismaUserCreator = (data: Prisma.UserCreateArgs) => Promise<User>;
 
 export const createNewUser = async (
-  idToken: JwtPayload,
+  userToken: UserToken,
   createPersistentUser: PrismaUserCreator
 ): Promise<User> => {
-  const { sub, name, email, picture } = idToken;
+  const { sub, name, email, picture } = userToken;
   const auth0id = sub?.split(`|`)[1];
   const identity = sub?.split(`|`)[0];
 
@@ -45,8 +46,7 @@ export const createNewUser = async (
     if (isLocalDev)
       console.error('Failed to create this new user:', userData, err);
 
-    // @ts-expect-error err of unknown type
-    if (err?.message?.includes('unique constraint')) {
+    if (err instanceof Error && err.message?.includes('unique constraint')) {
       throw new GraphQLError(
         `Error signing in, a user with same email ${email} already exist. Plz contact support!`,
         {
@@ -57,6 +57,7 @@ export const createNewUser = async (
         }
       );
     }
+
     throw err;
   }
 };

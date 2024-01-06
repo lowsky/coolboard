@@ -7,8 +7,17 @@ import { createNewUser } from './registerNewUser';
 import { isLocalDev } from './logging';
 import { Ctxt } from '../resolvers/Context';
 
+export type UserToken = {
+  // format: identity + '|' + userId
+  sub: string;
+  name?: string;
+  email?: string;
+  picture: string;
+};
+
 export const getUserId = async (ctx: Ctxt): Promise<string> => {
-  const userToken = await verifyUserIsAuthenticatedAndRetrieveUserToken(ctx);
+  const userToken: UserToken =
+    await verifyUserIsAuthenticatedAndRetrieveUserToken(ctx);
   if (userToken) {
     const auth0id = userToken.sub.split('|')[1];
     const userId = await userIdByAuth0id(auth0id, (auth0id) =>
@@ -58,21 +67,14 @@ export const userTokenFromClerkSessionUserId = (
   user: ClerkUser,
   identity = 'clerk'
 ): UserToken => {
-  const email = user.emailAddresses.find(Boolean)?.emailAddress ?? undefined;
-  const picture = user.profileImageUrl ?? undefined;
+  const email = user.primaryEmailAddressId;
+  const name = user.username ?? user.firstName ?? user.lastName;
+  const picture = user.imageUrl;
   const sub = identity + '|' + user.id;
   if (email) {
-    return { name: email, email, sub, picture };
+    return { name: name ?? email, email, sub, picture };
   }
   return { sub, picture };
-};
-
-type UserToken = {
-  // format: identity + '|' + userId
-  sub: string;
-  name?: string;
-  email?: string;
-  picture?: string;
 };
 
 /**
