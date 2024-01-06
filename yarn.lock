@@ -4370,18 +4370,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@opentelemetry/instrumentation-graphql@npm:0.36.0":
-  version: 0.36.0
-  resolution: "@opentelemetry/instrumentation-graphql@npm:0.36.0"
-  dependencies:
-    "@opentelemetry/instrumentation": "npm:^0.45.1"
-  peerDependencies:
-    "@opentelemetry/api": ^1.3.0
-  checksum: 57a7586311bec72c498a38f3f6e227095724a33b54d22d6c1926a35bf7f910a292cbd469b4a16dc2b22ed850702decfbfb1e6d6b91631d43fac43aff4f8487cc
-  languageName: node
-  linkType: hard
-
-"@opentelemetry/instrumentation-graphql@npm:^0.36.1":
+"@opentelemetry/instrumentation-graphql@npm:0.36.1, @opentelemetry/instrumentation-graphql@npm:^0.36.1":
   version: 0.36.1
   resolution: "@opentelemetry/instrumentation-graphql@npm:0.36.1"
   dependencies:
@@ -4712,7 +4701,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@opentelemetry/instrumentation@npm:0.45.1, @opentelemetry/instrumentation@npm:^0.45.1":
+"@opentelemetry/instrumentation@npm:0.45.1":
   version: 0.45.1
   resolution: "@opentelemetry/instrumentation@npm:0.45.1"
   dependencies:
@@ -7389,7 +7378,7 @@ __metadata:
     "@opentelemetry/core": "npm:1.19.0"
     "@opentelemetry/exporter-trace-otlp-http": "npm:0.46.0"
     "@opentelemetry/instrumentation-express": "npm:0.34.1"
-    "@opentelemetry/instrumentation-graphql": "npm:0.36.0"
+    "@opentelemetry/instrumentation-graphql": "npm:0.36.1"
     "@opentelemetry/instrumentation-http": "npm:0.46.0"
     "@opentelemetry/sdk-node": "npm:0.46.0"
     "@pothos/core": "npm:^3.23.1"
