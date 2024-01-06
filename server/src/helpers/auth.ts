@@ -1,6 +1,6 @@
 import clerk, { User as ClerkUser } from '@clerk/clerk-sdk-node';
 import { getAuth } from '@clerk/nextjs/server';
-import { AuthenticationError } from 'apollo-server-errors';
+import { GraphQLError } from 'graphql';
 
 import { injectUserIdByAuth0id, userIdByAuth0id } from './userIdByAuth0id';
 import { createNewUser } from './registerNewUser';
@@ -30,7 +30,12 @@ export const getUserId = async (ctx: Ctxt): Promise<string> => {
         },
       });
       if (userWithEmailExists) {
-        throw new AuthenticationError('User with this email already exists');
+        throw new GraphQLError('User with this email already exists', {
+          extensions: {
+            code: 'REGISTRATION_FAILED_USER_ALREADY_EXISTS',
+            coolboardExitingUser: userToken.email,
+          },
+        });
       }
 
       const user = await createNewUser(userToken, ctx.prisma.user.create);
@@ -42,7 +47,11 @@ export const getUserId = async (ctx: Ctxt): Promise<string> => {
     }
   }
 
-  throw new AuthenticationError('Not authorized: no user in current request');
+  throw new GraphQLError('Not authorized: no user in current request', {
+    extensions: {
+      code: 'NOTAUTHORIZED_BAD_REQUEST',
+    },
+  });
 };
 
 export const userTokenFromClerkSessionUserId = (
@@ -76,10 +85,13 @@ export const verifyAndRetrieveAuthSubject = async (
   if (userId) {
     if (isLocalDev)
       console.log('verifyAndRetrieveAuthSubject: userid:', userId);
-    // not really needed: const user = (await clerk.users.getUser(userId));
     return userId;
   }
-  throw new AuthenticationError('Not authorized, no valid auth token');
+  throw new GraphQLError('Not authorized, no valid auth token', {
+    extensions: {
+      code: 'NOT_AUTHORIZED',
+    },
+  });
 };
 
 export async function verifyUserIsAuthenticatedAndRetrieveUserToken(
@@ -96,5 +108,9 @@ export async function verifyUserIsAuthenticatedAndRetrieveUserToken(
     return userTokenFromClerkSessionUserId(await clerk.users.getUser(userId));
   }
 
-  throw new AuthenticationError('Not authorized, no valid auth token');
+  throw new GraphQLError('Not authorized, no valid auth token', {
+    extensions: {
+      code: 'NOT_AUTHORIZED',
+    },
+  });
 }

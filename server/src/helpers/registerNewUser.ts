@@ -1,5 +1,4 @@
-import { AuthenticationError } from 'apollo-server-errors';
-import { JwtPayload } from 'jsonwebtoken';
+import { GraphQLError } from 'graphql';
 import { User, Prisma } from '@prisma/client';
 
 import { isLocalDev } from './logging';
@@ -16,13 +15,16 @@ export const createNewUser = async (
   const identity = sub?.split(`|`)[0];
 
   if (!email || !name || !auth0id) {
-    throw new AuthenticationError(
+    throw new GraphQLError(
       `Error while signing in: Missing any of (email, name, auth0id). Plz contact support!`,
       {
-        internalData: {
-          email: email,
-          name: name,
-          auth0id: auth0id,
+        extensions: {
+          code: 'REGISTRATION_FAILED_MISSING_DATA',
+          coolboardAuthData: {
+            email: email,
+            name: name,
+            auth0id: auth0id,
+          },
         },
       }
     );
@@ -45,11 +47,12 @@ export const createNewUser = async (
 
     // @ts-expect-error err of unknown type
     if (err?.message?.includes('unique constraint')) {
-      throw new AuthenticationError(
+      throw new GraphQLError(
         `Error signing in, a user with same email ${email} already exist. Plz contact support!`,
         {
-          internalData: {
-            error: err,
+          extensions: {
+            code: 'REGISTRATION_FAILED_USER_ALREADY_EXISTS',
+            coolboardAuthError: err,
           },
         }
       );
