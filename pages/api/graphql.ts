@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { ApolloServer, ContextFunction } from '@apollo/server';
 import { startServerAndCreateNextHandler } from '@as-integrations/next';
 
+import { ApolloServerPluginUsageReportingDisabled } from '@apollo/server/plugin/disabled';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 import { getAuth } from '@clerk/nextjs/server';
 
@@ -19,6 +20,7 @@ const getGraphqlServer = async () => {
     allowBatchedHttpRequests: true,
 
     plugins: [
+      ApolloServerPluginUsageReportingDisabled(),
       ApolloServerPluginLandingPageLocalDefault({
         embed: true,
       }),
