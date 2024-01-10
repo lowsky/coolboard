@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import type { AppProps } from 'next/app';
+import { Analytics } from '@vercel/analytics/react';
 import { ClerkProvider } from '@clerk/nextjs';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import { mode } from '@chakra-ui/theme-tools';
@@ -98,6 +99,7 @@ https://chakra-ui.com/docs/styled-system/theming/customize-theme#customizing-com
 
         <Footer />
       </ChakraProvider>
+      <Analytics />
     </>
   );
 }
