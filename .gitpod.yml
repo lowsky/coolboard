@@ -15,5 +15,3 @@ tasks:
       cd smoketest ; yarn cy run ; cd --
 image:
   file: .gitpod.Dockerfile
-
-

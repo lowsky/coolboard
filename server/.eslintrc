@@ -3,7 +3,5 @@
   "rules": {
     "import/no-anonymous-default-export": 0 // off
   },
-  "ignorePatterns": [
-    "stuff"
-  ]
+  "ignorePatterns": ["stuff"]
 }

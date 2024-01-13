@@ -12,7 +12,7 @@ import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentation
 
 import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions';
 
-import { ConsoleSpanExporter } from '@opentelemetry/sdk-trace-base';
+//import { ConsoleSpanExporter } from '@opentelemetry/sdk-trace-base';
 import { PrismaInstrumentation } from '@prisma/instrumentation';
 
 const { diag, DiagConsoleLogger, DiagLogLevel } = require('@opentelemetry/api');

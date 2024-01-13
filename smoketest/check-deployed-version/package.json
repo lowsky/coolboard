@@ -10,9 +10,7 @@
   "scripts": {
     "install_and_test": "./check-deployed-version"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "bin": "wait-for-deployment.mjs",
-  "dependencies": {
-  }
+  "dependencies": {}
 }

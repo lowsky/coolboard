@@ -3,8 +3,8 @@ query CardList($cardListId: ID!) {
     ...CardList_list
   }
 }
-mutation renameList($newName: String! $listId: ID! ) {
-  renameList(newName: $newName where:{id: $listId}) {
+mutation renameList($newName: String!, $listId: ID!) {
+  renameList(newName: $newName, where: { id: $listId }) {
     id
     name
   }

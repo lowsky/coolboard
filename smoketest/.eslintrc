@@ -4,8 +4,7 @@
     // currently not installed:
     // because it would need eslint dependency, too
     //  "plugin:cypress/recommended"
-  ]
-  ,
+  ],
   "plugins": [
     //"cypress"
   ]
