@@ -18,7 +18,7 @@ export const BoardContainer = (props: {
   const { name, lists } = board;
 
   return (
-    <Flex flexDir="column" maxW="100%" flexGrow={1} mt="1rem">
+    <Flex flexDir="column" maxW="100%" flexGrow={1}>
       <BoardTitle
         boardName={name}
         headerActions={
