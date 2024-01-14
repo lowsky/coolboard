@@ -1,4 +1,5 @@
-import { List } from '@prisma/client';
+import { List, Prisma } from '@prisma/client';
+import { MutationDeleteListArgs } from 'generated/graphql';
 import {
   getUserId,
   verifyUserIsAuthenticatedAndRetrieveUserToken,
@@ -22,9 +23,8 @@ export default {
       );
     }
 
-    let cards = {};
+    let cards: Prisma.CardUncheckedUpdateManyWithoutListNestedInput = {};
     if (create?.[0]) {
-      // @ts-expect-error ts-migrate(2339) FIXME: Property 'create' does not exist on type '{}'.
       cards.create = {
         name: create[0].name,
         createdById: userId,
@@ -33,13 +33,11 @@ export default {
     }
     if (connect?.[0]) {
       const id = connect[0].id;
-      // @ts-expect-error ts-migrate(2339) FIXME: Property 'connect' does not exist on type '{}'.
       cards.connect = {
         id,
       };
     }
     if (disconnect?.[0]) {
-      // @ts-expect-error ts-migrate(2339) FIXME: Property 'disconnect' does not exist on type '{}'.
       cards.disconnect = {
         id: disconnect[0].id,
       };
@@ -57,9 +55,17 @@ export default {
       },
     });
   },
-  async deleteList(_parent: any, { where }: any, ctx: Ctxt): Promise<List> {
+  deleteList: async function (
+    _parent: any,
+    args: MutationDeleteListArgs,
+    ctx: Ctxt
+  ): Promise<List> {
     await verifyUserIsAuthenticatedAndRetrieveUserToken(ctx);
     const { prisma } = ctx;
-    return await prisma.list.delete({ where });
+    return prisma.list.delete({
+      where: {
+        id: args.id,
+      },
+    });
   },
 };

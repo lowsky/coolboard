@@ -1,4 +1,4 @@
-import { Board, User } from '@prisma/client';
+import { Board, User, Prisma } from '@prisma/client';
 import {
   getUserId,
   verifyUserIsAuthenticatedAndRetrieveUserToken,
@@ -12,7 +12,7 @@ export default {
 
     const { deleteMany, create } = args.data.lists ?? {};
 
-    let lists;
+    let lists: Prisma.ListUncheckedUpdateManyWithoutBoardNestedInput = {};
     if (deleteMany) {
       const { id_in } = deleteMany;
       lists = {
