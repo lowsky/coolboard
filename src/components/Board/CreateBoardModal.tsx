@@ -1,9 +1,4 @@
-import React, {
-  FormEvent,
-  MouseEventHandler,
-  SyntheticEvent,
-  useState,
-} from 'react';
+import React, { SyntheticEvent, useState } from 'react';
 import {
   Button,
   ButtonGroup,
@@ -76,8 +71,9 @@ export const CreateBoardModal = (props) => {
           <ModalFooter>
             <ButtonGroup variant="outline" spacing="6">
               <Button
-                color="white"
                 background="green"
+                color="white"
+                _hover={{ background: 'darkgreen' }}
                 data-cy="create-board-submit"
                 onClick={onSubmit}
                 loadingText="Creating board..."
