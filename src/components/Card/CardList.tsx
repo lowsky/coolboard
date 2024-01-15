@@ -44,6 +44,7 @@ const CardListWithoutDnd = (props) => {
   const initialNewCardName = 'New Card';
   const [newCardNameInputValue, setNewCardNameInputValue] =
     useState(initialNewCardName);
+  const [isStoring, setIsStoring] = useState(false);
   const { list = {} } = cardList;
 
   // use name injected as default if not yet available
@@ -77,16 +78,22 @@ const CardListWithoutDnd = (props) => {
               ))}
             </Flex>
             <Editable
-              isDisabled={loading}
+              data-cy="edit-and-add-card"
+              isDisabled={loading || isStoring}
               onChange={setNewCardNameInputValue}
               value={newCardNameInputValue}
               onSubmit={async (newName) => {
-                addCardWithName({
-                  variables: {
-                    name: newName,
-                  },
-                });
-                setNewCardNameInputValue(initialNewCardName);
+                try {
+                  setIsStoring(true);
+                  await addCardWithName({
+                    variables: {
+                      name: newName,
+                    },
+                  });
+                  setNewCardNameInputValue(initialNewCardName);
+                } finally {
+                  setIsStoring(false);
+                }
               }}>
               <Flex
                 pt="4px"
@@ -96,6 +103,7 @@ const CardListWithoutDnd = (props) => {
                 justifyContent="flex-start"
                 flexGrow={0}
                 gap={1}
+                style={{ color: loading ? 'grey' : undefined }}
                 alignItems="center">
                 <AddIcon height="0.75em" />
                 <EditablePreview flexGrow={0} py={'8px'} />
