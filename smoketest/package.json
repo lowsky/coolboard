@@ -4,7 +4,7 @@
   "description": "run some browser tests via cypress",
   "private": true,
   "engines": {
-    "node": "18.x"
+    "node": "20.x"
   },
   "dependencies": {
     "cypress": "13.6.2",
