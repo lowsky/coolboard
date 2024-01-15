@@ -17,7 +17,7 @@ builder.prismaObject('User', {
     }),
     boards: t.relation('boards', {
       query: {
-        orderBy: { createdAt: 'asc' },
+        orderBy: { name: 'asc' },
       },
     }),
   }),
@@ -231,8 +231,9 @@ builder.mutationField('updateList', (t) =>
       where: t.arg({ type: ListWhereUniqueInput, required: true }),
       data: t.arg({ type: ListUpdateInput, required: true }),
     },
-    resolve: async (_parent, _root, { where, data }, ctx, _info) =>
-      resolvers.Mutation.updateList(_parent, { where, data }, ctx),
+    resolve: async (_parent, _root, { where, data }, ctx, _info) => {
+      return resolvers.Mutation.updateList(_parent, { where, data }, ctx);
+    },
   })
 );
 
@@ -245,7 +246,7 @@ builder.mutationField('renameList', (t) =>
       newName: t.arg.string({ required: true }),
     },
     resolve: async (_parent, _root, { where, newName }, { prisma }, _info) =>
-      await prisma.list.update({
+      prisma.list.update({
         where,
         data: {
           name: newName,

@@ -2,16 +2,21 @@ import React from 'react';
 import {
   Flex,
   Heading,
+  Icon,
   IconButton,
   Menu,
   MenuButton,
   MenuList,
 } from '@chakra-ui/react';
 import { HamburgerIcon } from '@chakra-ui/icons';
+import { MdDashboard } from 'react-icons/md';
 
 export const BoardTitle = ({ boardName, headerActions }) => (
-  <Flex justifyContent="space-between" mx={4}>
-    <Heading as="h1">Board: {boardName}</Heading>
+  <Flex justifyContent="space-between" alignItems="center" mx={4}>
+    <Heading as="h1" mb={0}>
+      <Icon as={MdDashboard} height={'0.75em'} />
+      {boardName}
+    </Heading>
     {headerActions && (
       <Menu>
         <MenuButton

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { SyntheticEvent, useState } from 'react';
 import {
   Button,
   ButtonGroup,
@@ -15,7 +15,7 @@ import {
   ModalOverlay,
   useDisclosure,
 } from '@chakra-ui/react';
-import { FaSave, FaTimes } from 'react-icons/fa';
+import { AddIcon } from '@chakra-ui/icons';
 
 export const CreateBoardModal = (props) => {
   const [state, setState] = useState({ name: '' });
@@ -32,10 +32,19 @@ export const CreateBoardModal = (props) => {
 
   const { createBoard, loading, error } = props;
 
+  const onSubmit = (ev?: SyntheticEvent) => {
+    ev?.preventDefault();
+    createBoard({ name }).then(() => onClose());
+  };
+
   return (
     <>
-      <Button onClick={onOpen} data-cy="create-board-dialog">
-        Create a new Board
+      <Button
+        variant="link"
+        onClick={onOpen}
+        leftIcon={<AddIcon height={'0.75em'} />}
+        data-cy="create-board-dialog">
+        New Board
       </Button>
 
       <Modal onClose={onClose} isOpen={isOpen}>
@@ -44,7 +53,7 @@ export const CreateBoardModal = (props) => {
           <ModalHeader>Create Board</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
-            <form>
+            <form onSubmit={onSubmit}>
               <FormControl isInvalid={Boolean(error)} isReadOnly={loading}>
                 <FormLabel htmlFor="name">Board Name</FormLabel>
                 <Input
@@ -60,23 +69,18 @@ export const CreateBoardModal = (props) => {
             </form>
           </ModalBody>
           <ModalFooter>
-            <ButtonGroup>
+            <ButtonGroup variant="outline" spacing="6">
               <Button
-                color="green"
+                background="green"
+                color="white"
+                _hover={{ background: 'darkgreen' }}
                 data-cy="create-board-submit"
-                onClick={() => {
-                  createBoard({
-                    name,
-                  }).then(() => onClose());
-                }}
-                leftIcon={<FaSave />}
+                onClick={onSubmit}
                 loadingText="Creating board..."
                 isLoading={loading}>
                 Create
               </Button>
-              <Button color="red" onClick={onClose} leftIcon={<FaTimes />}>
-                cancel
-              </Button>
+              <Button onClick={onClose}>cancel</Button>
             </ButtonGroup>
           </ModalFooter>
         </ModalContent>

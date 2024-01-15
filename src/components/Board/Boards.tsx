@@ -28,11 +28,10 @@ const BoardListItem = ({ name, id, deleteBoard }) => {
   const [deleting, setDeleting] = useState(false);
   return (
     <ListItem
-      py="0.25rem"
-      px="0.5rem"
+      padding="0.25rem 0.5rem"
       marginBottom="0.5px"
       display="flex"
-      data-cy={'board-list-item_' + name}>
+      data-cy={`board-list-item_${name}`}>
       <Link href={`/board/${id}`} passHref className={styles.wideColumn}>
         {name}
       </Link>
@@ -53,64 +52,77 @@ const BoardListItem = ({ name, id, deleteBoard }) => {
   );
 };
 
-const BoardList = ({ boards, deleteBoard }) => (
-  <List
-  // celled
-  // divided
-  >
-    {boards.map(({ id, name, ...info }) => (
-      <BoardListItem
-        key={id}
-        id={id}
-        name={name}
-        {...info}
-        deleteBoard={deleteBoard}
-      />
-    ))}
-  </List>
-);
+const BoardList = ({ boards, deleteBoard }) => {
+  const [createBoard, boardCreationState] = useCreateBoardMutation();
+
+  return (
+    <List
+    // celled
+    // divided
+    >
+      {boards.map(({ id, name, ...info }) => (
+        <BoardListItem
+          key={id}
+          id={id}
+          name={name}
+          deleteBoard={deleteBoard}
+          {...info}
+        />
+      ))}
+      <ListItem padding="0.25rem 0.5rem" marginBottom="0.5px" display="flex">
+        <CreateBoardModal
+          loading={boardCreationState.loading}
+          error={boardCreationState.error?.message}
+          createBoard={({ name }) => createBoard({ variables: { name } })}
+        />
+      </ListItem>
+      )
+    </List>
+  );
+};
 
 function overrideCachedUserBoardsRemovingBoard(
-  userBoardsData: UserBoardsQuery,
-  boardId: string,
+  userWithBoards: UserBoardsQuery | null,
+  removedBoardId: string,
   store: ApolloCache<any>
 ) {
-  const me = userBoardsData.me;
-  if (me?.boards) {
-    const oldBoards = me.boards;
-    const newUserBoards = {
-      ...userBoardsData,
-      me: {
-        ...me,
-        boards: oldBoards.filter((board) => board?.id !== boardId),
-      },
-    };
+  if (!userWithBoards?.me?.boards) return;
+
+  const {
+    me: { boards },
+  } = userWithBoards;
+
+  if (boards) {
+    const boards = userWithBoards.me.boards.filter(
+      (board) => board.id !== removedBoardId
+    );
     store.writeQuery({
       query: UserBoardsDocument,
-      data: newUserBoards,
+      data: {
+        ...userWithBoards,
+        me: {
+          ...userWithBoards.me,
+          boards,
+        },
+      },
     });
   }
 }
+const updateCachedUserBoardsAfterRemovingBoard = (boardId: string) => {
+  return (store: ApolloCache<any>) => {
+    const readData = store.readQuery<UserBoardsQuery>({
+      query: UserBoardsDocument,
+    });
+    overrideCachedUserBoardsRemovingBoard(readData, boardId, store);
+  };
+};
 
 export const Boards = () => {
-  const { loading, error, data, refetch } = useUserBoardsQuery();
+  const { loading, error, data } = useUserBoardsQuery();
   const [deleteBoard] = useDeleteBoardMutation();
 
-  const [createBoard, boardCreationState] = useCreateBoardMutation({
-    onCompleted: () => refetch(),
-  });
-
-  if (loading || data?.me?.boards === undefined) {
-    return (
-      <FullVerticalContainer>
-        <Segment textAlign="center">
-          <Heading as="h1" my={2}>
-            Your Boards
-          </Heading>
-          <Spinner />
-        </Segment>
-      </FullVerticalContainer>
-    );
+  if (loading || !data?.me) {
+    return <BoardsSkeleton />;
   }
 
   if (error) {
@@ -126,7 +138,9 @@ export const Boards = () => {
     );
   }
 
-  const { boards } = data.me;
+  const {
+    me: { boards },
+  } = data;
 
   return (
     <FullVerticalContainer>
@@ -134,37 +148,30 @@ export const Boards = () => {
         <Heading as="h1" my={2}>
           Your Boards
         </Heading>
-        {boards.length === 0 && <span>You can create new boards now!</span>}
         <Container data-cy="boards-list" textAlign="left">
-          {boards?.length > 0 && (
-            <BoardList
-              boards={boards}
-              deleteBoard={(id: string) => {
-                return deleteBoard({
-                  variables: { id },
-                  update: (store) => {
-                    const readData = store.readQuery({
-                      query: UserBoardsDocument,
-                    }) as UserBoardsQuery;
-                    overrideCachedUserBoardsRemovingBoard(readData, id, store);
-                  },
-                });
-              }}
-            />
-          )}
+          <BoardList
+            boards={boards}
+            deleteBoard={(id) =>
+              deleteBoard({
+                variables: { id },
+                update: updateCachedUserBoardsAfterRemovingBoard(id),
+              })
+            }
+          />
         </Container>
       </Segment>
+    </FullVerticalContainer>
+  );
+};
 
+export const BoardsSkeleton = () => {
+  return (
+    <FullVerticalContainer>
       <Segment textAlign="center">
-        <CreateBoardModal
-          loading={boardCreationState.loading}
-          error={boardCreationState.error?.message}
-          createBoard={({ name }) => {
-            return createBoard({
-              variables: { name },
-            });
-          }}
-        />
+        <Heading as="h1" my={2}>
+          Your Boards
+        </Heading>
+        <Spinner />
       </Segment>
     </FullVerticalContainer>
   );

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDrop } from 'react-dnd';
 import {
   Button,
+  ButtonGroup,
   Editable,
   EditableInput,
   EditablePreview,
@@ -16,7 +17,7 @@ import {
   Skeleton,
   useEditableControls,
 } from '@chakra-ui/react';
-import { AddIcon, EditIcon, HamburgerIcon } from '@chakra-ui/icons';
+import { AddIcon, HamburgerIcon } from '@chakra-ui/icons';
 import { FaTrash } from 'react-icons/fa';
 
 import Card, { dndItemType } from './Card';
@@ -40,6 +41,10 @@ const CardListWithoutDnd = (props) => {
     cardList,
   } = props;
 
+  const initialNewCardName = 'New Card';
+  const [newCardNameInputValue, setNewCardNameInputValue] =
+    useState(initialNewCardName);
+  const [isStoring, setIsStoring] = useState(false);
   const { list = {} } = cardList;
 
   // use name injected as default if not yet available
@@ -52,38 +57,83 @@ const CardListWithoutDnd = (props) => {
         style={{
           backgroundColor: isOver ? 'yellow' : 'lightgrey',
         }}>
-        <CardListHeader
-          name={name}
-          listId={id}
-          renameListMutation={renameListMutation}>
-          <CardListButton
-            leftIcon={<FaTrash color="red" />}
-            onButtonClick={() => deleteListWithId(id)}>
-            delete list
-          </CardListButton>
-        </CardListHeader>
+        <Skeleton minHeight="2rem" isLoaded={!loading}>
+          <CardListHeader
+            name={name}
+            listId={id}
+            renameListMutation={renameListMutation}>
+            <CardListButton
+              leftIcon={<FaTrash color="red" />}
+              onButtonClick={() => deleteListWithId(id)}>
+              delete list
+            </CardListButton>
+          </CardListHeader>
+        </Skeleton>
 
         <div className={styles.inner}>
-          <Flex flexDirection="column" gap={'0.1em'}>
-            <Skeleton isLoaded={!loading} minHeight={'2rem'}>
-              <Flex flexDirection="column" gap={'0.1em'}>
-                {cards.map((c) => (
-                  <Card key={c.id} {...c} cardListId={id} />
-                ))}
+          <Flex flexDirection="column" gap="0.1em">
+            <Flex flexDirection="column" gap="0.1em">
+              {cards.map((c) => (
+                <Card key={c.id} {...c} cardListId={id} />
+              ))}
+            </Flex>
+            <Editable
+              data-cy="edit-and-add-card"
+              isDisabled={loading || isStoring}
+              onChange={setNewCardNameInputValue}
+              value={newCardNameInputValue}
+              onSubmit={async (newName) => {
+                try {
+                  setIsStoring(true);
+                  await addCardWithName({
+                    variables: {
+                      name: newName,
+                    },
+                  });
+                  setNewCardNameInputValue(initialNewCardName);
+                } finally {
+                  setIsStoring(false);
+                }
+              }}>
+              <Flex
+                pt="4px"
+                ml="0.5rem"
+                my={0}
+                flexDirection="row"
+                justifyContent="flex-start"
+                flexGrow={0}
+                gap={1}
+                style={{ color: loading ? 'grey' : undefined }}
+                alignItems="center">
+                <AddIcon height="0.75em" />
+                <EditablePreview flexGrow={0} py={'8px'} />
+                <Input as={EditableInput} placeholder="card name" />
               </Flex>
-            </Skeleton>
+              <EditableControls />
+            </Editable>
           </Flex>
         </div>
-
-        <CardListButton
-          onButtonClick={() => addCardWithName(id)}
-          leftIcon={<AddIcon />}>
-          Add a card
-        </CardListButton>
       </div>
     </div>
   );
 };
+
+function EditableControls() {
+  const { isEditing, getSubmitButtonProps, getCancelButtonProps } =
+    useEditableControls();
+  return isEditing ? (
+    <ButtonGroup variant="outline" spacing="6">
+      <Button
+        background="green"
+        color="white"
+        _hover={{ background: 'darkgreen' }}
+        {...getSubmitButtonProps()}>
+        Create
+      </Button>
+      <Button {...getCancelButtonProps()}>Cancel</Button>
+    </ButtonGroup>
+  ) : null;
+}
 
 const drop = (props, cardItem) => {
   const cardId = cardItem.id;
@@ -168,12 +218,7 @@ function CardListHeader({ name, listId, children, renameListMutation }) {
         <Editable
           isDisabled={loading}
           onSubmit={async (newName) =>
-            await renameList({
-              variables: {
-                listId,
-                newName,
-              },
-            })
+            await renameList({ variables: { listId, newName } })
           }
           defaultValue={name}
           fontSize="2xl">
@@ -183,7 +228,6 @@ function CardListHeader({ name, listId, children, renameListMutation }) {
             flexGrow={0}
             alignItems="center">
             <EditablePreview flexGrow={0} />
-            <EditableControls />
           </Flex>
           <Input as={EditableInput} />
         </Editable>
@@ -208,18 +252,6 @@ function CardListHeader({ name, listId, children, renameListMutation }) {
         </PopoverContent>
       </Popover>
     </Flex>
-  );
-}
-
-function EditableControls() {
-  const { isEditing, getEditButtonProps } = useEditableControls();
-  return isEditing ? null : (
-    <IconButton
-      {...getEditButtonProps()}
-      aria-label="edit the list title"
-      size="sm"
-      icon={<EditIcon />}
-    />
   );
 }
 
