@@ -22,7 +22,26 @@ const add_a_list = () => cardListButtons().contains('Add a list');
 const sections = (options: Partial<Loggable & Timeoutable>) =>
   cy.dataCy('card-list', options);
 
-const add_a_card = () => cardListButtons().contains('Add a card');
+const add_a_card = () => cardListButtons().contains('New Card');
+
+//garb cy.contains('[data-cy="edit-and-add-card"] .chakra-editable__preview', 'New');
+function clickAddNewCard() {
+  cy.get('[data-cy="edit-and-add-card"] .chakra-editable__preview').should(
+    'not.have.attr',
+    'aria-disabled',
+    'true'
+  );
+  cy.get('[data-cy="edit-and-add-card"] .chakra-editable__preview').click();
+}
+
+function enterText(text: string) {
+  cy.get('[data-cy="edit-and-add-card"] .chakra-editable__input')
+    .should('be.enabled')
+    .should('be.visible')
+    .focus()
+    .clear()
+    .type(text);
+}
 
 const getBoardsList = () => {
   return cy
@@ -91,13 +110,24 @@ describe('Test coolboard', () => {
     add_a_list().click();
 
     sections(LogAndWaitLong).should('have.length', 1);
-    add_a_card().click();
-    cy.dataCy('card', WaitVeryLong).contains('new card').click();
+    clickAddNewCard();
+    enterText('new card{enter}');
+
+    clickAddNewCard();
+    enterText('withCreateButton ');
+    cy.contains('button', 'Create').click();
+
+    clickAddNewCard();
+    enterText('canceled');
+    cy.get('#cancel').click();
 
     // edit card
     cy.log('edit card');
+    // old: cy.dataCy('card').contains('new card').click();
+    cy.contains('[data-cy="card"] > span', 'new card').first().click();
     cy.get('.chakra-modal__content-container')
       .get('#title')
+      .clear()
       .type('name-changed');
     cy.get('.chakra-modal__content-container')
       .find('.chakra-button')
@@ -108,6 +138,7 @@ describe('Test coolboard', () => {
     cy.get('.chakra-modal__content-container', WaitVeryLong).should(
       'not.exist'
     );
+    cy.contains('[data-cy="card"] > span', 'name-changed');
 
     cy.log('add a new list');
     add_a_list().click();
