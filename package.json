@@ -39,7 +39,7 @@
     "graphql-scalars": "^1.20.1",
     "graphql-tag": "2.12.6",
     "inter-ui": "4.0.1",
-    "next": "14.0.4",
+    "next": "14.1.0",
     "prisma": "5.8.1",
     "react": "18.2.0",
     "react-apollo-network-status": "5.2.1",
@@ -80,7 +80,7 @@
     "@types/zen-observable": "0.8.7",
     "@typescript-eslint/parser": "6.19.0",
     "eslint": "8.56.0",
-    "eslint-config-next": "14.0.4",
+    "eslint-config-next": "14.1.0",
     "prettier": "3.2.4",
     "sharp": "0.33.2",
     "typescript": "5.3.3"
