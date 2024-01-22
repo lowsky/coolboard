@@ -6295,10 +6295,10 @@ __metadata:
   linkType: hard
 
 "@vercel/speed-insights@npm:^1.0.2":
-  version: 1.0.6
-  resolution: "@vercel/speed-insights@npm:1.0.6"
+  version: 1.0.7
+  resolution: "@vercel/speed-insights@npm:1.0.7"
   peerDependencies:
-    "@sveltejs/kit": ^1
+    "@sveltejs/kit": ^1 || ^2
     next: ">= 13"
     react: ^18 || ^19
     svelte: ^4
@@ -6317,7 +6317,7 @@ __metadata:
       optional: true
     vue-router:
       optional: true
-  checksum: 1c5137f122cede17e05861b173e5f5ab1514adddd889541fc89bdc7ac8a9bf5fd4805850a6940e2ba6f9720b1ca44cafdb123c593293fed683ebd789683c4bdd
+  checksum: 3780e2a5aeb911aed825a90937a63f6f851682cc2eccc87922e592c6e0167a7165f279b3a39550ac6d4c890b2faed51dd2fb6545b675614d0802480161fb9121
   languageName: node
   linkType: hard
 
