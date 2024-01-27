@@ -1,12 +1,20 @@
 // @ts-check
 
+const disableOtel = process.env.OTEL_DISABLED;
+const instrumentationHook = disableOtel !== 'true';
+console.log(
+  `instrumentation via OTEL: ${
+    instrumentationHook ? 'enabled' : 'disabled'
+  } - by env: OTEL_DISABLED=${disableOtel}`
+);
+
 /**
  * @type {import('next').NextConfig}
  **/
 const nextConfig = {
   experimental: {
-    // see https://nextjs.org/docs/app/building-your-application/optimizing/instrumentation
-    instrumentationHook: true,
+    // https://nextjs.org/docs/app/building-your-application/optimizing/instrumentation
+    instrumentationHook,
   },
   poweredByHeader: false,
 
