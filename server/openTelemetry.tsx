@@ -27,23 +27,24 @@ const autoInstrumentations = getNodeAutoInstrumentations({
   '@opentelemetry/instrumentation-fs': { enabled: false },
 });
 
+export const traceExporter = new OTLPTraceExporter({
+  // default if not set via OTEL_EXPORTER_OTLP_ENDPOINT
+  // url: http://localhost:4317
+});
+
+export const instrumentations = [
+  new PrismaInstrumentation({ middleware: true }),
+  ...autoInstrumentations,
+];
+
 const sdk = new NodeSDK({
   // add more details when running in cloud
   autoDetectResources: !isLocalDev,
   resource: new Resource({
     [SemanticResourceAttributes.SERVICE_NAME]: 'otel-graphql-coolboard',
   }),
-  //
-  traceExporter:
-    //new ConsoleSpanExporter() ??
-    new OTLPTraceExporter({
-      // default if not set via OTEL_EXPORTER_OTLP_ENDPOINT
-      // url: http://localhost:4317
-    }),
-  instrumentations: [
-    new PrismaInstrumentation({ middleware: true }),
-    ...autoInstrumentations,
-  ],
+  traceExporter,
+  instrumentations,
 });
 
 export async function startTracing() {
