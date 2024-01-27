@@ -86,7 +86,7 @@ https://chakra-ui.com/docs/styled-system/theming/customize-theme#customizing-com
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
       </Head>
-      {<InstanaEumScripts />}
+      <InstanaEumScripts />
       <ChakraProvider theme={theme}>
         <div
           style={{
