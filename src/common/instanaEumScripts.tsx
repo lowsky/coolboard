@@ -23,6 +23,8 @@ export const InstanaEumScripts = () => {
           ineum('key', '${instanaEumKey}');
           ineum('ignoreUrls', ${ignoreUrls});
           ineum('allowOrigins', ['*']);
+
+          ineum('meta', 'env', 'development');
       `}
       </Script>
       <Script
