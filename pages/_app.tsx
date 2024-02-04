@@ -8,8 +8,13 @@ import { mode } from '@chakra-ui/theme-tools';
 
 import 'public/index.css';
 
+import { instrumentBrowserOtel } from 'src/instrumentBrowserOtel';
 import { InstanaEumScripts } from 'common/instanaEumScripts';
 import { Footer } from 'components/Footer';
+
+if (typeof window !== 'undefined') {
+  await instrumentBrowserOtel();
+}
 
 // The title of the Head and view-port-meta needs to go here, see https://nextjs.org/docs/messages/no-document-viewport-meta
 
