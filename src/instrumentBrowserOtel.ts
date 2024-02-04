@@ -25,6 +25,7 @@ const serviceName = process.env.NEXT_PUBLIC_OTEL_SERVICE_NAME;
 
 // e.g. http://localhost:4318/v1/traces
 const otelEndpoint = process.env.NEXT_PUBLIC_OTEL_EXPORTER_OTLP_TRACES_ENDPOINT;
+const otelInstaKey = process.env.NEXT_PUBLIC_OTEL_EXPORTER_OTLP_INSTA_KEY;
 
 export const instrumentBrowserOtel = async () => {
   if (!serviceName && !otelEndpoint) return;
@@ -36,7 +37,10 @@ export const instrumentBrowserOtel = async () => {
   }).merge(detectResourcesSync({ detectors: [browserDetector] }));
   const tracerProvider = new WebTracerProvider({ resource });
 
-  const otlpTraceExporter = new OTLPTraceExporter({ url: otelEndpoint! });
+  const otlpTraceExporter = new OTLPTraceExporter({
+    url: otelEndpoint!,
+    headers: otelInstaKey ? { 'x-instana-key': otelInstaKey } : {},
+  });
 
   // For debugging, see browser console:
   if (process.env.NEXT_OTEL_BROWSER_DEBUG) {
