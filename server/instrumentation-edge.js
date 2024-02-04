@@ -4,6 +4,6 @@ import { registerOTel } from '@vercel/otel';
 
 export function register() {
   registerOTel({
-    serviceName: 'next-otel-graphql-rob',
+    serviceName: 'otel-graphql-rob-edge',
   });
 }

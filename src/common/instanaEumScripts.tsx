@@ -8,6 +8,8 @@ export const InstanaEumScripts = () => {
     return null;
   }
 
+  const ignoreUrls = [/.*clerk.*/i, /.*eum.*instana.*/i, /.*localhost:43.*/i];
+
   return (
     <>
       <Script strategy="afterInteractive" id="eum-init">
@@ -19,7 +21,8 @@ export const InstanaEumScripts = () => {
 
           ineum('reportingUrl', '${reportingUrl}');
           ineum('key', '${instanaEumKey}');
-          ineum('trackSessions');
+          ineum('ignoreUrls', ${ignoreUrls});
+          ineum('allowOrigins', ['*']);
       `}
       </Script>
       <Script
