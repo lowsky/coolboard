@@ -57,4 +57,37 @@ export default {
     }
     */
   },
+
+  async moveCard(
+    _parent: any,
+    {
+      id,
+      fromListId,
+      toListId,
+    }: {
+      id: string;
+      fromListId: string;
+      toListId: string;
+    },
+    ctx: Ctxt
+  ): Promise<Card> {
+    const userId = await getUserId(ctx);
+
+    const { prisma } = ctx;
+
+    console.log({ fromListId, toListId });
+
+    return await prisma.card.update({
+      data: {
+        updatedBy: { connect: { id: userId } },
+        list: {
+          // disconnect: { id: fromListId },
+          connect: { id: toListId },
+        },
+      },
+      where: {
+        id,
+      },
+    });
+  },
 };

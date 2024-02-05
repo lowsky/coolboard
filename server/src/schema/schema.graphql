@@ -37,8 +37,10 @@ input CardUpdateInput {
 
 input CardUpdateManyInput {
   connect: [CardWhereUniqueInput!]
+    @deprecated(reason: "better use moveCard instead")
   create: [CardCreateInput!]
   disconnect: [CardWhereUniqueInput!]
+    @deprecated(reason: "better use moveCard instead")
 }
 
 input CardWhereUniqueInput {
@@ -89,6 +91,7 @@ type Mutation {
   createBoard(name: String!): User!
   deleteBoard(id: ID!): Board!
   deleteList(id: ID!): List!
+  moveCard(fromListId: ID!, id: ID!, toListId: ID!): Card
   renameList(newName: String!, where: ListWhereUniqueInput!): List!
   updateBoard(data: BoardUpdateInput!, where: BoardWhereUniqueInput!): Board!
   updateCard(data: CardUpdateInput!, where: CardWhereUniqueInput!): Card!
@@ -103,6 +106,7 @@ type Query {
   authenticated current user
   """
   me: User
+  ping: String!
 }
 
 type User {
