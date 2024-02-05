@@ -25,6 +25,17 @@ mutation moveCard($cardId: ID!, $oldCardListId: ID!, $cardListId: ID!) {
   }
 }
 
+mutation moveCard2($cardId: ID!, $toList: ID!,
+  $fromListId: ID!
+) {
+  moveCard(id: $cardId,
+    toListId: $toList
+   , fromListId: $fromListId
+  ) {
+      ...Card_card
+    }
+}
+
 mutation addCardMutation($cardListId: ID!, $name: String!) {
   updateList(
     data: { cards: { create: { name: $name } } }
