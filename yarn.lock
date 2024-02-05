@@ -6351,8 +6351,8 @@ __metadata:
   linkType: hard
 
 "@vercel/otel@npm:^1.0.0":
-  version: 1.0.1
-  resolution: "@vercel/otel@npm:1.0.1"
+  version: 1.2.1
+  resolution: "@vercel/otel@npm:1.2.1"
   dependencies:
     "@opentelemetry/context-async-hooks": "npm:^1.19.0"
     "@opentelemetry/core": "npm:^1.19.0"
@@ -6370,7 +6370,7 @@ __metadata:
   peerDependencies:
     "@opentelemetry/api": ^1.7.0
     "@opentelemetry/api-logs": ^0.46.0
-  checksum: 52d1d018802c7fbed3f960daca2edcc98d93a8d475ed5c9d1e493fdcdc5e6600c446836a6eba0da4a48454f2e3ef2860493438c5de4d976baa02adafbd7b815c
+  checksum: 974b4ba5b27fcd1d6264b6daa22aa47e7a9679fd0697ab2e4e22e4411b969359d377f7cd13ca27a948de381848ca52d2399eb587f1cef72212e87736059cb138
   languageName: node
   linkType: hard
 
