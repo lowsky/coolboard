@@ -1,9 +1,23 @@
 import { authMiddleware } from '@clerk/nextjs';
+import { NextResponse } from 'next/server';
+import type { NextRequest, NextFetchEvent } from 'next/server';
 
-export default authMiddleware({
+const clerkAuthMiddleWare = authMiddleware({
   publicRoutes: ['/', '/boards', '/about', '/imprint', '/privacy'],
+  // to skip auth: '/api/graphql',
   debug: false,
 });
+
+export async function middleware(request: NextRequest, event: NextFetchEvent) {
+  const authResponse = clerkAuthMiddleWare(request, event);
+  const response: NextResponse = (await authResponse) ?? NextResponse.next();
+
+  // extract trace-id from instana eum header
+  const traceId = request['headers']?.get('x-instana-t') ?? '';
+  request['headers']?.set('Server-Timing', `intid;desc=${traceId}`);
+
+  return response;
+}
 
 // Stop Middleware running on static files - more performant than ignoreRoutes
 export const config = {
