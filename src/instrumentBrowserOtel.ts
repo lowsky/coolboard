@@ -28,7 +28,7 @@ const otelEndpoint = process.env.NEXT_PUBLIC_OTEL_EXPORTER_OTLP_TRACES_ENDPOINT;
 const otelInstaKey = process.env.NEXT_PUBLIC_OTEL_EXPORTER_OTLP_INSTA_KEY;
 
 export const instrumentBrowserOtel = async () => {
-  if (!serviceName && !otelEndpoint) return;
+  if (!serviceName || !otelEndpoint) return;
 
   const { ZoneContextManager } = await import('@opentelemetry/context-zone');
 
