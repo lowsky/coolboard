@@ -21,8 +21,7 @@ export const InstanaEumScripts = () => {
 
           ineum('reportingUrl', '${reportingUrl}');
           ineum('key', '${instanaEumKey}');
-          ineum('ignoreUrls', ${ignoreUrls});
-          ineum('allowOrigins', ['*']);
+          ineum('ignoreUrls', [${ignoreUrls}]);
 
           ineum('meta', 'env', 'development');
       `}
