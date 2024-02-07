@@ -10,6 +10,9 @@ export const InstanaEumScripts = () => {
 
   const ignoreUrls = [/.*clerk.*/i, /.*eum.*instana.*/i, /.*localhost:43.*/i];
 
+  const branchName =
+    process.env.NODE_ENV !== 'production' ? 'development' : 'production';
+
   return (
     <>
       <Script strategy="afterInteractive" id="eum-init">
@@ -23,7 +26,7 @@ export const InstanaEumScripts = () => {
           ineum('key', '${instanaEumKey}');
           ineum('ignoreUrls', [${ignoreUrls}]);
 
-          ineum('meta', 'env', 'development');
+          ineum('meta', 'env', '${branchName}');
       `}
       </Script>
       <Script
