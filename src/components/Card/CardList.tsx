@@ -22,13 +22,16 @@ import { FaTrash } from 'react-icons/fa';
 
 import Card, { dndItemType } from './Card';
 import {
+  CardListDocument,
+  CardListQuery,
   useAddCardMutationMutation,
   useCardListQuery,
-  useMoveCardMutation,
+  useMoveCard2Mutation,
   useRenameListMutation,
 } from 'generated/graphql';
 
 import styles from '../CardList.module.css';
+import { ApolloCache } from '@apollo/client';
 
 const CardListWithoutDnd = (props) => {
   const {
@@ -164,7 +167,7 @@ export const CardList = ({ id, name, deleteListWithId }) => {
   });
   const renameListMutation = useRenameListMutation();
 
-  const [moveCard] = useMoveCardMutation();
+  const [moveCard] = useMoveCard2Mutation();
 
   const [addCardWithName] = useAddCardMutationMutation({
     variables: {
@@ -179,13 +182,95 @@ export const CardList = ({ id, name, deleteListWithId }) => {
 
   const list = data?.list ?? []; // fix data is undefined when loading...
 
-  const onMoveCardToList = (cardId, oldCardListId, newCardListId) => {
+  const updateCachedListsAftermovingCard = (
+    cardId: string,
+    newCardListId: string,
+    oldCardListId: string
+  ) => {
+    return (store: ApolloCache<any>) => {
+      const cachedNewList = store.readQuery<CardListQuery>({
+        query: CardListDocument,
+        variables: {
+          cardListId: newCardListId,
+        },
+      });
+      const cachedOldList = store.readQuery<CardListQuery>({
+        query: CardListDocument,
+        variables: {
+          cardListId: oldCardListId,
+        },
+      });
+      overrideCachedListsAfterMovingCard(
+        cachedNewList,
+        cachedOldList,
+        newCardListId,
+        oldCardListId,
+        cardId,
+        store
+      );
+    };
+  };
+  function overrideCachedListsAfterMovingCard(
+    cachedNewList: CardListQuery | null,
+    cachedOldList: CardListQuery | null,
+
+    newListId: string,
+    oldListId: string,
+    cardId: string,
+    store: ApolloCache<any>
+  ) {
+    if (!cachedOldList || !cachedNewList) return;
+    debugger;
+    const { list: newList } = cachedNewList;
+    const { list: oldList } = cachedOldList;
+
+    if (oldList && newList) {
+      let oldCard;
+      const oldCards = oldList.cards.filter((card) => {
+        if (card.id !== cardId) return true;
+        oldCard = card;
+        return false;
+      });
+      if (!oldCard) return;
+
+      const newCards = [...newList.cards, oldCard];
+      store.writeQuery({
+        query: CardListDocument,
+        data: {
+          list: {
+            ...newList,
+            cards: newCards,
+          },
+        },
+        variables: { cardListId: newListId },
+      });
+      store.writeQuery({
+        query: CardListDocument,
+        data: {
+          list: {
+            ...oldList,
+            cards: oldCards,
+          },
+        },
+        variables: { cardListId: oldListId },
+      });
+    }
+  }
+
+  const onMoveCardToList = (cardId, _oldCardListId, newCardListId) => {
     moveCard({
       variables: {
-        oldCardListId,
-        cardListId: newCardListId,
+        fromListId: _oldCardListId,
+        toList: newCardListId,
+        //cardListId: newCardListId,
         cardId,
       },
+      update: updateCachedListsAftermovingCard(
+        cardId,
+        newCardListId,
+
+        _oldCardListId
+      ),
     });
   };
 

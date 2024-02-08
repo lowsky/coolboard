@@ -10,6 +10,10 @@ import { isLocalDev } from '../helpers/logging';
 import { Ctxt } from './Context';
 
 export default {
+  async ping(_parent: any, _args: any, _ctx: Ctxt): Promise<string> {
+    return 'pong';
+  },
+
   async board(_parent: any, { where }: any, ctx: Ctxt): Promise<Board | null> {
     await verifyUserIsAuthenticatedAndRetrieveUserToken(ctx);
     const { prisma } = ctx;

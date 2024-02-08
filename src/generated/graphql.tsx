@@ -11,26 +11,35 @@ export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
   [SubKey in K]: Maybe<T[SubKey]>;
 };
+export type MakeEmpty<
+  T extends { [key: string]: unknown },
+  K extends keyof T,
+> = { [_ in K]?: never };
+export type Incremental<T> =
+  | T
+  | {
+      [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never;
+    };
 const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: string;
-  String: string;
-  Boolean: boolean;
-  Int: number;
-  Float: number;
+  ID: { input: string; output: string };
+  String: { input: string; output: string };
+  Boolean: { input: boolean; output: boolean };
+  Int: { input: number; output: number };
+  Float: { input: number; output: number };
   /** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
-  DateTime: any;
+  DateTime: { input: any; output: any };
 };
 
 export type Board = {
   __typename?: 'Board';
-  createdAt: Scalars['DateTime'];
+  createdAt: Scalars['DateTime']['output'];
   createdBy: User;
-  id: Scalars['ID'];
+  id: Scalars['ID']['output'];
   lists: Array<List>;
-  name: Scalars['String'];
-  updatedAt: Scalars['DateTime'];
+  name: Scalars['String']['output'];
+  updatedAt: Scalars['DateTime']['output'];
 };
 
 export type BoardUpdateInput = {
@@ -38,56 +47,58 @@ export type BoardUpdateInput = {
 };
 
 export type BoardWhereUniqueInput = {
-  id: Scalars['ID'];
+  id: Scalars['ID']['input'];
 };
 
 export type Card = {
   __typename?: 'Card';
-  createdAt: Scalars['DateTime'];
+  createdAt: Scalars['DateTime']['output'];
   createdBy: User;
-  description?: Maybe<Scalars['String']>;
-  id: Scalars['ID'];
-  name: Scalars['String'];
-  updatedAt: Scalars['DateTime'];
+  description?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+  updatedAt: Scalars['DateTime']['output'];
   updatedBy: User;
 };
 
 export type CardCreateInput = {
-  description?: InputMaybe<Scalars['String']>;
-  name: Scalars['String'];
+  description?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
 };
 
 export type CardUpdateInput = {
-  description?: InputMaybe<Scalars['String']>;
-  name: Scalars['String'];
+  description?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
 };
 
 export type CardUpdateManyInput = {
+  /** @deprecated better use moveCard instead */
   connect?: InputMaybe<Array<CardWhereUniqueInput>>;
   create?: InputMaybe<Array<CardCreateInput>>;
+  /** @deprecated better use moveCard instead */
   disconnect?: InputMaybe<Array<CardWhereUniqueInput>>;
 };
 
 export type CardWhereUniqueInput = {
-  id: Scalars['ID'];
+  id: Scalars['ID']['input'];
 };
 
 export type List = {
   __typename?: 'List';
   cards: Array<Card>;
-  createdAt: Scalars['DateTime'];
+  createdAt: Scalars['DateTime']['output'];
   createdBy: User;
-  id: Scalars['ID'];
-  name: Scalars['String'];
-  updatedAt: Scalars['DateTime'];
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+  updatedAt: Scalars['DateTime']['output'];
 };
 
 export type ListCreateInput = {
-  name: Scalars['String'];
+  name: Scalars['String']['input'];
 };
 
 export type ListScalarWhereInput = {
-  id_in: Array<Scalars['ID']>;
+  id_in: Array<Scalars['ID']['input']>;
 };
 
 export type ListUpdateInput = {
@@ -101,11 +112,11 @@ export type ListUpdateManyInput = {
 };
 
 export type ListWhereIdInput = {
-  id: Scalars['ID'];
+  id: Scalars['ID']['input'];
 };
 
 export type ListWhereUniqueInput = {
-  id: Scalars['ID'];
+  id: Scalars['ID']['input'];
 };
 
 export type Mutation = {
@@ -113,6 +124,7 @@ export type Mutation = {
   createBoard: User;
   deleteBoard: Board;
   deleteList: List;
+  moveCard?: Maybe<Card>;
   renameList: List;
   updateBoard: Board;
   updateCard: Card;
@@ -120,19 +132,25 @@ export type Mutation = {
 };
 
 export type MutationCreateBoardArgs = {
-  name: Scalars['String'];
+  name: Scalars['String']['input'];
 };
 
 export type MutationDeleteBoardArgs = {
-  id: Scalars['ID'];
+  id: Scalars['ID']['input'];
 };
 
 export type MutationDeleteListArgs = {
-  id: Scalars['ID'];
+  id: Scalars['ID']['input'];
+};
+
+export type MutationMoveCardArgs = {
+  fromListId: Scalars['ID']['input'];
+  id: Scalars['ID']['input'];
+  toListId: Scalars['ID']['input'];
 };
 
 export type MutationRenameListArgs = {
-  newName: Scalars['String'];
+  newName: Scalars['String']['input'];
   where: ListWhereUniqueInput;
 };
 
@@ -157,6 +175,7 @@ export type Query = {
   list?: Maybe<List>;
   /** authenticated current user */
   me?: Maybe<User>;
+  ping: Scalars['String']['output'];
 };
 
 export type QueryBoardArgs = {
@@ -169,11 +188,11 @@ export type QueryListArgs = {
 
 export type User = {
   __typename?: 'User';
-  avatarUrl?: Maybe<Scalars['String']>;
+  avatarUrl?: Maybe<Scalars['String']['output']>;
   boards: Array<Board>;
-  email: Scalars['String'];
-  id: Scalars['ID'];
-  name: Scalars['String'];
+  email: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
 };
 
 export type MeQueryQueryVariables = Exact<{ [key: string]: never }>;
@@ -190,7 +209,7 @@ export type MeQueryQuery = {
 };
 
 export type BoardQueryVariables = Exact<{
-  boardId: Scalars['ID'];
+  boardId: Scalars['ID']['input'];
 }>;
 
 export type BoardQuery = {
@@ -211,7 +230,7 @@ export type Board_BoardFragment = {
 };
 
 export type CreateBoardMutationVariables = Exact<{
-  name: Scalars['String'];
+  name: Scalars['String']['input'];
 }>;
 
 export type CreateBoardMutation = {
@@ -225,7 +244,7 @@ export type CreateBoardMutation = {
 };
 
 export type DeleteBoardMutationVariables = Exact<{
-  id: Scalars['ID'];
+  id: Scalars['ID']['input'];
 }>;
 
 export type DeleteBoardMutation = {
@@ -246,8 +265,8 @@ export type UserBoardsQuery = {
 };
 
 export type AddListMutationVariables = Exact<{
-  boardId: Scalars['ID'];
-  name: Scalars['String'];
+  boardId: Scalars['ID']['input'];
+  name: Scalars['String']['input'];
 }>;
 
 export type AddListMutation = {
@@ -261,8 +280,8 @@ export type AddListMutation = {
 };
 
 export type DeleteListsOfBoardMutationVariables = Exact<{
-  boardId: Scalars['ID'];
-  listIds: Array<Scalars['ID']> | Scalars['ID'];
+  boardId: Scalars['ID']['input'];
+  listIds: Array<Scalars['ID']['input']> | Scalars['ID']['input'];
 }>;
 
 export type DeleteListsOfBoardMutation = {
@@ -276,8 +295,8 @@ export type DeleteListsOfBoardMutation = {
 };
 
 export type DeleteListOfBoardMutationVariables = Exact<{
-  boardId: Scalars['ID'];
-  listId: Scalars['ID'];
+  boardId: Scalars['ID']['input'];
+  listId: Scalars['ID']['input'];
 }>;
 
 export type DeleteListOfBoardMutation = {
@@ -291,7 +310,7 @@ export type DeleteListOfBoardMutation = {
 };
 
 export type CardListQueryVariables = Exact<{
-  cardListId: Scalars['ID'];
+  cardListId: Scalars['ID']['input'];
 }>;
 
 export type CardListQuery = {
@@ -319,8 +338,8 @@ export type CardListQuery = {
 };
 
 export type RenameListMutationVariables = Exact<{
-  newName: Scalars['String'];
-  listId: Scalars['ID'];
+  newName: Scalars['String']['input'];
+  listId: Scalars['ID']['input'];
 }>;
 
 export type RenameListMutation = {
@@ -329,9 +348,9 @@ export type RenameListMutation = {
 };
 
 export type MoveCardMutationVariables = Exact<{
-  cardId: Scalars['ID'];
-  oldCardListId: Scalars['ID'];
-  cardListId: Scalars['ID'];
+  cardId: Scalars['ID']['input'];
+  oldCardListId: Scalars['ID']['input'];
+  cardListId: Scalars['ID']['input'];
 }>;
 
 export type MoveCardMutation = {
@@ -378,9 +397,34 @@ export type MoveCardMutation = {
   };
 };
 
+export type MoveCard2MutationVariables = Exact<{
+  cardId: Scalars['ID']['input'];
+  toList: Scalars['ID']['input'];
+  fromListId: Scalars['ID']['input'];
+}>;
+
+export type MoveCard2Mutation = {
+  __typename?: 'Mutation';
+  moveCard?: {
+    __typename?: 'Card';
+    id: string;
+    name: string;
+    description?: string | null;
+    createdAt: any;
+    updatedAt: any;
+    updatedBy: {
+      __typename?: 'User';
+      avatarUrl?: string | null;
+      email: string;
+      name: string;
+      id: string;
+    };
+  } | null;
+};
+
 export type AddCardMutationMutationVariables = Exact<{
-  cardListId: Scalars['ID'];
-  name: Scalars['String'];
+  cardListId: Scalars['ID']['input'];
+  name: Scalars['String']['input'];
 }>;
 
 export type AddCardMutationMutation = {
@@ -408,9 +452,9 @@ export type AddCardMutationMutation = {
 };
 
 export type UpdateCardMutationVariables = Exact<{
-  id: Scalars['ID'];
-  name: Scalars['String'];
-  description?: InputMaybe<Scalars['String']>;
+  id: Scalars['ID']['input'];
+  name: Scalars['String']['input'];
+  description?: InputMaybe<Scalars['String']['input']>;
 }>;
 
 export type UpdateCardMutation = {
@@ -548,8 +592,23 @@ export function useMeQueryLazyQuery(
     options
   );
 }
+export function useMeQuerySuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    MeQueryQuery,
+    MeQueryQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useSuspenseQuery<MeQueryQuery, MeQueryQueryVariables>(
+    MeQueryDocument,
+    options
+  );
+}
 export type MeQueryQueryHookResult = ReturnType<typeof useMeQueryQuery>;
 export type MeQueryLazyQueryHookResult = ReturnType<typeof useMeQueryLazyQuery>;
+export type MeQuerySuspenseQueryHookResult = ReturnType<
+  typeof useMeQuerySuspenseQuery
+>;
 export type MeQueryQueryResult = Apollo.QueryResult<
   MeQueryQuery,
   MeQueryQueryVariables
@@ -597,8 +656,20 @@ export function useBoardLazyQuery(
     options
   );
 }
+export function useBoardSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<BoardQuery, BoardQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useSuspenseQuery<BoardQuery, BoardQueryVariables>(
+    BoardDocument,
+    options
+  );
+}
 export type BoardQueryHookResult = ReturnType<typeof useBoardQuery>;
 export type BoardLazyQueryHookResult = ReturnType<typeof useBoardLazyQuery>;
+export type BoardSuspenseQueryHookResult = ReturnType<
+  typeof useBoardSuspenseQuery
+>;
 export type BoardQueryResult = Apollo.QueryResult<
   BoardQuery,
   BoardQueryVariables
@@ -760,9 +831,24 @@ export function useUserBoardsLazyQuery(
     options
   );
 }
+export function useUserBoardsSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    UserBoardsQuery,
+    UserBoardsQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useSuspenseQuery<UserBoardsQuery, UserBoardsQueryVariables>(
+    UserBoardsDocument,
+    options
+  );
+}
 export type UserBoardsQueryHookResult = ReturnType<typeof useUserBoardsQuery>;
 export type UserBoardsLazyQueryHookResult = ReturnType<
   typeof useUserBoardsLazyQuery
+>;
+export type UserBoardsSuspenseQueryHookResult = ReturnType<
+  typeof useUserBoardsSuspenseQuery
 >;
 export type UserBoardsQueryResult = Apollo.QueryResult<
   UserBoardsQuery,
@@ -976,9 +1062,24 @@ export function useCardListLazyQuery(
     options
   );
 }
+export function useCardListSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    CardListQuery,
+    CardListQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useSuspenseQuery<CardListQuery, CardListQueryVariables>(
+    CardListDocument,
+    options
+  );
+}
 export type CardListQueryHookResult = ReturnType<typeof useCardListQuery>;
 export type CardListLazyQueryHookResult = ReturnType<
   typeof useCardListLazyQuery
+>;
+export type CardListSuspenseQueryHookResult = ReturnType<
+  typeof useCardListSuspenseQuery
 >;
 export type CardListQueryResult = Apollo.QueryResult<
   CardListQuery,
@@ -1094,6 +1195,58 @@ export type MoveCardMutationResult = Apollo.MutationResult<MoveCardMutation>;
 export type MoveCardMutationOptions = Apollo.BaseMutationOptions<
   MoveCardMutation,
   MoveCardMutationVariables
+>;
+export const MoveCard2Document = gql`
+  mutation moveCard2($cardId: ID!, $toList: ID!, $fromListId: ID!) {
+    moveCard(id: $cardId, toListId: $toList, fromListId: $fromListId) {
+      ...Card_card
+    }
+  }
+  ${Card_CardFragmentDoc}
+`;
+export type MoveCard2MutationFn = Apollo.MutationFunction<
+  MoveCard2Mutation,
+  MoveCard2MutationVariables
+>;
+
+/**
+ * __useMoveCard2Mutation__
+ *
+ * To run a mutation, you first call `useMoveCard2Mutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useMoveCard2Mutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [moveCard2Mutation, { data, loading, error }] = useMoveCard2Mutation({
+ *   variables: {
+ *      cardId: // value for 'cardId'
+ *      toList: // value for 'toList'
+ *      fromListId: // value for 'fromListId'
+ *   },
+ * });
+ */
+export function useMoveCard2Mutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    MoveCard2Mutation,
+    MoveCard2MutationVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<MoveCard2Mutation, MoveCard2MutationVariables>(
+    MoveCard2Document,
+    options
+  );
+}
+export type MoveCard2MutationHookResult = ReturnType<
+  typeof useMoveCard2Mutation
+>;
+export type MoveCard2MutationResult = Apollo.MutationResult<MoveCard2Mutation>;
+export type MoveCard2MutationOptions = Apollo.BaseMutationOptions<
+  MoveCard2Mutation,
+  MoveCard2MutationVariables
 >;
 export const AddCardMutationDocument = gql`
   mutation addCardMutation($cardListId: ID!, $name: String!) {

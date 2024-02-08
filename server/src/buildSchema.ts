@@ -115,8 +115,14 @@ const CardWhereUniqueInput = builder.inputType('CardWhereUniqueInput', {
 const CardUpdateManyInput = builder.inputType('CardUpdateManyInput', {
   fields: (t) => ({
     create: t.field({ type: [CardCreateInput] }),
-    connect: t.field({ type: [CardWhereUniqueInput] }),
-    disconnect: t.field({ type: [CardWhereUniqueInput] }),
+    connect: t.field({
+      type: [CardWhereUniqueInput],
+      deprecationReason: 'better use moveCard instead',
+    }),
+    disconnect: t.field({
+      type: [CardWhereUniqueInput],
+      deprecationReason: 'better use moveCard instead',
+    }),
   }),
 });
 const ListUpdateInput = builder.inputType('ListUpdateInput', {
@@ -277,6 +283,39 @@ builder.mutationField('updateCard', (t) =>
         },
         ctx
       );
+    },
+  })
+);
+builder.mutationField('moveCard', (t) =>
+  t.prismaField({
+    nullable: true,
+    type: 'Card',
+    args: {
+      id: t.arg.id({ required: true }),
+      fromListId: t.arg.id({ required: true }),
+      toListId: t.arg.id({ required: true }),
+    },
+    resolve: async (_parent, _root, args, ctx, _info) => {
+      const { id, fromListId, toListId } = args;
+      return resolvers.Mutation.moveCard(
+        _parent,
+        {
+          id,
+          fromListId,
+          toListId,
+        },
+        ctx
+      );
+    },
+  })
+);
+
+builder.queryField('ping', (t) =>
+  t.field({
+    nullable: false,
+    type: 'String',
+    resolve: () => {
+      return 'pong';
     },
   })
 );
