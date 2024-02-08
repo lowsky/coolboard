@@ -2486,12 +2486,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/themes@npm:^1.2.20":
-  version: 1.7.9
-  resolution: "@clerk/themes@npm:1.7.9"
+"@clerk/themes@npm:1.2.20":
+  version: 1.2.20
+  resolution: "@clerk/themes@npm:1.2.20"
   peerDependencies:
     react: ">=16"
-  checksum: 10c0/7bd51665aeb65a9b6b22ded4ceda386e3cfa6d9c01f79a10eb11f75228af475d0025969435a2e9b1c188af59020c3e4298f38c1b6fc583de21893623686cd0be
+  checksum: 10c0/19463996690e402c63a1f7e1e6c59dc64533790270273d01b5c33473945b9e398c24b32c64d48ae32f720225f24b0bdd12db17319bea4c221b82467828eba9b5
   languageName: node
   linkType: hard
 
@@ -4271,7 +4271,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@opentelemetry/exporter-trace-otlp-grpc@npm:0.48.0, @opentelemetry/exporter-trace-otlp-grpc@npm:^0.48.0":
+"@opentelemetry/exporter-trace-otlp-grpc@npm:0.48.0":
   version: 0.48.0
   resolution: "@opentelemetry/exporter-trace-otlp-grpc@npm:0.48.0"
   dependencies:
@@ -5577,20 +5577,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pothos/core@npm:^3.23.1":
-  version: 3.41.0
-  resolution: "@pothos/core@npm:3.41.0"
+"@pothos/core@npm:3.23.1":
+  version: 3.23.1
+  resolution: "@pothos/core@npm:3.23.1"
   peerDependencies:
     graphql: ">=15.1.0"
-  checksum: 10c0/41e60dd29a6205e8c4d3167822a2f87b9bd658ec5e7f2a254aa6ae9910255740ef3a8e7e5bc706de12a6901ae58d2f39090d9ef8ad7717a50d84e1f3ac31081d
+  checksum: 10c0/a16bc116381e26ce1a8e46d8d47fbbe5bac19030c0a4c242dea1e356997a0bee7fb0c00869da161a50f5a302cb524580b7d851d61269fec30a77aa6eab714bd0
   languageName: node
   linkType: hard
 
-"@pothos/plugin-prisma@npm:^3.38.0":
-  version: 3.63.1
-  resolution: "@pothos/plugin-prisma@npm:3.63.1"
+"@pothos/plugin-prisma@npm:3.38.0":
+  version: 3.38.0
+  resolution: "@pothos/plugin-prisma@npm:3.38.0"
   dependencies:
-    "@prisma/generator-helper": "npm:^5.6.0"
+    "@prisma/generator-helper": "npm:^4.7.1"
   peerDependencies:
     "@pothos/core": "*"
     "@prisma/client": "*"
@@ -5598,17 +5598,17 @@ __metadata:
     typescript: ">=4.7.2"
   bin:
     prisma-pothos-types: bin/generator.js
-  checksum: 10c0/bca7c02e1bf120884acb991e594dce5f578c043630081bfe9f441b4ea721cad270d779547faa9d418171d96b4d025c28f8f795cd3b5c0f642fb4362c15e2980f
+  checksum: 10c0/3966807bde8afd53c96048a2219c3ac9d5584f571377f58847c2158f44c7e525791f864fa30bc6bcd5af3433aba5d7f5cae27b005d34114e9cac1362225a50bf
   languageName: node
   linkType: hard
 
-"@pothos/plugin-with-input@npm:^3.9.7":
-  version: 3.10.1
-  resolution: "@pothos/plugin-with-input@npm:3.10.1"
+"@pothos/plugin-with-input@npm:3.9.7":
+  version: 3.9.7
+  resolution: "@pothos/plugin-with-input@npm:3.9.7"
   peerDependencies:
     "@pothos/core": "*"
     graphql: ">=15.1.0"
-  checksum: 10c0/c16daa5610ac2933274619e064abc3586cf7326c5e0ac82fbb579afaa245a0211d7fb67bc0384a62e406609e998c8b0c0de7fe532c1334dfd5ac10432b19453a
+  checksum: 10c0/6421186aea08a0d27d02a03102e6b8fce289073d6a84df4064e10dd96ede3cadab3efe0f04d65a0769f3e45202631ad1bb9f9d44be4916ecfe94a619b8a8a6d9
   languageName: node
   linkType: hard
 
@@ -5624,14 +5624,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prisma/debug@npm:5.6.0":
-  version: 5.6.0
-  resolution: "@prisma/debug@npm:5.6.0"
+"@prisma/debug@npm:4.16.2":
+  version: 4.16.2
+  resolution: "@prisma/debug@npm:4.16.2"
   dependencies:
-    "@types/debug": "npm:4.1.12"
+    "@types/debug": "npm:4.1.8"
     debug: "npm:4.3.4"
     strip-ansi: "npm:6.0.1"
-  checksum: 10c0/6e2db42715cdcc57acc3e6d86220c8eef236b038c449db0cbf4c6ff54769cbd61fa0a6fb4f3ec5793854a01b047234098e7fc42d30f323fb8af370577e04bacd
+  checksum: 10c0/27b60989109f226fd4ea02656cb8f4b69642ad27304e0d6b2787f1fae8327bc55d46b62176f0d9ce35a0827a938a914b9b0c46fbc757ee65ece026373bb53a11
   languageName: node
   linkType: hard
 
@@ -5681,15 +5681,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prisma/generator-helper@npm:^5.6.0":
-  version: 5.6.0
-  resolution: "@prisma/generator-helper@npm:5.6.0"
+"@prisma/generator-helper@npm:^4.7.1":
+  version: 4.16.2
+  resolution: "@prisma/generator-helper@npm:4.16.2"
   dependencies:
-    "@prisma/debug": "npm:5.6.0"
-    "@types/cross-spawn": "npm:6.0.5"
+    "@prisma/debug": "npm:4.16.2"
+    "@types/cross-spawn": "npm:6.0.2"
     cross-spawn: "npm:7.0.3"
     kleur: "npm:4.1.5"
-  checksum: 10c0/10a186e06a79e725e5dee087817fc13977934bc333690f431e0fb166422d98b463c3e912d0a9d61ec486b8ca64b8b8c054321d6fd8aecd78e7111aa2d906e415
+  checksum: 10c0/f9d67dcdf0c52d1987c753ccc9a3a3eb8c586d0733e27345b8d7dbcda23257a4df644d52b6520da1ce17c8a21879481508366805192c594b13414abe4ea98249
   languageName: node
   linkType: hard
 
@@ -5944,21 +5944,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/cross-spawn@npm:6.0.5":
-  version: 6.0.5
-  resolution: "@types/cross-spawn@npm:6.0.5"
+"@types/cross-spawn@npm:6.0.2":
+  version: 6.0.2
+  resolution: "@types/cross-spawn@npm:6.0.2"
   dependencies:
     "@types/node": "npm:*"
-  checksum: 10c0/871a21a96e03292a4a257f0bdefcc0f3ce33a9d14a87899eb7b4a4f05910a094cbeb71d5a6c6deb3eef6b0a798570f7105c0fae11323c743df1243186a0098f6
+  checksum: 10c0/658bd49267a7200e87e67c48ef1e58ee7418bbd4417fb191393b7051d47f590023090cad7b69eb3821d1907b82392b764e1114b1ec6000b01e98126926c8b06f
   languageName: node
   linkType: hard
 
-"@types/debug@npm:4.1.12":
-  version: 4.1.12
-  resolution: "@types/debug@npm:4.1.12"
+"@types/debug@npm:4.1.8":
+  version: 4.1.8
+  resolution: "@types/debug@npm:4.1.8"
   dependencies:
     "@types/ms": "npm:*"
-  checksum: 10c0/5dcd465edbb5a7f226e9a5efd1f399c6172407ef5840686b73e3608ce135eeca54ae8037dcd9f16bdb2768ac74925b820a8b9ecc588a58ca09eca6acabe33e2f
+  checksum: 10c0/913aea60b8c94cd0009bbdd531d8a3594ec3275ca0e8d1cbcf783417884252b3c53113f6665fd2fb0076b8ce628ee12cd083d2af107ed26c0f2e75852d8bc074
   languageName: node
   linkType: hard
 
@@ -6330,12 +6330,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-timeago@npm:^4.1.3":
-  version: 4.1.7
-  resolution: "@types/react-timeago@npm:4.1.7"
+"@types/react-timeago@npm:4.1.3":
+  version: 4.1.3
+  resolution: "@types/react-timeago@npm:4.1.3"
   dependencies:
     "@types/react": "npm:*"
-  checksum: 10c0/0f5965a0cdcced841889b45003c91643392caffc47470ed6e84784b940b3e8fe2031bce44a6c135e3adf6b5c21f46eb20c3b9211f1ec93c86f8e67ca732aed71
+  checksum: 10c0/1c5e09f75b00b9984e2bc22592873b351fe33820e56019b6b1f79b5c27ef0676562601d7e4eacb36367505678525c7b090c9687e6680ad1ffee48cd86f579d2a
   languageName: node
   linkType: hard
 
@@ -6544,18 +6544,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vercel/analytics@npm:^1.1.1":
-  version: 1.1.3
-  resolution: "@vercel/analytics@npm:1.1.3"
+"@vercel/analytics@npm:1.1.1":
+  version: 1.1.1
+  resolution: "@vercel/analytics@npm:1.1.1"
   dependencies:
     server-only: "npm:^0.0.1"
-  checksum: 10c0/3b7f91ef84d27ee2bab9bcbaef96221bcd4f8b633e77ff1cac3d382c9637073caa916a336a13ea5ea1403d125b15a1a1104b0d38f36d5d47fce7fbaa867fe6ad
+  checksum: 10c0/218f94620b6dd0349960caf170c7c86872d67b0ef90ac127cd6e6a8f018c9118fbf21a3adf9314ca93d72c1599b8b77ac0e4cb8390ac33aa5fec555d749b3308
   languageName: node
   linkType: hard
 
-"@vercel/otel@npm:^1.0.0":
-  version: 1.2.1
-  resolution: "@vercel/otel@npm:1.2.1"
+"@vercel/otel@npm:1.0.0":
+  version: 1.0.0
+  resolution: "@vercel/otel@npm:1.0.0"
   dependencies:
     "@opentelemetry/context-async-hooks": "npm:^1.19.0"
     "@opentelemetry/core": "npm:^1.19.0"
@@ -6573,34 +6573,14 @@ __metadata:
   peerDependencies:
     "@opentelemetry/api": ^1.7.0
     "@opentelemetry/api-logs": ^0.46.0
-  checksum: 10c0/974b4ba5b27fcd1d6264b6daa22aa47e7a9679fd0697ab2e4e22e4411b969359d377f7cd13ca27a948de381848ca52d2399eb587f1cef72212e87736059cb138
+  checksum: 10c0/1190bad1284d5ee22dbe321ac1862b7b9a6ea552152e25542695ba6017406cd469136c53709c8c55f2d5b00eb05ac077613ba0fff8a7646b4952078436ae98b9
   languageName: node
   linkType: hard
 
-"@vercel/speed-insights@npm:^1.0.2":
-  version: 1.0.9
-  resolution: "@vercel/speed-insights@npm:1.0.9"
-  peerDependencies:
-    "@sveltejs/kit": ^1 || ^2
-    next: ">= 13"
-    react: ^18 || ^19
-    svelte: ^4
-    vue: ^3
-    vue-router: ^4
-  peerDependenciesMeta:
-    "@sveltejs/kit":
-      optional: true
-    next:
-      optional: true
-    react:
-      optional: true
-    svelte:
-      optional: true
-    vue:
-      optional: true
-    vue-router:
-      optional: true
-  checksum: 10c0/bef84bbdbcbb8836eba0ee68229adc79e1a8a6b114f93fb38443882ddf319da3e0d634f938dc3e32e5542b4ba142353f9d9f75326a472549f293c30a5fb2122d
+"@vercel/speed-insights@npm:1.0.2":
+  version: 1.0.2
+  resolution: "@vercel/speed-insights@npm:1.0.2"
+  checksum: 10c0/221d17846d845d0ec7b0f63467807449e281f763f5b6950074fa89b65e0ddef8f10cc1720996874f2b2252d732e9ede6c218355762e07131fc2bdcaa063b7068
   languageName: node
   linkType: hard
 
@@ -7795,7 +7775,7 @@ __metadata:
     "@chakra-ui/react": "npm:2.8.2"
     "@clerk/clerk-sdk-node": "npm:4.13.8"
     "@clerk/nextjs": "npm:4.29.6"
-    "@clerk/themes": "npm:^1.2.20"
+    "@clerk/themes": "npm:1.2.20"
     "@emotion/react": "npm:11.11.3"
     "@emotion/styled": "npm:11.11.0"
     "@graphql-codegen/cli": "npm:5.0.2"
@@ -7808,25 +7788,25 @@ __metadata:
     "@opentelemetry/auto-instrumentations-node": "npm:0.41.1"
     "@opentelemetry/auto-instrumentations-web": "npm:0.36.0"
     "@opentelemetry/context-zone": "npm:1.21.0"
-    "@opentelemetry/exporter-trace-otlp-grpc": "npm:^0.48.0"
+    "@opentelemetry/exporter-trace-otlp-grpc": "npm:0.48.0"
     "@opentelemetry/instrumentation-express": "npm:0.35.0"
     "@opentelemetry/instrumentation-graphql": "npm:0.37.0"
     "@opentelemetry/instrumentation-http": "npm:0.48.0"
     "@opentelemetry/sdk-trace-web": "npm:1.21.0"
-    "@pothos/core": "npm:^3.23.1"
-    "@pothos/plugin-prisma": "npm:^3.38.0"
-    "@pothos/plugin-with-input": "npm:^3.9.7"
+    "@pothos/core": "npm:3.23.1"
+    "@pothos/plugin-prisma": "npm:3.38.0"
+    "@pothos/plugin-with-input": "npm:3.9.7"
     "@prisma/client": "npm:5.9.1"
     "@prisma/extension-accelerate": "npm:0.6.3"
     "@prisma/instrumentation": "npm:5.9.1"
     "@types/react": "npm:18.2.55"
     "@types/react-dom": "npm:18.2.19"
-    "@types/react-timeago": "npm:^4.1.3"
+    "@types/react-timeago": "npm:4.1.3"
     "@types/zen-observable": "npm:0.8.7"
     "@typescript-eslint/parser": "npm:6.21.0"
-    "@vercel/analytics": "npm:^1.1.1"
-    "@vercel/otel": "npm:^1.0.0"
-    "@vercel/speed-insights": "npm:^1.0.2"
+    "@vercel/analytics": "npm:1.1.1"
+    "@vercel/otel": "npm:1.0.0"
+    "@vercel/speed-insights": "npm:1.0.2"
     emitter-listener: "npm:1.1.2"
     eslint: "npm:8.56.0"
     eslint-config-next: "npm:14.1.0"
@@ -7834,7 +7814,7 @@ __metadata:
     eslint-plugin-prettier: "npm:5.1.3"
     framer-motion: "npm:11.0.3"
     graphql: "npm:16.8.1"
-    graphql-scalars: "npm:^1.20.1"
+    graphql-scalars: "npm:1.20.1"
     graphql-tag: "npm:2.12.6"
     inter-ui: "npm:4.0.1"
     next: "npm:14.1.0"
@@ -7851,6 +7831,7 @@ __metadata:
     sharp: "npm:0.33.2"
     typescript: "npm:5.3.3"
     utf-8-validate: "npm:6.0.3"
+    zone.js: "npm:0.11.4"
   languageName: unknown
   linkType: soft
 
@@ -9613,14 +9594,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graphql-scalars@npm:^1.20.1":
-  version: 1.22.4
-  resolution: "graphql-scalars@npm:1.22.4"
+"graphql-scalars@npm:1.20.1":
+  version: 1.20.1
+  resolution: "graphql-scalars@npm:1.20.1"
   dependencies:
-    tslib: "npm:^2.5.0"
+    tslib: "npm:~2.4.0"
   peerDependencies:
     graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
-  checksum: 10c0/d7df28c7bcd274049ee2b93536036b22bc2591bdb86a627a46d4557161965df96c8da6c4f7dc01684d46580d75c7b2fbba7fc5042b763b5b6cba879dc79e010e
+  checksum: 10c0/06f525f9343d997ea35412e094970b6db61ac05cd48d93376db57a3126ad906db5c27f7df5f13d01b26e89d26f90e316f652a908e790adef084751999ed48ce3
   languageName: node
   linkType: hard
 
@@ -14247,6 +14228,15 @@ __metadata:
   version: 0.8.15
   resolution: "zen-observable@npm:0.8.15"
   checksum: 10c0/71cc2f2bbb537300c3f569e25693d37b3bc91f225cefce251a71c30bc6bb3e7f8e9420ca0eb57f2ac9e492b085b8dfa075fd1e8195c40b83c951dd59c6e4fbf8
+  languageName: node
+  linkType: hard
+
+"zone.js@npm:0.11.4":
+  version: 0.11.4
+  resolution: "zone.js@npm:0.11.4"
+  dependencies:
+    tslib: "npm:^2.0.0"
+  checksum: 10c0/70a9c9e78f5828839397acee3d1e9e64e177fbd47607f8a6312f0825ebdcab4657c834203ad9013ab3638cd0892859bde4ffb1b32c1f87f059ec4cf7dee640cb
   languageName: node
   linkType: hard
 
