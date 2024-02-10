@@ -135,7 +135,7 @@ jobs:
           name: smoketest - yarn install
           command: |
             cd smoketest
-            yarn install --immutable --check-cache
+            yarn install --immutable
             yarn cypress cache path
             yarn cypress install
             yarn cypress verify
