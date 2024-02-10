@@ -39,7 +39,21 @@ jobs:
 
   pr-success:
     executor: my-custom-executor
+    environment:
+      CYPRESS_baseUrl: << pipeline.parameters.test-url >>
+      CYPRESS_branch: ${CIRCLE_BRANCH}
     steps:
+      - run:
+          name: pre-check for params
+          command: |
+            if [  "x" == "x${CYPRESS_baseUrl}"  ] ;  then
+              circleci step halt # does nothing
+              circleci-agent step halt # does nothing
+
+              echo "   No parameters -skipping build ..."
+              exit 0
+            fi
+
       - pr-status/create_a_status:
           status: success
           context: cypress e2e test
