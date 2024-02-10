@@ -83,9 +83,14 @@ jobs:
       - run:
           name: pre-check for params
           command: |
+            #if [[ $(echo "$CIRCLE_PULL_REQUEST $CIRCLE_PULL_REQUESTS" | grep -c "pull") -gt 0 ]]; then
+            #  echo "Do stuff if it's a PR"
+            # or less complicate
             if [  "x" == "x${TEST_URL}"  ] ;  then
+              circleci step halt # does nothing
+              circleci-agent step halt # does nothing
               echo "No parameters -skipping build ..."
-              exit -1
+              exit 0 # not failing the build
             fi
       - checkout
       - run:
