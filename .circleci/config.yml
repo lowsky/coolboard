@@ -35,7 +35,7 @@ jobs:
           status: pending
           context: cypress e2e test
           description: report the status of the e2e test run
-          github_token: $GH_PR_TOKEN
+          github_token: ${GH_PR_TOKEN}
 
   pr-success:
     executor: my-custom-executor
