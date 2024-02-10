@@ -1,4 +1,6 @@
 version: 2.1
+orbs:
+  pr-status: myoan/pr-status@0.0.1
 
 parameters:
   test-url:
@@ -10,9 +12,6 @@ parameters:
 
 # have a filter to disable regular builds.
 workflows:
-  empty-workflow:
-    jobs:
-      - empty
   all:
     jobs:
       #- install_and_cache
@@ -30,7 +29,13 @@ jobs:
       - checkout
       - run: |
           # echo Hello, World!
-      
+
+      - pr-status/create_a_status:
+          status: pending
+          context: cypress e2e test
+          description: report the status of the e2e test run
+          token: GH_PR_TOKEN
+
   install_and_cache:
     docker:
       - image: cypress/base:20.11.0
