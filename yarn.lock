@@ -7818,7 +7818,7 @@ __metadata:
     eslint-plugin-prettier: "npm:5.1.3"
     framer-motion: "npm:11.0.3"
     graphql: "npm:16.8.1"
-    graphql-scalars: "npm:1.20.1"
+    graphql-scalars: "npm:1.22.4"
     graphql-tag: "npm:2.12.6"
     inter-ui: "npm:4.0.1"
     next: "npm:14.1.0"
@@ -9598,14 +9598,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graphql-scalars@npm:1.20.1":
-  version: 1.20.1
-  resolution: "graphql-scalars@npm:1.20.1"
+"graphql-scalars@npm:1.22.4":
+  version: 1.22.4
+  resolution: "graphql-scalars@npm:1.22.4"
   dependencies:
-    tslib: "npm:~2.4.0"
+    tslib: "npm:^2.5.0"
   peerDependencies:
     graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
-  checksum: 10c0/06f525f9343d997ea35412e094970b6db61ac05cd48d93376db57a3126ad906db5c27f7df5f13d01b26e89d26f90e316f652a908e790adef084751999ed48ce3
+  checksum: 10c0/d7df28c7bcd274049ee2b93536036b22bc2591bdb86a627a46d4557161965df96c8da6c4f7dc01684d46580d75c7b2fbba7fc5042b763b5b6cba879dc79e010e
   languageName: node
   linkType: hard
 
