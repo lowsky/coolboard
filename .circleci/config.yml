@@ -33,7 +33,7 @@ jobs:
     executor: my-custom-executor
     steps:
       - github-status/pending:
-          #description: cypress e2e test
+          description: pending
           context: cypress e2e test
 
       - pr-status/create_a_status:
