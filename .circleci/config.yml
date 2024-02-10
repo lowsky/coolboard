@@ -59,51 +59,47 @@ jobs:
       - image: cypress/base:20.11.0
     resource_class: lowsky/selfhosted
     environment:
-      a: b
-      test_url: << pipeline.parameters.test-url >>
+      TEST_URL: << pipeline.parameters.test-url >>
       deployed_sha: <<pipeline.parameters.deployed-sha>>
-      envTEST_URL: << pipeline.parameters.test-url >>
+      CYPRESS_baseUrl: << pipeline.parameters.test-url >>
+      EXPECTED_GIT_SHA: << pipeline.parameters.deployed-sha >>
+      CYPRESS_branch: ${CIRCLE_BRANCH}
     steps:
       - run:
-          name: Use parameters
+          name: Show parameters
           command: |
-            echo parameters:
-            echo test-url: << pipeline.parameters.test-url >>
+            echo parameters / diagnosis:
             echo deployed-sha: <<pipeline.parameters.deployed-sha>>
-            echo envTEST_URL: $envTEST_URL
-            echo test_url: $test_url
-            echo a=$a
-            echo $deployed-sha=$deployed_sha
+            echo TEST_URL: $TEST_URL
+            echo "deployed-sha"=$deployed_sha
+            echo CYPRESS_branch=${CYPRESS_branch}
+            echo TEST_URL: << pipeline.parameters.test-url >>
+            echo deployed_sha: <<pipeline.parameters.deployed-sha>>
+            echo CYPRESS_baseUrl: << pipeline.parameters.test-url >>
+            echo EXPECTED_GIT_SHA: << pipeline.parameters.deployed-sha >>
+            echo CYPRESS_branch: ${CIRCLE_BRANCH}
+            ls /root/.cache/Cypress
+            ls /root/.cache
       - run:
           name: pre-check for params
           command: |
-            TEST_URL=<< pipeline.parameters.test-url >>
             if [  "x" == "x${TEST_URL}"  ] ;  then
               echo "No parameters -skipping build ..."
               exit -1
             fi
       - checkout
       - run:
-          name: Use parameters
-          command: |
-            echo parameters:
-            echo test-url: << pipeline.parameters.test-url >>
-            echo deployed-sha: <<pipeline.parameters.deployed-sha>>
-      - run:
           name: build env and parameter diagnosis
           command: |
             env | grep CIRCLE | sort
-
-            CYPRESS_baseUrl=<< pipeline.parameters.test-url >>
-            EXPECTED_GIT_SHA=<< pipeline.parameters.deployed-sha >>
 
       - run:
           name: check matching of versions
           command: |
             cd smoketest
 
-            export CYPRESS_baseUrl=<< pipeline.parameters.test-url >>
-            export EXPECTED_GIT_SHA=<< pipeline.parameters.deployed-sha >>
+            #export CYPRESS_baseUrl=<< pipeline.parameters.test-url >>
+            #export EXPECTED_GIT_SHA=<< pipeline.parameters.deployed-sha >>
 
             echo export CYPRESS_baseUrl=$CYPRESS_baseUrl
             echo
@@ -138,6 +134,7 @@ jobs:
             yarn install --immutable
             yarn cypress cache path
             yarn cypress install
+            yarn cypress info
             yarn cypress verify
       - save_cache:
           key: cache-smoketest-no-root-cypress-y4-{{ arch }}-{{ checksum "smoketest/yarn.lock" }}
@@ -147,9 +144,9 @@ jobs:
       - run:
           name: run cypress
           command: |
-            export CYPRESS_baseUrl=<< pipeline.parameters.test-url >>
-            export EXPECTED_GIT_SHA=<< pipeline.parameters.deployed-sha >>
-            export CYPRESS_branch=${CIRCLE_BRANCH}
+            #export CYPRESS_baseUrl=<< pipeline.parameters.test-url >>
+            #export EXPECTED_GIT_SHA=<< pipeline.parameters.deployed-sha >>
+            #export CYPRESS_branch=${CIRCLE_BRANCH}
 
             cd smoketest
             mkdir -p cypress/results
