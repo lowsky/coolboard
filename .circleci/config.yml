@@ -10,12 +10,27 @@ parameters:
 
 # have a filter to disable regular builds.
 workflows:
+  empty-workflow:
+    jobs:
+      - empty
   all:
     jobs:
       #- install_and_cache
       - test
 
+executors:
+  my-custom-executor:
+    docker:
+      - image: cimg/base:stable
+
 jobs:
+  empty:
+    executor: my-custom-executor
+    steps:
+      - checkout
+      - run: |
+          # echo Hello, World!
+      
   install_and_cache:
     docker:
       - image: cypress/base:20.11.0
@@ -38,6 +53,11 @@ jobs:
     docker:
       - image: cypress/base:20.11.0
     resource_class: lowsky/selfhosted
+    environment:
+      a: b
+      test_url: << pipeline.parameters.test-url >>
+      deployed_sha: <<pipeline.parameters.deployed-sha>>
+      envTEST_URL: << pipeline.parameters.test-url >>
     steps:
       - run:
           name: Use parameters
@@ -45,6 +65,10 @@ jobs:
             echo parameters:
             echo test-url: << pipeline.parameters.test-url >>
             echo deployed-sha: <<pipeline.parameters.deployed-sha>>
+            echo envTEST_URL: $envTEST_URL
+            echo test_url: $test_url
+            echo a=$a
+            echo $deployed-sha=$deployed_sha
       - run:
           name: pre-check for params
           command: |
