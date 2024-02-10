@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   pr-status: myoan/pr-status@0.0.1
+  github-status: samsalisbury/github-status@0.0.2
 
 parameters:
   test-url:
@@ -31,10 +32,18 @@ jobs:
   pr-pending:
     executor: my-custom-executor
     steps:
+      - github-status/pending:
+          #description: cypress e2e test
+          context: cypress e2e test
+
+        workflows:
+          example-workflow:
+            jobs:
+              - example-job
       - pr-status/create_a_status:
           status: pending
-          context: cypress e2e test
-          description: report the status of the e2e test run
+          context: broken - cypress e2e test brokwn
+          description: broken -report the status of the e2e test run
           github_token: << GH_PR_TOKEN >>
 
   pr-success:
