@@ -34,7 +34,7 @@ jobs:
           status: pending
           context: cypress e2e test
           description: report the status of the e2e test run
-          token: GH_PR_TOKEN
+          github_token: $GH_PR_TOKEN
 
   install_and_cache:
     docker:
@@ -59,52 +59,45 @@ jobs:
       - image: cypress/base:20.11.0
     resource_class: lowsky/selfhosted
     environment:
-      TEST_URL: << pipeline.parameters.test-url >>
-      deployed_sha: <<pipeline.parameters.deployed-sha>>
       CYPRESS_baseUrl: << pipeline.parameters.test-url >>
       EXPECTED_GIT_SHA: << pipeline.parameters.deployed-sha >>
       CYPRESS_branch: ${CIRCLE_BRANCH}
     steps:
+      - pr-status/create_a_status:
+          status: pending
+          context: cypress e2e test
+          description: report the status of the e2e test run
+          github_token: $GH_PR_TOKEN
+
       - run:
           name: Show parameters
           command: |
             echo parameters / diagnosis:
-            echo deployed-sha: <<pipeline.parameters.deployed-sha>>
-            echo TEST_URL: $TEST_URL
-            echo "deployed-sha"=$deployed_sha
-            echo CYPRESS_branch=${CYPRESS_branch}
-            echo TEST_URL: << pipeline.parameters.test-url >>
-            echo deployed_sha: <<pipeline.parameters.deployed-sha>>
-            echo CYPRESS_baseUrl: << pipeline.parameters.test-url >>
-            echo EXPECTED_GIT_SHA: << pipeline.parameters.deployed-sha >>
+            echo
+            echo CYPRESS_baseUrl: $CYPRESS_baseUrl
             echo CYPRESS_branch: ${CIRCLE_BRANCH}
-            ls /root/.cache/Cypress
-            ls /root/.cache
+            ls -a /root/.cache
       - run:
           name: pre-check for params
           command: |
-            #if [[ $(echo "$CIRCLE_PULL_REQUEST $CIRCLE_PULL_REQUESTS" | grep -c "pull") -gt 0 ]]; then
-            #  echo "Do stuff if it's a PR"
-            # or less complicate
-            if [  "x" == "x${TEST_URL}"  ] ;  then
+            if [  "x" == "x${CYPRESS_baseUrl}"  ] ;  then
               circleci step halt # does nothing
               circleci-agent step halt # does nothing
-              echo "No parameters -skipping build ..."
-              exit 0 # not failing the build
+              echo "   No parameters -skipping build ..."
+              exit 0
             fi
+
       - checkout
-      - run:
-          name: build env and parameter diagnosis
-          command: |
-            env | grep CIRCLE | sort
+      - pr-status/create_a_status:
+          status: pending
+          context: cypress e2e test
+          description: report the status of the e2e test run
+          github_token: $GH_PR_TOKEN
 
       - run:
           name: check matching of versions
           command: |
             cd smoketest
-
-            #export CYPRESS_baseUrl=<< pipeline.parameters.test-url >>
-            #export EXPECTED_GIT_SHA=<< pipeline.parameters.deployed-sha >>
 
             echo export CYPRESS_baseUrl=$CYPRESS_baseUrl
             echo
@@ -132,15 +125,15 @@ jobs:
       - restore_cache:
           keys:
             - cache-smoketest-no-root-cypress-y4-{{ arch }}-{{ checksum "smoketest/yarn.lock" }}
+
       - run:
-          name: smoketest - yarn install
+          name: smoketest - yarn install cypress
           command: |
             cd smoketest
             yarn install --immutable
-            yarn cypress cache path
             yarn cypress install
-            yarn cypress info
-            yarn cypress verify
+            # yarn cypress info
+            # yarn cypress verify
       - save_cache:
           key: cache-smoketest-no-root-cypress-y4-{{ arch }}-{{ checksum "smoketest/yarn.lock" }}
           paths:
@@ -149,19 +142,22 @@ jobs:
       - run:
           name: run cypress
           command: |
-            #export CYPRESS_baseUrl=<< pipeline.parameters.test-url >>
-            #export EXPECTED_GIT_SHA=<< pipeline.parameters.deployed-sha >>
-            #export CYPRESS_branch=${CIRCLE_BRANCH}
-
             cd smoketest
             mkdir -p cypress/results
-            yarn dlx cypress info
 
-            echo _DEBUG:  running CYPRESS_branch=${CIRCLE_BRANCH} npm run cy run -- --record
-            # CYPRESS_branch=${CIRCLE_BRANCH} npm run cy run -- --record --key $CYPRESS_API_KEY --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
-            # CYPRESS_branch=${CIRCLE_BRANCH} npm run cy run -- --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
-            # without reporting to cypress.io
+            echo _DEBUG:  running without reporting to cypress.io:
+            echo CYPRESS_branch=${CIRCLE_BRANCH} npm run cy run -- --record --key $CYPRESS_API_KEY --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
+            echo CYPRESS_branch=${CIRCLE_BRANCH} npm run cy run -- --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
+            echo ...without reporting to cypress.io:
+
             CYPRESS_branch=${CIRCLE_BRANCH} npm run cy run -- --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
+
+      - pr-status/create_a_status:
+          status: success
+          context: cypress e2e test
+          description: report the status of the e2e test run
+          github_token: $GH_PR_TOKEN
+
       - store_test_results:
           path: smoketest/cypress/results
       - store_artifacts:
