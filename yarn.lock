@@ -2971,9 +2971,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-codegen/typescript-react-apollo@npm:4.2.0":
-  version: 4.2.0
-  resolution: "@graphql-codegen/typescript-react-apollo@npm:4.2.0"
+"@graphql-codegen/typescript-react-apollo@npm:4.3.0":
+  version: 4.3.0
+  resolution: "@graphql-codegen/typescript-react-apollo@npm:4.3.0"
   dependencies:
     "@graphql-codegen/plugin-helpers": "npm:^3.0.0"
     "@graphql-codegen/visitor-plugin-common": "npm:2.13.1"
@@ -2983,7 +2983,7 @@ __metadata:
   peerDependencies:
     graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
     graphql-tag: ^2.0.0
-  checksum: 10c0/8196972cc61ee90e7c9c56702f9b70bea8b622fb74fa5767b599599565151b87e873ac1bce79a23b876bad8bb85ba3240e3028621b1830f5f20d4c1972702a35
+  checksum: 10c0/c5e58729367571867a8e2e17a640a6ff42070b8c7f498a2bfea35b0b4ae74b62245981feb5d26a03601db58967c54e74b341b681247bd9241b63327510c151e7
   languageName: node
   linkType: hard
 
@@ -7745,7 +7745,7 @@ __metadata:
     "@graphql-codegen/typescript": "npm:4.0.4"
     "@graphql-codegen/typescript-graphql-files-modules": "npm:3.0.0"
     "@graphql-codegen/typescript-operations": "npm:4.1.2"
-    "@graphql-codegen/typescript-react-apollo": "npm:4.2.0"
+    "@graphql-codegen/typescript-react-apollo": "npm:4.3.0"
     "@opentelemetry/auto-instrumentations-node": "npm:0.41.1"
     "@opentelemetry/auto-instrumentations-web": "npm:0.36.0"
     "@opentelemetry/context-zone": "npm:1.21.0"
