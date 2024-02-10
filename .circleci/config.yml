@@ -14,10 +14,13 @@ parameters:
 workflows:
   all:
     jobs:
-      #- install_and_cache
+      - pr-pending
       - test:
-        -requires:
-           - pr-pending
+          requires:
+            - pr-pending
+      - pr-success:
+          requires:
+              - test
 
 executors:
   my-custom-executor:
@@ -28,15 +31,21 @@ jobs:
   pr-pending:
     executor: my-custom-executor
     steps:
-      - checkout
-      - run: |
-          # echo Hello, World!
-
       - pr-status/create_a_status:
           status: pending
           context: cypress e2e test
           description: report the status of the e2e test run
           github_token: $GH_PR_TOKEN
+
+  pr-success:
+    executor: my-custom-executor
+    steps:
+      - pr-status/create_a_status:
+          status: success
+          context: cypress e2e test
+          description: report the status of the e2e test run
+          github_token: $GH_PR_TOKEN
+
 
   install_and_cache:
     docker:
@@ -65,12 +74,6 @@ jobs:
       EXPECTED_GIT_SHA: << pipeline.parameters.deployed-sha >>
       CYPRESS_branch: ${CIRCLE_BRANCH}
     steps:
-      - pr-status/create_a_status:
-          status: pending
-          context: cypress e2e test
-          description: report the status of the e2e test run
-          github_token: $GH_PR_TOKEN
-
       - run:
           name: Show parameters
           command: |
@@ -90,12 +93,6 @@ jobs:
             fi
 
       - checkout
-      - pr-status/create_a_status:
-          status: pending
-          context: cypress e2e test
-          description: report the status of the e2e test run
-          github_token: $GH_PR_TOKEN
-
       - run:
           name: check matching of versions
           command: |
@@ -153,12 +150,6 @@ jobs:
             echo ...without reporting to cypress.io:
 
             CYPRESS_branch=${CIRCLE_BRANCH} npm run cy run -- --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
-
-      - pr-status/create_a_status:
-          status: success
-          context: cypress e2e test
-          description: report the status of the e2e test run
-          github_token: $GH_PR_TOKEN
 
       - store_test_results:
           path: smoketest/cypress/results
