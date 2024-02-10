@@ -15,7 +15,9 @@ workflows:
   all:
     jobs:
       #- install_and_cache
-      - test
+      - test:
+        -requires:
+           - pr-pending
 
 executors:
   my-custom-executor:
@@ -23,7 +25,7 @@ executors:
       - image: cimg/base:stable
 
 jobs:
-  empty:
+  pr-pending:
     executor: my-custom-executor
     steps:
       - checkout
