@@ -53,7 +53,7 @@
     "react-is": "18.2.0",
     "react-timeago": "7.2.0",
     "utf-8-validate": "6.0.3",
-    "zone.js": "0.11.4"
+    "zone.js": "0.14.3"
   },
   "scripts": {
     "dev": "echo you wanna run:  yarn start  instead; yarn start",
