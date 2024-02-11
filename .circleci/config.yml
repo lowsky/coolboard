@@ -138,6 +138,9 @@ workflows:
       - pr-success:
           requires:
             - test
+      - report-failed-status-only-custom:
+          requires:
+            - test
 
 executors:
   executor_with_curl:
