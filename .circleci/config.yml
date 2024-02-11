@@ -47,7 +47,7 @@ orbs:
                 STATE: << parameters.state >>
                 CONTEXT: << parameters.context >>
                 DESCRIPTION: << parameters.description >>
-              command: << include(scripts/post_status.sh) >>
+              command: \<< include(.circleci/scripts/post_status.sh) >>
 
       pending:
         parameters:
@@ -71,8 +71,8 @@ orbs:
         executor: node/default # Node orb executor
         steps:
           - checkout
-          - post_status
-
+          - post_status:
+              state: success
           - store_test_results:
               path: test-results
 
