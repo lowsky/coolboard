@@ -47,7 +47,7 @@ orbs:
                 STATE: << parameters.state >>
                 CONTEXT: << parameters.context >>
                 DESCRIPTION: << parameters.description >>
-              command: \<< include(.circleci/scripts/post_status.sh) >>
+              command: << include(.circleci/scripts/post_status.sh) >>
 
       pending:
         parameters:
