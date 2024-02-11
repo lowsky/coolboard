@@ -36,11 +36,6 @@ jobs:
           description: pending
           context: cypress e2e test
 
-      - pr-status/create_a_status:
-          status: pending
-          context: broken - cypress e2e test brokwn
-          description: broken -report the status of the e2e test run
-
   pr-success:
     executor: my-custom-executor
     environment:
@@ -58,12 +53,10 @@ jobs:
               exit 0
             fi
 
-      - pr-status/create_a_status:
-          status: success
+      - github-status/post_status:
           context: cypress e2e test
-          description: report the status of the e2e test run
-          github_token: $GH_PR_TOKEN
-
+          description: success
+          state: success
 
   install_and_cache:
     docker:
