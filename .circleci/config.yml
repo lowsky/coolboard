@@ -1,7 +1,7 @@
 version: 2.1
 orbs:
   pr-status: myoan/pr-status@0.0.1
-  github-status: samsalisbury/github-status@0.0.2
+  github-status: samsalisbury/github-status@0.0.1
 
 parameters:
   test-url:
@@ -24,13 +24,13 @@ workflows:
               - test
 
 executors:
-  my-custom-executor:
+  executor_with_curl:
     docker:
       - image: cimg/base:stable
 
 jobs:
   pr-pending:
-    executor: my-custom-executor
+    executor: executor_with_curl
     environment:
       CIRCLE_BUILD_URL: ${CIRCLE_BUILD_URL}
     steps:
@@ -41,7 +41,7 @@ jobs:
           context: cypress e2e test
 
   pr-success:
-    executor: my-custom-executor
+    executor: executor_with_curl
     environment:
       CYPRESS_baseUrl: << pipeline.parameters.test-url >>
       CYPRESS_branch: ${CIRCLE_BRANCH}
