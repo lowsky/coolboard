@@ -66,7 +66,7 @@ orbs:
 
                   ACCEPT="Accept: application/vnd.github.v3+json"
 
-                  AUTH=lowsky:$GH_TOKEN
+                  AUTH=lowsky:$GH_PR_TOKEN
 
                   BODY='
                     {
