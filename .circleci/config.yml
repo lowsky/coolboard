@@ -163,8 +163,7 @@ jobs:
       - run: exit 1
       - github-status/report_failed_only
   report-failed-status-only-custom:
-    docker:
-      - image: cimg/base
+    executor: executor_with_curl
     steps:
       - run: echo "export TARGET_URL=$CIRCLE_BUILD_URL" >> $BASH_ENV
       - run: exit 1
