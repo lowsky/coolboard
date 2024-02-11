@@ -1,122 +1,6 @@
 version: 2.1
 orbs:
   github-status: assurance-maladie-digital/github-status@1.3.0
-  my-orb:
-    orbs:
-      node: circleci/node@3.0
-    commands:
-      my_command:
-        steps:
-          - run: echo "Run my tests"
-    jobs:
-      my_job:
-        executor: node/default # Node orb executor
-        steps:
-          - checkout
-          - my_command
-          - store_test_results:
-              path: test-results
-  my-status:
-    orbs:
-      node: circleci/node@3.0
-    commands:
-      post_status:
-        description: >
-          This command posts a status check to Github.
-        parameters:
-          when:
-            type: string
-            default: on_success
-            description: "When to run the command."
-          state:
-            type: string
-            description: "The state of the status."
-          description:
-            type: string
-            default: "Pipeline successful"
-            description: "The description of the status."
-          context:
-            type: string
-            default: ""
-            description: "The context of the status."
-        steps:
-          - run: echo "export TARGET_URL=$CIRCLE_BUILD_URL" >> $BASH_ENV
-          - run:
-              name: Post Status to Github
-              when: << parameters.when >>
-              environment:
-                DEBUG: true
-                STATE: << parameters.state >>
-                CONTEXT: << parameters.context >>
-                DESCRIPTION: << parameters.description >>
-              command: |
-                PostStatus() {
-                  [ -n "${CONTEXT}" ] || CONTEXT="circleci/$CIRCLE_JOB"
-
-                  API=https://api.github.com
-                  USER=$CIRCLE_PROJECT_USERNAME
-                  REPO=$CIRCLE_PROJECT_REPONAME
-                  SHA=$CIRCLE_SHA1
-
-                  URL=$API/repos/$USER/$REPO/statuses/$SHA
-
-                  if [ "$DEBUG" ]; then
-                    echo "$URL"
-                  fi
-
-                  ACCEPT="Accept: application/vnd.github.v3+json"
-
-                  AUTH=circleci:$GH_TOKEN
-
-                  BODY='
-                    {
-                      "state": "'"$STATE"'",
-                      "target_url": "'"$TARGET_URL"'",
-                      "description": "'"$DESCRIPTION"'",
-                      "context": "'"$CONTEXT"'"
-                    }
-                  '
-
-                  if [ "$DEBUG" ]; then
-                      echo "$BODY"
-                  fi
-
-                  curl -H "$ACCEPT" -u "$AUTH" -d "$BODY" -X POST "$URL"
-                }
-                # Will not run if sourced for bats-core tests
-                # View src/tests for more information
-                ORB_TEST_ENV="bats-core"
-                if [ "${0#*"$ORB_TEST_ENV"}" = "$0" ]; then
-                    PostStatus
-                fi
-
-      pending:
-        parameters:
-          description:
-            type: string
-            default: "Pipeline in progress"
-            description: "The description of the status."
-          context:
-            type: string
-            default: ""
-            description: "The context of the status."
-        steps:
-        - post_status:
-            when: always
-            state: pending
-            description: << parameters.description >>
-            context: << parameters.context >>
-
-    jobs:
-      my_job:
-        executor: node/default # Node orb executor
-        steps:
-          - checkout
-          - post_status:
-              state: pending
-
-          - store_test_results:
-              path: test-results
 
 parameters:
   test-url:
@@ -128,7 +12,6 @@ parameters:
 
 # have a filter to disable regular builds.
 workflows:
-  #main: jobs: - my-status/my_job
   all:
     jobs:
       - pr-pending
@@ -138,9 +21,7 @@ workflows:
       - pr-success:
           requires:
             - test
-      - report-failed-status-only-custom:
-          requires:
-            - test
+      # LATER- report-failed-status-only-custom: requires: - test
 
 executors:
   executor_with_curl:
@@ -175,20 +56,18 @@ jobs:
     executor: executor_with_curl
     environment:
       CYPRESS_baseUrl: << pipeline.parameters.test-url >>
-      CYPRESS_branch: ${CIRCLE_BRANCH}
       DEBUG: true
     steps:
       - run:
           name: pre-check for params
           command: |
             if [  "x" == "x${CYPRESS_baseUrl}"  ] ;  then
-              #circleci step halt # does nothing
-              #circleci-agent step halt # does nothing
+              circleci step halt # does nothing
+              circleci-agent step halt # does nothing
 
               echo "   No parameters -skipping build ..."
-              #exit 0
+              exit 0
             fi
-
       - github-status/post_status:
           context: e2e/cypress-test
           description: success
@@ -222,13 +101,9 @@ jobs:
       CYPRESS_branch: ${CIRCLE_BRANCH}
     steps:
       - run:
-          name: Show parameters
+          name: Check if parameters for PR-run exist
           command: |
-            echo parameters / diagnosis:
-            echo
             echo CYPRESS_baseUrl: $CYPRESS_baseUrl
-            echo CYPRESS_branch: ${CIRCLE_BRANCH}
-            ls -a /root/.cache
       - run:
           name: pre-check for params
           command: |
@@ -245,23 +120,22 @@ jobs:
           command: |
             cd smoketest
 
-            echo export CYPRESS_baseUrl=$CYPRESS_baseUrl
+            echo export  CYPRESS_baseUrl=$CYPRESS_baseUrl
             echo
             echo _DEBUG:  circle.ci -
-            echo _DEBUG:    CIRCLE_SHA1=$CIRCLE_SHA1
+            echo        CIRCLE_SHA1=$CIRCLE_SHA1
             echo _DEBUG:
             echo _DEBUG:  expecting
             echo export EXPECTED_GIT_SHA=$EXPECTED_GIT_SHA
             echo export GIT_SHA1=${EXPECTED_GIT_SHA:-$CIRCLE_SHA1}
             echo _DEBUG:
             echo _DEBUG:  running
-            echo _DEBUG:     check-deployed-version/check-deployed-version
+            echo      check-deployed-version/check-deployed-version
 
             export GIT_SHA1=${EXPECTED_GIT_SHA:-$CIRCLE_SHA1}
-
             check-deployed-version/check-deployed-version || CHECK_VERSION=$?
 
-            echo _DEBUG: check - result: $CHECK_VERSION
+            echo _  Result:  $CHECK_VERSION
 
             if [  "x-$CHECK_VERSION" == "x-255"  ] ;  then
               echo "Version does not match with $EXPECTED_GIT_SHA"
@@ -278,8 +152,6 @@ jobs:
             cd smoketest
             yarn install --immutable
             yarn cypress install
-            # yarn cypress info
-            # yarn cypress verify
       - save_cache:
           key: cache-smoketest-no-root-cypress-y4-{{ arch }}-{{ checksum "smoketest/yarn.lock" }}
           paths:
@@ -292,8 +164,8 @@ jobs:
             mkdir -p cypress/results
 
             echo _DEBUG:  running without reporting to cypress.io:
-            echo CYPRESS_branch=${CIRCLE_BRANCH} npm run cy run -- --record --key $CYPRESS_API_KEY --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
-            echo CYPRESS_branch=${CIRCLE_BRANCH} npm run cy run -- --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
+            echo   CYPRESS_branch=${CIRCLE_BRANCH} npm run cy run -- --record --key $CYPRESS_API_KEY --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
+            echo   CYPRESS_branch=${CIRCLE_BRANCH} npm run cy run -- --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
             echo ...without reporting to cypress.io:
 
             CYPRESS_branch=${CIRCLE_BRANCH} npm run cy run -- --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
