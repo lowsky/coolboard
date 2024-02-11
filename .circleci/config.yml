@@ -158,20 +158,19 @@ jobs:
           description: pending
           context: e2e/cypress-test
   report-failed-status-only:
-      docker:
-        - image: cimg/base
-      steps:
-        - run: exit 1
-        - github-status/report_failed_only
+    executor: executor_with_curl
+    steps:
+      - run: exit 1
+      - github-status/report_failed_only
   report-failed-status-only-custom:
-      docker:
-        - image: cimg/base
-      steps:
-        - run: echo "export TARGET_URL=$CIRCLE_BUILD_URL" >> $BASH_ENV
-        - run: exit 1
-        - github-status/report_failed_only:
-            context: ci/integration
-            description: "Integration pipeline failed"
+    docker:
+      - image: cimg/base
+    steps:
+      - run: echo "export TARGET_URL=$CIRCLE_BUILD_URL" >> $BASH_ENV
+      - run: exit 1
+      - github-status/report_failed_only:
+          context: ci/integration
+          description: "Integration pipeline failed"
 
   pr-success:
     executor: executor_with_curl
