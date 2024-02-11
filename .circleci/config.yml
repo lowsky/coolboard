@@ -32,18 +32,20 @@ jobs:
     executor: executor_with_curl
     environment:
       CIRCLE_BUILD_URL: ${CIRCLE_BUILD_URL}
+      DEBUG: true
     steps:
       - run:
           echo _debug_ CIRCLE_BUILD_URL=$CIRCLE_BUILD_URL
       - github-status/pending:
           description: pending
-          context: cypress e2e test
+          context: e2e/cypress-test
 
   pr-success:
     executor: executor_with_curl
     environment:
       CYPRESS_baseUrl: << pipeline.parameters.test-url >>
       CYPRESS_branch: ${CIRCLE_BRANCH}
+      DEBUG: true
     steps:
       - run:
           name: pre-check for params
@@ -57,7 +59,7 @@ jobs:
             fi
 
       - github-status/post_status:
-          context: cypress e2e test
+          context: e2e/cypress-test
           description: success
           state: success
 
