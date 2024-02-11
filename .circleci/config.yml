@@ -31,9 +31,11 @@ executors:
 jobs:
   pr-pending:
     executor: my-custom-executor
+    environment:
+      CIRCLE_BUILD_URL: ${CIRCLE_BUILD_URL}
     steps:
       - run:
-          echo CIRCLE_BUILD_URL=$CIRCLE_BUILD_URL
+          echo _debug_ CIRCLE_BUILD_URL=$CIRCLE_BUILD_URL
       - github-status/pending:
           description: pending
           context: cypress e2e test
