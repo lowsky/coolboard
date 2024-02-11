@@ -135,9 +135,9 @@ workflows:
       - test:
           requires:
             - pr-pending
-      ##- pr-success:
-        #  requires:
-         #     - test
+      - pr-success:
+          requires:
+            - test
 
 executors:
   executor_with_curl:
@@ -181,11 +181,11 @@ jobs:
           name: pre-check for params
           command: |
             if [  "x" == "x${CYPRESS_baseUrl}"  ] ;  then
-              circleci step halt # does nothing
-              circleci-agent step halt # does nothing
+              #circleci step halt # does nothing
+              #circleci-agent step halt # does nothing
 
-              echo "   No parameters -skipping build ..."
-              exit 0
+              #echo "   No parameters -skipping build ..."
+              #exit 0
             fi
 
       - github-status/post_status:
