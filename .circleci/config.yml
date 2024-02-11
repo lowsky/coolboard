@@ -1,6 +1,21 @@
 version: 2.1
 orbs:
   github-status: assurance-maladie-digital/github-status@1.3.0
+  my-orb:
+    orbs:
+      node: circleci/node@3.0
+    commands:
+      my_command:
+        steps:
+          - run: echo "Run my tests"
+    jobs:
+      my_job:
+        executor: node/default # Node orb executor
+        steps:
+          - checkout
+          - my_command
+          - store_test_results:
+              path: test-results
 
 parameters:
   test-url:
@@ -12,6 +27,9 @@ parameters:
 
 # have a filter to disable regular builds.
 workflows:
+  main:
+    jobs:
+      - my-orb/my_job
   all:
     jobs:
       - pr-pending
@@ -40,6 +58,21 @@ jobs:
       - github-status/pending:
           description: pending
           context: e2e/cypress-test
+  report-failed-status-only:
+      docker:
+        - image: cimg/base
+      steps:
+        - run: exit 1
+        - github-status/report_failed_only
+  report-failed-status-only-custom:
+      docker:
+        - image: cimg/base
+      steps:
+        - run: echo "export TARGET_URL=$CIRCLE_BUILD_URL" >> $BASH_ENV
+        - run: exit 1
+        - github-status/report_failed_only:
+            context: ci/integration
+            description: "Integration pipeline failed"
 
   pr-success:
     executor: executor_with_curl
