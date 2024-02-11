@@ -16,6 +16,65 @@ orbs:
           - my_command
           - store_test_results:
               path: test-results
+  my-status:
+    orbs:
+      node: circleci/node@3.0
+    commands:
+      post_status:
+        description: >
+          This command posts a status check to Github.
+        parameters:
+          when:
+            type: string
+            default: on_success
+            description: "When to run the command."
+          state:
+            type: string
+            description: "The state of the status."
+          description:
+            type: string
+            default: "Pipeline successful"
+            description: "The description of the status."
+          context:
+            type: string
+            default: ""
+            description: "The context of the status."
+        steps:
+          - run:
+              name: Post Status to Github
+              when: << parameters.when >>
+              environment:
+                STATE: << parameters.state >>
+                CONTEXT: << parameters.context >>
+                DESCRIPTION: << parameters.description >>
+              command: << include(scripts/post_status.sh) >>
+
+      pending:
+        parameters:
+          description:
+            type: string
+            default: "Pipeline in progress"
+            description: "The description of the status."
+          context:
+            type: string
+            default: ""
+            description: "The context of the status."
+        steps:
+        - post_status:
+            when: always
+            state: pending
+            description: << parameters.description >>
+            context: << parameters.context >>
+
+    jobs:
+      my_job:
+        executor: node/default # Node orb executor
+        steps:
+          - checkout
+          - post_status
+
+          - store_test_results:
+              path: test-results
 
 parameters:
   test-url:
@@ -29,7 +88,7 @@ parameters:
 workflows:
   main:
     jobs:
-      - my-orb/my_job
+      - my-status/my_job
   all:
     jobs:
       - pr-pending
