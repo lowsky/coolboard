@@ -32,7 +32,7 @@ jobs:
     executor: executor_with_curl
     environment:
       DEBUG: true
-      TARGET_URL: $CIRCLE_BUILD_URL
+      TARGET_URL: ${CIRCLE_BUILD_URL}
     steps:
       - run:
           echo _debug_ CIRCLE_BUILD_URL=$CIRCLE_BUILD_URL
