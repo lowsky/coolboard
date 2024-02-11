@@ -32,10 +32,11 @@ jobs:
     executor: executor_with_curl
     environment:
       DEBUG: true
-      TARGET_URL: ${CIRCLE_BUILD_URL}
+      TTARGET_URL: << pipeline.parameters.test-url >>
     steps:
+      - run: echo "export TARGET_URL=$CIRCLE_BUILD_URL" >> $BASH_ENV
       - run:
-          echo _debug_ CIRCLE_BUILD_URL=$CIRCLE_BUILD_URL
+          echo _debug_ TTARGET_URL=$TTARGET_URL
       - github-status/pending:
           description: pending
           context: e2e/cypress-test
