@@ -40,10 +40,12 @@ orbs:
             default: ""
             description: "The context of the status."
         steps:
+          - run: echo "export TARGET_URL=$CIRCLE_BUILD_URL" >> $BASH_ENV
           - run:
               name: Post Status to Github
               when: << parameters.when >>
               environment:
+                DEBUG: true
                 STATE: << parameters.state >>
                 CONTEXT: << parameters.context >>
                 DESCRIPTION: << parameters.description >>
@@ -111,7 +113,8 @@ orbs:
         steps:
           - checkout
           - post_status:
-              state: success
+              state: pending
+
           - store_test_results:
               path: test-results
 
@@ -134,9 +137,9 @@ workflows:
       - test:
           requires:
             - pr-pending
-      - pr-success:
-          requires:
-              - test
+      ##- pr-success:
+        #  requires:
+         #     - test
 
 executors:
   executor_with_curl:
@@ -148,11 +151,8 @@ jobs:
     executor: executor_with_curl
     environment:
       DEBUG: true
-      TTARGET_URL: << pipeline.parameters.test-url >>
     steps:
       - run: echo "export TARGET_URL=$CIRCLE_BUILD_URL" >> $BASH_ENV
-      - run:
-          echo _debug_ TTARGET_URL=$TTARGET_URL
       - github-status/pending:
           description: pending
           context: e2e/cypress-test
