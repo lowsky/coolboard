@@ -187,7 +187,7 @@ jobs:
               #circleci step halt # does nothing
               #circleci-agent step halt # does nothing
 
-              #echo "   No parameters -skipping build ..."
+              echo "   No parameters -skipping build ..."
               #exit 0
             fi
 
