@@ -1,7 +1,6 @@
 version: 2.1
 orbs:
-  pr-status: myoan/pr-status@0.0.1
-  github-status: samsalisbury/github-status@0.0.1
+  github-status: assurance-maladie-digital/github-status@1.3.0
 
 parameters:
   test-url:
