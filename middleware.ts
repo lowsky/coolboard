@@ -3,7 +3,14 @@ import { NextResponse } from 'next/server';
 import type { NextRequest, NextFetchEvent } from 'next/server';
 
 const clerkAuthMiddleWare = authMiddleware({
-  publicRoutes: ['/', '/boards', '/about', '/imprint', '/privacy'],
+  publicRoutes: [
+    '/',
+    '/boards',
+    '/about',
+    '/imprint',
+    '/privacy',
+    '/api/system',
+  ],
   // to skip auth: '/api/graphql',
   debug: false,
 });

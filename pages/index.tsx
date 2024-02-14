@@ -12,6 +12,10 @@ import { trackPage } from 'src/common/tracking';
 import coolBoardLogo from 'public/CoolBoardLogo100.png';
 import screenshot from 'public/screenshot.png';
 
+fetch('/api/system')
+  .then((response) => response.json())
+  .then((data) => console.log('some system info: ', data));
+
 export default function Index() {
   trackPage('Index');
 
