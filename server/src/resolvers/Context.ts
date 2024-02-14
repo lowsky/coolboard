@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
-import type { NextApiRequest } from 'next';
+import { NextRequest } from 'next/server';
 
 export interface Ctxt {
-  req: NextApiRequest;
+  req: NextRequest;
   prisma: PrismaClient;
 }
