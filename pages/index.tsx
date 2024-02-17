@@ -4,6 +4,12 @@ import { Container, Flex, Heading, Icon, Text } from '@chakra-ui/react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { FaChalkboardTeacher, FaFilm, FaLink } from 'react-icons/fa';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import { ApolloProvider } from '@apollo/client';
+
+import { CoolBoard } from 'components/Board/CoolBoard';
+import { setupGraphQLClient } from 'src/setupGraphQLClient';
 
 import { Segment } from 'src/common/Segment';
 import { FullVerticalContainer } from 'src/common/FullVerticalContainer';
@@ -15,6 +21,8 @@ import screenshot from 'public/screenshot.png';
 fetch('/api/system')
   .then((response) => response.json())
   .then((data) => console.log('some system info: ', data));
+
+const demoBoardId = process.env.NEXT_PUBLIC_DEMOBOARD_ID;
 
 export default function Index() {
   trackPage('Index');
@@ -35,15 +43,26 @@ export default function Index() {
           </Text>
         </Segment>
 
-        <Segment className="zoomOnHover">
-          <Link href="/boards">
-            <Image
-              src={screenshot}
-              placeholder="blur"
-              width="1099"
-              alt="screenshot"
-            />
-          </Link>
+        <Segment className="zoomOnHover demoBoard">
+          {demoBoardId && (
+            <Link href={'/board/' + demoBoardId}>
+              <ApolloProvider client={setupGraphQLClient()}>
+                <DndProvider backend={HTML5Backend}>
+                  {<CoolBoard boardId={demoBoardId} readonly />}
+                </DndProvider>
+              </ApolloProvider>
+            </Link>
+          )}
+          {!demoBoardId && (
+            <Link href="/boards">
+              <Image
+                src={screenshot}
+                placeholder="blur"
+                width="1099"
+                alt="screenshot"
+              />
+            </Link>
+          )}
         </Segment>
 
         <Segment>

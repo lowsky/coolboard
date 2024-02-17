@@ -44,3 +44,7 @@ p a {
   transition-property: all;
   transform: scale(1.1, 1.1);
 }
+
+.demoBoard {
+  background-color: darkgrey;
+}
