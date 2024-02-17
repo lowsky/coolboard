@@ -15,7 +15,10 @@ export default {
   },
 
   async board(_parent: any, { where }: any, ctx: Ctxt): Promise<Board | null> {
-    await verifyUserIsAuthenticatedAndRetrieveUserToken(ctx);
+    // enable loading dhe demo board even without authentication
+    if (where?.id !== process.env.NEXT_PUBLIC_DEMOBOARD_ID)
+      await verifyUserIsAuthenticatedAndRetrieveUserToken(ctx);
+
     const { prisma } = ctx;
 
     return await prisma.board.findUnique({
@@ -24,8 +27,6 @@ export default {
   },
 
   async list(_parent: any, { where }: any, ctx: Ctxt): Promise<List | null> {
-    await verifyUserIsAuthenticatedAndRetrieveUserToken(ctx);
-
     const { prisma } = ctx;
     return await prisma.list.findUnique({ where });
   },

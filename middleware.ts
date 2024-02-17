@@ -10,8 +10,8 @@ const clerkAuthMiddleWare = authMiddleware({
     '/imprint',
     '/privacy',
     '/api/system',
+    '/api/graphql',
   ],
-  // to skip auth: '/api/graphql',
   debug: false,
 });
 
