@@ -4,10 +4,11 @@ import { Button, Flex, Skeleton } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
 
 import { Card as CardType } from 'generated/graphql';
-import { CardListHeader } from './CardListHeader';
-import Card from './Card';
 
-import styles from '../CardList.module.css';
+import { CardListHeader } from 'components/List/CardListHeader';
+import Card from 'components/Card/Card';
+
+import styles from './CardList.module.css';
 
 export interface CardListWithoutDndProps {
   isOver?: string;

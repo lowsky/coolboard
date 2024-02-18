@@ -18,9 +18,10 @@ import {
   useEditableControls,
 } from '@chakra-ui/react';
 import { AddIcon, HamburgerIcon } from '@chakra-ui/icons';
+import { ApolloCache } from '@apollo/client';
 import { FaTrash } from 'react-icons/fa';
 
-import Card, { dndItemType } from './Card';
+import Card, { dndItemType } from 'components/Card/Card';
 import {
   CardListDocument,
   CardListQuery,
@@ -30,8 +31,7 @@ import {
   useRenameListMutation,
 } from 'generated/graphql';
 
-import styles from '../CardList.module.css';
-import { ApolloCache } from '@apollo/client';
+import styles from './CardList.module.css';
 
 const CardListWithoutDnd = (props) => {
   const {

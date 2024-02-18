@@ -5,7 +5,7 @@ import { FaPlus, FaTrash } from 'react-icons/fa';
 import { Board } from 'generated/graphql';
 import { BoardTitle } from './BoardTitle';
 import { BoardContent } from './BoardContent';
-import { CardList } from 'components/Card/CardList';
+import { CardList } from 'components/List/CardList';
 import { useConfirmAction } from 'components/UseConfirmAction';
 
 export const BoardContainer = (props: {
