@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { Button, Flex, Icon } from '@chakra-ui/react';
 import { FaTrash } from 'react-icons/fa';
 
 import { BoardTitle } from './BoardTitle';
 import { BoardContent } from './BoardContent';
-import { useConfirmAction } from 'components/UseConfirmAction';
+import { useConfirmAction } from 'common/useConfirmAction';
 import { useAddListMutation } from 'generated/graphql';
 
 const ToIdsMapper = <T extends { id: string }>(itemWithId: T) => itemWithId.id;
@@ -54,7 +54,7 @@ const DelAllListsButton = ({
   children,
 }: {
   action: VoidFunction;
-  children: React.ReactNode;
+  children: ReactNode;
 }) => {
   const [showWarning, showWarningThenCallAction] = useConfirmAction(action);
 

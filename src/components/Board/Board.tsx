@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  useBoardQuery,
+  useBoardSuspenseQuery,
   useDeleteListsOfBoardMutation,
 } from 'generated/graphql';
 
@@ -12,15 +12,11 @@ interface BoardProps {
 }
 
 export const Board = ({ boardId, readonly = false }: BoardProps) => {
-  const { loading, error, data } = useBoardQuery({
+  const { error, data } = useBoardSuspenseQuery({
     variables: { boardId },
   });
 
   const [deleteListsOfBoard] = useDeleteListsOfBoardMutation();
-
-  if (loading) {
-    return <div>Loading Board</div>;
-  }
 
   if (error) {
     return null;

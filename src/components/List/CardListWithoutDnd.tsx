@@ -12,8 +12,8 @@ import styles from './CardList.module.css';
 
 export interface CardListWithoutDndProps {
   isOver?: string;
-  id?: string;
-  name?: string;
+  id: string;
+  name: string;
   addCardWithName?: Function;
   deleteListWithId?: Function;
   renameListMutation?: any;
@@ -37,7 +37,7 @@ export const CardListWithoutDnd = (props: CardListWithoutDndProps) => {
     readonly,
   } = props;
 
-  const { list = {} } = cardList;
+  const { list } = cardList;
 
   // use name injected as default if not yet available
   let { cards = [] } = list;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Container, Flex, Heading, Icon, Text } from '@chakra-ui/react';
 
 import Link from 'next/link';
@@ -48,7 +48,9 @@ export default function Index() {
             <Link href={'/board/' + demoBoardId}>
               <ApolloProvider client={setupGraphQLClient()}>
                 <DndProvider backend={HTML5Backend}>
-                  <Board boardId={demoBoardId} readonly />
+                  <Suspense fallback={<div>Loading Board</div>}>
+                    <Board boardId={demoBoardId} readonly />
+                  </Suspense>
                 </DndProvider>
               </ApolloProvider>
             </Link>

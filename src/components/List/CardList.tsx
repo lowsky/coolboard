@@ -7,17 +7,11 @@ import {
   EditableInput,
   EditablePreview,
   Flex,
-  Heading,
-  IconButton,
   Input,
-  Popover,
-  PopoverBody,
-  PopoverContent,
-  PopoverTrigger,
   Skeleton,
   useEditableControls,
 } from '@chakra-ui/react';
-import { AddIcon, HamburgerIcon } from '@chakra-ui/icons';
+import { AddIcon } from '@chakra-ui/icons';
 import { FaTrash } from 'react-icons/fa';
 
 import Card, { dndItemType } from 'components/Card/Card';
@@ -25,15 +19,15 @@ import {
   List as ListType,
   Card as CardType,
   useAddCardMutationMutation,
-  useCardListQuery,
+  useCardListSuspenseQuery,
   useDeleteListOfBoardMutation,
   useMoveCard2Mutation,
-  useRenameListMutation,
 } from 'generated/graphql';
 
 import { updateCachedListsAfterMovingCard } from 'components/List/overrideCacheListsAfterMovingCard';
 
 import styles from './CardList.module.css';
+import { CardListHeader } from 'components/List/CardListHeader';
 
 interface CardListWithoutDndProps {
   id: string;
@@ -231,7 +225,7 @@ export const CardList = ({
   boardId,
   readonly = false,
 }: CardListProps) => {
-  const { loading, error, data } = useCardListQuery({
+  const { error, data } = useCardListSuspenseQuery({
     variables: { cardListId: id },
   });
 
@@ -274,78 +268,12 @@ export const CardList = ({
       deleteList={deleteList}
       list={list}
       name={name}
-      loading={loading}
       id={id}
       readonly={readonly}
+      loading={false}
     />
   );
 };
-
-interface CardListHeaderProps {
-  name: string;
-  listId: string;
-  children: React.ReactNode;
-  readonly?: boolean;
-}
-
-function CardListHeader({
-  name,
-  listId,
-  children,
-  readonly = false,
-}: CardListHeaderProps) {
-  const [renameList, mutationResult] = useRenameListMutation();
-  const { loading } = mutationResult;
-
-  return (
-    <Flex
-      data-cy="card-list-header"
-      flexDir="row"
-      alignItems="center"
-      px={0}
-      py="0.4em">
-      <Heading size="md" my={0} flexGrow={1}>
-        <Editable
-          isDisabled={Boolean(loading || readonly)}
-          onSubmit={async (newName) =>
-            await renameList({ variables: { listId, newName } })
-          }
-          defaultValue={name}
-          fontSize="2xl">
-          <Flex
-            flexDirection="row"
-            justifyContent="flex-start"
-            flexGrow={0}
-            alignItems="center">
-            <EditablePreview flexGrow={0} />
-          </Flex>
-          <Input as={EditableInput} />
-        </Editable>
-      </Heading>
-      {!readonly && (
-        <Popover isLazy>
-          <PopoverTrigger>
-            <IconButton
-              data-cy="card-list-header-menu"
-              icon={<HamburgerIcon />}
-              size="sm"
-              aria-label="delete list"
-            />
-          </PopoverTrigger>
-          <PopoverContent
-            rootProps={{
-              bg: 'transparent',
-              boxShadow: 'xl',
-            }}
-            w="min-content"
-            boxShadow="xl">
-            <PopoverBody>{children}</PopoverBody>
-          </PopoverContent>
-        </Popover>
-      )}
-    </Flex>
-  );
-}
 
 function CardListButton({ onButtonClick, leftIcon, children }) {
   return (
