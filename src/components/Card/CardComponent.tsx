@@ -127,13 +127,14 @@ export const CardComponent = (props: CardComponentProps) => {
   };
   const { isDragging, createdAt, updatedAt, updatedBy } = props;
 
-  return (
-    <CardWrapper
-      data-cy="card"
-      onClick={() => {
+  const onClick = props.readonly
+    ? undefined
+    : () => {
         showAndReset();
         onOpen();
-      }}>
+      };
+  return (
+    <CardWrapper data-cy="card" onClick={onClick}>
       <CardEditModal
         {...{
           isOpen,

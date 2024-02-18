@@ -16,7 +16,7 @@ import {
   useDeleteBoardMutation,
   UserBoardsDocument,
   UserBoardsQuery,
-  useUserBoardsQuery,
+  useUserBoardsSuspenseQuery,
 } from 'generated/graphql';
 import { Segment } from 'common/Segment';
 import { FullVerticalContainer } from 'common/FullVerticalContainer';
@@ -118,12 +118,8 @@ const updateCachedUserBoardsAfterRemovingBoard = (boardId: string) => {
 };
 
 export const Boards = () => {
-  const { loading, error, data } = useUserBoardsQuery();
+  const { error, data } = useUserBoardsSuspenseQuery();
   const [deleteBoard] = useDeleteBoardMutation();
-
-  if (loading || !data?.me) {
-    return <BoardsSkeleton />;
-  }
 
   if (error) {
     return (
@@ -138,6 +134,8 @@ export const Boards = () => {
     );
   }
 
+  if (!data.me) return null;
+
   const {
     me: { boards },
   } = data;
@@ -151,7 +149,7 @@ export const Boards = () => {
         <Container data-cy="boards-list" textAlign="left">
           <BoardList
             boards={boards}
-            deleteBoard={(id) =>
+            deleteBoard={(id: string) =>
               deleteBoard({
                 variables: { id },
                 update: updateCachedUserBoardsAfterRemovingBoard(id),

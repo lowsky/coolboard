@@ -13,16 +13,24 @@ import {
   useEditableControls,
 } from '@chakra-ui/react';
 import { EditIcon, HamburgerIcon } from '@chakra-ui/icons';
-import React from 'react';
+import React, { ReactNode } from 'react';
+
+import { useRenameListMutation } from 'generated/graphql';
+
+interface CardListHeaderProps {
+  name: string;
+  listId: string;
+  children?: ReactNode;
+  readonly?: boolean;
+}
 
 export function CardListHeader({
-  readonly,
   name,
   listId,
   children,
-  renameListMutation,
-}) {
-  const [renameList, mutationResult] = renameListMutation;
+  readonly = false,
+}: CardListHeaderProps) {
+  const [renameList, mutationResult] = useRenameListMutation();
   const { loading } = mutationResult;
 
   return (
@@ -36,12 +44,7 @@ export function CardListHeader({
         <Editable
           isDisabled={readonly || loading}
           onSubmit={async (newName) =>
-            await renameList({
-              variables: {
-                listId,
-                newName,
-              },
-            })
+            await renameList({ variables: { listId, newName } })
           }
           defaultValue={name}
           fontSize="2xl">
@@ -71,8 +74,8 @@ export function CardListHeader({
               bg: 'transparent',
               boxShadow: 'xl',
             }}
-            w={'min-content'}
-            boxShadow={'xl'}>
+            w="min-content"
+            boxShadow="xl">
             <PopoverBody>{children}</PopoverBody>
           </PopoverContent>
         </Popover>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { ServerError, ServerParseError } from '@apollo/client';
 import {
   Alert,
@@ -15,7 +15,7 @@ const ErrorMessage = ({
   children,
   status = 'error',
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   status?: AlertStatus;
 }) => (
   <Alert status={status} style={{ flexShrink: 0 }}>

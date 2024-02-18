@@ -4,18 +4,18 @@ import { Button, Flex, Skeleton } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
 
 import { Card as CardType } from 'generated/graphql';
-import { CardListHeader } from './CardListHeader';
-import Card from './Card';
 
-import styles from '../CardList.module.css';
+import { CardListHeader } from 'components/List/CardListHeader';
+import Card from 'components/Card/Card';
+
+import styles from './CardList.module.css';
 
 export interface CardListWithoutDndProps {
   isOver?: string;
-  id?: string;
-  name?: string;
+  id: string;
+  name: string;
   addCardWithName?: Function;
   deleteListWithId?: Function;
-  renameListMutation?: any;
   readonly?: boolean;
   loading?: boolean;
   cardList: {
@@ -30,13 +30,12 @@ export const CardListWithoutDnd = (props: CardListWithoutDndProps) => {
     id,
     addCardWithName = () => {},
     deleteListWithId = () => {},
-    renameListMutation,
     loading,
     cardList,
-    readonly,
+    readonly = false,
   } = props;
 
-  const { list = {} } = cardList;
+  const { list } = cardList;
 
   // use name injected as default if not yet available
   let { cards = [] } = list;
@@ -51,8 +50,7 @@ export const CardListWithoutDnd = (props: CardListWithoutDndProps) => {
         <CardListHeader
           name={list.name ?? name}
           listId={id}
-          readonly={readonly}
-          renameListMutation={renameListMutation}>
+          readonly={readonly}>
           {!readonly && (
             <CardListButton
               leftIcon={<FaTrash color="red" />}
