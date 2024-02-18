@@ -8,7 +8,7 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { ApolloProvider } from '@apollo/client';
 
-import { CoolBoard } from 'components/Board/CoolBoard';
+import { Board } from 'components/Board/Board';
 import { setupGraphQLClient } from 'src/setupGraphQLClient';
 
 import { Segment } from 'src/common/Segment';
@@ -48,7 +48,7 @@ export default function Index() {
             <Link href={'/board/' + demoBoardId}>
               <ApolloProvider client={setupGraphQLClient()}>
                 <DndProvider backend={HTML5Backend}>
-                  {<CoolBoard boardId={demoBoardId} readonly />}
+                  <Board boardId={demoBoardId} readonly />
                 </DndProvider>
               </ApolloProvider>
             </Link>

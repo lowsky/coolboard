@@ -1,20 +1,29 @@
 import React from 'react';
 import { Button, Flex, Icon } from '@chakra-ui/react';
-import { FaPlus, FaTrash } from 'react-icons/fa';
+import { FaTrash } from 'react-icons/fa';
 
-import { Board } from 'generated/graphql';
 import { BoardTitle } from './BoardTitle';
 import { BoardContent } from './BoardContent';
-import { CardList } from 'components/List/CardList';
 import { useConfirmAction } from 'components/UseConfirmAction';
+import { useAddListMutation } from 'generated/graphql';
+
+const ToIdsMapper = <T extends { id: string }>(itemWithId: T) => itemWithId.id;
 
 export const BoardContainer = (props: {
-  board: Board;
-  addList: () => Promise<any>;
+  board: { name: string; id: string; lists: { name: string; id: string }[] };
   deleteLists: (ids: string[]) => Promise<any>;
-  deleteList: (id: string) => Promise<any>;
+  readonly?: boolean;
 }) => {
-  const { board, addList, deleteLists, deleteList } = props;
+  const { board, deleteLists, readonly } = props;
+  const [addListToBoard] = useAddListMutation();
+  const addList = () =>
+    addListToBoard({
+      variables: {
+        boardId: board.id,
+        name: 'new list',
+      },
+    });
+
   const { name, lists } = board;
 
   return (
@@ -22,41 +31,25 @@ export const BoardContainer = (props: {
       <BoardTitle
         boardName={name}
         headerActions={
-          <DelAllListsButton
-            action={() => deleteLists(lists.map((list) => list.id))}>
-            Delete All
-          </DelAllListsButton>
+          !readonly && (
+            <DelAllListsButton
+              action={() => deleteLists(lists.map(ToIdsMapper))}>
+              Delete All
+            </DelAllListsButton>
+          )
         }
       />
-      <BoardContent>
-        {lists.map((list) => (
-          <CardList
-            key={list.id}
-            name={list.name}
-            id={list.id}
-            deleteListWithId={(id) => deleteList(id)}
-          />
-        ))}
-        <AddListButton onAddNewList={addList} />
-      </BoardContent>
+      <BoardContent
+        lists={lists}
+        addList={addList}
+        boardId={board.id}
+        readonly={readonly ?? false}
+      />
     </Flex>
   );
 };
 
-export const AddListButton = ({
-  onAddNewList,
-}: {
-  onAddNewList: () => void;
-}) => (
-  <Button
-    onClick={onAddNewList}
-    flexShrink={0}
-    flexGrow={0}
-    leftIcon={<FaPlus />}>
-    Add a list
-  </Button>
-);
-export const DelAllListsButton = ({
+const DelAllListsButton = ({
   action,
   children,
 }: {

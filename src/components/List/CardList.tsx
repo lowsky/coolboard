@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDrop } from 'react-dnd';
+import { DropTargetMonitor, useDrop } from 'react-dnd';
 import {
   Button,
   ButtonGroup,
@@ -18,40 +18,58 @@ import {
   useEditableControls,
 } from '@chakra-ui/react';
 import { AddIcon, HamburgerIcon } from '@chakra-ui/icons';
-import { ApolloCache } from '@apollo/client';
 import { FaTrash } from 'react-icons/fa';
 
 import Card, { dndItemType } from 'components/Card/Card';
 import {
-  CardListDocument,
-  CardListQuery,
+  List as ListType,
+  Card as CardType,
   useAddCardMutationMutation,
   useCardListQuery,
+  useDeleteListOfBoardMutation,
   useMoveCard2Mutation,
   useRenameListMutation,
 } from 'generated/graphql';
 
+import { updateCachedListsAfterMovingCard } from 'components/List/overrideCacheListsAfterMovingCard';
+
 import styles from './CardList.module.css';
 
-const CardListWithoutDnd = (props) => {
+interface CardListWithoutDndProps {
+  id: string;
+  name: string;
+  list: UIListData;
+  loading: boolean;
+  deleteList: () => void;
+  readonly?: boolean;
+}
+
+const CardListWithoutDnd = (
+  props: CardListWithoutDndProps & CollectedProps
+) => {
   const {
-    isOver,
+    list,
     id,
-    addCardWithName = () => {},
-    deleteListWithId = () => {},
-    renameListMutation,
+    deleteList,
+    isOver,
     loading,
-    cardList,
+    name,
+    readonly = false,
   } = props;
 
   const initialNewCardName = 'New Card';
   const [newCardNameInputValue, setNewCardNameInputValue] =
     useState(initialNewCardName);
   const [isStoring, setIsStoring] = useState(false);
-  const { list = {} } = cardList;
 
-  // use name injected as default if not yet available
-  let { name = props.name, cards = [] } = list;
+  const [addCardWithName] = useAddCardMutationMutation({
+    variables: {
+      cardListId: id,
+      name: 'new card',
+    },
+  });
+
+  const cards = list?.cards;
 
   return (
     <div data-cy="card-list">
@@ -61,13 +79,10 @@ const CardListWithoutDnd = (props) => {
           backgroundColor: isOver ? 'yellow' : 'lightgrey',
         }}>
         <Skeleton minHeight="2rem" isLoaded={!loading}>
-          <CardListHeader
-            name={name}
-            listId={id}
-            renameListMutation={renameListMutation}>
+          <CardListHeader name={name} listId={id} readonly={readonly}>
             <CardListButton
               leftIcon={<FaTrash color="red" />}
-              onButtonClick={() => deleteListWithId(id)}>
+              onButtonClick={() => deleteList()}>
               delete list
             </CardListButton>
           </CardListHeader>
@@ -76,44 +91,53 @@ const CardListWithoutDnd = (props) => {
         <div className={styles.inner}>
           <Flex flexDirection="column" gap="0.1em">
             <Flex flexDirection="column" gap="0.1em">
-              {cards.map((c) => (
-                <Card key={c.id} {...c} cardListId={id} />
+              {cards?.map((card) => (
+                <Card
+                  key={card.id}
+                  {...card}
+                  cardListId={id}
+                  readonly={readonly}
+                />
               ))}
             </Flex>
-            <Editable
-              data-cy="edit-and-add-card"
-              isDisabled={loading || isStoring}
-              onChange={setNewCardNameInputValue}
-              value={newCardNameInputValue}
-              onSubmit={async (newName) => {
-                try {
-                  setIsStoring(true);
-                  await addCardWithName({
-                    variables: {
-                      name: newName,
-                    },
-                  });
-                  setNewCardNameInputValue(initialNewCardName);
-                } finally {
-                  setIsStoring(false);
-                }
-              }}>
-              <Flex
-                pt="4px"
-                ml="0.5rem"
-                my={0}
-                flexDirection="row"
-                justifyContent="flex-start"
-                flexGrow={0}
-                gap={1}
-                style={{ color: loading ? 'grey' : undefined }}
-                alignItems="center">
-                <AddIcon height="0.75em" />
-                <EditablePreview flexGrow={0} py={'8px'} />
-                <Input as={EditableInput} placeholder="card name" />
-              </Flex>
-              <EditableControls />
-            </Editable>
+
+            {!readonly && (
+              <Editable
+                data-cy="edit-and-add-card"
+                isDisabled={loading || isStoring}
+                onChange={setNewCardNameInputValue}
+                value={newCardNameInputValue}
+                onSubmit={async (newName) => {
+                  try {
+                    setIsStoring(true);
+                    await addCardWithName?.({
+                      variables: {
+                        cardListId: id,
+                        name: newName,
+                      },
+                    });
+                    setNewCardNameInputValue(initialNewCardName);
+                  } finally {
+                    setIsStoring(false);
+                  }
+                }}>
+                <Flex
+                  pt="4px"
+                  ml="0.5rem"
+                  my={0}
+                  flexDirection="row"
+                  justifyContent="flex-start"
+                  flexGrow={0}
+                  gap={1}
+                  style={{ color: loading ? 'grey' : undefined }}
+                  alignItems="center">
+                  <AddIcon height="0.75em" />
+                  <EditablePreview flexGrow={0} py={'8px'} />
+                  <Input as={EditableInput} placeholder="card name" />
+                </Flex>
+                <EditableControls />
+              </Editable>
+            )}
           </Flex>
         </div>
       </div>
@@ -138,20 +162,41 @@ function EditableControls() {
   ) : null;
 }
 
-const drop = (props, cardItem) => {
+type CardListWithDndProps = CardListWithoutDndProps & {
+  moveCardToList: (cardId: string, fromListId: string, toList: string) => void;
+};
+
+type DraggableCardItem = CardType & {
+  cardListId: string;
+};
+
+const drop = (
+  props: CardListWithDndProps,
+  cardItem: DraggableCardItem
+): undefined => {
   const cardId = cardItem.id;
   const cardListId = props.id;
   const oldCardListId = cardItem.cardListId;
   props.moveCardToList(cardId, oldCardListId, cardListId);
 };
 
-const CardListWithDnd = (props) => {
-  const [dndProps, ref] = useDrop({
+interface CollectedProps {
+  isOver: boolean;
+}
+
+const CardListWithDnd = (props: CardListWithDndProps) => {
+  const [dndProps, ref] = useDrop<
+    DraggableCardItem,
+    CardListWithDndProps,
+    CollectedProps
+  >({
     accept: dndItemType,
-    drop: (item) => drop(props, item),
-    // @ts-ignore
-    canDrop: (item) => props.id !== item.cardListId,
-    collect: (monitor) => ({ isOver: monitor.isOver() }),
+    drop: (item: DraggableCardItem) => drop(props, item),
+    canDrop: (item: DraggableCardItem) => props.id !== item.cardListId,
+    collect: (monitor: DropTargetMonitor) => ({
+      // hovered?
+      isOver: monitor.isOver(),
+    }),
   });
 
   return (
@@ -161,135 +206,95 @@ const CardListWithDnd = (props) => {
   );
 };
 
-export const CardList = ({ id, name, deleteListWithId }) => {
+interface CardListProps {
+  id: string;
+  boardId: string;
+  name: string;
+  readonly: boolean | undefined;
+}
+
+type UICardsData = Omit<CardType, 'createdBy' | 'updatedBy'>;
+type ListTypeWithoutCards = Omit<
+  ListType,
+  'createdAt' | 'createdBy' | 'updatedAt' | 'cards'
+>;
+type UIListData =
+  | (ListTypeWithoutCards & {
+      cards: UICardsData[];
+    })
+  | null
+  | undefined;
+
+export const CardList = ({
+  id,
+  name,
+  boardId,
+  readonly = false,
+}: CardListProps) => {
   const { loading, error, data } = useCardListQuery({
     variables: { cardListId: id },
   });
-  const renameListMutation = useRenameListMutation();
+
+  const [deleteListOfBoard] = useDeleteListOfBoardMutation();
+
+  const deleteList = () =>
+    deleteListOfBoard({
+      variables: {
+        boardId,
+        listId: id,
+      },
+    });
 
   const [moveCard] = useMoveCard2Mutation();
-
-  const [addCardWithName] = useAddCardMutationMutation({
-    variables: {
-      cardListId: id,
-      name: 'new card',
-    },
-  });
 
   if (error) {
     return <span>Load error!</span>;
   }
 
-  const list = data?.list ?? []; // fix data is undefined when loading...
+  const list: UIListData = data?.list;
 
-  const updateCachedListsAftermovingCard = (
+  const moveCardToList: (
     cardId: string,
-    newCardListId: string,
-    oldCardListId: string
-  ) => {
-    return (store: ApolloCache<any>) => {
-      const cachedNewList = store.readQuery<CardListQuery>({
-        query: CardListDocument,
-        variables: {
-          cardListId: newCardListId,
-        },
-      });
-      const cachedOldList = store.readQuery<CardListQuery>({
-        query: CardListDocument,
-        variables: {
-          cardListId: oldCardListId,
-        },
-      });
-      overrideCachedListsAfterMovingCard(
-        cachedNewList,
-        cachedOldList,
-        newCardListId,
-        oldCardListId,
-        cardId,
-        store
-      );
-    };
-  };
-  function overrideCachedListsAfterMovingCard(
-    cachedNewList: CardListQuery | null,
-    cachedOldList: CardListQuery | null,
-
-    newListId: string,
-    oldListId: string,
-    cardId: string,
-    store: ApolloCache<any>
-  ) {
-    if (!cachedOldList || !cachedNewList) return;
-    debugger;
-    const { list: newList } = cachedNewList;
-    const { list: oldList } = cachedOldList;
-
-    if (oldList && newList) {
-      let oldCard;
-      const oldCards = oldList.cards.filter((card) => {
-        if (card.id !== cardId) return true;
-        oldCard = card;
-        return false;
-      });
-      if (!oldCard) return;
-
-      const newCards = [...newList.cards, oldCard];
-      store.writeQuery({
-        query: CardListDocument,
-        data: {
-          list: {
-            ...newList,
-            cards: newCards,
-          },
-        },
-        variables: { cardListId: newListId },
-      });
-      store.writeQuery({
-        query: CardListDocument,
-        data: {
-          list: {
-            ...oldList,
-            cards: oldCards,
-          },
-        },
-        variables: { cardListId: oldListId },
-      });
-    }
-  }
-
-  const onMoveCardToList = (cardId, _oldCardListId, newCardListId) => {
+    fromListId: string,
+    toList: string
+  ) => void = (cardId: string, fromListId: string, toList: string) => {
     moveCard({
       variables: {
-        fromListId: _oldCardListId,
-        toList: newCardListId,
-        //cardListId: newCardListId,
+        fromListId,
+        toList,
         cardId,
       },
-      update: updateCachedListsAftermovingCard(
-        cardId,
-        newCardListId,
-
-        _oldCardListId
-      ),
+      update: updateCachedListsAfterMovingCard(cardId, toList, fromListId),
     });
   };
 
   return (
     <CardListWithDnd
-      deleteListWithId={deleteListWithId}
-      renameListMutation={renameListMutation}
-      addCardWithName={addCardWithName}
-      moveCardToList={onMoveCardToList}
-      cardList={{ list }}
+      moveCardToList={moveCardToList}
+      deleteList={deleteList}
+      list={list}
       name={name}
       loading={loading}
       id={id}
+      readonly={readonly}
     />
   );
 };
 
-function CardListHeader({ name, listId, children, renameListMutation }) {
-  const [renameList, mutationResult] = renameListMutation;
+interface CardListHeaderProps {
+  name: string;
+  listId: string;
+  children: React.ReactNode;
+  readonly?: boolean;
+}
+
+function CardListHeader({
+  name,
+  listId,
+  children,
+  readonly = false,
+}: CardListHeaderProps) {
+  const [renameList, mutationResult] = useRenameListMutation();
   const { loading } = mutationResult;
 
   return (
@@ -301,7 +306,7 @@ function CardListHeader({ name, listId, children, renameListMutation }) {
       py="0.4em">
       <Heading size="md" my={0} flexGrow={1}>
         <Editable
-          isDisabled={loading}
+          isDisabled={Boolean(loading || readonly)}
           onSubmit={async (newName) =>
             await renameList({ variables: { listId, newName } })
           }
@@ -317,32 +322,34 @@ function CardListHeader({ name, listId, children, renameListMutation }) {
           <Input as={EditableInput} />
         </Editable>
       </Heading>
-      <Popover isLazy>
-        <PopoverTrigger>
-          <IconButton
-            data-cy="card-list-header-menu"
-            icon={<HamburgerIcon />}
-            size="sm"
-            aria-label="delete list"
-          />
-        </PopoverTrigger>
-        <PopoverContent
-          rootProps={{
-            bg: 'transparent',
-            boxShadow: 'xl',
-          }}
-          w={'min-content'}
-          boxShadow={'xl'}>
-          <PopoverBody>{children}</PopoverBody>
-        </PopoverContent>
-      </Popover>
+      {!readonly && (
+        <Popover isLazy>
+          <PopoverTrigger>
+            <IconButton
+              data-cy="card-list-header-menu"
+              icon={<HamburgerIcon />}
+              size="sm"
+              aria-label="delete list"
+            />
+          </PopoverTrigger>
+          <PopoverContent
+            rootProps={{
+              bg: 'transparent',
+              boxShadow: 'xl',
+            }}
+            w="min-content"
+            boxShadow="xl">
+            <PopoverBody>{children}</PopoverBody>
+          </PopoverContent>
+        </Popover>
+      )}
     </Flex>
   );
 }
 
 function CardListButton({ onButtonClick, leftIcon, children }) {
   return (
-    <Button m={'0.1em'} onClick={() => onButtonClick()} leftIcon={leftIcon}>
+    <Button m="0.1em" onClick={onButtonClick} leftIcon={leftIcon}>
       {children}
     </Button>
   );

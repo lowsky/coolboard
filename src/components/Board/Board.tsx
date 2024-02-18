@@ -1,21 +1,22 @@
 import React from 'react';
 import {
-  Board,
-  useAddListMutation,
   useBoardQuery,
-  useDeleteListOfBoardMutation,
   useDeleteListsOfBoardMutation,
 } from 'generated/graphql';
 
 import { BoardContainer } from './BoardContainer';
 
-export const CoolBoard = ({ boardId }) => {
+interface BoardProps {
+  boardId: string;
+  readonly?: boolean;
+}
+
+export const Board = ({ boardId, readonly = false }: BoardProps) => {
   const { loading, error, data } = useBoardQuery({
     variables: { boardId },
   });
-  const [addListToBoard] = useAddListMutation();
+
   const [deleteListsOfBoard] = useDeleteListsOfBoardMutation();
-  const [deleteListOfBoard] = useDeleteListOfBoardMutation();
 
   if (loading) {
     return <div>Loading Board</div>;
@@ -25,9 +26,10 @@ export const CoolBoard = ({ boardId }) => {
     return null;
   }
 
-  if (!data || !data.board) {
+  if (!data?.board) {
     return <div>Board does not exist.</div>;
   }
+
   const { board } = data;
 
   const deleteLists = (ids: string[]) =>
@@ -38,28 +40,11 @@ export const CoolBoard = ({ boardId }) => {
       },
     });
 
-  const deleteList = (listId: string) =>
-    deleteListOfBoard({
-      variables: {
-        boardId,
-        listId,
-      },
-    });
-
-  const addList = () =>
-    addListToBoard({
-      variables: {
-        boardId,
-        name: 'new list',
-      },
-    });
-
   return (
     <BoardContainer
-      addList={addList}
       deleteLists={deleteLists}
-      deleteList={deleteList}
-      board={board as Board}
+      board={board}
+      readonly={readonly}
     />
   );
 };
