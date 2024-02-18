@@ -16,7 +16,6 @@ export interface CardListWithoutDndProps {
   name: string;
   addCardWithName?: Function;
   deleteListWithId?: Function;
-  renameListMutation?: any;
   readonly?: boolean;
   loading?: boolean;
   cardList: {
@@ -31,10 +30,9 @@ export const CardListWithoutDnd = (props: CardListWithoutDndProps) => {
     id,
     addCardWithName = () => {},
     deleteListWithId = () => {},
-    renameListMutation,
     loading,
     cardList,
-    readonly,
+    readonly = false,
   } = props;
 
   const { list } = cardList;
@@ -52,8 +50,7 @@ export const CardListWithoutDnd = (props: CardListWithoutDndProps) => {
         <CardListHeader
           name={list.name ?? name}
           listId={id}
-          readonly={readonly}
-          renameListMutation={renameListMutation}>
+          readonly={readonly}>
           {!readonly && (
             <CardListButton
               leftIcon={<FaTrash color="red" />}
