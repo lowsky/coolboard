@@ -23,22 +23,16 @@ const apolloServer = new ApolloServer<Ctxt>({
     }),
   ],
 });
-const context: ContextFunction<[NextRequest], Ctxt> = async (req) => ({
+
+const injectContext: ContextFunction<[NextRequest], Ctxt> = async (req) => ({
   req,
   prisma: prisma as unknown as PrismaClient,
 });
 
-const handleGraphqlRequest = async (
-  req: NextApiRequest,
-  res: NextApiResponse
-): Promise<void> => {
-  const graphqlHandler = startServerAndCreateNextHandler<NextRequest, Ctxt>(
-    apolloServer,
-    { context }
-  );
-
-  await graphqlHandler(req, res);
-};
+const handleGraphqlRequest = startServerAndCreateNextHandler<NextRequest, Ctxt>(
+  apolloServer,
+  { context: injectContext }
+);
 
 const authenticatedHandler = async function (
   req: NextApiRequest,
@@ -66,9 +60,3 @@ const authenticatedHandler = async function (
 };
 
 export default authenticatedHandler;
-
-export const config = {
-  api: {
-    bodyParser: true,
-  },
-};
