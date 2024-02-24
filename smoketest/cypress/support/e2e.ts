@@ -55,13 +55,11 @@ export const login = (
     () => {
       cy.visit('/boards', {
         failOnStatusCode: false,
-      })
-        .contains('Log in', {
-          log: true,
-          timeout: 6000,
-        })
-        .first()
-        .click();
+      });
+      // this was only needed, when /boards was
+      // a public page
+      // ... could be deleted soon, if not needed anymore
+      //.contains('Log in', { log: true, timeout: 6000, }).first().click();
       fillLoginForm(userLogin, password);
     },
     {
