@@ -1,6 +1,6 @@
 import { authMiddleware } from '@clerk/nextjs';
 import { NextResponse } from 'next/server';
-import type { NextRequest, NextFetchEvent } from 'next/server';
+import type { NextFetchEvent, NextRequest } from 'next/server';
 
 const clerkAuthMiddleWare = authMiddleware({
   publicRoutes: [
@@ -16,14 +16,18 @@ const clerkAuthMiddleWare = authMiddleware({
 });
 
 export async function middleware(request: NextRequest, event: NextFetchEvent) {
-  const authResponse = clerkAuthMiddleWare(request, event);
-  const response: NextResponse = (await authResponse) ?? NextResponse.next();
-
-  // extract trace-id from instana eum header
   const traceId = request['headers']?.get('x-instana-t') ?? '';
+  // extract trace-id from instana eum header
   request['headers']?.set('Server-Timing', `intid;desc=${traceId}`);
 
-  return response;
+  const authResponse = clerkAuthMiddleWare(request, event);
+
+  return (
+    (await authResponse) ??
+    NextResponse.next({
+      request,
+    })
+  );
 }
 
 // Stop Middleware running on static files - more performant than ignoreRoutes
