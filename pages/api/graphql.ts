@@ -9,8 +9,9 @@ import { PrismaClient } from '@prisma/client';
 
 import { isLocalDev } from 'server/src/helpers/logging';
 import { Ctxt } from 'server/src/resolvers/Context';
-
 import { buildSchema, prisma } from 'server/src/buildSchema';
+
+import { REQ_HEADER_x_coolboard_readonly } from 'src/headers';
 
 const apolloServer = new ApolloServer<Ctxt>({
   schema: buildSchema(),
@@ -38,9 +39,10 @@ const authenticatedHandler = async function (
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  // don't check authentication when using graphql API locally
-  // just for easier debugging/testing the gql schema ...
-  if (isLocalDev) {
+  const readOnlyHeader = req.headers[REQ_HEADER_x_coolboard_readonly];
+  const isReadOnlyHeader = readOnlyHeader === 'true';
+
+  if (isReadOnlyHeader && isLocalDev) {
     await handleGraphqlRequest(req, res);
     return;
   }
