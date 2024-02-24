@@ -5,7 +5,6 @@ import type { NextRequest, NextFetchEvent } from 'next/server';
 const clerkAuthMiddleWare = authMiddleware({
   publicRoutes: [
     '/',
-    '/boards',
     '/about',
     '/imprint',
     '/privacy',

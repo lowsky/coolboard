@@ -7,7 +7,7 @@ import FullPageWithApollo from 'common/FullPageWithApollo';
 export default function SignInPage() {
   return (
     <FullPageWithApollo data-cy="about-full-container">
-      <ProfileHeader />
+      <ProfileHeader isBoardsPage />
       <Flex flexDir="column" align="center">
         <Heading as="h1" my={2}>
           Welcome to Coolboard
