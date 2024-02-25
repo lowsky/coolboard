@@ -47,4 +47,6 @@ p a {
 
 .demoBoard {
   background-color: darkgrey;
+  /* to reduce initial layout shifting */
+  min-height: 400px;
 }

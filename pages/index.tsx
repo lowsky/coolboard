@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { Container, Flex, Heading, Icon, Text } from '@chakra-ui/react';
 
 import Link from 'next/link';
@@ -6,21 +6,29 @@ import Image from 'next/image';
 import { FaChalkboardTeacher, FaFilm, FaLink } from 'react-icons/fa';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import { ApolloProvider } from '@apollo/client';
+import {
+  ApolloClient,
+  ApolloProvider,
+  NormalizedCacheObject,
+} from '@apollo/client';
 
 import { Board } from 'components/Board/Board';
 import { setupGraphQLClient } from 'src/setupGraphQLClient';
 
 import { Segment } from 'src/common/Segment';
 import { FullVerticalContainer } from 'src/common/FullVerticalContainer';
+import { isInBrowserEnv } from 'common/isInBrowserEnv';
 import { trackPage } from 'src/common/tracking';
 
 import coolBoardLogo from 'public/CoolBoardLogo100.png';
 import screenshot from 'public/screenshot.png';
 
-fetch('/api/system')
-  .then((response) => response.json())
-  .then((data) => console.log('some system info: ', data));
+// probing, debug stuff (delete me)
+if (isInBrowserEnv())
+  fetch('/api/system')
+    .then((response) => response.json())
+    .then((data) => console.log('debug: some system info: ', data))
+    .catch((err) => console.warn('debug: error fetching system info: ', err));
 
 const demoBoardId = process.env.NEXT_PUBLIC_DEMOBOARD_ID;
 
@@ -38,34 +46,12 @@ export default function Index() {
         </Heading>
         <Segment>
           <Text>
-            You can go to your list of
+            After creating an account, you will be able to create your own
             <Link href="/boards">boards</Link>
           </Text>
         </Segment>
 
-        <Segment className="zoomOnHover demoBoard">
-          {demoBoardId && (
-            <Link href={'/board/' + demoBoardId}>
-              <ApolloProvider client={setupGraphQLClient()}>
-                <DndProvider backend={HTML5Backend}>
-                  <Suspense fallback={<div>Loading Board</div>}>
-                    <Board boardId={demoBoardId} readonly />
-                  </Suspense>
-                </DndProvider>
-              </ApolloProvider>
-            </Link>
-          )}
-          {!demoBoardId && (
-            <Link href="/boards">
-              <Image
-                src={screenshot}
-                placeholder="blur"
-                width="1099"
-                alt="screenshot"
-              />
-            </Link>
-          )}
-        </Segment>
+        <DemoBoardSegment />
 
         <Segment>
           <Text mb="1rem">
@@ -127,5 +113,38 @@ export default function Index() {
         </Segment>
       </Container>
     </FullVerticalContainer>
+  );
+}
+
+function DemoBoardSegment() {
+  const [client, setClient] = useState<ApolloClient<NormalizedCacheObject>>();
+  useEffect(() => {
+    if (demoBoardId) setClient(setupGraphQLClient(true));
+  }, []);
+  return (
+    <Segment className="zoomOnHover demoBoard">
+      {demoBoardId && (
+        <Text>Live Preview of the the current work and planned features:</Text>
+      )}
+      {demoBoardId && client && (
+        <ApolloProvider client={client}>
+          <DndProvider backend={HTML5Backend}>
+            <Suspense fallback={<div>Loading Board</div>}>
+              <Board boardId={demoBoardId} readonly />
+            </Suspense>
+          </DndProvider>
+        </ApolloProvider>
+      )}
+      {!demoBoardId && (
+        <Link href="/boards">
+          <Image
+            src={screenshot}
+            placeholder="blur"
+            width="1099"
+            alt="screenshot"
+          />
+        </Link>
+      )}
+    </Segment>
   );
 }
