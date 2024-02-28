@@ -42,7 +42,7 @@ const authenticatedHandler = async function (
   const readOnlyHeader = req.headers[REQ_HEADER_x_coolboard_readonly];
   const isReadOnlyHeader = readOnlyHeader === 'true';
 
-  if (isReadOnlyHeader && isLocalDev) {
+  if (isReadOnlyHeader) {
     await handleGraphqlRequest(req, res);
     return;
   }
