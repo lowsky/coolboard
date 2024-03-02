@@ -57,7 +57,8 @@
   },
   "scripts": {
     "dev": "echo you wanna run:  yarn start  instead; yarn start",
-    "start": "PRISMA_CLIENT_ENGINE_TYPE=dataproxy next dev --turbo",
+    "start": "next dev",
+    "start:comment": "next dev ; # not with await+browser-otel: --turbo",
     "start-production": "next start",
     "lint": "next lint",
     "trigger-e2e-smoke": "sh trigger-circleci-smoke.sh",
