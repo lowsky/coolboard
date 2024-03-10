@@ -1,8 +1,11 @@
 import SchemaBuilder from '@pothos/core';
 import PrismaPlugin from '@pothos/plugin-prisma';
 import WithInputPlugin from '@pothos/plugin-with-input';
+
 import { Prisma, PrismaClient } from '@prisma/client';
-import { withAccelerate } from '@prisma/extension-accelerate';
+import { Client } from '@planetscale/database';
+import { PrismaPlanetScale } from '@prisma/adapter-planetscale';
+
 import { DateTimeResolver } from 'graphql-scalars';
 
 // Using a type only import will help avoid issues with undeclared
@@ -12,12 +15,20 @@ import type PrismaTypes from '@pothos/plugin-prisma/generated';
 import { Ctxt } from './resolvers/Context';
 import { isLocalDev } from './helpers/logging';
 
+// Setup
+const connectionString = `${process.env.DATABASE_URL}`;
+
+// Init prisma client
+const client = new Client({ url: connectionString });
+const adapter = new PrismaPlanetScale(client);
+
 export const prisma = new PrismaClient({
+  adapter,
   log:
-    false && isLocalDev
+    false && isLocalDev // only for query-debugging:
       ? ['query', 'info', `warn`, `error`]
       : ['info', 'warn', 'error'],
-}).$extends(withAccelerate());
+});
 
 const builder = new SchemaBuilder<{
   Context: Ctxt;
