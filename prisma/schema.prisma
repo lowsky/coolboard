@@ -13,65 +13,63 @@ datasource db {
 }
 
 model Card {
-  id          String  @id @default(cuid()) @db.VarChar(25)
-  name        String
-  description String?
+  id          String  @id(map: "idx_114732_PRIMARY") @default(cuid()) @db.VarChar(25)
+  name        String  @db.VarChar(191)
+  description String? @db.VarChar(191)
 
-  createdAt   DateTime @default(now())
-  createdBy   User     @relation(name: "createdBy", fields: [createdById], references: [id])
+  createdAt   DateTime @default(now()) @db.Timestamptz(6)
+  createdBy   User     @relation("createdBy", fields: [createdById], references: [id])
   createdById String   @db.VarChar(25)
-  updatedAt   DateTime @updatedAt
-  updatedBy   User     @relation(name: "updatedBy", fields: [updatedById], references: [id])
+  updatedAt   DateTime @updatedAt @db.Timestamptz(6)
+  updatedBy   User     @relation("updatedBy", fields: [updatedById], references: [id])
   updatedById String   @db.VarChar(25)
+  listId      String   @db.VarChar(25)
+  list        List     @relation(fields: [listId], references: [id], onDelete: Cascade)
 
-  listId String @db.VarChar(25)
-  list   List?  @relation(fields: [listId], references: [id], onDelete: Cascade)
-
-  @@index([createdById])
-  @@index([updatedById])
-  @@index([listId])
+  @@index([createdById], map: "idx_114732_Card_createdById_idx")
+  @@index([listId], map: "idx_114732_Card_listId_idx")
+  @@index([updatedById], map: "idx_114732_Card_updatedById_idx")
 }
 
 model List {
-  id        String   @id @default(cuid()) @db.VarChar(25)
-  name      String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  board     Board?   @relation(fields: [boardId], references: [id], onDelete: Cascade)
+  id        String   @id(map: "idx_114736_PRIMARY") @default(cuid()) @db.VarChar(25)
+  name      String   @db.VarChar(191)
+  createdAt DateTime @default(now()) @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @db.Timestamptz(6)
+  board     Board    @relation(fields: [boardId], references: [id], onDelete: Cascade)
   boardId   String   @db.VarChar(25)
   cards     Card[]
 
   createdBy   User   @relation(fields: [createdById], references: [id])
   createdById String @db.VarChar(25)
 
-  @@index([boardId])
-  @@index([createdById])
+  @@index([boardId], map: "idx_114736_List_boardId_idx")
+  @@index([createdById], map: "idx_114736_List_createdById_idx")
 }
 
 model Board {
-  id          String   @id @default(cuid()) @db.VarChar(25)
-  name        String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id          String   @id(map: "idx_114728_PRIMARY") @default(cuid()) @db.VarChar(25)
+  name        String   @db.VarChar(191)
+  createdAt   DateTime @default(now()) @db.Timestamptz(6)
+  updatedAt   DateTime @updatedAt @db.Timestamptz(6)
   createdBy   User     @relation(fields: [createdById], references: [id])
   createdById String   @db.VarChar(25)
+  lists       List[]
 
-  lists List[]
-
-  @@index([createdById])
+  @@index([createdById], map: "idx_114728_Board_createdById_idx")
 }
 
 model User {
-  id            String   @id @default(cuid()) @db.VarChar(25)
-  email         String   @unique
-  name          String
-  avatarUrl     String?
-  auth0id       String?  @unique
-  identity      String?
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  id            String   @id(map: "idx_114740_PRIMARY") @default(cuid()) @db.VarChar(25)
+  email         String   @unique(map: "idx_114740_User_email_key") @db.VarChar(191)
+  name          String   @db.VarChar(191)
+  avatarUrl     String?  @db.VarChar(191)
+  auth0id       String?  @unique(map: "idx_114740_User_auth0id_key") @db.VarChar(191)
+  identity      String?  @db.VarChar(191)
+  createdAt     DateTime @default(now()) @db.Timestamptz(6)
+  updatedAt     DateTime @updatedAt @db.Timestamptz(6)
   boards        Board[]
-  CardCreatedBy Card[]   @relation(name: "createdBy")
-  CardUpdatedBy Card[]   @relation(name: "updatedBy")
+  CardCreatedBy Card[]   @relation("createdBy")
+  CardUpdatedBy Card[]   @relation("updatedBy")
   lists         List[]
 }
