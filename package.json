@@ -17,6 +17,7 @@
     "@clerk/themes": "1.7.9",
     "@emotion/react": "11.11.4",
     "@emotion/styled": "11.11.0",
+    "@neondatabase/serverless": "0.9.0",
     "@opentelemetry/auto-instrumentations-node": "0.41.1",
     "@opentelemetry/auto-instrumentations-web": "0.36.0",
     "@opentelemetry/context-zone": "1.22.0",
@@ -28,6 +29,7 @@
     "@pothos/core": "3.41.0",
     "@pothos/plugin-prisma": "3.65.0",
     "@pothos/plugin-with-input": "3.10.1",
+    "@prisma/adapter-neon": "5.11.0",
     "@prisma/client": "5.10.2",
     "@prisma/extension-accelerate": "1.0.0",
     "@prisma/instrumentation": "5.10.2",
@@ -53,6 +55,7 @@
     "react-is": "18.2.0",
     "react-timeago": "7.2.0",
     "utf-8-validate": "6.0.3",
+    "ws": "8.16.0",
     "zone.js": "0.14.4"
   },
   "scripts": {
@@ -82,6 +85,7 @@
     "@types/react": "18.2.65",
     "@types/react-dom": "18.2.21",
     "@types/react-timeago": "4.1.7",
+    "@types/ws": "8.5.10",
     "@types/zen-observable": "0.8.7",
     "@typescript-eslint/parser": "7.2.0",
     "eslint": "8.57.0",
