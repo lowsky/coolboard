@@ -8,66 +8,67 @@ generator pothos {
 }
 
 datasource db {
-  provider = "postgres"
-  url      = env("DATABASE_URL")
+  provider     = "postgres"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
 }
 
 model Card {
-  id          String  @id(map: "idx_114732_PRIMARY") @default(cuid()) @db.VarChar(25)
-  name        String  @db.VarChar(191)
-  description String? @db.VarChar(191)
+  id          String  @id @default(cuid())
+  name        String
+  description String?
 
-  createdAt   DateTime @default(now()) @db.Timestamptz(6)
+  createdAt   DateTime @default(now())
   createdBy   User     @relation("createdBy", fields: [createdById], references: [id])
-  createdById String   @db.VarChar(25)
-  updatedAt   DateTime @updatedAt @db.Timestamptz(6)
+  createdById String
+  updatedAt   DateTime @updatedAt
   updatedBy   User     @relation("updatedBy", fields: [updatedById], references: [id])
-  updatedById String   @db.VarChar(25)
-  listId      String   @db.VarChar(25)
+  updatedById String
+  listId      String
   list        List     @relation(fields: [listId], references: [id], onDelete: Cascade)
 
-  @@index([createdById], map: "idx_114732_Card_createdById_idx")
-  @@index([listId], map: "idx_114732_Card_listId_idx")
-  @@index([updatedById], map: "idx_114732_Card_updatedById_idx")
+  @@index([createdById])
+  @@index([listId])
+  @@index([updatedById])
 }
 
 model List {
-  id        String   @id(map: "idx_114736_PRIMARY") @default(cuid()) @db.VarChar(25)
-  name      String   @db.VarChar(191)
-  createdAt DateTime @default(now()) @db.Timestamptz(6)
-  updatedAt DateTime @updatedAt @db.Timestamptz(6)
+  id        String   @id @default(cuid())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   board     Board    @relation(fields: [boardId], references: [id], onDelete: Cascade)
-  boardId   String   @db.VarChar(25)
+  boardId   String
   cards     Card[]
 
   createdBy   User   @relation(fields: [createdById], references: [id])
-  createdById String @db.VarChar(25)
+  createdById String
 
-  @@index([boardId], map: "idx_114736_List_boardId_idx")
-  @@index([createdById], map: "idx_114736_List_createdById_idx")
+  @@index([boardId])
+  @@index([createdById])
 }
 
 model Board {
-  id          String   @id(map: "idx_114728_PRIMARY") @default(cuid()) @db.VarChar(25)
-  name        String   @db.VarChar(191)
-  createdAt   DateTime @default(now()) @db.Timestamptz(6)
-  updatedAt   DateTime @updatedAt @db.Timestamptz(6)
+  id          String   @id @default(cuid())
+  name        String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
   createdBy   User     @relation(fields: [createdById], references: [id])
-  createdById String   @db.VarChar(25)
+  createdById String
   lists       List[]
 
-  @@index([createdById], map: "idx_114728_Board_createdById_idx")
+  @@index([createdById])
 }
 
 model User {
-  id            String   @id(map: "idx_114740_PRIMARY") @default(cuid()) @db.VarChar(25)
-  email         String   @unique(map: "idx_114740_User_email_key") @db.VarChar(191)
-  name          String   @db.VarChar(191)
-  avatarUrl     String?  @db.VarChar(191)
-  auth0id       String?  @unique(map: "idx_114740_User_auth0id_key") @db.VarChar(191)
-  identity      String?  @db.VarChar(191)
-  createdAt     DateTime @default(now()) @db.Timestamptz(6)
-  updatedAt     DateTime @updatedAt @db.Timestamptz(6)
+  id            String   @id @default(cuid())
+  email         String   @unique
+  name          String
+  avatarUrl     String?
+  auth0id       String?  @unique
+  identity      String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
   boards        Board[]
   CardCreatedBy Card[]   @relation("createdBy")
   CardUpdatedBy Card[]   @relation("updatedBy")
