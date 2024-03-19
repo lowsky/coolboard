@@ -15,18 +15,15 @@ const clerkAuthMiddleWare = authMiddleware({
 });
 
 export async function middleware(request: NextRequest, event: NextFetchEvent) {
-  const traceId = request['headers']?.get('x-instana-t') ?? '';
+  const traceId = request.headers.get('x-instana-t') ?? '';
+
+  const authResponse = await clerkAuthMiddleWare(request, event);
+  const response = authResponse ?? NextResponse.next({ request });
+
   // extract trace-id from instana eum header
-  request['headers']?.set('Server-Timing', `intid;desc=${traceId}`);
+  response['headers']?.set('Server-Timing', `intid;desc=${traceId}`);
 
-  const authResponse = clerkAuthMiddleWare(request, event);
-
-  return (
-    (await authResponse) ??
-    NextResponse.next({
-      request,
-    })
-  );
+  return response;
 }
 
 // Stop Middleware running on static files - more performant than ignoreRoutes
@@ -39,7 +36,6 @@ export const config = {
      * - favicon.ico (favicon file)
      * - public folder
      */
-    //'/api/graphql',
     '/((?!static|.*\\..*|_next|favicon.ico).*)',
     '/',
   ],
