@@ -22,6 +22,8 @@ import {
 import { dark } from '@clerk/themes';
 
 import { LoginButton } from './LoginButton';
+import Image from 'next/image';
+import coolBoardLogo from '../../public/CoolBoardLogo100.png';
 
 const ProfileHeaderContainer = ({
   children,
@@ -36,9 +38,23 @@ const ProfileHeaderContainer = ({
       placeContent="space-between"
       data-cy="profile-header">
       <Box gap="2rem" display="flex">
-        {isBoardsPage && <Link href="/">Home</Link>}
-        {!isBoardsPage && <Link href="/boards">Boards</Link>}
-        <Link href="/about">About</Link>
+        {isBoardsPage && (
+          <Flex direction="row" gap="1em" alignItems="center">
+            <Link href="/">
+              <Image src={coolBoardLogo} height="40" alt="logo" />
+              Home
+            </Link>
+          </Flex>
+        )}
+        {!isBoardsPage && (
+          <Flex direction="row" gap="1em" alignItems="center">
+            <Link href="/">
+              <Image src={coolBoardLogo} height="40" alt="logo" />
+              Home
+            </Link>
+            <Link href="/boards">Boards</Link>
+          </Flex>
+        )}
       </Box>
 
       {children}
@@ -72,11 +88,7 @@ export const ProfileHeader = ({
       </ClerkLoaded>
       <SignedIn>
         <Flex alignItems="center" gap="0.5em">
-          <UserButton
-            appearance={clerkAppearance}
-            afterSignOutUrl="/"
-            showName
-          />
+          <UserButton appearance={clerkAppearance} afterSignOutUrl="/" />
           <Button
             onClick={async (event) => {
               event.preventDefault();
