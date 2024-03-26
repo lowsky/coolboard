@@ -16,4 +16,4 @@ jobs:
         with:
           project_id: still-silence-95380932
           branch: preview/pr-${{ github.ref_name }} # or ? -${{ github.event.pull_request.head.ref }}
-          api_key: {{ secrets.NEON_API_KEY }}
+          api_key: ${{ secrets.NEON_API_KEY }}
