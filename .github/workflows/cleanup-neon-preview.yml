@@ -13,8 +13,6 @@ jobs:
   delete-neon-branch:
     runs-on: ubuntu-latest
     steps:
-      - name: debug
-        run: echo "Branch name github.head_ref: - does not work..."
       - name: Git branch name-pre
         run: echo "Branch name ${GIT_BRANCH_NAME}"
       - name: Git branch name
