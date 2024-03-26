@@ -40,6 +40,7 @@ export const CardForDragging = (props) => {
   });
 
   return (
+    // @ts-expect-error TS2322: Type ConnectDragSource is not assignable to type LegacyRef<HTMLDivElement> | undefined
     <div ref={ref}>
       <Card {...props} />
     </div>
