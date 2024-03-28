@@ -28,6 +28,7 @@ export function Footer() {
         justifyContent="center"
         gap="1"
         flexWrap="wrap">
+        <Link href="/about">About</Link>
         Powered by
         <Image height={20} width={20} src={prismaLogo} alt="prisma logo" />
         Prisma, GraphQL, Apollo, and
