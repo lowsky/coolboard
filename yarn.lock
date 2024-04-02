@@ -2486,24 +2486,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/themes@npm:1.7.10":
-  version: 1.7.10
-  resolution: "@clerk/themes@npm:1.7.10"
+"@clerk/themes@npm:1.7.11":
+  version: 1.7.11
+  resolution: "@clerk/themes@npm:1.7.11"
   dependencies:
-    "@clerk/types": "npm:3.62.1"
+    "@clerk/types": "npm:3.63.0"
     tslib: "npm:2.4.1"
   peerDependencies:
     react: ">=16"
-  checksum: 10c0/9b4ee32f79cafb2ce6f008d47585db2f390df4858ffca6005ca8a640efb9d6a5eb215e8b6f97ef5b45b5f1117bb820ab52ea229887bc357740d7d3b4ae79d42c
-  languageName: node
-  linkType: hard
-
-"@clerk/types@npm:3.62.1":
-  version: 3.62.1
-  resolution: "@clerk/types@npm:3.62.1"
-  dependencies:
-    csstype: "npm:3.1.1"
-  checksum: 10c0/fedaa915402a1288a5fe4a079fc50cccdc9c36542fd07d9d0c88aa5ad234e2ec4e22e6fc3f1327d2f9dd1a20b8dec4498e64173e12d556bd86f9edfe65c223d0
+  checksum: 10c0/b2c1ae5d578b164767dfe6caac960feed112dd7f4fb00f12232a588ba04c0a4786e996dd1ead6475f53ceeaa1ebb9119e69b3e2183a0d90e8ed85b49f3ea9b0b
   languageName: node
   linkType: hard
 
@@ -7612,7 +7603,7 @@ __metadata:
     "@chakra-ui/react": "npm:2.8.2"
     "@clerk/clerk-sdk-node": "npm:4.13.12"
     "@clerk/nextjs": "npm:4.29.10"
-    "@clerk/themes": "npm:1.7.10"
+    "@clerk/themes": "npm:1.7.11"
     "@emotion/react": "npm:11.11.4"
     "@emotion/styled": "npm:11.11.0"
     "@graphql-codegen/cli": "npm:5.0.2"
