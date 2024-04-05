@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Delete Neon Branch
-        uses: neondatabase/delete-branch-action@v3.1.4
+        uses: neondatabase/delete-branch-action@v3.1.5
         with:
           project_id: still-silence-95380932
           branch: preview/${{ github.head_ref }}
