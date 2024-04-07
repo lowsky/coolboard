@@ -15,7 +15,7 @@ export const InstanaEumScripts = () => {
 
   return (
     <>
-      <Script strategy="afterInteractive" id="eum-init">
+      <Script strategy="beforeInteractive" id="eum-init">
         {`
           (function(s,t,a,n){s[t] || (s[t] = a, n = s[a] = function() {
             n.q.push(arguments)
