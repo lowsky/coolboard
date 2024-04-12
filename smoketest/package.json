@@ -7,8 +7,8 @@
     "node": "20.x"
   },
   "dependencies": {
-    "cypress": "13.7.2",
-    "typescript": "5.4.4"
+    "cypress": "13.7.3",
+    "typescript": "5.4.5"
   },
   "scripts": {
     "cy": "cypress",
