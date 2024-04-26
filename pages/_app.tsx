@@ -9,7 +9,6 @@ import { mode } from '@chakra-ui/theme-tools';
 import 'public/index.css';
 
 import { instrumentBrowserOtel } from 'src/instrumentBrowserOtel';
-import { InstanaEumScripts } from 'common/instanaEumScripts';
 import { Footer } from 'components/Footer';
 
 if (typeof window !== 'undefined') {
@@ -94,7 +93,6 @@ https://chakra-ui.com/docs/styled-system/theming/customize-theme#customizing-com
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
       </Head>
-      <InstanaEumScripts />
       <ChakraProvider theme={theme}>
         <div
           style={{

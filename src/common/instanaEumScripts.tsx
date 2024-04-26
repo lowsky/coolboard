@@ -9,13 +9,14 @@ export const InstanaEumScripts = () => {
   }
 
   const ignoreUrls = [/.*clerk.*/i, /.*eum.*instana.*/i, /.*localhost:43.*/i];
+  // LATER remove more details: const ignoreUrls = [/.*clerk.*/i, /.*eum.*instana.*/i, /.*localhost:43.*/i];
 
   const branchName =
     process.env.NODE_ENV !== 'production' ? 'development' : 'production';
 
   return (
     <>
-      <Script strategy="beforeInteractive" id="eum-init">
+      <Script strategy="beforeInteractive" id="instana-eum">
         {`
           (function(s,t,a,n){s[t] || (s[t] = a, n = s[a] = function() {
             n.q.push(arguments)
@@ -30,7 +31,7 @@ export const InstanaEumScripts = () => {
       `}
       </Script>
       <Script
-        strategy="afterInteractive"
+        strategy="beforeInteractive"
         id="eum"
         crossOrigin="anonymous"
         src={`${reportingUrl}/eum.min.js`}
