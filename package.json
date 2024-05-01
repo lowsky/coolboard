@@ -14,7 +14,7 @@
     "@chakra-ui/react": "2.8.2",
     "@clerk/clerk-sdk-node": "4.13.15",
     "@clerk/nextjs": "4.30.0",
-    "@clerk/themes": "1.7.13",
+    "@clerk/themes": "1.7.14",
     "@emotion/react": "11.11.4",
     "@emotion/styled": "11.11.0",
     "@neondatabase/serverless": "0.9.1",
