@@ -1,4 +1,4 @@
-import clerk, { User as ClerkUser } from '@clerk/clerk-sdk-node';
+import { User as ClerkUser, clerkClient } from '@clerk/clerk-sdk-node';
 import { getAuth } from '@clerk/nextjs/server';
 import { GraphQLError } from 'graphql';
 
@@ -107,7 +107,9 @@ export async function verifyUserIsAuthenticatedAndRetrieveUserToken(
         userId
       );
 
-    return userTokenFromClerkSessionUserId(await clerk.users.getUser(userId));
+    return userTokenFromClerkSessionUserId(
+      await clerkClient.users.getUser(userId)
+    );
   }
 
   throw new GraphQLError('Not authorized, no valid auth token', {
