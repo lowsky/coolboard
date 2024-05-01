@@ -7692,7 +7692,7 @@ __metadata:
     typescript: "npm:5.4.5"
     utf-8-validate: "npm:6.0.3"
     ws: "npm:8.16.0"
-    zone.js: "npm:0.14.4"
+    zone.js: "npm:0.14.5"
   languageName: unknown
   linkType: soft
 
@@ -14109,7 +14109,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zone.js@npm:0.14.4, zone.js@npm:^0.11.0 || ^0.13.0 || ^0.14.0":
+"zone.js@npm:0.14.5":
+  version: 0.14.5
+  resolution: "zone.js@npm:0.14.5"
+  dependencies:
+    tslib: "npm:^2.3.0"
+  checksum: 10c0/04f5801ebcd9c959b3123c37a8448b04ee5ffc0ffb0fdf9f9be95c6fbc1066a34a4a005468835884240fe4d7307750df61de491b89fb5e96d53d04565bdd2a16
+  languageName: node
+  linkType: hard
+
+"zone.js@npm:^0.11.0 || ^0.13.0 || ^0.14.0":
   version: 0.14.4
   resolution: "zone.js@npm:0.14.4"
   dependencies:
