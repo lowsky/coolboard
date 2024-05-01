@@ -16,7 +16,7 @@
     "@clerk/nextjs": "4.30.0",
     "@clerk/themes": "1.7.13",
     "@emotion/react": "11.11.4",
-    "@emotion/styled": "11.11.0",
+    "@emotion/styled": "11.11.5",
     "@neondatabase/serverless": "0.9.1",
     "@opentelemetry/auto-instrumentations-node": "0.44.0",
     "@opentelemetry/auto-instrumentations-web": "0.38.0",
