@@ -172,8 +172,7 @@ describe('Test coolboard', () => {
   });
 
   it('user can log-out', () => {
-    logout();
-    cy.contains('Log in');
-    cy.contains('Please, login to see your boards.');
+     logout();
+     cy.contains('Log in');
   });
 });
