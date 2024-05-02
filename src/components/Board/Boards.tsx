@@ -1,14 +1,5 @@
-import React, { useState } from 'react';
-import Link from 'next/link';
-import {
-  Container,
-  Heading,
-  IconButton,
-  List,
-  ListItem,
-  Spinner,
-} from '@chakra-ui/react';
-import { FaTrash } from 'react-icons/fa';
+import React from 'react';
+import { Container, Heading, List, ListItem, Spinner } from '@chakra-ui/react';
 import { ApolloCache } from '@apollo/client';
 
 import {
@@ -21,45 +12,13 @@ import {
 import { Segment } from 'common/Segment';
 import { FullVerticalContainer } from 'common/FullVerticalContainer';
 import { CreateBoardModal } from './CreateBoardModal';
+import { BoardListItem } from './BoardListItem';
 
-import styles from './Boards.module.css';
-
-const BoardListItem = ({ name, id, deleteBoard }) => {
-  const [deleting, setDeleting] = useState(false);
-  return (
-    <ListItem
-      padding="0.25rem 0.5rem"
-      marginBottom="0.5px"
-      display="flex"
-      data-cy={`board-list-item_${name}`}>
-      <Link href={`/board/${id}`} passHref className={styles.wideColumn}>
-        {name}
-      </Link>
-
-      <IconButton
-        backgroundColor="transparent"
-        onClick={() => {
-          setDeleting(true);
-          deleteBoard(id).finally(() => setDeleting(false));
-        }}
-        isLoading={deleting}
-        aria-label="delete board"
-        data-cy="delete-board"
-        icon={<FaTrash />}
-        size="mini"
-      />
-    </ListItem>
-  );
-};
-
-const BoardList = ({ boards, deleteBoard }) => {
+export const BoardList = ({ boards, deleteBoard }) => {
   const [createBoard, boardCreationState] = useCreateBoardMutation();
 
   return (
-    <List
-    // celled
-    // divided
-    >
+    <List>
       {boards.map(({ id, name, ...info }) => (
         <BoardListItem
           key={id}
@@ -72,7 +31,7 @@ const BoardList = ({ boards, deleteBoard }) => {
       <ListItem padding="0.25rem 0.5rem" marginBottom="0.5px" display="flex">
         <CreateBoardModal
           loading={boardCreationState.loading}
-          error={boardCreationState.error?.message}
+          error={boardCreationState.error as Error}
           createBoard={({ name }) => createBoard({ variables: { name } })}
         />
       </ListItem>
@@ -128,7 +87,8 @@ export const Boards = () => {
           <Heading as="h1" my={2}>
             Your Boards
           </Heading>
-          <p>list can not be loaded, please retry.</p>
+          <p>List can not be loaded. Details:</p>
+          <div>{error.message}</div>
         </Segment>
       </FullVerticalContainer>
     );

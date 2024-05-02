@@ -9,11 +9,17 @@ import { useAddListMutation } from 'generated/graphql';
 
 const ToIdsMapper = <T extends { id: string }>(itemWithId: T) => itemWithId.id;
 
-export const BoardContainer = (props: {
-  board: { name: string; id: string; lists: { name: string; id: string }[] };
+type BoardProps = {
+  board: {
+    name: string; //
+    id: string;
+    lists: { name: string; id: string }[];
+  };
   deleteLists: (ids: string[]) => Promise<any>;
   readonly?: boolean;
-}) => {
+};
+
+export const BoardContainer = (props: BoardProps) => {
   const { board, deleteLists, readonly } = props;
   const [addListToBoard] = useAddListMutation();
   const addList = () =>
