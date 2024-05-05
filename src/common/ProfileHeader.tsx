@@ -1,28 +1,10 @@
 import React, { ReactNode } from 'react';
-import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { useApolloClient } from '@apollo/client';
-import {
-  Box,
-  Button,
-  Container,
-  Flex,
-  Spinner,
-  useColorMode,
-} from '@chakra-ui/react';
-import { FaSignOutAlt } from 'react-icons/fa';
-import {
-  ClerkLoaded,
-  ClerkLoading,
-  SignedIn,
-  SignedOut,
-  useClerk,
-  UserButton,
-} from '@clerk/nextjs';
-import { dark } from '@clerk/themes';
-
-import { LoginButton } from './LoginButton';
+import { Box, Container, Flex } from '@chakra-ui/react';
 import Image from 'next/image';
+
+import { UserProfileHeaderUI } from 'auth/UserProfileHeaderUI';
+
 import coolBoardLogo from '../../public/CoolBoardLogo100.png';
 
 const ProfileHeaderContainer = ({
@@ -67,42 +49,9 @@ export const ProfileHeader = ({
 }: {
   isBoardsPage?: boolean;
 }) => {
-  const { replace } = useRouter();
-
-  const apolloClient = useApolloClient();
-  const { signOut } = useClerk();
-
-  const { colorMode } = useColorMode();
-  const clerkAppearance = colorMode === 'dark' ? { baseTheme: dark } : {};
-
   return (
     <ProfileHeaderContainer isBoardsPage={isBoardsPage}>
-      <ClerkLoading>
-        <Spinner />
-        Loading user...
-      </ClerkLoading>
-      <ClerkLoaded>
-        <SignedOut>
-          <LoginButton />
-        </SignedOut>
-      </ClerkLoaded>
-      <SignedIn>
-        <Flex alignItems="center" gap="0.5em">
-          <UserButton appearance={clerkAppearance} afterSignOutUrl="/" />
-          <Button
-            onClick={async (event) => {
-              event.preventDefault();
-              await apolloClient.clearStore?.();
-              await signOut();
-              await replace('/boards');
-            }}
-            data-cy="sign-out-button"
-            leftIcon={<FaSignOutAlt />}
-            color="unset">
-            Sign Out
-          </Button>
-        </Flex>
-      </SignedIn>
+      <UserProfileHeaderUI />
     </ProfileHeaderContainer>
   );
 };
