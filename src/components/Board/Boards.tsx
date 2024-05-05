@@ -12,21 +12,20 @@ import {
 import { Segment } from 'common/Segment';
 import { FullVerticalContainer } from 'common/FullVerticalContainer';
 import { CreateBoardModal } from './ui/CreateBoardModal';
-import { BoardListItem } from './ui/BoardListItem';
+import { BoardListItem, BoardListItemProps } from './ui/BoardListItem';
 
-export const BoardList = ({ boards, deleteBoard }) => {
+interface Props {
+  boards: Omit<BoardListItemProps, 'deleteBoard'>[];
+  deleteBoard: (id: string) => Promise<any>;
+}
+
+export const BoardList = ({ boards, deleteBoard }: Props) => {
   const [createBoard, boardCreationState] = useCreateBoardMutation();
 
   return (
     <List>
-      {boards.map(({ id, name, ...info }) => (
-        <BoardListItem
-          key={id}
-          id={id}
-          name={name}
-          deleteBoard={deleteBoard}
-          {...info}
-        />
+      {boards.map(({ id, ...info }) => (
+        <BoardListItem key={id} id={id} {...info} deleteBoard={deleteBoard} />
       ))}
       <ListItem padding="0.25rem 0.5rem" marginBottom="0.5px" display="flex">
         <CreateBoardModal

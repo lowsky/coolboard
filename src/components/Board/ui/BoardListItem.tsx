@@ -5,13 +5,13 @@ import { FaTrash } from 'react-icons/fa';
 
 import styles from 'components/Board/Boards.module.css';
 
-interface Props {
+export interface BoardListItemProps {
   name: string;
   id: string;
-  deleteBoard: ({ id }: { id: string }) => Promise<void>;
+  deleteBoard: (id: string) => Promise<void>;
 }
 
-export const BoardListItem = (props: Props) => {
+export const BoardListItem = (props: BoardListItemProps) => {
   const { name, id, deleteBoard } = props;
   const [deleting, setDeleting] = useState(false);
 
@@ -29,7 +29,7 @@ export const BoardListItem = (props: Props) => {
         backgroundColor="transparent"
         onClick={() => {
           setDeleting(true);
-          deleteBoard({ id }).finally(() => setDeleting(false));
+          deleteBoard(id).finally(() => setDeleting(false));
         }}
         isLoading={deleting}
         aria-label="delete board"
