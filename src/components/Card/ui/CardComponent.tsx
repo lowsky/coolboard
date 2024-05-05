@@ -8,7 +8,7 @@ import {
   UpdateCardMutation,
   UpdateCardMutationVariables,
 } from 'generated/graphql';
-import { CardEditModal } from './CardEditModal';
+import { CardEditModal } from '../CardEditModal';
 
 type State = {
   conflict: boolean;

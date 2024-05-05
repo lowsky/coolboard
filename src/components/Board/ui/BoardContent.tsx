@@ -1,9 +1,9 @@
-import { Flex, Skeleton } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 import React, { Suspense } from 'react';
 
 import { CardList } from 'components/List/CardList';
-import { CardListHeader } from 'components/List/CardListHeader';
 import { AddListButton } from 'components/Board/ui/AddListButton';
+import { CardListSkeleton } from 'components/List/ui/CardListSkeleton';
 
 interface BoardContentProps {
   lists: { name: string; id: string }[];
@@ -24,18 +24,13 @@ export const BoardContent = ({
     bg="blue"
     p="1rem"
     flex="1"
+    gap="0.4em"
+    alignItems="flex-start"
     overflow="auto">
     {lists.map((list) => (
       <Suspense
         key={list.id}
-        fallback={
-          <Skeleton minHeight="2rem">
-            <CardListHeader
-              name={list.name}
-              listId={list.id}
-              readonly></CardListHeader>
-          </Skeleton>
-        }>
+        fallback={<CardListSkeleton name={list.name} id={list.id} />}>
         <CardList
           key={list.id}
           name={list.name}

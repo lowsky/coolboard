@@ -19,6 +19,15 @@ export const Board = ({ boardId, readonly = false }: BoardProps) => {
 
   const [deleteListsOfBoard] = useDeleteListsOfBoardMutation();
 
+  const deleteLists = (ids: string[]) =>
+    deleteListsOfBoard({
+      variables: {
+        boardId,
+        listIds: ids,
+      },
+    });
+  const [addListToBoard] = useAddListMutation();
+
   if (error) {
     return null;
   }
@@ -28,15 +37,6 @@ export const Board = ({ boardId, readonly = false }: BoardProps) => {
   }
 
   const { board } = data;
-
-  const deleteLists = (ids: string[]) =>
-    deleteListsOfBoard({
-      variables: {
-        boardId,
-        listIds: ids,
-      },
-    });
-  const [addListToBoard] = useAddListMutation();
 
   const addList = (name?: string) => {
     const vars: { variables: { name: string; boardId: string } } = {

@@ -10,7 +10,7 @@ import {
 } from '@chakra-ui/react';
 
 import { Card } from 'generated/graphql';
-import { ShowDiffWarning } from './ShowDiffWarning';
+import { ShowDiffWarning } from './ui/ShowDiffWarning';
 
 type CardEditFormProps = {
   name: string;

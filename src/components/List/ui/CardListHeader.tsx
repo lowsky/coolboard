@@ -59,39 +59,43 @@ export function CardListHeader({
           <Input as={EditableInput} />
         </Editable>
       </Heading>
-      {!readonly && (
-        <Popover isLazy>
-          <PopoverTrigger>
-            <IconButton
-              data-cy="card-list-header-menu"
-              icon={<HamburgerIcon />}
-              size="sm"
-              aria-label="delete list"
-            />
-          </PopoverTrigger>
-          <PopoverContent
-            rootProps={{
-              bg: 'transparent',
-              boxShadow: 'xl',
-            }}
-            w="min-content"
-            boxShadow="xl">
-            <PopoverBody>{children}</PopoverBody>
-          </PopoverContent>
-        </Popover>
-      )}
+      {!readonly && <ListHeaderMenu>{children}</ListHeaderMenu>}
     </Flex>
   );
+}
 
-  function EditableControls() {
-    const { isEditing, getEditButtonProps } = useEditableControls();
-    return isEditing ? null : (
-      <IconButton
-        {...getEditButtonProps()}
-        aria-label="edit the list title"
-        size="sm"
-        icon={<EditIcon />}
-      />
-    );
-  }
+function EditableControls() {
+  const { isEditing, getEditButtonProps } = useEditableControls();
+  return isEditing ? null : (
+    <IconButton
+      {...getEditButtonProps()}
+      aria-label="edit the list title"
+      size="sm"
+      icon={<EditIcon />}
+    />
+  );
+}
+
+function ListHeaderMenu({ children }) {
+  return (
+    <Popover isLazy>
+      <PopoverTrigger>
+        <IconButton
+          data-cy="card-list-header-menu"
+          icon={<HamburgerIcon />}
+          size="sm"
+          aria-label="delete list"
+        />
+      </PopoverTrigger>
+      <PopoverContent
+        rootProps={{
+          bg: 'transparent',
+          boxShadow: 'xl',
+        }}
+        w="min-content"
+        boxShadow="xl">
+        <PopoverBody>{children}</PopoverBody>
+      </PopoverContent>
+    </Popover>
+  );
 }

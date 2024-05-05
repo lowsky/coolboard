@@ -1,7 +1,7 @@
 import { ApolloCache } from '@apollo/client';
 import { CardListDocument, CardListQuery } from 'generated/graphql';
 
-export const updateCachedListsAfterMovingCard: (
+export const createUpdateCachedListsAfterMovingCard: (
   cardId: string,
   newCardListId: string,
   oldCardListId: string
