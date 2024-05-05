@@ -1,12 +1,13 @@
-import { Button, Flex, Skeleton } from '@chakra-ui/react';
+import { Flex, Skeleton } from '@chakra-ui/react';
 import React, { Suspense } from 'react';
+
 import { CardList } from 'components/List/CardList';
-import { FaPlus } from 'react-icons/fa';
 import { CardListHeader } from 'components/List/CardListHeader';
+import { AddListButton } from 'components/Board/ui/AddListButton';
 
 interface BoardContentProps {
   lists: { name: string; id: string }[];
-  addList: () => void;
+  addList: (name?: string) => Promise<any>;
   boardId: string;
   readonly?: boolean;
 }
@@ -46,14 +47,4 @@ export const BoardContent = ({
     ))}
     {!readonly && <AddListButton onAddNewList={addList} />}
   </Flex>
-);
-
-const AddListButton = ({ onAddNewList }: { onAddNewList: () => void }) => (
-  <Button
-    onClick={onAddNewList}
-    flexShrink={0}
-    flexGrow={0}
-    leftIcon={<FaPlus />}>
-    Add a list
-  </Button>
 );

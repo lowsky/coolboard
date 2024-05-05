@@ -11,8 +11,8 @@ import {
 } from 'generated/graphql';
 import { Segment } from 'common/Segment';
 import { FullVerticalContainer } from 'common/FullVerticalContainer';
-import { CreateBoardModal } from './CreateBoardModal';
-import { BoardListItem } from './BoardListItem';
+import { CreateBoardModal } from './ui/CreateBoardModal';
+import { BoardListItem } from './ui/BoardListItem';
 
 export const BoardList = ({ boards, deleteBoard }) => {
   const [createBoard, boardCreationState] = useCreateBoardMutation();

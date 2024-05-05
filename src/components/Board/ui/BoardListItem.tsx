@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
 import { IconButton, ListItem } from '@chakra-ui/react';
 import Link from 'next/link';
-import styles from 'components/Board/Boards.module.css';
 import { FaTrash } from 'react-icons/fa';
-import { User } from 'generated/graphql';
+
+import styles from 'components/Board/Boards.module.css';
 
 interface Props {
   name: string;
   id: string;
-  user?: User;
   deleteBoard: ({ id }: { id: string }) => Promise<void>;
 }
 
 export const BoardListItem = (props: Props) => {
-  const { name, id, user, deleteBoard } = props;
+  const { name, id, deleteBoard } = props;
   const [deleting, setDeleting] = useState(false);
 
   return (
@@ -22,11 +21,7 @@ export const BoardListItem = (props: Props) => {
       marginBottom="0.5px"
       display="flex"
       data-cy={`board-list-item_${name}`}>
-      <Link
-        href={`/board/${id}`}
-        passHref
-        className={styles.wideColumn}
-        title={user ? JSON.stringify(user) : '-none'}>
+      <Link href={`/board/${id}`} passHref className={styles.wideColumn}>
         {name}
       </Link>
 
