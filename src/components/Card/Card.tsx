@@ -1,7 +1,7 @@
 import React from 'react';
 import { DragSourceMonitor, useDrag } from 'react-dnd';
 
-import { CardComponent } from './CardComponent';
+import { CardComponent } from './ui/CardComponent';
 import {
   UpdateCardMutationVariables,
   useUpdateCardMutation,

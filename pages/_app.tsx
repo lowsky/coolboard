@@ -3,13 +3,13 @@ import type { AppProps } from 'next/app';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ClerkProvider } from '@clerk/nextjs';
-import { ChakraProvider, extendTheme } from '@chakra-ui/react';
-import { mode } from '@chakra-ui/theme-tools';
+import { ChakraProvider } from '@chakra-ui/react';
 
 import 'public/index.css';
 
 import { instrumentBrowserOtel } from 'src/instrumentBrowserOtel';
 import { Footer } from 'components/Footer';
+import { theme } from 'common/theme';
 
 if (typeof window !== 'undefined') {
   // TODO investigate later...: top-level await in this place
@@ -21,69 +21,6 @@ if (typeof window !== 'undefined') {
 // The title of the Head and view-port-meta needs to go here, see https://nextjs.org/docs/messages/no-document-viewport-meta
 
 export default function App({ Component, pageProps }: AppProps) {
-  /*
-More background about theming:
-https://chakra-ui.com/docs/styled-system/theming/theme
-https://chakra-ui.com/docs/styled-system/theming/customize-theme#customizing-component-styles
- */
-
-  const theme = extendTheme({
-    config: {
-      useSystemColorMode: true,
-      initialColorMode: 'light', // fallback
-    },
-    components: {
-      Text: {
-        baseStyle: {
-          mb: '1rem',
-        },
-      },
-      Heading: {
-        baseStyle: {
-          fontWeight: '700',
-          mb: '1rem',
-        },
-      },
-      Container: {
-        variants: {
-          header: {
-            padding: '1em',
-            _dark: {
-              bg: 'gray.700',
-              color: 'gray.300',
-            },
-            _light: {
-              bg: 'lightgray',
-              color: 'black',
-            },
-          },
-          footer: (props) => ({
-            fontSize: '0.75em',
-            padding: '1em',
-            color: mode('black', 'lightgray')(props),
-            bg: mode('lightgray', 'gray')(props),
-          }),
-        },
-      },
-    },
-    styles: {
-      global: (props) => ({
-        body: {
-          fontFamily: 'Inter',
-        },
-        a: {
-          color: mode('#3273dc', 'blue.200')(props),
-          _hover: {
-            textDecoration: 'underline',
-          },
-        },
-        li: {
-          bg: mode('lightgrey', 'grey')(props),
-        },
-      }),
-    },
-  });
-
   return (
     <>
       <Head>

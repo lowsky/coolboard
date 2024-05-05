@@ -17,7 +17,13 @@ import {
 } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
 
-export const CreateBoardModal = (props) => {
+interface Props {
+  createBoard: ({ name }: { name: string }) => Promise<any>;
+  loading?: boolean;
+  error?: Error;
+}
+
+export const CreateBoardModal = (props: Props) => {
   const [state, setState] = useState({ name: '' });
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -30,7 +36,7 @@ export const CreateBoardModal = (props) => {
 
   const { name } = state;
 
-  const { createBoard, loading, error } = props;
+  const { createBoard, loading = false, error } = props;
 
   const onSubmit = (ev?: SyntheticEvent) => {
     ev?.preventDefault();

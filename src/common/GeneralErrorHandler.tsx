@@ -9,7 +9,7 @@ import {
 } from '@chakra-ui/react';
 
 import { useApolloNetworkStatus } from '../setupGraphQLClient';
-import { LoginButton } from './LoginButton';
+import { LoginButton } from 'auth/LoginButton';
 
 const ErrorMessage = ({
   children,

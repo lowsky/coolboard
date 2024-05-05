@@ -1,10 +1,11 @@
 import React from 'react';
 import {
+  useAddListMutation,
   useBoardSuspenseQuery,
   useDeleteListsOfBoardMutation,
 } from 'generated/graphql';
 
-import { BoardContainer } from './BoardContainer';
+import { BoardContainer } from './ui/BoardContainer';
 
 interface BoardProps {
   boardId: string;
@@ -18,6 +19,20 @@ export const Board = ({ boardId, readonly = false }: BoardProps) => {
 
   const [deleteListsOfBoard] = useDeleteListsOfBoardMutation();
 
+  const deleteLists = (ids: string[]) =>
+    deleteListsOfBoard({
+      variables: {
+        boardId,
+        listIds: ids,
+      },
+    });
+
+  const [addListToBoard] = useAddListMutation();
+  const addList = () =>
+    addListToBoard({
+      variables: { name: 'new list', boardId },
+    });
+
   if (error) {
     return null;
   }
@@ -28,16 +43,9 @@ export const Board = ({ boardId, readonly = false }: BoardProps) => {
 
   const { board } = data;
 
-  const deleteLists = (ids: string[]) =>
-    deleteListsOfBoard({
-      variables: {
-        boardId,
-        listIds: ids,
-      },
-    });
-
   return (
     <BoardContainer
+      addListToBoard={addList}
       deleteLists={deleteLists}
       board={board}
       readonly={readonly}

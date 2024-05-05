@@ -11,7 +11,12 @@ import {
 import { HamburgerIcon } from '@chakra-ui/icons';
 import { MdDashboard } from 'react-icons/md';
 
-export const BoardTitle = ({ boardName, headerActions }) => (
+type BoardTitleProps = {
+  boardName: string;
+  headerActions?: false | React.JSX.Element;
+};
+
+export const BoardTitle = ({ boardName, headerActions }: BoardTitleProps) => (
   <Flex justifyContent="space-between" alignItems="center" mx={4}>
     <Heading as="h1" mb={0}>
       <Icon as={MdDashboard} height={'0.75em'} />
