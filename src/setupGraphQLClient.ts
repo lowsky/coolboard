@@ -11,6 +11,16 @@ import { REQ_HEADER_x_coolboard_readonly } from './headers';
 const networkStatusNotifier = createNetworkStatusNotifier();
 export const { useApolloNetworkStatus } = networkStatusNotifier;
 
+import { loadErrorMessages, loadDevMessages } from '@apollo/client/dev';
+
+// see apollo error messages
+// https://www.apollographql.com/docs/react/errors#%7B%22version%22%3A%223.10.1%22%2C%22message%22%3A39%2C%22args%22%3A%5B%22Payload%22%2C%22cyclic%20object%20value%22%5D%7D
+if (process.env.NODE_ENV !== 'production') {
+  // Adds messages only in a dev environment
+  loadDevMessages();
+  loadErrorMessages();
+}
+
 export const setupGraphQLClient = (readOnly?: boolean) => {
   const headers = readOnly
     ? {
