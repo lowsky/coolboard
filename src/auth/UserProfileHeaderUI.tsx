@@ -23,13 +23,11 @@ export const UserProfileHeaderUI = () => {
 
   const clerkAppearance = colorMode === 'dark' ? { baseTheme: dark } : {};
 
-  function awaitLogoutAndCacheClear() {
-    return async (event: MouseEvent) => {
-      event.preventDefault();
-      await apolloClient.clearStore?.();
-      await signOut();
-      await replace('/boards');
-    };
+  async function awaitLogoutAndCacheClear(event: MouseEvent) {
+    event.preventDefault();
+    await apolloClient.clearStore?.();
+    await signOut();
+    await replace('/boards');
   }
 
   return (
@@ -49,6 +47,7 @@ export const UserProfileHeaderUI = () => {
         <Flex alignItems="center" gap="0.5em">
           <UserButton appearance={clerkAppearance} afterSignOutUrl="/" />
           <Button
+            // @ts-expect-error it is an async function.
             onClick={awaitLogoutAndCacheClear}
             data-cy="sign-out-button"
             leftIcon={<FaSignOutAlt />}
