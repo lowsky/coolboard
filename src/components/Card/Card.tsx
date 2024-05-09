@@ -5,7 +5,7 @@ import { CardComponent } from './ui/CardComponent';
 import {
   type UpdateCardMutationVariables,
   useUpdateCardMutation,
-} from 'generated/graphql';
+} from 'components/persistence';
 
 export const Card = (props) => {
   const [mutation] = useUpdateCardMutation({
