@@ -10,7 +10,13 @@ import { AddIcon } from '@chakra-ui/icons';
 
 import { EditableControls } from 'common/EditableControls';
 
-export function CardListAddCardFooter({ readonly, addCard, id }) {
+interface Props {
+  readonly: boolean;
+  addCard: (id: string, name: string) => Promise<void>;
+  id: string;
+}
+
+export function CardListAddCardFooter({ readonly, addCard, id }: Props) {
   const initialNewCardName = 'New Card';
   const [newCardNameInputValue, setNewCardNameInputValue] =
     useState(initialNewCardName);

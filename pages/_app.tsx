@@ -88,7 +88,6 @@ export default function App({ Component, pageProps }: AppProps) {
             </ChakraProvider>
           </DBContext.Provider>
         </UserContext.Provider>
-        ;
       </>
     );
   }

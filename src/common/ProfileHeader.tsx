@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Box, Container, Flex } from '@chakra-ui/react';
 import Image from 'next/image';
 
-import { UserProfileHeaderUI } from 'auth/UserProfileHeaderUI';
+import { UserProfileHeaderUIInstanaDb } from 'auth/UserProfileHeaderUIInstandDB';
 
 import coolBoardLogo from '../../public/CoolBoardLogo100.png';
 
@@ -51,7 +51,7 @@ export const ProfileHeader = ({
 }) => {
   return (
     <ProfileHeaderContainer isBoardsPage={isBoardsPage}>
-      <UserProfileHeaderUI />
+      <UserProfileHeaderUIInstanaDb />
     </ProfileHeaderContainer>
   );
 };

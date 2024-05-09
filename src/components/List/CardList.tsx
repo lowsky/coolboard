@@ -1,14 +1,14 @@
 import {
-  useAddCardMutationMutation,
-  useCardListSuspenseQuery,
+  useAddCardMutation,
+  useCardListQuery,
   useDeleteListOfBoardMutation,
   useMoveCard2Mutation,
-} from 'generated/graphql';
-import React from 'react';
+} from 'components/persistence';
 
-import { createUpdateCachedListsAfterMovingCard } from './overrideCacheListsAfterMovingCard';
-import { CardListWithDnd, type UIListData } from './ui/CardListWithDnd';
-import { type MoveItemFromTo, useCardListDnd } from './ui/useCardListDnd';
+import { MoveItemFromTo, useCardListDnd } from './ui/useCardListDnd';
+import { CardListWithDnd, UICardsData, UIListData } from './ui/CardListWithDnd';
+import { TransactionResult } from '@instantdb/core';
+import { CardListSkeleton } from 'components/List/ui/CardListSkeleton';
 
 interface CardListProps {
   id: string;
@@ -23,11 +23,11 @@ export const CardList = ({
   boardId,
   readonly = false,
 }: CardListProps) => {
-  const { error, data } = useCardListSuspenseQuery({
+  const { error, data, isLoading } = useCardListQuery({
     variables: { cardListId: id },
   });
 
-  const [addCardWithName] = useAddCardMutationMutation({
+  const [addCardWithName] = useAddCardMutation({
     variables: {
       cardListId: id,
       name: 'new card',
@@ -40,21 +40,19 @@ export const CardList = ({
     deleteListOfBoard({
       variables: {
         boardId,
-        listId: id,
+        listIds: [id],
       },
     });
 
-  const addCard = () => addCardWithName();
+  const addCard: (id: string, name: string) => Promise<TransactionResult> = (
+    id: string,
+    name: string
+  ) => addCardWithName({ variables: { cardListId: id, name } });
 
   const [moveCard] = useMoveCard2Mutation();
-  const moveCardToList: MoveItemFromTo = (cardId, toList, fromListId) =>
+  const moveCardToList: MoveItemFromTo = (cardId, fromListId, toList) =>
     moveCard({
       variables: { fromListId, toList, cardId },
-      update: createUpdateCachedListsAfterMovingCard(
-        cardId,
-        toList,
-        fromListId
-      ),
     });
 
   const [dndProps, ref] = useCardListDnd(id, moveCardToList);
@@ -63,7 +61,17 @@ export const CardList = ({
     return <span>Load error!</span>;
   }
 
-  const list: UIListData = data?.list;
+  if (isLoading) {
+    return <CardListSkeleton name={name} id={id} />;
+  }
+
+  const cards = data.cardList?.[0].cards as UICardsData[];
+
+  const list: UIListData = {
+    id,
+    name,
+    cards,
+  };
 
   return (
     <div ref={ref}>
