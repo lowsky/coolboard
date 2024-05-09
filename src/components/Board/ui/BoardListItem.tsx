@@ -4,11 +4,12 @@ import Link from 'next/link';
 import { FaTrash } from 'react-icons/fa';
 
 import styles from 'components/Board/Boards.module.css';
+import { WithId } from '../../../setupInstaWeb';
 
 export interface BoardListItemProps {
   name: string;
   id: string;
-  deleteBoard: (id: string) => Promise<void>;
+  deleteBoard: ({ id }: WithId) => Promise<void>;
 }
 
 export const BoardListItem = (props: BoardListItemProps) => {
@@ -29,7 +30,7 @@ export const BoardListItem = (props: BoardListItemProps) => {
         backgroundColor="transparent"
         onClick={() => {
           setDeleting(true);
-          deleteBoard(id).finally(() => setDeleting(false));
+          deleteBoard({ id }).finally(() => setDeleting(false));
         }}
         isLoading={deleting}
         aria-label="delete board"

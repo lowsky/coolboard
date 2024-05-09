@@ -1,11 +1,12 @@
 import React from 'react';
-import {
-  useAddListMutation,
-  useBoardSuspenseQuery,
-  useDeleteListsOfBoardMutation,
-} from 'generated/graphql';
 
 import { BoardContainer } from './ui/BoardContainer';
+import {
+  useAddListMutation,
+  useBoardQuery,
+  useDeleteListOfBoardMutation,
+  useRunDignosis,
+} from 'components/persistence';
 
 interface BoardProps {
   boardId: string;
@@ -13,11 +14,9 @@ interface BoardProps {
 }
 
 export const Board = ({ boardId, readonly = false }: BoardProps) => {
-  const { error, data } = useBoardSuspenseQuery({
-    variables: { boardId },
-  });
-
-  const [deleteListsOfBoard] = useDeleteListsOfBoardMutation();
+  const [deleteListsOfBoard] = useDeleteListOfBoardMutation();
+  const { data, error, isLoading } = useBoardQuery(boardId);
+  useRunDignosis();
 
   const deleteLists = (ids: string[]) =>
     deleteListsOfBoard({
@@ -37,11 +36,11 @@ export const Board = ({ boardId, readonly = false }: BoardProps) => {
     return null;
   }
 
-  if (!data?.board) {
+  if (isLoading || !data?.boards || data?.boards.length === 0) {
     return <div>Board does not exist.</div>;
   }
 
-  const { board } = data;
+  const board = data.boards[0];
 
   return (
     <BoardContainer

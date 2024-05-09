@@ -15,7 +15,7 @@ import {
 import { EditIcon, HamburgerIcon } from '@chakra-ui/icons';
 import React, { type ReactNode } from 'react';
 
-import { useRenameListMutation } from 'generated/graphql';
+import { useRenameListMutation } from 'components/persistence';
 
 interface CardListHeaderProps {
   name: string;
@@ -30,8 +30,8 @@ export function CardListHeader({
   children,
   readonly = false,
 }: CardListHeaderProps) {
-  const [renameList, mutationResult] = useRenameListMutation();
-  const { loading } = mutationResult;
+  const [renameList] = useRenameListMutation();
+  const { loading } = { loading: false }; // ??? mutationResult;
 
   return (
     <Flex
