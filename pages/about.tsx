@@ -3,12 +3,12 @@ import { Box, Container, Heading, Icon, Link, Text } from '@chakra-ui/react';
 import Image from 'next/image';
 import { FaSignInAlt, FaFilm } from 'react-icons/fa';
 
-import FullPageWithApollo from 'common/FullPageWithApollo';
+import { FullVerticalContainer } from 'common/FullVerticalContainer';
 import { ProfileHeader } from 'common/ProfileHeader';
 
 export default function About() {
   return (
-    <FullPageWithApollo data-cy="about-full-container">
+    <FullVerticalContainer data-cy="full-container">
       <ProfileHeader />
       <Container maxW="700px">
         <section>
@@ -164,6 +164,6 @@ export default function About() {
           <Text>“Browser” icon by Didzis Gruznovs from the Noun Project.</Text>
         </section>
       </Container>
-    </FullPageWithApollo>
+    </FullVerticalContainer>
   );
 }

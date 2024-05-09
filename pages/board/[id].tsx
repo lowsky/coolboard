@@ -8,7 +8,7 @@ import { trackPage } from 'src/common/tracking';
 
 import { ProfileHeader } from 'src/common/ProfileHeader';
 import { GeneralErrorHandler } from 'src/common/GeneralErrorHandler';
-import FullPageWithApollo from 'src/common/FullPageWithApollo';
+import { FullVerticalContainer } from 'common/FullVerticalContainer';
 import { Board } from 'components/Board/Board';
 
 export default function BoardPage() {
@@ -20,7 +20,7 @@ export default function BoardPage() {
   trackPage('board ' + id);
 
   return (
-    <FullPageWithApollo>
+    <FullVerticalContainer data-cy="full-container">
       <ProfileHeader />
       <GeneralErrorHandler />
       <DndProvider backend={HTML5Backend}>
@@ -28,6 +28,6 @@ export default function BoardPage() {
           {boardId && <Board boardId={boardId} />}
         </Suspense>
       </DndProvider>
-    </FullPageWithApollo>
+    </FullVerticalContainer>
   );
 }
