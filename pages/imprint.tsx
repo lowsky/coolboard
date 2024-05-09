@@ -3,14 +3,14 @@ import Link from 'next/link';
 import { Container, Heading, Text } from '@chakra-ui/react';
 
 import { trackPage } from 'common/tracking';
-import FullPageWithApollo from 'common/FullPageWithApollo';
+import { FullVerticalContainer } from 'common/FullVerticalContainer';
 import { ProfileHeader } from 'common/ProfileHeader';
 
 export default function Imprint() {
   trackPage('imprint');
 
   return (
-    <FullPageWithApollo>
+    <FullVerticalContainer data-cy="full-container">
       <ProfileHeader />
       <Container maxW="980px">
         <Heading as="h1">Impressum</Heading>
@@ -91,6 +91,6 @@ export default function Imprint() {
           Seite
         </Text>
       </Container>
-    </FullPageWithApollo>
+    </FullVerticalContainer>
   );
 }
