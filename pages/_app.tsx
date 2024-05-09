@@ -1,40 +1,80 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import Head from 'next/head';
 import type { AppProps } from 'next/app';
-import { Analytics } from '@vercel/analytics/react';
-import { SpeedInsights } from '@vercel/speed-insights/next';
-import { ClerkProvider } from '@clerk/nextjs';
 import { ChakraProvider } from '@chakra-ui/react';
 
 import 'public/index.css';
 
-import { instrumentBrowserOtel } from 'src/instrumentBrowserOtel';
+//import { instrumentBrowserOtel } from 'src/instrumentBrowserOtel';
+//import { InstanaEumScripts } from 'common/instanaEumScripts';
 import { Footer } from 'components/Footer';
+
+import { DBContext, UserContext, db } from '../src/setupInstaWeb';
+import { Login } from 'auth/AuthUI';
+
 import { theme } from 'common/theme';
 
 if (typeof window !== 'undefined') {
   // TODO investigate later...: top-level await in this place
   // Won't be possible with yarn next dev --turbo
   // -> it hangs completely on the initial page load !
-  await instrumentBrowserOtel();
+  //await instrumentBrowserOtel();
 }
 
 // The title of the Head and view-port-meta needs to go here, see https://nextjs.org/docs/messages/no-document-viewport-meta
 
 export default function App({ Component, pageProps }: AppProps) {
-  return (
-    <>
-      <Head>
-        <title>Coolboard - Hands-on Application Building with GraphQL</title>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no"
-        />
-      </Head>
-      <Suspense fallback={<span>Loading...</span>}>
+  const { isLoading, user, error } = db.useAuth();
+  const fetchUser = db.useQuery({
+    user: {},
+  });
+
+  if (user?.id) {
+    console.log({ fetchUser });
+    /*
+    debugger
+    const {data} = user ? db.useQuery({users: {
+        user.id
+      }})
+      : {}
+
+    db.transact(tx.users[user.id].update({
+      id: user.id, email: user.email, createdAt: Date.now(),
+    }));
+    */
+  }
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  if (error) {
+    return <div>Uh oh! {error.message}</div>;
+  }
+
+  if (!user) {
+    return <Login db={db} />;
+  } else {
+    /*
+    //const data: UserBoardsQuery = {
+      me: {
+        boards: [], id: user.id, name: 'nomee',
+      },
+    } as UserBoardsQuery;
+     */
+    return (
+      <>
+        <Head>
+          <title>Coolboard - Hands-on Application Building with GraphQL</title>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+          />
+        </Head>
         {
-          // @ts-expect-error async component
-          <ClerkProvider dynamic {...pageProps}>
+          //  <InstanaEumScripts />
+        }
+        <UserContext.Provider value={user}>
+          <DBContext.Provider value={db}>
             <ChakraProvider theme={theme}>
               <div
                 style={{
@@ -46,12 +86,10 @@ export default function App({ Component, pageProps }: AppProps) {
 
               <Footer />
             </ChakraProvider>
-          </ClerkProvider>
-        }
-      </Suspense>
-
-      <Analytics />
-      <SpeedInsights />
-    </>
-  );
+          </DBContext.Provider>
+        </UserContext.Provider>
+        ;
+      </>
+    );
+  }
 }
