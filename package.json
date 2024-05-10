@@ -85,6 +85,7 @@
     "@graphql-codegen/typescript-graphql-files-modules": "3.0.1",
     "@graphql-codegen/typescript-operations": "4.6.1",
     "@graphql-codegen/typescript-react-apollo": "4.3.3",
+    "@instantdb/react": "^0.10.10",
     "@next/eslint-plugin-next": "15.3.4",
     "@types/react": "19",
     "@types/react-dom": "19.1.6",

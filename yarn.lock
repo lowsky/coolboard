@@ -2869,6 +2869,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@instantdb/core@npm:0.10.10":
+  version: 0.10.10
+  resolution: "@instantdb/core@npm:0.10.10"
+  dependencies:
+    immer: "npm:9.0.14"
+    object-hash: "npm:^3.0.0"
+    uuid: "npm:^9.0.0"
+  checksum: 10c0/b8f9989a7c082d54fd661e9da37ef659aad8956f7a0fc3d19e1cb7dc20cb20e52365efdb0304a0e3d1dda323ded0bb15748c6aba9f8cb6393bce4e2b551afccd
+  languageName: node
+  linkType: hard
+
+"@instantdb/react@npm:^0.10.10":
+  version: 0.10.10
+  resolution: "@instantdb/react@npm:0.10.10"
+  dependencies:
+    "@instantdb/core": "npm:0.10.10"
+  peerDependencies:
+    react: ">=16"
+  checksum: 10c0/366995552d81c06f44f95b0892ecf572378d8178fc07d5d938985cc27d2b111146f23013f0e98f3793e4d7e841d21f42fbe67ff232e997ef3408981c60e094e4
+  languageName: node
+  linkType: hard
+
 "@jridgewell/gen-mapping@npm:^0.3.2":
   version: 0.3.2
   resolution: "@jridgewell/gen-mapping@npm:0.3.2"
@@ -6536,6 +6558,7 @@ __metadata:
     "@graphql-codegen/typescript-operations": "npm:4.6.1"
     "@graphql-codegen/typescript-react-apollo": "npm:4.3.3"
     "@graphql-yoga/plugin-disable-introspection": "npm:^2.14.3"
+    "@instantdb/react": "npm:^0.10.10"
     "@neondatabase/serverless": "npm:1.0.1"
     "@next/eslint-plugin-next": "npm:15.3.4"
     "@opentelemetry/auto-instrumentations-node": "npm:0.60.1"
@@ -8905,6 +8928,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"immer@npm:9.0.14":
+  version: 9.0.14
+  resolution: "immer@npm:9.0.14"
+  checksum: 10c0/8407cfd9fbf651dae954e44fea0148f1801a4961ad94e3d28abd36d38327a32b3a5d90ef4979b5f940d9ae2ef8c89127809d6706fb59cec17b404c29ec56d4d8
+  languageName: node
+  linkType: hard
+
 "immutable@npm:~3.7.6":
   version: 3.7.6
   resolution: "immutable@npm:3.7.6"
@@ -10532,6 +10562,13 @@ __metadata:
   version: 4.1.1
   resolution: "object-assign@npm:4.1.1"
   checksum: 10c0/1f4df9945120325d041ccf7b86f31e8bcc14e73d29171e37a7903050e96b81323784ec59f93f102ec635bcf6fa8034ba3ea0a8c7e69fa202b87ae3b6cec5a414
+  languageName: node
+  linkType: hard
+
+"object-hash@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "object-hash@npm:3.0.0"
+  checksum: 10c0/a06844537107b960c1c8b96cd2ac8592a265186bfa0f6ccafe0d34eabdb526f6fa81da1f37c43df7ed13b12a4ae3457a16071603bcd39d8beddb5f08c37b0f47
   languageName: node
   linkType: hard
 
@@ -13333,6 +13370,15 @@ __metadata:
   version: 1.0.2
   resolution: "util-deprecate@npm:1.0.2"
   checksum: 10c0/41a5bdd214df2f6c3ecf8622745e4a366c4adced864bc3c833739791aeeeb1838119af7daed4ba36428114b5c67dcda034a79c882e97e43c03e66a4dd7389942
+  languageName: node
+  linkType: hard
+
+"uuid@npm:^9.0.0":
+  version: 9.0.0
+  resolution: "uuid@npm:9.0.0"
+  bin:
+    uuid: dist/bin/uuid
+  checksum: 10c0/8867e438990d1d33ac61093e2e4e3477a2148b844e4fa9e3c2360fa4399292429c4b6ec64537eb1659c97b2d10db349c673ad58b50e2824a11e0d3630de3c056
   languageName: node
   linkType: hard
 
