@@ -59,9 +59,6 @@ export default function App({ Component, pageProps }: AppProps) {
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
           />
         </Head>
-        {
-          //  <InstanaEumScripts />
-        }
         <UserContext.Provider value={user}>
           <DBContext.Provider value={db}>
             <ChakraProvider theme={theme}>

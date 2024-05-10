@@ -1,5 +1,4 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { InstanaEumScripts } from 'common/instanaEumScripts';
 
 class MyDocument extends Document {
   render() {
@@ -67,7 +66,6 @@ class MyDocument extends Document {
           </div>
 
           <NextScript />
-          <InstanaEumScripts />
         </body>
       </Html>
     );
