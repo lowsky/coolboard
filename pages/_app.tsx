@@ -5,23 +5,12 @@ import { ChakraProvider } from '@chakra-ui/react';
 
 import 'public/index.css';
 
-//import { instrumentBrowserOtel } from 'src/instrumentBrowserOtel';
-//import { InstanaEumScripts } from 'common/instanaEumScripts';
 import { Footer } from 'components/Footer';
 
 import { DBContext, UserContext, db } from '../src/setupInstaWeb';
 import { Login } from 'auth/AuthUI';
 
 import { theme } from 'common/theme';
-
-if (typeof window !== 'undefined') {
-  // TODO investigate later...: top-level await in this place
-  // Won't be possible with yarn next dev --turbo
-  // -> it hangs completely on the initial page load !
-  //await instrumentBrowserOtel();
-}
-
-// The title of the Head and view-port-meta needs to go here, see https://nextjs.org/docs/messages/no-document-viewport-meta
 
 export default function App({ Component, pageProps }: AppProps) {
   const { isLoading, user, error } = db.useAuth();
