@@ -7,6 +7,8 @@ const defaultUser: User = {
   email: 'anonymouse@instant',
   id: '-1',
   boards: [],
+  nickname: '',
+  createdAt: 0,
 };
 type AuthUser = Omit<User, 'boards'>;
 
