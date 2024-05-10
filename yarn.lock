@@ -2772,6 +2772,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@instantdb/core@npm:0.10.10":
+  version: 0.10.10
+  resolution: "@instantdb/core@npm:0.10.10"
+  dependencies:
+    immer: "npm:9.0.14"
+    object-hash: "npm:^3.0.0"
+    uuid: "npm:^9.0.0"
+  checksum: 10c0/b8f9989a7c082d54fd661e9da37ef659aad8956f7a0fc3d19e1cb7dc20cb20e52365efdb0304a0e3d1dda323ded0bb15748c6aba9f8cb6393bce4e2b551afccd
+  languageName: node
+  linkType: hard
+
+"@instantdb/react@npm:^0.10.10":
+  version: 0.10.10
+  resolution: "@instantdb/react@npm:0.10.10"
+  dependencies:
+    "@instantdb/core": "npm:0.10.10"
+  peerDependencies:
+    react: ">=16"
+  checksum: 10c0/366995552d81c06f44f95b0892ecf572378d8178fc07d5d938985cc27d2b111146f23013f0e98f3793e4d7e841d21f42fbe67ff232e997ef3408981c60e094e4
+  languageName: node
+  linkType: hard
+
 "@jridgewell/gen-mapping@npm:^0.3.2":
   version: 0.3.2
   resolution: "@jridgewell/gen-mapping@npm:0.3.2"
@@ -4920,6 +4942,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/react@npm:18.3.3":
+  version: 18.3.3
+  resolution: "@types/react@npm:18.3.3"
+  dependencies:
+    "@types/prop-types": "npm:*"
+    csstype: "npm:^3.0.2"
+  checksum: 10c0/fe455f805c5da13b89964c3d68060cebd43e73ec15001a68b34634604a78140e6fc202f3f61679b9d809dde6d7a7c2cb3ed51e0fd1462557911db09879b55114
+  languageName: node
+  linkType: hard
+
 "@types/scheduler@npm:*":
   version: 0.16.2
   resolution: "@types/scheduler@npm:0.16.2"
@@ -6568,6 +6600,7 @@ __metadata:
     "@graphql-codegen/typescript-graphql-files-modules": "npm:3.0.0"
     "@graphql-codegen/typescript-operations": "npm:4.4.0"
     "@graphql-codegen/typescript-react-apollo": "npm:4.3.2"
+    "@instantdb/react": "npm:^0.10.10"
     "@neondatabase/serverless": "npm:0.10.4"
     "@next/eslint-plugin-next": "npm:15.1.3"
     "@opentelemetry/auto-instrumentations-node": "npm:0.55.0"
@@ -6585,6 +6618,7 @@ __metadata:
     "@prisma/client": "npm:6.1.0"
     "@prisma/extension-accelerate": "npm:1.2.1"
     "@prisma/instrumentation": "npm:6.1.0"
+    "@types/react": "npm:18.3.3"
     "@types/react-dom": "npm:19.0.2"
     "@types/react-timeago": "npm:4.1.7"
     "@types/ws": "npm:8.5.13"
@@ -9039,6 +9073,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"immer@npm:9.0.14":
+  version: 9.0.14
+  resolution: "immer@npm:9.0.14"
+  checksum: 10c0/8407cfd9fbf651dae954e44fea0148f1801a4961ad94e3d28abd36d38327a32b3a5d90ef4979b5f940d9ae2ef8c89127809d6706fb59cec17b404c29ec56d4d8
+  languageName: node
+  linkType: hard
+
 "immutable@npm:~3.7.6":
   version: 3.7.6
   resolution: "immutable@npm:3.7.6"
@@ -10729,6 +10770,13 @@ __metadata:
   version: 4.1.1
   resolution: "object-assign@npm:4.1.1"
   checksum: 10c0/1f4df9945120325d041ccf7b86f31e8bcc14e73d29171e37a7903050e96b81323784ec59f93f102ec635bcf6fa8034ba3ea0a8c7e69fa202b87ae3b6cec5a414
+  languageName: node
+  linkType: hard
+
+"object-hash@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "object-hash@npm:3.0.0"
+  checksum: 10c0/a06844537107b960c1c8b96cd2ac8592a265186bfa0f6ccafe0d34eabdb526f6fa81da1f37c43df7ed13b12a4ae3457a16071603bcd39d8beddb5f08c37b0f47
   languageName: node
   linkType: hard
 
