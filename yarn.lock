@@ -2421,15 +2421,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/backend@npm:1.1.2":
-  version: 1.1.2
-  resolution: "@clerk/backend@npm:1.1.2"
+"@clerk/backend@npm:1.1.3":
+  version: 1.1.3
+  resolution: "@clerk/backend@npm:1.1.3"
   dependencies:
     "@clerk/shared": "npm:2.0.2"
     cookie: "npm:0.5.0"
     snakecase-keys: "npm:5.4.4"
     tslib: "npm:2.4.1"
-  checksum: 10c0/52615a7a2d5cfc9bd494e058582e76dfe8b88509b805ca7561bc982ba6ebff2da91fc294fc6512b00becb558413d58bdbb46ebf91773e88f65fcb4c568e9e8c7
+  checksum: 10c0/eeaf1136872dd68f166cab54247dba316ad8b595f571411b62691648e7b3318ba1b116398810afcff6f8ca47c0da16625aeb4be5d04c3ed1cd9d652b0923c83e
   languageName: node
   linkType: hard
 
@@ -2463,14 +2463,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/clerk-sdk-node@npm:5.0.4":
-  version: 5.0.4
-  resolution: "@clerk/clerk-sdk-node@npm:5.0.4"
+"@clerk/clerk-sdk-node@npm:5.0.5":
+  version: 5.0.5
+  resolution: "@clerk/clerk-sdk-node@npm:5.0.5"
   dependencies:
-    "@clerk/backend": "npm:1.1.2"
+    "@clerk/backend": "npm:1.1.3"
     "@clerk/shared": "npm:2.0.2"
     tslib: "npm:2.4.1"
-  checksum: 10c0/209baea7f78944a6a7ff12fb7cfc98d13a64e5749b522c1f94cdba68bb39689bfdfea295441fa589698e67787e6a538a294023d36ed9dd054145ca64109fd5f2
+  checksum: 10c0/bb41f3cedc9a8c216801353371ab21ddb4d3c3978153d06f3ce1be820e6cbe582932e3bbdf9b38ea2dd3182bbb50728c7318c2bac50fee26e3bf163c319c2358
   languageName: node
   linkType: hard
 
@@ -7587,7 +7587,7 @@ __metadata:
     "@as-integrations/next": "npm:3.0.0"
     "@chakra-ui/icons": "npm:2.1.1"
     "@chakra-ui/react": "npm:2.8.2"
-    "@clerk/clerk-sdk-node": "npm:5.0.4"
+    "@clerk/clerk-sdk-node": "npm:5.0.5"
     "@clerk/nextjs": "npm:4.30.1"
     "@clerk/themes": "npm:2.1.3"
     "@emotion/react": "npm:11.11.4"
