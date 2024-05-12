@@ -1,11 +1,12 @@
 import React from 'react';
 import { type DragSourceMonitor, useDrag } from 'react-dnd';
 
-import { CardComponent } from './ui/CardComponent';
 import {
   type UpdateCardMutationVariables,
   useUpdateCardMutation,
 } from 'components/persistence';
+
+import { CardComponent } from './ui/CardComponent';
 
 export const Card = (props) => {
   const [mutation] = useUpdateCardMutation({
