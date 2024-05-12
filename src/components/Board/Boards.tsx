@@ -70,8 +70,6 @@ export const Boards = () => {
     );
   }
 
-  console.log(data);
-
   return isLoading ? (
     <BoardsSkeleton />
   ) : (

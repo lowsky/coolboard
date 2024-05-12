@@ -3,12 +3,11 @@ import { useRouter } from 'next/router';
 import { Button, Flex, Spinner } from '@chakra-ui/react';
 import { FaSignOutAlt } from 'react-icons/fa';
 
-import { DBContext } from '../setupInstaWeb';
-import { Login } from 'auth/AuthUI';
+import { useAuth, useDb } from '../setupInstaWeb';
 
 export const UserProfileHeaderUIInstanaDb = () => {
-  const db = React.useContext(DBContext);
-  const { isLoading, user, error } = db.useAuth();
+  const db = useDb();
+  const { isLoading, user, error } = useAuth();
   const fetchUserResult = db.useQuery({
     users: {},
   });
@@ -46,11 +45,7 @@ export const UserProfileHeaderUIInstanaDb = () => {
           Loading user...
         </>
       )}
-      {!isLoading && !user && (
-        <>
-          <Login db={db} />
-        </>
-      )}
+      {!isLoading && !user && <>Not logged in.</>}
       {user && (
         <>
           <Flex alignItems="center" gap="0.5em">
@@ -58,6 +53,7 @@ export const UserProfileHeaderUIInstanaDb = () => {
             <Button
               onClick={async (event) => {
                 event.preventDefault();
+                db.auth.signOut();
                 await replace('/');
               }}
               data-cy="sign-out-button"
