@@ -2,6 +2,7 @@ import { Flex } from '@chakra-ui/react';
 import React, { Suspense } from 'react';
 
 import { CardList } from 'components/List/CardList';
+import { CardListView } from 'components/List/CardListView';
 import { AddListButton } from 'components/Board/ui/AddListButton';
 import { CardListSkeleton } from 'components/List/ui/CardListSkeleton';
 
@@ -31,13 +32,17 @@ export const BoardContent = ({
       <Suspense
         key={list.id}
         fallback={<CardListSkeleton name={list.name} id={list.id} />}>
-        <CardList
-          key={list.id}
-          name={list.name}
-          id={list.id}
-          boardId={boardId}
-          readonly={readonly}
-        />
+        {readonly ? (
+          <CardListView key={list.id} name={list.name} id={list.id} />
+        ) : (
+          <CardList
+            key={list.id}
+            name={list.name}
+            id={list.id}
+            boardId={boardId}
+            readonly={readonly}
+          />
+        )}
       </Suspense>
     ))}
     {!readonly && <AddListButton onAddNewList={addList} />}

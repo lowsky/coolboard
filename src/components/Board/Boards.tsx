@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Container, Heading, List, ListItem, Spinner } from '@chakra-ui/react';
 
 import { Segment } from 'common/Segment';
@@ -6,12 +6,7 @@ import { FullVerticalContainer } from 'common/FullVerticalContainer';
 import { CreateBoardModal } from './ui/CreateBoardModal';
 import { BoardListItem, BoardListItemProps } from './ui/BoardListItem';
 
-import {
-  IdBasedTransaction,
-  useAuthUser,
-  UserContext,
-  WithId,
-} from '../../setupInstaWeb';
+import { IdBasedTransaction, useAuthUser, WithId } from '../../setupInstaWeb';
 
 import {
   useBoardsQuery,
@@ -46,15 +41,7 @@ export const BoardList = ({ boards, deleteBoard }: Props) => {
 export const Boards = () => {
   const deleteBoard: IdBasedTransaction = useDeleteBoard();
 
-  const user = useContext(UserContext);
-
-  const {
-    data,
-    isLoading,
-    //
-    error,
-    debugRef,
-  } = useBoardsQuery();
+  const { data, isLoading, error } = useBoardsQuery();
 
   if (error) {
     return (
@@ -73,12 +60,10 @@ export const Boards = () => {
   return isLoading ? (
     <BoardsSkeleton />
   ) : (
-    <FullVerticalContainer ref={debugRef}>
+    <FullVerticalContainer>
       <Segment textAlign="center">
         <Heading as="h1" my={2}>
-          Your Boards,
-          {user?.email}
-          {user?.id}
+          Your Boards
         </Heading>
         <Container data-cy="boards-list" textAlign="left">
           <BoardList boards={data.boards} deleteBoard={deleteBoard} />{' '}

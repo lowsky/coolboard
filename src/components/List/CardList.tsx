@@ -1,3 +1,6 @@
+import React from 'react';
+import { TransactionResult } from '@instantdb/core';
+
 import {
   useAddCardMutation,
   useCardListQuery,
@@ -6,8 +9,7 @@ import {
 } from 'components/persistence';
 
 import { MoveItemFromTo, useCardListDnd } from './ui/useCardListDnd';
-import { CardListWithDnd, UICardsData, UIListData } from './ui/CardListWithDnd';
-import { TransactionResult } from '@instantdb/core';
+import { CardListWithDnd, UICardsData } from './ui/CardListWithDnd';
 import { CardListSkeleton } from 'components/List/ui/CardListSkeleton';
 
 interface CardListProps {
@@ -67,19 +69,14 @@ export const CardList = ({
 
   const cards = data.cardList?.[0].cards as UICardsData[];
 
-  const list: UIListData = {
-    id,
-    name,
-    cards,
-  };
-
   return (
+    // @ts-expect-error TS2322: Type ConnectDragSource not assignable to type LegacyRef<HTMLDivElement> | undefined.
     <div ref={ref}>
       <CardListWithDnd
         {...dndProps}
         deleteList={deleteList}
         addCard={addCard}
-        list={list}
+        cards={cards}
         name={name}
         id={id}
         readonly={readonly}
