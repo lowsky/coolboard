@@ -12,7 +12,7 @@ export default function SignInPage() {
 
   return (
     <FullVerticalContainer data-cy="full-container">
-      <ProfileHeader isBoardsPage />
+      <ProfileHeader isLoginInPage />
       <Flex flexDir="column" align="center">
         <Heading as="h1" my={2}>
           Welcome to Coolboard
