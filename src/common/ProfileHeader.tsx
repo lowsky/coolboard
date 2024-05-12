@@ -44,12 +44,14 @@ const ProfileHeaderContainer = ({
 
 export const ProfileHeader = ({
   isBoardsPage = false,
+  isLoginInPage = false,
 }: {
   isBoardsPage?: boolean;
+  isLoginInPage?: boolean;
 }) => {
   return (
     <ProfileHeaderContainer isBoardsPage={isBoardsPage}>
-      <UserProfileHeaderUIInstanaDb />
+      <UserProfileHeaderUIInstanaDb isLoginInPage={isLoginInPage} />
     </ProfileHeaderContainer>
   );
 };
