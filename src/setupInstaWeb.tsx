@@ -1,18 +1,17 @@
 import { createContext, useContext } from 'react';
 import { InstantReactWeb } from '@instantdb/react/src/InstantReactWeb';
-import { init } from '@instantdb/react';
+import { init, User } from '@instantdb/react';
 import { TransactionResult } from '@instantdb/core/src';
 
-const defaultUser: User = {
+const anonymousUser: User & { boards: Board[] } = {
   email: 'anonymouse@instant',
+  refresh_token: '',
   id: '-1',
   boards: [],
-  nickname: '',
-  createdAt: 0,
 };
 type AuthUser = Omit<User, 'boards'>;
 
-export const UserContext = createContext<AuthUser>(defaultUser);
+export const UserContext = createContext<AuthUser | undefined>(anonymousUser);
 export const DBContext = createContext<InstantWeb>(
   null as unknown as InstantWeb
 );
@@ -46,14 +45,6 @@ export type Board = {
   user: User;
 };
 
-export type User = {
-  id: string;
-  email: string;
-  nickname: string;
-  createdAt: number;
-  boards: Board[];
-};
-
 /*
 type Users = users
 {
@@ -78,13 +69,17 @@ const APP_ID = 'd7674f24-278e-4ab4-828d-b9bea241f85a';
 
 export const db: InstantWeb = init<Schema>({ appId: APP_ID });
 
-export function useDb() {
+export function useDb(): InstantReactWeb<Schema, {}> {
   return useContext(DBContext);
 }
+
+export const useAuth = db.useAuth;
 
 export function useAuthUser() {
   return useContext(UserContext);
 }
+
+// types
 
 export type WithId = { id: string };
 export type IdBasedTransaction = ({ id }: WithId) => Promise<TransactionResult>;

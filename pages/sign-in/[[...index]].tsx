@@ -1,10 +1,15 @@
 import React from 'react';
-import { SignIn } from '@clerk/nextjs';
 import { Flex, Heading } from '@chakra-ui/react';
+
+import { useDb } from '../../src/setupInstaWeb';
+import { Login } from 'auth/AuthUI';
+
 import { ProfileHeader } from 'common/ProfileHeader';
 import { FullVerticalContainer } from 'common/FullVerticalContainer';
 
 export default function SignInPage() {
+  const db = useDb();
+
   return (
     <FullVerticalContainer data-cy="full-container">
       <ProfileHeader isBoardsPage />
@@ -12,7 +17,7 @@ export default function SignInPage() {
         <Heading as="h1" my={2}>
           Welcome to Coolboard
         </Heading>
-        <SignIn />
+        <Login db={db} />
       </Flex>
     </FullVerticalContainer>
   );
