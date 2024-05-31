@@ -5,7 +5,7 @@ import { FaSignInAlt } from 'react-icons/fa';
 
 export function LoginButton() {
   return (
-    <SignInButton mode="modal" redirectUrl={window.location.href}>
+    <SignInButton>
       <Button data-cy="sign-in-button">
         <FaSignInAlt />
         Log in
