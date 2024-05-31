@@ -159,18 +159,22 @@ describe('Test coolboard', () => {
     cy.get('button').contains('delete list').click();
   });
 
-  // this test is super flaky and was not properly working ...
+  // this test was super flaky and was not properly working ...
   // temporary disabling it
-  xit('user can delete board', () => {
-    // open first board named XXX
-    getBoardsList_FirstEntry(newBoardName)
-      .within(() => {
-        cy.get('[data-cy="delete-board"]').click();
-      })
-      .then(() => {
-        // this took some time typically, so need to wait longer
-        getBoardListItem(newBoardName).should('not.exist');
-      });
+  it('user can delete board', () => {
+    // find delete button in list item
+    getBoardsList_FirstEntry(newBoardName).within(() => {
+      cy.get('[data-cy="delete-board"]').as('delButton');
+    });
+
+    cy.get('[data-cy="boards-list"] li').then((boards) => {
+      const prev = boards.length;
+      cy.get('@delButton')
+        .click()
+        .then(() => {
+          cy.get('[data-cy="boards-list"] li').should('have.length', prev - 1);
+        });
+    });
   });
 
   it('user can log-out', () => {
