@@ -6483,9 +6483,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vercel/speed-insights@npm:1.0.10":
-  version: 1.0.10
-  resolution: "@vercel/speed-insights@npm:1.0.10"
+"@vercel/speed-insights@npm:1.0.11":
+  version: 1.0.11
+  resolution: "@vercel/speed-insights@npm:1.0.11"
   peerDependencies:
     "@sveltejs/kit": ^1 || ^2
     next: ">= 13"
@@ -6506,7 +6506,7 @@ __metadata:
       optional: true
     vue-router:
       optional: true
-  checksum: 10c0/b1c2f91b153d0203e3571e75a775fe457c1d61eb1954601ae63fff0903694b48a0684ea1761c3618ccda4bef3bf1ec1a7ffdf34c18ffd35079f202cf6372e139
+  checksum: 10c0/0366b7582b89ffd2458696d4112669219d2c493ffe4d05beb663a46503c80e883ac78006578b74fd71ae803161d455cc35002ac2e12718e3354b6d1dec03291d
   languageName: node
   linkType: hard
 
@@ -7758,7 +7758,7 @@ __metadata:
     "@typescript-eslint/parser": "npm:7.11.0"
     "@vercel/analytics": "npm:1.2.2"
     "@vercel/otel": "npm:1.8.3"
-    "@vercel/speed-insights": "npm:1.0.10"
+    "@vercel/speed-insights": "npm:1.0.11"
     emitter-listener: "npm:1.1.2"
     eslint: "npm:9.3.0"
     eslint-config-next: "npm:14.2.3"
