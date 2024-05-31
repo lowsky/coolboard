@@ -1,18 +1,21 @@
-import { authMiddleware } from '@clerk/nextjs';
-import { NextResponse } from 'next/server';
-import type { NextFetchEvent, NextRequest } from 'next/server';
+import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
+import { NextMiddleware } from 'next/server';
 
-const clerkAuthMiddleWare = authMiddleware({
-  publicRoutes: [
-    '/',
-    '/about',
-    '/imprint',
-    '/privacy',
-    '/api/system',
-    '/api/graphql',
-  ],
-  debug: false,
-});
+const isProtectedRoute = createRouteMatcher(['/boards', '/board/(.*)']);
+
+// https://clerk.com/docs/references/nextjs/clerk-middleware
+const middleware: NextMiddleware = clerkMiddleware(
+  (auth, req) => {
+    if (isProtectedRoute(req)) {
+      auth().protect();
+    }
+  },
+  {
+    debug: false,
+  }
+);
+
+export default middleware;
 
 export async function middleware(request: NextRequest, event: NextFetchEvent) {
   const traceId = request.headers.get('x-instana-t') ?? '';
