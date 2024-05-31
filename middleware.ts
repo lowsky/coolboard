@@ -1,10 +1,15 @@
 import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
-import { NextMiddleware } from 'next/server';
+import {
+  NextFetchEvent,
+  NextMiddleware,
+  NextRequest,
+  NextResponse,
+} from 'next/server';
 
 const isProtectedRoute = createRouteMatcher(['/boards', '/board/(.*)']);
 
 // https://clerk.com/docs/references/nextjs/clerk-middleware
-const middleware: NextMiddleware = clerkMiddleware(
+const clerkAuthMiddleWare: NextMiddleware = clerkMiddleware(
   (auth, req) => {
     if (isProtectedRoute(req)) {
       auth().protect();
@@ -15,9 +20,10 @@ const middleware: NextMiddleware = clerkMiddleware(
   }
 );
 
-export default middleware;
-
-export async function middleware(request: NextRequest, event: NextFetchEvent) {
+const middleware: NextMiddleware = async (
+  request: NextRequest,
+  event: NextFetchEvent
+) => {
   const traceId = request.headers.get('x-instana-t') ?? '';
 
   const authResponse = await clerkAuthMiddleWare(request, event);
@@ -27,7 +33,9 @@ export async function middleware(request: NextRequest, event: NextFetchEvent) {
   response['headers']?.set('Server-Timing', `intid;desc=${traceId}`);
 
   return response;
-}
+};
+
+export default middleware;
 
 // Stop Middleware running on static files - more performant than ignoreRoutes
 export const config = {
