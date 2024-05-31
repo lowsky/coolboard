@@ -95,7 +95,5 @@ function fillLoginForm(
   });
 
   // helps to wait for the authentication process of redirecting with to the /callback url
-  return cy
-    .wait(1000) //
-    .url(LogAndWaitLong);
+  return cy.url(LogAndWaitLong);
 }
