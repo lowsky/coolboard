@@ -3747,78 +3747,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vercel/analytics@npm:1.5.0":
-  version: 1.5.0
-  resolution: "@vercel/analytics@npm:1.5.0"
-  peerDependencies:
-    "@remix-run/react": ^2
-    "@sveltejs/kit": ^1 || ^2
-    next: ">= 13"
-    react: ^18 || ^19 || ^19.0.0-rc
-    svelte: ">= 4"
-    vue: ^3
-    vue-router: ^4
-  peerDependenciesMeta:
-    "@remix-run/react":
-      optional: true
-    "@sveltejs/kit":
-      optional: true
-    next:
-      optional: true
-    react:
-      optional: true
-    svelte:
-      optional: true
-    vue:
-      optional: true
-    vue-router:
-      optional: true
-  checksum: 10c0/43d33ea83b32f5203fec21b7f43c399e398f0c37d2dd341d522969e0e6ee23fd652a2766a4203a3ce573f711beee5ee1ab7d36316f767a4901160e3e96ee31e5
-  languageName: node
-  linkType: hard
-
-"@vercel/otel@npm:1.13.0":
-  version: 1.13.0
-  resolution: "@vercel/otel@npm:1.13.0"
-  peerDependencies:
-    "@opentelemetry/api": ">=1.7.0 <2.0.0"
-    "@opentelemetry/api-logs": ">=0.46.0 <0.200.0"
-    "@opentelemetry/instrumentation": ">=0.46.0 <0.200.0"
-    "@opentelemetry/resources": ">=1.19.0 <2.0.0"
-    "@opentelemetry/sdk-logs": ">=0.46.0 <0.200.0"
-    "@opentelemetry/sdk-metrics": ">=1.19.0 <2.0.0"
-    "@opentelemetry/sdk-trace-base": ">=1.19.0 <2.0.0"
-  checksum: 10c0/720e1fd7efa3882fc147ec749d78e861d2d0644184838947c5754a8fa4e29d59e201ca54649dac4c4b75f4d932c8b62711e94f8fecd3176a96fc380eb7dd9437
-  languageName: node
-  linkType: hard
-
-"@vercel/speed-insights@npm:1.2.0":
-  version: 1.2.0
-  resolution: "@vercel/speed-insights@npm:1.2.0"
-  peerDependencies:
-    "@sveltejs/kit": ^1 || ^2
-    next: ">= 13"
-    react: ^18 || ^19 || ^19.0.0-rc
-    svelte: ">= 4"
-    vue: ^3
-    vue-router: ^4
-  peerDependenciesMeta:
-    "@sveltejs/kit":
-      optional: true
-    next:
-      optional: true
-    react:
-      optional: true
-    svelte:
-      optional: true
-    vue:
-      optional: true
-    vue-router:
-      optional: true
-  checksum: 10c0/2fb4c4a46330949182d6f63691c51310b636fc3cc464bde3c0f24f100b712c3c4ec57a9fedcd6dc3cc75951064b3295b3cb616c80ff7179fbe310cd4314fffaa
-  languageName: node
-  linkType: hard
-
 "@whatwg-node/disposablestack@npm:^0.0.5":
   version: 0.0.5
   resolution: "@whatwg-node/disposablestack@npm:0.0.5"
@@ -5071,10 +4999,6 @@ __metadata:
     "@types/ws": "npm:8.18.1"
     "@types/zen-observable": "npm:0.8.7"
     "@typescript-eslint/parser": "npm:8.35.1"
-    "@vercel/analytics": "npm:1.5.0"
-    "@vercel/otel": "npm:1.13.0"
-    "@vercel/speed-insights": "npm:1.2.0"
-    emitter-listener: "npm:1.1.2"
     eslint: "npm:9.29.0"
     eslint-config-next: "npm:15.3.4"
     eslint-config-prettier: "npm:10.1.5"
@@ -5103,7 +5027,6 @@ __metadata:
     typescript-eslint: "npm:8.35.1"
     utf-8-validate: "npm:6.0.3"
     ws: "npm:8.18.2"
-    zone.js: "npm:0.15.1"
   languageName: unknown
   linkType: soft
 
@@ -5503,15 +5426,6 @@ __metadata:
   version: 1.4.119
   resolution: "electron-to-chromium@npm:1.4.119"
   checksum: 10c0/f4d8fb4d622e77a79cd8389a1b725a0b3890b4e7cbf9c7d503a98129d9ceed35fd75cf84d0b38a4eb60607149cf6d0cfd57dbc0d052dc6a59d9866ad36ac208b
-  languageName: node
-  linkType: hard
-
-"emitter-listener@npm:1.1.2":
-  version: 1.1.2
-  resolution: "emitter-listener@npm:1.1.2"
-  dependencies:
-    shimmer: "npm:^1.2.0"
-  checksum: 10c0/d16f4f2da4b46cee09c900260d8527c58b32b6e1288c734a561f867dac8bf4da7f6aa429b6db1e5a90f688d754d86456bd22ee99f2fac4d9d955ef6ef8c19e55
   languageName: node
   linkType: hard
 
@@ -10556,7 +10470,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"shimmer@npm:^1.2.0, shimmer@npm:^1.2.1":
+"shimmer@npm:^1.2.1":
   version: 1.2.1
   resolution: "shimmer@npm:1.2.1"
   checksum: 10c0/ae8b27c389db2a00acfc8da90240f11577685a8f3e40008f826a3bea8b4f3b3ecd305c26be024b4a0fd3b123d132c1569d6e238097960a9a543b6c60760fb46a
@@ -12057,12 +11971,5 @@ __metadata:
   version: 0.8.15
   resolution: "zen-observable@npm:0.8.15"
   checksum: 10c0/71cc2f2bbb537300c3f569e25693d37b3bc91f225cefce251a71c30bc6bb3e7f8e9420ca0eb57f2ac9e492b085b8dfa075fd1e8195c40b83c951dd59c6e4fbf8
-  languageName: node
-  linkType: hard
-
-"zone.js@npm:0.15.1":
-  version: 0.15.1
-  resolution: "zone.js@npm:0.15.1"
-  checksum: 10c0/4eca000f90dbea1c34f62e88ce56910dace8cdecbe14747b214f2af37aa511264c7bd50faf3e9b00612e95dc4567da156a9690fef1983bfcf74604a630d190ef
   languageName: node
   linkType: hard

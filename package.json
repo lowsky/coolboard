@@ -23,10 +23,6 @@
     "@prisma/client": "6.10.1",
     "@prisma/extension-accelerate": "2.0.1",
     "@prisma/instrumentation": "6.10.1",
-    "@vercel/analytics": "1.5.0",
-    "@vercel/otel": "1.13.0",
-    "@vercel/speed-insights": "1.2.0",
-    "emitter-listener": "1.1.2",
     "framer-motion": "12.19.1",
     "graphql": "16.11.0",
     "graphql-scalars": "1.24.2",
@@ -44,8 +40,7 @@
     "react-is": "19.1.0",
     "react-timeago": "8.2.0",
     "utf-8-validate": "6.0.3",
-    "ws": "8.18.2",
-    "zone.js": "0.15.1"
+    "ws": "8.18.2"
   },
   "scripts": {
     "dev": "echo you wanna run:  yarn start  instead; yarn start",
