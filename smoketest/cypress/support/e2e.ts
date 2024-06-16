@@ -43,8 +43,12 @@ Cypress.on('uncaught:exception', (error, runnable, promise) => {
   }
 });
 
-// Convert this to a module instead of a script to enable import/export
-export {};
+const graphqlQuery = `
+query CardList($cardListId: ID!) {
+  list(where: {id: $cardListId} ) {
+    id name __typename
+  }
+}`;
 
 export const login = (
   userLogin: string,
@@ -54,15 +58,33 @@ export const login = (
     'coolboardSessionId',
     () => {
       cy.visit('/boards', {
+        // ignore any error (while not authenticated)
         failOnStatusCode: false,
       });
+
       // this was only needed, when /boards was
-      // a public page
-      // ... could be deleted soon, if not needed anymore
-      //.contains('Log in', { log: true, timeout: 6000, }).first().click();
+      // a public page:
+      // ....contains('Log in', { log: true, timeout: 6000, }).first().click();
+      // ... could be deleted soon, if not needed anymore?
+
       fillLoginForm(userLogin, password);
+      cy.location('pathname').should('eq', '/boards');
     },
     {
+      validate: () => {
+        {
+          const someAPIgraphqlQuery = {
+            operationName: 'CardList',
+            variables: { cardListId: 'clsq1w75z0002gnafx71y3v8d' },
+            query: graphqlQuery,
+          };
+          cy.request({
+            body: someAPIgraphqlQuery,
+            method: 'POST',
+            url: '/api/graphql',
+          });
+        }
+      },
       cacheAcrossSpecs: true,
     }
   );
@@ -84,18 +106,10 @@ export const WaitVeryLong = {
   timeout: 5000 * 4,
 };
 
-function fillLoginForm(
-  userLogin: string,
-  password: string
-): Cypress.Chainable<string> {
+function fillLoginForm(userLogin: string, password: string): void {
   cy.get('#identifier-field', LogAndWaitLong).type(userLogin + '{enter}');
   cy.contains('Enter your password');
   cy.get('#password-field').type(password + '{enter}', {
     log: false,
   });
-
-  // helps to wait for the authentication process of redirecting with to the /callback url
-  return cy
-    .wait(1000) //
-    .url(LogAndWaitLong);
 }
