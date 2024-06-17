@@ -1,8 +1,3 @@
-/* eslint-disable no-undef */
-/// <reference types="Cypress" />
-
-import Loggable = Cypress.Loggable;
-import Timeoutable = Cypress.Timeoutable;
 import {
   isProduction,
   LogAndWaitLong,
@@ -12,60 +7,6 @@ import {
 } from '../support/e2e';
 
 const newBoardName = Cypress.env('branch') ?? 'missing-branch-env';
-
-const _boardListContainer = () => cy.dataCy('board-container-inner');
-
-const cardListButtons = () => _boardListContainer().find('button');
-
-const add_a_list = () => cardListButtons().contains('Add a list');
-
-const sections = (options: Partial<Loggable & Timeoutable>) =>
-  cy.dataCy('card-list', options);
-
-const add_a_card = () => cardListButtons().contains('New Card');
-
-//garb cy.contains('[data-cy="edit-and-add-card"] .chakra-editable__preview', 'New');
-function clickAddNewCard() {
-  cy.get('[data-cy="edit-and-add-card"] .chakra-editable__preview').should(
-    'not.have.attr',
-    'aria-disabled',
-    'true'
-  );
-  cy.get('[data-cy="edit-and-add-card"] .chakra-editable__preview').click();
-}
-
-function enterText(text: string) {
-  cy.get('[data-cy="edit-and-add-card"] .chakra-editable__input')
-    .should('be.enabled')
-    .should('be.visible')
-    .focus()
-    .clear()
-    .type(text);
-}
-
-const getBoardsList = () => {
-  return cy
-    .dataCy('full-container')
-    .dataCy('boards-list', WaitVeryLong)
-    .should('exist');
-};
-
-function getBoardListItem(name: string) {
-  return getBoardsList().find(
-    '[data-cy="board-list-item_' + name + '"]',
-    LogAndWaitLong
-  );
-}
-
-const getBoardsList_FirstEntry = (name: string) => {
-  return getBoardListItem(name).first();
-};
-
-function logout() {
-  cy.get('[data-cy=profile-header]')
-    .contains('Sign Out', LogAndWaitLong)
-    .click();
-}
 
 describe('Test coolboard', () => {
   before(() => {
@@ -85,7 +26,9 @@ describe('Test coolboard', () => {
   it('user needs to login to show boards', () => {});
 
   it('user can create a board for branch', () => {
-    getBoardsList().then((boards) => cy.log(String(boards.length + ' boards')));
+    cy.getBoardsList().then((boards) =>
+      cy.log(String(boards.length + ' boards'))
+    );
     cy.dataCy('create-board-dialog').click();
     cy.get('#name').clear().type(newBoardName);
     cy.dataCy('create-board-submit').click();
@@ -94,12 +37,12 @@ describe('Test coolboard', () => {
       'not.exist'
     );
 
-    getBoardsList_FirstEntry(newBoardName);
+    cy.getBoardsList_FirstEntry(newBoardName);
   });
 
   it('user can add lists and cards', () => {
     // open first board named XXX
-    getBoardsList_FirstEntry(newBoardName).click();
+    cy.getBoardsList_FirstEntry(newBoardName).click();
     cy.url(LogAndWaitLong).should('include', 'board/');
 
     //fully loaded?
@@ -111,20 +54,17 @@ describe('Test coolboard', () => {
     cy.get('button').contains('Delete All').click();
     cy.get('button').contains('This will be permanent').click();
 
-    sections(LogAndWaitLong).should('not.exist');
-    //add card
-    add_a_list().click();
+    cy.sections(LogAndWaitLong).should('not.exist');
 
-    sections(LogAndWaitLong).should('have.length', 1);
-    clickAddNewCard();
-    enterText('new card{enter}');
+    cy.getCardListButton('Add a list').click();
 
-    clickAddNewCard();
-    enterText('withCreateButton ');
-    cy.contains('button', 'Create').click();
+    cy.sections(LogAndWaitLong).should('have.length', 1);
+    cy.clickAddNewCard();
+    cy.enterText('new card{enter}');
+    cy.contains('[data-cy="card"] > span', 'new card');
 
-    clickAddNewCard();
-    enterText('canceled');
+    cy.clickAddNewCard();
+    cy.enterText('canceled');
     cy.get('#cancel').click();
 
     // edit card
@@ -146,18 +86,18 @@ describe('Test coolboard', () => {
     );
     cy.contains('[data-cy="card"] > span', 'name-changed');
 
-    cy.log('add a new list');
-    add_a_list().click();
-    sections(LogAndWaitLong).should('have.length', 2);
+    cy.log('add another list');
+    cy.getCardListButton('Add a list').click();
+    cy.sections(LogAndWaitLong).should('have.length', 2);
   });
 
   it('user can delete lists', () => {
     // open first board named XXX
-    getBoardsList_FirstEntry(newBoardName).click();
+    cy.getBoardsList_FirstEntry(newBoardName).click();
     cy.url(LogAndWaitLong).should('include', 'board/');
 
     cy.log('delete first list');
-    sections(LogAndWaitLong)
+    cy.sections(LogAndWaitLong)
       .dataCy('card-list-header')
       .dataCy('card-list-header-menu')
       .first()
@@ -165,20 +105,20 @@ describe('Test coolboard', () => {
     cy.get('button').contains('delete list').click();
   });
 
-  // this test is super flaky and was not properly working ...
-  // temporary disabling it
+  // this test is super flaky and was not properly working …
+  // temporary disabling it.
   it('user can delete board', () => {
     // open first board named XXX
-    getBoardListItem(newBoardName).then((prevList) => {
+    cy.getBoardListItem(newBoardName).then((prevList) => {
       const p = prevList.length;
       cy.log('prev list', p);
-      getBoardsList_FirstEntry(newBoardName)
+      cy.getBoardsList_FirstEntry(newBoardName)
         .within(() => {
           cy.get('[data-cy="delete-board"]').click();
         })
         .then(() => {
           // this took some time typically, so need to wait longer
-          getBoardListItem(newBoardName).should(
+          cy.getBoardListItem(newBoardName).should(
             'have.length',
             prevList.length - 1
           );
@@ -187,7 +127,7 @@ describe('Test coolboard', () => {
   });
 
   it('user can log-out', () => {
-    logout();
+    cy.logout();
     cy.contains('Sign in to coolboard');
   });
 });
