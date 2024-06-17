@@ -167,16 +167,23 @@ describe('Test coolboard', () => {
 
   // this test is super flaky and was not properly working ...
   // temporary disabling it
-  xit('user can delete board', () => {
+  it('user can delete board', () => {
     // open first board named XXX
-    getBoardsList_FirstEntry(newBoardName)
-      .within(() => {
-        cy.get('[data-cy="delete-board"]').click();
-      })
-      .then(() => {
-        // this took some time typically, so need to wait longer
-        getBoardListItem(newBoardName).should('not.exist');
-      });
+    getBoardListItem(newBoardName).then((prevList) => {
+      const p = prevList.length;
+      cy.log('prev list', p);
+      getBoardsList_FirstEntry(newBoardName)
+        .within(() => {
+          cy.get('[data-cy="delete-board"]').click();
+        })
+        .then(() => {
+          // this took some time typically, so need to wait longer
+          getBoardListItem(newBoardName).should(
+            'have.length',
+            prevList.length - 1
+          );
+        });
+    });
   });
 
   it('user can log-out', () => {
