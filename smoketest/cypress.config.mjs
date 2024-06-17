@@ -1,7 +1,6 @@
-const { defineConfig } = require('cypress');
-const assert = require('assert');
+import {defineConfig} from "cypress";
 
-module.exports = defineConfig({
+export default defineConfig({
   experimentalWebKitSupport: true,
   projectId: '8p1ybc',
   defaultCommandTimeout: 8000,
