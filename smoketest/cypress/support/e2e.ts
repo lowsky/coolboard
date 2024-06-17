@@ -1,8 +1,5 @@
 // load type definitions that come with Cypress module
-/// <reference types="cypress" />
 
-// Must be declared global to be detected by typescript (allows import/export)
-// eslint-disable @typescript/interface-name
 declare global {
   namespace Cypress {
     interface Chainable<Subject> {
