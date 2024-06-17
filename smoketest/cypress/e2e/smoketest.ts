@@ -71,6 +71,12 @@ describe('Test coolboard', () => {
   before(() => {
     cy.log('Testing production page? ' + isProduction);
   });
+
+  before(() => {
+    // Ensure that all sessions are cleared up even if you re-run the spec in the Cypress App UI (Test Runner)
+    cy.log('close all sessions');
+    Cypress.session.clearAllSavedSessions();
+  });
   beforeEach(() => {
     cy.login(userLogin, password);
     cy.visit('/boards');
