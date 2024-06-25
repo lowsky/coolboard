@@ -5567,12 +5567,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pothos/core@npm:3.41.1":
-  version: 3.41.1
-  resolution: "@pothos/core@npm:3.41.1"
+"@pothos/core@npm:3.41.2":
+  version: 3.41.2
+  resolution: "@pothos/core@npm:3.41.2"
   peerDependencies:
     graphql: ">=15.1.0"
-  checksum: 10c0/9bf0e64108ab1833c24aabe4513f71e2f1344b535ab9babedd88a911bf31d7d9021b18e455bdecfcf00b3daed65d919d0055e57e9e4864a1fae47451c71c69c4
+  checksum: 10c0/87ace79c21398262f8f088824bd3f681f2e87232016d1c5d271c063277db1728643d484d98a8e63e07d50025f12632df6a6ac927e6f387e5582be9f0b09d8049
   languageName: node
   linkType: hard
 
@@ -7709,7 +7709,7 @@ __metadata:
     "@opentelemetry/instrumentation-graphql": "npm:0.41.0"
     "@opentelemetry/instrumentation-http": "npm:0.52.1"
     "@opentelemetry/sdk-trace-web": "npm:1.25.1"
-    "@pothos/core": "npm:3.41.1"
+    "@pothos/core": "npm:3.41.2"
     "@pothos/plugin-prisma": "npm:3.65.2"
     "@pothos/plugin-with-input": "npm:3.10.1"
     "@prisma/adapter-neon": "npm:5.15.1"
