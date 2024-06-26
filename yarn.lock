@@ -3930,12 +3930,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@neondatabase/serverless@npm:0.9.3":
-  version: 0.9.3
-  resolution: "@neondatabase/serverless@npm:0.9.3"
+"@neondatabase/serverless@npm:0.9.4":
+  version: 0.9.4
+  resolution: "@neondatabase/serverless@npm:0.9.4"
   dependencies:
     "@types/pg": "npm:8.11.6"
-  checksum: 10c0/daaaf4a9ff990fb36cfac820f617143130e64d51d447336a8cec2625b5012a0bee6c7d066edd071a89ee0e668a8285b3a6615ed573784dd823e59e1071caa76b
+  checksum: 10c0/871b30515fec97598da06ea0c7e0d7c5a7f35bd0ee2c2f0e1f3b5a051d1c8157c601687e7baeb708bac50ab0cb72aa4127e8fa3d37086a168d8af885fc71dccc
   languageName: node
   linkType: hard
 
@@ -7675,7 +7675,7 @@ __metadata:
     "@graphql-codegen/typescript-graphql-files-modules": "npm:3.0.0"
     "@graphql-codegen/typescript-operations": "npm:4.2.1"
     "@graphql-codegen/typescript-react-apollo": "npm:4.3.0"
-    "@neondatabase/serverless": "npm:0.9.3"
+    "@neondatabase/serverless": "npm:0.9.4"
     "@opentelemetry/auto-instrumentations-node": "npm:0.47.1"
     "@opentelemetry/auto-instrumentations-web": "npm:0.40.0"
     "@opentelemetry/context-zone": "npm:1.25.1"
