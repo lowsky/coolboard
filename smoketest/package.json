@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "cypress": "13.12.0",
-    "typescript": "5.5.2"
+    "typescript": "5.5.3"
   },
   "scripts": {
     "cy": "cypress",
