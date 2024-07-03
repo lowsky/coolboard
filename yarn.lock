@@ -2417,9 +2417,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/clerk-react@npm:5.2.6":
-  version: 5.2.6
-  resolution: "@clerk/clerk-react@npm:5.2.6"
+"@clerk/clerk-react@npm:5.2.7":
+  version: 5.2.7
+  resolution: "@clerk/clerk-react@npm:5.2.7"
   dependencies:
     "@clerk/shared": "npm:2.3.2"
     "@clerk/types": "npm:4.7.0"
@@ -2427,7 +2427,7 @@ __metadata:
   peerDependencies:
     react: ">=18 || >=19.0.0-beta"
     react-dom: ">=18 || >=19.0.0-beta"
-  checksum: 10c0/b95faf89f99f43933466db2a34cf91d19feb2b4be1cd36684bf617432983aee284add245a653a1ee8b04240de3340b89340b8212588050970c431e140e23cd2b
+  checksum: 10c0/c146d0ca09d9c8e88c3da4116620fc6f46f983efd7263dd332ec096e3575a77320b119c14dca2abb2ace9ebfae1edfe0bc73accd5573a999f9b4cbf588279da2
   languageName: node
   linkType: hard
 
@@ -2443,12 +2443,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/nextjs@npm:5.2.0":
-  version: 5.2.0
-  resolution: "@clerk/nextjs@npm:5.2.0"
+"@clerk/nextjs@npm:5.2.1":
+  version: 5.2.1
+  resolution: "@clerk/nextjs@npm:5.2.1"
   dependencies:
     "@clerk/backend": "npm:1.3.0"
-    "@clerk/clerk-react": "npm:5.2.6"
+    "@clerk/clerk-react": "npm:5.2.7"
     "@clerk/shared": "npm:2.3.2"
     "@clerk/types": "npm:4.7.0"
     crypto-js: "npm:4.2.0"
@@ -2458,7 +2458,7 @@ __metadata:
     next: ^13.5.4 || ^14.0.3 || >=15.0.0-rc
     react: ">=18 || >=19.0.0-beta"
     react-dom: ">=18 || >=19.0.0-beta"
-  checksum: 10c0/b7a87aa15a8c8725a72a7ecd0996763ad6fe5fcb99a9c488d5e284aa912c6638dc17c66228fc4b0da992b6d6686bd89c6d28ff2e017154c24efba5b67b124630
+  checksum: 10c0/fd5405a374d0edcf2610aa9701f05e2aef068cf107e9a44689a1318ccda9e69c974107e6504d6356aa2fc792bd784058469f15c4b0ea9272b44741cf7371dffb
   languageName: node
   linkType: hard
 
@@ -7695,7 +7695,7 @@ __metadata:
     "@chakra-ui/icons": "npm:2.1.1"
     "@chakra-ui/react": "npm:2.8.2"
     "@clerk/clerk-sdk-node": "npm:5.0.14"
-    "@clerk/nextjs": "npm:5.2.0"
+    "@clerk/nextjs": "npm:5.2.1"
     "@clerk/themes": "npm:2.1.10"
     "@emotion/react": "npm:11.11.4"
     "@emotion/styled": "npm:11.11.5"
