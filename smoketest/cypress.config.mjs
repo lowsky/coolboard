@@ -8,11 +8,4 @@ export default defineConfig({
     baseUrl: 'https://www.coolboard.fun',
     specPattern: 'cypress/e2e/**/*.{js,jsx,ts,tsx}',
   },
-
-  component: {
-    devServer: {
-      framework: 'next',
-      bundler: 'webpack',
-    },
-  },
 });

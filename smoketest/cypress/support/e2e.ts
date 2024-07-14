@@ -42,9 +42,33 @@ function logout(): void {
     .click();
 }
 
-Cypress.Commands.add('dataCy', (selector, options) =>
-  cy.get(`[data-cy="${selector}"]`, options)
+Cypress.Commands.add(
+  'dataCy',
+  (selector: string, options?: Partial<Loggable & Timeoutable>) =>
+    cy.get(`[data-cy="${selector}"]`, options)
 );
+
+const enterText = (text: string): Chainable<JQuery<HTMLInputElement>> =>
+  cy
+    .get<HTMLInputElement>(
+      '[data-cy="edit-and-add-card"] .chakra-editable__input'
+    )
+    .should('be.enabled')
+    .should('be.visible')
+    .focus()
+    .clear()
+    .type(text);
+Cypress.Commands.add('enterText', enterText);
+
+declare global {
+  namespace Cypress {
+    interface Chainable<Subject> {
+      getBoardsList(
+        options?: Partial<Loggable & Timeoutable>
+      ): Chainable<JQuery<HTMLDivElement>>;
+    }
+  }
+}
 
 declare global {
   namespace Cypress {
@@ -54,31 +78,12 @@ declare global {
   }
 }
 
-Cypress.Commands.add('enterText', enterText);
-function enterText(text: string): Chainable<JQuery<HTMLInputElement>> {
+const getBoardsList: (
+  options?: Partial<Loggable & Timeoutable>
+) => Chainable<JQuery<HTMLDivElement>> = (options) => {
   return cy
-    .get<HTMLInputElement>(
-      '[data-cy="edit-and-add-card"] .chakra-editable__input'
-    )
-    .should('be.enabled')
-    .should('be.visible')
-    .focus()
-    .clear()
-    .type(text);
-}
-
-declare global {
-  namespace Cypress {
-    interface Chainable<Subject> {
-      getBoardsList(): Chainable<JQuery<HTMLDivElement>>;
-    }
-  }
-}
-
-const getBoardsList: () => Chainable<JQuery<HTMLDivElement>> = () => {
-  return cy
-    .dataCy<HTMLDivElement>('full-container')
-    .dataCy<HTMLDivElement>('boards-list', WaitVeryLong)
+    .dataCy<HTMLDivElement>('full-container', options)
+    .dataCy<HTMLDivElement>('boards-list', { ...WaitVeryLong, ...options })
     .should('exist');
 };
 Cypress.Commands.add('getBoardsList', getBoardsList);
@@ -86,15 +91,22 @@ Cypress.Commands.add('getBoardsList', getBoardsList);
 declare global {
   namespace Cypress {
     interface Chainable<Subject> {
-      getBoardListItem(name: string): Chainable<JQuery<HTMLElement>>;
+      getBoardListItem(
+        name: string,
+        options?: Partial<Loggable & Timeoutable>
+      ): Chainable<JQuery<HTMLElement>>;
     }
   }
 }
 
-function getBoardListItem(name: string): Chainable<JQuery<HTMLElement>> {
-  return cy
-    .getBoardsList()
-    .find('[data-cy="board-list-item_' + name + '"]', LogAndWaitLong);
+function getBoardListItem(
+  name: string,
+  options?: Partial<Loggable & Timeoutable>
+): Chainable<JQuery<HTMLElement>> {
+  return cy.getBoardsList().find(`[data-cy="board-list-item_${name}"]`, {
+    ...LogAndWaitLong,
+    ...options,
+  });
 }
 Cypress.Commands.add('getBoardListItem', getBoardListItem);
 
@@ -106,11 +118,35 @@ declare global {
   }
 }
 
-const getBoardsList_FirstEntry: (
+function getBoardsList_FirstEntry(
   name: string
-) => Chainable<JQuery<HTMLElement>> = (name: string) => {
-  return cy.getBoardListItem(name).first();
-};
+): Chainable<JQuery<HTMLElement>> {
+  // begin the command here, which by will display
+  // as a 'spinning blue state' in the UI to indicate
+  // the command is running
+  let cmd = Cypress.log({
+    name: 'pick first board list item',
+    message: [],
+    consoleProps() {
+      // we're creating our own custom message here
+      // which will print out to our browsers console
+      // whenever we click on this command
+      return {};
+    },
+  });
+  return cy
+    .getBoardListItem(name, { log: false })
+    .first()
+    .then(function ($firstItem) {
+      // once we're done fetching first ListItem
+      // above we want to return the .ListItem
+      // to allow for further chaining and then
+      // we want to snapshot the state of the DOM
+      // and end the command so it goes from that
+      // 'spinning blue state' to the 'finished state'
+      cmd.set({ $el: $firstItem }).snapshot().end();
+    });
+}
 Cypress.Commands.add('getBoardsList_FirstEntry', getBoardsList_FirstEntry);
 
 function getCardListButton(buttonName: string) {
@@ -131,7 +167,9 @@ declare global {
 
 const sections = (options?: Partial<Loggable & Timeoutable>) =>
   cy.dataCy('card-list', options);
+
 Cypress.Commands.add('sections', sections);
+
 declare global {
   namespace Cypress {
     interface Chainable<Subject> {
@@ -150,7 +188,9 @@ function clickAddNewCard() {
   );
   cy.get('[data-cy="edit-and-add-card"] .chakra-editable__preview').click();
 }
+
 Cypress.Commands.add('clickAddNewCard', clickAddNewCard);
+
 declare global {
   namespace Cypress {
     interface Chainable<Subject> {
@@ -176,10 +216,10 @@ query CardList($cardListId: ID!) {
   }
 }`;
 
-export const login = (
+export const login: (
   userLogin: string,
   password: string
-): Cypress.Chainable<null> =>
+) => Cypress.Chainable<null> = (userLogin, password): Cypress.Chainable<null> =>
   cy.session(
     'coolboardSessionId',
     () => {
@@ -196,6 +236,7 @@ export const login = (
       cy.location('pathname').should('eq', '/boards');
     },
     {
+      // () => Promise<false | void> | void
       validate: () => {
         {
           const someAPIgraphqlQuery = {
@@ -221,12 +262,12 @@ const credPrefix = isProduction ? 'PRODUCTION_' : '';
 export const userLogin = Cypress.env(credPrefix + 'LOGIN');
 export const password = Cypress.env(credPrefix + 'PASSWORD');
 
-export const LogAndWaitLong = {
+export const LogAndWaitLong: Partial<Loggable & Timeoutable> = {
   log: true,
   timeout: 8000,
 };
 
-export const WaitVeryLong = {
+export const WaitVeryLong: Partial<Loggable & Timeoutable> = {
   log: true,
   timeout: 5000 * 4,
 };
@@ -239,6 +280,8 @@ function fillLoginForm(userLogin: string, password: string): void {
   });
 }
 
-Cypress.Commands.add('dataCy', (selector, options) =>
-  cy.get(`[data-cy="${selector}"]`, options)
+Cypress.Commands.add(
+  'dataCy',
+  (selector: string, options?: Partial<Loggable & Timeoutable>) =>
+    cy.get(`[data-cy="${selector}"]`, options)
 );
