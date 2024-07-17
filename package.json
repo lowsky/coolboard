@@ -27,7 +27,7 @@
     "@opentelemetry/instrumentation-http": "0.52.1",
     "@opentelemetry/sdk-trace-web": "1.25.1",
     "@pothos/core": "3.41.2",
-    "@pothos/plugin-prisma": "3.65.3",
+    "@pothos/plugin-prisma": "4.0.5",
     "@pothos/plugin-with-input": "3.10.2",
     "@prisma/adapter-neon": "5.17.0",
     "@prisma/client": "5.17.0",
