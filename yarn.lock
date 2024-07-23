@@ -30,9 +30,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@apollo/client@npm:3.11.0":
-  version: 3.11.0
-  resolution: "@apollo/client@npm:3.11.0"
+"@apollo/client@npm:3.11.1":
+  version: 3.11.1
+  resolution: "@apollo/client@npm:3.11.1"
   dependencies:
     "@graphql-typed-document-node/core": "npm:^3.1.1"
     "@wry/caches": "npm:^1.0.0"
@@ -63,7 +63,7 @@ __metadata:
       optional: true
     subscriptions-transport-ws:
       optional: true
-  checksum: 10c0/9f04e4d68fdced767278840d1cbf5887b5321111ddbe38d7ee436674515a576c5b5735aad15d35ac43e3659dd111778e2d09e1ba2bca5809106fc78cfbf8e15a
+  checksum: 10c0/d3a1f30d44d5a84e01538772396e93db4921fcdf99919785688464d487ea00dabfb6ae63ca7e2ebd373eed5d24c134dec6eb4f4d13920044b2ea1f105fa044c4
   languageName: node
   linkType: hard
 
@@ -7512,7 +7512,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "coolboard@workspace:."
   dependencies:
-    "@apollo/client": "npm:3.11.0"
+    "@apollo/client": "npm:3.11.1"
     "@apollo/server": "npm:4.10.5"
     "@as-integrations/next": "npm:3.0.0"
     "@chakra-ui/icons": "npm:2.1.1"
