@@ -7,8 +7,8 @@
   },
   "homepage": "/",
   "dependencies": {
-    "@apollo/client": "3.10.8",
-    "@apollo/server": "4.10.4",
+    "@apollo/client": "3.11.0",
+    "@apollo/server": "4.10.5",
     "@as-integrations/next": "3.0.0",
     "@chakra-ui/icons": "2.1.1",
     "@chakra-ui/react": "2.8.2",
