@@ -17,7 +17,7 @@
     "@clerk/themes": "2.1.25",
     "@emotion/react": "11.13.3",
     "@emotion/styled": "11.13.0",
-    "@neondatabase/serverless": "0.9.4",
+    "@neondatabase/serverless": "0.9.5",
     "@opentelemetry/auto-instrumentations-node": "0.50.0",
     "@opentelemetry/auto-instrumentations-web": "0.41.0",
     "@opentelemetry/context-zone": "1.26.0",
