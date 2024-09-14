@@ -111,7 +111,8 @@ jobs:
               circleci step halt # does nothing
               circleci-agent step halt # does nothing
               echo "   No parameters -skipping build ..."
-              exit 0
+              echo "   No parameters - mark build as failed, even when there was already a good run ..."
+              exit 1
             fi
 
       - checkout
