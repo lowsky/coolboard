@@ -29,6 +29,7 @@ export const Card = (props) => {
 export const dndItemType = 'card';
 
 export const CardForDragging = (props) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, ref] = useDrag({
     type: dndItemType,
     item: {
@@ -40,7 +41,6 @@ export const CardForDragging = (props) => {
   });
 
   return (
-    // @ts-expect-error TS2322: Type ConnectDragSource is not assignable to type LegacyRef<HTMLDivElement> | undefined
     <div ref={ref}>
       <Card {...props} />
     </div>

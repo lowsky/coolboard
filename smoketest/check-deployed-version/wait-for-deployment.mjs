@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import got from 'got';
 
 const baseUrl = process.env.CYPRESS_baseUrl || 'https://coolboard.fun';

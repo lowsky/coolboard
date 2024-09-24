@@ -15,6 +15,7 @@ import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions'
 //import { ConsoleSpanExporter } from '@opentelemetry/sdk-trace-base';
 import { PrismaInstrumentation } from '@prisma/instrumentation';
 
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const { diag, DiagConsoleLogger, DiagLogLevel } = require('@opentelemetry/api');
 
 diag.setLogger(

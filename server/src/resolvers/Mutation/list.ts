@@ -23,7 +23,7 @@ export default {
       );
     }
 
-    let cards: Prisma.CardUncheckedUpdateManyWithoutListNestedInput = {};
+    const cards: Prisma.CardUncheckedUpdateManyWithoutListNestedInput = {};
     if (create?.[0]) {
       cards.create = {
         name: create[0].name,

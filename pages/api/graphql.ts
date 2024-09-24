@@ -56,6 +56,7 @@ const authenticatedHandler = async function (
   } catch (e) {
     console.error(e);
   }
+  // eslint-disable-next-line @typescript-eslint/no-unused-expressions
   isLocalDev && console.error('    userId is not yet set!');
 
   res.status(401).json({ id: null });

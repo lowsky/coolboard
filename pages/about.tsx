@@ -71,7 +71,6 @@ export default function About() {
           <Heading as="h2">How does it work?</Heading>
           <Text>
             You will need to Sign-up via email and{' '}
-            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
             <a href="/sign-in">
               <Icon>
                 <FaSignInAlt />

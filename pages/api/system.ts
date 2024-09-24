@@ -25,7 +25,7 @@ export default function handler(
   try {
     const info = someAsyncOperation();
     res.status(200).json({ message: 'Generated at ' + new Date(), info });
-  } catch (err) {
+  } catch {
     res.status(500).json({ error: 'failed to load data' });
   }
 }

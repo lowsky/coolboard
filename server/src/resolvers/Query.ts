@@ -10,6 +10,7 @@ import { isLocalDev } from '../helpers/logging';
 import { Ctxt } from './Context';
 
 export default {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async ping(_parent: any, _args: any, _ctx: Ctxt): Promise<string> {
     return 'pong';
   },
