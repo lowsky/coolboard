@@ -64,7 +64,7 @@
     "start": "next dev",
     "start:comment": "next dev ; # not with await+browser-otel: --turbo",
     "start-production": "next start",
-    "lint": "eslint -c eslint.config.js",
+    "lint": "eslint -c eslint.config.js src server pages",
     "trigger-e2e-smoke": "sh trigger-circleci-smoke.sh",
     "smoketest": "cd smoketest; yarn --immutable ; yarn cy open --e2e -b electron",
     "build": "yarn run metainfo && yarn run prisma:generate && next build",
