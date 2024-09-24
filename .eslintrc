@@ -1,6 +1,0 @@
-{
-  "extends": ["next", "plugin:prettier/recommended"],
-  "rules": {
-    "prettier/prettier": 1 // Means warning
-  }
-}
