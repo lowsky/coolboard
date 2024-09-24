@@ -5,6 +5,7 @@
   "engines": {
     "node": "20.x"
   },
+  "type": "module",
   "homepage": "/",
   "dependencies": {
     "@apollo/client": "3.11.8",
