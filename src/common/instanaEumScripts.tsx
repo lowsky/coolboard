@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/no-before-interactive-script-outside-document */
+/* no-next-rules there: eslint-disable @next/next/no-before-interactive-script-outside-document */
 import Script from 'next/script';
 
 const instanaEumKey = process.env.NEXT_PUBLIC_INSTANA_EUM_KEY;
