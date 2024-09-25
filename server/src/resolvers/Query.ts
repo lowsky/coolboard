@@ -16,7 +16,7 @@ export default {
   },
 
   async board(_parent: any, { where }: any, ctx: Ctxt): Promise<Board | null> {
-    // enable loading dhe demo board even without authentication
+    // Enable loading dhe demo board even without authentication
     if (where?.id !== process.env.NEXT_PUBLIC_DEMOBOARD_ID)
       await verifyUserIsAuthenticatedAndRetrieveUserToken(ctx);
 
@@ -48,7 +48,7 @@ export default {
     }
     const userToken = await verifyUserIsAuthenticatedAndRetrieveUserToken(ctx);
 
-    // user signed in, but not created in DB yet:
+    // User signed in, but not created in DB yet:
     const newUser = await createNewUser(userToken, (data) =>
       prisma.user.create(data)
     );

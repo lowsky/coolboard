@@ -121,6 +121,6 @@ export const GeneralErrorHandler = () => {
     });
   }
 
-  // do not render anything, when there is no error above
+  // Do not render anything, when there is no error above
   return null;
 };

@@ -3,7 +3,7 @@ import { isLocalDev } from './src/helpers/logging';
 import { NodeSDK } from '@opentelemetry/sdk-node';
 import { Resource } from '@opentelemetry/resources';
 
-// something like jaeger, see https://opentelemetry.io/docs/instrumentation/js/exporters/
+// Something like jaeger, see https://opentelemetry.io/docs/instrumentation/js/exporters/
 // http://localhost:16686/search?limit=20&lookback=5m&service=otel-graphql-coolboard
 import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-grpc';
 
@@ -38,7 +38,7 @@ export const instrumentations = [
 ];
 
 const sdk = new NodeSDK({
-  // add more details when running in cloud
+  // Add more details when running in cloud
   autoDetectResources: !isLocalDev,
   resource: new Resource({
     [SemanticResourceAttributes.SERVICE_NAME]: 'otel-graphql-coolboard',

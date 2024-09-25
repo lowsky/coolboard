@@ -9,7 +9,7 @@ import { mode } from '@chakra-ui/theme-tools';
 export const theme = extendTheme({
   config: {
     useSystemColorMode: true,
-    initialColorMode: 'light', // fallback
+    initialColorMode: 'light', // Fallback
   },
   components: {
     Text: {

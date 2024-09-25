@@ -8,7 +8,7 @@ import { isLocalDev } from './logging';
 import type { Ctxt } from '../resolvers/Context';
 
 export type UserToken = {
-  // format: identity + '|' + userId
+  // Format: identity + '|' + userId
   sub: string;
   name?: string;
   email?: string;

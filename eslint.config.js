@@ -5,30 +5,62 @@ import { fileURLToPath } from 'node:url';
 import js from '@eslint/js';
 import ts from 'typescript-eslint';
 import prettierConfigRecommended from 'eslint-plugin-prettier/recommended';
-import { FlatCompat } from '@eslint/eslintrc';
-import { fixupConfigRules, includeIgnoreFile } from '@eslint/compat';
+import reactHooks from 'eslint-plugin-react-hooks';
+import reactPlugin from 'eslint-plugin-react';
+import nextPlugin from '@next/eslint-plugin-next';
+
+import { fixupPluginRules, includeIgnoreFile } from '@eslint/compat';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all,
-});
-
 const gitignorePath = path.resolve(__dirname, '.gitignore');
 
 const config = [
+  {
+    files: ['**/*.{js,jsx,ts,tsx}'],
+    plugins: {
+      '@next/next': fixupPluginRules(nextPlugin),
+    },
+    rules: {
+      ...nextPlugin.configs.recommended.rules,
+      ...nextPlugin.configs['core-web-vitals'].rules,
+    },
+  },
+  js.configs.recommended,
   ...ts.configs.recommended,
+  {
+    // temporary until code get changed
+    rules: { '@typescript-eslint/no-explicit-any': 'off' },
+  },
   prettierConfigRecommended,
+  {
+    files: ['** / *.{jsx,tsx}'],
+    plugins: {
+      react: reactPlugin,
+    },
+    settings: { react: { version: '18.3' } },
+    rules: {
+      ...reactPlugin.configs.recommended.rules,
+      //'react/react-in-jsx-scope': 0,
+      //'react/prop-types': 1,
+    },
+  },
+  {
+    // Hint: specifying files was needed - else context.getContext failed
+    files: ['**/*.{js,jsx}'],
+    plugins: { 'react-hooks': reactHooks },
+    // ...
+    rules: {
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'warn',
+    },
+  },
   includeIgnoreFile(gitignorePath),
   {
-    //    ignores: ['.next/', 'smoketest/', '.yarn/', '.idea/', '.github/'],
+    // ignore the smoketest folder
     ignores: ['smoketest/', '.yarn/'],
-    //ignores: ['smoketest/'],
   },
-  { rules: { '@typescript-eslint/no-explicit-any': 'off' } },
 ];
 
 export default config;

@@ -4,7 +4,7 @@ import type { User, Prisma } from '@prisma/client';
 import { isLocalDev } from './logging';
 import type { UserToken } from './auth';
 
-/* identity, auth0id, name, email, avatarUrl */
+/* Identity, auth0id, name, email, avatarUrl */
 type PrismaUserCreator = (data: Prisma.UserCreateArgs) => Promise<User>;
 
 export const createNewUser = async (
@@ -22,9 +22,9 @@ export const createNewUser = async (
         extensions: {
           code: 'REGISTRATION_FAILED_MISSING_DATA',
           coolboardAuthData: {
-            email: email,
-            name: name,
-            auth0id: auth0id,
+            email,
+            name,
+            auth0id,
           },
         },
       }

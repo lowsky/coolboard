@@ -173,7 +173,7 @@ export type Query = {
   __typename?: 'Query';
   board?: Maybe<Board>;
   list?: Maybe<List>;
-  /** authenticated current user */
+  /** Authenticated current user */
   me?: Maybe<User>;
   ping: Scalars['String']['output'];
 };

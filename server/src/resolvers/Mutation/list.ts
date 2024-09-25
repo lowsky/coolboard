@@ -19,7 +19,7 @@ export default {
 
     if (!create && !connect && !disconnect) {
       throw new Error(
-        'Unsupported operation on lists: ' + Object.keys(otherCardOperation)
+        `Unsupported operation on lists: ${Object.keys(otherCardOperation)}`
       );
     }
 
@@ -32,7 +32,7 @@ export default {
       };
     }
     if (connect?.[0]) {
-      const id = connect[0].id;
+      const { id } = connect[0];
       cards.connect = {
         id,
       };

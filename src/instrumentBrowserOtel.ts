@@ -71,7 +71,7 @@ export const instrumentBrowserOtel = async () => {
       getWebAutoInstrumentations({
         '@opentelemetry/instrumentation-fetch': {
           ignoreUrls: [
-            // clerk would not work after instrumentation
+            // Clerk would not work after instrumentation
             /.*clerk.*/i,
             // _next/* would add a lot of noise.
             /.*_next.*/i,
