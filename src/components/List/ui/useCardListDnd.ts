@@ -1,4 +1,8 @@
-import { type ConnectableElement, type DropTargetMonitor, useDrop } from 'react-dnd';
+import {
+  type ConnectableElement,
+  type DropTargetMonitor,
+  useDrop,
+} from 'react-dnd';
 import type { ReactElement } from 'react';
 
 import type { Card as CardType } from 'generated/graphql';
