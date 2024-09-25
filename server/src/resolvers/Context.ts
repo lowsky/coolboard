@@ -1,5 +1,5 @@
-import { PrismaClient } from '@prisma/client';
-import { NextRequest } from 'next/server';
+import type { PrismaClient } from '@prisma/client';
+import type { NextRequest } from 'next/server';
 
 export interface Ctxt {
   req: NextRequest;

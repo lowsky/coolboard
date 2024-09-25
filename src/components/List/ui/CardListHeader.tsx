@@ -13,7 +13,7 @@ import {
   useEditableControls,
 } from '@chakra-ui/react';
 import { EditIcon, HamburgerIcon } from '@chakra-ui/icons';
-import React, { ReactNode } from 'react';
+import React, { type ReactNode } from 'react';
 
 import { useRenameListMutation } from 'generated/graphql';
 

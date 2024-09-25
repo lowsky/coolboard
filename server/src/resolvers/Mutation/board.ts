@@ -1,9 +1,9 @@
-import { Board, User, Prisma } from '@prisma/client';
+import type { Board, User, Prisma } from '@prisma/client';
 import {
   getUserId,
   verifyUserIsAuthenticatedAndRetrieveUserToken,
 } from '../../helpers/auth';
-import { Ctxt } from '../Context';
+import type { Ctxt } from '../Context';
 
 export default {
   async updateBoard(_parent: any, args: any, ctx: Ctxt): Promise<Board> {

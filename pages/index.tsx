@@ -7,9 +7,9 @@ import { FaChalkboardTeacher, FaFilm, FaLink } from 'react-icons/fa';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import {
-  ApolloClient,
+  type ApolloClient,
   ApolloProvider,
-  NormalizedCacheObject,
+  type NormalizedCacheObject,
 } from '@apollo/client';
 
 import { Board } from 'components/Board/Board';

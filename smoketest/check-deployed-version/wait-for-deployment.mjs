@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import got from 'got';
 
 const baseUrl = process.env.CYPRESS_baseUrl || 'https://coolboard.fun';
@@ -16,8 +17,8 @@ console.log('Checking if deployed site on this url: ', url);
 
 console.log('...is based on this GIT_SHA1: ', EXPECTED_GIT_SHA1);
 
-let intTimeMs = 1000; // retry period
-let noRetries = 1; // number retries
+const intTimeMs = 1000; // retry period
+const noRetries = 1; // number retries
 
 async function checkSiteVersion() {
   try {

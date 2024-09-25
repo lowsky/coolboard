@@ -8,10 +8,10 @@ import { DateTimeResolver } from 'graphql-scalars';
 import ws from 'ws';
 
 // Using a type only import will help avoid issues with undeclared
-// exports in esm mode
+// Exports in esm mode
 import type PrismaTypes from '@pothos/plugin-prisma/generated';
 
-import { Ctxt } from './resolvers/Context';
+import type { Ctxt } from './resolvers/Context';
 import { isLocalDev } from './helpers/logging';
 
 neonConfig.webSocketConstructor = ws;
@@ -45,13 +45,13 @@ const builder = new SchemaBuilder<{
   PrismaTypes: PrismaTypes;
 }>({
   plugins: [WithInputPlugin, PrismaPlugin],
-  // optional
+  // Optional
   withInput: {
     typeOptions: {
-      // default options for Input object types created by this plugin
+      // Default options for Input object types created by this plugin
     },
     argOptions: {
-      // set required: false to override default behavior
+      // Set required: false to override default behavior
     },
   },
   prisma: {
@@ -59,18 +59,18 @@ const builder = new SchemaBuilder<{
 
     client: prisma,
 
-    // defaults to false, uses /// comments from prisma schema as descriptions
-    // for object types, relations and exposed fields.
-    // descriptions can be omitted by setting description to false
+    // Defaults to false, uses /// comments from prisma schema as descriptions
+    // For object types, relations and exposed fields.
+    // Descriptions can be omitted by setting description to false
 
     exposeDescriptions: false, ////boolean | { models: boolean, fields: boolean },
 
-    // use where clause from prismaRelatedConnection for totalCount (will true by default in next major version)
+    // Use where clause from prismaRelatedConnection for totalCount (will true by default in next major version)
     filterConnectionTotalCount: true,
   },
 });
 
-// for createAt, etc. field
+// For createAt, etc. field
 builder.addScalarType('DateTime', DateTimeResolver, {});
 
 builder.queryType({});

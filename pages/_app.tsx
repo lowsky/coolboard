@@ -13,7 +13,7 @@ import { theme } from 'common/theme';
 
 if (typeof window !== 'undefined') {
   // TODO investigate later...: top-level await in this place
-  // won't be possible with yarn next dev --turbo
+  // Won't be possible with yarn next dev --turbo
   // -> it hangs completely on the initial page load !
   await instrumentBrowserOtel();
 }

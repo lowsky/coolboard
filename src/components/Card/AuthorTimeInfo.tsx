@@ -3,7 +3,7 @@ import TimeAgo from 'react-timeago';
 import { Alert, AlertDescription, Avatar, Box } from '@chakra-ui/react';
 
 import { Segment } from 'common/Segment';
-import { User } from 'generated/graphql';
+import type { User } from 'generated/graphql';
 
 export type AuthorTimeInfoProps = {
   createdAt: number;
@@ -22,21 +22,15 @@ export function AuthorTimeInfo({
         <AlertDescription>
           <Box>
             <strong>created: </strong>
-            {
-              // @ts-expect-error TS2786: TimeAgo cannot be used as a JSX component.
-              <TimeAgo date={createdAt} />
-            }
+            <TimeAgo date={createdAt} />
           </Box>
           <Box>
             <strong>updated: </strong>
-            {
-              // @ts-expect-error TS2786: TimeAgo cannot be used as a JSX component.
-              <TimeAgo date={updatedAt} />
-            }
+            <TimeAgo date={updatedAt} />
             {updatedBy && (
               <>
                 <strong> by: </strong>
-                {updatedBy.avatarUrl && <Avatar src={updatedBy.avatarUrl!} />}
+                {updatedBy.avatarUrl && <Avatar src={updatedBy?.avatarUrl} />}
                 <span>
                   {updatedBy.name
                     ? updatedBy.name

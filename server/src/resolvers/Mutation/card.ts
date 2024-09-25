@@ -1,6 +1,6 @@
-import { Card } from '@prisma/client';
+import type { Card } from '@prisma/client';
 import { getUserId } from '../../helpers/auth';
-import { Ctxt } from '../Context';
+import type { Ctxt } from '../Context';
 
 export default {
   async updateCard(

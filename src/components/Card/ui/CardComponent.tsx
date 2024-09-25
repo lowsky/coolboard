@@ -1,9 +1,9 @@
-import React, { CSSProperties, useState } from 'react';
+import React, { type CSSProperties, useState } from 'react';
 import { useDisclosure } from '@chakra-ui/react';
 import styled from '@emotion/styled';
-import { FetchResult } from '@apollo/client';
+import type { FetchResult } from '@apollo/client';
 
-import {
+import type {
   Card,
   UpdateCardMutation,
   UpdateCardMutationVariables,

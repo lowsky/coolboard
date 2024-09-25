@@ -1,14 +1,14 @@
-import React from 'react';
 import {
   useAddCardMutationMutation,
   useCardListSuspenseQuery,
   useDeleteListOfBoardMutation,
   useMoveCard2Mutation,
 } from 'generated/graphql';
+import React from 'react';
 
 import { createUpdateCachedListsAfterMovingCard } from './overrideCacheListsAfterMovingCard';
-import { MoveItemFromTo, useCardListDnd } from './ui/useCardListDnd';
-import { CardListWithDnd, UIListData } from './ui/CardListWithDnd';
+import { CardListWithDnd, type UIListData } from './ui/CardListWithDnd';
+import { type MoveItemFromTo, useCardListDnd } from './ui/useCardListDnd';
 
 interface CardListProps {
   id: string;
@@ -66,7 +66,6 @@ export const CardList = ({
   const list: UIListData = data?.list;
 
   return (
-    // @ts-expect-error TS2322: Type ConnectDragSource not assignable to type LegacyRef<HTMLDivElement> | undefined
     <div ref={ref}>
       <CardListWithDnd
         {...dndProps}

@@ -1,11 +1,11 @@
-import { User, Board, List, Card } from '@prisma/client';
+import type { User, Board, List, Card } from '@prisma/client';
 import Query from './Query';
 
 import board from './Mutation/board';
 import list from './Mutation/list';
 import card from './Mutation/card';
 
-import { Ctxt } from './Context';
+import type { Ctxt } from './Context';
 
 export default {
   Query,

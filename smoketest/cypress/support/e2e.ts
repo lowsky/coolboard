@@ -112,7 +112,7 @@ Cypress.Commands.add('getBoardListItem', getBoardListItem);
 
 declare global {
   namespace Cypress {
-    interface Chainable<Subject> {
+    interface Chainable {
       getBoardsList_FirstEntry(name: string): Chainable<JQuery<HTMLElement>>;
     }
   }
@@ -124,25 +124,25 @@ function getBoardsList_FirstEntry(
   // begin the command here, which by will display
   // as a 'spinning blue state' in the UI to indicate
   // the command is running
-  let cmd = Cypress.log({
+  const cmd = Cypress.log({
     name: 'pick first board list item',
     message: [],
     consoleProps() {
-      // we're creating our own custom message here
-      // which will print out to our browsers console
-      // whenever we click on this command
+      // we are creating our own custom message here
+      // that will print out to our browsers console
+      // whenever we click on this command.
       return {};
     },
   });
   return cy
     .getBoardListItem(name, { log: false })
     .first()
-    .then(function ($firstItem) {
-      // once we're done fetching first ListItem
-      // above we want to return the .ListItem
-      // to allow for further chaining and then
+    .then(($firstItem) => {
+      // once we are done fetching first ListItem
+      // above we want to return the ListItem
+      // to allow for further chaining, and then
       // we want to snapshot the state of the DOM
-      // and end the command so it goes from that
+      // and end the command, so it goes from that
       // 'spinning blue state' to the 'finished state'
       cmd.set({ $el: $firstItem }).snapshot().end();
     });
@@ -157,7 +157,7 @@ Cypress.Commands.add('getCardListButton', getCardListButton);
 
 declare global {
   namespace Cypress {
-    interface Chainable<Subject> {
+    interface Chainable {
       getCardListButton(
         buttonName: string
       ): Chainable<JQuery<HTMLButtonElement>>;
@@ -172,7 +172,7 @@ Cypress.Commands.add('sections', sections);
 
 declare global {
   namespace Cypress {
-    interface Chainable<Subject> {
+    interface Chainable {
       sections(
         options?: Partial<Loggable & Timeoutable>
       ): Chainable<JQuery<HTMLElement>>;
@@ -193,7 +193,7 @@ Cypress.Commands.add('clickAddNewCard', clickAddNewCard);
 
 declare global {
   namespace Cypress {
-    interface Chainable<Subject> {
+    interface Chainable {
       clickAddNewCard(): Chainable<JQuery<HTMLButtonElement>>;
     }
   }
@@ -203,7 +203,7 @@ declare global {
 //
 // While we have a failing fetch request (because of expired, short living
 // clerk auth session cookie)
-Cypress.on('uncaught:exception', (error, runnable, promise) => {
+Cypress.on('uncaught:exception', (_error, _runnable, promise) => {
   if (promise) {
     return false;
   }
@@ -239,13 +239,14 @@ export const login: (
       // () => Promise<false | void> | void
       validate: () => {
         {
-          const someAPIgraphqlQuery = {
+          const someApiGraphqlQuery = {
             operationName: 'CardList',
+            // todo: this won't work on all environments
             variables: { cardListId: 'clsq1w75z0002gnafx71y3v8d' },
             query: graphqlQuery,
           };
           cy.request({
-            body: someAPIgraphqlQuery,
+            body: someApiGraphqlQuery,
             method: 'POST',
             url: '/api/graphql',
           });

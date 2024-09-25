@@ -16,7 +16,7 @@ export async function userIdByAuth0id(
 
   const user: null | { id: string } = await fetchUserByAuth0id(auth0id);
 
-  let userId = user?.id;
+  const userId = user?.id;
   if (userId) {
     injectUserIdByAuth0id(userId, auth0id);
   }

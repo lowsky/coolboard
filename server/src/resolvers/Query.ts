@@ -1,4 +1,4 @@
-import { Board, List, User } from '@prisma/client';
+import type { Board, List, User } from '@prisma/client';
 
 import {
   verifyAndRetrieveAuthSubject,
@@ -7,15 +7,16 @@ import {
 import { injectUserIdByAuth0id } from '../helpers/userIdByAuth0id';
 import { createNewUser } from '../helpers/registerNewUser';
 import { isLocalDev } from '../helpers/logging';
-import { Ctxt } from './Context';
+import type { Ctxt } from './Context';
 
 export default {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async ping(_parent: any, _args: any, _ctx: Ctxt): Promise<string> {
     return 'pong';
   },
 
   async board(_parent: any, { where }: any, ctx: Ctxt): Promise<Board | null> {
-    // enable loading dhe demo board even without authentication
+    // Enable loading dhe demo board even without authentication
     if (where?.id !== process.env.NEXT_PUBLIC_DEMOBOARD_ID)
       await verifyUserIsAuthenticatedAndRetrieveUserToken(ctx);
 
@@ -31,11 +32,7 @@ export default {
     return await prisma.list.findUnique({ where });
   },
 
-  me: async function (
-    _parent: any,
-    _args: any,
-    ctx: Ctxt
-  ): Promise<User | null> {
+  me: async (_parent: any, _args: any, ctx: Ctxt): Promise<User | null> => {
     const { prisma } = ctx;
 
     const auth0id = await verifyAndRetrieveAuthSubject(ctx);
@@ -51,7 +48,7 @@ export default {
     }
     const userToken = await verifyUserIsAuthenticatedAndRetrieveUserToken(ctx);
 
-    // user signed in, but not created in DB yet:
+    // User signed in, but not created in DB yet:
     const newUser = await createNewUser(userToken, (data) =>
       prisma.user.create(data)
     );

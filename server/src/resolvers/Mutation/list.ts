@@ -1,10 +1,10 @@
-import { List, Prisma } from '@prisma/client';
-import { MutationDeleteListArgs } from 'generated/graphql';
+import type { List, Prisma } from '@prisma/client';
+import type { MutationDeleteListArgs } from 'generated/graphql';
 import {
   getUserId,
   verifyUserIsAuthenticatedAndRetrieveUserToken,
 } from '../../helpers/auth';
-import { Ctxt } from '../Context';
+import type { Ctxt } from '../Context';
 
 export default {
   async updateList(
@@ -19,11 +19,11 @@ export default {
 
     if (!create && !connect && !disconnect) {
       throw new Error(
-        'Unsupported operation on lists: ' + Object.keys(otherCardOperation)
+        `Unsupported operation on lists: ${Object.keys(otherCardOperation)}`
       );
     }
 
-    let cards: Prisma.CardUncheckedUpdateManyWithoutListNestedInput = {};
+    const cards: Prisma.CardUncheckedUpdateManyWithoutListNestedInput = {};
     if (create?.[0]) {
       cards.create = {
         name: create[0].name,
@@ -32,7 +32,7 @@ export default {
       };
     }
     if (connect?.[0]) {
-      const id = connect[0].id;
+      const { id } = connect[0];
       cards.connect = {
         id,
       };
@@ -55,11 +55,11 @@ export default {
       },
     });
   },
-  deleteList: async function (
+  deleteList: async (
     _parent: any,
     args: MutationDeleteListArgs,
     ctx: Ctxt
-  ): Promise<List> {
+  ): Promise<List> => {
     await verifyUserIsAuthenticatedAndRetrieveUserToken(ctx);
     const { prisma } = ctx;
     return prisma.list.delete({

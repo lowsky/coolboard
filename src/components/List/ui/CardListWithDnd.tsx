@@ -2,7 +2,7 @@ import React from 'react';
 import { Flex } from '@chakra-ui/react';
 import { FaTrash } from 'react-icons/fa';
 
-import { Card as CardType, List as ListType } from 'generated/graphql';
+import type { Card as CardType, List as ListType } from 'generated/graphql';
 
 import Card from 'components/Card/Card';
 

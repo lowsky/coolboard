@@ -1,10 +1,10 @@
-import React, { ReactNode } from 'react';
-import { ServerError, ServerParseError } from '@apollo/client';
+import React, { type ReactNode } from 'react';
+import type { ServerError, ServerParseError } from '@apollo/client';
 import {
   Alert,
   AlertDescription,
   AlertIcon,
-  AlertStatus,
+  type AlertStatus,
   AlertTitle,
 } from '@chakra-ui/react';
 
@@ -121,6 +121,6 @@ export const GeneralErrorHandler = () => {
     });
   }
 
-  // do not render anything, when there is no error above
+  // Do not render anything, when there is no error above
   return null;
 };

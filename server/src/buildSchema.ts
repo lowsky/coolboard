@@ -1,4 +1,5 @@
-import { Board, List, User } from '@prisma/client';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import type { Board, List, User } from '@prisma/client';
 
 import builder from './schemaBuilder';
 import resolvers from './resolvers/resolvers';
