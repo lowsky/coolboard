@@ -1,9 +1,9 @@
-import { ConnectableElement, DropTargetMonitor, useDrop } from 'react-dnd';
-import { ReactElement } from 'react';
+import { type ConnectableElement, type DropTargetMonitor, useDrop } from 'react-dnd';
+import type { ReactElement } from 'react';
 
-import { Card as CardType } from 'generated/graphql';
+import type { Card as CardType } from 'generated/graphql';
 
-import { DndProps } from './CardListWithDnd';
+import type { DndProps } from './CardListWithDnd';
 import { dndItemType } from 'components/Card/Card';
 
 export type MoveItemFromTo = (

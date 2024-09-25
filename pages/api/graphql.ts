@@ -1,14 +1,14 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { NextRequest } from 'next/server';
-import { ApolloServer, ContextFunction } from '@apollo/server';
+import type { NextRequest } from 'next/server';
+import { ApolloServer, type ContextFunction } from '@apollo/server';
 import { startServerAndCreateNextHandler } from '@as-integrations/next';
 import { ApolloServerPluginUsageReportingDisabled } from '@apollo/server/plugin/disabled';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 import { getAuth } from '@clerk/nextjs/server';
-import { PrismaClient } from '@prisma/client';
+import type { PrismaClient } from '@prisma/client';
 
 import { isLocalDev } from 'server/src/helpers/logging';
-import { Ctxt } from 'server/src/resolvers/Context';
+import type { Ctxt } from 'server/src/resolvers/Context';
 import { buildSchema, prisma } from 'server/src/buildSchema';
 
 import { REQ_HEADER_x_coolboard_readonly } from 'src/headers';
@@ -35,10 +35,10 @@ const handleGraphqlRequest = startServerAndCreateNextHandler<NextRequest, Ctxt>(
   { context: injectContext }
 );
 
-const authenticatedHandler = async function (
+const authenticatedHandler = async (
   req: NextApiRequest,
   res: NextApiResponse
-) {
+) => {
   const readOnlyHeader = req.headers[REQ_HEADER_x_coolboard_readonly];
   const isReadOnlyHeader = readOnlyHeader === 'true';
 

@@ -9,7 +9,7 @@ import {
   Textarea,
 } from '@chakra-ui/react';
 
-import { Card } from 'generated/graphql';
+import type { Card } from 'generated/graphql';
 import { ShowDiffWarning } from './ui/ShowDiffWarning';
 
 type CardEditFormProps = {

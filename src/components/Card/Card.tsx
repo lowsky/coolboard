@@ -1,9 +1,9 @@
 import React from 'react';
-import { DragSourceMonitor, useDrag } from 'react-dnd';
+import { type DragSourceMonitor, useDrag } from 'react-dnd';
 
 import { CardComponent } from './ui/CardComponent';
 import {
-  UpdateCardMutationVariables,
+  type UpdateCardMutationVariables,
   useUpdateCardMutation,
 } from 'generated/graphql';
 

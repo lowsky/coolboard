@@ -1,4 +1,3 @@
-'use strict';
 import { isLocalDev } from './src/helpers/logging';
 
 import { NodeSDK } from '@opentelemetry/sdk-node';

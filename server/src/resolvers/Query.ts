@@ -1,4 +1,4 @@
-import { Board, List, User } from '@prisma/client';
+import type { Board, List, User } from '@prisma/client';
 
 import {
   verifyAndRetrieveAuthSubject,
@@ -7,7 +7,7 @@ import {
 import { injectUserIdByAuth0id } from '../helpers/userIdByAuth0id';
 import { createNewUser } from '../helpers/registerNewUser';
 import { isLocalDev } from '../helpers/logging';
-import { Ctxt } from './Context';
+import type { Ctxt } from './Context';
 
 export default {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -32,11 +32,7 @@ export default {
     return await prisma.list.findUnique({ where });
   },
 
-  me: async function (
-    _parent: any,
-    _args: any,
-    ctx: Ctxt
-  ): Promise<User | null> {
+  me: async (_parent: any, _args: any, ctx: Ctxt): Promise<User | null> => {
     const { prisma } = ctx;
 
     const auth0id = await verifyAndRetrieveAuthSubject(ctx);

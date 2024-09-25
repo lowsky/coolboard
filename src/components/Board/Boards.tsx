@@ -1,18 +1,18 @@
 import React from 'react';
 import { Container, Heading, List, ListItem, Spinner } from '@chakra-ui/react';
-import { ApolloCache } from '@apollo/client';
+import type { ApolloCache } from '@apollo/client';
 
 import {
   useCreateBoardMutation,
   useDeleteBoardMutation,
   UserBoardsDocument,
-  UserBoardsQuery,
+  type UserBoardsQuery,
   useUserBoardsSuspenseQuery,
 } from 'generated/graphql';
 import { Segment } from 'common/Segment';
 import { FullVerticalContainer } from 'common/FullVerticalContainer';
 import { CreateBoardModal } from './ui/CreateBoardModal';
-import { BoardListItem, BoardListItemProps } from './ui/BoardListItem';
+import { BoardListItem, type BoardListItemProps } from './ui/BoardListItem';
 
 interface Props {
   boards: Omit<BoardListItemProps, 'deleteBoard'>[];

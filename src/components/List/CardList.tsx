@@ -7,8 +7,8 @@ import {
 } from 'generated/graphql';
 
 import { createUpdateCachedListsAfterMovingCard } from './overrideCacheListsAfterMovingCard';
-import { MoveItemFromTo, useCardListDnd } from './ui/useCardListDnd';
-import { CardListWithDnd, UIListData } from './ui/CardListWithDnd';
+import { type MoveItemFromTo, useCardListDnd } from './ui/useCardListDnd';
+import { CardListWithDnd, type UIListData } from './ui/CardListWithDnd';
 
 interface CardListProps {
   id: string;

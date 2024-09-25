@@ -1,11 +1,11 @@
-import { User as ClerkUser, clerkClient } from '@clerk/clerk-sdk-node';
+import { type User as ClerkUser, clerkClient } from '@clerk/clerk-sdk-node';
 import { getAuth } from '@clerk/nextjs/server';
 import { GraphQLError } from 'graphql';
 
 import { injectUserIdByAuth0id, userIdByAuth0id } from './userIdByAuth0id';
 import { createNewUser } from './registerNewUser';
 import { isLocalDev } from './logging';
-import { Ctxt } from '../resolvers/Context';
+import type { Ctxt } from '../resolvers/Context';
 
 export type UserToken = {
   // format: identity + '|' + userId

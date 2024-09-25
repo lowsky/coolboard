@@ -1,5 +1,5 @@
-import { ApolloCache } from '@apollo/client';
-import { CardListDocument, CardListQuery } from 'generated/graphql';
+import type { ApolloCache } from '@apollo/client';
+import { CardListDocument, type CardListQuery } from 'generated/graphql';
 
 export const createUpdateCachedListsAfterMovingCard: (
   cardId: string,

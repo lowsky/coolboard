@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { ApolloClient } from '@apollo/client';
+import type { ApolloClient } from '@apollo/client';
 import { useAuth } from '@clerk/nextjs';
 
 interface Props {

@@ -11,7 +11,7 @@ import ws from 'ws';
 // exports in esm mode
 import type PrismaTypes from '@pothos/plugin-prisma/generated';
 
-import { Ctxt } from './resolvers/Context';
+import type { Ctxt } from './resolvers/Context';
 import { isLocalDev } from './helpers/logging';
 
 neonConfig.webSocketConstructor = ws;

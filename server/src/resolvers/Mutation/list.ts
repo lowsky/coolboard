@@ -1,10 +1,10 @@
-import { List, Prisma } from '@prisma/client';
-import { MutationDeleteListArgs } from 'generated/graphql';
+import type { List, Prisma } from '@prisma/client';
+import type { MutationDeleteListArgs } from 'generated/graphql';
 import {
   getUserId,
   verifyUserIsAuthenticatedAndRetrieveUserToken,
 } from '../../helpers/auth';
-import { Ctxt } from '../Context';
+import type { Ctxt } from '../Context';
 
 export default {
   async updateList(
@@ -55,11 +55,11 @@ export default {
       },
     });
   },
-  deleteList: async function (
+  deleteList: async (
     _parent: any,
     args: MutationDeleteListArgs,
     ctx: Ctxt
-  ): Promise<List> {
+  ): Promise<List> => {
     await verifyUserIsAuthenticatedAndRetrieveUserToken(ctx);
     const { prisma } = ctx;
     return prisma.list.delete({
