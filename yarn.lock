@@ -2535,15 +2535,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/types@npm:4.22.0":
-  version: 4.22.0
-  resolution: "@clerk/types@npm:4.22.0"
-  dependencies:
-    csstype: "npm:3.1.1"
-  checksum: 10c0/8585f68a392d29adf9274f8bcd636be4e236cb33736c9878d54cb41f51e30efad75fd487692ec621c4297f305cc5534dad9bb29027372740dc29ba3ff4e71837
-  languageName: node
-  linkType: hard
-
 "@clerk/types@npm:4.23.0":
   version: 4.23.0
   resolution: "@clerk/types@npm:4.23.0"
@@ -7767,7 +7758,7 @@ __metadata:
     eslint-plugin-prettier: "npm:5.2.1"
     eslint-plugin-react: "npm:7.36.1"
     eslint-plugin-react-hooks: "npm:^4.6.2"
-    framer-motion: "npm:11.7.0"
+    framer-motion: "npm:11.9.0"
     graphql: "npm:16.9.0"
     graphql-scalars: "npm:1.23.0"
     graphql-tag: "npm:2.12.6"
@@ -9277,9 +9268,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"framer-motion@npm:11.7.0":
-  version: 11.7.0
-  resolution: "framer-motion@npm:11.7.0"
+"framer-motion@npm:11.9.0":
+  version: 11.9.0
+  resolution: "framer-motion@npm:11.9.0"
   dependencies:
     tslib: "npm:^2.4.0"
   peerDependencies:
@@ -9293,7 +9284,7 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: 10c0/14cbbc3fdc6017e37c61bc9f5882680da10b2231fbe821c8a1b16c54627d47f4686f45d3c067c600665d393a1565c3bd7ef69a87366bd35ea01f94fb046bf183
+  checksum: 10c0/d1808a42c748d963be3b0a205a2187ee9efe599e2b0cbfd4196aee2c9587c02563572c925e7c39b9d7c06ad7a92678393725f7acc4ba1cd245db3af9441472e4
   languageName: node
   linkType: hard
 
