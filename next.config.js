@@ -1,7 +1,9 @@
 // @ts-check
 
+// eslint-disable-next-line no-undef
 const disableOtel = process.env.OTEL_DISABLED;
 const instrumentationHook = disableOtel !== 'true';
+// eslint-disable-next-line no-undef
 console.log(
   `instrumentation via OTEL: ${
     instrumentationHook ? 'enabled' : 'disabled'
@@ -21,7 +23,7 @@ const nextConfig = {
   reactStrictMode: true,
 
   eslint: {
-    // Warning: This allows production builds to successfully complete even if
+    // Warning: This allows production builds to complete even if
     // Your project has ESLint errors.
     ignoreDuringBuilds: true,
   },

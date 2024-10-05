@@ -18,7 +18,7 @@ const gitignorePath = path.resolve(__dirname, '.gitignore');
 
 const config = [
   {
-    files: ['**/*.{js,jsx,ts,tsx}'],
+    files: ['**/*.{js,ts,tsx}'],
     plugins: {
       '@next/next': fixupPluginRules(nextPlugin),
     },
@@ -35,20 +35,18 @@ const config = [
   },
   prettierConfigRecommended,
   {
-    files: ['** / *.{jsx,tsx}'],
+    files: ['** / *.{js,tsx}'],
     plugins: {
       react: reactPlugin,
     },
     settings: { react: { version: '18.3' } },
     rules: {
       ...reactPlugin.configs.recommended.rules,
-      //'react/react-in-jsx-scope': 0,
-      //'react/prop-types': 1,
     },
   },
   {
     // Hint: specifying files was needed - else context.getContext failed
-    files: ['**/*.{js,jsx}'],
+    files: ['**/*.{js,tsx}'],
     plugins: { 'react-hooks': reactHooks },
     // ...
     rules: {
