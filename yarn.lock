@@ -2918,12 +2918,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@neondatabase/serverless@npm:0.9.5":
-  version: 0.9.5
-  resolution: "@neondatabase/serverless@npm:0.9.5"
+"@neondatabase/serverless@npm:0.10.1":
+  version: 0.10.1
+  resolution: "@neondatabase/serverless@npm:0.10.1"
   dependencies:
     "@types/pg": "npm:8.11.6"
-  checksum: 10c0/149bff34eb5fea531d982499bbb16fb40f0713a2d34892c00338fd918deded5b80f927dd361b472bc41bee6b5f80d71a515b9358303b369bd319a33f436ba187
+  checksum: 10c0/310077caffca5aeed5ca26249756bbac725ab9a881eef0b0b90dc71162c9a27fbd3ab77bd146382e85106316bf62cdb8d7eb211f06225197703d5082b655d7ed
   languageName: node
   linkType: hard
 
@@ -6605,7 +6605,7 @@ __metadata:
     "@graphql-codegen/typescript-graphql-files-modules": "npm:3.0.0"
     "@graphql-codegen/typescript-operations": "npm:4.2.3"
     "@graphql-codegen/typescript-react-apollo": "npm:4.3.2"
-    "@neondatabase/serverless": "npm:0.9.5"
+    "@neondatabase/serverless": "npm:0.10.1"
     "@next/eslint-plugin-next": "npm:14.2.14"
     "@opentelemetry/auto-instrumentations-node": "npm:0.50.0"
     "@opentelemetry/auto-instrumentations-web": "npm:0.41.0"
