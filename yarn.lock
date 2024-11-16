@@ -1416,13 +1416,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/themes@npm:2.1.35":
-  version: 2.1.35
-  resolution: "@clerk/themes@npm:2.1.35"
+"@clerk/themes@npm:2.1.45":
+  version: 2.1.45
+  resolution: "@clerk/themes@npm:2.1.45"
   dependencies:
-    "@clerk/types": "npm:4.25.0"
+    "@clerk/types": "npm:4.34.0"
     tslib: "npm:2.4.1"
-  checksum: 10c0/aa2524e670a6aa85705dacb3f85b63827849c3869964741a207f421e6e8f0a69fb1fcddd4716b7872803e25444205f17ab6cbd68482b2996d6c521d785ff6cd5
+  checksum: 10c0/94bfe2d53030ce2bbf21104f006bf52d7ac15635e81aefcf33c53b208d86a462c5203ef92b8ebcdf94cbb064351557c5f791beb6274731dc7aaa06b80cd8a6fc
   languageName: node
   linkType: hard
 
@@ -1441,6 +1441,15 @@ __metadata:
   dependencies:
     csstype: "npm:3.1.1"
   checksum: 10c0/924b47cf4f481da7ca798c0edd73c66cca127e477ec31eaa92eff4171cdf26e80629cd2ce19b32474fc9a0c85288f6543c187bf6a02274c579850bec22f0b43e
+  languageName: node
+  linkType: hard
+
+"@clerk/types@npm:4.34.0":
+  version: 4.34.0
+  resolution: "@clerk/types@npm:4.34.0"
+  dependencies:
+    csstype: "npm:3.1.1"
+  checksum: 10c0/75535f03cedc33a0733976e657b9684572bccabb3c383892b2f0c5ac5e69f39197cd5f5e2a3c5602c29802638425dd1df75977505f5dd7948079b1ee9886f6a9
   languageName: node
   linkType: hard
 
@@ -6796,7 +6805,7 @@ __metadata:
     "@chakra-ui/react": "npm:2.10.4"
     "@clerk/clerk-sdk-node": "npm:5.0.62"
     "@clerk/nextjs": "npm:5.7.1"
-    "@clerk/themes": "npm:2.1.35"
+    "@clerk/themes": "npm:2.1.45"
     "@emotion/react": "npm:11.13.3"
     "@emotion/styled": "npm:11.13.0"
     "@eslint/compat": "npm:1.2.2"
