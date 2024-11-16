@@ -296,13 +296,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@as-integrations/next@npm:3.1.0":
-  version: 3.1.0
-  resolution: "@as-integrations/next@npm:3.1.0"
+"@as-integrations/next@npm:3.2.0":
+  version: 3.2.0
+  resolution: "@as-integrations/next@npm:3.2.0"
   peerDependencies:
     "@apollo/server": ^4.0.0
-    next: ^12.0.0 || ^13.0.0 || ^14.0.0
-  checksum: 10c0/8a642cb120db68a7e117763f4e27f3dafaa557ee68fdf66c652d97e92cc4ec8463e58c5b9a58617ad0485308e0d57390847cfa5410b447cd2253d18df4bb1316
+    next: ^12.0.0 || ^13.0.0 || ^14.0.0 || ^15.0.0
+  checksum: 10c0/687c8e68bf9428d84810847c28b67b82acd21ffa84ddfda4e9c46c715bc89ee565618bfd193ebe440a3db18b03b6e7266e7e46955a38180e6bddd849bf0e23f8
   languageName: node
   linkType: hard
 
@@ -6800,7 +6800,7 @@ __metadata:
   dependencies:
     "@apollo/client": "npm:3.11.10"
     "@apollo/server": "npm:4.11.2"
-    "@as-integrations/next": "npm:3.1.0"
+    "@as-integrations/next": "npm:3.2.0"
     "@chakra-ui/icons": "npm:2.2.4"
     "@chakra-ui/react": "npm:2.10.4"
     "@clerk/clerk-sdk-node": "npm:5.0.62"
