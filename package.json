@@ -13,7 +13,7 @@
     "@as-integrations/next": "3.1.0",
     "@chakra-ui/icons": "2.2.4",
     "@chakra-ui/react": "2.10.4",
-    "@clerk/clerk-sdk-node": "5.0.52",
+    "@clerk/clerk-sdk-node": "5.0.62",
     "@clerk/nextjs": "5.7.1",
     "@clerk/themes": "2.1.35",
     "@emotion/react": "11.13.3",
