@@ -4612,20 +4612,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pothos/core@npm:4.2.0":
-  version: 4.2.0
-  resolution: "@pothos/core@npm:4.2.0"
+"@pothos/core@npm:4.3.0":
+  version: 4.3.0
+  resolution: "@pothos/core@npm:4.3.0"
   peerDependencies:
     graphql: ">=16.6.0"
-  checksum: 10c0/893700d916459b06195af8a5c66b3afb7409c5ed3f43e59b003adf7052cad9cbab9b346307b3a8b14174a82a14a1a72411528574d7d0b6e2827e4f5710e93802
+  checksum: 10c0/3a4a0e5dfed468d9181b9602edc6bc4bbb1d57b2b0bca72c660bc4390e27c6199c0bdb357e1fe3548d9a6feb22ac9ec90e789a367263260d52b64485f6e34e6b
   languageName: node
   linkType: hard
 
-"@pothos/plugin-prisma@npm:4.2.1":
-  version: 4.2.1
-  resolution: "@pothos/plugin-prisma@npm:4.2.1"
+"@pothos/plugin-prisma@npm:4.3.1":
+  version: 4.3.1
+  resolution: "@pothos/plugin-prisma@npm:4.3.1"
   dependencies:
-    "@prisma/generator-helper": "npm:^5.17.0"
+    "@prisma/generator-helper": "npm:^5.19.1"
   peerDependencies:
     "@pothos/core": "*"
     "@prisma/client": "*"
@@ -4633,7 +4633,7 @@ __metadata:
     typescript: ">=4.7.2"
   bin:
     prisma-pothos-types: bin/generator.js
-  checksum: 10c0/7904b6587e8baf0beb0371ccea691238b56f649fd3cd6bb4d62d2c0c6ba0231fefbcd1cead09df11aaa12ade0a6898ce94389c6c774386c196093ce13d72301d
+  checksum: 10c0/307290f3ee20f86ad381eb83f76d9ba7e307af791189e5c52c5da2b285beff707599a3765daa7a50d991aa6834e78632011047bfa67bebdd1581c9415a0125c7
   languageName: node
   linkType: hard
 
@@ -4668,13 +4668,6 @@ __metadata:
     prisma:
       optional: true
   checksum: 10c0/ad111b931f184249794f811637456eb38dcfd0d7047e5a1f64804e5256f462fa3ee7c7a552fc8fa181e8daacc2b958af7426cb57bf0dc66605c3ef7c4aef4afb
-  languageName: node
-  linkType: hard
-
-"@prisma/debug@npm:5.18.0":
-  version: 5.18.0
-  resolution: "@prisma/debug@npm:5.18.0"
-  checksum: 10c0/fcc1e784748e207410aac9fe5989d0b9b889f8fe1bf52ca742d7fcc09c5abd5897b7ee4dbce33c86ce501681619a06c5802bbe9bd2ba5264435f6c04eeddeeec
   languageName: node
   linkType: hard
 
@@ -4733,12 +4726,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prisma/generator-helper@npm:^5.17.0":
-  version: 5.18.0
-  resolution: "@prisma/generator-helper@npm:5.18.0"
+"@prisma/generator-helper@npm:^5.19.1":
+  version: 5.22.0
+  resolution: "@prisma/generator-helper@npm:5.22.0"
   dependencies:
-    "@prisma/debug": "npm:5.18.0"
-  checksum: 10c0/ef4618a799d6a6f9899858eca9b7ca87ab3fd027587cd076ecc0c98d458f5d20b393d06beb293385af269139bc1b8254e7a2cf6b239a1032ecf8141a484c182b
+    "@prisma/debug": "npm:5.22.0"
+  checksum: 10c0/d7a6a6f66330b38aea76cd148b1bbdf43e373f6401e8edabaebc12db81abc35712386c97f1178d97d1655905a4ff822000b902c407ead986565984555b9893d0
   languageName: node
   linkType: hard
 
@@ -6799,8 +6792,8 @@ __metadata:
     "@opentelemetry/instrumentation-graphql": "npm:0.45.0"
     "@opentelemetry/instrumentation-http": "npm:0.55.0"
     "@opentelemetry/sdk-trace-web": "npm:1.28.0"
-    "@pothos/core": "npm:4.2.0"
-    "@pothos/plugin-prisma": "npm:4.2.1"
+    "@pothos/core": "npm:4.3.0"
+    "@pothos/plugin-prisma": "npm:4.3.1"
     "@pothos/plugin-with-input": "npm:4.1.0"
     "@prisma/adapter-neon": "npm:5.22.0"
     "@prisma/client": "npm:5.22.0"
