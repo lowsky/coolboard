@@ -36,7 +36,7 @@
     "@prisma/instrumentation": "5.22.0",
     "@vercel/analytics": "1.4.1",
     "@vercel/otel": "1.10.0",
-    "@vercel/speed-insights": "1.0.12",
+    "@vercel/speed-insights": "1.1.0",
     "emitter-listener": "1.1.2",
     "framer-motion": "11.11.17",
     "graphql": "16.9.0",
