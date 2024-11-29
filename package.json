@@ -19,7 +19,7 @@
     "@emotion/react": "11.13.3",
     "@emotion/styled": "11.13.0",
     "@neondatabase/serverless": "0.10.4",
-    "@opentelemetry/auto-instrumentations-node": "0.52.1",
+    "@opentelemetry/auto-instrumentations-node": "0.53.0",
     "@opentelemetry/auto-instrumentations-web": "0.43.0",
     "@opentelemetry/context-zone": "1.28.0",
     "@opentelemetry/exporter-trace-otlp-grpc": "0.55.0",
