@@ -13,11 +13,6 @@ import { theme } from 'common/theme';
 
 export default function App({ Component, pageProps }: AppProps) {
   const { user } = useAuth();
-  /*
-              {isLoading && <div>Loading...</div>}
-              {error && <div>Uh oh! Authentication error: {error.message}</div>}
-
-   */
   return (
     <>
       <Head>
