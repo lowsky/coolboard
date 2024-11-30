@@ -31,8 +31,7 @@ export const UserProfileHeaderUIInstanaDb = ({
       )}
       {!isLoading && !user && !isLoginInPage && (
         <>
-          Not logged in.
-          <Link href="sign-in">Login here</Link>
+          Not logged in, please <Link href="sign-in">Login here</Link>
         </>
       )}
       {user && (
