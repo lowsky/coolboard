@@ -42,7 +42,7 @@
     "graphql": "16.9.0",
     "graphql-scalars": "1.23.0",
     "graphql-tag": "2.12.6",
-    "inter-ui": "4.0.2",
+    "inter-ui": "4.1.0",
     "next": "14.2.17",
     "prisma": "5.22.0",
     "react": "18.3.1",
