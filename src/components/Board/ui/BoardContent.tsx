@@ -5,10 +5,11 @@ import { CardList } from 'components/List/CardList';
 import { CardListView } from 'components/List/CardListView';
 import { AddListButton } from 'components/Board/ui/AddListButton';
 import { CardListSkeleton } from 'components/List/ui/CardListSkeleton';
+import { TransactionResult } from '@instantdb/core';
 
 interface BoardContentProps {
   lists: { name: string; id: string }[];
-  addList: (name?: string) => Promise<any>;
+  addList: (name?: string) => Promise<TransactionResult>;
   boardId: string;
   readonly?: boolean;
 }

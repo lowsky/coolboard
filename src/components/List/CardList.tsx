@@ -29,12 +29,7 @@ export const CardList = ({
     variables: { cardListId: id },
   });
 
-  const [addCardWithName] = useAddCardMutation({
-    variables: {
-      cardListId: id,
-      name: 'new card',
-    },
-  });
+  const [addCardWithName] = useAddCardMutation();
 
   const [deleteListOfBoard] = useDeleteListOfBoardMutation();
 

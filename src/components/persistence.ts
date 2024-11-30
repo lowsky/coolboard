@@ -1,4 +1,5 @@
 import {
+  CardList,
   db,
   IdBasedTransaction,
   Schema,
@@ -20,7 +21,11 @@ export function useBoardsQuery() {
 }
 
 /* ---- Board  ---------------------- */
-export function useCreateBoard() {
+export function useCreateBoard(): ({
+  name,
+}: {
+  name: string;
+}) => Promise<TransactionResult> {
   const db = useDb();
   const user = useAuthUser();
 
@@ -76,13 +81,13 @@ export function useCardListQuery({
   };
 
   const useQuery:
-    | ({ debugRef: React.LegacyRef<any> } & {
+    | ({ debugRef: React.LegacyRef<CardList> } & {
         error: { message: string };
         data: undefined;
       } & {
         isLoading: boolean;
       })
-    | ({ debugRef: React.LegacyRef<any> } & {
+    | ({ debugRef: React.LegacyRef<CardList> } & {
         error: undefined;
         data: QueryResponse<Query, Schema>;
       } & {
@@ -107,7 +112,11 @@ export const useDeleteListOfBoardMutation = () => {
   return [mutation];
 };
 
-export function useAddListMutation() {
+export function useAddListMutation(): (({
+  variables: { boardId, name },
+}: {
+  variables: { boardId: string; name: string };
+}) => Promise<TransactionResult>)[] {
   const db = useDb();
   const mutation = async ({
     variables: { boardId, name },
@@ -132,7 +141,11 @@ export function useAddListMutation() {
   return [mutation];
 }
 
-export function useRenameListMutation() {
+export function useRenameListMutation(): (({
+  variables: { listId, newName },
+}: {
+  variables: { listId: string; newName: string };
+}) => Promise<TransactionResult>)[] {
   const db = useDb();
   const mutation = async ({
     variables: { listId, newName },
@@ -154,9 +167,7 @@ export function useRenameListMutation() {
 
 /* ---- Card  ---------------------- */
 
-export function useAddCardMutation(_p0: {
-  variables: { name: string; cardListId: string };
-}): (({
+export function useAddCardMutation(): (({
   variables: { cardListId, name },
 }: {
   variables: { cardListId: string; name: string };
@@ -187,13 +198,15 @@ export function useAddCardMutation(_p0: {
   return [mutation];
 }
 
-export function useMoveCard2Mutation() {
-  const mutation = async (_p0: {
-    variables: { fromListId: string; toList: string; cardId: string };
-  }) => {
+type MoveCardMutation = (args: {
+  variables: { fromListId: string; toList: string; cardId: string };
+}) => Promise<TransactionResult>;
+
+export function useMoveCard2Mutation(): [MoveCardMutation] {
+  const mutation: MoveCardMutation = async (args) => {
     const {
       variables: { fromListId, toList, cardId },
-    } = _p0;
+    } = args;
 
     return await db
       .transact(
@@ -204,8 +217,14 @@ export function useMoveCard2Mutation() {
           .unlink({ cardList: fromListId })
           .link({ cardList: toList })
       )
-      .then((value) => console.log('then', value))
-      .catch((err) => console.error('err', err));
+      .then((value) => {
+        console.log('then', value);
+        return value;
+      })
+      .catch((err) => {
+        console.error('err', err);
+        throw err;
+      });
   };
   return [mutation];
 }
@@ -214,12 +233,8 @@ export function useRunDignosis() {
   /** debug / diagnosis ------------*/
   const query = {
     users: { boards: {} },
-    boards: {
-      cardLists: {},
-    },
-    cardList: {
-      board: {},
-    },
+    boards: { cardLists: {} },
+    cardList: { board: {} },
   };
   const { data } = db.useQuery(query);
 
@@ -237,10 +252,9 @@ export type UpdateCardMutationVariables = {
   description?: string;
 };
 
-export function useUpdateCardMutation(_p0: {
-  variables: UpdateCardMutationVariables;
-}) {
+export function useUpdateCardMutation() {
   const db = useDb();
+
   const mutation = async ({
     variables,
   }: {
