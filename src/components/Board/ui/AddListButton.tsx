@@ -1,6 +1,6 @@
+import React from 'react';
 import { Button } from '@chakra-ui/react';
 import { FaPlus } from 'react-icons/fa';
-import React from 'react';
 
 export const AddListButton = ({
   onAddNewList,

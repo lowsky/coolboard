@@ -3,8 +3,9 @@ import { IconButton, ListItem } from '@chakra-ui/react';
 import Link from 'next/link';
 import { FaTrash } from 'react-icons/fa';
 
-import styles from 'components/Board/Boards.module.css';
-import { IdBasedTransaction } from '../../../setupInstaWeb';
+import { IdBasedTransaction } from 'src/setupInstaWeb';
+
+import styles from './Boards.module.css';
 
 export interface BoardListItemProps {
   name: string;

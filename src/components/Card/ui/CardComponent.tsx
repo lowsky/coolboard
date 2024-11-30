@@ -2,7 +2,7 @@ import React, { type CSSProperties, useState } from 'react';
 import { useDisclosure } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
-import { Card } from '../../../setupInstaWeb';
+import { Card } from 'src/setupInstaWeb';
 import { CardEditModal } from '../CardEditModal';
 import { TransactionResult } from '@instantdb/core';
 import { UpdateCardMutationVariables } from 'components/persistence';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Flex, Heading } from '@chakra-ui/react';
 
-import { useDb } from '../../src/setupInstaWeb';
+import { useDb } from 'src/setupInstaWeb';
 import { Login } from 'auth/AuthUI';
 
 import { ProfileHeader } from 'common/ProfileHeader';

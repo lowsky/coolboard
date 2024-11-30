@@ -1,13 +1,13 @@
 import React from 'react';
+import { TransactionResult } from '@instantdb/core';
 
-import { BoardContainer } from './ui/BoardContainer';
 import {
   useAddListMutation,
   useBoardQuery,
   useDeleteListOfBoardMutation,
   useRunDignosis,
 } from 'components/persistence';
-import { TransactionResult } from '@instantdb/core';
+import { BoardContainer } from './ui/BoardContainer';
 
 interface BoardProps {
   boardId: string;

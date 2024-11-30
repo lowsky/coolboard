@@ -3,16 +3,15 @@ import { Container, Heading, List, ListItem, Spinner } from '@chakra-ui/react';
 
 import { Segment } from 'common/Segment';
 import { FullVerticalContainer } from 'common/FullVerticalContainer';
-import { CreateBoardModal } from './ui/CreateBoardModal';
-import { BoardListItem, BoardListItemProps } from './ui/BoardListItem';
-
-import { IdBasedTransaction, useAuthUser } from '../../setupInstaWeb';
-
+import { IdBasedTransaction, useAuthUser } from 'src/setupInstaWeb';
 import {
   useBoardsQuery,
   useCreateBoard,
   useDeleteBoard,
 } from 'components/persistence';
+
+import { CreateBoardModal } from './ui/CreateBoardModal';
+import { BoardListItem, BoardListItemProps } from './ui/BoardListItem';
 
 interface Props {
   boards: Omit<BoardListItemProps, 'deleteBoard'>[];

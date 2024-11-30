@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { Avatar, Button, Flex, Link, Spinner } from '@chakra-ui/react';
 import { FaSignOutAlt } from 'react-icons/fa';
 
-import { useAuth, useDb } from '../setupInstaWeb';
+import { useAuth, useDb } from 'src/setupInstaWeb';
 
 export const UserProfileHeaderUIInstanaDb = ({
   isLoginInPage,
