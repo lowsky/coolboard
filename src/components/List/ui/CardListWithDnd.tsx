@@ -2,7 +2,7 @@ import React from 'react';
 import { Flex } from '@chakra-ui/react';
 import { FaTrash } from 'react-icons/fa';
 
-import type { Card as CardType } from 'generated/graphql';
+import type { Card as CardType } from '../../../setupInstaWeb';
 
 import Card from 'components/Card/Card';
 
