@@ -1,7 +1,8 @@
 import React, { type ReactNode } from 'react';
-import { useConfirmAction } from 'common/useConfirmAction';
 import { Button, Icon } from '@chakra-ui/react';
 import { FaTrash } from 'react-icons/fa';
+
+import { useConfirmAction } from 'common/useConfirmAction';
 
 export const DelAllListsButton = ({
   action,

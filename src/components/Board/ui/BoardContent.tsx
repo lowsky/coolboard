@@ -1,11 +1,11 @@
 import { Flex } from '@chakra-ui/react';
 import React, { Suspense } from 'react';
+import { TransactionResult } from '@instantdb/core';
 
 import { CardList } from 'components/List/CardList';
 import { CardListView } from 'components/List/CardListView';
-import { AddListButton } from 'components/Board/ui/AddListButton';
 import { CardListSkeleton } from 'components/List/ui/CardListSkeleton';
-import { TransactionResult } from '@instantdb/core';
+import { AddListButton } from './AddListButton';
 
 interface BoardContentProps {
   lists: { name: string; id: string }[];

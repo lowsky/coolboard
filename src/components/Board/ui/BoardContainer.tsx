@@ -1,10 +1,10 @@
 import React from 'react';
 import { Flex } from '@chakra-ui/react';
+import { TransactionResult } from '@instantdb/core';
 
 import { BoardTitle } from './BoardTitle';
 import { BoardContent } from './BoardContent';
 import { DelAllListsButton } from './DelAllListsButton';
-import { TransactionResult } from '@instantdb/core';
 
 const ToIdsMapper = <T extends { id: string }>(itemWithId: T) => itemWithId.id;
 

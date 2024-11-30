@@ -7,7 +7,7 @@ import 'public/index.css';
 
 import { Footer } from 'components/Footer';
 
-import { db, useAuth, DBContext, UserContext } from '../src/setupInstaWeb';
+import { db, useAuth, DBContext, UserContext } from 'src/setupInstaWeb';
 
 import { theme } from 'common/theme';
 

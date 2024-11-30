@@ -1,17 +1,16 @@
 import React from 'react';
 import { Flex } from '@chakra-ui/react';
 import { FaTrash } from 'react-icons/fa';
+import { TransactionResult } from '@instantdb/core';
 
-import type { Card as CardType } from '../../../setupInstaWeb';
+import type { Card as CardType } from 'src/setupInstaWeb';
 
 import Card from 'components/Card/Card';
-
 import { CardListHeader } from './CardListHeader';
 import { CardListButton } from './CardListButton';
 import { CardListAddCardFooter } from './CardListAddCardFooter';
 
 import styles from './CardList.module.css';
-import { TransactionResult } from '@instantdb/core';
 
 export interface CardListWithoutDndProps {
   id: string;

@@ -1,3 +1,7 @@
+import React from 'react';
+import { id, Query, QueryResponse, tx } from '@instantdb/react';
+import { TransactionResult } from '@instantdb/core/src';
+
 import {
   CardList,
   db,
@@ -6,10 +10,7 @@ import {
   useAuthUser,
   useDb,
   WithId,
-} from '../setupInstaWeb';
-import { TransactionResult } from '@instantdb/core/src';
-import { id, Query, QueryResponse, tx } from '@instantdb/react';
-import React from 'react';
+} from 'src/setupInstaWeb';
 
 /* ---- all Boards / Board List ---------------------- */
 

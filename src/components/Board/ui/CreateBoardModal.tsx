@@ -16,7 +16,6 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
-
 import { TransactionResult } from '@instantdb/core';
 
 interface Props {
