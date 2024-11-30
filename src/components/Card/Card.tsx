@@ -1,5 +1,5 @@
 import React from 'react';
-import { type DragSourceMonitor, useDrag } from 'react-dnd';
+import { useDrag } from 'react-dnd';
 
 import {
   type UpdateCardMutationVariables,
@@ -9,11 +9,7 @@ import {
 import { CardComponent } from './ui/CardComponent';
 
 export const Card = (props) => {
-  const [mutation] = useUpdateCardMutation({
-    variables: {
-      ...props,
-    },
-  });
+  const [mutation] = useUpdateCardMutation();
 
   return (
     <CardComponent
@@ -37,11 +33,11 @@ export const CardForDragging = (props) => {
       id: props.id,
       cardListId: props.cardListId,
     },
-    // @ts-expect-error needs additional generic attrib
-    canDrag: () => (props: DragSourceMonitor) => Boolean(props.cardListId),
+    canDrag: () => Boolean(props.cardListId),
   });
 
   return (
+    // @ts-expect-error Type ConnectDragSource is not assignable to type LegacyRef<HTMLDivElement> | undefined
     <div ref={ref}>
       <Card {...props} />
     </div>

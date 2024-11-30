@@ -7,6 +7,7 @@ import {
   useDeleteListOfBoardMutation,
   useRunDignosis,
 } from 'components/persistence';
+import { TransactionResult } from '@instantdb/core';
 
 interface BoardProps {
   boardId: string;
@@ -18,7 +19,7 @@ export const Board = ({ boardId, readonly = false }: BoardProps) => {
   const { data, error, isLoading } = useBoardQuery(boardId);
   useRunDignosis();
 
-  const deleteLists = (ids: string[]) =>
+  const deleteLists: (ids: string[]) => Promise<TransactionResult> = (ids) =>
     deleteListsOfBoard({
       variables: {
         boardId,

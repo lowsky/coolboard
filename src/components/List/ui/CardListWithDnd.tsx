@@ -11,13 +11,14 @@ import { CardListButton } from './CardListButton';
 import { CardListAddCardFooter } from './CardListAddCardFooter';
 
 import styles from './CardList.module.css';
+import { TransactionResult } from '@instantdb/core';
 
 export interface CardListWithoutDndProps {
   id: string;
   name: string;
   cards: UICardsData[];
-  addCard: (id: string, name: string) => Promise<any>;
-  deleteList: () => Promise<any>;
+  addCard: (id: string, name: string) => Promise<TransactionResult>;
+  deleteList: () => Promise<TransactionResult>;
   readonly?: boolean;
 }
 

@@ -6,7 +6,7 @@ import { FullVerticalContainer } from 'common/FullVerticalContainer';
 import { CreateBoardModal } from './ui/CreateBoardModal';
 import { BoardListItem, BoardListItemProps } from './ui/BoardListItem';
 
-import { IdBasedTransaction, useAuthUser, WithId } from '../../setupInstaWeb';
+import { IdBasedTransaction, useAuthUser } from '../../setupInstaWeb';
 
 import {
   useBoardsQuery,
@@ -16,7 +16,7 @@ import {
 
 interface Props {
   boards: Omit<BoardListItemProps, 'deleteBoard'>[];
-  deleteBoard: ({ id }: WithId) => Promise<any>;
+  deleteBoard: IdBasedTransaction;
 }
 
 export const BoardList = ({ boards, deleteBoard }: Props) => {
