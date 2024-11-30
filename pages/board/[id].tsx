@@ -7,7 +7,6 @@ import { useRouter } from 'next/router';
 import { trackPage } from 'src/common/tracking';
 
 import { ProfileHeader } from 'src/common/ProfileHeader';
-import { GeneralErrorHandler } from 'src/common/GeneralErrorHandler';
 import { FullVerticalContainer } from 'common/FullVerticalContainer';
 import { Board } from 'components/Board/Board';
 
@@ -22,7 +21,6 @@ export default function BoardPage() {
   return (
     <FullVerticalContainer data-cy="full-container">
       <ProfileHeader />
-      <GeneralErrorHandler />
       <DndProvider backend={HTML5Backend}>
         <Suspense fallback={<div>Loading Board</div>}>
           {boardId && <Board boardId={boardId} />}

@@ -8,9 +8,6 @@
   "type": "module",
   "homepage": "/",
   "dependencies": {
-    "@apollo/client": "3.12.4",
-    "@apollo/server": "4.11.3",
-    "@as-integrations/next": "3.2.0",
     "@chakra-ui/icons": "2.2.4",
     "@chakra-ui/react": "2.10.4",
     "@clerk/clerk-sdk-node": "5.1.4",
@@ -18,7 +15,6 @@
     "@clerk/themes": "2.2.3",
     "@emotion/react": "11.14.0",
     "@emotion/styled": "11.14.0",
-    "@neondatabase/serverless": "0.10.4",
     "@pothos/core": "4.3.0",
     "@pothos/plugin-prisma": "4.4.0",
     "@pothos/plugin-with-input": "4.1.0",
@@ -34,7 +30,6 @@
     "next": "15.1.0",
     "prisma": "6.1.0",
     "react": "19.0.0",
-    "react-apollo-network-status": "5.2.1",
     "react-dnd": "16.0.1",
     "react-dnd-html5-backend": "16.0.1",
     "react-dom": "19.0.0",
@@ -57,8 +52,7 @@
     "prisma:migrate": "DATABASE_URL=\"$MIGRATE_DATABASE_URL\" prisma migrate deploy",
     "metainfo": "sh storeMetaInfo.sh",
     "vercel-build": "COMMIT_REF=$VERCEL_GITHUB_COMMIT_SHA yarn run build ; yarn trigger-e2e-smoke",
-    "vercel-fast-build": "COMMIT_REF=$VERCEL_GITHUB_COMMIT_SHA yarn run build",
-    "codegen": "graphql-codegen --config codegen.ts"
+    "vercel-fast-build": "COMMIT_REF=$VERCEL_GITHUB_COMMIT_SHA yarn run build"
   },
   "devDependencies": {
     "@eslint/compat": "1.2.4",
