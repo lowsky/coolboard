@@ -29,6 +29,9 @@ export function useCreateBoard(): ({
 }) => Promise<TransactionResult> {
   const db = useDb();
   const user = useAuthUser();
+  if (!user) {
+    throw new Error('Not logged in');
+  }
 
   return ({ name }): Promise<TransactionResult> =>
     db.transact(
