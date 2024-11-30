@@ -13,7 +13,7 @@ import { MdDashboard } from 'react-icons/md';
 
 type BoardTitleProps = {
   boardName: string;
-  headerActions?: false | JSX.Element;
+  headerActions?: false | React.JSX.Element;
 };
 
 export const BoardTitle = ({ boardName, headerActions }: BoardTitleProps) => (

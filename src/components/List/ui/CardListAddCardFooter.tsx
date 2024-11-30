@@ -7,12 +7,13 @@ import {
   Input,
 } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
+import { TransactionResult } from '@instantdb/core';
 
 import { EditableControls } from 'common/EditableControls';
 
 interface Props {
   readonly: boolean;
-  addCard: (id: string, name: string) => Promise<void>;
+  addCard: (id: string, name: string) => Promise<TransactionResult>;
   id: string;
 }
 

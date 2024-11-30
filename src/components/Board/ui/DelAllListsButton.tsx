@@ -4,13 +4,12 @@ import { FaTrash } from 'react-icons/fa';
 
 import { useConfirmAction } from 'common/useConfirmAction';
 
-export const DelAllListsButton = ({
-  action,
-  children,
-}: {
+type Props = {
   action: VoidFunction;
   children: ReactNode;
-}) => {
+};
+
+export const DelAllListsButton = ({ action, children }: Props) => {
   const [showWarning, showWarningThenCallAction] = useConfirmAction(action);
 
   return (
