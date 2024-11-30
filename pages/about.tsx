@@ -107,14 +107,7 @@ export default function About() {
               isExternal>
               React
             </Link>
-            frontend with{' '}
-            <Link
-              href="https://www.apollographql.com/apollo-client"
-              referrerPolicy="no-referrer"
-              isExternal>
-              Apollo
-            </Link>{' '}
-            served by
+            frontend served by
             <Link
               href="https://vercel.com/"
               referrerPolicy="no-referrer"

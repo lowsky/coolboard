@@ -4,13 +4,8 @@ import { Container, Flex, Heading, Icon, Text } from '@chakra-ui/react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { FaChalkboardTeacher, FaFilm, FaLink } from 'react-icons/fa';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
-import { ApolloProvider } from '@apollo/client';
 
 import { Board } from 'components/Board/Board';
-import { setupGraphQLClient } from 'src/setupGraphQLClient';
-
 import { Segment } from 'src/common/Segment';
 import { FullVerticalContainer } from 'src/common/FullVerticalContainer';
 import { isInBrowserEnv } from 'common/isInBrowserEnv';
