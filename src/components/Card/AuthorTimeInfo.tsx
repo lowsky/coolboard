@@ -3,7 +3,7 @@ import TimeAgo from 'react-timeago';
 import { Alert, AlertDescription, Avatar, Box } from '@chakra-ui/react';
 
 import { Segment } from 'common/Segment';
-import type { User } from 'generated/graphql';
+import type { User } from '../../setupInstaWeb';
 
 export type AuthorTimeInfoProps = {
   createdAt: number;

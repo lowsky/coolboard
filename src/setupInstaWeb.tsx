@@ -1,15 +1,14 @@
 import { createContext, useContext } from 'react';
 import { InstantReactWeb } from '@instantdb/react/src/InstantReactWeb';
-import { init, User } from '@instantdb/react';
+import { init, User as AuthUser } from '@instantdb/react';
 import { TransactionResult } from '@instantdb/core/src';
 
-const anonymousUser: User & { boards: Board[] } = {
+const anonymousUser: User = {
   email: 'anonymouse@instant',
-  refresh_token: '',
   id: '-1',
   boards: [],
+  refresh_token: '-',
 };
-type AuthUser = Omit<User, 'boards'>;
 
 export const UserContext = createContext<AuthUser | undefined>(anonymousUser);
 export const DBContext = createContext<InstantWeb>(
@@ -17,6 +16,12 @@ export const DBContext = createContext<InstantWeb>(
 );
 
 // ----------
+export type User = AuthUser & {
+  boards: Board[];
+  avatarUrl?: string;
+  name?: string;
+};
+
 export type CardList = {
   id: string;
   name: string;
@@ -25,6 +30,10 @@ export type CardList = {
   cards: Card[];
   // parent
   board: Board;
+  // MISSING from graphql approach:
+  //createdAt: DateTime;
+  //updatedAt: DateTime;
+  createdBy: User;
 };
 
 export type Card = {
@@ -34,6 +43,12 @@ export type Card = {
   updatedAt: number;
   // parent
   cardList: CardList;
+  // MISSING from graphql approach:
+  createdBy: User;
+  description?: string;
+  //createdAt: DateTime;
+  //updatedAt: DateTime;
+  updatedBy: User;
 };
 
 export type Board = {
@@ -43,6 +58,10 @@ export type Board = {
   cardLists: CardList[];
   // parent
   user: User;
+  // MISSING from graphql approach:
+  //createdAt: DateTime;
+  //updatedAt: DateTime;
+  createdBy: User;
 };
 
 /*
@@ -62,14 +81,14 @@ export type Schema = {
   card: Card;
 };
 
-export type InstantWeb = InstantReactWeb<Schema, {}>;
+export type InstantWeb = InstantReactWeb<Schema>;
 
 // Visit https://instantdb.com/dash to get your APP_ID :)
 const APP_ID = 'd7674f24-278e-4ab4-828d-b9bea241f85a';
 
 export const db: InstantWeb = init<Schema>({ appId: APP_ID });
 
-export function useDb(): InstantReactWeb<Schema, {}> {
+export function useDb(): InstantReactWeb<Schema> {
   return useContext(DBContext);
 }
 
