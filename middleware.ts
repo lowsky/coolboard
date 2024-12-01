@@ -10,9 +10,9 @@ const isProtectedRoute = createRouteMatcher(['/boards', '/board/(.*)']);
 
 // https://clerk.com/docs/references/nextjs/clerk-middleware
 const clerkAuthMiddleWare: NextMiddleware = clerkMiddleware(
-  (auth, req) => {
+  async (auth, req) => {
     if (isProtectedRoute(req)) {
-      auth().protect();
+      await auth.protect();
     }
   },
   {

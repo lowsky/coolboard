@@ -1,3 +1,4 @@
+import React, { Suspense } from 'react';
 import Head from 'next/head';
 import type { AppProps } from 'next/app';
 import { Analytics } from '@vercel/analytics/react';
@@ -30,19 +31,25 @@ export default function App({ Component, pageProps }: AppProps) {
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
       </Head>
-      <ChakraProvider theme={theme}>
-        <div
-          style={{
-            overflow: 'auto',
-            flex: 1,
-          }}>
-          <ClerkProvider {...pageProps}>
-            <Component {...pageProps} />
-          </ClerkProvider>
-        </div>
+      <Suspense fallback={<span>Loading...</span>}>
+        {
+          // @ts-expect-error async component
+          <ClerkProvider dynamic {...pageProps}>
+            <ChakraProvider theme={theme}>
+              <div
+                style={{
+                  overflow: 'auto',
+                  flex: 1,
+                }}>
+                <Component {...pageProps} />
+              </div>
 
-        <Footer />
-      </ChakraProvider>
+              <Footer />
+            </ChakraProvider>
+          </ClerkProvider>
+        }
+      </Suspense>
+
       <Analytics />
       <SpeedInsights />
     </>
