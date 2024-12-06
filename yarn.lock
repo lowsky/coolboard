@@ -1409,13 +1409,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/themes@npm:2.1.49":
-  version: 2.1.49
-  resolution: "@clerk/themes@npm:2.1.49"
+"@clerk/themes@npm:2.1.53":
+  version: 2.1.53
+  resolution: "@clerk/themes@npm:2.1.53"
   dependencies:
-    "@clerk/types": "npm:4.35.1"
+    "@clerk/types": "npm:4.39.0"
     tslib: "npm:2.4.1"
-  checksum: 10c0/efd4d6245ec3a34d3cd02ffbd3f69b13b97ac313807a10cfb334b02a43bd5f792a45476d6448aa64fa313197f2f8d2c66996ddd703736f9cb22bfb15176ee612
+  checksum: 10c0/9242ca988a17d1d757d6e20b66a376297db54a456c1848f9d2b5f5682662ebf9718bd82bea05df003afdde767bd826396bbd40250c1d9bafb7504e6b67346cbd
   languageName: node
   linkType: hard
 
@@ -1428,21 +1428,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/types@npm:4.35.1":
-  version: 4.35.1
-  resolution: "@clerk/types@npm:4.35.1"
-  dependencies:
-    csstype: "npm:3.1.1"
-  checksum: 10c0/823771c909d698fe2595960ead43a5e85a7959fa9b73c022ff97b4ca93bdf623a9c1be8d8f4e468f5056cd202ba466293326d2dc7604351b3806da9857c10c30
-  languageName: node
-  linkType: hard
-
 "@clerk/types@npm:4.38.0":
   version: 4.38.0
   resolution: "@clerk/types@npm:4.38.0"
   dependencies:
     csstype: "npm:3.1.1"
   checksum: 10c0/ed03653fa597d4a42c7ff1127feca9314f6882a6dc7725976c5219e84d305020d4c58e306f7a8b5918449e7eacc99f11e9c3f73b1f1b7d2b234afd85eccd4195
+  languageName: node
+  linkType: hard
+
+"@clerk/types@npm:4.39.0":
+  version: 4.39.0
+  resolution: "@clerk/types@npm:4.39.0"
+  dependencies:
+    csstype: "npm:3.1.1"
+  checksum: 10c0/f11da1a15556a688332a5ce178496c5f526a5115c524ac27f16fd85edf81f840ec417d2586aae5ea865577b375008a550361235ee445f5713bdf0cb25e32b344
   languageName: node
   linkType: hard
 
@@ -6533,7 +6533,7 @@ __metadata:
     "@chakra-ui/react": "npm:2.10.4"
     "@clerk/clerk-sdk-node": "npm:5.0.73"
     "@clerk/nextjs": "npm:6.5.1"
-    "@clerk/themes": "npm:2.1.49"
+    "@clerk/themes": "npm:2.1.53"
     "@emotion/react": "npm:11.13.5"
     "@emotion/styled": "npm:11.13.5"
     "@eslint/compat": "npm:1.2.4"
