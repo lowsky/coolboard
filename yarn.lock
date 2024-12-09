@@ -30,9 +30,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@apollo/client@npm:3.11.10":
-  version: 3.11.10
-  resolution: "@apollo/client@npm:3.11.10"
+"@apollo/client@npm:3.12.2":
+  version: 3.12.2
+  resolution: "@apollo/client@npm:3.12.2"
   dependencies:
     "@graphql-typed-document-node/core": "npm:^3.1.1"
     "@wry/caches": "npm:^1.0.0"
@@ -51,8 +51,8 @@ __metadata:
   peerDependencies:
     graphql: ^15.0.0 || ^16.0.0
     graphql-ws: ^5.5.5
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0 || >=19.0.0-rc <19.0.0
-    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || >=19.0.0-rc <19.0.0
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0 || >=19.0.0-rc
+    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || >=19.0.0-rc
     subscriptions-transport-ws: ^0.9.0 || ^0.11.0
   peerDependenciesMeta:
     graphql-ws:
@@ -63,7 +63,7 @@ __metadata:
       optional: true
     subscriptions-transport-ws:
       optional: true
-  checksum: 10c0/27bb910d347e7bb88ae48a39c6e328d8389bfe679cd4529889878bffcc73d00b1122b9fc3501f079d35835622bd33d9848a4e7bad579aa2a2d1f5dee824c5586
+  checksum: 10c0/c2c0c3a7ff0bed78c150ede12e927a6e94c5816db824ff247bb76154c25edde4836db777c626777cbdb44ffccf9c1aa0a3e30b34f3c019a1322dff1d099305b0
   languageName: node
   linkType: hard
 
@@ -6526,7 +6526,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "coolboard@workspace:."
   dependencies:
-    "@apollo/client": "npm:3.11.10"
+    "@apollo/client": "npm:3.12.2"
     "@apollo/server": "npm:4.11.2"
     "@as-integrations/next": "npm:3.2.0"
     "@chakra-ui/icons": "npm:2.2.4"
