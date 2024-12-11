@@ -5064,12 +5064,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:18.3.3":
-  version: 18.3.3
-  resolution: "@types/react-dom@npm:18.3.3"
+"@types/react-dom@npm:18.3.5":
+  version: 18.3.5
+  resolution: "@types/react-dom@npm:18.3.5"
   peerDependencies:
     "@types/react": ^18.0.0
-  checksum: 10c0/f0bc467e09bfd1212bc350826de0faa155e1d77c5e3d8fbed3b172187173baeb90161474d2ef40df59204974a9712827baa3c46ffa7c66ba433b696f7715cb15
+  checksum: 10c0/b163d35a6b32a79f5782574a7aeb12a31a647e248792bf437e6d596e2676961c394c5e3c6e91d1ce44ae90441dbaf93158efb4f051c0d61e2612f1cb04ce4faa
   languageName: node
   linkType: hard
 
@@ -6689,7 +6689,7 @@ __metadata:
     "@prisma/client": "npm:6.0.1"
     "@prisma/extension-accelerate": "npm:1.2.1"
     "@prisma/instrumentation": "npm:6.0.1"
-    "@types/react-dom": "npm:18.3.3"
+    "@types/react-dom": "npm:18.3.5"
     "@types/react-timeago": "npm:4.1.7"
     "@types/ws": "npm:8.5.13"
     "@types/zen-observable": "npm:0.8.7"
