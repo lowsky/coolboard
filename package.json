@@ -23,7 +23,7 @@
     "@opentelemetry/auto-instrumentations-web": "0.43.0",
     "@opentelemetry/context-zone": "1.29.0",
     "@opentelemetry/exporter-trace-otlp-grpc": "0.56.0",
-    "@opentelemetry/instrumentation-express": "0.45.0",
+    "@opentelemetry/instrumentation-express": "0.46.0",
     "@opentelemetry/instrumentation-graphql": "0.45.0",
     "@opentelemetry/instrumentation-http": "0.56.0",
     "@opentelemetry/sdk-trace-web": "1.29.0",
