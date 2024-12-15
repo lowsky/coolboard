@@ -39,7 +39,7 @@
     "@vercel/speed-insights": "1.1.0",
     "emitter-listener": "1.1.2",
     "framer-motion": "11.14.4",
-    "graphql": "16.9.0",
+    "graphql": "16.10.0",
     "graphql-scalars": "1.24.0",
     "graphql-tag": "2.12.6",
     "inter-ui": "4.1.0",
