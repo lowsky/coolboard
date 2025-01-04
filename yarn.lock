@@ -3043,15 +3043,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@opentelemetry/api-logs@npm:0.53.0":
-  version: 0.53.0
-  resolution: "@opentelemetry/api-logs@npm:0.53.0"
-  dependencies:
-    "@opentelemetry/api": "npm:^1.0.0"
-  checksum: 10c0/969ad3bbb74e3de6fdfe8eb9b3ab86d3dc284ca7bffd0ca67eef64efd08c97a4305696afe0b7b03e5d356f15d0a1a67ac517e5fa7d1ddee6fdc249eef2209fcb
-  languageName: node
-  linkType: hard
-
 "@opentelemetry/api-logs@npm:0.56.0, @opentelemetry/api-logs@npm:^0.56.0":
   version: 0.56.0
   resolution: "@opentelemetry/api-logs@npm:0.56.0"
@@ -3061,24 +3052,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@opentelemetry/api@npm:^1.0.0":
-  version: 1.4.1
-  resolution: "@opentelemetry/api@npm:1.4.1"
-  checksum: 10c0/5ee641d3d64c91e87ee328fc22251fc70c809a3c744e51e595ca77c0bd3cad933b77a79beb4dac66b811e5068941cef9da58c1ec217c0748a01f598e08a7ae66
-  languageName: node
-  linkType: hard
-
 "@opentelemetry/api@npm:^1.3.0":
   version: 1.9.0
   resolution: "@opentelemetry/api@npm:1.9.0"
   checksum: 10c0/9aae2fe6e8a3a3eeb6c1fdef78e1939cf05a0f37f8a4fae4d6bf2e09eb1e06f966ece85805626e01ba5fab48072b94f19b835449e58b6d26720ee19a58298add
-  languageName: node
-  linkType: hard
-
-"@opentelemetry/api@npm:^1.8":
-  version: 1.8.0
-  resolution: "@opentelemetry/api@npm:1.8.0"
-  checksum: 10c0/66d5504bfbf9c19a14ea549f5fca975a73a5e1e8a1e40a6dc2d662893c942b9ba66c009262816dee2b9ffd0267acd707ec692eba20db11a09d4ee114c00dc161
   languageName: node
   linkType: hard
 
@@ -3203,17 +3180,6 @@ __metadata:
   peerDependencies:
     "@opentelemetry/api": ">=1.0.0 <1.9.0"
   checksum: 10c0/b3e3649d899dd2d2cbb99ee41105cf37b64360d1d34f5065ddf4ca2a73e4936883307b07b15973c2b246274a76b0ad638cb5bb19abf03675ad702f4c03172a53
-  languageName: node
-  linkType: hard
-
-"@opentelemetry/core@npm:1.24.1":
-  version: 1.24.1
-  resolution: "@opentelemetry/core@npm:1.24.1"
-  dependencies:
-    "@opentelemetry/semantic-conventions": "npm:1.24.1"
-  peerDependencies:
-    "@opentelemetry/api": ">=1.0.0 <1.9.0"
-  checksum: 10c0/e7af32d4253542ee42be74618cef56813ddec878950421d7e51384bde33c5a09f9aeb4391cc9617e1d117091597d1d96a6b80658fb0453a93bcf2d4d316b149d
   languageName: node
   linkType: hard
 
@@ -3937,7 +3903,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@opentelemetry/instrumentation@npm:0.56.0, @opentelemetry/instrumentation@npm:^0.56.0":
+"@opentelemetry/instrumentation@npm:0.56.0, @opentelemetry/instrumentation@npm:^0.52.0 || ^0.53.0 || ^0.54.0 || ^0.55.0 || ^0.56.0, @opentelemetry/instrumentation@npm:^0.56.0":
   version: 0.56.0
   resolution: "@opentelemetry/instrumentation@npm:0.56.0"
   dependencies:
@@ -3950,22 +3916,6 @@ __metadata:
   peerDependencies:
     "@opentelemetry/api": ^1.3.0
   checksum: 10c0/31c79f2cfe832c42dd7892b248d474dc6fac134f3ff58faea746abf1b25a5127c4a8608296792bf8ed9c838a1eb0384bf2f51a5123f6569033e346733476e7c9
-  languageName: node
-  linkType: hard
-
-"@opentelemetry/instrumentation@npm:^0.49 || ^0.50 || ^0.51 || ^0.52.0 || ^0.53.0":
-  version: 0.53.0
-  resolution: "@opentelemetry/instrumentation@npm:0.53.0"
-  dependencies:
-    "@opentelemetry/api-logs": "npm:0.53.0"
-    "@types/shimmer": "npm:^1.2.0"
-    import-in-the-middle: "npm:^1.8.1"
-    require-in-the-middle: "npm:^7.1.1"
-    semver: "npm:^7.5.2"
-    shimmer: "npm:^1.2.1"
-  peerDependencies:
-    "@opentelemetry/api": ^1.3.0
-  checksum: 10c0/943e289926812272cb77cda5e0a6b662bc6a92812b66420ceeca1c764f2e3a13364f6bbed7c9e84a17ad677474101ea3c598ef6a6cca982c35bfd24be6f6a25e
   languageName: node
   linkType: hard
 
@@ -4128,18 +4078,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@opentelemetry/resources@npm:1.24.1":
-  version: 1.24.1
-  resolution: "@opentelemetry/resources@npm:1.24.1"
-  dependencies:
-    "@opentelemetry/core": "npm:1.24.1"
-    "@opentelemetry/semantic-conventions": "npm:1.24.1"
-  peerDependencies:
-    "@opentelemetry/api": ">=1.0.0 <1.9.0"
-  checksum: 10c0/b2f68c153231bdca6491d6050d43d84c7679f44783eaca9daa9bdb3381b5bbdb54eb6de472e9177bc1c161b0bc83423af59e5e356cce8f7880fece757a0106b6
-  languageName: node
-  linkType: hard
-
 "@opentelemetry/resources@npm:1.29.0":
   version: 1.29.0
   resolution: "@opentelemetry/resources@npm:1.29.0"
@@ -4253,19 +4191,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@opentelemetry/sdk-trace-base@npm:^1.22":
-  version: 1.24.1
-  resolution: "@opentelemetry/sdk-trace-base@npm:1.24.1"
-  dependencies:
-    "@opentelemetry/core": "npm:1.24.1"
-    "@opentelemetry/resources": "npm:1.24.1"
-    "@opentelemetry/semantic-conventions": "npm:1.24.1"
-  peerDependencies:
-    "@opentelemetry/api": ">=1.0.0 <1.9.0"
-  checksum: 10c0/071783367b06410e4e4bf4626bc560e664ccfa5eff497fe645db99b6074702259dba1c56ed8b003e9c0949ba53cd55d32aae1d46fa7bd47da1186f3d941a9713
-  languageName: node
-  linkType: hard
-
 "@opentelemetry/sdk-trace-node@npm:1.29.0":
   version: 1.29.0
   resolution: "@opentelemetry/sdk-trace-node@npm:1.29.0"
@@ -4326,13 +4251,6 @@ __metadata:
   version: 1.24.0
   resolution: "@opentelemetry/semantic-conventions@npm:1.24.0"
   checksum: 10c0/0b7a8e1407c3c606c82e7720654c1808cdc2a6bd78641bca74c56a37b25f08574b33f02386ae2382373a7f70614d8a904b364cc0af9b2d33582c104a5df6eaa7
-  languageName: node
-  linkType: hard
-
-"@opentelemetry/semantic-conventions@npm:1.24.1":
-  version: 1.24.1
-  resolution: "@opentelemetry/semantic-conventions@npm:1.24.1"
-  checksum: 10c0/5a3707860b70df8430745ef4ef99810a6d61d770942c217ac25ef8d6840a6b17b943c1ebe4da4a118dee0e3b1e71da3c16e2790f3c3a7e7e6b171e8d1944f73e
   languageName: node
   linkType: hard
 
@@ -4438,27 +4356,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prisma/adapter-neon@npm:6.0.1":
-  version: 6.0.1
-  resolution: "@prisma/adapter-neon@npm:6.0.1"
+"@prisma/adapter-neon@npm:6.1.0":
+  version: 6.1.0
+  resolution: "@prisma/adapter-neon@npm:6.1.0"
   dependencies:
-    "@prisma/driver-adapter-utils": "npm:6.0.1"
+    "@prisma/driver-adapter-utils": "npm:6.1.0"
     postgres-array: "npm:3.0.2"
   peerDependencies:
     "@neondatabase/serverless": ^0.6.0 || ^0.7.0 || ^0.8.0 || ^0.9.0 || ^0.10.0
-  checksum: 10c0/e93702bc474612020a6235ce5645ea0b27788fa552d4efcc4c6137b0296a45afd843b09f375868c665ff3ddd9c65d4a87ccf5a653875662f0eb95adb112c947a
+  checksum: 10c0/b879fcf14a27401d8b8df2ecb6a3054754caa1f82a0833bd074f6f07ee63d9dc673534ea3b40245b27a795872728236332c7e06506a5b0f688f1504e7aa25529
   languageName: node
   linkType: hard
 
-"@prisma/client@npm:6.0.1":
-  version: 6.0.1
-  resolution: "@prisma/client@npm:6.0.1"
+"@prisma/client@npm:6.1.0":
+  version: 6.1.0
+  resolution: "@prisma/client@npm:6.1.0"
   peerDependencies:
     prisma: "*"
   peerDependenciesMeta:
     prisma:
       optional: true
-  checksum: 10c0/7c40dc6bd04dab8fa6ef6bb743b396c6e8e56d4e848e884f2a5d7816cff6b339acf24c15f39d6480d6ac7e3ccb7e0723feb7d4672fe30fee7cce2c174e121d7b
+  checksum: 10c0/6cb3c81ce52e37f4d48598e114ff1f9c46297a3299ddf80701d26794aacb8e46f3726cb20dd4f1528cd7b8a713d38e8e68a1fd2be8c370f0925f92b7a9b6b955
   languageName: node
   linkType: hard
 
@@ -4469,38 +4387,38 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prisma/debug@npm:6.0.1":
-  version: 6.0.1
-  resolution: "@prisma/debug@npm:6.0.1"
-  checksum: 10c0/72cb26a09f2e4d3c3f57f19d20d59acac42d35513f3ec4c141a54c07759399255b5952a47c9b870818ee278b74715483c3454685c2b919567f545cd75d9de15a
+"@prisma/debug@npm:6.1.0":
+  version: 6.1.0
+  resolution: "@prisma/debug@npm:6.1.0"
+  checksum: 10c0/bf3641b02cb8b3f9b38ee07e8fb33670b4d9b71d99138bcdc607444027d6b399d1a0688f2879c5a4e795a184889e809ab18f4861ac16653754074162c7092dd5
   languageName: node
   linkType: hard
 
-"@prisma/driver-adapter-utils@npm:6.0.1":
-  version: 6.0.1
-  resolution: "@prisma/driver-adapter-utils@npm:6.0.1"
+"@prisma/driver-adapter-utils@npm:6.1.0":
+  version: 6.1.0
+  resolution: "@prisma/driver-adapter-utils@npm:6.1.0"
   dependencies:
-    "@prisma/debug": "npm:6.0.1"
-  checksum: 10c0/e9bc2a5d7db2744e60548a5f5594a91eb68fe1bf317d18d16f6f403c99872981a00f258daad599a5b4711c88d05dcc9eb27ccbcfd242dd2eeba7e25c8261c86d
+    "@prisma/debug": "npm:6.1.0"
+  checksum: 10c0/1a7985c7520d9a07a4ba7c04682bbe1cdb4bb41b45c55e5f33b6ed6a2ebf7e9f06bcff591f0079662686447f82ac501a7bb8652f39fd54b03b7f9315f278e485
   languageName: node
   linkType: hard
 
-"@prisma/engines-version@npm:5.23.0-27.5dbef10bdbfb579e07d35cc85fb1518d357cb99e":
-  version: 5.23.0-27.5dbef10bdbfb579e07d35cc85fb1518d357cb99e
-  resolution: "@prisma/engines-version@npm:5.23.0-27.5dbef10bdbfb579e07d35cc85fb1518d357cb99e"
-  checksum: 10c0/73151c2546e93b095fc42751896bfa8378bfc5db41b0bcbdf4925484d6fdb8be784bf1911081abf8e4e2f39543db34f9a7a130f533b4aaab6b344ba942c0cf97
+"@prisma/engines-version@npm:6.1.0-21.11f085a2012c0f4778414c8db2651556ee0ef959":
+  version: 6.1.0-21.11f085a2012c0f4778414c8db2651556ee0ef959
+  resolution: "@prisma/engines-version@npm:6.1.0-21.11f085a2012c0f4778414c8db2651556ee0ef959"
+  checksum: 10c0/97c9e7c527e3622d242c297c75c3617f05c176bbc84cfa6f07fc61813519c570ea9a0c54fa1f0c0de45623d06516a03ddda3f9b5c35fb80fce8a5dc8856923e7
   languageName: node
   linkType: hard
 
-"@prisma/engines@npm:6.0.1":
-  version: 6.0.1
-  resolution: "@prisma/engines@npm:6.0.1"
+"@prisma/engines@npm:6.1.0":
+  version: 6.1.0
+  resolution: "@prisma/engines@npm:6.1.0"
   dependencies:
-    "@prisma/debug": "npm:6.0.1"
-    "@prisma/engines-version": "npm:5.23.0-27.5dbef10bdbfb579e07d35cc85fb1518d357cb99e"
-    "@prisma/fetch-engine": "npm:6.0.1"
-    "@prisma/get-platform": "npm:6.0.1"
-  checksum: 10c0/f44f1768505ed0e7f3c392dfcc9f2b81b9c4d3375bea47635789751f64dc4df35d0e31a19181ef79aa495688faa82ea4867015e6f32ea16c9f88c2aaaab370be
+    "@prisma/debug": "npm:6.1.0"
+    "@prisma/engines-version": "npm:6.1.0-21.11f085a2012c0f4778414c8db2651556ee0ef959"
+    "@prisma/fetch-engine": "npm:6.1.0"
+    "@prisma/get-platform": "npm:6.1.0"
+  checksum: 10c0/9e6c308e1b325d0e09332c58a8b89821a8f73c31295652ef56a8030037c6435526f7def07dee6f7a3d75fc5023e8aac7096b00def4237682f29bb65c340789a7
   languageName: node
   linkType: hard
 
@@ -4513,14 +4431,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prisma/fetch-engine@npm:6.0.1":
-  version: 6.0.1
-  resolution: "@prisma/fetch-engine@npm:6.0.1"
+"@prisma/fetch-engine@npm:6.1.0":
+  version: 6.1.0
+  resolution: "@prisma/fetch-engine@npm:6.1.0"
   dependencies:
-    "@prisma/debug": "npm:6.0.1"
-    "@prisma/engines-version": "npm:5.23.0-27.5dbef10bdbfb579e07d35cc85fb1518d357cb99e"
-    "@prisma/get-platform": "npm:6.0.1"
-  checksum: 10c0/9a31760b617041bb5cf0d08624f94c730b391b602f12db481e5abf1bc544c02d5220efe1c7ba1c2e1c46c3f45e8fa799953658f59dbb1a20251009a7030427bf
+    "@prisma/debug": "npm:6.1.0"
+    "@prisma/engines-version": "npm:6.1.0-21.11f085a2012c0f4778414c8db2651556ee0ef959"
+    "@prisma/get-platform": "npm:6.1.0"
+  checksum: 10c0/29e4acc758ec9b4b95a9c3a075e12504c09eabae4fdc7a46c054a8673193382d59504b6313ca37c66d09d18303ec065d00100014cba14d23fff1bbcc947baced
   languageName: node
   linkType: hard
 
@@ -4533,23 +4451,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prisma/get-platform@npm:6.0.1":
-  version: 6.0.1
-  resolution: "@prisma/get-platform@npm:6.0.1"
+"@prisma/get-platform@npm:6.1.0":
+  version: 6.1.0
+  resolution: "@prisma/get-platform@npm:6.1.0"
   dependencies:
-    "@prisma/debug": "npm:6.0.1"
-  checksum: 10c0/78bc774e13d1e8179ff117b63006e8af882c38d2f7b654392ecd53f34f3d4c620f2ca661c135ae6d86c28df9d56733b04d2a900906b19e3933035b5be42aad87
+    "@prisma/debug": "npm:6.1.0"
+  checksum: 10c0/749e62ca455d26b8a10040f61a7b21035c57820d6e67b80958793baa343f94317909a92fbeb7341aac9b1599e162c0b605044eacf7f8f8f23a919390173a6f13
   languageName: node
   linkType: hard
 
-"@prisma/instrumentation@npm:6.0.1":
-  version: 6.0.1
-  resolution: "@prisma/instrumentation@npm:6.0.1"
+"@prisma/instrumentation@npm:6.1.0":
+  version: 6.1.0
+  resolution: "@prisma/instrumentation@npm:6.1.0"
   dependencies:
-    "@opentelemetry/api": "npm:^1.8"
-    "@opentelemetry/instrumentation": "npm:^0.49 || ^0.50 || ^0.51 || ^0.52.0 || ^0.53.0"
-    "@opentelemetry/sdk-trace-base": "npm:^1.22"
-  checksum: 10c0/7932e99010c79c5cf1988ffa22114babadc242089fcacace8356832dd63802ecba9ee6da4e21bfc7a46c3dd5c07b552a0199c41c91a68e019db653c692eb8486
+    "@opentelemetry/instrumentation": "npm:^0.52.0 || ^0.53.0 || ^0.54.0 || ^0.55.0 || ^0.56.0"
+  peerDependencies:
+    "@opentelemetry/api": ^1.8
+  checksum: 10c0/a8da864c3382aad03444d8285e7cacc50321366320ad79e2082fa59932045150baca5b0836eb42056b7bf0c979d45881f174e20f69a73e2ea7a468adf4507778
   languageName: node
   linkType: hard
 
@@ -6625,10 +6543,10 @@ __metadata:
     "@pothos/core": "npm:4.3.0"
     "@pothos/plugin-prisma": "npm:4.4.0"
     "@pothos/plugin-with-input": "npm:4.1.0"
-    "@prisma/adapter-neon": "npm:6.0.1"
-    "@prisma/client": "npm:6.0.1"
+    "@prisma/adapter-neon": "npm:6.1.0"
+    "@prisma/client": "npm:6.1.0"
     "@prisma/extension-accelerate": "npm:1.2.1"
-    "@prisma/instrumentation": "npm:6.0.1"
+    "@prisma/instrumentation": "npm:6.1.0"
     "@types/react-dom": "npm:19.0.2"
     "@types/react-timeago": "npm:4.1.7"
     "@types/ws": "npm:8.5.13"
@@ -6651,7 +6569,7 @@ __metadata:
     inter-ui: "npm:4.1.0"
     next: "npm:15.1.0"
     prettier: "npm:3.4.2"
-    prisma: "npm:6.0.1"
+    prisma: "npm:6.1.0"
     react: "npm:19.0.0"
     react-apollo-network-status: "npm:5.2.1"
     react-dnd: "npm:16.0.1"
@@ -11394,18 +11312,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prisma@npm:6.0.1":
-  version: 6.0.1
-  resolution: "prisma@npm:6.0.1"
+"prisma@npm:6.1.0":
+  version: 6.1.0
+  resolution: "prisma@npm:6.1.0"
   dependencies:
-    "@prisma/engines": "npm:6.0.1"
+    "@prisma/engines": "npm:6.1.0"
     fsevents: "npm:2.3.3"
   dependenciesMeta:
     fsevents:
       optional: true
   bin:
     prisma: build/index.js
-  checksum: 10c0/66a9ab2460331bef9b0725c26d1606f08abfe828f2072473959c0cd8fe18264d93c28b1891d83e7eb008807f31817d176ded2d86cf2950707d5cdc9e2e0ec4da
+  checksum: 10c0/c89d8c2a8aa6f637ee61c32c4a3ac57dd0cdc38a7fdde64c00992f6ee949b3184604853e5dd44f7f1d01c3e06c3e1e81342c3ca9a2b9e739bc872af0b6a80372
   languageName: node
   linkType: hard
 
