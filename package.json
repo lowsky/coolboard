@@ -8,8 +8,8 @@
   "type": "module",
   "homepage": "/",
   "dependencies": {
-    "@apollo/client": "3.12.3",
-    "@apollo/server": "4.11.2",
+    "@apollo/client": "3.12.4",
+    "@apollo/server": "4.11.3",
     "@as-integrations/next": "3.2.0",
     "@chakra-ui/icons": "2.2.4",
     "@chakra-ui/react": "2.10.4",
