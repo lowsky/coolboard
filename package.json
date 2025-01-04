@@ -107,5 +107,5 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "packageManager": "yarn@4.5.3"
+  "packageManager": "yarn@4.6.0"
 }
