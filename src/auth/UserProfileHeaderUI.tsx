@@ -1,16 +1,9 @@
 import React from 'react';
 import { useApolloClient } from '@apollo/client';
-import {
-  ClerkLoaded,
-  ClerkLoading,
-  SignedIn,
-  SignedOut,
-  useClerk,
-  UserButton,
-} from '@clerk/nextjs';
+import { SignedIn, SignedOut, useClerk, UserButton } from '@clerk/nextjs';
 import { dark } from '@clerk/themes';
 import { useRouter } from 'next/router';
-import { Button, Flex, Spinner, useColorMode } from '@chakra-ui/react';
+import { Button, Flex, useColorMode } from '@chakra-ui/react';
 import { FaSignOutAlt } from 'react-icons/fa';
 
 import { LoginButton } from 'auth/LoginButton';
@@ -32,20 +25,14 @@ export const UserProfileHeaderUI = () => {
 
   return (
     <>
-      <ClerkLoading>
-        <Spinner />
-        Loading user...
-      </ClerkLoading>
-
-      <ClerkLoaded>
+      <>
         {
           // @ts-expect-error Its return type 'Promise<any>' is not a valid JSX element.
           <SignedOut>
             <LoginButton />
           </SignedOut>
         }
-      </ClerkLoaded>
-
+      </>
       {
         // @ts-expect-error Its return type 'Promise<any>' is not a valid JSX element.
         <SignedIn>
