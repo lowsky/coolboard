@@ -82,15 +82,7 @@ export default function About() {
         </section>
         <section>
           <Heading as="h2">What technology is used?</Heading>
-          <Text>
-            GraphQL database powered by{' '}
-            <Link
-              href="https://www.prisma.io/"
-              referrerPolicy="no-referrer"
-              isExternal>
-              Prisma
-            </Link>
-          </Text>
+          <Text>local database powered by InstantDB</Text>
           <Text>
             GraphQL trello server running as{' '}
             <Link

@@ -8,13 +8,11 @@ type ResponseData = {
 };
 
 function someAsyncOperation(): Record<string, string> {
-  const { next, prisma, react, graphql } = packageInfo.dependencies;
+  const { next, react, graphql } = packageInfo.dependencies;
   return {
     name: packageInfo.name,
     next,
-    prisma,
     react,
-    graphql,
   };
 }
 

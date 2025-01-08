@@ -17,7 +17,6 @@ import {
 import { FaGithub, FaHeart, FaMastodon } from 'react-icons/fa';
 
 import nextLogo from './nextjs-logo.svg';
-import prismaLogo from './prisma-logo.svg';
 
 export function Footer() {
   return (
@@ -29,9 +28,7 @@ export function Footer() {
         gap="1"
         flexWrap="wrap">
         <Link href="/about">About</Link>
-        Powered by
-        <Image height={20} width={20} src={prismaLogo} alt="prisma logo" />
-        Prisma, GraphQL, Apollo, and
+        Powered by InstantDB
         <Image height={20} src={nextLogo} alt="Nextjs logo" />
         <Link href="/imprint">Imprint(de)</Link>
         <Link href="/privacy">Privacy</Link>
