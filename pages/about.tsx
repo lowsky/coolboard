@@ -84,7 +84,7 @@ export default function About() {
           <Heading as="h2">What technology is used?</Heading>
           <Text>local database powered by InstantDB</Text>
           <Text>
-            GraphQL trello server running as{' '}
+            Trello server running as{' '}
             <Link
               href="https://vercel.com/docs/concepts/functions/serverless-functions/"
               referrerPolicy="no-referrer"
