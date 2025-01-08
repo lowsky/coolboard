@@ -9,8 +9,8 @@ import {
   Textarea,
 } from '@chakra-ui/react';
 
-import type { Card } from 'generated/graphql';
 import { ShowDiffWarning } from './ui/ShowDiffWarning';
+import { Card } from 'src/setupInstaWeb';
 
 type CardEditFormProps = {
   name: string;

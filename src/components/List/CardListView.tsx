@@ -1,7 +1,7 @@
 import React from 'react';
 import { Flex } from '@chakra-ui/react';
 
-import { Card as CardType } from 'generated/graphql';
+import { Card as CardType } from 'src/setupInstaWeb';
 
 import { useCardListQuery } from 'components/persistence';
 

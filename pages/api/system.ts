@@ -8,7 +8,7 @@ type ResponseData = {
 };
 
 function someAsyncOperation(): Record<string, string> {
-  const { next, react, graphql } = packageInfo.dependencies;
+  const { next, react } = packageInfo.dependencies;
   return {
     name: packageInfo.name,
     next,

@@ -5,7 +5,7 @@ import {
 } from 'react-dnd';
 import type { ReactElement } from 'react';
 
-import type { Card as CardType } from 'generated/graphql';
+import type { Card as CardType } from 'src/setupInstaWeb';
 
 import type { DndProps } from './CardListWithDnd';
 import { dndItemType } from 'components/Card/Card';
