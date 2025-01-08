@@ -3,12 +3,12 @@ import { Box, Container, Heading, Icon, Link, Text } from '@chakra-ui/react';
 import Image from 'next/image';
 import { FaSignInAlt, FaFilm } from 'react-icons/fa';
 
-import FullPageWithApollo from 'common/FullPageWithApollo';
+import { FullVerticalContainer } from 'common/FullVerticalContainer';
 import { ProfileHeader } from 'common/ProfileHeader';
 
 export default function About() {
   return (
-    <FullPageWithApollo data-cy="about-full-container">
+    <FullVerticalContainer data-cy="full-container">
       <ProfileHeader />
       <Container maxW="700px">
         <section>
@@ -82,17 +82,9 @@ export default function About() {
         </section>
         <section>
           <Heading as="h2">What technology is used?</Heading>
+          <Text>local database powered by InstantDB</Text>
           <Text>
-            GraphQL database powered by{' '}
-            <Link
-              href="https://www.prisma.io/"
-              referrerPolicy="no-referrer"
-              isExternal>
-              Prisma
-            </Link>
-          </Text>
-          <Text>
-            GraphQL trello server running as{' '}
+            Trello server running as{' '}
             <Link
               href="https://vercel.com/docs/concepts/functions/serverless-functions/"
               referrerPolicy="no-referrer"
@@ -107,14 +99,7 @@ export default function About() {
               isExternal>
               React
             </Link>
-            frontend with{' '}
-            <Link
-              href="https://www.apollographql.com/apollo-client"
-              referrerPolicy="no-referrer"
-              isExternal>
-              Apollo
-            </Link>{' '}
-            served by
+            frontend served by
             <Link
               href="https://vercel.com/"
               referrerPolicy="no-referrer"
@@ -164,6 +149,6 @@ export default function About() {
           <Text>“Browser” icon by Didzis Gruznovs from the Noun Project.</Text>
         </section>
       </Container>
-    </FullPageWithApollo>
+    </FullVerticalContainer>
   );
 }

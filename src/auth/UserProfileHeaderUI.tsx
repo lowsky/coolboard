@@ -1,5 +1,4 @@
 import React from 'react';
-import { useApolloClient } from '@apollo/client';
 import { SignedIn, SignedOut, useClerk, UserButton } from '@clerk/nextjs';
 import { dark } from '@clerk/themes';
 import { useRouter } from 'next/router';
@@ -9,7 +8,6 @@ import { FaSignOutAlt } from 'react-icons/fa';
 import { LoginButton } from 'auth/LoginButton';
 
 export const UserProfileHeaderUI = () => {
-  const apolloClient = useApolloClient();
   const { signOut } = useClerk();
   const { replace } = useRouter();
   const { colorMode } = useColorMode();
@@ -18,7 +16,6 @@ export const UserProfileHeaderUI = () => {
 
   async function awaitLogoutAndCacheClear(event: MouseEvent) {
     event.preventDefault();
-    await apolloClient.clearStore?.();
     await signOut();
     await replace('/boards');
   }
@@ -27,14 +24,12 @@ export const UserProfileHeaderUI = () => {
     <>
       <>
         {
-          // @ts-expect-error Its return type 'Promise<any>' is not a valid JSX element.
           <SignedOut>
             <LoginButton />
           </SignedOut>
         }
       </>
       {
-        // @ts-expect-error Its return type 'Promise<any>' is not a valid JSX element.
         <SignedIn>
           <Flex alignItems="center" gap="0.5em">
             <UserButton appearance={clerkAppearance} afterSignOutUrl="/" />

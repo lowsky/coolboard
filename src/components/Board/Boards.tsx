@@ -1,83 +1,46 @@
 import React from 'react';
 import { Container, Heading, List, ListItem, Spinner } from '@chakra-ui/react';
-import type { ApolloCache } from '@apollo/client';
 
-import {
-  useCreateBoardMutation,
-  useDeleteBoardMutation,
-  UserBoardsDocument,
-  type UserBoardsQuery,
-  useUserBoardsSuspenseQuery,
-} from 'generated/graphql';
 import { Segment } from 'common/Segment';
 import { FullVerticalContainer } from 'common/FullVerticalContainer';
+import { IdBasedTransaction, useAuthUser } from 'src/setupInstaWeb';
+import {
+  useBoardsQuery,
+  useCreateBoard,
+  useDeleteBoard,
+} from 'components/persistence';
+
 import { CreateBoardModal } from './ui/CreateBoardModal';
-import { BoardListItem, type BoardListItemProps } from './ui/BoardListItem';
+import { BoardListItem, BoardListItemProps } from './ui/BoardListItem';
 
 interface Props {
   boards: Omit<BoardListItemProps, 'deleteBoard'>[];
-  deleteBoard: (id: string) => Promise<any>;
+  deleteBoard: IdBasedTransaction;
 }
 
 export const BoardList = ({ boards, deleteBoard }: Props) => {
-  const [createBoard, boardCreationState] = useCreateBoardMutation();
+  const user = useAuthUser();
+  const createBoard = useCreateBoard();
 
   return (
     <List>
       {boards.map(({ id, ...info }) => (
         <BoardListItem key={id} id={id} {...info} deleteBoard={deleteBoard} />
       ))}
-      <ListItem padding="0.25rem 0.5rem" marginBottom="0.5px" display="flex">
-        <CreateBoardModal
-          loading={boardCreationState.loading}
-          error={boardCreationState.error as Error}
-          createBoard={({ name }) => createBoard({ variables: { name } })}
-        />
-      </ListItem>
+      {user?.id && (
+        <ListItem padding="0.25rem 0.5rem" marginBottom="0.5px" display="flex">
+          <CreateBoardModal createBoard={createBoard} />
+        </ListItem>
+      )}
       )
     </List>
   );
 };
 
-function overrideCachedUserBoardsRemovingBoard(
-  userWithBoards: UserBoardsQuery | null,
-  removedBoardId: string,
-  store: ApolloCache<any>
-) {
-  if (!userWithBoards?.me?.boards) return;
-
-  const {
-    me: { boards },
-  } = userWithBoards;
-
-  if (boards) {
-    const boards = userWithBoards.me.boards.filter(
-      (board) => board.id !== removedBoardId
-    );
-    store.writeQuery({
-      query: UserBoardsDocument,
-      data: {
-        ...userWithBoards,
-        me: {
-          ...userWithBoards.me,
-          boards,
-        },
-      },
-    });
-  }
-}
-const updateCachedUserBoardsAfterRemovingBoard = (boardId: string) => {
-  return (store: ApolloCache<any>) => {
-    const readData = store.readQuery<UserBoardsQuery>({
-      query: UserBoardsDocument,
-    });
-    overrideCachedUserBoardsRemovingBoard(readData, boardId, store);
-  };
-};
-
 export const Boards = () => {
-  const { error, data } = useUserBoardsSuspenseQuery();
-  const [deleteBoard] = useDeleteBoardMutation();
+  const deleteBoard: IdBasedTransaction = useDeleteBoard();
+
+  const { data, isLoading, error } = useBoardsQuery();
 
   if (error) {
     return (
@@ -93,28 +56,16 @@ export const Boards = () => {
     );
   }
 
-  if (!data.me) return null;
-
-  const {
-    me: { boards },
-  } = data;
-
-  return (
+  return isLoading ? (
+    <BoardsSkeleton />
+  ) : (
     <FullVerticalContainer>
       <Segment textAlign="center">
         <Heading as="h1" my={2}>
           Your Boards
         </Heading>
         <Container data-cy="boards-list" textAlign="left">
-          <BoardList
-            boards={boards}
-            deleteBoard={(id: string) =>
-              deleteBoard({
-                variables: { id },
-                update: updateCachedUserBoardsAfterRemovingBoard(id),
-              })
-            }
-          />
+          <BoardList boards={data.boards} deleteBoard={deleteBoard} />{' '}
         </Container>
       </Segment>
     </FullVerticalContainer>

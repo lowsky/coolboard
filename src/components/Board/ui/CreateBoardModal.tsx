@@ -16,11 +16,12 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
+import { TransactionResult } from '@instantdb/core';
 
 interface Props {
-  createBoard: ({ name }: { name: string }) => Promise<any>;
+  createBoard: ({ name }: { name: string }) => Promise<TransactionResult>;
   loading?: boolean;
-  error?: Error;
+  error?: boolean;
 }
 
 export const CreateBoardModal = (props: Props) => {

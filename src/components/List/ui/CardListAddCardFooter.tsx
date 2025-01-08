@@ -7,10 +7,17 @@ import {
   Input,
 } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
+import { TransactionResult } from '@instantdb/core';
 
 import { EditableControls } from 'common/EditableControls';
 
-export function CardListAddCardFooter({ readonly, addCard, id }) {
+interface Props {
+  readonly: boolean;
+  addCard: (id: string, name: string) => Promise<TransactionResult>;
+  id: string;
+}
+
+export function CardListAddCardFooter({ readonly, addCard, id }: Props) {
   const initialNewCardName = 'New Card';
   const [newCardNameInputValue, setNewCardNameInputValue] =
     useState(initialNewCardName);

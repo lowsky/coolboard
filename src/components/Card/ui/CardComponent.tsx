@@ -1,14 +1,11 @@
 import React, { type CSSProperties, useState } from 'react';
 import { useDisclosure } from '@chakra-ui/react';
 import styled from '@emotion/styled';
-import type { FetchResult } from '@apollo/client';
 
-import type {
-  Card,
-  UpdateCardMutation,
-  UpdateCardMutationVariables,
-} from 'generated/graphql';
+import { Card } from 'src/setupInstaWeb';
 import { CardEditModal } from '../CardEditModal';
+import { TransactionResult } from '@instantdb/core';
+import { UpdateCardMutationVariables } from 'components/persistence';
 
 type State = {
   conflict: boolean;
@@ -21,9 +18,7 @@ type State = {
 };
 
 type CardComponentProps = Card & {
-  storeCard: (
-    vars: UpdateCardMutationVariables
-  ) => Promise<FetchResult<UpdateCardMutation>>;
+  storeCard: (vars: UpdateCardMutationVariables) => Promise<TransactionResult>;
   isDragging?: boolean;
   readonly?: boolean;
 };

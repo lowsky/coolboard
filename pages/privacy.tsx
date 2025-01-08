@@ -2,13 +2,13 @@ import { Container, Heading, Link, Text } from '@chakra-ui/react';
 
 import { trackPage } from 'src/common/tracking';
 import { ProfileHeader } from 'src/common/ProfileHeader';
-import FullPageWithApollo from 'src/common/FullPageWithApollo';
+import { FullVerticalContainer } from 'common/FullVerticalContainer';
 
 export default function Privacy() {
   trackPage('privacy');
 
   return (
-    <FullPageWithApollo>
+    <FullVerticalContainer data-cy="full-container">
       <ProfileHeader />
 
       <Container maxW="980px">
@@ -163,6 +163,6 @@ export default function Privacy() {
           <b>E-Mail:</b> coolboard @ protonmail.com
         </Text>
       </Container>
-    </FullPageWithApollo>
+    </FullVerticalContainer>
   );
 }

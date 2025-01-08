@@ -1,5 +1,4 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { InstanaEumScripts } from 'common/instanaEumScripts';
 
 class MyDocument extends Document {
   render() {
@@ -10,18 +9,15 @@ class MyDocument extends Document {
           <meta name="twitter:card" content="/screenshot.png" />
           <meta name="twitter:site" content="@rhosts" />
           <meta name="twitter:creator" content="@rhosts" />
-          <meta
-            name="twitter:title"
-            content="coolboard: graphql trello clone"
-          />
+          <meta name="twitter:title" content="coolboard" />
           <meta
             name="twitter:description"
-            content="Working live demo of /building an entire Trello-like application using GraphQL and React/ video course on PacktPub.com"
+            content="Working live demo of /building an entire Trello-like application"
           />
           <meta name="twitter:image" content="/screenshot.png" />
           <meta
             name="description"
-            content="Working live demo of /building an entire Trello-like application using GraphQL and React/ video course on PacktPub.com"
+            content="Working live demo of /building an entire Trello-like application"
           />
           <link rel="manifest" href="/favicons/site.webmanifest" />
           <link
@@ -67,7 +63,6 @@ class MyDocument extends Document {
           </div>
 
           <NextScript />
-          <InstanaEumScripts />
         </body>
       </Html>
     );

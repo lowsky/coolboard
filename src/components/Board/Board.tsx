@@ -1,10 +1,12 @@
 import React from 'react';
+import { TransactionResult } from '@instantdb/core';
+
 import {
   useAddListMutation,
-  useBoardSuspenseQuery,
-  useDeleteListsOfBoardMutation,
-} from 'generated/graphql';
-
+  useBoardQuery,
+  useDeleteListOfBoardMutation,
+  useRunDignosis,
+} from 'components/persistence';
 import { BoardContainer } from './ui/BoardContainer';
 
 interface BoardProps {
@@ -13,13 +15,11 @@ interface BoardProps {
 }
 
 export const Board = ({ boardId, readonly = false }: BoardProps) => {
-  const { error, data } = useBoardSuspenseQuery({
-    variables: { boardId },
-  });
+  const [deleteListsOfBoard] = useDeleteListOfBoardMutation();
+  const { data, error, isLoading } = useBoardQuery(boardId);
+  useRunDignosis();
 
-  const [deleteListsOfBoard] = useDeleteListsOfBoardMutation();
-
-  const deleteLists = (ids: string[]) =>
+  const deleteLists: (ids: string[]) => Promise<TransactionResult> = (ids) =>
     deleteListsOfBoard({
       variables: {
         boardId,
@@ -37,11 +37,11 @@ export const Board = ({ boardId, readonly = false }: BoardProps) => {
     return null;
   }
 
-  if (!data?.board) {
+  if (isLoading || !data?.boards || data?.boards.length === 0) {
     return <div>Board does not exist.</div>;
   }
 
-  const { board } = data;
+  const board = data.boards[0];
 
   return (
     <BoardContainer

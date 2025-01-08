@@ -1,5 +1,6 @@
 import React from 'react';
 import { Flex } from '@chakra-ui/react';
+import { TransactionResult } from '@instantdb/core';
 
 import { BoardTitle } from './BoardTitle';
 import { BoardContent } from './BoardContent';
@@ -11,16 +12,16 @@ type BoardProps = {
   board: {
     name: string; //
     id: string;
-    lists: { name: string; id: string }[];
+    cardLists: { name: string; id: string }[];
   };
-  addListToBoard: (name?: string) => Promise<any>;
-  deleteLists: (ids: string[]) => Promise<any>;
+  addListToBoard: (name?: string) => Promise<TransactionResult>;
+  deleteLists: (ids: string[]) => Promise<TransactionResult>;
   readonly?: boolean;
 };
 
 export const BoardContainer = (props: BoardProps) => {
   const { board, deleteLists, readonly, addListToBoard } = props;
-  const { name, lists } = board;
+  const { name, cardLists: lists = [] } = board;
 
   const headerActions = !readonly && (
     <DelAllListsButton action={() => deleteLists(lists.map(ToIdsMapper))}>

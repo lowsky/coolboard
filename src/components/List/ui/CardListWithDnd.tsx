@@ -1,11 +1,11 @@
 import React from 'react';
 import { Flex } from '@chakra-ui/react';
 import { FaTrash } from 'react-icons/fa';
+import { TransactionResult } from '@instantdb/core';
 
-import type { Card as CardType, List as ListType } from 'generated/graphql';
+import type { Card as CardType } from 'src/setupInstaWeb';
 
 import Card from 'components/Card/Card';
-
 import { CardListHeader } from './CardListHeader';
 import { CardListButton } from './CardListButton';
 import { CardListAddCardFooter } from './CardListAddCardFooter';
@@ -15,23 +15,13 @@ import styles from './CardList.module.css';
 export interface CardListWithoutDndProps {
   id: string;
   name: string;
-  list: UIListData;
-  addCard: (id: string, name: string) => Promise<any>;
-  deleteList: () => Promise<any>;
+  cards: UICardsData[];
+  addCard: (id: string, name: string) => Promise<TransactionResult>;
+  deleteList: () => Promise<TransactionResult>;
   readonly?: boolean;
 }
 
-export type ListTypeWithCards = ListTypeWithoutCards & {
-  cards: UICardsData[];
-};
-export type UIListData = ListTypeWithCards | null | undefined;
-
 export type UICardsData = Omit<CardType, 'createdBy' | 'updatedBy'>;
-
-export type ListTypeWithoutCards = Omit<
-  ListType,
-  'createdAt' | 'createdBy' | 'updatedAt' | 'cards'
->;
 
 export interface DndProps {
   isOver: boolean;
@@ -41,15 +31,12 @@ export const CardListWithDnd = (props: CardListWithoutDndProps & DndProps) => {
   const {
     name,
     id,
-    list,
+    cards,
     addCard,
     deleteList,
     isOver,
     readonly = false,
   } = props;
-
-  // use name injected as default if not yet available
-  const cards = list?.cards ?? ([] as UICardsData[]);
 
   return (
     <div

@@ -1,15 +1,15 @@
 import React, { type ReactNode } from 'react';
-import { useConfirmAction } from 'common/useConfirmAction';
 import { Button, Icon } from '@chakra-ui/react';
 import { FaTrash } from 'react-icons/fa';
 
-export const DelAllListsButton = ({
-  action,
-  children,
-}: {
+import { useConfirmAction } from 'common/useConfirmAction';
+
+type Props = {
   action: VoidFunction;
   children: ReactNode;
-}) => {
+};
+
+export const DelAllListsButton = ({ action, children }: Props) => {
   const [showWarning, showWarningThenCallAction] = useConfirmAction(action);
 
   return (

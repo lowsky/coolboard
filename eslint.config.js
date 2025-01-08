@@ -29,10 +29,6 @@ const config = [
   },
   js.configs.recommended,
   ...ts.configs.recommended,
-  {
-    // temporary until code get changed
-    rules: { '@typescript-eslint/no-explicit-any': 'off' },
-  },
   prettierConfigRecommended,
   {
     files: ['** / *.{js,tsx}'],

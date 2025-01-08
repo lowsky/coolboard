@@ -1,57 +1,42 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import Head from 'next/head';
 import type { AppProps } from 'next/app';
-import { Analytics } from '@vercel/analytics/react';
-import { SpeedInsights } from '@vercel/speed-insights/next';
-import { ClerkProvider } from '@clerk/nextjs';
 import { ChakraProvider } from '@chakra-ui/react';
 
 import 'public/index.css';
 
-import { instrumentBrowserOtel } from 'src/instrumentBrowserOtel';
 import { Footer } from 'components/Footer';
+
+import { db, useAuth, DBContext, UserContext } from 'src/setupInstaWeb';
+
 import { theme } from 'common/theme';
 
-if (typeof window !== 'undefined') {
-  // TODO investigate later...: top-level await in this place
-  // Won't be possible with yarn next dev --turbo
-  // -> it hangs completely on the initial page load !
-  await instrumentBrowserOtel();
-}
-
-// The title of the Head and view-port-meta needs to go here, see https://nextjs.org/docs/messages/no-document-viewport-meta
-
 export default function App({ Component, pageProps }: AppProps) {
+  const { user } = useAuth();
   return (
     <>
       <Head>
-        <title>Coolboard - Hands-on Application Building with GraphQL</title>
+        <title>Coolboard</title>
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
       </Head>
-      <Suspense fallback={<span>Loading...</span>}>
-        {
-          // @ts-expect-error async component
-          <ClerkProvider dynamic {...pageProps}>
-            <ChakraProvider theme={theme}>
-              <div
-                style={{
-                  overflow: 'auto',
-                  flex: 1,
-                }}>
-                <Component {...pageProps} />
-              </div>
+      <UserContext.Provider value={user}>
+        <DBContext.Provider value={db}>
+          <ChakraProvider theme={theme}>
+            <div
+              style={{
+                overflow: 'auto',
+                flex: 1,
+              }}>
+              <Component {...pageProps} />
+            </div>
 
-              <Footer />
-            </ChakraProvider>
-          </ClerkProvider>
-        }
-      </Suspense>
-
-      <Analytics />
-      <SpeedInsights />
+            <Footer />
+          </ChakraProvider>
+        </DBContext.Provider>
+      </UserContext.Provider>
     </>
   );
 }

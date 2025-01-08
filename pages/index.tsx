@@ -1,34 +1,17 @@
-import React, { Suspense, useEffect, useState } from 'react';
+import React, { Suspense } from 'react';
 import { Container, Flex, Heading, Icon, Text } from '@chakra-ui/react';
 
 import Link from 'next/link';
 import Image from 'next/image';
 import { FaChalkboardTeacher, FaFilm, FaLink } from 'react-icons/fa';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
-import {
-  type ApolloClient,
-  ApolloProvider,
-  type NormalizedCacheObject,
-} from '@apollo/client';
 
 import { Board } from 'components/Board/Board';
-import { setupGraphQLClient } from 'src/setupGraphQLClient';
-
 import { Segment } from 'src/common/Segment';
 import { FullVerticalContainer } from 'src/common/FullVerticalContainer';
-import { isInBrowserEnv } from 'common/isInBrowserEnv';
 import { trackPage } from 'src/common/tracking';
 
 import coolBoardLogo from 'public/CoolBoardLogo100.png';
 import screenshot from 'public/screenshot.png';
-
-// probing, debug stuff (delete me)
-if (isInBrowserEnv())
-  fetch('/api/system')
-    .then((response) => response.json())
-    .then((data) => console.log('debug: some system info: ', data))
-    .catch((err) => console.warn('debug: error fetching system info: ', err));
 
 const demoBoardId = process.env.NEXT_PUBLIC_DEMOBOARD_ID;
 
@@ -117,23 +100,15 @@ export default function Index() {
 }
 
 function DemoBoardSegment() {
-  const [client, setClient] = useState<ApolloClient<NormalizedCacheObject>>();
-  useEffect(() => {
-    if (demoBoardId) setClient(setupGraphQLClient(true));
-  }, []);
   return (
     <Segment className="zoomOnHover demoBoard">
       {demoBoardId && (
         <Text>Live Preview of the the current work and planned features:</Text>
       )}
-      {demoBoardId && client && (
-        <ApolloProvider client={client}>
-          <DndProvider backend={HTML5Backend}>
-            <Suspense fallback={<div>Loading Board</div>}>
-              <Board boardId={demoBoardId} readonly />
-            </Suspense>
-          </DndProvider>
-        </ApolloProvider>
+      {demoBoardId && (
+        <Suspense fallback={<div>Loading Board</div>}>
+          <Board boardId={demoBoardId} readonly />
+        </Suspense>
       )}
       {!demoBoardId && (
         <Link href="/boards">

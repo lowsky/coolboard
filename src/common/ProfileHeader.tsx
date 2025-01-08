@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Box, Container, Flex } from '@chakra-ui/react';
 import Image from 'next/image';
 
-import { UserProfileHeaderUI } from 'auth/UserProfileHeaderUI';
+import { UserProfileHeaderUIInstanaDb } from 'auth/UserProfileHeaderUIInstandDB';
 
 import coolBoardLogo from '../../public/CoolBoardLogo100.png';
 
@@ -22,17 +22,15 @@ const ProfileHeaderContainer = ({
       <Box gap="2rem" display="flex">
         {isBoardsPage && (
           <Flex direction="row" gap="1em" alignItems="center">
-            <Link href="/">
+            <Link href="/" title="Home">
               <Image src={coolBoardLogo} height="40" alt="logo" />
-              Home
             </Link>
           </Flex>
         )}
         {!isBoardsPage && (
           <Flex direction="row" gap="1em" alignItems="center">
-            <Link href="/">
+            <Link href="/" title="Home">
               <Image src={coolBoardLogo} height="40" alt="logo" />
-              Home
             </Link>
             <Link href="/boards">Boards</Link>
           </Flex>
@@ -46,12 +44,14 @@ const ProfileHeaderContainer = ({
 
 export const ProfileHeader = ({
   isBoardsPage = false,
+  isLoginInPage = false,
 }: {
   isBoardsPage?: boolean;
+  isLoginInPage?: boolean;
 }) => {
   return (
     <ProfileHeaderContainer isBoardsPage={isBoardsPage}>
-      <UserProfileHeaderUI />
+      <UserProfileHeaderUIInstanaDb isLoginInPage={isLoginInPage} />
     </ProfileHeaderContainer>
   );
 };
