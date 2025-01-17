@@ -117,17 +117,6 @@ export default function About() {
               padding: '8px',
             }}>
             <Text>
-              We are using the service of
-              <Link
-                href="https://clerk.dev/"
-                referrerPolicy="no-referrer"
-                isExternal>
-                clerk
-              </Link>
-              to allow signing-in via OAuth using Google or email/password
-              automatically.
-            </Text>
-            <Text>
               <strong>About Privacy:</strong>
               <br />
               We will use your account information for authenticating and
