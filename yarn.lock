@@ -6829,7 +6829,7 @@ __metadata:
     prettier: "npm:3.4.2"
     prisma: "npm:6.2.1"
     react: "npm:19.0.0"
-    react-apollo-network-status: "npm:5.2.1"
+    react-apollo-network-status: "npm:5.3.1"
     react-dnd: "npm:16.0.1"
     react-dnd-html5-backend: "npm:16.0.1"
     react-dom: "npm:19.0.0"
@@ -11723,14 +11723,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-apollo-network-status@npm:5.2.1":
-  version: 5.2.1
-  resolution: "react-apollo-network-status@npm:5.2.1"
+"react-apollo-network-status@npm:5.3.1":
+  version: 5.3.1
+  resolution: "react-apollo-network-status@npm:5.3.1"
   peerDependencies:
     "@apollo/client": ^3.0.0
     graphql: ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 10c0/ba2ad574833e4912bd4c6ba888575e540948943a24a85002f49c729ce65292023fd84aad916408862ff9193782c644ca4f84f7c52019c910c316cacea697c43a
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: 10c0/3648237ee3d00647ca3201fa1d0f725cf5ff1ac2c3c240771dfd938f0d94d6c85ef6f61ce197defec16ff8e7e90cfcd818733a1dc42bcc60b3398f2532a8bc3d
   languageName: node
   linkType: hard
 
