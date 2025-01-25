@@ -6829,7 +6829,7 @@ __metadata:
     eslint-plugin-prettier: "npm:5.2.3"
     eslint-plugin-react: "npm:7.37.4"
     eslint-plugin-react-hooks: "npm:^5.0.0"
-    framer-motion: "npm:12.0.1"
+    framer-motion: "npm:12.0.5"
     graphql: "npm:16.10.0"
     graphql-scalars: "npm:1.24.0"
     graphql-tag: "npm:2.12.6"
@@ -8474,9 +8474,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"framer-motion@npm:12.0.1":
-  version: 12.0.1
-  resolution: "framer-motion@npm:12.0.1"
+"framer-motion@npm:12.0.5":
+  version: 12.0.5
+  resolution: "framer-motion@npm:12.0.5"
   dependencies:
     motion-dom: "npm:^12.0.0"
     motion-utils: "npm:^12.0.0"
@@ -8492,7 +8492,7 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: 10c0/2bb16f0c7d4e5f070bc86e1b6e93faeeb9d34abc5765bd64e5ab2d754ce18e04b6ae9ead8d488b04b3de0ef3a83ad9f072acc1f366a9ccac3be41662c8e6fd63
+  checksum: 10c0/c9174e855bc1acdb9d48579e821b73b54981f8ab0490ff3955199d79804fcaf41dd447a110a9d02d020eb2b76e83ecd36942df94c97097cdc21d21420f1865c6
   languageName: node
   linkType: hard
 
