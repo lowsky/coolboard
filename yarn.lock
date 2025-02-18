@@ -1407,13 +1407,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/themes@npm:2.2.16":
-  version: 2.2.16
-  resolution: "@clerk/themes@npm:2.2.16"
+"@clerk/themes@npm:2.2.18":
+  version: 2.2.18
+  resolution: "@clerk/themes@npm:2.2.18"
   dependencies:
-    "@clerk/types": "npm:^4.45.0"
+    "@clerk/types": "npm:^4.46.0"
     tslib: "npm:2.4.1"
-  checksum: 10c0/d87d00020b2dbc3131bf1a3d184d415b01c8b7a0b6aa1cccf279dcba2b35192c348e4bd157ff6900cabdc2a1a42166dba971550a529e6540619d32f9668045bc
+  checksum: 10c0/acdff620f0aeeb441f2622705f5dbf17d775db6c7732e2ddabcdb07f8160de3aed48ebed162b095dc8feaae2745e2c4216d60ba4d72f23cbaef43a4a384b7a3b
   languageName: node
   linkType: hard
 
@@ -1432,6 +1432,15 @@ __metadata:
   dependencies:
     csstype: "npm:3.1.1"
   checksum: 10c0/b881abb2ebee0caa4b10cd5681566840fac5d717d428aa2ba29d48e20533e24d5964505dd7a0a258eef4306b554e2b0bd9d27a2b22a089530d5ae36ce77e73b4
+  languageName: node
+  linkType: hard
+
+"@clerk/types@npm:^4.46.0":
+  version: 4.46.0
+  resolution: "@clerk/types@npm:4.46.0"
+  dependencies:
+    csstype: "npm:3.1.3"
+  checksum: 10c0/fd2330920e0e29a8863d000b7aba612bb96d247d1e4a1555aac49f1e1107e15dc7ef08793fecdea04fbc3123acb6ff7f186aefc4ce3d82b5845b7526315dc2c1
   languageName: node
   linkType: hard
 
@@ -6732,7 +6741,7 @@ __metadata:
     "@chakra-ui/react": "npm:2.10.5"
     "@clerk/clerk-sdk-node": "npm:5.1.6"
     "@clerk/nextjs": "npm:6.11.0"
-    "@clerk/themes": "npm:2.2.16"
+    "@clerk/themes": "npm:2.2.18"
     "@emotion/react": "npm:11.14.0"
     "@emotion/styled": "npm:11.14.0"
     "@eslint/compat": "npm:1.2.6"
@@ -6877,6 +6886,13 @@ __metadata:
   version: 3.1.1
   resolution: "csstype@npm:3.1.1"
   checksum: 10c0/7c8b8c5923049d84132581c13bae6e1faf999746fe3998ba5f3819a8e1cdc7512ace87b7d0a4a69f0f4b8ba11daf835d4f1390af23e09fc4f0baad52c084753a
+  languageName: node
+  linkType: hard
+
+"csstype@npm:3.1.3":
+  version: 3.1.3
+  resolution: "csstype@npm:3.1.3"
+  checksum: 10c0/80c089d6f7e0c5b2bd83cf0539ab41474198579584fa10d86d0cafe0642202343cbc119e076a0b1aece191989477081415d66c9fefbf3c957fc2fc4b7009f248
   languageName: node
   linkType: hard
 
