@@ -1407,13 +1407,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/themes@npm:2.2.18":
-  version: 2.2.18
-  resolution: "@clerk/themes@npm:2.2.18"
+"@clerk/themes@npm:2.2.19":
+  version: 2.2.19
+  resolution: "@clerk/themes@npm:2.2.19"
   dependencies:
-    "@clerk/types": "npm:^4.46.0"
+    "@clerk/types": "npm:^4.46.1"
     tslib: "npm:2.4.1"
-  checksum: 10c0/acdff620f0aeeb441f2622705f5dbf17d775db6c7732e2ddabcdb07f8160de3aed48ebed162b095dc8feaae2745e2c4216d60ba4d72f23cbaef43a4a384b7a3b
+  checksum: 10c0/3c73785166e6591e3284970de518df72f2dbd8bbd6ecce5980cb147e666342d9c6949c7affcb2c832397199e841c24c436a66a49cc51138e1834edec76bf2d29
   languageName: node
   linkType: hard
 
@@ -1435,12 +1435,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/types@npm:^4.46.0":
-  version: 4.46.0
-  resolution: "@clerk/types@npm:4.46.0"
+"@clerk/types@npm:^4.46.1":
+  version: 4.46.1
+  resolution: "@clerk/types@npm:4.46.1"
   dependencies:
     csstype: "npm:3.1.3"
-  checksum: 10c0/fd2330920e0e29a8863d000b7aba612bb96d247d1e4a1555aac49f1e1107e15dc7ef08793fecdea04fbc3123acb6ff7f186aefc4ce3d82b5845b7526315dc2c1
+  checksum: 10c0/0d66841a38fef2a0dc1ff77897520e4ae8559ef6b39a6d5ecb7d8326d78ee4a1f928958856b7468bfc684e509f3f43be5dbf2901c6161ba36397e4131b626658
   languageName: node
   linkType: hard
 
@@ -3188,15 +3188,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@opentelemetry/api-logs@npm:0.57.2":
-  version: 0.57.2
-  resolution: "@opentelemetry/api-logs@npm:0.57.2"
-  dependencies:
-    "@opentelemetry/api": "npm:^1.3.0"
-  checksum: 10c0/1e514d3fd4ca68e7e8b008794a95ee0562a5d9e1d3ebb02647b245afaa6c2d72cc14e99e3ea47a1d1007f8a965c62bfb6170e1aa26756230bea063cfde2898bf
-  languageName: node
-  linkType: hard
-
 "@opentelemetry/api@npm:^1.3.0":
   version: 1.9.0
   resolution: "@opentelemetry/api@npm:1.9.0"
@@ -4169,23 +4160,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@opentelemetry/instrumentation@npm:0.57.2":
-  version: 0.57.2
-  resolution: "@opentelemetry/instrumentation@npm:0.57.2"
-  dependencies:
-    "@opentelemetry/api-logs": "npm:0.57.2"
-    "@types/shimmer": "npm:^1.2.0"
-    import-in-the-middle: "npm:^1.8.1"
-    require-in-the-middle: "npm:^7.1.1"
-    semver: "npm:^7.5.2"
-    shimmer: "npm:^1.2.1"
-  peerDependencies:
-    "@opentelemetry/api": ^1.3.0
-  checksum: 10c0/79ca65b66357665d19f89da7027da25ea1c6b55ecdacb0a99534923743c80deb9282870db563de8ae284b13e7e0aab8413efa1937f199deeaef069e07c7e4875
-  languageName: node
-  linkType: hard
-
-"@opentelemetry/instrumentation@npm:^0.52.0 || ^0.53.0 || ^0.54.0 || ^0.55.0 || ^0.56.0 || ^0.57.0":
+"@opentelemetry/instrumentation@npm:0.57.2, @opentelemetry/instrumentation@npm:^0.52.0 || ^0.53.0 || ^0.54.0 || ^0.55.0 || ^0.56.0 || ^0.57.0":
   version: 0.57.2
   resolution: "@opentelemetry/instrumentation@npm:0.57.2"
   dependencies:
@@ -6920,7 +6895,7 @@ __metadata:
     "@chakra-ui/react": "npm:2.10.6"
     "@clerk/clerk-sdk-node": "npm:5.1.6"
     "@clerk/nextjs": "npm:6.11.0"
-    "@clerk/themes": "npm:2.2.18"
+    "@clerk/themes": "npm:2.2.19"
     "@emotion/react": "npm:11.14.0"
     "@emotion/styled": "npm:11.14.0"
     "@eslint/compat": "npm:1.2.6"
