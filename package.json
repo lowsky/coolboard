@@ -90,7 +90,7 @@
     "@types/ws": "8.5.14",
     "@types/zen-observable": "0.8.7",
     "@typescript-eslint/parser": "8.23.0",
-    "eslint": "9.19.0",
+    "eslint": "9.20.1",
     "eslint-config-next": "15.1.7",
     "eslint-config-prettier": "10.0.1",
     "eslint-plugin-prettier": "5.2.3",
