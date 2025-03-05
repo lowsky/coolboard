@@ -10,7 +10,7 @@
   "dependencies": {
     "caniuse-lite": "^1.0.30001702",
     "cypress": "14.1.0",
-    "typescript": "5.7.3"
+    "typescript": "5.8.2"
   },
   "scripts": {
     "cy": "cypress",
