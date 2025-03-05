@@ -8,6 +8,7 @@
     "node": "22.x"
   },
   "dependencies": {
+    "caniuse-lite": "^1.0.30001702",
     "cypress": "14.1.0",
     "typescript": "5.7.3"
   },

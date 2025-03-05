@@ -14,10 +14,6 @@ console.log(
  * @type {import('next').NextConfig}
  **/
 const nextConfig = {
-  experimental: {
-    // https://nextjs.org/docs/app/building-your-application/optimizing/instrumentation
-    instrumentationHook,
-  },
   poweredByHeader: false,
 
   reactStrictMode: true,
