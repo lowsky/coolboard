@@ -1305,16 +1305,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/backend@npm:^1.25.0":
-  version: 1.25.0
-  resolution: "@clerk/backend@npm:1.25.0"
+"@clerk/backend@npm:^1.25.1":
+  version: 1.25.1
+  resolution: "@clerk/backend@npm:1.25.1"
   dependencies:
     "@clerk/shared": "npm:^3.0.0"
     "@clerk/types": "npm:^4.47.0"
     cookie: "npm:1.0.2"
     snakecase-keys: "npm:8.0.1"
     tslib: "npm:2.4.1"
-  checksum: 10c0/8c11f05b97589a35eeacf06944863fd5ea1b61fbbecfc5c43b04e1ea74e02d77d9eb53c6a7f88d5f78e7ce3a90047eebb15018bcb46eef7f04516cb27eef9401
+  checksum: 10c0/e4ba1a174b295730a843eade53be26b9f48635210a2cc75678d884e5d7a512e059dc5e50f606dfa708696f55a56e075eac24c9480d400c9443035e5e9404fe72
   languageName: node
   linkType: hard
 
@@ -1344,11 +1344,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/nextjs@npm:6.12.3":
-  version: 6.12.3
-  resolution: "@clerk/nextjs@npm:6.12.3"
+"@clerk/nextjs@npm:6.12.4":
+  version: 6.12.4
+  resolution: "@clerk/nextjs@npm:6.12.4"
   dependencies:
-    "@clerk/backend": "npm:^1.25.0"
+    "@clerk/backend": "npm:^1.25.1"
     "@clerk/clerk-react": "npm:^5.24.1"
     "@clerk/shared": "npm:^3.0.0"
     "@clerk/types": "npm:^4.47.0"
@@ -1359,7 +1359,7 @@ __metadata:
     next: ^13.5.4 || ^14.0.3 || ^15.0.0
     react: ^18.0.0 || ^19.0.0 || ^19.0.0-0
     react-dom: ^18.0.0 || ^19.0.0 || ^19.0.0-0
-  checksum: 10c0/f31d7e741065f1ce7888901562e571c9df5620f0f4567a91b0d363d5237df84762ebe85a15de34431f73315d30dd50e97e8085fd4c7d1866a7dce1ce03bc3d39
+  checksum: 10c0/852914c5d61555616c6ff0222c225cef1dd0567f52968ba08efcf6363497c190f359ffe49d2d937b8091b71380e5992f9e19177492340e4d73f38903ae094d46
   languageName: node
   linkType: hard
 
@@ -6780,7 +6780,7 @@ __metadata:
     "@chakra-ui/icons": "npm:2.2.4"
     "@chakra-ui/react": "npm:2.10.6"
     "@clerk/clerk-sdk-node": "npm:5.1.6"
-    "@clerk/nextjs": "npm:6.12.3"
+    "@clerk/nextjs": "npm:6.12.4"
     "@clerk/themes": "npm:2.2.20"
     "@emotion/react": "npm:11.14.0"
     "@emotion/styled": "npm:11.14.0"
