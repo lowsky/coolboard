@@ -3114,12 +3114,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/eslint-plugin-next@npm:15.2.1":
-  version: 15.2.1
-  resolution: "@next/eslint-plugin-next@npm:15.2.1"
+"@next/eslint-plugin-next@npm:15.2.2":
+  version: 15.2.2
+  resolution: "@next/eslint-plugin-next@npm:15.2.2"
   dependencies:
     fast-glob: "npm:3.3.1"
-  checksum: 10c0/c1008997e0bdb64db029341ef94df7df224c1cc2d5e107d274ce95b42aed74229af51773031859bf262d670ada362bd85184ba4dd2ef3d98e2de5bb56086a62d
+  checksum: 10c0/fce7a9f4be9541b1a67ca6a94903559bfdcec293e658a94ca8dac987de5dc7039d317b8d0c90eb119bf701eba12dab425875d3478aceca7b29fe6bd1cfd886ef
   languageName: node
   linkType: hard
 
@@ -6820,7 +6820,7 @@ __metadata:
     "@graphql-codegen/typescript-operations": "npm:4.5.1"
     "@graphql-codegen/typescript-react-apollo": "npm:4.3.2"
     "@neondatabase/serverless": "npm:0.10.4"
-    "@next/eslint-plugin-next": "npm:15.2.1"
+    "@next/eslint-plugin-next": "npm:15.2.2"
     "@opentelemetry/auto-instrumentations-node": "npm:0.56.1"
     "@opentelemetry/auto-instrumentations-web": "npm:0.45.1"
     "@opentelemetry/context-zone": "npm:1.30.1"
@@ -6848,7 +6848,7 @@ __metadata:
     "@vercel/speed-insights": "npm:1.2.0"
     emitter-listener: "npm:1.1.2"
     eslint: "npm:9.22.0"
-    eslint-config-next: "npm:15.2.1"
+    eslint-config-next: "npm:15.2.2"
     eslint-config-prettier: "npm:10.1.1"
     eslint-plugin-prettier: "npm:5.2.3"
     eslint-plugin-react: "npm:7.37.4"
@@ -7884,11 +7884,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-next@npm:15.2.1":
-  version: 15.2.1
-  resolution: "eslint-config-next@npm:15.2.1"
+"eslint-config-next@npm:15.2.2":
+  version: 15.2.2
+  resolution: "eslint-config-next@npm:15.2.2"
   dependencies:
-    "@next/eslint-plugin-next": "npm:15.2.1"
+    "@next/eslint-plugin-next": "npm:15.2.2"
     "@rushstack/eslint-patch": "npm:^1.10.3"
     "@typescript-eslint/eslint-plugin": "npm:^5.4.2 || ^6.0.0 || ^7.0.0 || ^8.0.0"
     "@typescript-eslint/parser": "npm:^5.4.2 || ^6.0.0 || ^7.0.0 || ^8.0.0"
@@ -7904,7 +7904,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10c0/9f4be9dde0b64592f72955a7b295ac7698f3a95d6804895e45f79d4defa786beaf1988b63698ac0d4735f4073eff27dce39268895523d5ecca622af748428818
+  checksum: 10c0/b59c19a1c269ba7715fa3fc4b41bf0480ae2065999139ac5a14cb275fb3a8999c615f977769f0d7a7c18578f3cd33afcbb8756d6df4b65b5a727466c4aff70ea
   languageName: node
   linkType: hard
 
