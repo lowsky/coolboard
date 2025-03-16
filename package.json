@@ -37,7 +37,7 @@
     "@prisma/extension-accelerate": "1.2.2",
     "@prisma/instrumentation": "6.4.1",
     "@vercel/analytics": "1.5.0",
-    "@vercel/otel": "1.10.2",
+    "@vercel/otel": "1.10.3",
     "@vercel/speed-insights": "1.2.0",
     "emitter-listener": "1.1.2",
     "framer-motion": "12.4.10",
