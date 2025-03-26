@@ -1,5 +1,4 @@
-import { type User as ClerkUser, clerkClient } from '@clerk/clerk-sdk-node';
-import { getAuth } from '@clerk/nextjs/server';
+import { clerkClient, getAuth, User } from '@clerk/nextjs/server';
 import { GraphQLError } from 'graphql';
 
 import { injectUserIdByAuth0id, userIdByAuth0id } from './userIdByAuth0id';
@@ -64,7 +63,7 @@ export const getUserId = async (ctx: Ctxt): Promise<string> => {
 };
 
 export const userTokenFromClerkSessionUserId = (
-  user: ClerkUser,
+  user: User,
   identity = 'clerk'
 ): UserToken => {
   const email = user.primaryEmailAddressId;
@@ -107,9 +106,9 @@ export async function verifyUserIsAuthenticatedAndRetrieveUserToken(
         userId
       );
 
-    return userTokenFromClerkSessionUserId(
-      await clerkClient.users.getUser(userId)
-    );
+    const client = await clerkClient();
+    const user: User = await client.users.getUser(userId);
+    return userTokenFromClerkSessionUserId(user);
   }
 
   throw new GraphQLError('Not authorized, no valid auth token', {
