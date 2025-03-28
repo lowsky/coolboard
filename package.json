@@ -41,7 +41,7 @@
     "emitter-listener": "1.1.2",
     "framer-motion": "12.4.11",
     "graphql": "16.10.0",
-    "graphql-scalars": "1.24.1",
+    "graphql-scalars": "1.24.2",
     "graphql-tag": "2.12.6",
     "inter-ui": "4.1.0",
     "next": "15.2.4",
