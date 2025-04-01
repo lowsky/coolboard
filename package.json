@@ -88,7 +88,7 @@
     "@next/eslint-plugin-next": "15.2.4",
     "@types/react-dom": "19.0.4",
     "@types/react-timeago": "4.1.7",
-    "@types/ws": "8.18.0",
+    "@types/ws": "8.18.1",
     "@types/zen-observable": "0.8.7",
     "@typescript-eslint/parser": "8.29.0",
     "eslint": "9.23.0",
