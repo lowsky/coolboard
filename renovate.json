@@ -7,9 +7,7 @@
       "automerge": true
     }
   ],
-  "masterIssue": true,
-  "rebaseConflictedPrs": false,
-  "rebaseStalePrs": false,
-  "statusCheckVerify": true,
-  "extends": ["config:base"]
+  "dependencyDashboard": true,
+  "rebaseWhen": "never",
+  "extends": ["config:recommended"]
 }
