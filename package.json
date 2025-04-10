@@ -9,12 +9,12 @@
   "homepage": "/",
   "dependencies": {
     "@apollo/client": "3.13.6",
-    "@apollo/server": "4.11.3",
+    "@apollo/server": "4.12.0",
     "@as-integrations/next": "3.2.0",
     "@chakra-ui/icons": "2.2.4",
     "@chakra-ui/react": "2.10.7",
     "@clerk/clerk-sdk-node": "5.1.6",
-    "@clerk/nextjs": "6.14.0",
+    "@clerk/nextjs": "6.14.2",
     "@clerk/themes": "2.2.27",
     "@emotion/react": "11.14.0",
     "@emotion/styled": "11.14.0",
@@ -90,7 +90,7 @@
     "@types/react-timeago": "4.1.7",
     "@types/ws": "8.18.1",
     "@types/zen-observable": "0.8.7",
-    "@typescript-eslint/parser": "8.29.0",
+    "@typescript-eslint/parser": "8.29.1",
     "eslint": "9.24.0",
     "eslint-config-next": "15.2.4",
     "eslint-config-prettier": "10.1.1",
@@ -98,9 +98,9 @@
     "eslint-plugin-react": "7.37.5",
     "eslint-plugin-react-hooks": "^5.0.0",
     "prettier": "3.5.3",
-    "sharp": "0.34.0",
+    "sharp": "0.34.1",
     "typescript": "5.8.3",
-    "typescript-eslint": "8.29.0"
+    "typescript-eslint": "8.29.1"
   },
   "browserslist": [
     ">0.2%",
