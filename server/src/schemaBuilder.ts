@@ -1,7 +1,7 @@
 import SchemaBuilder from '@pothos/core';
 import PrismaPlugin from '@pothos/plugin-prisma';
 import WithInputPlugin from '@pothos/plugin-with-input';
-import { Pool, neonConfig } from '@neondatabase/serverless';
+import { neonConfig } from '@neondatabase/serverless';
 import { PrismaNeon } from '@prisma/adapter-neon';
 import { Prisma, PrismaClient } from '@prisma/client';
 import { DateTimeResolver } from 'graphql-scalars';
@@ -17,8 +17,7 @@ import { isLocalDev } from './helpers/logging';
 neonConfig.webSocketConstructor = ws;
 const connectionString = `${process.env.DATABASE_URL}`;
 
-const pool = new Pool({ connectionString });
-const adapter = new PrismaNeon(pool);
+const adapter = new PrismaNeon({ connectionString });
 
 export const prisma = new PrismaClient({
   errorFormat: 'pretty',
