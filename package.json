@@ -39,7 +39,7 @@
     "@vercel/otel": "1.11.0",
     "@vercel/speed-insights": "1.2.0",
     "emitter-listener": "1.1.2",
-    "framer-motion": "12.7.3",
+    "framer-motion": "12.7.4",
     "graphql": "16.10.0",
     "graphql-scalars": "1.24.2",
     "graphql-tag": "2.12.6",
