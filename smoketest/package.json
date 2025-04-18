@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "caniuse-lite": "^1.0.30001707",
-    "cypress": "14.3.0",
+    "cypress": "14.3.1",
     "typescript": "5.8.3"
   },
   "scripts": {
