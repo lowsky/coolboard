@@ -4433,9 +4433,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pothos/plugin-prisma@npm:4.6.0":
-  version: 4.6.0
-  resolution: "@pothos/plugin-prisma@npm:4.6.0"
+"@pothos/plugin-prisma@npm:4.7.0":
+  version: 4.7.0
+  resolution: "@pothos/plugin-prisma@npm:4.7.0"
   dependencies:
     "@prisma/generator-helper": "npm:^6.0.0"
   peerDependencies:
@@ -4445,7 +4445,7 @@ __metadata:
     typescript: ">=4.7.2"
   bin:
     prisma-pothos-types: bin/generator.js
-  checksum: 10c0/d3a09642886eac6599a71446880288e032532efc93c150aa879e189e3f5f5b9d37692f6efbb9eee7db5e749906f78f28e9eb348370dfc2ca5830454c778705e5
+  checksum: 10c0/724b22882b107fd86aae13051e11a8107a634796cb145554a855fc3bbca51b134a42ef7599b1d57f6e555fbd5411395e24e282938db1795852cf3547fdec9e65
   languageName: node
   linkType: hard
 
@@ -6569,7 +6569,7 @@ __metadata:
     "@opentelemetry/sdk-trace-web": "npm:2.0.0"
     "@opentelemetry/winston-transport": "npm:0.11.0"
     "@pothos/core": "npm:4.6.0"
-    "@pothos/plugin-prisma": "npm:4.6.0"
+    "@pothos/plugin-prisma": "npm:4.7.0"
     "@pothos/plugin-with-input": "npm:4.1.0"
     "@prisma/adapter-neon": "npm:6.6.0"
     "@prisma/client": "npm:6.6.0"
