@@ -1257,13 +1257,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/themes@npm:2.2.36":
-  version: 2.2.36
-  resolution: "@clerk/themes@npm:2.2.36"
+"@clerk/themes@npm:2.2.37":
+  version: 2.2.37
+  resolution: "@clerk/themes@npm:2.2.37"
   dependencies:
-    "@clerk/types": "npm:^4.55.1"
+    "@clerk/types": "npm:^4.56.0"
     tslib: "npm:2.8.1"
-  checksum: 10c0/cec6b924f11ee72e76e7371d02454c5aec84e239653acf7d1ff9dd5d7818fc84e2ef116c6f9a12273b5ff904668b0d6dd3048703451aa9b335e598b792a8b08f
+  checksum: 10c0/f9986b7f5a3c1571dd131be7ef2a403e4a8af522806e12ed40ba37221f4fb9307447edee70cf454fe0e48b1ceb24a28cae78e4f15a7c49906043eab64ab24459
   languageName: node
   linkType: hard
 
@@ -1285,12 +1285,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/types@npm:^4.55.1":
-  version: 4.55.1
-  resolution: "@clerk/types@npm:4.55.1"
+"@clerk/types@npm:^4.56.0":
+  version: 4.56.0
+  resolution: "@clerk/types@npm:4.56.0"
   dependencies:
     csstype: "npm:3.1.3"
-  checksum: 10c0/e7d97967f745068afaa377f9bd9b3acbb6749a288280ce07a9a8cb5da1002bd4c7ddfeefec9e0b4f4d194d3b95954dcc3dba69fa5334422eff15898c835f1049
+  checksum: 10c0/e04daee1e59376a1223e6dda5b8ee7d317842b39e4d3d4036bb941f0b80f2c5bb53a5c6d97b9fbd88d1cf080fd3783c980f4b610a6ce2b954e462877d816a5b3
   languageName: node
   linkType: hard
 
@@ -6542,7 +6542,7 @@ __metadata:
     "@chakra-ui/react": "npm:2.10.7"
     "@clerk/clerk-sdk-node": "npm:5.1.6"
     "@clerk/nextjs": "npm:6.17.0"
-    "@clerk/themes": "npm:2.2.36"
+    "@clerk/themes": "npm:2.2.37"
     "@emotion/react": "npm:11.14.0"
     "@emotion/styled": "npm:11.14.0"
     "@escape.tech/graphql-armor-block-field-suggestions": "npm:^3.0.0"
