@@ -28,7 +28,7 @@
     "@opentelemetry/instrumentation-winston": "0.45.0",
     "@opentelemetry/sdk-trace-web": "2.0.0",
     "@opentelemetry/winston-transport": "0.11.0",
-    "@pothos/core": "4.6.0",
+    "@pothos/core": "4.6.1",
     "@pothos/plugin-prisma": "4.7.0",
     "@pothos/plugin-with-input": "4.1.0",
     "@prisma/adapter-neon": "6.7.0",

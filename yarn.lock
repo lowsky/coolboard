@@ -4424,12 +4424,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pothos/core@npm:4.6.0":
-  version: 4.6.0
-  resolution: "@pothos/core@npm:4.6.0"
+"@pothos/core@npm:4.6.1":
+  version: 4.6.1
+  resolution: "@pothos/core@npm:4.6.1"
   peerDependencies:
     graphql: ">=16.6.0"
-  checksum: 10c0/89d960403f4b2abd41cb22822d6d171637b069f6d81a6e7a5e3844c7ca089b56c0656c275bcf93cbd0a6c780026ee1beb575ec1a202773ba11279450879f1f4d
+  checksum: 10c0/586df57f87c9050d1589c3179aa183ccaac29321b3f383151de0404b444cdb06fa0466b18c123267780c446cbf89e33043fa1487ee0d4b063cb33014de4fce4b
   languageName: node
   linkType: hard
 
@@ -6568,7 +6568,7 @@ __metadata:
     "@opentelemetry/instrumentation-winston": "npm:0.45.0"
     "@opentelemetry/sdk-trace-web": "npm:2.0.0"
     "@opentelemetry/winston-transport": "npm:0.11.0"
-    "@pothos/core": "npm:4.6.0"
+    "@pothos/core": "npm:4.6.1"
     "@pothos/plugin-prisma": "npm:4.7.0"
     "@pothos/plugin-with-input": "npm:4.1.0"
     "@prisma/adapter-neon": "npm:6.7.0"
