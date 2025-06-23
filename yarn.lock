@@ -1456,7 +1456,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@envelop/core@npm:^5.0.0, @envelop/core@npm:^5.2.3":
+"@envelop/core@npm:^5.2.3":
   version: 5.2.3
   resolution: "@envelop/core@npm:5.2.3"
   dependencies:
@@ -1664,15 +1664,15 @@ __metadata:
   linkType: hard
 
 "@escape.tech/graphql-armor-block-field-suggestions@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "@escape.tech/graphql-armor-block-field-suggestions@npm:3.0.0"
+  version: 3.0.1
+  resolution: "@escape.tech/graphql-armor-block-field-suggestions@npm:3.0.1"
   dependencies:
-    "@envelop/core": "npm:^5.0.0"
-    graphql: "npm:^16.0.0"
+    "@envelop/core": "npm:^5.2.3"
+    graphql: "npm:^16.10.0"
   dependenciesMeta:
     "@envelop/core":
       optional: true
-  checksum: 10c0/e660c4fc5dea17e5ee44e9e982889d817de9a5cf3cd917589a1eb4f25390d013668470a3b3db5dff6a2c3d988640079aadc4dc1686490d30f8fcba59b485b367
+  checksum: 10c0/b90c32530d6d7ad5bf713f3f6f864d214fbdf9b3930eead5511009f2926a3804ed3c9c6bbe08e12db794e9fe4745aeb620b4e96fd3416c958c1d2580e2d19e1a
   languageName: node
   linkType: hard
 
@@ -8869,17 +8869,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graphql@npm:16.11.0":
+"graphql@npm:16.11.0, graphql@npm:^16.10.0":
   version: 16.11.0
   resolution: "graphql@npm:16.11.0"
   checksum: 10c0/124da7860a2292e9acf2fed0c71fc0f6a9b9ca865d390d112bdd563c1f474357141501c12891f4164fe984315764736ad67f705219c62f7580681d431a85db88
-  languageName: node
-  linkType: hard
-
-"graphql@npm:^16.0.0":
-  version: 16.10.0
-  resolution: "graphql@npm:16.10.0"
-  checksum: 10c0/303730675538c8bd6c76b447dc6f03e61242e2d2596b408c34759666ec4877409e5593a7a0467d590ac5407b8c663b093b599556a77f24f281abea69ddc53de6
   languageName: node
   linkType: hard
 
