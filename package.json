@@ -18,7 +18,7 @@
     "@emotion/styled": "11.14.0",
     "@escape.tech/graphql-armor-block-field-suggestions": "^3.0.0",
     "@graphql-yoga/plugin-disable-introspection": "^2.14.3",
-    "@neondatabase/serverless": "1.0.0",
+    "@neondatabase/serverless": "1.0.1",
     "@opentelemetry/auto-instrumentations-node": "0.58.1",
     "@opentelemetry/auto-instrumentations-web": "0.46.0",
     "@opentelemetry/context-zone": "2.0.0",
