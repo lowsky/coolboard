@@ -3062,13 +3062,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@neondatabase/serverless@npm:1.0.0":
-  version: 1.0.0
-  resolution: "@neondatabase/serverless@npm:1.0.0"
+"@neondatabase/serverless@npm:1.0.1":
+  version: 1.0.1
+  resolution: "@neondatabase/serverless@npm:1.0.1"
   dependencies:
-    "@types/node": "npm:^22.10.2"
+    "@types/node": "npm:^22.15.30"
     "@types/pg": "npm:^8.8.0"
-  checksum: 10c0/62bb99bfef7c20dc2c948209bc8eb05ca88123ecc44b3cbf49536c0002d9a9b22e6b0d9de17e5baaae0ef7b409f65cb9d1a9197d97826a480a81e10f6c31c643
+  checksum: 10c0/9c7377e5ce3792b8af81c8823ec5e42b8eff3a718df69333ec768b30b6b05ca3ae080deba36d919f2530c2bdaaf8b85de8cc6e738e5670acbea7b18f92ab2ce8
   languageName: node
   linkType: hard
 
@@ -4824,12 +4824,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^22.10.2":
-  version: 22.13.14
-  resolution: "@types/node@npm:22.13.14"
+"@types/node@npm:^22.15.30":
+  version: 22.15.32
+  resolution: "@types/node@npm:22.15.32"
   dependencies:
-    undici-types: "npm:~6.20.0"
-  checksum: 10c0/fa2ab5b8277bfbcc86c42e46a3ea9871b0d559894cc9d955685d17178c9499f0b1bf03d1d1ea8d92ef2dda818988f4035acb8abf9dc15423a998fa56173ab804
+    undici-types: "npm:~6.21.0"
+  checksum: 10c0/63a2fa52adf1134d1b3bee8b1862d4b8e4550fffc190551068d3d41a41d9e5c0c8f1cb81faa18767b260637360f662115c26c5e4e7718868ead40c4a57cbc0e3
   languageName: node
   linkType: hard
 
@@ -6548,7 +6548,7 @@ __metadata:
     "@graphql-codegen/typescript-operations": "npm:4.6.0"
     "@graphql-codegen/typescript-react-apollo": "npm:4.3.2"
     "@graphql-yoga/plugin-disable-introspection": "npm:^2.14.3"
-    "@neondatabase/serverless": "npm:1.0.0"
+    "@neondatabase/serverless": "npm:1.0.1"
     "@next/eslint-plugin-next": "npm:15.3.1"
     "@opentelemetry/auto-instrumentations-node": "npm:0.58.1"
     "@opentelemetry/auto-instrumentations-web": "npm:0.46.0"
@@ -13297,10 +13297,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici-types@npm:~6.20.0":
-  version: 6.20.0
-  resolution: "undici-types@npm:6.20.0"
-  checksum: 10c0/68e659a98898d6a836a9a59e6adf14a5d799707f5ea629433e025ac90d239f75e408e2e5ff086afc3cace26f8b26ee52155293564593fbb4a2f666af57fc59bf
+"undici-types@npm:~6.21.0":
+  version: 6.21.0
+  resolution: "undici-types@npm:6.21.0"
+  checksum: 10c0/c01ed51829b10aa72fc3ce64b747f8e74ae9b60eafa19a7b46ef624403508a54c526ffab06a14a26b3120d055e1104d7abe7c9017e83ced038ea5cf52f8d5e04
   languageName: node
   linkType: hard
 
