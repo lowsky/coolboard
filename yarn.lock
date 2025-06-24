@@ -1138,19 +1138,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/backend@npm:^1.21.6":
-  version: 1.23.1
-  resolution: "@clerk/backend@npm:1.23.1"
-  dependencies:
-    "@clerk/shared": "npm:^2.20.8"
-    "@clerk/types": "npm:^4.41.0"
-    cookie: "npm:1.0.2"
-    snakecase-keys: "npm:8.0.1"
-    tslib: "npm:2.4.1"
-  checksum: 10c0/10a6c05a4689ad9bfed2dfde864002f80f0dd66b2ec3ed665411739ac4916f242c47ec83f48de9a20a9484cb047c3a0f52a4e3af89154a1614311b0ac4270062
-  languageName: node
-  linkType: hard
-
 "@clerk/backend@npm:^2.2.0":
   version: 2.2.0
   resolution: "@clerk/backend@npm:2.2.0"
@@ -1178,18 +1165,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/clerk-sdk-node@npm:5.1.6":
-  version: 5.1.6
-  resolution: "@clerk/clerk-sdk-node@npm:5.1.6"
-  dependencies:
-    "@clerk/backend": "npm:^1.21.6"
-    "@clerk/shared": "npm:^2.20.6"
-    "@clerk/types": "npm:^4.40.2"
-    tslib: "npm:2.4.1"
-  checksum: 10c0/cbac63894fe8e28d22c725060e1854839d6e5bbee976d6a50e35e8f95c89a509779e8117b0448486e0627a4d91ec31be3a0e1ebf931876178d0feb1f9f7eeb52
-  languageName: node
-  linkType: hard
-
 "@clerk/nextjs@npm:6.23.0":
   version: 6.23.0
   resolution: "@clerk/nextjs@npm:6.23.0"
@@ -1205,28 +1180,6 @@ __metadata:
     react: ^18.0.0 || ^19.0.0 || ^19.0.0-0
     react-dom: ^18.0.0 || ^19.0.0 || ^19.0.0-0
   checksum: 10c0/20450e9cec5ebc3d61682d07f38c5cdad7f1f2178ee3088f91470c52bb7e96ce8772bb494fdff95a220e408572d2506f3d4cae32d80ddb07fe9c5e2871b7e2a6
-  languageName: node
-  linkType: hard
-
-"@clerk/shared@npm:^2.20.6, @clerk/shared@npm:^2.20.8":
-  version: 2.20.8
-  resolution: "@clerk/shared@npm:2.20.8"
-  dependencies:
-    "@clerk/types": "npm:^4.41.0"
-    dequal: "npm:2.0.3"
-    glob-to-regexp: "npm:0.4.1"
-    js-cookie: "npm:3.0.5"
-    std-env: "npm:^3.7.0"
-    swr: "npm:^2.2.0"
-  peerDependencies:
-    react: ^18.0.0 || ^19.0.0 || ^19.0.0-0
-    react-dom: ^18.0.0 || ^19.0.0 || ^19.0.0-0
-  peerDependenciesMeta:
-    react:
-      optional: true
-    react-dom:
-      optional: true
-  checksum: 10c0/c60b3928647650d6688c5af0322ba5c847906d44477225ea15c800ef625b9d309cdb2c5efdc29d4846858055a083bb3575207fc217ff0a43ca848acfc23e24c9
   languageName: node
   linkType: hard
 
@@ -1259,15 +1212,6 @@ __metadata:
     "@clerk/types": "npm:^4.61.0"
     tslib: "npm:2.8.1"
   checksum: 10c0/aa0c966678218eff4953126774a5226ed395d36905171f8ac8027ae2410dba88822c9adf84379ea8287b7e3a1cb6bf9c50208282afc525efb0bd47484cc88766
-  languageName: node
-  linkType: hard
-
-"@clerk/types@npm:^4.40.2, @clerk/types@npm:^4.41.0":
-  version: 4.41.0
-  resolution: "@clerk/types@npm:4.41.0"
-  dependencies:
-    csstype: "npm:3.1.1"
-  checksum: 10c0/b401f145f90a061cdd367dff1ef5bf355124458efc14d92200c0e25b9f7e2d44307533ca5732e14505fe8c8f5c16c28892b8fa40325bd4959412f15c3afd247f
   languageName: node
   linkType: hard
 
@@ -6389,7 +6333,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"client-only@npm:0.0.1, client-only@npm:^0.0.1":
+"client-only@npm:0.0.1":
   version: 0.0.1
   resolution: "client-only@npm:0.0.1"
   checksum: 10c0/9d6cfd0c19e1c96a434605added99dff48482152af791ec4172fb912a71cff9027ff174efd8cdb2160cc7f377543e0537ffc462d4f279bc4701de3f2a3c4b358
@@ -6566,7 +6510,6 @@ __metadata:
     "@apollo/client": "npm:3.13.8"
     "@chakra-ui/icons": "npm:2.2.4"
     "@chakra-ui/react": "npm:2.10.9"
-    "@clerk/clerk-sdk-node": "npm:5.1.6"
     "@clerk/nextjs": "npm:6.23.0"
     "@clerk/themes": "npm:2.2.51"
     "@emotion/react": "npm:11.14.0"
@@ -6702,13 +6645,6 @@ __metadata:
     shebang-command: "npm:^2.0.0"
     which: "npm:^2.0.1"
   checksum: 10c0/053ea8b2135caff68a9e81470e845613e374e7309a47731e81639de3eaeb90c3d01af0e0b44d2ab9d50b43467223b88567dfeb3262db942dc063b9976718ffc1
-  languageName: node
-  linkType: hard
-
-"csstype@npm:3.1.1":
-  version: 3.1.1
-  resolution: "csstype@npm:3.1.1"
-  checksum: 10c0/7c8b8c5923049d84132581c13bae6e1faf999746fe3998ba5f3819a8e1cdc7512ace87b7d0a4a69f0f4b8ba11daf835d4f1390af23e09fc4f0baad52c084753a
   languageName: node
   linkType: hard
 
@@ -12514,13 +12450,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"std-env@npm:^3.7.0":
-  version: 3.7.0
-  resolution: "std-env@npm:3.7.0"
-  checksum: 10c0/60edf2d130a4feb7002974af3d5a5f3343558d1ccf8d9b9934d225c638606884db4a20d2fe6440a09605bca282af6b042ae8070a10490c0800d69e82e478f41e
-  languageName: node
-  linkType: hard
-
 "std-env@npm:^3.9.0":
   version: 3.9.0
   resolution: "std-env@npm:3.9.0"
@@ -12840,18 +12769,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"swr@npm:^2.2.0":
-  version: 2.2.5
-  resolution: "swr@npm:2.2.5"
-  dependencies:
-    client-only: "npm:^0.0.1"
-    use-sync-external-store: "npm:^1.2.0"
-  peerDependencies:
-    react: ^16.11.0 || ^17.0.0 || ^18.0.0
-  checksum: 10c0/731488d609ac6db60626632e3f76b046f28400b44504b3dfa69231a645127579b1add7a1595e5a6c718e24c80f1399506883bb456ca83c1b621357a0bf5a2a94
-  languageName: node
-  linkType: hard
-
 "swr@npm:^2.3.3":
   version: 2.3.3
   resolution: "swr@npm:2.3.3"
@@ -13033,13 +12950,6 @@ __metadata:
   version: 2.4.0
   resolution: "tslib@npm:2.4.0"
   checksum: 10c0/eb19bda3ae545b03caea6a244b34593468e23d53b26bf8649fbc20fce43e9b21a71127fd6d2b9662c0fe48ee6ff668ead48fd00d3b88b2b716b1c12edae25b5d
-  languageName: node
-  linkType: hard
-
-"tslib@npm:2.4.1":
-  version: 2.4.1
-  resolution: "tslib@npm:2.4.1"
-  checksum: 10c0/9ac0e4fd1033861f0b4f0d848dc3009ebcc3aa4757a06e8602a2d8a7aed252810e3540e54e70709f06c0f95311faa8584f769bcbede48aff785eb7e4d399b9ec
   languageName: node
   linkType: hard
 
@@ -13429,15 +13339,6 @@ __metadata:
     "@types/react":
       optional: true
   checksum: 10c0/89f0018fd9aee1fc17c85ac18c4bf8944d460d453d0d0e04ddbc8eaddf3fa591e9c74a1f8a438a1bff368a7a2417fab380bdb3df899d2194c4375b0982736de0
-  languageName: node
-  linkType: hard
-
-"use-sync-external-store@npm:^1.2.0":
-  version: 1.2.0
-  resolution: "use-sync-external-store@npm:1.2.0"
-  peerDependencies:
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 10c0/ac4814e5592524f242921157e791b022efe36e451fe0d4fd4d204322d5433a4fc300d63b0ade5185f8e0735ded044c70bcf6d2352db0f74d097a238cebd2da02
   languageName: node
   linkType: hard
 
