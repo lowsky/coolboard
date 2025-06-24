@@ -6682,7 +6682,7 @@ __metadata:
     graphql: "npm:16.11.0"
     graphql-scalars: "npm:1.24.2"
     graphql-tag: "npm:2.12.6"
-    graphql-yoga: "npm:5.13.4"
+    graphql-yoga: "npm:5.13.5"
     inter-ui: "npm:4.1.0"
     next: "npm:15.3.1"
     prettier: "npm:3.5.3"
@@ -8855,9 +8855,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graphql-yoga@npm:5.13.4":
-  version: 5.13.4
-  resolution: "graphql-yoga@npm:5.13.4"
+"graphql-yoga@npm:5.13.5":
+  version: 5.13.5
+  resolution: "graphql-yoga@npm:5.13.5"
   dependencies:
     "@envelop/core": "npm:^5.2.3"
     "@envelop/instrumentation": "npm:^1.0.0"
@@ -8874,7 +8874,7 @@ __metadata:
     tslib: "npm:^2.8.1"
   peerDependencies:
     graphql: ^15.2.0 || ^16.0.0
-  checksum: 10c0/b49085b3878d392436c848b8da075d70ebfe9ec147620a0c614d3075af68ee5f388426d8ee1af875c1bd7807f643261b76cfa3b898184bdcc0ea06af54b0deba
+  checksum: 10c0/52793fe7af8e144b38288beba2f6d90b95ce746a36745c040bf1d6787123b29b7411ebf164ca18bd7828d61c325f2ba293967b9c1ad5298abc9856ff4c03b7fc
   languageName: node
   linkType: hard
 
