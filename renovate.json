@@ -7,6 +7,13 @@
       "automerge": true
     }
   ],
+  "includePaths": [
+    "package.json",
+    ".circleci/config.yml",
+    ".github/workflows/cleanup-neon-preview.yml",
+    "smoketest/package.json",
+    ".nvmrc"
+  ],
   "dependencyDashboard": true,
   "rebaseWhen": "never",
   "extends": ["config:recommended"]
