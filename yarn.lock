@@ -6718,7 +6718,7 @@ __metadata:
     graphql-scalars: "npm:1.24.2"
     graphql-tag: "npm:2.12.6"
     graphql-yoga: "npm:5.13.5"
-    inter-ui: "npm:4.1.0"
+    inter-ui: "npm:4.1.1"
     next: "npm:15.3.1"
     prettier: "npm:3.5.3"
     prisma: "npm:6.7.0"
@@ -9274,10 +9274,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"inter-ui@npm:4.1.0":
-  version: 4.1.0
-  resolution: "inter-ui@npm:4.1.0"
-  checksum: 10c0/aa5f2c725a6e2f9e39785a0c462a43675b73e02df043a8b4b6cc9b7cad5cfab9d06b724b60fcfb5b31d31a3215b036dea6df5743e2d9ec7e2ecafeb405bddf9b
+"inter-ui@npm:4.1.1":
+  version: 4.1.1
+  resolution: "inter-ui@npm:4.1.1"
+  checksum: 10c0/fb809bead520fefdef61abfca8ff7865b697e0738d2341afd4faf0539536d45638ee7812533afe413cabe765faf7a20e8e22a34c3df7693839a3acd2be44d1a7
   languageName: node
   linkType: hard
 
