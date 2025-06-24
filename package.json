@@ -57,7 +57,7 @@
     "react-timeago": "8.2.0",
     "utf-8-validate": "6.0.3",
     "ws": "8.18.2",
-    "zone.js": "0.15.0"
+    "zone.js": "0.15.1"
   },
   "scripts": {
     "dev": "echo you wanna run:  yarn start  instead; yarn start",
