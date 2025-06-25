@@ -54,7 +54,7 @@
     "react-icons": "5.4.0",
     "react-is": "19.1.0",
     "react-timeago": "8.2.0",
-    "utf-8-validate": "6.0.3",
+    "utf-8-validate": "6.0.5",
     "ws": "8.18.2",
     "zone.js": "0.15.1"
   },
