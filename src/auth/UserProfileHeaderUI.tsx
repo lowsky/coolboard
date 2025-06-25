@@ -26,29 +26,27 @@ export const UserProfileHeaderUI = () => {
   return (
     <>
       <>
-        {
-          // @ts-expect-error Its return type 'Promise<any>' is not a valid JSX element.
-          <SignedOut>
-            <LoginButton />
-          </SignedOut>
-        }
+        <SignedOut>
+          <LoginButton />
+        </SignedOut>
       </>
-      {
-        // @ts-expect-error Its return type 'Promise<any>' is not a valid JSX element.
-        <SignedIn>
-          <Flex alignItems="center" gap="0.5em">
-            <UserButton appearance={clerkAppearance} afterSignOutUrl="/" />
-            <Button
-              // @ts-expect-error it is an async function.
-              onClick={awaitLogoutAndCacheClear}
-              data-cy="sign-out-button"
-              leftIcon={<FaSignOutAlt />}
-              color="unset">
-              Sign Out
-            </Button>
-          </Flex>
-        </SignedIn>
-      }
+      <SignedIn>
+        <Flex alignItems="center" gap="0.5em">
+          <UserButton appearance={clerkAppearance} afterSignOutUrl="/" />
+          <Button
+            // @ts-expect-error it is an async function.
+            onClick={awaitLogoutAndCacheClear}
+            data-cy="sign-out-button"
+            leftIcon={
+              <div>
+                <FaSignOutAlt />
+              </div>
+            }
+            color="unset">
+            Sign Out
+          </Button>
+        </Flex>
+      </SignedIn>
     </>
   );
 };

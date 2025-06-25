@@ -66,6 +66,7 @@ export const CardList = ({
   const list: UIListData = data?.list;
 
   return (
+    // @ts-expect-error needs to be fixed, this brokw when updating the @types/react 18>19
     <div ref={ref}>
       <CardListWithDnd
         {...dndProps}
