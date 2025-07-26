@@ -55,7 +55,7 @@
     "react-is": "19.1.0",
     "react-timeago": "8.2.0",
     "utf-8-validate": "6.0.3",
-    "ws": "8.18.2",
+    "ws": "8.18.3",
     "zone.js": "0.15.1"
   },
   "scripts": {
