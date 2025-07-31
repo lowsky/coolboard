@@ -8,7 +8,7 @@
   "type": "module",
   "homepage": "/",
   "dependencies": {
-    "@apollo/client": "3.13.8",
+    "@apollo/client": "3.13.9",
     "@chakra-ui/icons": "2.2.4",
     "@chakra-ui/react": "2.10.9",
     "@clerk/nextjs": "6.27.1",
