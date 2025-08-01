@@ -1416,6 +1416,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@envelop/core@npm:^5.3.0":
+  version: 5.3.0
+  resolution: "@envelop/core@npm:5.3.0"
+  dependencies:
+    "@envelop/instrumentation": "npm:^1.0.0"
+    "@envelop/types": "npm:^5.2.1"
+    "@whatwg-node/promise-helpers": "npm:^1.2.4"
+    tslib: "npm:^2.5.0"
+  checksum: 10c0/002aacab9089c18a6b7d55c96d2cfc71fd1c6077d2f5dbbc81a317b594664b809b64cf2c017c3c0d3f4425c441c1f19a45127666da1aadcc63727f900201ee6b
+  languageName: node
+  linkType: hard
+
 "@envelop/instrumentation@npm:^1.0.0":
   version: 1.0.0
   resolution: "@envelop/instrumentation@npm:1.0.0"
@@ -6677,7 +6689,7 @@ __metadata:
     graphql: "npm:16.11.0"
     graphql-scalars: "npm:1.24.2"
     graphql-tag: "npm:2.12.6"
-    graphql-yoga: "npm:5.13.5"
+    graphql-yoga: "npm:5.15.1"
     inter-ui: "npm:4.1.1"
     next: "npm:15.3.4"
     prettier: "npm:3.6.2"
@@ -8734,11 +8746,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graphql-yoga@npm:5.13.5":
-  version: 5.13.5
-  resolution: "graphql-yoga@npm:5.13.5"
+"graphql-yoga@npm:5.15.1":
+  version: 5.15.1
+  resolution: "graphql-yoga@npm:5.15.1"
   dependencies:
-    "@envelop/core": "npm:^5.2.3"
+    "@envelop/core": "npm:^5.3.0"
     "@envelop/instrumentation": "npm:^1.0.0"
     "@graphql-tools/executor": "npm:^1.4.0"
     "@graphql-tools/schema": "npm:^10.0.11"
@@ -8753,7 +8765,7 @@ __metadata:
     tslib: "npm:^2.8.1"
   peerDependencies:
     graphql: ^15.2.0 || ^16.0.0
-  checksum: 10c0/52793fe7af8e144b38288beba2f6d90b95ce746a36745c040bf1d6787123b29b7411ebf164ca18bd7828d61c325f2ba293967b9c1ad5298abc9856ff4c03b7fc
+  checksum: 10c0/60c27e5da20de8a148f34ca1ef63b068547b126618518ab8449c45a6595ed41fd2287cf5996bfb7310cdd5434e46cc603b4ecdc6bb0947ec4d2fd20096f17e6b
   languageName: node
   linkType: hard
 

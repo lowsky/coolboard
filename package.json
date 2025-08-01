@@ -42,7 +42,7 @@
     "graphql": "16.11.0",
     "graphql-scalars": "1.24.2",
     "graphql-tag": "2.12.6",
-    "graphql-yoga": "5.13.5",
+    "graphql-yoga": "5.15.1",
     "inter-ui": "4.1.1",
     "next": "15.3.4",
     "prisma": "6.10.1",
