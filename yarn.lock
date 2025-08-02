@@ -6494,7 +6494,7 @@ __metadata:
     react-dom: "npm:19.1.1"
     react-icons: "npm:5.5.0"
     react-is: "npm:19.1.1"
-    react-timeago: "npm:8.2.0"
+    react-timeago: "npm:8.3.0"
     sharp: "npm:0.34.3"
     typescript: "npm:5.8.3"
     typescript-eslint: "npm:8.38.0"
@@ -11289,12 +11289,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-timeago@npm:8.2.0":
-  version: 8.2.0
-  resolution: "react-timeago@npm:8.2.0"
+"react-timeago@npm:8.3.0":
+  version: 8.3.0
+  resolution: "react-timeago@npm:8.3.0"
   peerDependencies:
     react: ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-  checksum: 10c0/6616994851f673661b9db9be5eb91086734fda32055765a30a822e7ed4c7a4871660eb772fecaa2b64be8d68fe5043d37624cfd6cdd19b40aba72180ee786e18
+  checksum: 10c0/50bf49cb21b748a1e69947b1183a0406e839b0768b2d84de056c286f35360894bb68d6532b56e564adad9f52526e8833195b689a46e3966a31cc505b013b92c4
   languageName: node
   linkType: hard
 
