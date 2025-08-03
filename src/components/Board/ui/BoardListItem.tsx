@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IconButton, ListItem } from '@chakra-ui/react';
+import { IconButton, List } from '@chakra-ui/react';
 import Link from 'next/link';
 import { FaTrash } from 'react-icons/fa';
 
@@ -16,7 +16,8 @@ export const BoardListItem = (props: BoardListItemProps) => {
   const [deleting, setDeleting] = useState(false);
 
   return (
-    <ListItem
+    <List.Item
+      style={{ alignItems: 'start' }}
       padding="0.25rem 0.5rem"
       marginBottom="0.5px"
       display="flex"
@@ -31,11 +32,12 @@ export const BoardListItem = (props: BoardListItemProps) => {
           setDeleting(true);
           deleteBoard(id).finally(() => setDeleting(false));
         }}
-        isLoading={deleting}
+        loading={deleting}
         aria-label="delete board"
         data-cy="delete-board"
         size="2xs">
         <FaTrash />
       </IconButton>
+    </List.Item>
   );
 };
