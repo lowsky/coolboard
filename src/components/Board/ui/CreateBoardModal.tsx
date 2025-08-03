@@ -1,21 +1,15 @@
 import React, { type SyntheticEvent, useState } from 'react';
 import {
   Button,
-  ButtonGroup,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
   Input,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-  useDisclosure,
+  Dialog,
+  CloseButton,
+  Portal,
+  Fieldset,
+  Field,
 } from '@chakra-ui/react';
-import { AddIcon } from '@chakra-ui/icons';
+//laterimport { FiPlus as AddIcon } from 'react-icons/fi';
+//import Form from 'next/form';
 
 interface Props {
   createBoard: ({ name }: { name: string }) => Promise<any>;
@@ -25,9 +19,11 @@ interface Props {
 
 export const CreateBoardModal = (props: Props) => {
   const [state, setState] = useState({ name: '' });
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [open, setOpen] = useState(false);
+  const onOpen = () => setOpen(true);
+  const onClose = () => setOpen(false);
 
-  const handleChange = (data) => {
+  const handleChange = (data: { [key: string]: string }) => {
     setState((previousState) => ({
       ...previousState,
       ...data,
@@ -36,7 +32,11 @@ export const CreateBoardModal = (props: Props) => {
 
   const { name } = state;
 
-  const { createBoard, loading = false, error } = props;
+  const {
+    createBoard,
+    loading = false,
+    error = name.length === 0 ? 'Title may not be empty.' : undefined,
+  } = props;
 
   const onSubmit = (ev?: SyntheticEvent) => {
     ev?.preventDefault();
@@ -45,52 +45,82 @@ export const CreateBoardModal = (props: Props) => {
 
   return (
     <>
-      <Button
-        variant="link"
-        onClick={onOpen}
-        leftIcon={<AddIcon height={'0.75em'} />}
-        data-cy="create-board-dialog">
-        New Board
-      </Button>
-
-      <Modal onClose={onClose} isOpen={isOpen}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Create Board</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody pb={6}>
-            <form onSubmit={onSubmit}>
-              <FormControl isInvalid={Boolean(error)} isReadOnly={loading}>
-                <FormLabel htmlFor="name">Board Name</FormLabel>
-                <Input
-                  placeholder="Enter a title"
-                  value={name}
-                  id="name"
-                  autoFocus
-                  onChange={(ev) => handleChange({ name: ev.target.value })}
-                  isRequired
-                />
-                <FormErrorMessage>{`${error}`}</FormErrorMessage>
-              </FormControl>
-            </form>
-          </ModalBody>
-          <ModalFooter>
-            <ButtonGroup variant="outline" spacing="6">
-              <Button
-                background="green"
-                color="white"
-                _hover={{ background: 'darkgreen' }}
-                data-cy="create-board-submit"
-                onClick={onSubmit}
-                loadingText="Creating board..."
-                isLoading={loading}>
-                Create
-              </Button>
-              <Button onClick={onClose}>cancel</Button>
-            </ButtonGroup>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+      <Dialog.Root
+        open={open}
+        onOpenChange={(isOpen) => (isOpen ? onOpen() : onClose())}>
+        <Dialog.Trigger asChild>
+          <Button
+            //variant="link"
+            //onClick={onOpen}
+            //leftIcon={<AddIcon height={'0.75em'} />}
+            data-cy="create-board-dialog">
+            New Board
+          </Button>
+        </Dialog.Trigger>
+        <Portal>
+          <Dialog.Backdrop />
+          <Dialog.Positioner>
+            <Dialog.Content>
+              <form>
+                <Dialog.CloseTrigger asChild>
+                  <CloseButton
+                    size="sm"
+                    // onClose
+                  />
+                </Dialog.CloseTrigger>
+                <Dialog.Header>
+                  <Dialog.Title>Create Board</Dialog.Title>
+                </Dialog.Header>
+                <Dialog.Body>
+                  <Fieldset.Root
+                    onSubmit={onSubmit}
+                    disabled={loading}
+                    invalid={Boolean(error)}>
+                    <Fieldset.Content>
+                      <Field.Root invalid={Boolean(error)}>
+                        <Field.Label>Title</Field.Label>
+                        <Input
+                          placeholder="Enter a title"
+                          value={name}
+                          id="name"
+                          autoFocus
+                          onChange={(ev) =>
+                            handleChange({ name: ev.target.value })
+                          }
+                          required
+                        />
+                        <Fieldset.HelperText>
+                          The name or title can be changed later...
+                        </Fieldset.HelperText>
+                      </Field.Root>
+                      <Fieldset.ErrorText>{`${error}`}</Fieldset.ErrorText>
+                    </Fieldset.Content>
+                  </Fieldset.Root>
+                </Dialog.Body>
+                <Dialog.Footer>
+                  <Dialog.ActionTrigger asChild>
+                    <Button
+                      type="submit"
+                      disabled={Boolean(error)}
+                      background="green"
+                      color="white"
+                      _hover={{ background: 'darkgreen' }}
+                      data-cy="create-board-submit"
+                      onClick={onSubmit}
+                      loadingText="Creating board..."
+                      loading={loading}>
+                      Create
+                    </Button>
+                  </Dialog.ActionTrigger>
+                  <Dialog.ActionTrigger asChild>
+                    <Button variant="outline">Cancel</Button>
+                  </Dialog.ActionTrigger>
+                </Dialog.Footer>
+              </form>
+            </Dialog.Content>
+          </Dialog.Positioner>
+        </Portal>
+      </Dialog.Root>
     </>
   );
 };
