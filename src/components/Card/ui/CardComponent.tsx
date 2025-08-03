@@ -1,6 +1,6 @@
 import React, { type CSSProperties, useState } from 'react';
 import { useDisclosure } from '@chakra-ui/react';
-import styled from '@emotion/styled';
+import { Box } from '@chakra-ui/react';
 import type { FetchResult } from '@apollo/client';
 
 import type {
@@ -8,7 +8,7 @@ import type {
   UpdateCardMutation,
   UpdateCardMutationVariables,
 } from 'generated/graphql';
-import { CardEditModal } from '../CardEditModal';
+import { cardEditModal } from '../CardEditModal';
 
 type State = {
   conflict: boolean;
@@ -134,33 +134,17 @@ export const CardComponent = (props: CardComponentProps) => {
         onOpen();
       };
   return (
-    <CardWrapper data-cy="card" onClick={onClick}>
-      <CardEditModal
-        {...{
-          isOpen,
-          onClose,
-          saveAndHide,
-          conflict,
-          loading,
-          name,
-          handleChange,
-          props,
-          description,
-          createdAt,
-          updatedAt,
-          updatedBy,
-          error,
-        }}
-      />
+    <Box
+      data-cy="card"
+      onClick={onClick}
+      css={{
+        borderRadius: '3px',
+        backgroundColor: '#fff',
+        padding: '10px',
+      }}>
       <span style={isDragging ? whenDraggingStyle : undefined}>
         {props.name}
       </span>
-    </CardWrapper>
+    </Box>
   );
 };
-
-const CardWrapper = styled.div`
-  border-radius: 3px;
-  background-color: #fff;
-  padding: 10px;
-`;

@@ -1,8 +1,21 @@
-import styled from '@emotion/styled';
+import { Box } from '@chakra-ui/react';
 
-export const FullVerticalContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  flex: 1;
-`;
+export const FullVerticalContainer = ({
+  children,
+  ...props
+}: {
+  children: React.ReactNode;
+  [key: string]: any;
+}) => (
+  <Box
+    display="flex"
+    flexDirection="column"
+    height="100vh"
+    flex={1}
+    {...props}
+    style={{
+      position: 'relative',
+    }}>
+    {children}
+  </Box>
+);
