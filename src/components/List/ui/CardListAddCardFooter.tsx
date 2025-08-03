@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
-import {
-  Editable,
-  EditableInput,
-  EditablePreview,
-  Flex,
-  Input,
-} from '@chakra-ui/react';
+import { Editable, Flex } from '@chakra-ui/react';
 import { FiPlus as AddIcon } from 'react-icons/fi';
 
 import { EditableControls } from 'common/EditableControls';
 
-export function CardListAddCardFooter({ readonly, addCard, id }) {
+interface CardListAddCardFooterProps {
+  readonly?: boolean;
+  addCard: (id: string, name: string) => Promise<void>;
+  id: string;
+}
+
+export function CardListAddCardFooter({
+  readonly,
+  addCard,
+  id,
+}: CardListAddCardFooterProps) {
   const initialNewCardName = 'New Card';
   const [newCardNameInputValue, setNewCardNameInputValue] =
     useState(initialNewCardName);
@@ -22,15 +26,14 @@ export function CardListAddCardFooter({ readonly, addCard, id }) {
 
   return (
     <>
-      <Editable
+      <Editable.Root
         data-cy="edit-and-add-card"
-        isDisabled={isStoring}
-        onChange={setNewCardNameInputValue}
-        value={newCardNameInputValue}
-        onSubmit={async (name) => {
+        disabled={isStoring}
+        defaultValue={newCardNameInputValue}
+        onValueCommit={async (details) => {
           try {
             setIsStoring(true);
-            await addCard(id, name);
+            await addCard(id, details.value);
             setNewCardNameInputValue(initialNewCardName);
           } finally {
             setIsStoring(false);
@@ -46,11 +49,11 @@ export function CardListAddCardFooter({ readonly, addCard, id }) {
           gap={1}
           alignItems="center">
           <AddIcon height="0.75em" />
-          <EditablePreview flexGrow={0} py={'8px'} />
-          <Input as={EditableInput} placeholder="card name" />
+          <Editable.Preview flexGrow={0} py={'8px'} />
+          <Editable.Input placeholder="card name" />
         </Flex>
         <EditableControls />
-      </Editable>
+      </Editable.Root>
     </>
   );
 }
