@@ -4,13 +4,12 @@ import type { AppProps } from 'next/app';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ClerkProvider } from '@clerk/nextjs';
-import { ChakraProvider } from '@chakra-ui/react';
+import { Provider } from 'src/components/ui/provider';
 
 import 'public/index.css';
 
 import { instrumentBrowserOtel } from 'src/instrumentBrowserOtel';
 import { Footer } from 'components/Footer';
-import { theme } from 'common/theme';
 
 if (typeof window !== 'undefined') {
   // TODO investigate later...: top-level await in this place
@@ -32,19 +31,22 @@ export default function App({ Component, pageProps }: AppProps) {
         />
       </Head>
       <Suspense fallback={<span>Loading...</span>}>
-        <ClerkProvider dynamic {...pageProps}>
-          <ChakraProvider theme={theme}>
-            <div
-              style={{
-                overflow: 'auto',
-                flex: 1,
-              }}>
-              <Component {...pageProps} />
-            </div>
+        {
+          // @ts-expect-error async component
+          <ClerkProvider dynamic {...pageProps}>
+            <Provider enableSystem>
+              <div
+                style={{
+                  overflow: 'auto',
+                  flex: 1,
+                }}>
+                <Component {...pageProps} />
+              </div>
 
-            <Footer />
-          </ChakraProvider>
-        </ClerkProvider>
+              <Footer />
+            </Provider>
+          </ClerkProvider>
+        }
       </Suspense>
 
       <Analytics />
