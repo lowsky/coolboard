@@ -34,9 +34,8 @@ export const BoardListItem = (props: BoardListItemProps) => {
         isLoading={deleting}
         aria-label="delete board"
         data-cy="delete-board"
-        icon={<FaTrash />}
-        size="mini"
-      />
-    </ListItem>
+        size="2xs">
+        <FaTrash />
+      </IconButton>
   );
 };

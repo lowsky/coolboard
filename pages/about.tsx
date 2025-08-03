@@ -1,7 +1,19 @@
 import React from 'react';
-import { Box, Container, Heading, Icon, Link, Text } from '@chakra-ui/react';
+import NextLink from 'next/link';
+import {
+  Box,
+  Center,
+  Container,
+  Flex,
+  Heading,
+  Icon,
+  Link,
+  Text,
+} from '@chakra-ui/react';
 import Image from 'next/image';
 import { FaSignInAlt, FaFilm } from 'react-icons/fa';
+
+import { LuExternalLink } from 'react-icons/lu';
 
 import FullPageWithApollo from 'common/FullPageWithApollo';
 import { ProfileHeader } from 'common/ProfileHeader';
@@ -12,24 +24,29 @@ export default function About() {
       <ProfileHeader />
       <Container maxW="700px">
         <section>
-          <Heading as="h2">Welcome to CoolBoard</Heading>
+          <Heading as="h2" size="2xl">
+            Welcome to CoolBoard
+          </Heading>
           <Text>
-            This is the Live Demo of the full application which we build in this{' '}
-            <Icon>
-              <FaFilm size="small" />
-            </Icon>
+            This is the Live Demo of the full application which we build in this
             <Link
+              variant="underline"
+              colorPalette="teal"
               href="https://www.packtpub.com/product/hands-on-application-building-with-graphql-video/9781788991865"
-              referrerPolicy="no-referrer"
-              isExternal>
+              referrerPolicy="no-referrer">
+              <Icon size="md">
+                <FaFilm />
+              </Icon>
               Video Course
+              <LuExternalLink />
             </Link>
           </Text>
-          <Text>
+          <Center>
             <Link
+              variant="underline"
+              colorPalette="teal"
               href="https://www.packtpub.com/product/hands-on-application-building-with-graphql-video/9781788991865"
-              referrerPolicy="no-referrer"
-              isExternal>
+              referrerPolicy="no-referrer">
               <Image
                 src="/packt-page-v141.png"
                 width={473}
@@ -37,13 +54,14 @@ export default function About() {
                 alt="Packt Publishing logo"
               />
             </Link>
-          </Text>
-          <Text>
-            <strong>Published</strong> on{' '}
+          </Center>
+          <Flex alignItems="center" gap="1em" mb="1rem">
+            <span>Published on </span>
             <Link
+              variant="underline"
+              colorPalette="teal"
               href="https://www.packtpub.com/product/hands-on-application-building-with-graphql-video/9781788991865"
-              referrerPolicy="no-referrer"
-              isExternal>
+              referrerPolicy="no-referrer">
               <Image
                 src="/packt-logo.svg"
                 width={115}
@@ -51,16 +69,17 @@ export default function About() {
                 alt="Packt Publishing logo"
               />
             </Link>
-          </Text>
+          </Flex>
         </section>
         <section>
           <Heading as="h2">What is it?</Heading>
           <Text>
             It is a{' '}
             <Link
+              variant="underline"
+              colorPalette="teal"
               href="https://en.wikipedia.org/wiki/Kanban_(development)"
-              referrerPolicy="no-referrer"
-              isExternal>
+              referrerPolicy="no-referrer">
               Kanban
             </Link>{' '}
             Board, where you can share tasks
@@ -71,12 +90,14 @@ export default function About() {
           <Heading as="h2">How does it work?</Heading>
           <Text>
             You will need to Sign-up via email and{' '}
-            <a href="/sign-in">
-              <Icon>
-                <FaSignInAlt />
-              </Icon>
-              authenticate here
-            </a>
+            <Link variant="underline" colorPalette="teal" asChild>
+              <NextLink href="/sign-in">
+                <Icon>
+                  <FaSignInAlt />
+                </Icon>
+                authenticate here
+              </NextLink>
+            </Link>
           </Text>
           <Text>Then you can create and share a board (via its URL)</Text>
         </section>
@@ -85,41 +106,47 @@ export default function About() {
           <Text>
             GraphQL database powered by{' '}
             <Link
+              variant="underline"
+              colorPalette="teal"
               href="https://www.prisma.io/"
-              referrerPolicy="no-referrer"
-              isExternal>
+              referrerPolicy="no-referrer">
               Prisma
             </Link>
           </Text>
           <Text>
             GraphQL trello server running as{' '}
             <Link
+              variant="underline"
+              colorPalette="teal"
               href="https://vercel.com/docs/concepts/functions/serverless-functions/"
-              referrerPolicy="no-referrer"
-              isExternal>
+              referrerPolicy="no-referrer">
               serverless functions on Vercel
+              <LuExternalLink />
             </Link>
           </Text>
           <Text>
             <Link
+              variant="underline"
+              colorPalette="teal"
               href="https://www.react.org/"
-              referrerPolicy="no-referrer"
-              isExternal>
-              React
+              referrerPolicy="no-referrer">
+              React <LuExternalLink />
             </Link>
             frontend with{' '}
             <Link
+              variant="underline"
+              colorPalette="teal"
               href="https://www.apollographql.com/apollo-client"
-              referrerPolicy="no-referrer"
-              isExternal>
-              Apollo
+              referrerPolicy="no-referrer">
+              Apollo <LuExternalLink />
             </Link>{' '}
             served by
             <Link
+              variant="underline"
+              colorPalette="teal"
               href="https://vercel.com/"
-              referrerPolicy="no-referrer"
-              isExternal>
-              Vercel
+              referrerPolicy="no-referrer">
+              Vercel <LuExternalLink />
             </Link>
           </Text>
         </section>
@@ -134,10 +161,11 @@ export default function About() {
             <Text>
               We are using the service of
               <Link
+                variant="underline"
+                colorPalette="teal"
                 href="https://clerk.dev/"
-                referrerPolicy="no-referrer"
-                isExternal>
-                clerk
+                referrerPolicy="no-referrer">
+                clerk <LuExternalLink />
               </Link>
               to allow signing-in via OAuth using Google or email/password
               automatically.
