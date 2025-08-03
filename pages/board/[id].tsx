@@ -10,6 +10,7 @@ import { ProfileHeader } from 'src/common/ProfileHeader';
 import { GeneralErrorHandler } from 'src/common/GeneralErrorHandler';
 import FullPageWithApollo from 'src/common/FullPageWithApollo';
 import { Board } from 'components/Board/Board';
+import { cardEditModal } from 'components/Card/CardEditModal';
 
 export default function BoardPage() {
   const router = useRouter();
@@ -28,6 +29,7 @@ export default function BoardPage() {
           {boardId && <Board boardId={boardId} />}
         </Suspense>
       </DndProvider>
+      <cardEditModal.Viewport />
     </FullPageWithApollo>
   );
 }
