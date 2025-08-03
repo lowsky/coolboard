@@ -8,19 +8,28 @@
     "alwaysStrict": true,
     "baseUrl": ".",
     "paths": {
-      "auth/*": ["src/auth/*"],
-      "components/*": ["src/components/*"],
-      "common/*": ["src/common/*"],
-      "generated/*": ["src/generated/*"]
+      "auth/*": [
+        "src/auth/*"
+      ],
+      "components/*": [
+        "src/components/*"
+      ],
+      "common/*": [
+        "src/common/*"
+      ],
+      "generated/*": [
+        "src/generated/*"
+      ]
     },
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "incremental": true,
     "isolatedModules": true,
-    "jsx": "preserve",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "module": "esnext",
-    "moduleResolution": "node",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "noEmit": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": false,
@@ -34,9 +43,15 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "module": "esnext",
+    "moduleResolution": "Bundler",
+    "jsx": "preserve"
   },
-  "exclude": ["server/stuff", "node_modules"],
+  "exclude": [
+    "server/stuff",
+    "node_modules"
+  ],
   "include": [
     "next-env.d.ts",
     "netlify/**/*.ts",
