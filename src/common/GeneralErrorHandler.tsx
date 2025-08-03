@@ -1,12 +1,6 @@
 import React, { type ReactNode } from 'react';
 import type { ServerError, ServerParseError } from '@apollo/client';
-import {
-  Alert,
-  AlertDescription,
-  AlertIcon,
-  type AlertStatus,
-  AlertTitle,
-} from '@chakra-ui/react';
+import { Alert } from '@chakra-ui/react';
 
 import { useApolloNetworkStatus } from '../setupGraphQLClient';
 import { LoginButton } from 'auth/LoginButton';
@@ -16,17 +10,16 @@ const ErrorMessage = ({
   status = 'error',
 }: {
   children: ReactNode;
-  status?: AlertStatus;
+  status?: 'error' | 'info' | 'warning' | 'success' | 'neutral' | undefined;
 }) => (
-  <Alert status={status} style={{ flexShrink: 0 }}>
-    <AlertIcon />
-    {children}
-  </Alert>
+  <Alert.Root status={status}>
+    <Alert.Indicator />
+    <Alert.Content>{children}</Alert.Content>
+  </Alert.Root>
 );
 
 export const GeneralErrorHandler = () => {
   const { queryError, mutationError } = useApolloNetworkStatus();
-
   if (queryError || mutationError) {
     const { networkError, graphQLErrors } = {
       ...mutationError,
@@ -41,18 +34,18 @@ export const GeneralErrorHandler = () => {
       if (registrationFailed) {
         return (
           <ErrorMessage>
-            <AlertTitle>
+            <Alert.Title>
               Registration failed. One reason may be that another user already
               exist with the same email.
-            </AlertTitle>
-            <AlertDescription>
+            </Alert.Title>
+            <Alert.Description>
               You will need to be authenticated to see or create Boards or
               change any items...
-            </AlertDescription>
-            <AlertDescription>
+            </Alert.Description>
+            <Alert.Description>
               Retry to <LoginButton /> or <br />
               <strong>contact the support</strong>
-            </AlertDescription>
+            </Alert.Description>
           </ErrorMessage>
         );
       }
@@ -65,13 +58,13 @@ export const GeneralErrorHandler = () => {
 
       if (notAuthErr) {
         return (
-          <Alert status="info" style={{ flexShrink: 0, gap: '0.5rem' }}>
-            <AlertTitle>
+          <ErrorMessage status="info">
+            <Alert.Title>
               You will need to be authenticated to see or create Boards or
               change any items.
-            </AlertTitle>
+            </Alert.Title>
             <LoginButton />
-          </Alert>
+          </ErrorMessage>
         );
       }
 
@@ -81,12 +74,12 @@ export const GeneralErrorHandler = () => {
 
       return (
         <ErrorMessage>
-          <AlertTitle>Error:</AlertTitle>
-          <AlertDescription>
+          <Alert.Title>Error:</Alert.Title>
+          <Alert.Description>
             {errorMsgs.map((message, idx) => (
               <span key={idx}>{message}</span>
             ))}
-          </AlertDescription>
+          </Alert.Description>
         </ErrorMessage>
       );
     } else if (networkError) {
@@ -96,21 +89,25 @@ export const GeneralErrorHandler = () => {
         (networkError as ServerError | ServerParseError)?.statusCode === 401
       ) {
         return (
-          <ErrorMessage status="warning">
-            <AlertTitle>User not authorized!</AlertTitle>
-            <LoginButton />
+          <ErrorMessage status="error">
+            <Alert.Title>User not authorized!</Alert.Title>
+            <Alert.Description>
+              <LoginButton />
+            </Alert.Description>
           </ErrorMessage>
         );
       }
 
       return (
         <ErrorMessage>
-          <AlertTitle>Communication with the GraphQL server failed!</AlertTitle>
-          <AlertDescription>
+          <Alert.Title>
+            Communication with the GraphQL server failed!
+          </Alert.Title>
+          <Alert.Description>
             <span>- find technical details in browser console</span>
             <br />
             Please, retry by reloading the page.
-          </AlertDescription>
+          </Alert.Description>
         </ErrorMessage>
       );
     }
@@ -122,5 +119,5 @@ export const GeneralErrorHandler = () => {
   }
 
   // Do not render anything, when there is no error above
-  return null;
+  return <h1>NO ERROR</h1>;
 };
