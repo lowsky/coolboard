@@ -4,7 +4,6 @@ import {
   EditablePreview,
   Flex,
   Heading,
-  IconButton,
   Input,
   Popover,
   PopoverBody,
@@ -12,7 +11,8 @@ import {
   PopoverTrigger,
   useEditableControls,
 } from '@chakra-ui/react';
-import { EditIcon, HamburgerIcon } from '@chakra-ui/icons';
+import { LuCheck, LuX } from 'react-icons/lu';
+import { FiEdit as EditIcon, FiMenu as HamburgerIcon } from 'react-icons/fi';
 import React, { type ReactNode } from 'react';
 
 import { useRenameListMutation } from 'generated/graphql';
@@ -82,10 +82,6 @@ function ListHeaderMenu({ children }) {
       <PopoverTrigger>
         <IconButton
           data-cy="card-list-header-menu"
-          icon={<HamburgerIcon />}
-          size="sm"
-          aria-label="delete list"
-        />
       </PopoverTrigger>
       <PopoverContent
         rootProps={{
@@ -97,5 +93,8 @@ function ListHeaderMenu({ children }) {
         <PopoverBody>{children}</PopoverBody>
       </PopoverContent>
     </Popover>
+        <IconButton data-cy="card-list-header-menu" size="sm" variant="outline">
+          <HamburgerIcon />
+        </IconButton>
   );
 }

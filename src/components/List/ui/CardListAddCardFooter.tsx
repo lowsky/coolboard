@@ -6,7 +6,7 @@ import {
   Flex,
   Input,
 } from '@chakra-ui/react';
-import { AddIcon } from '@chakra-ui/icons';
+import { FiPlus as AddIcon } from 'react-icons/fi';
 
 import { EditableControls } from 'common/EditableControls';
 

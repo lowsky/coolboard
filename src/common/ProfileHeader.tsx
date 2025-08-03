@@ -22,18 +22,14 @@ const ProfileHeaderContainer = ({
       <Box gap="2rem" display="flex">
         {isBoardsPage && (
           <Flex direction="row" gap="1em" alignItems="center">
-            <Link href="/">
-              <Image src={coolBoardLogo} height="40" alt="logo" />
-              Home
-            </Link>
+            <Image src={coolBoardLogo} height="40" alt="logo" />
+            <Link href="/">Home</Link>
           </Flex>
         )}
         {!isBoardsPage && (
           <Flex direction="row" gap="1em" alignItems="center">
-            <Link href="/">
-              <Image src={coolBoardLogo} height="40" alt="logo" />
-              Home
-            </Link>
+            <Image src={coolBoardLogo} height="40" alt="logo" />
+            <Link href="/">Home</Link>
             <Link href="/boards">Boards</Link>
           </Flex>
         )}

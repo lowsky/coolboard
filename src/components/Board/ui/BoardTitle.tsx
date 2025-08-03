@@ -1,15 +1,8 @@
-import React, { JSX } from 'react';
-import {
-  Flex,
-  Heading,
-  Icon,
-  IconButton,
-  Menu,
-  MenuButton,
-  MenuList,
-} from '@chakra-ui/react';
-import { HamburgerIcon } from '@chakra-ui/icons';
+import React from 'react';
+import { Flex, Heading, IconButton } from '@chakra-ui/react';
+import { FiMenu as HamburgerIcon } from 'react-icons/fi';
 import { MdDashboard } from 'react-icons/md';
+import { MenuRoot, MenuTrigger, MenuContent } from '../../ui/menu';
 
 type BoardTitleProps = {
   boardName: string;
@@ -17,31 +10,36 @@ type BoardTitleProps = {
 };
 
 export const BoardTitle = ({ boardName, headerActions }: BoardTitleProps) => (
-  <Flex justifyContent="space-between" alignItems="center" mx={4}>
-    <Heading as="h1" mb={0}>
-      <Icon as={MdDashboard} height={'0.75em'} />
+  <Flex justifyContent="space-between" alignItems="center">
+    <Heading
+      as="h1"
+      mb={0}
+      size="4xl"
+      display="flex"
+      alignItems="center"
+      gap={1}>
+      <MdDashboard />
       {boardName}
     </Heading>
     {headerActions && (
-      <Menu>
-        <MenuButton
-          as={IconButton}
-          data-cy="board-header-menu"
-          aria-label="board options"
-          icon={<HamburgerIcon />}
-          variant="outline"
-        />
-        <MenuList
-          rootProps={{
-            bg: 'transparent',
-          }}
+      <MenuRoot>
+        <MenuTrigger asChild>
+          <IconButton
+            data-cy="board-header-menu"
+            aria-label="board options"
+            variant="outline">
+            <HamburgerIcon />
+          </IconButton>
+        </MenuTrigger>
+        <MenuContent
+          bg="transparent"
           margin="0rem"
           minW="unset"
           minH="unset"
           padding={0}>
           {headerActions}
-        </MenuList>
-      </Menu>
+        </MenuContent>
+      </MenuRoot>
     )}
   </Flex>
 );
