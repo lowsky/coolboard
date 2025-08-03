@@ -1,14 +1,16 @@
 import React from 'react';
 import TimeAgo from 'react-timeago';
-import { Alert, AlertDescription, Avatar, Box } from '@chakra-ui/react';
+import { AlertDescription, Box } from '@chakra-ui/react';
 
 import { Segment } from 'common/Segment';
 import type { User } from 'generated/graphql';
+import { Alert } from 'components/ui/alert';
+import { Avatar } from 'components/ui/avatar';
 
 export type AuthorTimeInfoProps = {
   createdAt: number;
   updatedAt: number;
-  updatedBy: User;
+  updatedBy: User | undefined;
 };
 
 export function AuthorTimeInfo({

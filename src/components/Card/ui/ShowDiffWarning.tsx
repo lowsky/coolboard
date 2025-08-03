@@ -1,4 +1,5 @@
-import { Alert, AlertDescription, AlertTitle } from '@chakra-ui/react';
+import { AlertDescription, AlertTitle } from '@chakra-ui/react';
+import { Alert } from 'components/ui/alert';
 import React from 'react';
 
 export const ShowDiffWarning = ({ newValue, currentValue }) => {
@@ -7,7 +8,7 @@ export const ShowDiffWarning = ({ newValue, currentValue }) => {
   }
 
   return (
-    <Alert status="warning" size="mini">
+    <Alert status="warning">
       <AlertTitle>New:</AlertTitle>
       <AlertDescription>{newValue}</AlertDescription>
     </Alert>

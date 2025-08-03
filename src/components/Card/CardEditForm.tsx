@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  Alert,
-  AlertTitle,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Input,
-  Textarea,
-} from '@chakra-ui/react';
+import { Field, Input, Textarea } from '@chakra-ui/react';
 
 import type { Card } from 'generated/graphql';
 import { ShowDiffWarning } from './ui/ShowDiffWarning';
@@ -37,17 +29,13 @@ export function CardEditForm({
         ev.preventDefault();
         saveAndHide();
       }}>
-      <FormControl isInvalid={conflict}>
-        <FormErrorMessage>
-          <Alert status="warning">
-            <AlertTitle>
-              Warning! Card was concurrently modified on server.
-            </AlertTitle>
-          </Alert>
-        </FormErrorMessage>
-      </FormControl>
-      <FormControl isReadOnly={loading} isInvalid={conflict}>
-        <FormLabel htmlFor="title">Task Name</FormLabel>
+      <Field.Root invalid={conflict}>
+        <Field.ErrorText>
+          Warning! Card was concurrently modified on server.
+        </Field.ErrorText>
+      </Field.Root>
+      <Field.Root disabled={loading} invalid={conflict}>
+        <Field.Label htmlFor="title">Task Name</Field.Label>
         <Input
           placeholder="Enter title"
           value={name}
@@ -56,25 +44,25 @@ export function CardEditForm({
           onChange={(ev) => handleChange({ name: ev.target.value })}
           required
         />
-        <FormErrorMessage>
+        <Field.ErrorText>
           <ShowDiffWarning newValue={serverData.name} currentValue={name} />
-        </FormErrorMessage>
-      </FormControl>
-      <FormControl isReadOnly={loading} isInvalid={conflict}>
-        <FormLabel htmlFor="description">Task Description</FormLabel>
+        </Field.ErrorText>
+      </Field.Root>
+      <Field.Root disabled={loading} invalid={conflict}>
+        <Field.Label htmlFor="description">Task Description</Field.Label>
         <Textarea
           placeholder="Add some more details about this task ..."
           value={description ?? ''}
           id="description"
           onChange={(ev) => handleChange({ description: ev.target.value })}
         />
-        <FormErrorMessage>
+        <Field.ErrorText>
           <ShowDiffWarning
             newValue={serverData.description}
             currentValue={description}
           />
-        </FormErrorMessage>
-      </FormControl>
+        </Field.ErrorText>
+      </Field.Root>
     </form>
   );
 }
