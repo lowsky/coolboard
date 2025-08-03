@@ -4261,18 +4261,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pothos/core@npm:4.7.0":
-  version: 4.7.0
-  resolution: "@pothos/core@npm:4.7.0"
+"@pothos/core@npm:4.8.1":
+  version: 4.8.1
+  resolution: "@pothos/core@npm:4.8.1"
   peerDependencies:
     graphql: ^16.10.0
-  checksum: 10c0/c6317d1535401c3515068151a00fc975a3a6c28ca4d3a1a306de44a7ae1adcbb8667cfd54f5fdc8f32505d7819ff3c49f2a23a0adc243b7dd843f8a0c61da10e
+  checksum: 10c0/995c086261976b4d9a1b68da5560267311544e937800a50e06ef5f0d0e166a7b950063d62815ffba03847baa2a627739038a5d61c6119bb5a328ede2fe9886ae
   languageName: node
   linkType: hard
 
-"@pothos/plugin-prisma@npm:4.9.1":
-  version: 4.9.1
-  resolution: "@pothos/plugin-prisma@npm:4.9.1"
+"@pothos/plugin-prisma@npm:4.10.0":
+  version: 4.10.0
+  resolution: "@pothos/plugin-prisma@npm:4.10.0"
   dependencies:
     "@prisma/generator-helper": "npm:^6.6.0"
   peerDependencies:
@@ -4282,17 +4282,17 @@ __metadata:
     typescript: ">=4.7.2"
   bin:
     prisma-pothos-types: bin/generator.js
-  checksum: 10c0/101ac3efafee11859bfa952506a16e68b44ba0ce67acff1b5e9eb17cb8e8b885c8f58d2fea21f9e868e8ed8d950ab7a4b1c34adbb61dd72c856cad32f0699f91
+  checksum: 10c0/d87d210820cde11f1d685aecf78b6285ae683a792b8c38dd79bd1be4fb5d5896e8e0023eb357bcc5518bc2975982eb82d220cf9f0c0c2d55ecc1bb34480924c2
   languageName: node
   linkType: hard
 
-"@pothos/plugin-with-input@npm:4.1.2":
-  version: 4.1.2
-  resolution: "@pothos/plugin-with-input@npm:4.1.2"
+"@pothos/plugin-with-input@npm:4.1.3":
+  version: 4.1.3
+  resolution: "@pothos/plugin-with-input@npm:4.1.3"
   peerDependencies:
     "@pothos/core": "*"
     graphql: ^16.10.0
-  checksum: 10c0/59848106e9d92e97f925b54817b1423f9bd783fac255d0635b58405f6dd6eac84e3d4466ffced40c91e9e0e48cef6ef62258d1bbf9ecf6e6871867c72683b622
+  checksum: 10c0/4401d6e6572eea7340ea75c0390e49302f3b78a873b41db9b14962931f2cf07160d8c2bd0c3b490b6b4e5db583869cf949f8d11b4ef497462f956227aee766a1
   languageName: node
   linkType: hard
 
@@ -6492,9 +6492,9 @@ __metadata:
     "@opentelemetry/instrumentation-winston": "npm:0.48.0"
     "@opentelemetry/sdk-trace-web": "npm:2.0.1"
     "@opentelemetry/winston-transport": "npm:0.14.0"
-    "@pothos/core": "npm:4.7.0"
-    "@pothos/plugin-prisma": "npm:4.9.1"
-    "@pothos/plugin-with-input": "npm:4.1.2"
+    "@pothos/core": "npm:4.8.1"
+    "@pothos/plugin-prisma": "npm:4.10.0"
+    "@pothos/plugin-with-input": "npm:4.1.3"
     "@prisma/adapter-neon": "npm:6.13.0"
     "@prisma/client": "npm:6.13.0"
     "@prisma/extension-accelerate": "npm:2.0.2"
