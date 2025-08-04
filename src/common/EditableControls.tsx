@@ -1,9 +1,9 @@
-import { Button, Flex, Editable } from '@chakra-ui/react';
+import { Button, Editable } from '@chakra-ui/react';
 import React from 'react';
 
 export function EditableControls() {
   return (
-    <Flex gap="6">
+    <Editable.Control>
       <Editable.SubmitTrigger asChild>
         <Button
           background="green"
@@ -13,8 +13,10 @@ export function EditableControls() {
         </Button>
       </Editable.SubmitTrigger>
       <Editable.CancelTrigger asChild>
-        <Button variant="outline">Cancel</Button>
+        <Button id="cancel" variant="outline">
+          Cancel
+        </Button>
       </Editable.CancelTrigger>
-    </Flex>
+    </Editable.Control>
   );
 }
