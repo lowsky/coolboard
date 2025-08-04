@@ -2462,14 +2462,14 @@ __metadata:
   linkType: hard
 
 "@graphql-yoga/plugin-disable-introspection@npm:^2.14.3":
-  version: 2.14.5
-  resolution: "@graphql-yoga/plugin-disable-introspection@npm:2.14.5"
+  version: 2.16.1
+  resolution: "@graphql-yoga/plugin-disable-introspection@npm:2.16.1"
   dependencies:
     "@whatwg-node/promise-helpers": "npm:^1.2.4"
   peerDependencies:
     graphql: ^15.2.0 || ^16.0.0
-    graphql-yoga: ^5.13.5
-  checksum: 10c0/c929a4e5933a00ffdc7217f2a01cc063bbfbee426e264090616de9ad77905758fcbea5cc13e93c6b3b4549c8e07de334af1662d0992233d80575aa3528d29cc2
+    graphql-yoga: ^5.15.1
+  checksum: 10c0/6e807c3664bb65e4b9423788c692371199094c69f65c165afd9e7046a9b6e16e97fe6995a94eb2c2176e6b644a297b73062c16bc860f9b98a567ae2fa98c501c
   languageName: node
   linkType: hard
 
