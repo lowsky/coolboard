@@ -33,7 +33,7 @@ describe('Test coolboard', () => {
     cy.get('#name').clear().type(newBoardName);
     cy.dataCy('create-board-submit').click();
     cy.log('wait until dialog closes');
-    cy.get('.chakra-modal__content-container', WaitVeryLong).should(
+    cy.get('.chakra-dialog__content', WaitVeryLong).should(
       'not.exist'
     );
 
@@ -71,17 +71,17 @@ describe('Test coolboard', () => {
     cy.log('edit card');
     // old: cy.dataCy('card').contains('new card').click();
     cy.contains('[data-cy="card"] > span', 'new card').first().click();
-    cy.get('.chakra-modal__content-container')
+    cy.get('.chakra-dialog__content')
       .get('#title')
       .clear()
       .type('name-changed');
-    cy.get('.chakra-modal__content-container')
+    cy.get('.chakra-dialog__content')
       .find('.chakra-button')
       .contains('Save')
       .click()
       .wait(1500);
     cy.log('wait until dialog closes');
-    cy.get('.chakra-modal__content-container', WaitVeryLong).should(
+    cy.get('.chakra-dialog__content', WaitVeryLong).should(
       'not.exist'
     );
     cy.contains('[data-cy="card"] > span', 'name-changed');
