@@ -1,12 +1,6 @@
 import React from 'react';
 import { FaSave, FaTimes } from 'react-icons/fa';
-import {
-  Alert,
-  Button,
-  ButtonGroup,
-  createOverlay,
-  Dialog,
-} from '@chakra-ui/react';
+import { Alert, Button, ButtonGroup, Dialog, Portal } from '@chakra-ui/react';
 
 import type { Card, User } from 'generated/graphql';
 import { AuthorTimeInfo } from './AuthorTimeInfo';
@@ -28,29 +22,28 @@ type CardEditModalProps = {
   error: string | undefined;
 };
 
-export const cardEditModal = createOverlay<CardEditModalProps>(
-  ({
-    open,
-    onClose,
-    saveAndHide,
-    conflict,
-    loading,
-    name,
-    handleChange,
-    props,
-    description,
-    createdAt,
-    updatedAt,
-    updatedBy,
-    error,
-  }) => {
-    return (
-      <Dialog.Root
-        // present?
-        open={open}
-        size="cover"
-        onOpenChange={(open) => !open && onClose()}
-        id="cardEditModal">
+export function CardEditModal({
+  open,
+  onClose,
+  saveAndHide,
+  conflict,
+  loading,
+  name,
+  handleChange,
+  props,
+  description,
+  createdAt,
+  updatedAt,
+  updatedBy,
+  error,
+}: CardEditModalProps) {
+  return (
+    <Dialog.Root
+      closeOnEscape={true}
+      open={open}
+      onOpenChange={({ open }) => !open && onClose()}
+      id="cardEditModal">
+      <Portal>
         <Dialog.Backdrop />
         <Dialog.Positioner>
           <Dialog.Content>
@@ -104,11 +97,7 @@ export const cardEditModal = createOverlay<CardEditModalProps>(
                     Save
                   </Button>
                 )}
-                <Button
-                  colorPalette="red"
-                  onClick={() => {
-                    onClose();
-                  }}>
+                <Button colorPalette="red" onClick={() => onClose()}>
                   <FaTimes />
                   Close/cancel
                 </Button>
@@ -116,8 +105,7 @@ export const cardEditModal = createOverlay<CardEditModalProps>(
             </Dialog.Footer>
           </Dialog.Content>
         </Dialog.Positioner>
-      </Dialog.Root>
-    );
-  }
-);
-// </Portal>
+      </Portal>
+    </Dialog.Root>
+  );
+}

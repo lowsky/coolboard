@@ -7,7 +7,7 @@ import type {
   UpdateCardMutation,
   UpdateCardMutationVariables,
 } from 'generated/graphql';
-import { cardEditModal } from '../CardEditModal';
+import { CardEditModal } from '../CardEditModal';
 
 type State = {
   conflict: boolean;
@@ -131,7 +131,20 @@ export const CardComponent = (props: CardComponentProps) => {
   const onClick = props.readonly
     ? undefined
     : () => {
-        cardEditModal.open('edit card', {
+        showAndReset();
+        onOpen();
+      };
+  return (
+    <Box
+      data-cy="card"
+      onClick={onClick}
+      css={{
+        borderRadius: '3px',
+        backgroundColor: '#fff',
+        padding: '10px',
+      }}>
+      <CardEditModal
+        {...{
           open,
           onClose,
           saveAndHide,
@@ -145,20 +158,8 @@ export const CardComponent = (props: CardComponentProps) => {
           updatedAt,
           updatedBy,
           error,
-        });
-
-        showAndReset();
-        onOpen();
-      };
-  return (
-    <Box
-      data-cy="card"
-      onClick={onClick}
-      css={{
-        borderRadius: '3px',
-        backgroundColor: '#fff',
-        padding: '10px',
-      }}>
+        }}
+      />
       <span style={isDragging ? whenDraggingStyle : undefined}>
         {props.name || ''}
       </span>
