@@ -119,5 +119,5 @@ export const GeneralErrorHandler = () => {
   }
 
   // Do not render anything, when there is no error above
-  return <h1>NO ERROR</h1>;
+  return null;
 };
