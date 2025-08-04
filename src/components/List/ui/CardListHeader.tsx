@@ -1,18 +1,6 @@
-import {
-  Editable,
-  EditableInput,
-  EditablePreview,
-  Flex,
-  Heading,
-  IconButton,
-  Input,
-  Popover,
-  PopoverBody,
-  PopoverContent,
-  PopoverTrigger,
-  useEditableControls,
-} from '@chakra-ui/react';
-import { EditIcon, HamburgerIcon } from '@chakra-ui/icons';
+import { Editable, Flex, Heading, IconButton, Popover } from '@chakra-ui/react';
+import { LuCheck, LuX } from 'react-icons/lu';
+import { FiEdit as EditIcon, FiMenu as HamburgerIcon } from 'react-icons/fi';
 import React, { type ReactNode } from 'react';
 
 import { useRenameListMutation } from 'generated/graphql';
@@ -40,62 +28,66 @@ export function CardListHeader({
       alignItems="center"
       px={0}
       py="0.4em">
-      <Heading size="md" my={0} flexGrow={1}>
-        <Editable
-          isDisabled={readonly || loading}
-          onSubmit={async (newName) =>
-            await renameList({ variables: { listId, newName } })
-          }
+      <Heading my={0} flexGrow={1}>
+        <Editable.Root
+          disabled={readonly || loading}
+          onValueCommit={async (details) => {
+            if (details.value) {
+              await renameList({
+                variables: { listId, newName: details.value },
+              });
+            }
+          }}
           defaultValue={name}
           fontSize="2xl">
           <Flex
             flexDirection="row"
             justifyContent="flex-start"
-            flexGrow={0}
+            flexGrow={1}
+            width="100%"
             alignItems="center">
-            <EditablePreview flexGrow={0} />
-            {!readonly && <EditableControls />}
+            <Editable.Preview />
+            <Editable.Input />
+            {!readonly && (
+              <>
+                <Editable.EditTrigger title="edit the list title" asChild>
+                  <IconButton variant="outline" size="xs">
+                    <EditIcon />
+                  </IconButton>
+                </Editable.EditTrigger>
+                <Editable.CancelTrigger asChild>
+                  <IconButton variant="outline" size="xs">
+                    <LuX />
+                  </IconButton>
+                </Editable.CancelTrigger>
+                <Editable.SubmitTrigger asChild>
+                  <IconButton variant="outline" size="xs">
+                    <LuCheck />
+                  </IconButton>
+                </Editable.SubmitTrigger>
+              </>
+            )}
           </Flex>
-          <Input as={EditableInput} />
-        </Editable>
+        </Editable.Root>
       </Heading>
       {!readonly && <ListHeaderMenu>{children}</ListHeaderMenu>}
     </Flex>
   );
 }
 
-function EditableControls() {
-  const { isEditing, getEditButtonProps } = useEditableControls();
-  return isEditing ? null : (
-    <IconButton
-      {...getEditButtonProps()}
-      aria-label="edit the list title"
-      size="sm"
-      icon={<EditIcon />}
-    />
-  );
-}
-
-function ListHeaderMenu({ children }) {
+function ListHeaderMenu({ children }: { children: ReactNode }) {
   return (
-    <Popover isLazy>
-      <PopoverTrigger>
-        <IconButton
-          data-cy="card-list-header-menu"
-          icon={<HamburgerIcon />}
-          size="sm"
-          aria-label="delete list"
-        />
-      </PopoverTrigger>
-      <PopoverContent
-        rootProps={{
-          bg: 'transparent',
-          boxShadow: 'xl',
-        }}
-        w="min-content"
-        boxShadow="xl">
-        <PopoverBody>{children}</PopoverBody>
-      </PopoverContent>
-    </Popover>
+    <Popover.Root lazyMount>
+      <Popover.Trigger title="More actions on this list" asChild>
+        <IconButton data-cy="card-list-header-menu" size="sm" variant="outline">
+          <HamburgerIcon />
+        </IconButton>
+      </Popover.Trigger>
+      <Popover.Positioner>
+        <Popover.Content boxShadow="4xl" w="min-content">
+          <Popover.Body>{children}</Popover.Body>
+        </Popover.Content>
+      </Popover.Positioner>
+    </Popover.Root>
   );
 }

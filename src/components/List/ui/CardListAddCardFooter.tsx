@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
-import {
-  Editable,
-  EditableInput,
-  EditablePreview,
-  Flex,
-  Input,
-} from '@chakra-ui/react';
-import { AddIcon } from '@chakra-ui/icons';
+import { Editable, Flex } from '@chakra-ui/react';
+import { FiPlus as AddIcon } from 'react-icons/fi';
 
 import { EditableControls } from 'common/EditableControls';
 
-export function CardListAddCardFooter({ readonly, addCard, id }) {
+interface CardListAddCardFooterProps {
+  readonly?: boolean;
+  addCard: (id: string, name: string) => Promise<void>;
+  id: string;
+}
+
+export function CardListAddCardFooter({
+  readonly,
+  addCard,
+  id,
+}: CardListAddCardFooterProps) {
   const initialNewCardName = 'New Card';
-  const [newCardNameInputValue, setNewCardNameInputValue] =
-    useState(initialNewCardName);
   const [isStoring, setIsStoring] = useState(false);
 
   if (readonly) {
@@ -21,36 +23,34 @@ export function CardListAddCardFooter({ readonly, addCard, id }) {
   }
 
   return (
-    <>
-      <Editable
-        data-cy="edit-and-add-card"
-        isDisabled={isStoring}
-        onChange={setNewCardNameInputValue}
-        value={newCardNameInputValue}
-        onSubmit={async (name) => {
-          try {
-            setIsStoring(true);
-            await addCard(id, name);
-            setNewCardNameInputValue(initialNewCardName);
-          } finally {
-            setIsStoring(false);
-          }
-        }}>
-        <Flex
-          pt="4px"
-          ml="0.5rem"
-          my={0}
-          flexDirection="row"
-          justifyContent="flex-start"
-          flexGrow={0}
-          gap={1}
-          alignItems="center">
-          <AddIcon height="0.75em" />
-          <EditablePreview flexGrow={0} py={'8px'} />
-          <Input as={EditableInput} placeholder="card name" />
-        </Flex>
-        <EditableControls />
-      </Editable>
-    </>
+    <Editable.Root
+      data-cy="edit-and-add-card"
+      disabled={isStoring}
+      submitMode="enter"
+      defaultValue={initialNewCardName}
+      onValueCommit={async (details) => {
+        try {
+          setIsStoring(true);
+          await addCard(id, details.value);
+          // later add error handling?
+        } finally {
+          setIsStoring(false);
+        }
+      }}>
+      <Flex
+        pt="4px"
+        ml="0.5rem"
+        my={0}
+        flexDirection="row"
+        justifyContent="flex-start"
+        flexGrow={0}
+        gap={1}
+        alignItems="center">
+        <AddIcon height="0.75em" />
+        <Editable.Preview flexGrow={0} py={'8px'} />
+        <Editable.Input placeholder="card name" />
+      </Flex>
+      <EditableControls />
+    </Editable.Root>
   );
 }

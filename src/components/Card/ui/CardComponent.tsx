@@ -1,6 +1,5 @@
 import React, { type CSSProperties, useState } from 'react';
-import { useDisclosure } from '@chakra-ui/react';
-import styled from '@emotion/styled';
+import { Box } from '@chakra-ui/react';
 import type { FetchResult } from '@apollo/client';
 
 import type {
@@ -33,13 +32,15 @@ export const CardComponent = (props: CardComponentProps) => {
     conflict: false,
     loading: false,
     error: undefined,
-    old_name: props.name,
+    old_name: props.name || '',
     old_description: props.description,
-    name: props.name,
+    name: props.name || '',
     description: props.description,
   };
   const [state, setState] = useState<State>(initialState);
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [open, setOpen] = useState(false);
+  const onOpen = () => setOpen(true);
+  const onClose = () => setOpen(false);
   /*
   // LATER: reactivate when conflict handling will be needed again
   // (when syncing and subscriptions are actually available again)
@@ -85,7 +86,7 @@ export const CardComponent = (props: CardComponentProps) => {
     setLoading();
 
     storeCard({
-      id,
+      id: id || '',
       name,
       description: description ?? '',
       // for conflict resolution:      old_name,
@@ -111,7 +112,7 @@ export const CardComponent = (props: CardComponentProps) => {
     }));
   }
 
-  const handleChange = (data) => {
+  const handleChange = (data: { [key: string]: string }) => {
     setState((previousState) => ({
       ...previousState,
       ...data,
@@ -134,10 +135,17 @@ export const CardComponent = (props: CardComponentProps) => {
         onOpen();
       };
   return (
-    <CardWrapper data-cy="card" onClick={onClick}>
+    <Box
+      data-cy="card"
+      onClick={onClick}
+      css={{
+        borderRadius: '3px',
+        backgroundColor: '#fff',
+        padding: '10px',
+      }}>
       <CardEditModal
         {...{
-          isOpen,
+          open,
           onClose,
           saveAndHide,
           conflict,
@@ -153,14 +161,8 @@ export const CardComponent = (props: CardComponentProps) => {
         }}
       />
       <span style={isDragging ? whenDraggingStyle : undefined}>
-        {props.name}
+        {props.name || ''}
       </span>
-    </CardWrapper>
+    </Box>
   );
 };
-
-const CardWrapper = styled.div`
-  border-radius: 3px;
-  background-color: #fff;
-  padding: 10px;
-`;

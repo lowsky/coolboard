@@ -7,11 +7,8 @@ export const AddListButton = ({
 }: {
   onAddNewList: () => void;
 }) => (
-  <Button
-    onClick={onAddNewList}
-    flexShrink={0}
-    flexGrow={0}
-    leftIcon={<FaPlus />}>
+  <Button onClick={onAddNewList} flexShrink={0} flexGrow={0}>
+    <FaPlus />
     Add a list
   </Button>
 );

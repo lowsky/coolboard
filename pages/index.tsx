@@ -38,16 +38,22 @@ export default function Index() {
   return (
     <FullVerticalContainer data-cy="home-container">
       <Container maxW="933px">
-        <Heading as="h1">
-          <Image src={coolBoardLogo} width="100" alt="logo" />
-          Welcome to CoolBoard
-          <br />
-          <span> manage your tasks in a kanban style</span>
+        <Heading
+          as="h1"
+          size="5xl"
+          display="flex"
+          flexDirection="row"
+          alignItems="center">
+          <Image src={coolBoardLogo} width="200" alt="logo" />
+          <span>
+            <strong>CoolBoard</strong>
+          </span>
         </Heading>
+        <Heading size="3xl">manage your tasks in a kanban style</Heading>
         <Segment>
           <Text>
             After creating an account, you will be able to create your own
-            <Link href="/boards">boards</Link>
+            <Link href="/boards">boards here</Link>
           </Text>
         </Segment>
 

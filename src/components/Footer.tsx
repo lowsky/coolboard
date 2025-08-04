@@ -9,9 +9,6 @@ import {
   LinkBox,
   LinkOverlay,
   Popover,
-  PopoverBody,
-  PopoverContent,
-  PopoverTrigger,
   Portal,
 } from '@chakra-ui/react';
 import { FaGithub, FaHeart, FaMastodon } from 'react-icons/fa';
@@ -40,37 +37,39 @@ export function Footer() {
           href="https://mastodontech.de/@lowsky"
           target="_blank"
           rel="noreferrer"></a>
-        <Popover>
-          <PopoverTrigger>
+        <Popover.Root>
+          <Popover.Trigger>
             <span>
               <FaGithub />
             </span>
-          </PopoverTrigger>
+          </Popover.Trigger>
           <Portal>
-            <PopoverContent background="white">
-              <PopoverBody>
-                <LinkBox maxW="sm" p="5" borderWidth="1px" rounded="md">
-                  <LinkOverlay
-                    color="#777"
-                    href="https://mastodontech.de/@lowsky"
-                    target="_blank"
-                    rel="noreferrer">
-                    Interested?
-                    <br />
-                    <FaHeart color="red" />
-                    You can drop me a message on Mastodon{' '}
-                    <Icon>
-                      <FaMastodon />
-                    </Icon>{' '}
-                    by clicking this box.
-                    <br />
-                    Or just send me an email via <i>Support</i>.
-                  </LinkOverlay>
-                </LinkBox>
-              </PopoverBody>
-            </PopoverContent>
+            <Popover.Positioner>
+              <Popover.Content background="white">
+                <Popover.Body>
+                  <LinkBox maxW="sm" p="5" borderWidth="1px" rounded="md">
+                    <LinkOverlay
+                      color="#777"
+                      href="https://mastodontech.de/@lowsky"
+                      target="_blank"
+                      rel="noreferrer">
+                      Interested?
+                      <br />
+                      <FaHeart color="red" />
+                      You can drop me a message on Mastodon{' '}
+                      <Icon>
+                        <FaMastodon />
+                      </Icon>{' '}
+                      by clicking this box.
+                      <br />
+                      Or just send me an email via <i>Support</i>.
+                    </LinkOverlay>
+                  </LinkBox>
+                </Popover.Body>
+              </Popover.Content>
+            </Popover.Positioner>
           </Portal>
-        </Popover>
+        </Popover.Root>
       </Flex>
     </Container>
   );

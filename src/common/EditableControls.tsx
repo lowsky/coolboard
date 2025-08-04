@@ -1,19 +1,22 @@
-import { Button, ButtonGroup, useEditableControls } from '@chakra-ui/react';
+import { Button, Editable } from '@chakra-ui/react';
 import React from 'react';
 
 export function EditableControls() {
-  const { isEditing, getSubmitButtonProps, getCancelButtonProps } =
-    useEditableControls();
-  return isEditing ? (
-    <ButtonGroup variant="outline" spacing="6">
-      <Button
-        background="green"
-        color="white"
-        _hover={{ background: 'darkgreen' }}
-        {...getSubmitButtonProps()}>
-        Create
-      </Button>
-      <Button {...getCancelButtonProps()}>Cancel</Button>
-    </ButtonGroup>
-  ) : null;
+  return (
+    <Editable.Control>
+      <Editable.SubmitTrigger asChild>
+        <Button
+          background="green"
+          color="white"
+          _hover={{ background: 'darkgreen' }}>
+          Create
+        </Button>
+      </Editable.SubmitTrigger>
+      <Editable.CancelTrigger asChild>
+        <Button id="cancel" variant="outline">
+          Cancel
+        </Button>
+      </Editable.CancelTrigger>
+    </Editable.Control>
+  );
 }

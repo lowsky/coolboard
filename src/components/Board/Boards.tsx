@@ -23,9 +23,11 @@ export const BoardList = ({ boards, deleteBoard }: Props) => {
   const [createBoard, boardCreationState] = useCreateBoardMutation();
 
   return (
-    <List>
+    <List.Root>
       {boards.map(({ id, ...info }) => (
-        <BoardListItem key={id} id={id} {...info} deleteBoard={deleteBoard} />
+        <List.Item key={id}>
+          <BoardListItem id={id} {...info} deleteBoard={deleteBoard} />
+        </List.Item>
       ))}
       <ListItem padding="0.25rem 0.5rem" marginBottom="0.5px" display="flex">
         <CreateBoardModal
@@ -34,8 +36,7 @@ export const BoardList = ({ boards, deleteBoard }: Props) => {
           createBoard={({ name }) => createBoard({ variables: { name } })}
         />
       </ListItem>
-      )
-    </List>
+    </List.Root>
   );
 };
 
@@ -93,7 +94,7 @@ export const Boards = () => {
     );
   }
 
-  if (!data.me) return null;
+  if (!data?.me) return null;
 
   const {
     me: { boards },
@@ -107,7 +108,12 @@ export const Boards = () => {
         </Heading>
         <Container data-cy="boards-list" textAlign="left">
           <BoardList
-            boards={boards}
+            boards={
+              (boards || []).filter((board) => board.name && board.id) as Omit<
+                BoardListItemProps,
+                'deleteBoard'
+              >[]
+            }
             deleteBoard={(id: string) =>
               deleteBoard({
                 variables: { id },

@@ -41,7 +41,6 @@ export const CardForDragging = (props) => {
   });
 
   return (
-    // @ts-expect-error needs to be fixed, this brokw when updating the @types/react 18>19
     <div ref={ref}>
       <Card {...props} />
     </div>

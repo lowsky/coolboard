@@ -3,6 +3,7 @@ import { Container, Heading, Link, Text } from '@chakra-ui/react';
 import { trackPage } from 'src/common/tracking';
 import { ProfileHeader } from 'src/common/ProfileHeader';
 import FullPageWithApollo from 'src/common/FullPageWithApollo';
+import { LuExternalLink } from 'react-icons/lu';
 
 export default function Privacy() {
   trackPage('privacy');
@@ -39,25 +40,7 @@ export default function Privacy() {
 
         <Heading as="h2">Data Collection on our website</Heading>
         <Heading as="h3">Analytics and third-party tools</Heading>
-        <Text>
-          For getting information about which other web pages have links to
-          Coolboard, we are using <b>mixpanel</b> which is full GDPR compliant.
-          For further details, please see their pages about{' '}
-          <Link
-            href="https://mixpanel.com/legal/dpa/"
-            referrerPolicy="no-referrer"
-            isExternal>
-            DPA
-          </Link>{' '}
-          or their{' '}
-          <Link
-            href="https://mixpanel.com/legal/terms-of-use/"
-            referrerPolicy="no-referrer"
-            isExternal>
-            terms-of-use
-          </Link>
-          .
-        </Text>
+        <Text>Be aware this using vercel's Analytics .</Text>
         <Text>
           When visiting our website, statistical analyses may be made of your
           surfing behavior This happens primarily using cookies and analytics.
@@ -66,9 +49,9 @@ export default function Privacy() {
           about it here:
           <Link
             href="https://vercel.com/legal/privacy-policy"
-            referrerPolicy="no-referrer"
-            isExternal>
+            referrerPolicy="no-referrer">
             Vercel Privacy Policy
+            <LuExternalLink />
           </Link>
         </Text>
         <Text>
@@ -94,11 +77,9 @@ export default function Privacy() {
         <Text>
           By using our website, you hereby consent to our Privacy Policy and
           agree to its Terms and Conditions as well as to the{' '}
-          <Link
-            href="https://clerk.dev/privacy"
-            referrerPolicy="no-referrer"
-            isExternal>
+          <Link href="https://clerk.dev/privacy" referrerPolicy="no-referrer">
             clerk.dev Privacy Policy
+            <LuExternalLink />
           </Link>{' '}
           (contains GDPA and CalOPPA) and Vercel Privacy Statement and to its
           Terms and Conditions.
@@ -110,11 +91,9 @@ export default function Privacy() {
           If you like to work with this demo application, you need to supply
           some information for creating your own account by signing-in via a
           pop-up dialog using{' '}
-          <Link
-            href="https://clerk.dev/"
-            referrerPolicy="no-referrer"
-            isExternal>
+          <Link href="https://clerk.dev/" referrerPolicy="no-referrer">
             clerk.dev
+            <LuExternalLink />
           </Link>{' '}
           service. The supplied data include:
           <br />
@@ -124,19 +103,17 @@ export default function Privacy() {
           users, - if you share your created board with them or - enter data on
           any other shared board. They are also stored by clerk.dev to provide
           this service and is subject to the
-          <Link
-            href="https://clerk.dev/privaycy"
-            referrerPolicy="no-referrer"
-            isExternal>
+          <Link href="https://clerk.dev/privaycy" referrerPolicy="no-referrer">
             clerk.dev Privacy Statement
+            <LuExternalLink />
           </Link>{' '}
           and
           {/*<a target="_blank" rel="noreferrer noopener" href="https://www.netlify.com/privacy/privacy.js">Netlify Privacy Policy</a>.*/}
           <Link
             href="https://vercel.com/legal/privacy-policy"
-            referrerPolicy="no-referrer"
-            isExternal>
+            referrerPolicy="no-referrer">
             Vercel Privacy Policy
+            <LuExternalLink />
           </Link>
           . Please see their Statement and rules for details.
           <br />
@@ -144,9 +121,9 @@ export default function Privacy() {
           browser to instana:
           <Link
             href="https://www.instana.com/security/"
-            referrerPolicy="no-referrer"
-            isExternal>
+            referrerPolicy="no-referrer">
             instana privacy
+            <LuExternalLink />
           </Link>
         </Text>
 
