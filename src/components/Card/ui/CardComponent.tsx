@@ -135,34 +135,34 @@ export const CardComponent = (props: CardComponentProps) => {
         onOpen();
       };
   return (
-    <Box
-      data-cy="card"
-      onClick={onClick}
-      css={{
-        borderRadius: '3px',
-        backgroundColor: '#fff',
-        padding: '10px',
+    <CardEditModal
+      {...{
+        open,
+        onClose,
+        saveAndHide,
+        conflict,
+        loading,
+        name,
+        handleChange,
+        props,
+        description,
+        createdAt,
+        updatedAt,
+        updatedBy,
+        error,
       }}>
-      <CardEditModal
-        {...{
-          open,
-          onClose,
-          saveAndHide,
-          conflict,
-          loading,
-          name,
-          handleChange,
-          props,
-          description,
-          createdAt,
-          updatedAt,
-          updatedBy,
-          error,
-        }}
-      />
-      <span style={isDragging ? whenDraggingStyle : undefined}>
-        {props.name || ''}
-      </span>
-    </Box>
+      <Box
+        data-cy="card"
+        onClick={onClick}
+        css={{
+          borderRadius: '3px',
+          backgroundColor: '#fff',
+          padding: '10px',
+        }}>
+        <span style={isDragging ? whenDraggingStyle : undefined}>
+          {props.name ?? '-'}
+        </span>
+      </Box>
+    </CardEditModal>
   );
 };

@@ -1,6 +1,13 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { FaSave, FaTimes } from 'react-icons/fa';
-import { Alert, Button, ButtonGroup, Dialog, Portal } from '@chakra-ui/react';
+import {
+  Alert,
+  Button,
+  ButtonGroup,
+  CloseButton,
+  Dialog,
+  Portal,
+} from '@chakra-ui/react';
 
 import type { Card, User } from 'generated/graphql';
 import { AuthorTimeInfo } from './AuthorTimeInfo';
@@ -20,6 +27,7 @@ type CardEditModalProps = {
   updatedAt: number;
   updatedBy?: User;
   error: string | undefined;
+  children: ReactNode;
 };
 
 export function CardEditModal({
@@ -36,19 +44,25 @@ export function CardEditModal({
   updatedAt,
   updatedBy,
   error,
+  children,
 }: CardEditModalProps) {
   return (
     <Dialog.Root
       closeOnEscape={true}
+      closeOnInteractOutside
       open={open}
       onOpenChange={({ open }) => !open && onClose()}
+      onExitComplete={() => onClose()}
       id="cardEditModal">
+      <Dialog.Trigger asChild>{children}</Dialog.Trigger>
       <Portal>
         <Dialog.Backdrop />
         <Dialog.Positioner>
           <Dialog.Content>
             <Dialog.Header>Edit Card</Dialog.Header>
-            <Dialog.CloseTrigger />
+            <Dialog.CloseTrigger asChild>
+              <CloseButton />
+            </Dialog.CloseTrigger>
             <Dialog.Body pb={6}>
               {CardEditForm({
                 saveAndHide,
