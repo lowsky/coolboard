@@ -9,7 +9,7 @@
   "homepage": "/",
   "dependencies": {
     "@apollo/client": "3.13.9",
-    "@chakra-ui/react": "3.24.0",
+    "@chakra-ui/react": "3.24.2",
     "@clerk/nextjs": "6.29.0",
     "@clerk/themes": "2.4.5",
     "@emotion/react": "11.14.0",
