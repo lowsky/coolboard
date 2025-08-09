@@ -27,12 +27,7 @@ export const CardList = ({
     variables: { cardListId: id },
   });
 
-  const [addCardWithName] = useAddCardMutationMutation({
-    variables: {
-      cardListId: id,
-      name: 'new card',
-    },
-  });
+  const [addCardWithName] = useAddCardMutationMutation();
 
   const [deleteListOfBoard] = useDeleteListOfBoardMutation();
 
@@ -44,7 +39,10 @@ export const CardList = ({
       },
     });
 
-  const addCard = () => addCardWithName();
+  const addCard = (cardListId, name) =>
+    addCardWithName({
+      variables: { name, cardListId },
+    });
 
   const [moveCard] = useMoveCard2Mutation();
   const moveCardToList: MoveItemFromTo = (cardId, toList, fromListId) =>
