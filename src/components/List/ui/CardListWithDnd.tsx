@@ -18,7 +18,7 @@ export interface CardListWithoutDndProps {
   list: UIListData;
   addCard: (id: string, name: string) => Promise<any>;
   deleteList: () => Promise<any>;
-  readonly?: boolean;
+  readonly?: boolean | undefined;
 }
 
 export type ListTypeWithCards = ListTypeWithoutCards & {
