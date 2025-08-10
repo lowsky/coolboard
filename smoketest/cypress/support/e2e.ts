@@ -195,6 +195,11 @@ declare global {
   namespace Cypress {
     interface Chainable {
       clickAddNewCard(): Chainable<JQuery<HTMLButtonElement>>;
+      /**
+       * Custom command to select a card list by its index
+       * @example cy.getCardListByIndex(1) - selects the first card list
+       */
+      getCardListByIndex(index: number, options?: Partial<Loggable & Timeoutable>): Chainable<JQuery<HTMLElement>>;
     }
   }
 }
@@ -286,3 +291,19 @@ Cypress.Commands.add(
   (selector: string, options?: Partial<Loggable & Timeoutable>) =>
     cy.get(`[data-cy="${selector}"]`, options)
 );
+
+
+/**
+ * Custom command to select a card list by its index
+ * @param index - The 1-based index of the card list to select
+ * @param options - Optional Cypress command options
+ * @returns Chainable with the selected card list element
+ */
+function getCardListByIndex(
+  index: number,
+  options?: Partial<Loggable & Timeoutable>
+): Chainable<JQuery<HTMLElement>> {
+  return cy.get(`:nth-child(${index}) > [data-cy="card-list"]`, options);
+}
+
+Cypress.Commands.add('getCardListByIndex', getCardListByIndex);

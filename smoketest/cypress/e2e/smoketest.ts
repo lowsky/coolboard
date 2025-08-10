@@ -91,6 +91,44 @@ describe('Test coolboard', () => {
     cy.sections(LogAndWaitLong).should('have.length', 2);
   });
 
+  it('user can drag and drop a card from first to second list', () => {
+    cy.getBoardsList_FirstEntry(newBoardName).click();
+
+    // Verify initial state: card exists in the first card-list but not in the second card-list
+    cy.getCardListByIndex(1).find(':nth-child(1) > [data-cy="card"]')
+      .should('have.length', 1);
+    cy.getCardListByIndex(2).find(':nth-child(1) > [data-cy="card"]')
+      .should('have.length', 0);
+
+    // Get the source card element
+    const dataTransfer = new DataTransfer();
+
+    // Start dragging the card
+    cy.getCardListByIndex(1).find(':nth-child(1) > [data-cy="card"]')
+      .trigger('dragstart', { dataTransfer })
+      .should('be.visible');
+
+    // Drag over the target list
+    cy.getCardListByIndex(2)
+      .trigger('dragover', { dataTransfer })
+      .should('have.css', 'background-color', 'rgb(255, 255, 0)'); // Check for the yellow background (isOver)
+
+    // Drop the card on the target list
+    cy.getCardListByIndex(2)
+      .trigger('drop', { dataTransfer });
+
+    // End the drag operation
+    cy.getCardListByIndex(1).find(':nth-child(1) > [data-cy="card"]')
+      .trigger('dragend');
+
+    // Verify the card has moved to the second list
+    cy.getCardListByIndex(2).find(':nth-child(1) > [data-cy="card"]')
+      .should('have.length', 1);
+    cy.getCardListByIndex(1).find(':nth-child(1) > [data-cy="card"]')
+      .should('have.length', 0);
+  });
+
+
   it('user can delete lists', () => {
     // open first board named XXX
     cy.getBoardsList_FirstEntry(newBoardName).click();
