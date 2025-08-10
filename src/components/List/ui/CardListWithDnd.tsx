@@ -70,6 +70,7 @@ export const CardListWithDnd = (props: CardListWithoutDndProps & DndProps) => {
         <Flex flexDirection="column" gap="0.1em">
           <Flex flexDirection="column" gap="0.1em">
             {cards.map((card) => (
+              // @ts-expect-error missing the following properties from type CardForDraggingProps: createdBy, updatedBy
               <Card
                 key={card.id}
                 {...card}
