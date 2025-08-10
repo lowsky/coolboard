@@ -10,15 +10,15 @@ import type { Card as CardType } from 'generated/graphql';
 import type { DndProps } from './CardListWithDnd';
 import { dndItemType } from 'components/Card/Card';
 
-export type MoveItemFromTo = (
+export type MoveItemToFrom = (
   itemId: string,
-  fromListId: string,
-  toListId: string
+  toListId: string,
+  fromListId: string
 ) => Promise<any>;
 
 export function useCardListDnd(
   id: string,
-  moveCardToList: MoveItemFromTo
+  moveCardToList: MoveItemToFrom
 ): [
   dndProps: DndProps,
   ref: (
@@ -40,12 +40,11 @@ type DraggableCardItem = CardType & {
 };
 
 export const drop = (
-  id: string,
-  moveCardToList: MoveItemFromTo,
+  cardListId: string,
+  moveCardToList: MoveItemToFrom,
   cardItem: DraggableCardItem
 ): Promise<any> => {
   const cardId = cardItem.id;
-  const cardListId = id;
   const oldCardListId = cardItem.cardListId;
-  return moveCardToList(cardId, oldCardListId, cardListId);
+  return moveCardToList(cardId, cardListId, oldCardListId);
 };

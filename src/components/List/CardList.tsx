@@ -8,7 +8,7 @@ import React from 'react';
 
 import { createUpdateCachedListsAfterMovingCard } from './overrideCacheListsAfterMovingCard';
 import { CardListWithDnd, type UIListData } from './ui/CardListWithDnd';
-import { type MoveItemFromTo, useCardListDnd } from './ui/useCardListDnd';
+import { type MoveItemToFrom, useCardListDnd } from './ui/useCardListDnd';
 
 interface CardListProps {
   id: string;
@@ -27,12 +27,7 @@ export const CardList = ({
     variables: { cardListId: id },
   });
 
-  const [addCardWithName] = useAddCardMutationMutation({
-    variables: {
-      cardListId: id,
-      name: 'new card',
-    },
-  });
+  const [addCardWithName] = useAddCardMutationMutation();
 
   const [deleteListOfBoard] = useDeleteListOfBoardMutation();
 
@@ -44,10 +39,13 @@ export const CardList = ({
       },
     });
 
-  const addCard = () => addCardWithName();
+  const addCard = (cardListId, name) =>
+    addCardWithName({
+      variables: { name, cardListId },
+    });
 
   const [moveCard] = useMoveCard2Mutation();
-  const moveCardToList: MoveItemFromTo = (cardId, toList, fromListId) =>
+  const moveCardToList: MoveItemToFrom = (cardId, toList, fromListId) =>
     moveCard({
       variables: { fromListId, toList, cardId },
       update: createUpdateCachedListsAfterMovingCard(

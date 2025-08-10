@@ -17,7 +17,8 @@ export function CardListAddCardFooter({
 }: CardListAddCardFooterProps) {
   const initialNewCardName = 'New Card';
   const [isStoring, setIsStoring] = useState(false);
-
+  const [value, setValue] = useState(initialNewCardName);
+  const [isEdit, setIsEdit] = useState(false);
   if (readonly) {
     return null;
   }
@@ -28,14 +29,14 @@ export function CardListAddCardFooter({
       disabled={isStoring}
       submitMode="enter"
       defaultValue={initialNewCardName}
+      onEditChange={(details) => setIsEdit(details.edit)}
+      onValueChange={(details) => setValue(details.value)}
+      value={value}
       onValueCommit={async (details) => {
-        try {
-          setIsStoring(true);
-          await addCard(id, details.value);
-          // later add error handling?
-        } finally {
-          setIsStoring(false);
-        }
+        setIsStoring(true);
+        await addCard(id, details.value);
+        setIsStoring(false);
+        setValue(initialNewCardName);
       }}>
       <Flex
         pt="4px"
@@ -46,7 +47,7 @@ export function CardListAddCardFooter({
         flexGrow={0}
         gap={1}
         alignItems="center">
-        <AddIcon height="0.75em" />
+        {!isEdit && <AddIcon height="0.75em" />}
         <Editable.Preview flexGrow={0} py={'8px'} />
         <Editable.Input placeholder="card name" />
       </Flex>
