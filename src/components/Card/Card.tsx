@@ -1,13 +1,14 @@
 import React from 'react';
-import { type DragSourceMonitor, useDrag } from 'react-dnd';
+import { useDrag } from 'react-dnd';
 
 import { CardComponent } from './ui/CardComponent';
 import {
+  type Card as CardType,
   type UpdateCardMutationVariables,
   useUpdateCardMutation,
 } from 'generated/graphql';
 
-export const Card = (props) => {
+function Card(props: CardType) {
   const [mutation] = useUpdateCardMutation({
     variables: {
       ...props,
@@ -24,20 +25,34 @@ export const Card = (props) => {
       }
     />
   );
-};
+}
+
+// Define the interface for the drag item
+interface DragItem {
+  id: string;
+  cardListId: string;
+}
+
+export interface CardForDraggingProps extends CardType {
+  cardListId: string;
+  readonly?: boolean | undefined;
+}
 
 export const dndItemType = 'card';
 
-export const CardForDragging = (props) => {
+export function CardForDragging(props: CardForDraggingProps) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [_, ref] = useDrag({
+  const [_, ref] = useDrag<
+    DragItem,
+    /*DropResult*/ unknown,
+    { isDragging: boolean }
+  >({
     type: dndItemType,
     item: {
       id: props.id,
       cardListId: props.cardListId,
     },
-    // @ts-expect-error needs additional generic attrib
-    canDrag: () => (props: DragSourceMonitor) => Boolean(props.cardListId),
+    canDrag: () => Boolean(props.cardListId),
   });
 
   return (
@@ -45,6 +60,6 @@ export const CardForDragging = (props) => {
       <Card {...props} />
     </div>
   );
-};
+}
 
 export default CardForDragging;
