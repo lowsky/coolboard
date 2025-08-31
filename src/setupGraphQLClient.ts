@@ -2,8 +2,10 @@ import {
   ApolloClient,
   InMemoryCache,
   ApolloLink,
-  createHttpLink,
+  HttpLink,
 } from '@apollo/client';
+import { Defer20220824Handler } from '@apollo/client/incremental';
+import { LocalState } from '@apollo/client/local-state';
 import { createNetworkStatusNotifier } from 'react-apollo-network-status';
 import { RetryLink } from '@apollo/client/link/retry';
 import { REQ_HEADER_x_coolboard_readonly } from './headers';
@@ -27,7 +29,7 @@ export const setupGraphQLClient = (readOnly?: boolean) => {
         [REQ_HEADER_x_coolboard_readonly]: 'true',
       }
     : {};
-  const httpLink = createHttpLink({
+  const httpLink = new HttpLink({
     uri: '/api/graphql',
     headers,
   });
@@ -42,5 +44,19 @@ export const setupGraphQLClient = (readOnly?: boolean) => {
   return new ApolloClient({
     link: ApolloLink.from([networkStatusNotifier.link, retryLink, httpLink]),
     cache: new InMemoryCache(),
+
+    /*
+    Inserted by Apollo Client 3->4 migration codemod.
+    If you are not using the `@client` directive in your application,
+    you can safely remove this option.
+    */
+    localState: new LocalState({}),
+
+    /*
+    Inserted by Apollo Client 3->4 migration codemod.
+    If you are not using the `@defer` directive in your application,
+    you can safely remove this option.
+    */
+    incrementalHandler: new Defer20220824Handler(),
   });
 };

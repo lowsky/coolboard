@@ -1,5 +1,5 @@
 import React from 'react';
-import { ApolloProvider } from '@apollo/client';
+import { ApolloProvider } from "@apollo/client/react";
 
 import { FullVerticalContainer } from 'common/FullVerticalContainer';
 import { setupGraphQLClient } from '../setupGraphQLClient';
