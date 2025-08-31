@@ -5,12 +5,12 @@ export const createUpdateCachedListsAfterMovingCard: (
   cardId: string,
   newCardListId: string,
   oldCardListId: string
-) => (store: ApolloCache<any>) => void = (
+) => (store: ApolloCache) => void = (
   cardId: string,
   newCardListId: string,
   oldCardListId: string
 ) => {
-  return (store: ApolloCache<any>) => {
+  return (store: ApolloCache) => {
     const cachedNewList = store.readQuery<CardListQuery>({
       query: CardListDocument,
       variables: {
@@ -45,7 +45,7 @@ function overrideCachedListsAfterMovingCard(
   newListId: string,
   oldListId: string,
   cardId: string,
-  store: ApolloCache<any>
+  store: ApolloCache
 ) {
   const { list: newList } = cachedNewList;
   const { list: oldList } = cachedOldList;

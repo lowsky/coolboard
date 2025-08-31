@@ -43,7 +43,7 @@ export const BoardList = ({ boards, deleteBoard }: Props) => {
 function overrideCachedUserBoardsRemovingBoard(
   userWithBoards: UserBoardsQuery | null,
   removedBoardId: string,
-  store: ApolloCache<any>
+  store: ApolloCache
 ) {
   if (!userWithBoards?.me?.boards) return;
 
@@ -68,7 +68,7 @@ function overrideCachedUserBoardsRemovingBoard(
   }
 }
 const updateCachedUserBoardsAfterRemovingBoard = (boardId: string) => {
-  return (store: ApolloCache<any>) => {
+  return (store: ApolloCache) => {
     const readData = store.readQuery<UserBoardsQuery>({
       query: UserBoardsDocument,
     });
