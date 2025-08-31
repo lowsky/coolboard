@@ -1,10 +1,9 @@
-import { createYoga, YogaServer } from 'graphql-yoga';
+import { createYoga } from 'graphql-yoga';
 import { Plugin } from 'graphql-yoga';
 import { useDisableIntrospection } from '@graphql-yoga/plugin-disable-introspection';
 import { blockFieldSuggestionsPlugin } from '@escape.tech/graphql-armor-block-field-suggestions';
 
 import { getAuth } from '@clerk/nextjs/server';
-import type { PrismaClient } from '@prisma/client';
 
 import { isLocalDev } from 'server/src/helpers/logging';
 import type { Ctxt } from 'server/src/resolvers/Context';
@@ -15,10 +14,7 @@ import { NextRequest } from 'next/server';
 
 type ServerCtxt = object;
 
-const authenticatedHandler: YogaServer<ServerCtxt, Ctxt> = createYoga<
-  ServerCtxt,
-  Ctxt
->({
+const authenticatedHandler = createYoga<ServerCtxt, Ctxt>({
   schema: buildSchema(),
   batching: true,
   landingPage: true,
@@ -32,9 +28,9 @@ const authenticatedHandler: YogaServer<ServerCtxt, Ctxt> = createYoga<
   context: async ({ request }) => {
     return {
       // casting from request to next-Request, required by clerk ...
-      req: request as NextRequest,
-      prisma: prisma as unknown as PrismaClient,
-    };
+      req: request, // as NextRequest,
+      prisma: prisma, // as unknown as PrismaClient,
+    } as Ctxt;
   },
   graphqlEndpoint: '/api/graphql',
 });
