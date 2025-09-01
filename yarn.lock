@@ -7191,7 +7191,6 @@ __metadata:
     "@vercel/analytics": "npm:1.5.0"
     "@vercel/otel": "npm:1.13.0"
     "@vercel/speed-insights": "npm:1.2.0"
-    emitter-listener: "npm:1.1.2"
     eslint: "npm:9.34.0"
     eslint-config-next: "npm:15.5.2"
     eslint-config-prettier: "npm:10.1.8"
@@ -7614,15 +7613,6 @@ __metadata:
   version: 1.4.119
   resolution: "electron-to-chromium@npm:1.4.119"
   checksum: 10c0/f4d8fb4d622e77a79cd8389a1b725a0b3890b4e7cbf9c7d503a98129d9ceed35fd75cf84d0b38a4eb60607149cf6d0cfd57dbc0d052dc6a59d9866ad36ac208b
-  languageName: node
-  linkType: hard
-
-"emitter-listener@npm:1.1.2":
-  version: 1.1.2
-  resolution: "emitter-listener@npm:1.1.2"
-  dependencies:
-    shimmer: "npm:^1.2.0"
-  checksum: 10c0/d16f4f2da4b46cee09c900260d8527c58b32b6e1288c734a561f867dac8bf4da7f6aa429b6db1e5a90f688d754d86456bd22ee99f2fac4d9d955ef6ef8c19e55
   languageName: node
   linkType: hard
 
@@ -12433,7 +12423,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"shimmer@npm:^1.2.0, shimmer@npm:^1.2.1":
+"shimmer@npm:^1.2.1":
   version: 1.2.1
   resolution: "shimmer@npm:1.2.1"
   checksum: 10c0/ae8b27c389db2a00acfc8da90240f11577685a8f3e40008f826a3bea8b4f3b3ecd305c26be024b4a0fd3b123d132c1569d6e238097960a9a543b6c60760fb46a
