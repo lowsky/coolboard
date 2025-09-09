@@ -1194,22 +1194,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/themes@npm:2.4.15":
-  version: 2.4.15
-  resolution: "@clerk/themes@npm:2.4.15"
+"@clerk/themes@npm:2.4.17":
+  version: 2.4.17
+  resolution: "@clerk/themes@npm:2.4.17"
   dependencies:
-    "@clerk/types": "npm:^4.83.0"
+    "@clerk/types": "npm:^4.84.1"
     tslib: "npm:2.8.1"
-  checksum: 10c0/75616309452cbdba0f23f2664cb8d35883d72cded075c67e58b2e2c0addf1c6752131d80af668f229fc7ef251b8be056e3790a14382f0e355c28e2d4b7efec72
+  checksum: 10c0/8cae9bf9cf9844bc6a40d83322f8bce0115905b40a9c2584cbeb39ac676edc62053fbbc5d1b3a3320391f48b92ee7609540b319681ab2aa48e166051d36d8e7f
   languageName: node
   linkType: hard
 
-"@clerk/types@npm:^4.83.0":
-  version: 4.83.0
-  resolution: "@clerk/types@npm:4.83.0"
+"@clerk/types@npm:^4.84.1":
+  version: 4.84.1
+  resolution: "@clerk/types@npm:4.84.1"
   dependencies:
     csstype: "npm:3.1.3"
-  checksum: 10c0/2eed3c75e73bac6fce42aaa616d6285a3d9319678d3a5261356bb89a678bcd151a937ecf329a61c40a6be8d358b57d1f6a0a6145d1fc5513f9946518c6d6a3c3
+  checksum: 10c0/3f7c4df31067f6a47452afbf447b3ca7b5205a31d0366f004900c92519b9a10d03b73a47d1000bccaa7f01e2f24936405b6a46bb622e9386e6eb712355034ab0
   languageName: node
   linkType: hard
 
@@ -7161,7 +7161,7 @@ __metadata:
     "@apollo/client": "npm:3.14.0"
     "@chakra-ui/react": "npm:3.26.0"
     "@clerk/nextjs": "npm:6.31.10"
-    "@clerk/themes": "npm:2.4.15"
+    "@clerk/themes": "npm:2.4.17"
     "@emotion/react": "npm:11.14.0"
     "@escape.tech/graphql-armor-block-field-suggestions": "npm:^3.0.0"
     "@eslint/compat": "npm:1.3.2"
