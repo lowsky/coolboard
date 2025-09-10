@@ -4237,20 +4237,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pothos/core@npm:4.9.0":
-  version: 4.9.0
-  resolution: "@pothos/core@npm:4.9.0"
+"@pothos/core@npm:4.9.1":
+  version: 4.9.1
+  resolution: "@pothos/core@npm:4.9.1"
   peerDependencies:
     graphql: ^16.10.0
-  checksum: 10c0/91b37ab0f62a2854942e894acb331103360ec8d1422a425b8467f2834f4ee167e701f88f75fd7c8e80b492893f3daf2c7de1fd917c94e8cada0fa33b912c58ac
+  checksum: 10c0/9730b3af344f7d88c1a8318fe35efffd45542125c826e203ebddd091739729d00c38ca0670d889e7ec23001ffa63e3cfdcfcbfce6c66ddb8649487ea0a71a528
   languageName: node
   linkType: hard
 
-"@pothos/plugin-prisma@npm:4.10.0":
-  version: 4.10.0
-  resolution: "@pothos/plugin-prisma@npm:4.10.0"
+"@pothos/plugin-prisma@npm:4.11.0":
+  version: 4.11.0
+  resolution: "@pothos/plugin-prisma@npm:4.11.0"
   dependencies:
-    "@prisma/generator-helper": "npm:^6.6.0"
+    "@prisma/generator-helper": "npm:^6.15.0"
   peerDependencies:
     "@pothos/core": "*"
     "@prisma/client": "*"
@@ -4258,17 +4258,17 @@ __metadata:
     typescript: ">=4.7.2"
   bin:
     prisma-pothos-types: bin/generator.js
-  checksum: 10c0/d87d210820cde11f1d685aecf78b6285ae683a792b8c38dd79bd1be4fb5d5896e8e0023eb357bcc5518bc2975982eb82d220cf9f0c0c2d55ecc1bb34480924c2
+  checksum: 10c0/eb72691f82c86ff7a928ac796ec8fc089ebf129bb5f7088596eca8fb144285b12f00aa76a0e474a0e9ad2e85085094de878ef1d15639883b46ad209e161f3fba
   languageName: node
   linkType: hard
 
-"@pothos/plugin-with-input@npm:4.1.3":
-  version: 4.1.3
-  resolution: "@pothos/plugin-with-input@npm:4.1.3"
+"@pothos/plugin-with-input@npm:4.1.4":
+  version: 4.1.4
+  resolution: "@pothos/plugin-with-input@npm:4.1.4"
   peerDependencies:
     "@pothos/core": "*"
     graphql: ^16.10.0
-  checksum: 10c0/4401d6e6572eea7340ea75c0390e49302f3b78a873b41db9b14962931f2cf07160d8c2bd0c3b490b6b4e5db583869cf949f8d11b4ef497462f956227aee766a1
+  checksum: 10c0/1464bc45e3e4e8d9e512cd837a5fe3ce9c5ff334c70b8c909d2e0ea486cae5aea89c60061aea3fa9faee12cb537b91f9af9be8c6dd5860b8ef475e1e17a2d67f
   languageName: node
   linkType: hard
 
@@ -4310,13 +4310,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prisma/debug@npm:6.10.1":
-  version: 6.10.1
-  resolution: "@prisma/debug@npm:6.10.1"
-  checksum: 10c0/a5f76ace213da5ab3180fc179383637df6923363a6a08c5958788ecf4dbade3761b07445bc06f7fa044880221a66b824b105bee3aa19eb155c48f6c3f730051b
-  languageName: node
-  linkType: hard
-
 "@prisma/debug@npm:6.15.0":
   version: 6.15.0
   resolution: "@prisma/debug@npm:6.15.0"
@@ -4324,10 +4317,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prisma/dmmf@npm:6.10.1":
-  version: 6.10.1
-  resolution: "@prisma/dmmf@npm:6.10.1"
-  checksum: 10c0/6d8b32e3560058f37e19dafa6681bdd25dac91bae9d6200a551f0d1368d4fc527126bb1383db89adca15de6c2ce07cb8b485efd5a8067a4dfbbacc0dd48a988d
+"@prisma/debug@npm:6.16.0":
+  version: 6.16.0
+  resolution: "@prisma/debug@npm:6.16.0"
+  checksum: 10c0/bf2e7ffc5abb08c54f48b1a9f5c535499f8c7c64993c40ff27ae8e8a2f64f448ea9ef3e746f71cc79d1e5c5f888dd2cf0bead8afec8fb416682ace02191e3c88
+  languageName: node
+  linkType: hard
+
+"@prisma/dmmf@npm:6.16.0":
+  version: 6.16.0
+  resolution: "@prisma/dmmf@npm:6.16.0"
+  checksum: 10c0/cbce08cf3e348ddead2c2d35c2ad1ad8d354683104725ceec067dff1856fbd76bbbd76ca85cb559c7ac0f469d28df8fb09edb38cd58e66d89edc3d57c6d801a1
   languageName: node
   linkType: hard
 
@@ -4379,21 +4379,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prisma/generator-helper@npm:^6.6.0":
-  version: 6.10.1
-  resolution: "@prisma/generator-helper@npm:6.10.1"
+"@prisma/generator-helper@npm:^6.15.0":
+  version: 6.16.0
+  resolution: "@prisma/generator-helper@npm:6.16.0"
   dependencies:
-    "@prisma/debug": "npm:6.10.1"
-    "@prisma/dmmf": "npm:6.10.1"
-    "@prisma/generator": "npm:6.10.1"
-  checksum: 10c0/44b0753797d7336e2f4c524f2d7d303fef6e969daf8cb8e21d4612fd2ff751c951cf29006ed53d6e771136fa05562a98b1dbabb8a7311e928fff335158198c4e
+    "@prisma/debug": "npm:6.16.0"
+    "@prisma/dmmf": "npm:6.16.0"
+    "@prisma/generator": "npm:6.16.0"
+  checksum: 10c0/721f3a29d3243872dba63e578df3a4cfc2e00091acc48f68ff1d7f19d282655d731eec62f49b5c1cb319dc5faa0ec2c5e0b4125cbb7eda677990d500ab2f777b
   languageName: node
   linkType: hard
 
-"@prisma/generator@npm:6.10.1":
-  version: 6.10.1
-  resolution: "@prisma/generator@npm:6.10.1"
-  checksum: 10c0/f27994616f1cb2cd2a79bf7683adfc0357041ef24033a5226660d2ec19c551d7e92dd6eab4f530a54d41714b997fd3150bfafe7e1d15ff870e5b6b3b9a62e5ea
+"@prisma/generator@npm:6.16.0":
+  version: 6.16.0
+  resolution: "@prisma/generator@npm:6.16.0"
+  checksum: 10c0/1159b62398475c43eefcdd1a46cb30e340f9713ac15113fc3cda43a2d7a4d7071c76e29f68eeffbf247068e23866b85e4e96d26df2e36ceee52b28278d3b195b
   languageName: node
   linkType: hard
 
@@ -7186,9 +7186,9 @@ __metadata:
     "@opentelemetry/instrumentation-winston": "npm:0.48.1"
     "@opentelemetry/sdk-trace-web": "npm:2.0.1"
     "@opentelemetry/winston-transport": "npm:0.14.1"
-    "@pothos/core": "npm:4.9.0"
-    "@pothos/plugin-prisma": "npm:4.10.0"
-    "@pothos/plugin-with-input": "npm:4.1.3"
+    "@pothos/core": "npm:4.9.1"
+    "@pothos/plugin-prisma": "npm:4.11.0"
+    "@pothos/plugin-with-input": "npm:4.1.4"
     "@prisma/adapter-neon": "npm:6.15.0"
     "@prisma/client": "npm:6.15.0"
     "@prisma/extension-accelerate": "npm:2.0.2"
