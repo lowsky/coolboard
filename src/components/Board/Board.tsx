@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   useAddListMutation,
-  useBoardSuspenseQuery,
+  useBoardQuery,
   useDeleteListsOfBoardMutation,
 } from 'generated/graphql';
 
@@ -13,7 +13,7 @@ interface BoardProps {
 }
 
 export const Board = ({ boardId, readonly = false }: BoardProps) => {
-  const { error, data } = useBoardSuspenseQuery({
+  const { error, data } = useBoardQuery({
     variables: { boardId },
   });
 
