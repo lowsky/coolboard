@@ -1194,22 +1194,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/themes@npm:2.4.17":
-  version: 2.4.17
-  resolution: "@clerk/themes@npm:2.4.17"
+"@clerk/themes@npm:2.4.19":
+  version: 2.4.19
+  resolution: "@clerk/themes@npm:2.4.19"
   dependencies:
-    "@clerk/types": "npm:^4.84.1"
+    "@clerk/types": "npm:^4.86.0"
     tslib: "npm:2.8.1"
-  checksum: 10c0/8cae9bf9cf9844bc6a40d83322f8bce0115905b40a9c2584cbeb39ac676edc62053fbbc5d1b3a3320391f48b92ee7609540b319681ab2aa48e166051d36d8e7f
-  languageName: node
-  linkType: hard
-
-"@clerk/types@npm:^4.84.1":
-  version: 4.84.1
-  resolution: "@clerk/types@npm:4.84.1"
-  dependencies:
-    csstype: "npm:3.1.3"
-  checksum: 10c0/3f7c4df31067f6a47452afbf447b3ca7b5205a31d0366f004900c92519b9a10d03b73a47d1000bccaa7f01e2f24936405b6a46bb622e9386e6eb712355034ab0
+  checksum: 10c0/3b30e84e43a47176b165ba72e7d342350a2aab2e45a0c24312d5404bd70c8b972c369783880a6825562b5e0a2912c7ae728a04e9b688084b99425de6874c5b13
   languageName: node
   linkType: hard
 
@@ -7161,7 +7152,7 @@ __metadata:
     "@apollo/client": "npm:3.14.0"
     "@chakra-ui/react": "npm:3.26.0"
     "@clerk/nextjs": "npm:6.32.0"
-    "@clerk/themes": "npm:2.4.17"
+    "@clerk/themes": "npm:2.4.19"
     "@emotion/react": "npm:11.14.0"
     "@escape.tech/graphql-armor-block-field-suggestions": "npm:^3.0.0"
     "@eslint/compat": "npm:1.3.2"
