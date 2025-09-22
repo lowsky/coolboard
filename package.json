@@ -88,7 +88,7 @@
     "@types/react-timeago": "4.1.7",
     "@types/ws": "8.18.1",
     "@types/zen-observable": "0.8.7",
-    "@typescript-eslint/parser": "8.44.0",
+    "@typescript-eslint/parser": "8.44.1",
     "eslint": "9.36.0",
     "eslint-config-next": "15.5.3",
     "eslint-config-prettier": "10.1.8",
@@ -98,7 +98,7 @@
     "prettier": "3.6.2",
     "sharp": "0.34.4",
     "typescript": "5.9.2",
-    "typescript-eslint": "8.44.0"
+    "typescript-eslint": "8.44.1"
   },
   "browserslist": [
     ">0.2%",
