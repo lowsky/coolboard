@@ -30,6 +30,7 @@ export const prisma = new PrismaClient({
 });
 
 const builder = new SchemaBuilder<{
+  DefaultFieldNullability: false;
   Context: Ctxt;
   Scalars: {
     DateTime: {
@@ -43,6 +44,7 @@ const builder = new SchemaBuilder<{
   };
   PrismaTypes: PrismaTypes;
 }>({
+  defaultFieldNullability: false,
   plugins: [WithInputPlugin, PrismaPlugin],
   // Optional
   withInput: {
