@@ -1,9 +1,5 @@
-import {
-  type ConnectableElement,
-  type DropTargetMonitor,
-  useDrop,
-} from 'react-dnd';
-import { ReactElement, useCallback } from 'react';
+import { type DropTargetMonitor, useDrop } from 'react-dnd';
+import { useCallback } from 'react';
 
 import type { Card as CardType } from 'generated/graphql';
 
