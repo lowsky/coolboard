@@ -6,12 +6,14 @@ import {
 } from '@apollo/client';
 import { Defer20220824Handler } from '@apollo/client/incremental';
 import { LocalState } from '@apollo/client/local-state';
-import { createNetworkStatusNotifier } from 'react-apollo-network-status';
+
+//import { createNetworkStatusNotifier } from 'react-apollo-network-status';
+
 import { RetryLink } from '@apollo/client/link/retry';
 import { REQ_HEADER_x_coolboard_readonly } from './headers';
 
-const networkStatusNotifier = createNetworkStatusNotifier();
-export const { useApolloNetworkStatus } = networkStatusNotifier;
+//const networkStatusNotifier = createNetworkStatusNotifier();
+//export const { useApolloNetworkStatus } = networkStatusNotifier;
 
 import { loadErrorMessages, loadDevMessages } from '@apollo/client/dev';
 
@@ -42,7 +44,11 @@ export const setupGraphQLClient = (readOnly?: boolean) => {
   });
 
   return new ApolloClient({
-    link: ApolloLink.from([networkStatusNotifier.link, retryLink, httpLink]),
+    link: ApolloLink.from([
+      //  networkStatusNotifier.link,
+      retryLink,
+      httpLink,
+    ]),
     cache: new InMemoryCache(),
 
     /*
