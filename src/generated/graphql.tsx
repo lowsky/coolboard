@@ -1,5 +1,6 @@
-import { gql } from '@apollo/client';
+import { ApolloClient, gql } from '@apollo/client';
 import * as Apollo from '@apollo/client/react';
+import { useQuery } from '@apollo/client/react';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = {
@@ -173,7 +174,7 @@ export type Query = {
   __typename?: 'Query';
   board?: Maybe<Board>;
   list?: Maybe<List>;
-  /** Authenticated current user */
+  /** authenticated current user */
   me?: Maybe<User>;
   ping: Scalars['String']['output'];
 };
@@ -578,7 +579,7 @@ export function useMeQueryQuery(
   baseOptions?: Apollo.QueryHookOptions<MeQueryQuery, MeQueryQueryVariables>
 ) {
   const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<MeQueryQuery, MeQueryQueryVariables>(
+  return useQuery<MeQueryQuery, MeQueryQueryVariables>(
     MeQueryDocument,
     options
   );
@@ -593,12 +594,14 @@ export function useMeQueryLazyQuery(
   );
 }
 export function useMeQuerySuspenseQuery(
-  baseOptions?: Apollo.SuspenseQueryHookOptions<
-    MeQueryQuery,
-    MeQueryQueryVariables
-  >
+  baseOptions?:
+    | Apollo.SkipToken
+    | Apollo.SuspenseQueryHookOptions<MeQueryQuery, MeQueryQueryVariables>
 ) {
-  const options = { ...defaultOptions, ...baseOptions };
+  const options =
+    baseOptions === Apollo.skipToken
+      ? baseOptions
+      : { ...defaultOptions, ...baseOptions };
   return Apollo.useSuspenseQuery<MeQueryQuery, MeQueryQueryVariables>(
     MeQueryDocument,
     options
@@ -639,7 +642,8 @@ export const BoardDocument = gql`
  * });
  */
 export function useBoardQuery(
-  baseOptions: Apollo.QueryHookOptions<BoardQuery, BoardQueryVariables>
+  baseOptions: Apollo.QueryHookOptions<BoardQuery, BoardQueryVariables> &
+    ({ variables: BoardQueryVariables; skip?: boolean } | { skip: boolean })
 ) {
   const options = { ...defaultOptions, ...baseOptions };
   return Apollo.useQuery<BoardQuery, BoardQueryVariables>(
@@ -657,9 +661,12 @@ export function useBoardLazyQuery(
   );
 }
 export function useBoardSuspenseQuery(
-  baseOptions?: Apollo.SuspenseQueryHookOptions<BoardQuery, BoardQueryVariables>
+  baseOptions: Apollo.useSuspenseQuery.Options<BoardQueryVariables>
 ) {
-  const options = { ...defaultOptions, ...baseOptions };
+  const options: Apollo.useSuspenseQuery.Options<BoardQueryVariables> = {
+    ...defaultOptions,
+    ...baseOptions,
+  };
   return Apollo.useSuspenseQuery<BoardQuery, BoardQueryVariables>(
     BoardDocument,
     options
@@ -686,7 +693,7 @@ export const CreateBoardDocument = gql`
     }
   }
 `;
-export type CreateBoardMutationFn = Apollo.MutationFunction<
+export type CreateBoardMutationFn = Apollo.useMutation.MutationFunction<
   CreateBoardMutation,
   CreateBoardMutationVariables
 >;
@@ -725,7 +732,7 @@ export type CreateBoardMutationHookResult = ReturnType<
 >;
 export type CreateBoardMutationResult =
   Apollo.MutationResult<CreateBoardMutation>;
-export type CreateBoardMutationOptions = Apollo.BaseMutationOptions<
+export type CreateBoardMutationOptions = ApolloClient.MutateOptions<
   CreateBoardMutation,
   CreateBoardMutationVariables
 >;
@@ -736,7 +743,7 @@ export const DeleteBoardDocument = gql`
     }
   }
 `;
-export type DeleteBoardMutationFn = Apollo.MutationFunction<
+export type DeleteBoardMutationFn = Apollo.useMutation.MutationFunction<
   DeleteBoardMutation,
   DeleteBoardMutationVariables
 >;
@@ -775,7 +782,7 @@ export type DeleteBoardMutationHookResult = ReturnType<
 >;
 export type DeleteBoardMutationResult =
   Apollo.MutationResult<DeleteBoardMutation>;
-export type DeleteBoardMutationOptions = Apollo.BaseMutationOptions<
+export type DeleteBoardMutationOptions = ApolloClient.MutateOptions<
   DeleteBoardMutation,
   DeleteBoardMutationVariables
 >;
@@ -832,12 +839,14 @@ export function useUserBoardsLazyQuery(
   );
 }
 export function useUserBoardsSuspenseQuery(
-  baseOptions?: Apollo.SuspenseQueryHookOptions<
-    UserBoardsQuery,
-    UserBoardsQueryVariables
-  >
+  baseOptions?:
+    | Apollo.SkipToken
+    | Apollo.SuspenseQueryHookOptions<UserBoardsQuery, UserBoardsQueryVariables>
 ) {
-  const options = { ...defaultOptions, ...baseOptions };
+  const options =
+    baseOptions === Apollo.skipToken
+      ? baseOptions
+      : { ...defaultOptions, ...baseOptions };
   return Apollo.useSuspenseQuery<UserBoardsQuery, UserBoardsQueryVariables>(
     UserBoardsDocument,
     options
@@ -865,7 +874,7 @@ export const AddListDocument = gql`
   }
   ${Board_BoardFragmentDoc}
 `;
-export type AddListMutationFn = Apollo.MutationFunction<
+export type AddListMutationFn = Apollo.useMutation.MutationFunction<
   AddListMutation,
   AddListMutationVariables
 >;
@@ -902,7 +911,7 @@ export function useAddListMutation(
 }
 export type AddListMutationHookResult = ReturnType<typeof useAddListMutation>;
 export type AddListMutationResult = Apollo.MutationResult<AddListMutation>;
-export type AddListMutationOptions = Apollo.BaseMutationOptions<
+export type AddListMutationOptions = ApolloClient.MutateOptions<
   AddListMutation,
   AddListMutationVariables
 >;
@@ -917,7 +926,7 @@ export const DeleteListsOfBoardDocument = gql`
   }
   ${Board_BoardFragmentDoc}
 `;
-export type DeleteListsOfBoardMutationFn = Apollo.MutationFunction<
+export type DeleteListsOfBoardMutationFn = Apollo.useMutation.MutationFunction<
   DeleteListsOfBoardMutation,
   DeleteListsOfBoardMutationVariables
 >;
@@ -957,7 +966,7 @@ export type DeleteListsOfBoardMutationHookResult = ReturnType<
 >;
 export type DeleteListsOfBoardMutationResult =
   Apollo.MutationResult<DeleteListsOfBoardMutation>;
-export type DeleteListsOfBoardMutationOptions = Apollo.BaseMutationOptions<
+export type DeleteListsOfBoardMutationOptions = ApolloClient.MutateOptions<
   DeleteListsOfBoardMutation,
   DeleteListsOfBoardMutationVariables
 >;
@@ -972,7 +981,7 @@ export const DeleteListOfBoardDocument = gql`
   }
   ${Board_BoardFragmentDoc}
 `;
-export type DeleteListOfBoardMutationFn = Apollo.MutationFunction<
+export type DeleteListOfBoardMutationFn = Apollo.useMutation.MutationFunction<
   DeleteListOfBoardMutation,
   DeleteListOfBoardMutationVariables
 >;
@@ -1012,10 +1021,11 @@ export type DeleteListOfBoardMutationHookResult = ReturnType<
 >;
 export type DeleteListOfBoardMutationResult =
   Apollo.MutationResult<DeleteListOfBoardMutation>;
-export type DeleteListOfBoardMutationOptions = Apollo.BaseMutationOptions<
-  DeleteListOfBoardMutation,
-  DeleteListOfBoardMutationVariables
->;
+export type DeleteListOfBoardMutationOptions =
+  Apollo.useMutation.MutationFunctionOptions<
+    DeleteListOfBoardMutation,
+    DeleteListOfBoardMutationVariables
+  >;
 export const CardListDocument = gql`
   query CardList($cardListId: ID!) {
     list(where: { id: $cardListId }) {
@@ -1042,7 +1052,8 @@ export const CardListDocument = gql`
  * });
  */
 export function useCardListQuery(
-  baseOptions: Apollo.QueryHookOptions<CardListQuery, CardListQueryVariables>
+  baseOptions: Apollo.QueryHookOptions<CardListQuery, CardListQueryVariables> &
+    ({ variables: CardListQueryVariables; skip?: boolean } | { skip: boolean })
 ) {
   const options = { ...defaultOptions, ...baseOptions };
   return Apollo.useQuery<CardListQuery, CardListQueryVariables>(
@@ -1063,12 +1074,14 @@ export function useCardListLazyQuery(
   );
 }
 export function useCardListSuspenseQuery(
-  baseOptions?: Apollo.SuspenseQueryHookOptions<
-    CardListQuery,
-    CardListQueryVariables
-  >
+  baseOptions:
+    | Apollo.SkipToken
+    | Apollo.SuspenseQueryHookOptions<CardListQuery, CardListQueryVariables>
 ) {
-  const options = { ...defaultOptions, ...baseOptions };
+  const options =
+    baseOptions === Apollo.skipToken
+      ? baseOptions
+      : { ...defaultOptions, ...baseOptions };
   return Apollo.useSuspenseQuery<CardListQuery, CardListQueryVariables>(
     CardListDocument,
     options
@@ -1093,7 +1106,7 @@ export const RenameListDocument = gql`
     }
   }
 `;
-export type RenameListMutationFn = Apollo.MutationFunction<
+export type RenameListMutationFn = Apollo.useMutation.MutationFunction<
   RenameListMutation,
   RenameListMutationVariables
 >;
@@ -1133,7 +1146,7 @@ export type RenameListMutationHookResult = ReturnType<
 >;
 export type RenameListMutationResult =
   Apollo.MutationResult<RenameListMutation>;
-export type RenameListMutationOptions = Apollo.BaseMutationOptions<
+export type RenameListMutationOptions = ApolloClient.MutateOptions<
   RenameListMutation,
   RenameListMutationVariables
 >;
@@ -1154,7 +1167,7 @@ export const MoveCardDocument = gql`
   }
   ${CardList_ListFragmentDoc}
 `;
-export type MoveCardMutationFn = Apollo.MutationFunction<
+export type MoveCardMutationFn = Apollo.useMutation.MutationFunction<
   MoveCardMutation,
   MoveCardMutationVariables
 >;
@@ -1192,7 +1205,7 @@ export function useMoveCardMutation(
 }
 export type MoveCardMutationHookResult = ReturnType<typeof useMoveCardMutation>;
 export type MoveCardMutationResult = Apollo.MutationResult<MoveCardMutation>;
-export type MoveCardMutationOptions = Apollo.BaseMutationOptions<
+export type MoveCardMutationOptions = ApolloClient.MutateOptions<
   MoveCardMutation,
   MoveCardMutationVariables
 >;
@@ -1204,7 +1217,7 @@ export const MoveCard2Document = gql`
   }
   ${Card_CardFragmentDoc}
 `;
-export type MoveCard2MutationFn = Apollo.MutationFunction<
+export type MoveCard2MutationFn = Apollo.useMutation.MutationFunction<
   MoveCard2Mutation,
   MoveCard2MutationVariables
 >;
@@ -1244,7 +1257,7 @@ export type MoveCard2MutationHookResult = ReturnType<
   typeof useMoveCard2Mutation
 >;
 export type MoveCard2MutationResult = Apollo.MutationResult<MoveCard2Mutation>;
-export type MoveCard2MutationOptions = Apollo.BaseMutationOptions<
+export type MoveCard2MutationOptions = ApolloClient.MutateOptions<
   MoveCard2Mutation,
   MoveCard2MutationVariables
 >;
@@ -1259,7 +1272,7 @@ export const AddCardMutationDocument = gql`
   }
   ${CardList_ListFragmentDoc}
 `;
-export type AddCardMutationMutationFn = Apollo.MutationFunction<
+export type AddCardMutationMutationFn = Apollo.useMutation.MutationFunction<
   AddCardMutationMutation,
   AddCardMutationMutationVariables
 >;
@@ -1299,7 +1312,7 @@ export type AddCardMutationMutationHookResult = ReturnType<
 >;
 export type AddCardMutationMutationResult =
   Apollo.MutationResult<AddCardMutationMutation>;
-export type AddCardMutationMutationOptions = Apollo.BaseMutationOptions<
+export type AddCardMutationMutationOptions = ApolloClient.MutateOptions<
   AddCardMutationMutation,
   AddCardMutationMutationVariables
 >;
@@ -1314,7 +1327,7 @@ export const UpdateCardDocument = gql`
   }
   ${Card_CardFragmentDoc}
 `;
-export type UpdateCardMutationFn = Apollo.MutationFunction<
+export type UpdateCardMutationFn = Apollo.useMutation.MutationFunction<
   UpdateCardMutation,
   UpdateCardMutationVariables
 >;
@@ -1355,7 +1368,7 @@ export type UpdateCardMutationHookResult = ReturnType<
 >;
 export type UpdateCardMutationResult =
   Apollo.MutationResult<UpdateCardMutation>;
-export type UpdateCardMutationOptions = Apollo.BaseMutationOptions<
+export type UpdateCardMutationOptions = ApolloClient.MutateOptions<
   UpdateCardMutation,
   UpdateCardMutationVariables
 >;
