@@ -64,6 +64,7 @@ export const CardList = ({
   const list: UIListData = data?.list;
 
   return (
+    // @ts-expect-error react-dnd type does not exactly match the ref type
     <div ref={ref}>
       <CardListWithDnd
         {...dndProps}

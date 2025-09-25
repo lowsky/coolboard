@@ -85,6 +85,7 @@
     "@graphql-codegen/typescript-operations": "5.0.0",
     "@graphql-codegen/typescript-react-apollo": "4.3.3",
     "@next/eslint-plugin-next": "15.5.3",
+    "@types/react": "19.1.13",
     "@types/react-timeago": "8.0.0",
     "@types/ws": "8.18.1",
     "@types/zen-observable": "0.8.7",
