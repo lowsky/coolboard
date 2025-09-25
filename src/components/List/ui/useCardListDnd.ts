@@ -3,7 +3,7 @@ import {
   type DropTargetMonitor,
   useDrop,
 } from 'react-dnd';
-import type { ReactElement } from 'react';
+import { ReactElement, useCallback } from 'react';
 
 import type { Card as CardType } from 'generated/graphql';
 
@@ -16,22 +16,31 @@ export type MoveItemToFrom = (
   fromListId: string
 ) => Promise<any>;
 
+function useDropRef(
+  drag: (element: HTMLDivElement) => void
+): (element: HTMLDivElement | null) => void {
+  return useCallback(
+    (element: HTMLDivElement | null) => {
+      if (element) {
+        drag(element);
+      }
+    },
+    [drag]
+  );
+}
+
 export function useCardListDnd(
   id: string,
   moveCardToList: MoveItemToFrom
-): [
-  dndProps: DndProps,
-  ref: (
-    elementOrNode: ConnectableElement,
-    options?: any
-  ) => ReactElement | null,
-] {
-  const [dndProps, ref] = useDrop<DraggableCardItem, Promise<void>, DndProps>({
+): [dndProps: DndProps, ref: (element: HTMLDivElement | null) => void] {
+  const [dndProps, drag] = useDrop<DraggableCardItem, Promise<void>, DndProps>({
     accept: dndItemType,
     drop: (item: DraggableCardItem) => drop(id, moveCardToList, item),
     canDrop: (item: DraggableCardItem) => id !== item.cardListId,
     collect: (monitor: DropTargetMonitor) => ({ isOver: monitor.isOver() }),
   });
+
+  const ref: (element: HTMLDivElement | null) => void = useDropRef(drag);
   return [dndProps, ref];
 }
 

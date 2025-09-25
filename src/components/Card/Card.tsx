@@ -17,7 +17,6 @@ function CardForDragging(props: CardForDraggingProps) {
   const ref = useCardDragHook(props);
 
   return (
-    // @ts-expect-error type not exactly matches
     <div ref={ref}>
       <Card {...props} />
     </div>
