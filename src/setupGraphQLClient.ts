@@ -26,14 +26,14 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 export const setupGraphQLClient = (readOnly?: boolean) => {
-  const headers = readOnly
+  const headers: HeadersInit = readOnly
     ? {
         [REQ_HEADER_x_coolboard_readonly]: 'true',
       }
     : {};
   const httpLink = new HttpLink({
     uri: '/api/graphql',
-    headers,
+    fetchOptions: { headers },
   });
 
   const retryLink = new RetryLink({
