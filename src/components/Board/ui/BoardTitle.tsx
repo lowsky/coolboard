@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { Flex, Heading, IconButton } from '@chakra-ui/react';
 import { FiMenu as HamburgerIcon } from 'react-icons/fi';
 import { MdDashboard } from 'react-icons/md';
@@ -6,7 +6,7 @@ import { MenuRoot, MenuTrigger, MenuContent } from '../../ui/menu';
 
 type BoardTitleProps = {
   boardName: string;
-  headerActions?: false | JSX.Element;
+  headerActions?: false | ReactNode;
 };
 
 export const BoardTitle = ({ boardName, headerActions }: BoardTitleProps) => (

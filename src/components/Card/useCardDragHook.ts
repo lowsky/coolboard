@@ -1,4 +1,5 @@
 import { useDrag } from 'react-dnd';
+import { useCallback } from 'react';
 
 import { dndItemType } from 'components/Card/Card';
 import type { Card as CardType } from 'generated/graphql';
@@ -13,9 +14,19 @@ export interface CardForDraggingProps extends CardType {
   readonly?: boolean | undefined;
 }
 
+function useDragRef(drag: (element: HTMLDivElement) => void) {
+  return useCallback(
+    (element: HTMLDivElement | null) => {
+      if (element) {
+        drag(element);
+      }
+    },
+    [drag]
+  );
+}
 export function useCardDragHook(props: CardForDraggingProps) {
   /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-  const [_, ref] = useDrag<
+  const [_, drag] = useDrag<
     DragItem,
     /*DropResult*/ unknown,
     { isDragging: boolean }
@@ -27,5 +38,5 @@ export function useCardDragHook(props: CardForDraggingProps) {
     },
     canDrag: () => Boolean(props.cardListId),
   });
-  return ref;
+  return useDragRef(drag);
 }

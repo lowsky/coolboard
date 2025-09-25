@@ -31,22 +31,19 @@ export default function App({ Component, pageProps }: AppProps) {
         />
       </Head>
       <Suspense fallback={<span>Loading...</span>}>
-        {
-          // @ts-expect-error async component
-          <ClerkProvider dynamic {...pageProps}>
-            <Provider enableSystem>
-              <div
-                style={{
-                  overflow: 'auto',
-                  flex: 1,
-                }}>
-                <Component {...pageProps} />
-              </div>
+        <ClerkProvider dynamic {...pageProps}>
+          <Provider enableSystem>
+            <div
+              style={{
+                overflow: 'auto',
+                flex: 1,
+              }}>
+              <Component {...pageProps} />
+            </div>
 
-              <Footer />
-            </Provider>
-          </ClerkProvider>
-        }
+            <Footer />
+          </Provider>
+        </ClerkProvider>
       </Suspense>
 
       <Analytics />
