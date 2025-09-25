@@ -69,7 +69,7 @@
     "metainfo": "sh storeMetaInfo.sh",
     "gen:theme-typings": "npx -y @chakra-ui/cli typegen src/common/theme.ts",
     "postinstall": "npm run gen:theme-typings",
-    "vercel-build": "COMMIT_REF=$VERCEL_GITHUB_COMMIT_SHA yarn run build ; yarn trigger-e2e-smoke",
+    "vercel-build": "COMMIT_REF=$VERCEL_GITHUB_COMMIT_SHA yarn run build && yarn trigger-e2e-smoke",
     "vercel-fast-build": "COMMIT_REF=$VERCEL_GITHUB_COMMIT_SHA yarn run build",
     "codegen": "graphql-codegen --config codegen.ts"
   },
