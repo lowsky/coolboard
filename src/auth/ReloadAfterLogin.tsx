@@ -3,7 +3,7 @@ import type { ApolloClient } from '@apollo/client';
 import { useAuth } from '@clerk/nextjs';
 
 interface Props {
-  client: ApolloClient<any>;
+  client: ApolloClient;
 }
 
 export function ReloadAfterLogin({ client }: Props) {

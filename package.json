@@ -8,7 +8,7 @@
   "type": "module",
   "homepage": "/",
   "dependencies": {
-    "@apollo/client": "3.14.0",
+    "@apollo/client": "4.0.5",
     "@chakra-ui/react": "3.27.0",
     "@clerk/nextjs": "6.32.2",
     "@clerk/themes": "2.4.21",
@@ -85,6 +85,7 @@
     "@graphql-codegen/typescript-operations": "5.0.0",
     "@graphql-codegen/typescript-react-apollo": "4.3.3",
     "@next/eslint-plugin-next": "15.5.3",
+    "@parcel/watcher": "2.5.1",
     "@types/react": "19.1.13",
     "@types/react-timeago": "8.0.0",
     "@types/ws": "8.18.1",
@@ -97,6 +98,7 @@
     "eslint-plugin-react": "7.37.5",
     "eslint-plugin-react-hooks": "^5.0.0",
     "prettier": "3.6.2",
+    "rxjs": "7.8.2",
     "sharp": "0.34.4",
     "typescript": "5.9.2",
     "typescript-eslint": "8.44.1"

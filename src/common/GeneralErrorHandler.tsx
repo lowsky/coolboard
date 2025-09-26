@@ -2,7 +2,7 @@ import React, { type ReactNode } from 'react';
 import type { ServerError, ServerParseError } from '@apollo/client';
 import { Alert } from '@chakra-ui/react';
 
-import { useApolloNetworkStatus } from '../setupGraphQLClient';
+//import { useApolloNetworkStatus } from '../setupGraphQLClient';
 import { LoginButton } from 'auth/LoginButton';
 
 const ErrorMessage = ({
@@ -19,7 +19,8 @@ const ErrorMessage = ({
 );
 
 export const GeneralErrorHandler = () => {
-  const { queryError, mutationError } = useApolloNetworkStatus();
+  // @ts-expect-error xxx
+  const { queryError, mutationError } = {}; //useApolloNetworkStatus();
   if (queryError || mutationError) {
     const { networkError, graphQLErrors } = {
       ...mutationError,
@@ -51,7 +52,7 @@ export const GeneralErrorHandler = () => {
       }
       const notAuthErr = (graphQLErrors || []).find(
         (err) =>
-          // @ts-expect-error name is not defined
+          // _@ts-expect-error name is not defined
           err.extensions?.exception?.name === 'NotAuthorizedError' ||
           err.message?.startsWith('Not authorized')
       );

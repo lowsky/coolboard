@@ -6,11 +6,7 @@ import Image from 'next/image';
 import { FaChalkboardTeacher, FaFilm, FaLink } from 'react-icons/fa';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import {
-  type ApolloClient,
-  ApolloProvider,
-  type NormalizedCacheObject,
-} from '@apollo/client';
+import { ApolloProvider } from '@apollo/client/react';
 
 import { Board } from 'components/Board/Board';
 import { setupGraphQLClient } from 'src/setupGraphQLClient';
@@ -22,6 +18,7 @@ import { trackPage } from 'src/common/tracking';
 
 import coolBoardLogo from 'public/CoolBoardLogo100.png';
 import screenshot from 'public/screenshot.png';
+import { ApolloClient } from '@apollo/client';
 
 // probing, debug stuff (delete me)
 if (isInBrowserEnv())
@@ -123,7 +120,7 @@ export default function Index() {
 }
 
 function DemoBoardSegment() {
-  const [client, setClient] = useState<ApolloClient<NormalizedCacheObject>>();
+  const [client, setClient] = useState<ApolloClient>();
   useEffect(() => {
     if (demoBoardId) setClient(setupGraphQLClient(true));
   }, []);

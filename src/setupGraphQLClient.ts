@@ -2,14 +2,18 @@ import {
   ApolloClient,
   InMemoryCache,
   ApolloLink,
-  createHttpLink,
+  HttpLink,
 } from '@apollo/client';
-import { createNetworkStatusNotifier } from 'react-apollo-network-status';
+import { Defer20220824Handler } from '@apollo/client/incremental';
+import { LocalState } from '@apollo/client/local-state';
+
+//import { createNetworkStatusNotifier } from 'react-apollo-network-status';
+
 import { RetryLink } from '@apollo/client/link/retry';
 import { REQ_HEADER_x_coolboard_readonly } from './headers';
 
-const networkStatusNotifier = createNetworkStatusNotifier();
-export const { useApolloNetworkStatus } = networkStatusNotifier;
+//const networkStatusNotifier = createNetworkStatusNotifier();
+//export const { useApolloNetworkStatus } = networkStatusNotifier;
 
 import { loadErrorMessages, loadDevMessages } from '@apollo/client/dev';
 
@@ -22,14 +26,14 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 export const setupGraphQLClient = (readOnly?: boolean) => {
-  const headers = readOnly
+  const headers: HeadersInit = readOnly
     ? {
         [REQ_HEADER_x_coolboard_readonly]: 'true',
       }
     : {};
-  const httpLink = createHttpLink({
+  const httpLink = new HttpLink({
     uri: '/api/graphql',
-    headers,
+    fetchOptions: { headers },
   });
 
   const retryLink = new RetryLink({
@@ -40,7 +44,25 @@ export const setupGraphQLClient = (readOnly?: boolean) => {
   });
 
   return new ApolloClient({
-    link: ApolloLink.from([networkStatusNotifier.link, retryLink, httpLink]),
+    link: ApolloLink.from([
+      //  networkStatusNotifier.link,
+      retryLink,
+      httpLink,
+    ]),
     cache: new InMemoryCache(),
+
+    /*
+    Inserted by Apollo Client 3->4 migration codemod.
+    If you are not using the `@client` directive in your application,
+    you can safely remove this option.
+    */
+    localState: new LocalState({}),
+
+    /*
+    Inserted by Apollo Client 3->4 migration codemod.
+    If you are not using the `@defer` directive in your application,
+    you can safely remove this option.
+    */
+    incrementalHandler: new Defer20220824Handler(),
   });
 };
