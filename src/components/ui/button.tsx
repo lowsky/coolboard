@@ -12,6 +12,7 @@ interface ButtonLoadingProps {
   loadingText?: React.ReactNode;
 }
 
+// @ts-expect-error  Type 'boolean | undefined' is not assignable to type 'boolean'.
 export interface ButtonProps extends ChakraButtonProps, ButtonLoadingProps {}
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
