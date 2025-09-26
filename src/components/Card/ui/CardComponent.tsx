@@ -1,6 +1,6 @@
 import React, { type CSSProperties, useState } from 'react';
 import { Box } from '@chakra-ui/react';
-import type { ApolloLink } from '@apollo/client';
+import { ApolloClient } from '@apollo/client';
 
 import type {
   Card,
@@ -22,7 +22,7 @@ type State = {
 type CardComponentProps = Card & {
   storeCard: (
     vars: UpdateCardMutationVariables
-  ) => Promise<ApolloLink.Result<UpdateCardMutation>>;
+  ) => Promise<ApolloClient.MutateResult<UpdateCardMutation>>;
   isDragging?: boolean;
   readonly?: boolean;
 };

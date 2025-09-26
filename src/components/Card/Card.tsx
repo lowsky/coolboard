@@ -1,8 +1,10 @@
 import React from 'react';
+import { ApolloClient } from '@apollo/client';
 
 import { CardComponent } from './ui/CardComponent';
 import {
   type Card as CardType,
+  UpdateCardMutation,
   type UpdateCardMutationVariables,
   useUpdateCardMutation,
 } from 'generated/graphql';
@@ -30,14 +32,13 @@ function Card(props: CardType) {
     },
   });
 
-  return (
-    <CardComponent
-      {...props}
-      storeCard={(variables: UpdateCardMutationVariables) =>
-        mutation({ variables })
-      }
-    />
-  );
+  const storeCard: (
+    vars: UpdateCardMutationVariables
+  ) => Promise<ApolloClient.MutateResult<UpdateCardMutation>> = (
+    variables: UpdateCardMutationVariables
+  ) => mutation({ variables });
+
+  return <CardComponent {...props} storeCard={storeCard} />;
 }
 
 export default CardForDragging;
