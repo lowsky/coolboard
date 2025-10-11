@@ -33,7 +33,7 @@
     "@prisma/extension-accelerate": "2.0.2",
     "@prisma/instrumentation": "6.16.2",
     "@vercel/analytics": "1.5.0",
-    "@vercel/otel": "1.13.0",
+    "@vercel/otel": "1.13.1",
     "@vercel/speed-insights": "1.2.0",
     "graphql": "16.11.0",
     "graphql-scalars": "1.24.2",
