@@ -1,5 +1,4 @@
 {
-  "ignoreDeps": ["@types/.*"],
   "packageRules": [
     {
       "matchUpdateTypes": ["minor", "patch"],
