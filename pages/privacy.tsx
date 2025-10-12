@@ -40,7 +40,7 @@ export default function Privacy() {
 
         <Heading as="h2">Data Collection on our website</Heading>
         <Heading as="h3">Analytics and third-party tools</Heading>
-        <Text>Be aware this using vercel's Analytics .</Text>
+        <Text>Be aware this using Vercel Analytics .</Text>
         <Text>
           When visiting our website, statistical analyses may be made of your
           surfing behavior This happens primarily using cookies and analytics.
