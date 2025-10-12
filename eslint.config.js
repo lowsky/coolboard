@@ -45,10 +45,9 @@ const config = [
     },
   },
   {
-    // Hint: specifying files was needed - else context.getContext failed
+    // Hint: specifying files was needed - else useDisableIntrospection and use Auth in non JSX failed
     files: ['**/*.{js,tsx}'],
-    plugins: { 'react-hooks': reactHooks },
-    // ...
+    ...reactHooks.configs.flat['recommended-latest'],
     rules: {
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
