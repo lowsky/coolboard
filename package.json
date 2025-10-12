@@ -21,7 +21,7 @@
     "@opentelemetry/context-zone": "2.1.0",
     "@opentelemetry/instrumentation-express": "0.54.0",
     "@opentelemetry/instrumentation-graphql": "0.53.0",
-    "@opentelemetry/instrumentation-http": "0.205.0",
+    "@opentelemetry/instrumentation-http": "0.206.0",
     "@opentelemetry/instrumentation-winston": "0.50.0",
     "@opentelemetry/sdk-trace-web": "2.1.0",
     "@opentelemetry/winston-transport": "0.16.0",
