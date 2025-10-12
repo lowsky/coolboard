@@ -35,13 +35,16 @@ const config = [
   },
   prettierConfigRecommended,
   {
-    files: ['** / *.{js,tsx}'],
+    files: ['**/*.{js,tsx}'],
     plugins: {
       react: reactPlugin,
     },
-    settings: { react: { version: '18.3' } },
+    settings: { react: { version: '19' } },
     rules: {
       ...reactPlugin.configs.recommended.rules,
+      'react/prop-types': 'warn',
+      // import React is not needed, so ignoring this rule
+      'react/react-in-jsx-scope': 0,
     },
   },
   {
