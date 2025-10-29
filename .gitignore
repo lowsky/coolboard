@@ -62,5 +62,4 @@ smoketest/cypress/screenshots
 !/smoketest/.yarn/sdks
 !/smoketest/.yarn/versions
 
-/smoketest/check-deployed-version/target/
 /smoketest/cypress/results/test-results.xml
