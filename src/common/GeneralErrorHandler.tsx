@@ -2,7 +2,7 @@ import { type ReactNode } from 'react';
 import type { ServerError, ServerParseError } from '@apollo/client';
 import { Alert } from '@chakra-ui/react';
 
-//import { useApolloNetworkStatus } from '../setupGraphQLClient';
+import { useApolloNetworkStatus } from '../setupGraphQLClient';
 import { LoginButton } from 'auth/LoginButton';
 
 const ErrorMessage = ({
@@ -19,8 +19,7 @@ const ErrorMessage = ({
 );
 
 export const GeneralErrorHandler = () => {
-  // @ts-expect-error xxx
-  const { queryError, mutationError } = {}; //useApolloNetworkStatus();
+  const { queryError, mutationError } = useApolloNetworkStatus();
   if (queryError || mutationError) {
     const { networkError, graphQLErrors } = {
       ...mutationError,
@@ -29,7 +28,7 @@ export const GeneralErrorHandler = () => {
 
     if (graphQLErrors) {
       const registrationFailed = graphQLErrors.find(
-        (err) => err.name === 'RegistrationFailed'
+        (err) => err.extensions?.name === 'RegistrationFailed'
       );
 
       if (registrationFailed) {
@@ -50,11 +49,10 @@ export const GeneralErrorHandler = () => {
           </ErrorMessage>
         );
       }
-      const notAuthErr = (graphQLErrors || []).find(
-        (err) =>
-          // _@ts-expect-error name is not defined
-          err.extensions?.exception?.name === 'NotAuthorizedError' ||
-          err.message?.startsWith('Not authorized')
+      const notAuthErr = (graphQLErrors ?? []).find((err) =>
+        // _@ts-expect-error name is not defined
+        // LATER: reactivate err.extensions?.exception?.name === 'NotAuthorizedError' ||
+        err.message?.startsWith('Not authorized')
       );
 
       if (notAuthErr) {
@@ -77,8 +75,8 @@ export const GeneralErrorHandler = () => {
         <ErrorMessage>
           <Alert.Title>Error:</Alert.Title>
           <Alert.Description>
-            {errorMsgs.map((message, idx) => (
-              <span key={idx}>{message}</span>
+            {errorMsgs.map((message) => (
+              <span key={message}>{message}</span>
             ))}
           </Alert.Description>
         </ErrorMessage>
