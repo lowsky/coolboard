@@ -36,7 +36,7 @@
     "@vercel/otel": "2.0.1",
     "@vercel/speed-insights": "1.2.0",
     "graphql": "16.11.0",
-    "graphql-scalars": "1.24.2",
+    "graphql-scalars": "1.25.0",
     "graphql-tag": "2.12.6",
     "graphql-yoga": "5.16.0",
     "inter-ui": "4.1.1",
