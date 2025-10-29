@@ -8105,10 +8105,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"caniuse-lite@npm:^1.0.30001332, caniuse-lite@npm:^1.0.30001579, caniuse-lite@npm:^1.0.30001746":
+"caniuse-lite@npm:^1.0.30001332":
   version: 1.0.30001760
   resolution: "caniuse-lite@npm:1.0.30001760"
   checksum: 10c0/cee26dff5c5b15ba073ab230200e43c0d4e88dc3bac0afe0c9ab963df70aaa876c3e513dde42a027f317136bf6e274818d77b073708b74c5807dfad33c029d3c
+  languageName: node
+  linkType: hard
+
+"caniuse-lite@npm:^1.0.30001579":
+  version: 1.0.30001579
+  resolution: "caniuse-lite@npm:1.0.30001579"
+  checksum: 10c0/4003970f8d01a5fa314e39f4a21751dc750a530f3d19aed225e18e8e02892b590b8b0debfa0961eae9bc0e49b77bfb17cf30d2469540e428a8305e3cc9164fb8
+  languageName: node
+  linkType: hard
+
+"caniuse-lite@npm:^1.0.30001746":
+  version: 1.0.30001750
+  resolution: "caniuse-lite@npm:1.0.30001750"
+  checksum: 10c0/aa77ebf264ca8dcfe913fadaa19f06bf839d65dec24498fdb9c45739ab0828b8275ca30c698f4ee86829d38264eaa461edf4577e407753da8205ab1d285e105d
   languageName: node
   linkType: hard
 
@@ -8464,7 +8478,7 @@ __metadata:
     prettier: "npm:3.7.4"
     prisma: "npm:7.1.0"
     react: "npm:19.2.3"
-    react-apollo-network-status: "npm:5.3.1"
+    react-apollo-network-status: "npm:6.0.0"
     react-dnd: "npm:16.0.1"
     react-dnd-html5-backend: "npm:16.0.1"
     react-dom: "npm:19.2.3"
@@ -13503,14 +13517,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-apollo-network-status@npm:5.3.1":
-  version: 5.3.1
-  resolution: "react-apollo-network-status@npm:5.3.1"
+"react-apollo-network-status@npm:6.0.0":
+  version: 6.0.0
+  resolution: "react-apollo-network-status@npm:6.0.0"
   peerDependencies:
-    "@apollo/client": ^3.0.0
+    "@apollo/client": ^4.0.0
     graphql: ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
     react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-  checksum: 10c0/3648237ee3d00647ca3201fa1d0f725cf5ff1ac2c3c240771dfd938f0d94d6c85ef6f61ce197defec16ff8e7e90cfcd818733a1dc42bcc60b3398f2532a8bc3d
+  checksum: 10c0/123d8535ba93f6b19913b52f3c73ae2a97e746ebde7dbc4bd06677fc9814a3af1ad5a3bed50e5fff51160c2b247c38ad76a59f9942c4d8eb782de022dedc37b5
   languageName: node
   linkType: hard
 
