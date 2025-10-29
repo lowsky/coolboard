@@ -1,17 +1,47 @@
 import { Container, Heading, List, ListItem, Spinner } from '@chakra-ui/react';
 import type { ApolloCache } from '@apollo/client';
 
-import {
-  useCreateBoardMutation,
-  useDeleteBoardMutation,
-  UserBoardsDocument,
-  type UserBoardsQuery,
-  useUserBoardsSuspenseQuery,
-} from 'generated/graphql';
+import { UserBoardsDocument, type UserBoardsQuery } from 'generated/graphql';
 import { Segment } from 'common/Segment';
 import { FullVerticalContainer } from 'common/FullVerticalContainer';
 import { CreateBoardModal } from './ui/CreateBoardModal';
 import { BoardListItem, type BoardListItemProps } from './ui/BoardListItem';
+import { useMutation, useSuspenseQuery } from '@apollo/client/react';
+import { graphql } from '../../gql';
+
+const UserBoardsDoc = graphql(`
+  query userBoards {
+    me {
+      name
+      id
+      boards {
+        name
+        id
+      }
+    }
+  }
+`);
+
+const DeleteBoardDoc = graphql(`
+  mutation deleteBoard($id: ID!) {
+    deleteBoard(id: $id) {
+      id
+    }
+  }
+`);
+
+const CreateBoardDoc = graphql(`
+  mutation createBoard($name: String!) {
+    createBoard(name: $name) {
+      name
+      id
+      boards {
+        name
+        id
+      }
+    }
+  }
+`);
 
 interface Props {
   boards: Omit<BoardListItemProps, 'deleteBoard'>[];
@@ -19,7 +49,7 @@ interface Props {
 }
 
 export const BoardList = ({ boards, deleteBoard }: Props) => {
-  const [createBoard, boardCreationState] = useCreateBoardMutation();
+  const [createBoard, boardCreationState] = useMutation(CreateBoardDoc);
 
   return (
     <List.Root>
@@ -74,8 +104,8 @@ const updateCachedUserBoardsAfterRemovingBoard = (boardId: string) => {
 };
 
 export const Boards = () => {
-  const { error, data } = useUserBoardsSuspenseQuery();
-  const [deleteBoard] = useDeleteBoardMutation();
+  const { error, data } = useSuspenseQuery(UserBoardsDoc);
+  const [deleteBoard] = useMutation(DeleteBoardDoc);
 
   if (error) {
     return (

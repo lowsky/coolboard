@@ -5,12 +5,24 @@ import {
   type Card as CardType,
   UpdateCardMutation,
   type UpdateCardMutationVariables,
-  useUpdateCardMutation,
 } from 'generated/graphql';
 import {
   CardForDraggingProps,
   useCardDragHook,
 } from 'components/Card/useCardDragHook';
+import { useMutation } from '@apollo/client/react';
+import { graphql } from '../../gql';
+
+const UpdateCardDoc = graphql(`
+  mutation updateCard($id: ID!, $name: String!, $description: String) {
+    updateCard(
+      where: { id: $id }
+      data: { name: $name, description: $description }
+    ) {
+      ...Card_card
+    }
+  }
+`);
 
 export const dndItemType = 'card';
 
@@ -25,7 +37,7 @@ function CardForDragging(props: CardForDraggingProps) {
 }
 
 function Card(props: CardType) {
-  const [mutation] = useUpdateCardMutation({
+  const [mutation] = useMutation(UpdateCardDoc, {
     variables: {
       ...props,
     },
