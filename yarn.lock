@@ -5869,9 +5869,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vercel/otel@npm:2.0.1":
-  version: 2.0.1
-  resolution: "@vercel/otel@npm:2.0.1"
+"@vercel/otel@npm:2.1.0":
+  version: 2.1.0
+  resolution: "@vercel/otel@npm:2.1.0"
   peerDependencies:
     "@opentelemetry/api": ">=1.9.0 <2.0.0"
     "@opentelemetry/api-logs": ">=0.200.0 <0.300.0"
@@ -5880,7 +5880,7 @@ __metadata:
     "@opentelemetry/sdk-logs": ">=0.200.0 <0.300.0"
     "@opentelemetry/sdk-metrics": ">=2.0.0 <3.0.0"
     "@opentelemetry/sdk-trace-base": ">=2.0.0 <3.0.0"
-  checksum: 10c0/f1a8a231bd661693e4cb1f693d65b4fc47846443b168a6e4c0cb3dde894571197e65324f994018c472aab3a9897c8111f479a6132a4fda7b9739aeda56927f09
+  checksum: 10c0/48880dc8abdfe20f8a7da125bfae2b2dfccdc52dce22401a59092f45a319c71c8eb28bea2d1e36276d62b7571a3639822fda4754bb1639fb32f9d84896b74635
   languageName: node
   linkType: hard
 
@@ -7990,7 +7990,7 @@ __metadata:
     "@types/zen-observable": "npm:0.8.7"
     "@typescript-eslint/parser": "npm:8.46.2"
     "@vercel/analytics": "npm:1.5.0"
-    "@vercel/otel": "npm:2.0.1"
+    "@vercel/otel": "npm:2.1.0"
     "@vercel/speed-insights": "npm:1.2.0"
     eslint: "npm:9.38.0"
     eslint-config-next: "npm:15.5.6"
