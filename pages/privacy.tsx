@@ -44,7 +44,7 @@ export default function Privacy() {
         <Text>
           When visiting our website, statistical analyses may be made of your
           surfing behavior This happens primarily using cookies and analytics.
-          However, being hosted at vercel.com, when you visit www.coolboard.fun,
+          However, being hosted at vercel.com, when you visit www.coolboard.eu,
           Vercel [US] collects log files and uses cookies. You can learn more
           about it here:
           <Link
@@ -61,7 +61,7 @@ export default function Privacy() {
           information can be found in the following privacy policy.
         </Text>
         <Text>
-          Note that www.coolboard.fun has no access to or control over these
+          Note that www.coolboard.eu has no access to or control over these
           cookies and log files that are used by Vercel nor Clerk.dev.
         </Text>
 

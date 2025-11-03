@@ -262,7 +262,7 @@ export const login: (
   );
 
 export const isProduction =
-  Cypress.config().baseUrl === 'https://www.coolboard.fun';
+  Cypress.config().baseUrl === 'https://www.coolboard.eu';
 
 const credPrefix = isProduction ? 'PRODUCTION_' : '';
 export const userLogin = Cypress.env(credPrefix + 'LOGIN');

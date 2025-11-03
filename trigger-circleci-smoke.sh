@@ -16,8 +16,8 @@ echo VERCEL_URL=$VERCEL_URL
 TEST_URL=https://$VERCEL_URL
 
 if [ "${BRANCH}" == "main" ]; then
-  echo testing main branch deployment: www.coolboard.fun
-  TEST_URL="https://www.coolboard.fun"
+  echo testing main branch deployment: www.coolboard.eu
+  TEST_URL="https://www.coolboard.eu"
 fi
 
 echo
