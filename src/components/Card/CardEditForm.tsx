@@ -1,4 +1,3 @@
-import React from 'react';
 import { Field, Input, Textarea } from '@chakra-ui/react';
 
 import type { Card } from 'generated/graphql';

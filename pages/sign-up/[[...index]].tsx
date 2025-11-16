@@ -1,4 +1,3 @@
-import React from 'react';
 import { SignUp } from '@clerk/nextjs';
 import { Flex, Heading } from '@chakra-ui/react';
 import { ProfileHeader } from 'common/ProfileHeader';

@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { Flex, Heading, IconButton } from '@chakra-ui/react';
 import { FiMenu as HamburgerIcon } from 'react-icons/fi';
 import { MdDashboard } from 'react-icons/md';

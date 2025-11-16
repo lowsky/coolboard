@@ -1,4 +1,3 @@
-import React from 'react';
 import { useApolloClient } from '@apollo/client/react';
 import { SignedIn, SignedOut, useClerk, UserButton } from '@clerk/nextjs';
 import { useRouter } from 'next/router';

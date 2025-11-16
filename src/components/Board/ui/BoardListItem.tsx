@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { IconButton, List } from '@chakra-ui/react';
 import Link from 'next/link';
 import { FaTrash } from 'react-icons/fa';

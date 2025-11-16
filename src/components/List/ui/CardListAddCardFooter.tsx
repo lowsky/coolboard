@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Editable, Flex } from '@chakra-ui/react';
 import { FiPlus as AddIcon } from 'react-icons/fi';
 

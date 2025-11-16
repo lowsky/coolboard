@@ -46,7 +46,7 @@
     ],
     "module": "esnext",
     "moduleResolution": "Bundler",
-    "jsx": "preserve"
+    "jsx": "react-jsx"
   },
   "exclude": [
     "server/stuff",

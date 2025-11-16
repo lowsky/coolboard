@@ -1,4 +1,3 @@
-import React from 'react';
 import { Container, Heading, List, ListItem, Spinner } from '@chakra-ui/react';
 import type { ApolloCache } from '@apollo/client';
 
