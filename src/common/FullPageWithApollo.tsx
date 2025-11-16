@@ -1,4 +1,3 @@
-import React from 'react';
 import { ApolloProvider } from '@apollo/client/react';
 
 import { FullVerticalContainer } from 'common/FullVerticalContainer';

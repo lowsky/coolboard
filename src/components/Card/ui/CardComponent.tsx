@@ -1,4 +1,4 @@
-import React, { type CSSProperties, useState } from 'react';
+import { type CSSProperties, useState } from 'react';
 import { Box } from '@chakra-ui/react';
 import { ApolloClient } from '@apollo/client';
 

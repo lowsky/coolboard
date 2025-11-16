@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react';
-import React, { Suspense } from 'react';
+import { Suspense } from 'react';
 
 import { CardList } from 'components/List/CardList';
 import { AddListButton } from 'components/Board/ui/AddListButton';

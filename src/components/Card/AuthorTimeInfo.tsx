@@ -1,4 +1,3 @@
-import React from 'react';
 import TimeAgo from 'react-timeago';
 import { AlertDescription, Box } from '@chakra-ui/react';
 

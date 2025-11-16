@@ -1,7 +1,7 @@
 import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
 import {
   type NextFetchEvent,
-  type NextMiddleware,
+  type NextProxy,
   type NextRequest,
   NextResponse,
 } from 'next/server';
@@ -9,7 +9,7 @@ import {
 const isProtectedRoute = createRouteMatcher(['/boards', '/board/(.*)']);
 
 // https://clerk.com/docs/references/nextjs/clerk-middleware
-const clerkAuthMiddleWare: NextMiddleware = clerkMiddleware(
+const clerkAuthMiddleWare: NextProxy = clerkMiddleware(
   async (auth, req) => {
     if (isProtectedRoute(req)) {
       await auth.protect();
@@ -20,7 +20,7 @@ const clerkAuthMiddleWare: NextMiddleware = clerkMiddleware(
   }
 );
 
-const middleware: NextMiddleware = async (
+const proxy: NextProxy = async (
   request: NextRequest,
   event: NextFetchEvent
 ) => {
@@ -35,7 +35,7 @@ const middleware: NextMiddleware = async (
   return response;
 };
 
-export default middleware;
+export default proxy;
 
 // Stop Middleware running on static files - more performant than ignoreRoutes
 export const config = {

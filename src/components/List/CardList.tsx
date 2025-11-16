@@ -4,7 +4,6 @@ import {
   useDeleteListOfBoardMutation,
   useMoveCard2Mutation,
 } from 'generated/graphql';
-import React from 'react';
 
 import { createUpdateCachedListsAfterMovingCard } from './overrideCacheListsAfterMovingCard';
 import { CardListWithDnd, type UIListData } from './ui/CardListWithDnd';

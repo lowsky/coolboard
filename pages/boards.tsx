@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import { Suspense } from 'react';
 import { useAuth } from '@clerk/nextjs';
 import { Container, Text } from '@chakra-ui/react';
 

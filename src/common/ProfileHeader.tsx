@@ -1,4 +1,4 @@
-import React, { type ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import Link from 'next/link';
 import { Box, Container, Flex } from '@chakra-ui/react';
 import Image from 'next/image';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { SignInButton } from '@clerk/nextjs';
 import { Button } from '@chakra-ui/react';
 import { FaSignInAlt } from 'react-icons/fa';

@@ -1,4 +1,4 @@
-import React, { type ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import type { ServerError, ServerParseError } from '@apollo/client';
 import { Alert } from '@chakra-ui/react';
 
