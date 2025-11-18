@@ -1,3 +1,5 @@
+'use client';
+
 import NextLink from 'next/link';
 import {
   Box,
@@ -17,7 +19,7 @@ import { LuExternalLink } from 'react-icons/lu';
 import FullPageWithApollo from 'common/FullPageWithApollo';
 import { ProfileHeader } from 'common/ProfileHeader';
 
-export default function About() {
+export default function Page() {
   return (
     <FullPageWithApollo data-cy="about-full-container">
       <ProfileHeader />

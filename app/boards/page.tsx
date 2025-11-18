@@ -1,3 +1,5 @@
+'use client';
+
 import { Suspense } from 'react';
 import { useAuth } from '@clerk/nextjs';
 import { Container, Text } from '@chakra-ui/react';
@@ -8,7 +10,7 @@ import { GeneralErrorHandler } from 'common/GeneralErrorHandler';
 import FullPageWithApollo from 'common/FullPageWithApollo';
 import { Boards as BoardList, BoardsSkeleton } from 'components/Board/Boards';
 
-export default function Boards() {
+export default function Page() {
   trackPage('boards');
 
   const { isSignedIn, isLoaded } = useAuth();

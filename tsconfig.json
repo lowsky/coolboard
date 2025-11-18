@@ -57,6 +57,7 @@
     "netlify/**/*.ts",
     "src/**/*.ts*",
     "pages/**/*.ts*",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
   ]
 }

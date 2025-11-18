@@ -1,3 +1,5 @@
+'use client';
+
 import { Suspense, useEffect, useState } from 'react';
 import { Container, Flex, Heading, Icon, Text } from '@chakra-ui/react';
 
@@ -29,7 +31,7 @@ if (isInBrowserEnv())
 
 const demoBoardId = process.env.NEXT_PUBLIC_DEMOBOARD_ID;
 
-export default function Index() {
+export default function Page() {
   trackPage('Index');
 
   return (
