@@ -2,7 +2,6 @@ import { Suspense } from 'react';
 
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import { useRouter } from 'next/router';
 
 import { trackPage } from 'src/common/tracking';
 
@@ -11,9 +10,8 @@ import { GeneralErrorHandler } from 'src/common/GeneralErrorHandler';
 import FullPageWithApollo from 'src/common/FullPageWithApollo';
 import { Board } from 'components/Board/Board';
 
-export default function BoardPage() {
-  const router = useRouter();
-  const { id } = router.query;
+export default function BoardPage({ params }: { params: { id: string } }) {
+  const { id } = params;
 
   const boardId = Array.isArray(id) ? id[0] : id;
 

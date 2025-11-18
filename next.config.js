@@ -17,6 +17,10 @@ const nextConfig = {
   poweredByHeader: false,
 
   reactStrictMode: true,
+
+  experimental: {
+    mcpServer: true,
+  },
 };
 
 export default nextConfig;

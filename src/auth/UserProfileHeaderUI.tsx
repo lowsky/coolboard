@@ -28,7 +28,7 @@ export const UserProfileHeaderUI = () => {
       <SignedIn>
         <Flex alignItems="center" gap="0.5em">
           <ColorModeButton />
-          <UserButton afterSignOutUrl="/" />
+          <UserButton />
           <Button
             // @ts-expect-error it is an async function.
             onClick={awaitLogoutAndCacheClear}

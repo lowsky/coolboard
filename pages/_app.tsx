@@ -31,7 +31,7 @@ export default function App({ Component, pageProps }: AppProps) {
         />
       </Head>
       <Suspense fallback={<span>Loading...</span>}>
-        <ClerkProvider dynamic {...pageProps}>
+        <ClerkProvider dynamic {...pageProps} afterSignOutUrl="/">
           <Provider enableSystem>
             <div
               style={{
