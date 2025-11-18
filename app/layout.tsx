@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+
 import { InstanaEumScripts } from 'common/instanaEumScripts';
 import { AppProviders } from './providers';
 
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
   title: 'Coolboard - Hands-on Application Building with GraphQL',
   description:
     'Working live demo of /building an entire Trello-like application using GraphQL and React/ video course on PacktPub.com',
-  themeColor: '#27ae60',
+
   twitter: {
     card: 'summary_large_image',
     site: '@rhosts',
@@ -29,7 +30,11 @@ export const metadata: Metadata = {
     ],
     apple: [{ url: '/favicons/apple-touch-icon.png', sizes: '180x180' }],
     other: [
-      { rel: 'mask-icon', url: '/favicons/safari-pinned-tab.svg', color: '#ffffff' },
+      {
+        rel: 'mask-icon',
+        url: '/favicons/safari-pinned-tab.svg',
+        color: '#ffffff',
+      },
       { rel: 'shortcut icon', url: '/favicons/favicon.ico' },
     ],
   },
@@ -37,17 +42,20 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
+  themeColor: '#27ae60',
   width: 'device-width',
   initialScale: 1,
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <body>
-        <AppProviders>
-          {children}
-        </AppProviders>
+        <AppProviders>{children}</AppProviders>
         {/* Analytics tools */}
         <Analytics />
         <SpeedInsights />

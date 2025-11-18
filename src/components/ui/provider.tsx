@@ -1,6 +1,6 @@
 'use client';
 
-import { PropsWithChildren } from 'react';
+import type { PropsWithChildren } from 'react';
 import { ChakraProvider } from '@chakra-ui/react';
 
 import { ColorModeProvider, type ColorModeProviderProps } from './color-mode';

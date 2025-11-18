@@ -1,7 +1,14 @@
 import { AlertDescription, AlertTitle } from '@chakra-ui/react';
+
 import { Alert } from 'components/ui/alert';
 
-export const ShowDiffWarning = ({ newValue, currentValue }) => {
+export const ShowDiffWarning = ({
+  newValue,
+  currentValue,
+}: {
+  newValue: string;
+  currentValue: string;
+}) => {
   if (newValue === currentValue) {
     return null;
   }

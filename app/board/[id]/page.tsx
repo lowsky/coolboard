@@ -1,7 +1,37 @@
 'use client';
 
-import BoardPageImpl from '../../../pages/board/[id]';
+import { Suspense } from 'react';
 
-export default function Page({ params }: { params: { id: string | string[] } }) {
-  return <BoardPageImpl params={params} />;
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+
+import { trackPage } from 'src/common/tracking';
+
+import { ProfileHeader } from 'src/common/ProfileHeader';
+import { GeneralErrorHandler } from 'src/common/GeneralErrorHandler';
+import FullPageWithApollo from 'src/common/FullPageWithApollo';
+import { Board } from 'components/Board/Board';
+
+export default function Page({
+  params,
+}: {
+  params: { id: string | string[] };
+}) {
+  const { id } = params;
+
+  const boardId = Array.isArray(id) ? id[0] : id;
+
+  trackPage('board ' + id);
+
+  return (
+    <FullPageWithApollo>
+      <ProfileHeader />
+      <GeneralErrorHandler />
+      <DndProvider backend={HTML5Backend}>
+        <Suspense fallback={<div>Loading Board</div>}>
+          {boardId && <Board boardId={boardId} />}
+        </Suspense>
+      </DndProvider>
+    </FullPageWithApollo>
+  );
 }

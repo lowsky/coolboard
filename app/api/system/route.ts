@@ -2,7 +2,10 @@ import packageInfo from '../../../package.json';
 
 export function GET() {
   try {
-    const { next, prisma, react, graphql } = packageInfo.dependencies as Record<string, string>;
+    const { next, prisma, react, graphql } = packageInfo.dependencies as Record<
+      string,
+      string
+    >;
     const info = {
       name: packageInfo.name,
       next,
