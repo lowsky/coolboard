@@ -1,10 +1,14 @@
-"use client";
+'use client';
 
-import { PropsWithChildren, Suspense, useEffect } from "react";
-import { ClerkProvider } from "@clerk/nextjs";
-import { Provider as UiProvider } from "src/components/ui/provider";
-import { Footer } from "components/Footer";
-import { instrumentBrowserOtel } from "src/instrumentBrowserOtel";
+import { PropsWithChildren, Suspense, useEffect } from 'react';
+import { ClerkProvider } from '@clerk/nextjs';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
+
+import { Provider as UiProvider } from 'src/components/ui/provider';
+
+import { Footer } from 'components/Footer';
+import { instrumentBrowserOtel } from 'src/instrumentBrowserOtel';
 
 function OtelInit() {
   useEffect(() => {
@@ -18,14 +22,18 @@ function OtelInit() {
 
 export function AppProviders({ children }: PropsWithChildren) {
   return (
-    <Suspense fallback={<span>Loading...</span>}>
-      <ClerkProvider afterSignOutUrl="/">
-        <UiProvider enableSystem>
-          <OtelInit />
-          <div style={{ overflow: "auto", flex: 1 }}>{children}</div>
-          <Footer />
-        </UiProvider>
-      </ClerkProvider>
-    </Suspense>
+    <>
+      <Suspense fallback={<span>Loading...</span>}>
+        <ClerkProvider afterSignOutUrl="/">
+          <UiProvider enableSystem>
+            <OtelInit />
+            <div style={{ overflow: 'auto', flex: 1 }}>{children}</div>
+            <Footer />
+            <Analytics />
+          </UiProvider>
+        </ClerkProvider>
+      </Suspense>
+      <SpeedInsights />
+    </>
   );
 }
