@@ -6,8 +6,8 @@ export const ShowDiffWarning = ({
   newValue,
   currentValue,
 }: {
-  newValue: string;
-  currentValue: string;
+  newValue: string | undefined | null;
+  currentValue: string | undefined | null;
 }) => {
   if (newValue === currentValue) {
     return null;

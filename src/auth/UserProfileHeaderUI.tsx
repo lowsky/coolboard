@@ -1,6 +1,8 @@
+'use client';
+
 import { useApolloClient } from '@apollo/client/react';
 import { SignedIn, SignedOut, useClerk, UserButton } from '@clerk/nextjs';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { Button, Flex } from '@chakra-ui/react';
 import { FaSignOutAlt } from 'react-icons/fa';
 
