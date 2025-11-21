@@ -18,7 +18,7 @@ export const UserProfileHeaderUI = () => {
     event.preventDefault();
     await signOut();
     await apolloClient.clearStore?.();
-    await replace('/boards');
+    replace('/boards');
   }
 
   return (

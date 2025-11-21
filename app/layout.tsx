@@ -56,7 +56,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         {/* Analytics tools */}
         <Analytics />
         <SpeedInsights />
-        {/* Custom EUM scripts (previously in _document) */}
+        {/* Custom EUM scripts */}
         <InstanaEumScripts />
       </body>
     </html>

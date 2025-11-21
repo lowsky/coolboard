@@ -199,10 +199,7 @@ declare global {
        * Custom command to select a card list by its index
        * @example cy.getCardListByIndex(1) - selects the first card list
        */
-      getCardListByIndex(
-        index: number,
-        options?: Partial<Loggable & Timeoutable>
-      ): Chainable<JQuery<HTMLElement>>;
+      getCardListByIndex(index: number, options?: Partial<Loggable & Timeoutable>): Chainable<JQuery<HTMLElement>>;
     }
   }
 }
@@ -215,18 +212,6 @@ Cypress.on('uncaught:exception', (_error, _runnable, promise) => {
   if (promise) {
     return false;
   }
-});
-
-// non-authenticated access via apollo, leading to an error
-// https://docs.cypress.io/api/cypress-api/catalog-of-events#To-conditionally-turn-off-uncaught-exception-handling-for-a-certain-error
-Cypress.on('uncaught:exception', (err, runnable) => {
-  // we expect a 3rd party library error with message 'list not defined'
-  // and don't want to fail the test so we return false
-  ///if (err.message.includes('list not defined')) {
-  return false;
-  ///}
-  // we still want to ensure there are no other unexpected
-  // errors, so we let them fail the test
 });
 
 const graphqlQuery = `

@@ -10,7 +10,7 @@ import { GeneralErrorHandler } from 'common/GeneralErrorHandler';
 import FullPageWithApollo from 'common/FullPageWithApollo';
 import { Boards as BoardList, BoardsSkeleton } from 'components/Board/Boards';
 
-export default function Page() {
+export default function Boards() {
   trackPage('boards');
 
   const { isSignedIn, isLoaded } = useAuth();
