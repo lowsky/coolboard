@@ -13,7 +13,10 @@ export function GET() {
       react,
       graphql,
     };
-    return Response.json({ message: 'Generated at ' + new Date(), info });
+    return Response.json({
+      message: 'Generated at ' + new Date().toUTCString(),
+      info,
+    });
   } catch {
     return new Response(JSON.stringify({ error: 'failed to load data' }), {
       status: 500,

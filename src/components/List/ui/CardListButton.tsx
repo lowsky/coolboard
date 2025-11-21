@@ -1,5 +1,4 @@
-import React, { type PropsWithChildren } from 'react';
-
+import { type PropsWithChildren, ReactNode } from 'react';
 import { Button } from 'components/ui/button';
 
 export function CardListButton({
@@ -7,7 +6,7 @@ export function CardListButton({
   leftIcon,
   children,
 }: PropsWithChildren<{
-  leftIcon: React.ReactNode;
+  leftIcon: ReactNode;
   onButtonClick: () => void;
 }>) {
   return (
