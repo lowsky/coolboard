@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense } from 'react';
+import { Suspense, use } from 'react';
 
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
@@ -17,7 +17,8 @@ export default function Page({
 }: {
   params: { id: string | string[] };
 }) {
-  const { id } = params;
+  // @ts-expect-error TODO add missing type from route info
+  const { id } = use(params);
 
   const boardId = Array.isArray(id) ? id[0] : id;
 
