@@ -1,10 +1,11 @@
+import { ReactNode } from 'react';
 import { Box } from '@chakra-ui/react';
 
 export const FullVerticalContainer = ({
   children,
   ...props
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   [key: string]: any;
 }) => (
   <Box

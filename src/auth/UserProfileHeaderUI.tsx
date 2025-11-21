@@ -1,6 +1,8 @@
+'use client';
+
 import { useApolloClient } from '@apollo/client/react';
 import { SignedIn, SignedOut, useClerk, UserButton } from '@clerk/nextjs';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { Button, Flex } from '@chakra-ui/react';
 import { FaSignOutAlt } from 'react-icons/fa';
 
@@ -14,9 +16,9 @@ export const UserProfileHeaderUI = () => {
 
   async function awaitLogoutAndCacheClear(event: MouseEvent) {
     event.preventDefault();
-    await apolloClient.clearStore?.();
     await signOut();
-    await replace('/boards');
+    await apolloClient.clearStore?.();
+    replace('/boards');
   }
 
   return (
@@ -28,7 +30,7 @@ export const UserProfileHeaderUI = () => {
       <SignedIn>
         <Flex alignItems="center" gap="0.5em">
           <ColorModeButton />
-          <UserButton afterSignOutUrl="/" />
+          <UserButton />
           <Button
             // @ts-expect-error it is an async function.
             onClick={awaitLogoutAndCacheClear}

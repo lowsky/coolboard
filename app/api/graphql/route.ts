@@ -1,17 +1,18 @@
-import { createYoga } from 'graphql-yoga';
-import { Plugin } from 'graphql-yoga';
+import { createYoga, type Plugin } from 'graphql-yoga';
 import { useDisableIntrospection } from '@graphql-yoga/plugin-disable-introspection';
 import { blockFieldSuggestionsPlugin } from '@escape.tech/graphql-armor-block-field-suggestions';
-
 import { getAuth } from '@clerk/nextjs/server';
+import { NextRequest } from 'next/server';
 
 import { isLocalDev } from 'server/src/helpers/logging';
 import type { Ctxt } from 'server/src/resolvers/Context';
 import { buildSchema, prisma } from 'server/src/buildSchema';
-
 import { REQ_HEADER_x_coolboard_readonly } from 'src/headers';
-import { NextRequest } from 'next/server';
 
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
+
+// Server context for Yoga
 type ServerCtxt = object;
 
 const authenticatedHandler = createYoga<ServerCtxt, Ctxt>({
@@ -38,11 +39,14 @@ const authenticatedHandler = createYoga<ServerCtxt, Ctxt>({
 function useAuth(): Plugin {
   return {
     onRequest({ request, fetchAPI, endResponse }) {
-      const readOnlyHeader = request.headers[REQ_HEADER_x_coolboard_readonly];
+      const readOnlyHeader = (request.headers as Headers).get(
+        REQ_HEADER_x_coolboard_readonly
+      );
       const isReadOnlyHeader = readOnlyHeader === 'true';
 
       if (!isReadOnlyHeader) {
-        const { userId } = getAuth(request as NextRequest);
+        // Clerk expects a NextRequest; cast from the standard Request
+        const { userId } = getAuth(request as unknown as NextRequest);
         if (!userId) {
           if (isLocalDev) console.error('    userId is not yet set!');
 
@@ -60,4 +64,4 @@ function useAuth(): Plugin {
   };
 }
 
-export default authenticatedHandler;
+export { authenticatedHandler as GET, authenticatedHandler as POST };

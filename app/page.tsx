@@ -1,3 +1,5 @@
+'use client';
+
 import { Suspense, useEffect, useState } from 'react';
 import { Container, Flex, Heading, Icon, Text } from '@chakra-ui/react';
 
@@ -7,6 +9,7 @@ import { FaChalkboardTeacher, FaFilm, FaLink } from 'react-icons/fa';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { ApolloProvider } from '@apollo/client/react';
+import { ApolloClient } from '@apollo/client';
 
 import { Board } from 'components/Board/Board';
 import { setupGraphQLClient } from 'src/setupGraphQLClient';
@@ -18,7 +21,6 @@ import { trackPage } from 'src/common/tracking';
 
 import coolBoardLogo from 'public/CoolBoardLogo100.png';
 import screenshot from 'public/screenshot.png';
-import { ApolloClient } from '@apollo/client';
 
 // probing, debug stuff (delete me)
 if (isInBrowserEnv())
@@ -29,7 +31,7 @@ if (isInBrowserEnv())
 
 const demoBoardId = process.env.NEXT_PUBLIC_DEMOBOARD_ID;
 
-export default function Index() {
+export default function Page() {
   trackPage('Index');
 
   return (

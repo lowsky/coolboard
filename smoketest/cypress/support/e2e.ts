@@ -292,7 +292,6 @@ Cypress.Commands.add(
     cy.get(`[data-cy="${selector}"]`, options)
 );
 
-
 /**
  * Custom command to select a card list by its index
  * @param index - The 1-based index of the card list to select

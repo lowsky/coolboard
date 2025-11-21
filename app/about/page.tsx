@@ -1,3 +1,5 @@
+'use client';
+
 import NextLink from 'next/link';
 import {
   Box,
@@ -17,7 +19,7 @@ import { LuExternalLink } from 'react-icons/lu';
 import FullPageWithApollo from 'common/FullPageWithApollo';
 import { ProfileHeader } from 'common/ProfileHeader';
 
-export default function About() {
+export default function Page() {
   return (
     <FullPageWithApollo data-cy="about-full-container">
       <ProfileHeader />
@@ -90,6 +92,7 @@ export default function About() {
           <Text>
             You will need to Sign-up via email and{' '}
             <Link variant="underline" colorPalette="teal" asChild>
+              {/* @ts-expect-error /sign-in is not currently reflected properly */}
               <NextLink href="/sign-in">
                 <Icon>
                   <FaSignInAlt />

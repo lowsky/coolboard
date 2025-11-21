@@ -1,3 +1,6 @@
+'use client';
+
+import type { PropsWithChildren } from 'react';
 import { ApolloProvider } from '@apollo/client/react';
 
 import { FullVerticalContainer } from 'common/FullVerticalContainer';
@@ -6,7 +9,7 @@ import { ReloadAfterLogin } from 'auth/ReloadAfterLogin';
 
 const client = setupGraphQLClient();
 
-const FullPageWithApollo = ({ children }) => (
+const FullPageWithApollo = ({ children }: PropsWithChildren) => (
   <FullVerticalContainer data-cy="full-container">
     <ReloadAfterLogin client={client} />
     <ApolloProvider client={client}>{children}</ApolloProvider>

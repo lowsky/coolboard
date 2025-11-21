@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect } from 'react';
 import type { ApolloClient } from '@apollo/client';
 import { useAuth } from '@clerk/nextjs';

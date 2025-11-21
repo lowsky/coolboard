@@ -1,9 +1,9 @@
 import { Container, Heading, Link, Text } from '@chakra-ui/react';
+import { LuExternalLink } from 'react-icons/lu';
 
 import { trackPage } from 'src/common/tracking';
 import { ProfileHeader } from 'src/common/ProfileHeader';
 import FullPageWithApollo from 'src/common/FullPageWithApollo';
-import { LuExternalLink } from 'react-icons/lu';
 
 export default function Privacy() {
   trackPage('privacy');

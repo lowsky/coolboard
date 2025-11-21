@@ -24,9 +24,7 @@ export const BoardList = ({ boards, deleteBoard }: Props) => {
   return (
     <List.Root>
       {boards.map(({ id, ...info }) => (
-        <List.Item key={id}>
-          <BoardListItem id={id} {...info} deleteBoard={deleteBoard} />
-        </List.Item>
+        <BoardListItem key={id} id={id} {...info} deleteBoard={deleteBoard} />
       ))}
       <ListItem padding="0.25rem 0.5rem" marginBottom="0.5px" display="flex">
         <CreateBoardModal
