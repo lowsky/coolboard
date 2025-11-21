@@ -6,6 +6,22 @@ const nextConfig = {
 
   reactStrictMode: true,
 
+  // https://nextjs.org/docs/app/api-reference/config/next-config-js/typedRoutes
+  typedRoutes: true,
+
+  /*
+    when building fails because of well known issues, but blocks fast dev
+    cycles locally, this could be helping temporarily, see
+    https://nextjs.org/docs/app/api-reference/config/next-config-js/typescript
+  typescript: {
+    // !! WARN !!
+    // Dangerously allow production builds to successfully complete even if
+    // your project has type errors.
+    // !! WARN !!
+    ignoreBuildErrors: true,
+  },
+  */
+
   experimental: {
     mcpServer: true,
   },

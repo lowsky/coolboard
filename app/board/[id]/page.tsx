@@ -11,13 +11,13 @@ import { ProfileHeader } from 'src/common/ProfileHeader';
 import { GeneralErrorHandler } from 'src/common/GeneralErrorHandler';
 import FullPageWithApollo from 'src/common/FullPageWithApollo';
 import { Board } from 'components/Board/Board';
+import { ParamMap } from '.next/types/routes';
 
 export default function Page({
   params,
 }: {
-  params: { id: string | string[] };
+  params: PromiseLike<ParamMap['/board/[id]']>;
 }) {
-  // @ts-expect-error TODO add missing type from route info
   const { id } = use(params);
 
   const boardId = Array.isArray(id) ? id[0] : id;
