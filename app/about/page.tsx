@@ -92,6 +92,7 @@ export default function Page() {
           <Text>
             You will need to Sign-up via email and{' '}
             <Link variant="underline" colorPalette="teal" asChild>
+              {/* @ts-expect-error /sign-in is not currently reflected properly */}
               <NextLink href="/sign-in">
                 <Icon>
                   <FaSignInAlt />
