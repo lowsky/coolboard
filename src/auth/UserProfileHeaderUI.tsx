@@ -16,8 +16,8 @@ export const UserProfileHeaderUI = () => {
 
   async function awaitLogoutAndCacheClear(event: MouseEvent) {
     event.preventDefault();
-    await apolloClient.clearStore?.();
     await signOut();
+    await apolloClient.clearStore?.();
     await replace('/boards');
   }
 
