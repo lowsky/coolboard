@@ -1438,28 +1438,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/shared@npm:^3.35.2":
-  version: 3.35.2
-  resolution: "@clerk/shared@npm:3.35.2"
-  dependencies:
-    csstype: "npm:3.1.3"
-    dequal: "npm:2.0.3"
-    glob-to-regexp: "npm:0.4.1"
-    js-cookie: "npm:3.0.5"
-    std-env: "npm:^3.9.0"
-    swr: "npm:2.3.4"
-  peerDependencies:
-    react: ^18.0.0 || ^19.0.0 || ^19.0.0-0
-    react-dom: ^18.0.0 || ^19.0.0 || ^19.0.0-0
-  peerDependenciesMeta:
-    react:
-      optional: true
-    react-dom:
-      optional: true
-  checksum: 10c0/8bbc290597acd5c801b8373e4a1fea217d831afb54f31a5c034b6afd6eecb80c7392192d22f16bd1dc33ad2e41e5180d73c357da5a2fd9728891fea927365037
-  languageName: node
-  linkType: hard
-
 "@clerk/shared@npm:^3.36.0":
   version: 3.36.0
   resolution: "@clerk/shared@npm:3.36.0"
@@ -1482,13 +1460,35 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/themes@npm:2.4.39":
-  version: 2.4.39
-  resolution: "@clerk/themes@npm:2.4.39"
+"@clerk/shared@npm:^3.38.0":
+  version: 3.38.0
+  resolution: "@clerk/shared@npm:3.38.0"
   dependencies:
-    "@clerk/shared": "npm:^3.35.2"
+    csstype: "npm:3.1.3"
+    dequal: "npm:2.0.3"
+    glob-to-regexp: "npm:0.4.1"
+    js-cookie: "npm:3.0.5"
+    std-env: "npm:^3.9.0"
+    swr: "npm:2.3.4"
+  peerDependencies:
+    react: ^18.0.0 || ^19.0.0 || ^19.0.0-0
+    react-dom: ^18.0.0 || ^19.0.0 || ^19.0.0-0
+  peerDependenciesMeta:
+    react:
+      optional: true
+    react-dom:
+      optional: true
+  checksum: 10c0/1deb8b0b816ea0410245d2d307cb8e621f57ce2f5d067365fdffc50677e4a35b2f975d1d5d9bcd3388a682a929ebe928bac6b483765e237714bc5112c6e20e01
+  languageName: node
+  linkType: hard
+
+"@clerk/themes@npm:2.4.42":
+  version: 2.4.42
+  resolution: "@clerk/themes@npm:2.4.42"
+  dependencies:
+    "@clerk/shared": "npm:^3.38.0"
     tslib: "npm:2.8.1"
-  checksum: 10c0/6bb897058f85b5138a9196c8fffd9fc14dbdbef6f39900cb5028abb1c7ccf4a220c246848cffd504a6e59415ca68f50df8a379d31c8328f0fa7dde22ca8b2113
+  checksum: 10c0/9715c4ce4cdf41d5566aab900b1c2b44b440c28dfcd9723682cad6feab9a2ef6fdb5a1e902712b0a06074a16681ee16006da8e57f188a79295ea6f61ca10a197
   languageName: node
   linkType: hard
 
@@ -8288,7 +8288,7 @@ __metadata:
     "@apollo/client": "npm:4.0.9"
     "@chakra-ui/react": "npm:3.29.0"
     "@clerk/nextjs": "npm:6.35.5"
-    "@clerk/themes": "npm:2.4.39"
+    "@clerk/themes": "npm:2.4.42"
     "@emotion/react": "npm:11.14.0"
     "@escape.tech/graphql-armor-block-field-suggestions": "npm:^3.0.0"
     "@eslint/compat": "npm:2.0.0"
