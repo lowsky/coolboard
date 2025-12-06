@@ -16,7 +16,7 @@
     "@escape.tech/graphql-armor-block-field-suggestions": "^3.0.0",
     "@graphql-yoga/plugin-disable-introspection": "^2.14.3",
     "@neondatabase/serverless": "1.0.2",
-    "@opentelemetry/auto-instrumentations-node": "0.67.0",
+    "@opentelemetry/auto-instrumentations-node": "0.67.2",
     "@opentelemetry/auto-instrumentations-web": "0.54.0",
     "@opentelemetry/context-zone": "2.2.0",
     "@opentelemetry/instrumentation-express": "0.57.0",
