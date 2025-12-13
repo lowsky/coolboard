@@ -2,6 +2,13 @@ import Chainable = Cypress.Chainable;
 import Loggable = Cypress.Loggable;
 import Timeoutable = Cypress.Timeoutable;
 
+export const isProduction =
+  Cypress.config().baseUrl === 'https://www.coolboard.eu';
+
+const credPrefix = isProduction ? 'PRODUCTION_' : '';
+export const userLogin = Cypress.env(credPrefix + 'LOGIN');
+export const password = Cypress.env(credPrefix + 'PASSWORD');
+
 declare global {
   namespace Cypress {
     interface Chainable<Subject> {
@@ -199,7 +206,10 @@ declare global {
        * Custom command to select a card list by its index
        * @example cy.getCardListByIndex(1) - selects the first card list
        */
-      getCardListByIndex(index: number, options?: Partial<Loggable & Timeoutable>): Chainable<JQuery<HTMLElement>>;
+      getCardListByIndex(
+        index: number,
+        options?: Partial<Loggable & Timeoutable>
+      ): Chainable<JQuery<HTMLElement>>;
     }
   }
 }
@@ -243,30 +253,21 @@ export const login: (
     {
       // () => Promise<false | void> | void
       validate: () => {
-        {
-          const someApiGraphqlQuery = {
-            operationName: 'CardList',
-            // todo: this won't work on all environments
-            variables: { cardListId: 'clsq1w75z0002gnafx71y3v8d' },
-            query: graphqlQuery,
-          };
-          cy.request({
-            body: someApiGraphqlQuery,
-            method: 'POST',
-            url: '/api/graphql',
-          });
-        }
+        const someApiGraphqlQuery = {
+          operationName: 'CardList',
+          // todo: this won't work on all environments
+          variables: { cardListId: 'clsq1w75z0002gnafx71y3v8d' },
+          query: graphqlQuery,
+        };
+        cy.request({
+          body: someApiGraphqlQuery,
+          method: 'POST',
+          url: '/api/graphql',
+        });
       },
       cacheAcrossSpecs: true,
     }
   );
-
-export const isProduction =
-  Cypress.config().baseUrl === 'https://www.coolboard.eu';
-
-const credPrefix = isProduction ? 'PRODUCTION_' : '';
-export const userLogin = Cypress.env(credPrefix + 'LOGIN');
-export const password = Cypress.env(credPrefix + 'PASSWORD');
 
 export const LogAndWaitLong: Partial<Loggable & Timeoutable> = {
   log: true,
