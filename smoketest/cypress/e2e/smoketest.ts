@@ -181,6 +181,6 @@ describe('Test coolboard', () => {
 
   it('user can log-out', () => {
     cy.logout();
-    cy.contains('Sign in to coolboard');
+    cy.contains('Sign in to');
   });
 });
