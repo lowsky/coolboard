@@ -63,3 +63,5 @@ smoketest/cypress/screenshots
 !/smoketest/.yarn/versions
 
 /smoketest/cypress/results/test-results.xml
+
+/server/src/schema/generated

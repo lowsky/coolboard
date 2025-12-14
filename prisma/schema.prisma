@@ -1,22 +1,23 @@
 generator client {
-  provider = "prisma-client-js"
+  provider = "prisma-client"
+  output   = "../server/src/schema/generated/prisma"
 }
 
 generator pothos {
-  provider = "prisma-pothos-types"
+  provider     = "prisma-pothos-types"
+  clientOutput = "./prisma" // relative path from pothos output to prisma client
+  output       = "../server/src/schema/generated/pothos-prisma-types.ts"
 }
 
 datasource db {
-  provider     = "postgres"
-  url          = env("DATABASE_URL")
+  provider     = "postgresql"
   relationMode = "prisma"
 }
 
 model Card {
-  id          String  @id @default(cuid())
+  id          String   @id @default(cuid())
   name        String
   description String?
-
   createdAt   DateTime @default(now())
   createdBy   User     @relation("createdBy", fields: [createdById], references: [id])
   createdById String
@@ -32,15 +33,14 @@ model Card {
 }
 
 model List {
-  id        String   @id @default(cuid())
-  name      String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  board     Board    @relation(fields: [boardId], references: [id], onDelete: Cascade)
-  boardId   String
-  cards     Card[]
-
-  createdBy   User   @relation(fields: [createdById], references: [id])
+  id          String   @id @default(cuid())
+  name        String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  board       Board    @relation(fields: [boardId], references: [id], onDelete: Cascade)
+  boardId     String
+  cards       Card[]
+  createdBy   User     @relation(fields: [createdById], references: [id])
   createdById String
 
   @@index([boardId])
