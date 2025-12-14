@@ -15,10 +15,13 @@ describe('Test coolboard', () => {
 
   before(() => {
     // Ensure that all sessions are cleared up even if you re-run the spec in the Cypress App UI (Test Runner)
+    // run only once
     cy.log('close all sessions');
     Cypress.session.clearAllSavedSessions();
   });
+
   beforeEach(() => {
+    // initial login, initiate cached session:
     cy.login(userLogin, password);
     cy.visit('/boards');
   });

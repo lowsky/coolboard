@@ -226,7 +226,7 @@ declare global {
 // While we have a failing fetch request (because of expired, short living
 // clerk auth session cookie)
 Cypress.on('uncaught:exception', (_error, _runnable, promise) => {
-  if (promise) {
+  if (promise !== undefined) {
     return false;
   }
 });
