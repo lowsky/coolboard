@@ -1,6 +1,13 @@
+import { addClerkCommands } from '@clerk/testing/cypress';
+
 import Chainable = Cypress.Chainable;
 import Loggable = Cypress.Loggable;
 import Timeoutable = Cypress.Timeoutable;
+
+// Importing commands like cy.clerkSignIn etc.
+//
+// These helpers depend on using the setupClerkTestingToken (see e2e config)
+addClerkCommands({ Cypress, cy });
 
 export const isProduction =
   Cypress.config().baseUrl === 'https://www.coolboard.eu';
@@ -219,7 +226,7 @@ declare global {
 // While we have a failing fetch request (because of expired, short living
 // clerk auth session cookie)
 Cypress.on('uncaught:exception', (_error, _runnable, promise) => {
-  if (promise) {
+  if (promise !== undefined) {
     return false;
   }
 });
@@ -238,16 +245,16 @@ export const login: (
   cy.session(
     'coolboardSessionId',
     () => {
-      cy.visit('/boards', {
-        // to ignore any error (while not authenticated)
-        failOnStatusCode: false,
-      });
+      // It is required to call cy.visit before calling this command, and
+      // navigate to a not protected page that loads Clerk.
+      cy.visit(`/`);
 
-      // This was only needed, when /boards was a public page:
-      // … .contains('Log in', { log: true, timeout: 6000, }).first().click();
-      // This could be deleted soon, if not needed anymore?
-
-      fillLoginForm(userLogin, password);
+      // Signs in a user using Clerk. This custom command supports only password,
+      // phone_code and email_code first factor strategies.
+      //
+      // This helper is using the setupClerkTestingToken internally!
+      cy.clerkSignIn({ strategy: 'password', identifier: userLogin, password });
+      cy.visit(`/boards`);
       cy.location('pathname').should('eq', '/boards');
     },
     {
@@ -278,14 +285,6 @@ export const WaitVeryLong: Partial<Loggable & Timeoutable> = {
   log: true,
   timeout: 5000 * 4,
 };
-
-function fillLoginForm(userLogin: string, password: string): void {
-  cy.get('#identifier-field', LogAndWaitLong).type(userLogin + '{enter}');
-  cy.contains('Enter your password');
-  cy.get('#password-field').type(password + '{enter}', {
-    log: false,
-  });
-}
 
 Cypress.Commands.add(
   'dataCy',
