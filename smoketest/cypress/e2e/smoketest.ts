@@ -13,6 +13,18 @@ describe('Test coolboard', () => {
     cy.log('Testing production page? ' + isProduction);
   });
 
+  beforeEach(() => {
+    cy.intercept(
+      Cypress.config().baseUrl + '/' + '**',
+      { middleware: true },
+      (req) => {
+        req.headers['x-vercel-protection-bypass'] = Cypress.env(
+          'VERCEL_AUTOMATION_BYPASS_SECRET'
+        );
+        req.headers['x-vercel-set-bypass-cookie'] = 'true';
+      }
+    );
+  });
   before(() => {
     // Ensure that all sessions are cleared up even if you re-run the spec in the Cypress App UI (Test Runner)
     // run only once
