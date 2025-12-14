@@ -1,3 +1,5 @@
+import { clerkSetup } from '@clerk/testing/cypress';
+
 import { defineConfig } from 'cypress';
 
 export default defineConfig({
@@ -5,6 +7,10 @@ export default defineConfig({
   projectId: '8p1ybc',
   defaultCommandTimeout: 8000,
   e2e: {
+    setupNodeEvents(on, config) {
+      return clerkSetup({ config });
+    },
+
     blockHosts: [
       'eum.instana.com'
     ],
