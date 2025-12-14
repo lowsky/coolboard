@@ -8476,7 +8476,6 @@ __metadata:
     sharp: "npm:0.34.5"
     typescript: "npm:5.9.3"
     typescript-eslint: "npm:8.49.0"
-    ws: "npm:8.18.3"
     zone.js: "npm:0.16.0"
   languageName: unknown
   linkType: soft
@@ -15739,7 +15738,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ws@npm:8.18.3, ws@npm:^8.17.1, ws@npm:^8.18.3":
+"ws@npm:^8.17.1, ws@npm:^8.18.3":
   version: 8.18.3
   resolution: "ws@npm:8.18.3"
   peerDependencies:
