@@ -1,23 +1,17 @@
 import SchemaBuilder from '@pothos/core';
 import PrismaPlugin from '@pothos/plugin-prisma';
 import WithInputPlugin from '@pothos/plugin-with-input';
-import { neonConfig } from '@neondatabase/serverless';
-import { PrismaNeon } from '@prisma/adapter-neon';
-import { Prisma, PrismaClient } from '@prisma/client';
 import { DateTimeResolver } from 'graphql-scalars';
-import ws from 'ws';
+import { PrismaClient } from './schema/generated/prisma/client';
 
-// Using a type only import will help avoid issues with undeclared
-// Exports in esm mode
-import type PrismaTypes from '@pothos/plugin-prisma/generated';
+import { adapter } from './schema/db';
+
+import PrismaTypes, {
+  getDatamodel,
+} from './schema/generated/pothos-prisma-types';
 
 import type { Ctxt } from './resolvers/Context';
 import { isLocalDev } from './helpers/logging';
-
-neonConfig.webSocketConstructor = ws;
-const connectionString = `${process.env.DATABASE_URL}`;
-
-const adapter = new PrismaNeon({ connectionString });
 
 export const prisma = new PrismaClient({
   errorFormat: 'pretty',
@@ -56,7 +50,7 @@ const builder = new SchemaBuilder<{
     },
   },
   prisma: {
-    dmmf: Prisma.dmmf,
+    dmmf: getDatamodel(),
 
     client: prisma,
 
