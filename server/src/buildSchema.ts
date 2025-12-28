@@ -188,7 +188,7 @@ builder.mutationField('createBoard', (t) =>
     },
     resolve: async (_parent, _root, args, ctx, _info): Promise<User> => {
       const user = await resolvers.Mutation.createBoard(_parent, args, ctx);
-      if (!user) throw 'Sorry, board was not created';
+      if (!user) throw new Error('Sorry, board was not created');
       return user;
     },
   })

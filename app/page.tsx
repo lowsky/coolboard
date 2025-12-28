@@ -129,7 +129,10 @@ function DemoBoardSegment() {
   return (
     <Segment className="zoomOnHover demoBoard">
       {demoBoardId && (
-        <Text>Live Preview of the the current work and planned features:</Text>
+        <Text>
+          Live Preview of the the current work and planned features:
+          <Link href={{ pathname: '/board/' + demoBoardId }}>Open board.</Link>
+        </Text>
       )}
       {demoBoardId && client && (
         <ApolloProvider client={client}>
