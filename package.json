@@ -11,7 +11,7 @@
     "@apollo/client": "4.0.11",
     "@chakra-ui/react": "3.29.0",
     "@clerk/nextjs": "6.36.5",
-    "@clerk/themes": "2.4.43",
+    "@clerk/themes": "2.4.46",
     "@emotion/react": "11.14.0",
     "@escape.tech/graphql-armor-block-field-suggestions": "^3.0.0",
     "@graphql-yoga/plugin-disable-introspection": "^2.14.3",
