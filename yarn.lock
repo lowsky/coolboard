@@ -5355,18 +5355,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pothos/core@npm:4.10.0":
-  version: 4.10.0
-  resolution: "@pothos/core@npm:4.10.0"
+"@pothos/core@npm:4.10.1":
+  version: 4.10.1
+  resolution: "@pothos/core@npm:4.10.1"
   peerDependencies:
     graphql: ^16.10.0
-  checksum: 10c0/8d8c9a6ccc745f298d63c42ca04f624bba6314069ab7e4f618338c8a3679514b11e2b23420bbbb1ea092cbc7ca06f3dc3e8ab212dde7dffc35649ae6fd3d7f67
+  checksum: 10c0/54b0fcbb4a56b89eefde36c52a3b1210721882863d562646f6c7711ec435976fdf28892187722f4fa1e7795511cdb0c1393443c848d945bb3dbaeadb484c4953
   languageName: node
   linkType: hard
 
-"@pothos/plugin-prisma@npm:4.14.0":
-  version: 4.14.0
-  resolution: "@pothos/plugin-prisma@npm:4.14.0"
+"@pothos/plugin-prisma@npm:4.14.1":
+  version: 4.14.1
+  resolution: "@pothos/plugin-prisma@npm:4.14.1"
   dependencies:
     "@prisma/generator-helper": "npm:^7.1.0"
   peerDependencies:
@@ -5376,7 +5376,7 @@ __metadata:
     typescript: ">=4.7.2"
   bin:
     prisma-pothos-types: bin/generator.js
-  checksum: 10c0/1a24ca52e10f20c0ea58b157ec274bac070ff13a469ff04ae41bc1f4b381c52dd99e30288bac93fc2dee06f3c2fb580a3bba7cca6bcc4ec304337805a7ce5e27
+  checksum: 10c0/dd6206046460cb45e6ce759d25f3be92185785c7c397b61782c3b3b79504b2fbadba7c2fbd5da47e8d5e9f9be60465712a9fa6534f2995b61ee2dec1e973eb56
   languageName: node
   linkType: hard
 
@@ -8452,8 +8452,8 @@ __metadata:
     "@opentelemetry/sdk-trace-web": "npm:2.2.0"
     "@opentelemetry/winston-transport": "npm:0.19.0"
     "@parcel/watcher": "npm:2.5.1"
-    "@pothos/core": "npm:4.10.0"
-    "@pothos/plugin-prisma": "npm:4.14.0"
+    "@pothos/core": "npm:4.10.1"
+    "@pothos/plugin-prisma": "npm:4.14.1"
     "@pothos/plugin-with-input": "npm:4.1.4"
     "@prisma/adapter-neon": "npm:7.1.0"
     "@prisma/client": "npm:7.1.0"
