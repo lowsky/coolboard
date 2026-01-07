@@ -4046,26 +4046,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@opentelemetry/context-zone-peer-dep@npm:2.2.0":
-  version: 2.2.0
-  resolution: "@opentelemetry/context-zone-peer-dep@npm:2.2.0"
-  peerDependencies:
-    "@opentelemetry/api": ">=1.0.0 <1.10.0"
-    zone.js: ^0.10.2 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^0.14.0 || ^0.15.0
-  checksum: 10c0/28987ac8c49dfa8410aa8bac2adbfd8b810ad191d73c7ffaa0bc03200e06bd25ff36e56b39fdc943c003bf3d858ec143252daa11750752ce5d1aef29b56e5c90
-  languageName: node
-  linkType: hard
-
-"@opentelemetry/context-zone@npm:2.2.0":
-  version: 2.2.0
-  resolution: "@opentelemetry/context-zone@npm:2.2.0"
-  dependencies:
-    "@opentelemetry/context-zone-peer-dep": "npm:2.2.0"
-    zone.js: "npm:^0.11.0 || ^0.12.0 || ^0.13.0 || ^0.14.0 || ^0.15.0"
-  checksum: 10c0/c581b20f45ee441d96e1e59316459c1297e0869b0ac59e50e56b712d3ae73642bd7a12cf42d49df44cb66e704955161fb964404a8347c38c374d71caa9b9d57e
-  languageName: node
-  linkType: hard
-
 "@opentelemetry/core@npm:2.0.0, @opentelemetry/core@npm:^2.0.0":
   version: 2.0.0
   resolution: "@opentelemetry/core@npm:2.0.0"
@@ -8464,7 +8444,6 @@ __metadata:
     "@next/eslint-plugin-next": "npm:16.0.10"
     "@opentelemetry/auto-instrumentations-node": "npm:0.67.3"
     "@opentelemetry/auto-instrumentations-web": "npm:0.54.0"
-    "@opentelemetry/context-zone": "npm:2.2.0"
     "@opentelemetry/instrumentation-graphql": "npm:0.56.0"
     "@opentelemetry/instrumentation-http": "npm:0.208.0"
     "@opentelemetry/sdk-trace-web": "npm:2.2.0"
@@ -8512,7 +8491,6 @@ __metadata:
     sharp: "npm:0.34.5"
     typescript: "npm:5.9.3"
     typescript-eslint: "npm:8.52.0"
-    zone.js: "npm:0.16.0"
   languageName: unknown
   linkType: soft
 
@@ -15963,19 +15941,5 @@ __metadata:
   version: 4.1.12
   resolution: "zod@npm:4.1.12"
   checksum: 10c0/b64c1feb19e99d77075261eaf613e0b2be4dfcd3551eff65ad8b4f2a079b61e379854d066f7d447491fcf193f45babd8095551a9d47973d30b46b6d8e2c46774
-  languageName: node
-  linkType: hard
-
-"zone.js@npm:0.16.0":
-  version: 0.16.0
-  resolution: "zone.js@npm:0.16.0"
-  checksum: 10c0/89fa5873077c31e928ed98a4e535dd661a2c860fba580dcb6dc4641295ae6bc831712dfc4d4de67ac7be1d32605bb12913ed9e87784421e47ba453613016577b
-  languageName: node
-  linkType: hard
-
-"zone.js@npm:^0.11.0 || ^0.12.0 || ^0.13.0 || ^0.14.0 || ^0.15.0":
-  version: 0.15.0
-  resolution: "zone.js@npm:0.15.0"
-  checksum: 10c0/981b664c1978759a2854f6e6692d245d1d6334c6b20b7e2e5fa9b60eed74743b29c6a71f7472dc6d2790ab53d67e30475bcd92b9f7664e50aef8bbcd40379552
   languageName: node
   linkType: hard
