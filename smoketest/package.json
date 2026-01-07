@@ -10,7 +10,7 @@
   "dependencies": {
     "@clerk/testing": "1.13.26",
     "caniuse-lite": "^1.0.30001707",
-    "cypress": "15.7.1",
+    "cypress": "15.8.2",
     "typescript": "5.9.3"
   },
   "scripts": {
