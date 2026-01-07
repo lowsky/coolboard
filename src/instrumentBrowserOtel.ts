@@ -21,12 +21,9 @@ const otelEndpoint = process.env.NEXT_PUBLIC_OTEL_EXPORTER_OTLP_TRACES_ENDPOINT;
 export const instrumentBrowserOtel = async () => {
   if (!serviceName || !otelEndpoint) return;
 
-  const { ZoneContextManager } = await import('@opentelemetry/context-zone');
-
   const tracerProvider = new WebTracerProvider({});
 
   tracerProvider.register({
-    contextManager: new ZoneContextManager(),
     propagator: new CompositePropagator({
       propagators: [
         new W3CBaggagePropagator(),
