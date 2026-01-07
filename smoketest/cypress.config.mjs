@@ -6,6 +6,8 @@ export default defineConfig({
   experimentalWebKitSupport: true,
   projectId: '8p1ybc',
   defaultCommandTimeout: 8000,
+  // https://docs.cypress.io/app/references/experiments#Experimental-Fast-Visibility
+  experimentalFastVisibility: true,
   e2e: {
     setupNodeEvents(on, config) {
       return clerkSetup({ config });
