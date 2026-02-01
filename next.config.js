@@ -24,6 +24,12 @@ const nextConfig = {
 
   experimental: {
     mcpServer: true,
+    /* from
+     * https://chakra-ui.com/docs/get-started/frameworks/next-pages#optimize-bundle
+     * Optimize Bundle
+     * We recommend using the experimental.optimizePackageImports feature in Next.js to optimize your bundle size by loading only the modules that you are actually using.#
+     */
+    optimizePackageImports: ['@chakra-ui/react'],
   },
 
   // Added during Pages → App Router migration. We kept URLs the same, so there are
