@@ -23,15 +23,20 @@ const authenticatedHandler = createYoga<ServerCtxt, Ctxt>({
     useDisableIntrospection({
       isDisabled: () => !isLocalDev,
     }),
+    /* This plugin will disable the suggestions in a GraphQL query.
+     * GraphQL suggestions are messages (`Did you mean ...`) that help you to adjust your query.
+     */
     blockFieldSuggestionsPlugin(),
     useAuth(),
   ],
+  // @ts-expect-error type mismatch, please fix later
   context: async ({ request }) => {
     return {
       // casting from request to next-Request, required by clerk ...
+      // @ts-expect-error type mismatch, please fix later
       req: request, // as NextRequest,
       prisma: prisma, // as unknown as PrismaClient,
-    } as Ctxt;
+    } satisfies Ctxt;
   },
   graphqlEndpoint: '/api/graphql',
 });

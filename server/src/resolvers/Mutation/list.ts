@@ -1,4 +1,4 @@
-import type { List, Prisma } from '@prisma/client';
+import type { List, Prisma } from 'server/src/schema/generated/prisma/client';
 import type { MutationDeleteListArgs } from 'generated/graphql';
 import {
   getUserId,

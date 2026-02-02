@@ -1,4 +1,9 @@
-import type { User, Board, List, Card } from '@prisma/client';
+import type {
+  User,
+  Board,
+  List,
+  Card,
+} from 'server/src/schema/generated/prisma/client';
 import Query from './Query';
 
 import board from './Mutation/board';

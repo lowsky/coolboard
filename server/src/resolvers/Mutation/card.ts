@@ -1,4 +1,4 @@
-import type { Card } from '@prisma/client';
+import type { Card } from 'server/src/schema/generated/prisma/client';
 import { getUserId } from '../../helpers/auth';
 import type { Ctxt } from '../Context';
 

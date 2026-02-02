@@ -1,4 +1,8 @@
-import type { Board, User, Prisma } from '@prisma/client';
+import type {
+  Board,
+  User,
+  Prisma,
+} from 'server/src/schema/generated/prisma/client';
 import {
   getUserId,
   verifyUserIsAuthenticatedAndRetrieveUserToken,

@@ -1,5 +1,5 @@
 import { GraphQLError } from 'graphql';
-import type { User, Prisma } from '@prisma/client';
+import type { User, Prisma } from 'server/src/schema/generated/prisma/client';
 
 import { isLocalDev } from './logging';
 import type { UserToken } from './auth';

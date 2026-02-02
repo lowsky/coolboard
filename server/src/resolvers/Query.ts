@@ -1,4 +1,8 @@
-import type { Board, List, User } from '@prisma/client';
+import type {
+  Board,
+  List,
+  User,
+} from 'server/src/schema/generated/prisma/client';
 
 import {
   verifyAndRetrieveAuthSubject,
