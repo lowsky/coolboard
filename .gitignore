@@ -29,7 +29,6 @@ smoketest/cypress/screenshots
 /smoketest/.env
 
 .vercel
-/.netlify/
 
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 .pnp.js
@@ -65,3 +64,4 @@ smoketest/cypress/screenshots
 /smoketest/cypress/results/test-results.xml
 
 /server/src/schema/generated
+!/next.config.js
