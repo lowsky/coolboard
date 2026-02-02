@@ -10,6 +10,7 @@ import { AppProviders } from './providers';
 import 'public/index.css';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.coolboarad.eu'),
   title: 'Coolboard - Hands-on Application Building with GraphQL',
   description:
     'Working live demo of /building an entire Trello-like application using GraphQL and React/ video course on PacktPub.com',
