@@ -1,6 +1,7 @@
 import packageInfo from '../../../package.json';
+import { NextResponse } from 'next/server';
 
-export function GET() {
+export function GET(): NextResponse {
   try {
     const { next, prisma, react, graphql } = packageInfo.dependencies as Record<
       string,
@@ -13,14 +14,19 @@ export function GET() {
       react,
       graphql,
     };
-    return Response.json({
-      message: 'Generated at ' + new Date().toUTCString(),
-      info,
-    });
+    return NextResponse.json(
+      {
+        message: 'Generated at ' + new Date().toUTCString(),
+        info,
+      },
+      { status: 200 }
+    );
   } catch {
-    return new Response(JSON.stringify({ error: 'failed to load data' }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return NextResponse.json(
+      { error: 'failed to load data' },
+      {
+        status: 500,
+      }
+    );
   }
 }
