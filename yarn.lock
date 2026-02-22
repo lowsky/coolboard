@@ -1474,28 +1474,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/shared@npm:^3.46.0":
-  version: 3.46.0
-  resolution: "@clerk/shared@npm:3.46.0"
-  dependencies:
-    csstype: "npm:3.1.3"
-    dequal: "npm:2.0.3"
-    glob-to-regexp: "npm:0.4.1"
-    js-cookie: "npm:3.0.5"
-    std-env: "npm:^3.9.0"
-    swr: "npm:2.3.4"
-  peerDependencies:
-    react: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
-    react-dom: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
-  peerDependenciesMeta:
-    react:
-      optional: true
-    react-dom:
-      optional: true
-  checksum: 10c0/e379e6dd86b338c04b8b8133620e865bb51503eae983d029bcd22ed9bc3c77702f5744a77d91940fcd7e97c0412411ae5d6156f08ab3ef548da46f53806228aa
-  languageName: node
-  linkType: hard
-
 "@clerk/shared@npm:^3.47.0":
   version: 3.47.0
   resolution: "@clerk/shared@npm:3.47.0"
@@ -1518,13 +1496,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/themes@npm:2.4.54":
-  version: 2.4.54
-  resolution: "@clerk/themes@npm:2.4.54"
+"@clerk/themes@npm:2.4.55":
+  version: 2.4.55
+  resolution: "@clerk/themes@npm:2.4.55"
   dependencies:
-    "@clerk/shared": "npm:^3.46.0"
+    "@clerk/shared": "npm:^3.47.0"
     tslib: "npm:2.8.1"
-  checksum: 10c0/5e5d97b5566fd76029d656eaef4620131d75166949e868222f3e35042d2711bfd1eb34404bd92835fc86cf8d82fb946a92f58cb82e070c5cbcb20c15a2354696
+  checksum: 10c0/3ccf2b91f49967b7f6bc980c5c9f73a800f593c7fbb4970767fcef9b5cf6988678f250f290dbfba0d5c9e53068b39c7354bdf12dc9ae830e6bcbca7811f9cb3c
   languageName: node
   linkType: hard
 
@@ -8521,7 +8499,7 @@ __metadata:
     "@apollo/client": "npm:4.1.4"
     "@chakra-ui/react": "npm:3.33.0"
     "@clerk/nextjs": "npm:6.38.1"
-    "@clerk/themes": "npm:2.4.54"
+    "@clerk/themes": "npm:2.4.55"
     "@emotion/react": "npm:11.14.0"
     "@escape.tech/graphql-armor-block-field-suggestions": "npm:3.0.1"
     "@eslint/compat": "npm:2.0.2"
