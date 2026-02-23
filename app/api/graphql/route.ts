@@ -15,7 +15,7 @@ export const dynamic = 'force-dynamic';
 
 // Server context for Yoga
 type ServerCtxt = {
-  req: NextApiRequest;
+  request: NextApiRequest;
   params: Promise<Record<string, string>>;
 };
 
@@ -33,9 +33,9 @@ const authenticatedHandler = createYoga<ServerCtxt>({
     blockFieldSuggestionsPlugin(),
     useAuth(),
   ],
-  context: async ({ req }) => {
+  context: async ({ request }) => {
     return {
-      req,
+      request,
       prisma,
     } satisfies Ctxt;
   },
@@ -44,10 +44,10 @@ const authenticatedHandler = createYoga<ServerCtxt>({
   fetchAPI: { Response },
 }) satisfies NextApiHandler;
 
-function useAuth(): Plugin {
+function useAuth(): Plugin<object, ServerCtxt> {
   return {
     onRequest({ request, fetchAPI, endResponse }) {
-      const readOnlyHeader = (request.headers as Headers).get(
+      const readOnlyHeader = request.headers.get(
         REQ_HEADER_x_coolboard_readonly
       );
       const isReadOnlyHeader = readOnlyHeader === 'true';

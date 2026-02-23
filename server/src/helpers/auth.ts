@@ -82,7 +82,7 @@ export const userTokenFromClerkSessionUserId = (
 export const verifyAndRetrieveAuthSubject = async (
   ctx: Ctxt
 ): Promise<string> => {
-  const { userId } = getAuth(ctx.req);
+  const { userId } = getAuth(ctx.request);
   if (userId) {
     if (isLocalDev)
       console.log('verifyAndRetrieveAuthSubject: userid:', userId);
@@ -98,7 +98,7 @@ export const verifyAndRetrieveAuthSubject = async (
 export async function verifyUserIsAuthenticatedAndRetrieveUserToken(
   ctx: Ctxt
 ): Promise<UserToken> {
-  const { userId } = getAuth(ctx.req);
+  const { userId } = getAuth(ctx.request);
   if (userId) {
     if (isLocalDev)
       console.log(
