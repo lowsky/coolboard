@@ -1,6 +1,7 @@
 import { createYoga, type Plugin } from 'graphql-yoga';
 import { useDisableIntrospection } from '@graphql-yoga/plugin-disable-introspection';
 import { blockFieldSuggestionsPlugin } from '@escape.tech/graphql-armor-block-field-suggestions';
+import type { NextApiRequest, NextApiHandler } from 'next';
 import { getAuth } from '@clerk/nextjs/server';
 import { NextRequest } from 'next/server';
 
@@ -13,9 +14,12 @@ export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 // Server context for Yoga
-type ServerCtxt = object;
+type ServerCtxt = {
+  request: NextApiRequest;
+  params: Promise<Record<string, string>>;
+};
 
-const authenticatedHandler = createYoga<ServerCtxt, Ctxt>({
+const authenticatedHandler = createYoga<ServerCtxt>({
   schema: buildSchema(),
   batching: true,
   landingPage: true,
@@ -29,22 +33,21 @@ const authenticatedHandler = createYoga<ServerCtxt, Ctxt>({
     blockFieldSuggestionsPlugin(),
     useAuth(),
   ],
-  // @ts-expect-error type mismatch, please fix later
   context: async ({ request }) => {
     return {
-      // casting from request to next-Request, required by clerk ...
-      // @ts-expect-error type mismatch, please fix later
-      req: request, // as NextRequest,
-      prisma: prisma, // as unknown as PrismaClient,
+      request,
+      prisma,
     } satisfies Ctxt;
   },
   graphqlEndpoint: '/api/graphql',
-});
+  // Yoga needs to know how to create a valid Next response
+  fetchAPI: { Response },
+}) satisfies NextApiHandler;
 
-function useAuth(): Plugin {
+function useAuth(): Plugin<object, ServerCtxt> {
   return {
     onRequest({ request, fetchAPI, endResponse }) {
-      const readOnlyHeader = (request.headers as Headers).get(
+      const readOnlyHeader = request.headers.get(
         REQ_HEADER_x_coolboard_readonly
       );
       const isReadOnlyHeader = readOnlyHeader === 'true';
@@ -69,4 +72,8 @@ function useAuth(): Plugin {
   };
 }
 
-export { authenticatedHandler as GET, authenticatedHandler as POST };
+export {
+  authenticatedHandler as GET,
+  authenticatedHandler as POST,
+  authenticatedHandler as OPTIONS,
+};
