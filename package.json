@@ -69,7 +69,7 @@
   },
   "devDependencies": {
     "@eslint/compat": "2.0.2",
-    "@eslint/eslintrc": "3.3.3",
+    "@eslint/eslintrc": "3.3.4",
     "@eslint/js": "10.0.1",
     "@graphql-codegen/cli": "6.1.2",
     "@graphql-codegen/introspection": "5.0.0",
