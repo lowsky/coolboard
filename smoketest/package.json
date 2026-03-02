@@ -8,7 +8,7 @@
     "node": "24.x"
   },
   "dependencies": {
-    "@clerk/testing": "1.14.0",
+    "@clerk/testing": "1.14.3",
     "cypress": "15.10.0",
     "typescript": "5.9.3"
   },
