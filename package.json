@@ -68,7 +68,7 @@
     "codegen": "graphql-codegen --config codegen.ts"
   },
   "devDependencies": {
-    "@eslint/compat": "2.0.2",
+    "@eslint/compat": "2.0.3",
     "@eslint/eslintrc": "3.3.4",
     "@eslint/js": "10.0.1",
     "@graphql-codegen/cli": "6.1.2",
