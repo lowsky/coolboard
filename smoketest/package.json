@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@clerk/testing": "1.14.3",
-    "cypress": "15.10.0",
+    "cypress": "15.12.0",
     "typescript": "5.9.3"
   },
   "scripts": {
