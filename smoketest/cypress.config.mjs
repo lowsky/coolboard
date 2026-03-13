@@ -8,6 +8,10 @@ export default defineConfig({
   defaultCommandTimeout: 8000,
   // https://docs.cypress.io/app/references/experiments#Experimental-Fast-Visibility
   experimentalFastVisibility: true,
+  expose: {
+    "LOGIN": "skylab@nurfuerspam.de",
+    "PRODUCTION_LOGIN": "coolboard+testnew@protonmail.com",
+  },
   e2e: {
     setupNodeEvents(on, config) {
       return clerkSetup({ config });

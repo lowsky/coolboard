@@ -13,8 +13,8 @@ export const isProduction =
   Cypress.config().baseUrl === 'https://www.coolboard.eu';
 
 const credPrefix = isProduction ? 'PRODUCTION_' : '';
-export const userLogin = Cypress.env(credPrefix + 'LOGIN');
-export const password = Cypress.env(credPrefix + 'PASSWORD');
+export const userLogin = Cypress.expose(credPrefix + 'LOGIN');
+export const password = Cypress.expose(credPrefix + 'PASSWORD');
 
 declare global {
   namespace Cypress {

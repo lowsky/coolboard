@@ -6,7 +6,7 @@ import {
   WaitVeryLong,
 } from '../support/e2e';
 
-const newBoardName = Cypress.env('branch') ?? 'missing-branch-env';
+const newBoardName = Cypress.expose('branch') ?? 'missing-branch-env';
 
 describe('Test coolboard', () => {
   before(() => {
@@ -18,7 +18,7 @@ describe('Test coolboard', () => {
       Cypress.config().baseUrl + '/' + '**',
       { middleware: true },
       (req) => {
-        req.headers['x-vercel-protection-bypass'] = Cypress.env(
+        req.headers['x-vercel-protection-bypass'] = Cypress.expose(
           'VERCEL_AUTOMATION_BYPASS_SECRET'
         );
         req.headers['x-vercel-set-bypass-cookie'] = 'true';
