@@ -445,7 +445,7 @@ __metadata:
   resolution: "coolboard-smoketests@workspace:."
   dependencies:
     "@clerk/testing": "npm:1.14.3"
-    cypress: "npm:15.10.0"
+    cypress: "npm:15.12.0"
     typescript: "npm:5.9.3"
   languageName: unknown
   linkType: soft
@@ -475,9 +475,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cypress@npm:15.10.0":
-  version: 15.10.0
-  resolution: "cypress@npm:15.10.0"
+"cypress@npm:15.12.0":
+  version: 15.12.0
+  resolution: "cypress@npm:15.12.0"
   dependencies:
     "@cypress/request": "npm:^3.0.10"
     "@cypress/xvfb": "npm:^1.2.4"
@@ -516,14 +516,15 @@ __metadata:
     proxy-from-env: "npm:1.0.0"
     request-progress: "npm:^3.0.0"
     supports-color: "npm:^8.1.1"
-    systeminformation: "npm:^5.27.14"
+    systeminformation: "npm:^5.31.1"
     tmp: "npm:~0.2.4"
     tree-kill: "npm:1.2.2"
+    tslib: "npm:1.14.1"
     untildify: "npm:^4.0.0"
     yauzl: "npm:^2.10.0"
   bin:
     cypress: bin/cypress
-  checksum: 10c0/0041a6baad4ce3a70c1bb5d872636eb1dd4d49a199a322162b79f11e7cef41dc1e53c7002ee55d7d2c59a5587f36aa015989803e912074f54fe13a94fe7c574d
+  checksum: 10c0/aa11220a2da53689de9334975b6c8cbe3d5aa586542ac755c8581c80186b1a12394932d77c44fbeaf4d5f442afb357b1ccb9e66f0e8e6f778ed386131787e6fb
   languageName: node
   linkType: hard
 
@@ -1548,12 +1549,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"systeminformation@npm:^5.27.14":
-  version: 5.31.1
-  resolution: "systeminformation@npm:5.31.1"
+"systeminformation@npm:^5.31.1":
+  version: 5.31.4
+  resolution: "systeminformation@npm:5.31.4"
   bin:
     systeminformation: lib/cli.js
-  checksum: 10c0/66dc6a5e696c3ea8c191c32163a1e426d066a73f6084fc538e86d7a148f19ff64449589f06f1f74ec0183cfd0c57e3df565d181bc352fb0ba268d6a6435de7fb
+  checksum: 10c0/b169d038916c2f9d013d36e6ce9ac25cbcbf204ea6a173bdc73ab854248bbb866026070f9144535ac178f9779b40f917363ea4b8d39f99223c0804715e7d5ed3
   conditions: (os=darwin | os=linux | os=win32 | os=freebsd | os=openbsd | os=netbsd | os=sunos | os=android)
   languageName: node
   linkType: hard
@@ -1612,6 +1613,13 @@ __metadata:
   bin:
     tree-kill: cli.js
   checksum: 10c0/7b1b7c7f17608a8f8d20a162e7957ac1ef6cd1636db1aba92f4e072dc31818c2ff0efac1e3d91064ede67ed5dc57c565420531a8134090a12ac10cf792ab14d2
+  languageName: node
+  linkType: hard
+
+"tslib@npm:1.14.1":
+  version: 1.14.1
+  resolution: "tslib@npm:1.14.1"
+  checksum: 10c0/69ae09c49eea644bc5ebe1bca4fa4cc2c82b7b3e02f43b84bd891504edf66dbc6b2ec0eef31a957042de2269139e4acff911e6d186a258fb14069cd7f6febce2
   languageName: node
   linkType: hard
 
