@@ -1,7 +1,7 @@
 'use client';
 
 import { useApolloClient } from '@apollo/client/react';
-import { SignedIn, SignedOut, useClerk, UserButton } from '@clerk/nextjs';
+import { Show, useClerk, UserButton } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
 import { Button, Flex } from '@chakra-ui/react';
 import { FaSignOutAlt } from 'react-icons/fa';
@@ -23,11 +23,11 @@ export const UserProfileHeaderUI = () => {
 
   return (
     <>
-      <SignedOut>
+      <Show when="signed-out">
         <LoginButton />
         <ColorModeButton />
-      </SignedOut>
-      <SignedIn>
+      </Show>
+      <Show when="signed-in">
         <Flex alignItems="center" gap="0.5em">
           <ColorModeButton />
           <UserButton />
@@ -39,7 +39,7 @@ export const UserProfileHeaderUI = () => {
             Sign Out
           </Button>
         </Flex>
-      </SignedIn>
+      </Show>
     </>
   );
 };
