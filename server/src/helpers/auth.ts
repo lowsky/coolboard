@@ -6,13 +6,13 @@ import { createNewUser } from './registerNewUser';
 import { isLocalDev } from './logging';
 import type { Ctxt } from '../resolvers/Context';
 
-export type UserToken = {
+export interface UserToken {
   // Format: identity + '|' + userId
   sub: string;
   name?: string;
   email?: string;
   picture: string;
-};
+}
 
 export const getUserId = async (ctx: Ctxt): Promise<string> => {
   const userToken: UserToken =

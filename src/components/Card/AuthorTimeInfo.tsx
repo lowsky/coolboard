@@ -6,11 +6,11 @@ import type { User } from 'generated/graphql';
 import { Alert } from 'components/ui/alert';
 import { Avatar } from 'components/ui/avatar';
 
-export type AuthorTimeInfoProps = {
+export interface AuthorTimeInfoProps {
   createdAt: number;
   updatedAt: number;
   updatedBy: User | undefined;
-};
+}
 
 export function AuthorTimeInfo({
   createdAt,

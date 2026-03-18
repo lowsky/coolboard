@@ -4,10 +4,10 @@ import { FiMenu as HamburgerIcon } from 'react-icons/fi';
 import { MdDashboard } from 'react-icons/md';
 import { MenuRoot, MenuTrigger, MenuContent } from '../../ui/menu';
 
-type BoardTitleProps = {
+interface BoardTitleProps {
   boardName: string;
   headerActions?: false | ReactNode;
-};
+}
 
 export const BoardTitle = ({ boardName, headerActions }: BoardTitleProps) => (
   <Flex justifyContent="space-between" alignItems="center">

@@ -9,7 +9,7 @@ import type {
 } from 'generated/graphql';
 import { CardEditModal } from '../CardEditModal';
 
-type State = {
+interface State {
   conflict: boolean;
   loading?: boolean;
   error: string | undefined;
@@ -17,7 +17,7 @@ type State = {
   old_description?: string | null | undefined;
   name: string;
   description?: string | null | undefined;
-};
+}
 
 type CardComponentProps = Card & {
   storeCard: (
@@ -112,7 +112,7 @@ export const CardComponent = (props: CardComponentProps) => {
     }));
   }
 
-  const handleChange = (data: { [key: string]: string }) => {
+  const handleChange = (data: Record<string, string>) => {
     setState((previousState) => ({
       ...previousState,
       ...data,

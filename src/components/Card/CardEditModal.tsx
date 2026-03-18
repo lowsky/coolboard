@@ -13,13 +13,13 @@ import type { Card, User } from 'generated/graphql';
 import { AuthorTimeInfo } from './AuthorTimeInfo';
 import { CardEditForm } from './CardEditForm';
 
-type CardEditModalProps = {
+interface CardEditModalProps {
   open: boolean;
   onClose: () => void;
   saveAndHide: () => void;
   conflict: boolean;
   loading: boolean;
-  handleChange: (data: { [key: string]: string }) => void;
+  handleChange: (data: Record<string, string>) => void;
   props: Card;
   name: string;
   description: string | null | undefined;
@@ -28,7 +28,7 @@ type CardEditModalProps = {
   updatedBy?: User;
   error: string | undefined;
   children: ReactNode;
-};
+}
 
 export function CardEditModal({
   open,

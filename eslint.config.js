@@ -3,7 +3,7 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import js from '@eslint/js';
-import ts from 'typescript-eslint';
+import tseslint from 'typescript-eslint';
 import prettierConfigRecommended from 'eslint-plugin-prettier/recommended';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactPlugin from 'eslint-plugin-react';
@@ -16,7 +16,9 @@ const __dirname = path.dirname(__filename);
 
 const gitignorePath = path.resolve(__dirname, '.gitignore');
 
-const config = [
+import { defineConfig } from 'eslint/config';
+
+export default defineConfig([
   {
     files: ['**/*.{js,ts,tsx}'],
     plugins: {
@@ -28,7 +30,7 @@ const config = [
     },
   },
   js.configs.recommended,
-  ...ts.configs.recommended,
+  ...tseslint.configs.recommended,
   {
     // temporary until code get changed
     rules: { '@typescript-eslint/no-explicit-any': 'off' },
@@ -61,6 +63,4 @@ const config = [
     // ignore the smoketest folder
     ignores: ['smoketest/', '.yarn/'],
   },
-];
-
-export default config;
+]);

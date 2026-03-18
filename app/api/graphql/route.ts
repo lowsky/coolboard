@@ -14,10 +14,10 @@ export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 // Server context for Yoga
-type ServerCtxt = {
+interface ServerCtxt {
   request: NextApiRequest;
   params: Promise<Record<string, string>>;
-};
+}
 
 const authenticatedHandler = createYoga<ServerCtxt>({
   schema: buildSchema(),

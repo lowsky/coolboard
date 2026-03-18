@@ -23,7 +23,7 @@ export const CreateBoardModal = (props: Props) => {
   const onOpen = () => setOpen(true);
   const onClose = () => setOpen(false);
 
-  const handleChange = (data: { [key: string]: string }) => {
+  const handleChange = (data: Record<string, string>) => {
     setState((previousState) => ({
       ...previousState,
       ...data,

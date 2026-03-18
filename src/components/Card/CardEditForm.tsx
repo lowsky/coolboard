@@ -3,15 +3,15 @@ import { Field, Input, Textarea } from '@chakra-ui/react';
 import type { Card } from 'generated/graphql';
 import { ShowDiffWarning } from './ui/ShowDiffWarning';
 
-type CardEditFormProps = {
+interface CardEditFormProps {
   name: string;
   serverData: Card;
   conflict: boolean;
   description: string | null | undefined;
   loading: boolean;
-  handleChange: (data: { [p: string]: string }) => void;
+  handleChange: (data: Record<string, string>) => void;
   saveAndHide: () => void;
-};
+}
 
 export function CardEditForm({
   name,

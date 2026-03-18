@@ -6,7 +6,7 @@ import { DelAllListsButton } from './DelAllListsButton';
 
 const ToIdsMapper = <T extends { id: string }>(itemWithId: T) => itemWithId.id;
 
-type BoardProps = {
+interface BoardProps {
   board: {
     name: string; //
     id: string;
@@ -15,7 +15,7 @@ type BoardProps = {
   addListToBoard: (name?: string) => Promise<any>;
   deleteLists: (ids: string[]) => Promise<any>;
   readonly?: boolean;
-};
+}
 
 export const BoardContainer = (props: BoardProps) => {
   const { board, deleteLists, readonly, addListToBoard } = props;
