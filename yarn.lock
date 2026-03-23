@@ -837,12 +837,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/localizations@npm:^4.2.1":
-  version: 4.2.1
-  resolution: "@clerk/localizations@npm:4.2.1"
+"@clerk/localizations@npm:^4.2.3":
+  version: 4.2.3
+  resolution: "@clerk/localizations@npm:4.2.3"
   dependencies:
-    "@clerk/shared": "npm:^4.3.0"
-  checksum: 10c0/1c095557e27ee237fc3c8b383d25bdfa37ad444c7934fcc8e49f71be543a19f6f338b4f2cf4cdc0075d0c8ee5c381cae75b1be2a32371741d0dfc1e542334f59
+    "@clerk/shared": "npm:^4.3.2"
+  checksum: 10c0/9487324982a58ef74d39bda25fb5ebaade3b266d24862192950da17aaaac1f2d820d50b123ef5bd787dd1b81d7b3a90bf79328c06199255caaa1ee0ac0a2eded
   languageName: node
   linkType: hard
 
@@ -876,27 +876,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/shared@npm:^4.3.0":
-  version: 4.3.0
-  resolution: "@clerk/shared@npm:4.3.0"
-  dependencies:
-    "@tanstack/query-core": "npm:5.90.16"
-    dequal: "npm:2.0.3"
-    glob-to-regexp: "npm:0.4.1"
-    js-cookie: "npm:3.0.5"
-    std-env: "npm:^3.9.0"
-  peerDependencies:
-    react: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
-    react-dom: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
-  peerDependenciesMeta:
-    react:
-      optional: true
-    react-dom:
-      optional: true
-  checksum: 10c0/354f5a496051e446ba685ea1718e398e540b6a12d3daf9783cf20a524717c95900d4d8ee728b2bd1ac9880b3220d5d49bec789d8417a6329c575afb3fa622c0f
-  languageName: node
-  linkType: hard
-
 "@clerk/shared@npm:^4.3.2":
   version: 4.3.2
   resolution: "@clerk/shared@npm:4.3.2"
@@ -919,11 +898,11 @@ __metadata:
   linkType: hard
 
 "@clerk/ui@npm:^1.2.1":
-  version: 1.2.1
-  resolution: "@clerk/ui@npm:1.2.1"
+  version: 1.2.3
+  resolution: "@clerk/ui@npm:1.2.3"
   dependencies:
-    "@clerk/localizations": "npm:^4.2.1"
-    "@clerk/shared": "npm:^4.3.0"
+    "@clerk/localizations": "npm:^4.2.3"
+    "@clerk/shared": "npm:^4.3.2"
     "@emotion/cache": "npm:11.11.0"
     "@emotion/react": "npm:11.11.1"
     "@floating-ui/react": "npm:0.27.12"
@@ -940,7 +919,7 @@ __metadata:
     qrcode.react: "npm:4.2.0"
     react: "npm:^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0"
     react-dom: "npm:^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0"
-  checksum: 10c0/b7571dd5eda4bae4ab45bd0bb6588836da6de1114d50d8a373ee425de84dd8baeb1d66fa457fbb3dcb937debcfee36a06b37aeb42ea75544d6cb20c9b4a06e47
+  checksum: 10c0/b12708cbe555235166962af7406e7439095bf6901c91d75f3ba190be60c1b893eb1b010f5f2060a759b9ec9313c50be393a51ea2f44f54ae27274fd0e1e8d3a3
   languageName: node
   linkType: hard
 
