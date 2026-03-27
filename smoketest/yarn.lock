@@ -6,13 +6,13 @@ __metadata:
   cacheKey: 10c0
 
 "@clerk/backend@npm:^3.2.2":
-  version: 3.2.2
-  resolution: "@clerk/backend@npm:3.2.2"
+  version: 3.2.3
+  resolution: "@clerk/backend@npm:3.2.3"
   dependencies:
     "@clerk/shared": "npm:^4.3.2"
     standardwebhooks: "npm:^1.0.0"
     tslib: "npm:2.8.1"
-  checksum: 10c0/004a0d92bb9d52b51039bd690c0738d74b0615edbf9c4e65fdd9f3aa1a0468e164ce9accdbfb056b4098b164532a38dea302d12abc22edc92042bd4f888dd942
+  checksum: 10c0/c42c482f8daa3dd11c389a1c710d2f69a0806592e5272f15b780d7a0a6b8232a0aa86c1faecb6c11db34e53ce068097aad303206dfe63bd292dd361a87929e10
   languageName: node
   linkType: hard
 
