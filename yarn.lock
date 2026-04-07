@@ -8244,7 +8244,7 @@ __metadata:
     graphql: "npm:16.13.2"
     graphql-scalars: "npm:1.25.0"
     graphql-tag: "npm:2.12.6"
-    graphql-yoga: "npm:5.18.1"
+    graphql-yoga: "npm:5.21.0"
     inter-ui: "npm:4.1.1"
     lucide-react: "npm:1.0.1"
     next: "npm:16.2.2"
@@ -10435,9 +10435,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graphql-yoga@npm:5.18.1":
-  version: 5.18.1
-  resolution: "graphql-yoga@npm:5.18.1"
+"graphql-yoga@npm:5.21.0":
+  version: 5.21.0
+  resolution: "graphql-yoga@npm:5.21.0"
   dependencies:
     "@envelop/core": "npm:^5.5.1"
     "@envelop/instrumentation": "npm:^1.0.0"
@@ -10453,7 +10453,7 @@ __metadata:
     tslib: "npm:^2.8.1"
   peerDependencies:
     graphql: ^15.2.0 || ^16.0.0
-  checksum: 10c0/62d96701cb35da7043187c8dcc7fe67edf68e595b1caa76ec61938d5a2a8bafa589fa734a25cf5f83be2638a8cec09f46ae66f98f996b1f8313cfbc11cdaeb7d
+  checksum: 10c0/15e344ffd77e29e1f09efcaf4d6cb4d0bf92cb4a2f3e81d69c009c55103a03cd7eb1c24fdbafc31d67204b5e6669e2c3e5afef34ccea13d012a1f2581184eb44
   languageName: node
   linkType: hard
 
