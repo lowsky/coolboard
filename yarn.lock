@@ -8330,7 +8330,7 @@ __metadata:
     graphql-tag: "npm:2.12.6"
     graphql-yoga: "npm:5.21.0"
     inter-ui: "npm:4.1.1"
-    lucide-react: "npm:1.0.1"
+    lucide-react: "npm:1.8.0"
     next: "npm:16.2.3"
     next-themes: "npm:0.4.6"
     prettier: "npm:3.8.1"
@@ -11944,12 +11944,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lucide-react@npm:1.0.1":
-  version: 1.0.1
-  resolution: "lucide-react@npm:1.0.1"
+"lucide-react@npm:1.8.0":
+  version: 1.8.0
+  resolution: "lucide-react@npm:1.8.0"
   peerDependencies:
     react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
-  checksum: 10c0/dc5834ef128bbdb9f7d1c6b8cc37b70807203b3dcb91977d3dfa28cbe995c7a0f099689e4191625292238fd18a5f815883d829bef26f318c35b79b336413862a
+  checksum: 10c0/f7398f89a0f5b2cbfd1b7a7f6b2f00b0abd05d4b21d948bbd281ab141c42cdff9f1d2aed4e32b78b4bbdfa78308b6577705698af8bf9945bad23ed7d56e255b4
   languageName: node
   linkType: hard
 
