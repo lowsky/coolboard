@@ -826,7 +826,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/backend@npm:^3.2.11":
+"@clerk/backend@npm:^3.2.12":
   version: 3.2.12
   resolution: "@clerk/backend@npm:3.2.12"
   dependencies:
@@ -846,24 +846,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/nextjs@npm:7.2.1":
-  version: 7.2.1
-  resolution: "@clerk/nextjs@npm:7.2.1"
+"@clerk/nextjs@npm:7.2.2":
+  version: 7.2.2
+  resolution: "@clerk/nextjs@npm:7.2.2"
   dependencies:
-    "@clerk/backend": "npm:^3.2.11"
-    "@clerk/react": "npm:^6.4.1"
-    "@clerk/shared": "npm:^4.8.1"
+    "@clerk/backend": "npm:^3.2.12"
+    "@clerk/react": "npm:^6.4.2"
+    "@clerk/shared": "npm:^4.8.2"
     server-only: "npm:0.0.1"
     tslib: "npm:2.8.1"
   peerDependencies:
     next: ^15.2.8 || ^15.3.8 || ^15.4.10 || ^15.5.9 || ^15.6.0-0 || ^16.0.10 || ^16.1.0-0
     react: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
     react-dom: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
-  checksum: 10c0/4d2517a51b7b7da9727b2949ba12bbc302912746c8814865ede3bdc0c57e157993644d847513d9f11933f34566de5eb8bb73f7863168120690a8b9dfe754d77d
+  checksum: 10c0/43aaa69dbfe6b94c48486cebe22516396baba3fd881bc2d3f9a80cdd962d40bd41ce61d65d03d3725cca2f9b3198916860ec5d540a94759cccb3303cee0f0973
   languageName: node
   linkType: hard
 
-"@clerk/react@npm:^6.4.1":
+"@clerk/react@npm:^6.4.2":
   version: 6.4.2
   resolution: "@clerk/react@npm:6.4.2"
   dependencies:
@@ -897,7 +897,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/shared@npm:^4.8.1, @clerk/shared@npm:^4.8.2":
+"@clerk/shared@npm:^4.8.2":
   version: 4.8.2
   resolution: "@clerk/shared@npm:4.8.2"
   dependencies:
@@ -8311,7 +8311,7 @@ __metadata:
   dependencies:
     "@apollo/client": "npm:4.1.7"
     "@chakra-ui/react": "npm:3.34.0"
-    "@clerk/nextjs": "npm:7.2.1"
+    "@clerk/nextjs": "npm:7.2.2"
     "@clerk/ui": "npm:^1.2.1"
     "@emotion/react": "npm:11.14.0"
     "@escape.tech/graphql-armor-block-field-suggestions": "npm:3.0.1"
