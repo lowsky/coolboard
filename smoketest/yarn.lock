@@ -5,18 +5,18 @@ __metadata:
   version: 8
   cacheKey: 10c0
 
-"@clerk/backend@npm:^3.2.7":
-  version: 3.2.7
-  resolution: "@clerk/backend@npm:3.2.7"
+"@clerk/backend@npm:^3.2.12":
+  version: 3.2.12
+  resolution: "@clerk/backend@npm:3.2.12"
   dependencies:
-    "@clerk/shared": "npm:^4.5.0"
+    "@clerk/shared": "npm:^4.8.2"
     standardwebhooks: "npm:^1.0.0"
     tslib: "npm:2.8.1"
-  checksum: 10c0/4e3e80882dabe4a19bc3590f222e63f6f9fb09930f78cf532902e7dd2fb1872fc4002a1e87884993fc2e524106edb9779118da3ef3255d711549064f0d57e074
+  checksum: 10c0/c5991f0d420d38252a10a48b15daaf52e3cfbdda0e344250a427ad1d9037f2841f2e171d0716a60209065892d62fe981504bc312389e3dfdfda15a3d6d65a2d9
   languageName: node
   linkType: hard
 
-"@clerk/shared@npm:^4.5.0":
+"@clerk/shared@npm:^4.8.2":
   version: 4.8.2
   resolution: "@clerk/shared@npm:4.8.2"
   dependencies:
@@ -37,12 +37,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/testing@npm:2.0.11":
-  version: 2.0.11
-  resolution: "@clerk/testing@npm:2.0.11"
+"@clerk/testing@npm:2.0.16":
+  version: 2.0.16
+  resolution: "@clerk/testing@npm:2.0.16"
   dependencies:
-    "@clerk/backend": "npm:^3.2.7"
-    "@clerk/shared": "npm:^4.5.0"
+    "@clerk/backend": "npm:^3.2.12"
+    "@clerk/shared": "npm:^4.8.2"
     dotenv: "npm:17.2.2"
   peerDependencies:
     "@playwright/test": ^1
@@ -52,7 +52,7 @@ __metadata:
       optional: true
     cypress:
       optional: true
-  checksum: 10c0/b152f82405588f5006fcf87e4afc76b2d9fb7d733de7878cdb2904e65959b31278245bd9d2af815f5bc570155175e2e050fb5e064b92757db7dc739a88015c3a
+  checksum: 10c0/f5d47d774eb3809689ac7d200e70ccd1d8b585d45c15ed4cb5a0a7f67ad7130198c2788d01c64df7dab78b94493fb0e2532ef8254db4d15a06d6e653df3bb3e5
   languageName: node
   linkType: hard
 
@@ -439,7 +439,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "coolboard-smoketests@workspace:."
   dependencies:
-    "@clerk/testing": "npm:2.0.11"
+    "@clerk/testing": "npm:2.0.16"
     cypress: "npm:15.13.0"
     typescript: "npm:5.9.3"
   languageName: unknown
