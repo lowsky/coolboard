@@ -837,12 +837,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/localizations@npm:^4.3.2":
-  version: 4.3.2
-  resolution: "@clerk/localizations@npm:4.3.2"
+"@clerk/localizations@npm:^4.5.2":
+  version: 4.5.2
+  resolution: "@clerk/localizations@npm:4.5.2"
   dependencies:
-    "@clerk/shared": "npm:^4.5.0"
-  checksum: 10c0/0f850c154cac7070fc599b02da449f31cc976d5f60d99f3e8e64f6e28f3df01ec4572fd2c0d394573ee16d0e4233967a7cb5b9d0e3b41c9e25e481b1b82247bb
+    "@clerk/shared": "npm:^4.8.2"
+  checksum: 10c0/1d70cca6938aa5c59949f88537503372fc6606e273606ea928caf4c9ba98b76a49c7255ddb0b52d8315e3e0232985c18e14b263cd81f92971d735590af00a5e8
   languageName: node
   linkType: hard
 
@@ -876,7 +876,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/shared@npm:^4.5.0, @clerk/shared@npm:^4.8.2":
+"@clerk/shared@npm:^4.8.2":
   version: 4.8.2
   resolution: "@clerk/shared@npm:4.8.2"
   dependencies:
@@ -898,11 +898,11 @@ __metadata:
   linkType: hard
 
 "@clerk/ui@npm:^1.2.1":
-  version: 1.4.0
-  resolution: "@clerk/ui@npm:1.4.0"
+  version: 1.6.3
+  resolution: "@clerk/ui@npm:1.6.3"
   dependencies:
-    "@clerk/localizations": "npm:^4.3.2"
-    "@clerk/shared": "npm:^4.5.0"
+    "@clerk/localizations": "npm:^4.5.2"
+    "@clerk/shared": "npm:^4.8.2"
     "@emotion/cache": "npm:11.11.0"
     "@emotion/react": "npm:11.11.1"
     "@floating-ui/react": "npm:0.27.12"
@@ -910,7 +910,7 @@ __metadata:
     "@solana/wallet-adapter-base": "npm:0.9.27"
     "@solana/wallet-adapter-react": "npm:0.15.39"
     "@solana/wallet-standard": "npm:1.1.4"
-    "@swc/helpers": "npm:0.5.17"
+    "@swc/helpers": "npm:0.5.21"
     copy-to-clipboard: "npm:3.3.3"
     core-js: "npm:3.47.0"
     csstype: "npm:3.1.3"
@@ -920,7 +920,7 @@ __metadata:
   peerDependencies:
     react: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
     react-dom: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
-  checksum: 10c0/50dc3c39617a3ec4485d774b6e1314af5d79c1b8528c5dac3fb0d9845ce94d12e7211e33d18a23de85aa3c5845121e4c3380f97ac4564a7e10b4ea78176fc537
+  checksum: 10c0/9fa98aeb1f272094a035b59142569d3947648c2e3cbb9c47b4e7f5c0428f3bd93299bd5dd3766f11c278d4f82d59786b89761075cc63f22aebad522f92a2751b
   languageName: node
   linkType: hard
 
@@ -5503,7 +5503,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swc/helpers@npm:0.5.17, @swc/helpers@npm:^0.5.0":
+"@swc/helpers@npm:0.5.21":
+  version: 0.5.21
+  resolution: "@swc/helpers@npm:0.5.21"
+  dependencies:
+    tslib: "npm:^2.8.0"
+  checksum: 10c0/692018ec8a9f7ea5ea3fe576fea5af1a782c8bc1752fcb60f949b482fb2521609d1d3710908aebae67086f152e57d231d59b08f4653fd20a2e3e0fa4a34e6322
+  languageName: node
+  linkType: hard
+
+"@swc/helpers@npm:^0.5.0":
   version: 0.5.17
   resolution: "@swc/helpers@npm:0.5.17"
   dependencies:
