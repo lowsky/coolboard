@@ -876,28 +876,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/shared@npm:^4.5.0":
-  version: 4.5.0
-  resolution: "@clerk/shared@npm:4.5.0"
-  dependencies:
-    "@tanstack/query-core": "npm:5.90.16"
-    dequal: "npm:2.0.3"
-    glob-to-regexp: "npm:0.4.1"
-    js-cookie: "npm:3.0.5"
-    std-env: "npm:^3.9.0"
-  peerDependencies:
-    react: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
-    react-dom: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
-  peerDependenciesMeta:
-    react:
-      optional: true
-    react-dom:
-      optional: true
-  checksum: 10c0/7966bf099566f05e8756ec94d3a97fb75a1e00d68e3793fecb572789ee7124e08a3f7c0edc6db17be22215d9f0e2eb1f0f7fdd28f950ac1e392e3ea7f55e9d23
-  languageName: node
-  linkType: hard
-
-"@clerk/shared@npm:^4.8.2":
+"@clerk/shared@npm:^4.5.0, @clerk/shared@npm:^4.8.2":
   version: 4.8.2
   resolution: "@clerk/shared@npm:4.8.2"
   dependencies:
