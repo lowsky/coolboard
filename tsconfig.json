@@ -6,7 +6,6 @@
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
     "alwaysStrict": true,
-    "baseUrl": ".",
     "paths": {
       "auth/*": [
         "src/auth/*"
@@ -22,6 +21,16 @@
       ]
     },
     "esModuleInterop": true,
+    "paths": {
+      "src/*": ["./src/*"],
+      "server/*": ["./server/*"],
+      "generated/*": ["./src/generated/*"],
+      "components/*": ["./src/components/*"],
+      "common/*": ["./src/common/*"],
+      "auth/*": ["./src/auth/*"],
+      "public/*": ["./public/*"],
+      ".next/*": ["./.next/*"]
+    },
     "forceConsistentCasingInFileNames": true,
     "incremental": true,
     "isolatedModules": true,
