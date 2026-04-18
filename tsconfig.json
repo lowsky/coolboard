@@ -4,8 +4,6 @@
     "allowUnusedLabels": false,
     "exactOptionalPropertyTypes": true,
     "allowJs": false,
-    "allowSyntheticDefaultImports": true,
-    "alwaysStrict": true,
     "paths": {
       "auth/*": [
         "src/auth/*"
