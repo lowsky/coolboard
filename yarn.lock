@@ -791,14 +791,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/backend@npm:^3.2.12":
-  version: 3.2.12
-  resolution: "@clerk/backend@npm:3.2.12"
+"@clerk/backend@npm:^3.2.13":
+  version: 3.2.13
+  resolution: "@clerk/backend@npm:3.2.13"
   dependencies:
     "@clerk/shared": "npm:^4.8.2"
     standardwebhooks: "npm:^1.0.0"
     tslib: "npm:2.8.1"
-  checksum: 10c0/c5991f0d420d38252a10a48b15daaf52e3cfbdda0e344250a427ad1d9037f2841f2e171d0716a60209065892d62fe981504bc312389e3dfdfda15a3d6d65a2d9
+  checksum: 10c0/7288a37bed1833ccd2b88a735fdfc149b626d474bb81b5e52cb71242cecddd0d74ffff33dc760456252e63d22440c388d6fbfdde5312bf301379d7c5571810ee
   languageName: node
   linkType: hard
 
@@ -811,11 +811,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/nextjs@npm:7.2.2":
-  version: 7.2.2
-  resolution: "@clerk/nextjs@npm:7.2.2"
+"@clerk/nextjs@npm:7.2.3":
+  version: 7.2.3
+  resolution: "@clerk/nextjs@npm:7.2.3"
   dependencies:
-    "@clerk/backend": "npm:^3.2.12"
+    "@clerk/backend": "npm:^3.2.13"
     "@clerk/react": "npm:^6.4.2"
     "@clerk/shared": "npm:^4.8.2"
     server-only: "npm:0.0.1"
@@ -824,7 +824,7 @@ __metadata:
     next: ^15.2.8 || ^15.3.8 || ^15.4.10 || ^15.5.9 || ^15.6.0-0 || ^16.0.10 || ^16.1.0-0
     react: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
     react-dom: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
-  checksum: 10c0/43aaa69dbfe6b94c48486cebe22516396baba3fd881bc2d3f9a80cdd962d40bd41ce61d65d03d3725cca2f9b3198916860ec5d540a94759cccb3303cee0f0973
+  checksum: 10c0/b3c2e4a1e26cf373b19228dfe4703a91d265ebfdd9151f88ddeeebc171179a03483d762b8548878e29c60939ec107ba38b969f8bde4a3f1f11e97bea00162ee1
   languageName: node
   linkType: hard
 
@@ -8403,7 +8403,7 @@ __metadata:
   dependencies:
     "@apollo/client": "npm:4.1.7"
     "@chakra-ui/react": "npm:3.34.0"
-    "@clerk/nextjs": "npm:7.2.2"
+    "@clerk/nextjs": "npm:7.2.3"
     "@clerk/ui": "npm:^1.2.1"
     "@emotion/react": "npm:11.14.0"
     "@escape.tech/graphql-armor-block-field-suggestions": "npm:3.0.1"
