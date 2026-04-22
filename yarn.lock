@@ -802,12 +802,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/localizations@npm:^4.5.2":
-  version: 4.5.2
-  resolution: "@clerk/localizations@npm:4.5.2"
+"@clerk/localizations@npm:^4.5.3":
+  version: 4.5.3
+  resolution: "@clerk/localizations@npm:4.5.3"
   dependencies:
-    "@clerk/shared": "npm:^4.8.2"
-  checksum: 10c0/1d70cca6938aa5c59949f88537503372fc6606e273606ea928caf4c9ba98b76a49c7255ddb0b52d8315e3e0232985c18e14b263cd81f92971d735590af00a5e8
+    "@clerk/shared": "npm:^4.8.3"
+  checksum: 10c0/79e5382f6ac7da542d8d63457133e5106e39297af08e8a106ec910fcfd82c693530088e027914ac869db6b63d8f6d75861279c604fd00a30ac113813ca5b3070
   languageName: node
   linkType: hard
 
@@ -862,12 +862,33 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/ui@npm:^1.2.1":
-  version: 1.6.3
-  resolution: "@clerk/ui@npm:1.6.3"
+"@clerk/shared@npm:^4.8.3":
+  version: 4.8.3
+  resolution: "@clerk/shared@npm:4.8.3"
   dependencies:
-    "@clerk/localizations": "npm:^4.5.2"
-    "@clerk/shared": "npm:^4.8.2"
+    "@tanstack/query-core": "npm:5.90.16"
+    dequal: "npm:2.0.3"
+    glob-to-regexp: "npm:0.4.1"
+    js-cookie: "npm:3.0.5"
+    std-env: "npm:^3.9.0"
+  peerDependencies:
+    react: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
+    react-dom: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
+  peerDependenciesMeta:
+    react:
+      optional: true
+    react-dom:
+      optional: true
+  checksum: 10c0/6c59e97a93b13a562cbcc369fabd0a5a9edc9df0d2f3f172fae62bde86ffbb4c927fcc23b1ba1de73e4e7976b0c773a091e4281373809dd8939c0c3fe9c43e8d
+  languageName: node
+  linkType: hard
+
+"@clerk/ui@npm:^1.2.1":
+  version: 1.6.4
+  resolution: "@clerk/ui@npm:1.6.4"
+  dependencies:
+    "@clerk/localizations": "npm:^4.5.3"
+    "@clerk/shared": "npm:^4.8.3"
     "@emotion/cache": "npm:11.11.0"
     "@emotion/react": "npm:11.11.1"
     "@floating-ui/react": "npm:0.27.12"
@@ -885,7 +906,7 @@ __metadata:
   peerDependencies:
     react: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
     react-dom: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
-  checksum: 10c0/9fa98aeb1f272094a035b59142569d3947648c2e3cbb9c47b4e7f5c0428f3bd93299bd5dd3766f11c278d4f82d59786b89761075cc63f22aebad522f92a2751b
+  checksum: 10c0/84e820688d42c62a039e9666ceb60c26cfc9042a19f5bbbef4a9cf4e18d769b34c6cd2b72213eab71769ea0209d5555cd29a9022de12af4e791ba5df5503ddae
   languageName: node
   linkType: hard
 
