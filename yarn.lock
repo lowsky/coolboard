@@ -804,12 +804,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/localizations@npm:^4.5.5":
-  version: 4.5.5
-  resolution: "@clerk/localizations@npm:4.5.5"
+"@clerk/localizations@npm:^4.5.7":
+  version: 4.5.7
+  resolution: "@clerk/localizations@npm:4.5.7"
   dependencies:
-    "@clerk/shared": "npm:^4.8.5"
-  checksum: 10c0/e9c3dbdf341221dda6d2345eda27dfe6fe5898dc5a2a85dee7b2e554cd4b7cf43bdc879113a677fbec190105e975277a0365975ab6c9a70dcfa4ec1a4861aa85
+    "@clerk/shared": "npm:^4.8.7"
+  checksum: 10c0/0b2a8c254ee53e662ef3dc597c5f946ff826a4e6f048622a4af7760bd3e7335e31acc9d7ddbd1c61fed8a669e5a7f260dd23b0ce03eb7c2e23b5de4ef3bbb465
   languageName: node
   linkType: hard
 
@@ -864,12 +864,33 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/ui@npm:^1.2.1":
-  version: 1.6.7
-  resolution: "@clerk/ui@npm:1.6.7"
+"@clerk/shared@npm:^4.8.7":
+  version: 4.8.7
+  resolution: "@clerk/shared@npm:4.8.7"
   dependencies:
-    "@clerk/localizations": "npm:^4.5.5"
-    "@clerk/shared": "npm:^4.8.5"
+    "@tanstack/query-core": "npm:^5.100.6"
+    dequal: "npm:2.0.3"
+    glob-to-regexp: "npm:0.4.1"
+    js-cookie: "npm:3.0.5"
+    std-env: "npm:^3.9.0"
+  peerDependencies:
+    react: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
+    react-dom: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
+  peerDependenciesMeta:
+    react:
+      optional: true
+    react-dom:
+      optional: true
+  checksum: 10c0/507615a36c2cad8db368f3c61b3598d16b8f6751a922afe9f9abd35fc8f50bbb1d5f9c4201804cb3e3b143a05fc3f6d44b529ad9e797e3a7728c79e32b819d31
+  languageName: node
+  linkType: hard
+
+"@clerk/ui@npm:^1.2.1":
+  version: 1.6.9
+  resolution: "@clerk/ui@npm:1.6.9"
+  dependencies:
+    "@clerk/localizations": "npm:^4.5.7"
+    "@clerk/shared": "npm:^4.8.7"
     "@emotion/cache": "npm:11.11.0"
     "@emotion/react": "npm:11.11.1"
     "@floating-ui/react": "npm:0.27.12"
@@ -887,7 +908,7 @@ __metadata:
   peerDependencies:
     react: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
     react-dom: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
-  checksum: 10c0/de07d4f77e6526367d10ef9ff2dd6ebb9c8e81a02c8e73b31b835955b52b7eb604f68e63a00b61706011674541280baf4f5e02f252b8f88d71bf404df2c9544f
+  checksum: 10c0/ebaad18f0dcb23cb8973d2be70ebed87cedf0ca3d45970d232092e0421e9b92d7278fb0258a4822f5f30a6bdf7ee27abbd8405dddb769027c64ff619a30ce17e
   languageName: node
   linkType: hard
 
@@ -5465,6 +5486,13 @@ __metadata:
   version: 5.90.16
   resolution: "@tanstack/query-core@npm:5.90.16"
   checksum: 10c0/f6a4827feeed2b4118323056bbda8d5099823202d1f29b538204ae2591be4e80f2946f3311eed30fefe866643f431c04b560457f03415d40caf2f353ba1efac0
+  languageName: node
+  linkType: hard
+
+"@tanstack/query-core@npm:^5.100.6":
+  version: 5.100.7
+  resolution: "@tanstack/query-core@npm:5.100.7"
+  checksum: 10c0/249ca6e07e69df1646da9fd9c01e9fce0f45c17c855be2cb2321098d049a5e3f0f40d13a66cc75d3aafe7dd90a4984e99aa640eac4b9c01205c5cc3fe6aee7b1
   languageName: node
   linkType: hard
 
