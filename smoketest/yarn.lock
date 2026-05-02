@@ -5,22 +5,22 @@ __metadata:
   version: 9
   cacheKey: 10c0
 
-"@clerk/backend@npm:^3.4.1":
-  version: 3.4.1
-  resolution: "@clerk/backend@npm:3.4.1"
+"@clerk/backend@npm:^3.4.4":
+  version: 3.4.4
+  resolution: "@clerk/backend@npm:3.4.4"
   dependencies:
-    "@clerk/shared": "npm:^4.8.5"
+    "@clerk/shared": "npm:^4.9.0"
     standardwebhooks: "npm:^1.0.0"
     tslib: "npm:2.8.1"
-  checksum: 10c0/98fda936af6529e4fa7ce353a3f42e5f1df76b03c16e90d359425b555d1b226c5032c37b8332dd2a40ecb3e780197fa6ef12d6a6e84d71b97f290bae584b6e9c
+  checksum: 10c0/7fbe50a387e0a96010b4ad6e166c983f3a572ac5ebbeccebb18a4cc418ca41316ba9e4eaf46c4d7d32a334cc101691c3a335c782df40a08e9e2ca64c4e50d56e
   languageName: node
   linkType: hard
 
-"@clerk/shared@npm:^4.8.5":
-  version: 4.8.5
-  resolution: "@clerk/shared@npm:4.8.5"
+"@clerk/shared@npm:^4.9.0":
+  version: 4.9.0
+  resolution: "@clerk/shared@npm:4.9.0"
   dependencies:
-    "@tanstack/query-core": "npm:5.90.16"
+    "@tanstack/query-core": "npm:^5.100.6"
     dequal: "npm:2.0.3"
     glob-to-regexp: "npm:0.4.1"
     js-cookie: "npm:3.0.5"
@@ -33,16 +33,16 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: 10c0/6c58defe94f76315c7162d39c4e5f84a38d7766da5995a4524c998fce3acf8cd34bff383f6d7089c3ebfa93f9f8c73d804382bc5c1e7a1163f30948d9605d60e
+  checksum: 10c0/73c4a759e1df875b744fd41634c0f786d1c34f94cece1eb3600b1532c240c1545bb0bf1321bd7805a1bfddac714ada183fb05b1955ad7853a280773c45a7edb3
   languageName: node
   linkType: hard
 
-"@clerk/testing@npm:2.0.21":
-  version: 2.0.21
-  resolution: "@clerk/testing@npm:2.0.21"
+"@clerk/testing@npm:2.0.24":
+  version: 2.0.24
+  resolution: "@clerk/testing@npm:2.0.24"
   dependencies:
-    "@clerk/backend": "npm:^3.4.1"
-    "@clerk/shared": "npm:^4.8.5"
+    "@clerk/backend": "npm:^3.4.4"
+    "@clerk/shared": "npm:^4.9.0"
     dotenv: "npm:17.2.2"
   peerDependencies:
     "@playwright/test": ^1
@@ -52,7 +52,7 @@ __metadata:
       optional: true
     cypress:
       optional: true
-  checksum: 10c0/f7391a219e1d916e02981cf23fd4e96b5b9102ce4efd3243f393b005f37d20ce9c4135fadeb48b8f96ba6bd4647dfd552b302faf5456ad27104cdf65566ca1c6
+  checksum: 10c0/024b4142ad4c907773f2eb3e0d1e3f7183c0e66e40e352a3e5c210debec6faca638231761c7f510a51522d1eb3f27f26a0022a366d61c8362b5bdb2af1ddf840
   languageName: node
   linkType: hard
 
@@ -99,10 +99,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/query-core@npm:5.90.16":
-  version: 5.90.16
-  resolution: "@tanstack/query-core@npm:5.90.16"
-  checksum: 10c0/f6a4827feeed2b4118323056bbda8d5099823202d1f29b538204ae2591be4e80f2946f3311eed30fefe866643f431c04b560457f03415d40caf2f353ba1efac0
+"@tanstack/query-core@npm:^5.100.6":
+  version: 5.100.8
+  resolution: "@tanstack/query-core@npm:5.100.8"
+  checksum: 10c0/fa6779e4601701171c5c9bd899e6787a082dc7494fbadbc6bfa1a4d791604bcde90bc728d19b48046bcba75a1bd3f727848634cafe1bd7a9f362b0e1df15305b
   languageName: node
   linkType: hard
 
@@ -439,7 +439,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "coolboard-smoketests@workspace:."
   dependencies:
-    "@clerk/testing": "npm:2.0.21"
+    "@clerk/testing": "npm:2.0.24"
     cypress: "npm:15.14.1"
     typescript: "npm:6.0.3"
   languageName: unknown
