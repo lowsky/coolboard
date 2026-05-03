@@ -4,20 +4,6 @@
     "allowUnusedLabels": false,
     "exactOptionalPropertyTypes": true,
     "allowJs": false,
-    "paths": {
-      "auth/*": [
-        "src/auth/*"
-      ],
-      "components/*": [
-        "src/components/*"
-      ],
-      "common/*": [
-        "src/common/*"
-      ],
-      "generated/*": [
-        "src/generated/*"
-      ]
-    },
     "esModuleInterop": true,
     "paths": {
       "src/*": ["./src/*"],
@@ -61,7 +47,6 @@
   ],
   "include": [
     "next-env.d.ts",
-    "netlify/**/*.ts",
     "src/**/*.ts*",
     "pages/**/*.ts*",
     ".next/types/**/*.ts",
