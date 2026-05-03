@@ -195,19 +195,6 @@ export type User = {
   name: Scalars['String']['output'];
 };
 
-export type MeQueryQueryVariables = Exact<{ [key: string]: never }>;
-
-export type MeQueryQuery = {
-  __typename?: 'Query';
-  me?: {
-    __typename?: 'User';
-    email: string;
-    id: string;
-    name: string;
-    avatarUrl?: string | null;
-  } | null;
-};
-
 export type BoardQueryVariables = Exact<{
   boardId: Scalars['ID']['input'];
 }>;
@@ -548,73 +535,6 @@ export const CardList_ListFragmentDoc = gql`
   }
   ${Card_CardFragmentDoc}
 `;
-export const MeQueryDocument = gql`
-  query MeQuery {
-    me {
-      email
-      id
-      name
-      avatarUrl
-    }
-  }
-`;
-
-/**
- * __useMeQueryQuery__
- *
- * To run a query within a React component, call `useMeQueryQuery` and pass it any options that fit your needs.
- * When your component renders, `useMeQueryQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useMeQueryQuery({
- *   variables: {
- *   },
- * });
- */
-export function useMeQueryQuery(
-  baseOptions?: Apollo.QueryHookOptions<MeQueryQuery, MeQueryQueryVariables>
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<MeQueryQuery, MeQueryQueryVariables>(
-    MeQueryDocument,
-    options
-  );
-}
-export function useMeQueryLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<MeQueryQuery, MeQueryQueryVariables>
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<MeQueryQuery, MeQueryQueryVariables>(
-    MeQueryDocument,
-    options
-  );
-}
-export function useMeQuerySuspenseQuery(
-  baseOptions?:
-    | Apollo.SkipToken
-    | Apollo.SuspenseQueryHookOptions<MeQueryQuery, MeQueryQueryVariables>
-) {
-  const options =
-    baseOptions === Apollo.skipToken
-      ? baseOptions
-      : { ...defaultOptions, ...baseOptions };
-  return Apollo.useSuspenseQuery<MeQueryQuery, MeQueryQueryVariables>(
-    MeQueryDocument,
-    options
-  );
-}
-export type MeQueryQueryHookResult = ReturnType<typeof useMeQueryQuery>;
-export type MeQueryLazyQueryHookResult = ReturnType<typeof useMeQueryLazyQuery>;
-export type MeQuerySuspenseQueryHookResult = ReturnType<
-  typeof useMeQuerySuspenseQuery
->;
-export type MeQueryQueryResult = Apollo.QueryResult<
-  MeQueryQuery,
-  MeQueryQueryVariables
->;
 export const BoardDocument = gql`
   query board($boardId: ID!) {
     board(where: { id: $boardId }) {
