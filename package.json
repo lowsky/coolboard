@@ -65,7 +65,7 @@
     "postinstall": "npm run gen:theme-typings",
     "vercel-build": "yarn run build && yarn trigger-e2e-smoke",
     "vercel-fast-build": "yarn run build",
-    "codegen": "graphql-codegen --config codegen.ts"
+    "codegen": "graphql-codegen"
   },
   "devDependencies": {
     "@eslint/compat": "2.0.5",
