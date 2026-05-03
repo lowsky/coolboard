@@ -1,7 +1,7 @@
 import { type DropTargetMonitor, useDrop } from 'react-dnd';
 import { useCallback } from 'react';
 
-import type { Card as CardType } from 'generated/graphql';
+import type { Card as CardType } from 'src/gql/graphql';
 
 import type { DndProps } from './CardListWithDnd';
 import { dndItemType } from 'components/Card/Card';

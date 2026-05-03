@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { createUpdateCachedListsAfterMovingCard } from './overrideCacheListsAfterMovingCard';
 import { CardListWithDnd, type UIListData } from './ui/CardListWithDnd';
 import { type MoveItemToFrom, useCardListDnd } from './ui/useCardListDnd';
@@ -95,6 +93,7 @@ export const CardList = ({
     return <span>Load error!</span>;
   }
 
+  // @ts-expect-error type mismatch. Type '({ __typename?: "List"; } & { ' $fragmentRefs'?: { CardList_ListFragment: CardList_ListFragment; }; }) | null | undefined' is not assignable to type 'UIListData'.
   const list: UIListData = data?.list;
 
   return (

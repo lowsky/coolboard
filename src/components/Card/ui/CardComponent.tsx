@@ -6,7 +6,7 @@ import type {
   Card,
   UpdateCardMutation,
   UpdateCardMutationVariables,
-} from 'generated/graphql';
+} from 'src/gql/graphql';
 import { CardEditModal } from '../CardEditModal';
 
 interface State {

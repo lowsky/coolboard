@@ -1,19 +1,22 @@
-import { ApolloClient } from '@apollo/client';
+import { ApolloClient, TypedDocumentNode } from '@apollo/client';
+import { useMutation } from '@apollo/client/react';
 
 import { CardComponent } from './ui/CardComponent';
 import {
   type Card as CardType,
   UpdateCardMutation,
   type UpdateCardMutationVariables,
-} from 'generated/graphql';
+} from 'src/gql/graphql';
 import {
   CardForDraggingProps,
   useCardDragHook,
 } from 'components/Card/useCardDragHook';
-import { useMutation } from '@apollo/client/react';
 import { graphql } from '../../gql';
 
-const UpdateCardDoc = graphql(`
+const UpdateCardDoc: TypedDocumentNode<
+  UpdateCardMutation,
+  UpdateCardMutationVariables
+> = graphql(`
   mutation updateCard($id: ID!, $name: String!, $description: String) {
     updateCard(
       where: { id: $id }
@@ -38,6 +41,7 @@ function CardForDragging(props: CardForDraggingProps) {
 
 function Card(props: CardType) {
   const [mutation] = useMutation(UpdateCardDoc, {
+    // @ts-expect-error type mismatch. TODO add generics to useMutation
     variables: {
       ...props,
     },

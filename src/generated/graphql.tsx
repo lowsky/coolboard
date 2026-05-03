@@ -1,5 +1,8 @@
+/* eslint-disable */
+// @ts-nocheck
+
 import { gql } from '@apollo/client';
-import * as Apollo from '@apollo/client';
+import * as Apollo from '@apollo/client/react';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = {
@@ -759,6 +762,21 @@ export function useUserBoardsLazyQuery(
     options
   );
 }
+// @ts-ignore
+export function useUserBoardsSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    UserBoardsQuery,
+    UserBoardsQueryVariables
+  >
+): Apollo.UseSuspenseQueryResult<UserBoardsQuery, UserBoardsQueryVariables>;
+export function useUserBoardsSuspenseQuery(
+  baseOptions?:
+    | Apollo.SkipToken
+    | Apollo.SuspenseQueryHookOptions<UserBoardsQuery, UserBoardsQueryVariables>
+): Apollo.UseSuspenseQueryResult<
+  UserBoardsQuery | undefined,
+  UserBoardsQueryVariables
+>;
 export function useUserBoardsSuspenseQuery(
   baseOptions?:
     | Apollo.SkipToken
@@ -993,6 +1011,21 @@ export function useCardListLazyQuery(
     options
   );
 }
+// @ts-ignore
+export function useCardListSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<
+    CardListQuery,
+    CardListQueryVariables
+  >
+): Apollo.UseSuspenseQueryResult<CardListQuery, CardListQueryVariables>;
+export function useCardListSuspenseQuery(
+  baseOptions?:
+    | Apollo.SkipToken
+    | Apollo.SuspenseQueryHookOptions<CardListQuery, CardListQueryVariables>
+): Apollo.UseSuspenseQueryResult<
+  CardListQuery | undefined,
+  CardListQueryVariables
+>;
 export function useCardListSuspenseQuery(
   baseOptions?:
     | Apollo.SkipToken

@@ -9,7 +9,7 @@ import {
   Portal,
 } from '@chakra-ui/react';
 
-import type { Card, User } from 'generated/graphql';
+import type { Card, User } from 'src/gql/graphql';
 import { AuthorTimeInfo } from './AuthorTimeInfo';
 import { CardEditForm } from './CardEditForm';
 

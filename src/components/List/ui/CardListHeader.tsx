@@ -1,7 +1,7 @@
 import { Editable, Flex, Heading, IconButton, Popover } from '@chakra-ui/react';
 import { LuCheck, LuX } from 'react-icons/lu';
 import { FiEdit as EditIcon, FiMenu as HamburgerIcon } from 'react-icons/fi';
-import React, { type ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import { useMutation } from '@apollo/client/react';
 import { graphql } from '../../../gql';
 

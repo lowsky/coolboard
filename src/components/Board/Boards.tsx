@@ -1,12 +1,12 @@
 import { Container, Heading, List, ListItem, Spinner } from '@chakra-ui/react';
+import { useMutation, useSuspenseQuery } from '@apollo/client/react';
 import type { ApolloCache } from '@apollo/client';
 
-import { UserBoardsDocument, type UserBoardsQuery } from 'generated/graphql';
+import { UserBoardsDocument, type UserBoardsQuery } from 'src/gql/graphql';
 import { Segment } from 'common/Segment';
 import { FullVerticalContainer } from 'common/FullVerticalContainer';
 import { CreateBoardModal } from './ui/CreateBoardModal';
 import { BoardListItem, type BoardListItemProps } from './ui/BoardListItem';
-import { useMutation, useSuspenseQuery } from '@apollo/client/react';
 import { graphql } from '../../gql';
 
 const UserBoardsDoc = graphql(`

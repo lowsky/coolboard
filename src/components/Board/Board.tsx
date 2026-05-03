@@ -1,7 +1,10 @@
-import React from 'react';
 import { BoardContainer } from './ui/BoardContainer';
 import { useQuery, useMutation } from '@apollo/client/react';
+import { gql, TypedDocumentNode } from '@apollo/client';
+
 import { graphql } from '../../gql';
+import { BoardQuery, BoardQueryVariables } from '../../gql/graphql';
+import { BoardBoardDoc } from 'components/Board/board.graphql';
 
 const DeleteListsOfBoardDoc = graphql(`
   mutation deleteListsOfBoard($boardId: ID!, $listIds: [ID!]!) {
@@ -14,13 +17,14 @@ const DeleteListsOfBoardDoc = graphql(`
   }
 `);
 
-const BoardDoc = graphql(`
+const boardQuery: TypedDocumentNode<BoardQuery, BoardQueryVariables> = gql`
   query board($boardId: ID!) {
     board(where: { id: $boardId }) {
       ...Board_board
     }
   }
-`);
+  ${BoardBoardDoc}
+`;
 
 const AddListDoc = graphql(`
   mutation addList($boardId: ID!, $name: String!) {
@@ -39,9 +43,12 @@ interface BoardProps {
 }
 
 export const Board = ({ boardId, readonly = false }: BoardProps) => {
-  const { error, data } = useQuery(BoardDoc, {
-    variables: { boardId },
-  });
+  const { error, data } = useQuery<BoardQuery, BoardQueryVariables>(
+    boardQuery,
+    {
+      variables: { boardId },
+    }
+  );
 
   const [deleteListsOfBoard] = useMutation(DeleteListsOfBoardDoc);
 
@@ -69,10 +76,15 @@ export const Board = ({ boardId, readonly = false }: BoardProps) => {
 
   const { board } = data;
 
+  if (!board) {
+    return <div>Board does not exist.</div>;
+  }
+
   return (
     <BoardContainer
       addListToBoard={addList}
       deleteLists={deleteLists}
+      // @ts-expect-error  Type error: Type '{ __typename?: "Board"; } & { ' $fragmentRefs'?: { Board_BoardFragment: Board_BoardFragment; }; }' is not assignable to type 'never'.
       board={board}
       readonly={readonly}
     />

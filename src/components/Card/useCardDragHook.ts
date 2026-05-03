@@ -2,7 +2,7 @@ import { useDrag } from 'react-dnd';
 import { useCallback } from 'react';
 
 import { dndItemType } from 'components/Card/Card';
-import type { Card as CardType } from 'generated/graphql';
+import type { Card as CardType } from 'src/gql/graphql';
 
 interface DragItem {
   id: string;
