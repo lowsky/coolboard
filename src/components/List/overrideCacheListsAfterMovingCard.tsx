@@ -65,9 +65,9 @@ function overrideCachedListsAfterMovingCard(
     store.writeQuery({
       query: CardListDocument,
       data: {
-        // @ts-expect-error ... is missing some properties...
         list: {
           ...newList,
+          // @ts-expect-error ... is missing some properties...
           cards: newCards,
         },
       },
@@ -76,9 +76,9 @@ function overrideCachedListsAfterMovingCard(
     store.writeQuery({
       query: CardListDocument,
       data: {
-        // @ts-expect-error ... is missing some properties...
         list: {
           ...oldList,
+          // @ts-expect-error ... is missing some properties...
           cards: oldCards,
         },
       },
