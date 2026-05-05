@@ -1,12 +1,15 @@
 import type { CodegenConfig } from '@graphql-codegen/cli';
 import { lexicographicSortSchema, printSchema } from 'graphql';
-
 import { buildSchema } from './server/src/buildSchema';
 import type { Types } from '@graphql-codegen/plugin-helpers';
 
+const REGENERATE_STATIC_SCHEMA = false;
+const schema = REGENERATE_STATIC_SCHEMA
+  ? printSchema(lexicographicSortSchema(buildSchema()))
+  : 'server/src/schema/schema.graphql';
+
 const clientSide: Types.ConfiguredOutput | Types.ConfiguredPlugin[] = {
-  //schema: printSchema(buildSchema()),
-  //schema: 'server/src/schema/schema.graphql',
+  schema,
   documents: ['src/**/*.tsx'],
   preset: 'client',
   //plugins: [
@@ -38,6 +41,7 @@ const config: CodegenConfig = {
   ignoreNoDocuments: true, // for better experience with the watcher
   generates: {
     /* LATER
+    // if REGENERATE_STATIC_SCHEMA ??
     'server/src/schema/schema.graphql': {
       schema: printSchema(lexicographicSortSchema(buildSchema())),
       plugins: ['schema-ast'],

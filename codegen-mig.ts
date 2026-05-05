@@ -1,44 +1,9 @@
 import { defineConfig } from '@eddeee888/gcg-operation-location-migration';
 
 import type { CodegenConfig } from '@graphql-codegen/cli';
-import type { Types } from '@graphql-codegen/plugin-helpers';
-import { lexicographicSortSchema, printSchema } from 'graphql';
-
-import { buildSchema } from './server/src/buildSchema';
-
-const clientSide: Types.ConfiguredOutput | Types.ConfiguredPlugin[] = {
-  //schema: printSchema(lexicographicSortSchema(buildSchema())),
-  schema: 'server/src/schema/schema.graphql',
-  documents: ['src/common/**/*.graphql', 'src/components/**/*.graphql'],
-  preset: 'client',
-  plugins: [
-    //'typescript', #
-    //'typescript-operations',
-    //'typescript-react-apollo',
-    ///nope'typescript-apollo-client-helpers',
-  ],
-  presetConfig: {
-    // codegen's masking is incompatible with apollo with preset-client:
-    // https://www.apollographql.com/docs/react/data/fragments#with-the-client-preset
-    // disables the incompatible GraphQL Codegen fragment masking feature:
-    fragmentMasking: false,
-  },
-  config: {
-    reactApolloVersion: 4,
-    withHooks: true,
-
-    // need to add when fragmentMasking is disabled:
-    // https://www.apollographql.com/docs/react/data/fragments#with-the-client-preset
-    customDirectives: {
-      apolloUnmask: true,
-    },
-    inlineFragmentTypes: 'mask',
-  },
-};
 
 const config: CodegenConfig = {
   overwrite: true,
-  //schema: printSchema(lexicographicSortSchema(buildSchema())),
   schema: 'server/src/schema/schema.graphql', // 👈 This points to your usual GraphQL schema endpoint or files.
   documents: 'src/**/*.graphql', // 👈 This points to your operation files.
   generates: {
@@ -81,9 +46,6 @@ const config: CodegenConfig = {
       },
       hooksImportFrom: '@apollo/client/react', // 👈 The module to import Apollo Client hooks. Use @apollo/client for older Apollo Client v3 versions.
     }),
-  },
-  hooks: {
-    afterAllFileWrite: ['prettier --write'],
   },
 };
 
