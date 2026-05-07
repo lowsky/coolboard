@@ -10,7 +10,7 @@ const schema = REGENERATE_STATIC_SCHEMA
 
 const clientSide: Types.ConfiguredOutput | Types.ConfiguredPlugin[] = {
   schema,
-  documents: ['src/**/*.tsx'],
+  documents: ['src/**/*.ts*'],
   preset: 'client',
   //plugins: [
   //
