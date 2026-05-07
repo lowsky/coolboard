@@ -14,7 +14,8 @@ const DeleteListsOfBoardDoc = gql`
       ...Board_board
     }
   }
-`);
+  ${BoardBoardDoc}
+`;
 
 const boardQuery: TypedDocumentNode<BoardQuery, BoardQueryVariables> = gql`
   query board($boardId: ID!) {
@@ -34,7 +35,8 @@ const AddListDoc = gql`
       ...Board_board
     }
   }
-`);
+  ${BoardBoardDoc}
+`;
 
 interface BoardProps {
   boardId: string;

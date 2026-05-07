@@ -11,7 +11,7 @@ import {
   CardForDraggingProps,
   useCardDragHook,
 } from 'components/Card/useCardDragHook';
-import { graphql } from '../../gql';
+import { CardCardDoc } from 'components/List/list.graphql';
 
 const UpdateCardDoc: TypedDocumentNode<
   UpdateCardMutation,
@@ -25,7 +25,8 @@ const UpdateCardDoc: TypedDocumentNode<
       ...Card_card
     }
   }
-`);
+  ${CardCardDoc}
+`;
 
 export const dndItemType = 'card';
 

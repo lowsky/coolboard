@@ -4,8 +4,8 @@ import { useSuspenseQuery, useMutation } from '@apollo/client/react';
 import { createUpdateCachedListsAfterMovingCard } from './overrideCacheListsAfterMovingCard';
 import { CardListWithDnd, type UIListData } from './ui/CardListWithDnd';
 import { type MoveItemToFrom, useCardListDnd } from './ui/useCardListDnd';
-import { useSuspenseQuery, useMutation } from '@apollo/client/react';
-import { graphql } from '../../gql';
+import { CardCardDoc, CardListListDoc } from './list.graphql';
+import { BoardBoardDoc } from 'components/Board/board.graphql';
 
 const MoveCard2Doc = gql`
   mutation moveCard2($cardId: ID!, $toList: ID!, $fromListId: ID!) {
@@ -13,7 +13,8 @@ const MoveCard2Doc = gql`
       ...Card_card
     }
   }
-`);
+  ${CardCardDoc}
+`;
 
 const DeleteListOfBoardDoc = gql`
   mutation deleteListOfBoard($boardId: ID!, $listId: ID!) {
@@ -24,7 +25,8 @@ const DeleteListOfBoardDoc = gql`
       ...Board_board
     }
   }
-`);
+  ${BoardBoardDoc}
+`;
 
 const CardListDoc = gql`
   query CardList($cardListId: ID!) {
@@ -32,7 +34,8 @@ const CardListDoc = gql`
       ...CardList_list
     }
   }
-`);
+  ${CardListListDoc}
+`;
 
 const AddCardMutationDoc = gql`
   mutation addCardMutation($cardListId: ID!, $name: String!) {
@@ -43,7 +46,8 @@ const AddCardMutationDoc = gql`
       ...CardList_list
     }
   }
-`);
+  ${CardListListDoc}
+`;
 
 interface CardListProps {
   id: string;
