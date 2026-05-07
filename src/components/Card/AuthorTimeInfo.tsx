@@ -2,7 +2,7 @@ import TimeAgo from 'react-timeago';
 import { AlertDescription, Box } from '@chakra-ui/react';
 
 import { Segment } from 'common/Segment';
-import type { User } from 'generated/graphql';
+import type { User } from 'src/gql/graphql';
 import { Alert } from 'components/ui/alert';
 import { Avatar } from 'components/ui/avatar';
 

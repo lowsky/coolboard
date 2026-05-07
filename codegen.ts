@@ -1,23 +1,54 @@
 import type { CodegenConfig } from '@graphql-codegen/cli';
-import { printSchema } from 'graphql';
-
+import { lexicographicSortSchema, printSchema } from 'graphql';
 import { buildSchema } from './server/src/buildSchema';
+import type { Types } from '@graphql-codegen/plugin-helpers';
 
-const clientSide = {
-  schema: printSchema(buildSchema()),
-  //schema: 'server/src/schema/schema.graphql',
-  documents: ['src/**/*.graphql'],
-  plugins: ['typescript', 'typescript-operations', 'typescript-react-apollo'],
+const REGENERATE_STATIC_SCHEMA = false;
+const schema = REGENERATE_STATIC_SCHEMA
+  ? printSchema(lexicographicSortSchema(buildSchema()))
+  : 'server/src/schema/schema.graphql';
+
+const clientSide: Types.ConfiguredOutput | Types.ConfiguredPlugin[] = {
+  schema,
+  documents: ['src/**/*.ts*'],
+  preset: 'client',
+  //plugins: [
+  //
+  //'typescript',
+  //'typescript-operations',
+  //'typescript-react-apollo',
+  //],
+  presetConfig: {
+    // codegen's masking is incompatible with apollo with preset-client:
+    // https://www.apollographql.com/docs/react/data/fragments#with-the-client-preset
+    // disables the incompatible GraphQL Codegen fragment masking feature:
+    fragmentMasking: false,
+  },
+  config: {
+    reactApolloVersion: 4,
+
+    // need to add when fragmentMasking is disabled:
+    // https://www.apollographql.com/docs/react/data/fragments#with-the-client-preset
+    customDirectives: {
+      apolloUnmask: true,
+    },
+    inlineFragmentTypes: 'mask',
+  },
 };
+
 const config: CodegenConfig = {
-  overwrite: true,
+  schema: 'server/src/schema/schema.graphql',
+  ignoreNoDocuments: true, // for better experience with the watcher
   generates: {
+    /* LATER
+    // if REGENERATE_STATIC_SCHEMA ??
     'server/src/schema/schema.graphql': {
-      schema: printSchema(buildSchema()),
+      schema: printSchema(lexicographicSortSchema(buildSchema())),
       plugins: ['schema-ast'],
       watchPattern: 'server/src/buildSchema.*',
     },
-    'src/generated/graphql.tsx': clientSide,
+     */
+    'src/gql/': clientSide,
   },
   hooks: {
     afterAllFileWrite: ['prettier --write'],

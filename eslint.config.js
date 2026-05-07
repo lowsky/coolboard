@@ -60,7 +60,7 @@ export default defineConfig([
   },
   includeIgnoreFile(gitignorePath),
   {
-    // ignore the smoketest folder
-    ignores: ['smoketest/', '.yarn/'],
+    // ignore the smoketest folder and generated files
+    ignores: ['smoketest/', '.yarn/', 'src/gql/'],
   },
 ]);

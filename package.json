@@ -54,7 +54,7 @@
     "start": "next dev",
     "start:comment": "next dev ; # not with await+browser-otel: --turbo",
     "start-production": "next start",
-    "lint": "eslint",
+    "lint": "eslint src app server ",
     "trigger-e2e-smoke": "sh trigger-circleci-smoke.sh",
     "smoketest": "cd smoketest; yarn --immutable ; yarn cy open --e2e -b electron",
     "build": "yarn run metainfo && yarn run prisma:generate && next build",
@@ -65,7 +65,7 @@
     "postinstall": "npm run gen:theme-typings",
     "vercel-build": "yarn run build && yarn trigger-e2e-smoke",
     "vercel-fast-build": "yarn run build",
-    "codegen": "graphql-codegen --config codegen.ts"
+    "codegen": "graphql-codegen"
   },
   "devDependencies": {
     "@eslint/compat": "2.0.5",

@@ -1,5 +1,6 @@
 import type { ApolloCache } from '@apollo/client';
-import { CardListDocument, type CardListQuery } from 'generated/graphql';
+
+import { CardListDocument, type CardListQuery } from 'src/gql/graphql';
 
 export const createUpdateCachedListsAfterMovingCard: (
   cardId: string,
@@ -51,6 +52,7 @@ function overrideCachedListsAfterMovingCard(
   const { list: oldList } = cachedOldList;
   if (oldList && newList) {
     let oldCard;
+    // @ts-expect-error TS2339: Property cards does not exist on type
     const oldCards = oldList.cards.filter((card) => {
       if (card.id !== cardId) return true;
       oldCard = card;
@@ -58,12 +60,14 @@ function overrideCachedListsAfterMovingCard(
     });
     if (!oldCard) return;
 
+    // @ts-expect-error TS2339: Property cards does not exist on type
     const newCards = [...newList.cards, oldCard];
     store.writeQuery({
       query: CardListDocument,
       data: {
         list: {
           ...newList,
+          // @ts-expect-error ... is missing some properties...
           cards: newCards,
         },
       },
@@ -74,6 +78,7 @@ function overrideCachedListsAfterMovingCard(
       data: {
         list: {
           ...oldList,
+          // @ts-expect-error ... is missing some properties...
           cards: oldCards,
         },
       },

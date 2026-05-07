@@ -2,8 +2,17 @@ import { Editable, Flex, Heading, IconButton, Popover } from '@chakra-ui/react';
 import { LuCheck, LuX } from 'react-icons/lu';
 import { FiEdit as EditIcon, FiMenu as HamburgerIcon } from 'react-icons/fi';
 import { type ReactNode } from 'react';
+import { useMutation } from '@apollo/client/react';
+import { graphql } from '../../../gql';
 
-import { useRenameListMutation } from 'generated/graphql';
+const RenameListDoc = graphql(`
+  mutation renameList($newName: String!, $listId: ID!) {
+    renameList(newName: $newName, where: { id: $listId }) {
+      id
+      name
+    }
+  }
+`);
 
 interface CardListHeaderProps {
   name: string;
@@ -18,7 +27,7 @@ export function CardListHeader({
   children,
   readonly = false,
 }: CardListHeaderProps) {
-  const [renameList, mutationResult] = useRenameListMutation();
+  const [renameList, mutationResult] = useMutation(RenameListDoc);
   const { loading } = mutationResult;
 
   return (

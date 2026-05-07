@@ -1,6 +1,6 @@
 import { Field, Input, Textarea } from '@chakra-ui/react';
 
-import type { Card } from 'generated/graphql';
+import type { Card } from 'src/gql/graphql';
 import { ShowDiffWarning } from './ui/ShowDiffWarning';
 
 interface CardEditFormProps {
