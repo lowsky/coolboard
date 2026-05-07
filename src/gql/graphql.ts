@@ -266,6 +266,13 @@ export type CreateBoardMutation = {
   };
 };
 
+export type Board_BoardFragment = {
+  __typename?: 'Board';
+  name: string;
+  id: string;
+  lists: Array<{ __typename?: 'List'; name: string; id: string }>;
+} & { ' $fragmentName'?: 'Board_BoardFragment' };
+
 export type UpdateCardMutationVariables = Exact<{
   id: Scalars['ID']['input'];
   name: Scalars['String']['input'];
@@ -331,23 +338,6 @@ export type AddCardMutationMutation = {
   };
 };
 
-export type RenameListMutationVariables = Exact<{
-  newName: Scalars['String']['input'];
-  listId: Scalars['ID']['input'];
-}>;
-
-export type RenameListMutation = {
-  __typename?: 'Mutation';
-  renameList: { __typename?: 'List'; id: string; name: string };
-};
-
-export type Board_BoardFragment = {
-  __typename?: 'Board';
-  name: string;
-  id: string;
-  lists: Array<{ __typename?: 'List'; name: string; id: string }>;
-} & { ' $fragmentName'?: 'Board_BoardFragment' };
-
 export type Card_CardFragment = {
   __typename?: 'Card';
   id: string;
@@ -375,20 +365,14 @@ export type CardList_ListFragment = {
   >;
 } & { ' $fragmentName'?: 'CardList_ListFragment' };
 
-export type MoveCardMutationVariables = Exact<{
-  cardId: Scalars['ID']['input'];
-  oldCardListId: Scalars['ID']['input'];
-  cardListId: Scalars['ID']['input'];
+export type RenameListMutationVariables = Exact<{
+  newName: Scalars['String']['input'];
+  listId: Scalars['ID']['input'];
 }>;
 
-export type MoveCardMutation = {
+export type RenameListMutation = {
   __typename?: 'Mutation';
-  newList: { __typename?: 'List' } & {
-    ' $fragmentRefs'?: { CardList_ListFragment: CardList_ListFragment };
-  };
-  oldList: { __typename?: 'List' } & {
-    ' $fragmentRefs'?: { CardList_ListFragment: CardList_ListFragment };
-  };
+  renameList: { __typename?: 'List'; id: string; name: string };
 };
 
 export const Board_BoardFragmentDoc = {
@@ -1780,248 +1764,3 @@ export const RenameListDocument = {
     },
   ],
 } as unknown as DocumentNode<RenameListMutation, RenameListMutationVariables>;
-export const MoveCardDocument = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'OperationDefinition',
-      operation: 'mutation',
-      name: { kind: 'Name', value: 'moveCard' },
-      variableDefinitions: [
-        {
-          kind: 'VariableDefinition',
-          variable: {
-            kind: 'Variable',
-            name: { kind: 'Name', value: 'cardId' },
-          },
-          type: {
-            kind: 'NonNullType',
-            type: { kind: 'NamedType', name: { kind: 'Name', value: 'ID' } },
-          },
-        },
-        {
-          kind: 'VariableDefinition',
-          variable: {
-            kind: 'Variable',
-            name: { kind: 'Name', value: 'oldCardListId' },
-          },
-          type: {
-            kind: 'NonNullType',
-            type: { kind: 'NamedType', name: { kind: 'Name', value: 'ID' } },
-          },
-        },
-        {
-          kind: 'VariableDefinition',
-          variable: {
-            kind: 'Variable',
-            name: { kind: 'Name', value: 'cardListId' },
-          },
-          type: {
-            kind: 'NonNullType',
-            type: { kind: 'NamedType', name: { kind: 'Name', value: 'ID' } },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          {
-            kind: 'Field',
-            alias: { kind: 'Name', value: 'newList' },
-            name: { kind: 'Name', value: 'updateList' },
-            arguments: [
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'data' },
-                value: {
-                  kind: 'ObjectValue',
-                  fields: [
-                    {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'cards' },
-                      value: {
-                        kind: 'ObjectValue',
-                        fields: [
-                          {
-                            kind: 'ObjectField',
-                            name: { kind: 'Name', value: 'connect' },
-                            value: {
-                              kind: 'ObjectValue',
-                              fields: [
-                                {
-                                  kind: 'ObjectField',
-                                  name: { kind: 'Name', value: 'id' },
-                                  value: {
-                                    kind: 'Variable',
-                                    name: { kind: 'Name', value: 'cardId' },
-                                  },
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'where' },
-                value: {
-                  kind: 'ObjectValue',
-                  fields: [
-                    {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'id' },
-                      value: {
-                        kind: 'Variable',
-                        name: { kind: 'Name', value: 'cardListId' },
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                {
-                  kind: 'FragmentSpread',
-                  name: { kind: 'Name', value: 'CardList_list' },
-                },
-              ],
-            },
-          },
-          {
-            kind: 'Field',
-            alias: { kind: 'Name', value: 'oldList' },
-            name: { kind: 'Name', value: 'updateList' },
-            arguments: [
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'data' },
-                value: {
-                  kind: 'ObjectValue',
-                  fields: [
-                    {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'cards' },
-                      value: {
-                        kind: 'ObjectValue',
-                        fields: [
-                          {
-                            kind: 'ObjectField',
-                            name: { kind: 'Name', value: 'disconnect' },
-                            value: {
-                              kind: 'ObjectValue',
-                              fields: [
-                                {
-                                  kind: 'ObjectField',
-                                  name: { kind: 'Name', value: 'id' },
-                                  value: {
-                                    kind: 'Variable',
-                                    name: { kind: 'Name', value: 'cardId' },
-                                  },
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'where' },
-                value: {
-                  kind: 'ObjectValue',
-                  fields: [
-                    {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'id' },
-                      value: {
-                        kind: 'Variable',
-                        name: { kind: 'Name', value: 'oldCardListId' },
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                {
-                  kind: 'FragmentSpread',
-                  name: { kind: 'Name', value: 'CardList_list' },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: 'FragmentDefinition',
-      name: { kind: 'Name', value: 'Card_card' },
-      typeCondition: {
-        kind: 'NamedType',
-        name: { kind: 'Name', value: 'Card' },
-      },
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'name' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'description' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'createdAt' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'updatedAt' } },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'updatedBy' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'avatarUrl' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'email' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'name' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: 'FragmentDefinition',
-      name: { kind: 'Name', value: 'CardList_list' },
-      typeCondition: {
-        kind: 'NamedType',
-        name: { kind: 'Name', value: 'List' },
-      },
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          { kind: 'Field', name: { kind: 'Name', value: 'name' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'cards' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                {
-                  kind: 'FragmentSpread',
-                  name: { kind: 'Name', value: 'Card_card' },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<MoveCardMutation, MoveCardMutationVariables>;
