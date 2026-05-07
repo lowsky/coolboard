@@ -1,6 +1,5 @@
 import { Flex } from '@chakra-ui/react';
 import { useFragment } from '@apollo/client/react';
-import { FragmentType } from '@apollo/client';
 
 import { BoardTitle } from './BoardTitle';
 import { BoardContent } from './BoardContent';
@@ -12,7 +11,7 @@ import { BoardBoardDoc } from 'components/Board/board.graphql';
 const ToIdsMapper = <T extends { id: string }>(itemWithId: T) => itemWithId.id;
 
 interface BoardProps {
-  board: FragmentType<Board_BoardFragment>;
+  board: Board_BoardFragment;
   addListToBoard: (name?: string) => Promise<any>;
   deleteLists: (ids: string[]) => Promise<any>;
   readonly?: boolean;
@@ -20,18 +19,13 @@ interface BoardProps {
 
 export const BoardContainer = (props: BoardProps) => {
   const { deleteLists, readonly, addListToBoard } = props;
-  const { complete, data } = useFragment({
+  const { complete, data } = useFragment<Board_BoardFragment>({
     fragment: BoardBoardDoc,
-    fragmentName: 'Board_board',
     from: props.board,
   });
   if (!complete || !data) return null;
 
-  // @ts-expect-error TS2322: Type Board_BoardFragment[] is not assignable to type Board_BoardFragment
-  // Type Board_BoardFragment[] is missing the following properties from type ...
-  const board: Board_BoardFragment = data;
-
-  const { name, lists } = board;
+  const { name, lists } = data;
 
   const headerActions = !readonly && (
     <DelAllListsButton action={() => deleteLists(lists.map(ToIdsMapper))}>
@@ -44,7 +38,7 @@ export const BoardContainer = (props: BoardProps) => {
       <BoardContent
         lists={lists}
         addList={addListToBoard}
-        boardId={board.id}
+        boardId={data.id}
         readonly={readonly ?? false}
       />
     </Flex>
