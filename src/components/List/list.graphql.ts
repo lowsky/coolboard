@@ -1,16 +1,6 @@
-import { graphql } from '../../gql';
+import { gql } from '@apollo/client';
 
-export const CardListListDoc = graphql(`
-  fragment CardList_list on List {
-    name
-    id
-    cards {
-      ...Card_card
-    }
-  }
-`);
-
-export const CardCardDoc = graphql(`
+export const CardCardDoc = gql`
   fragment Card_card on Card {
     id
     name
@@ -24,4 +14,15 @@ export const CardCardDoc = graphql(`
       id
     }
   }
-`);
+`;
+
+export const CardListListDoc = gql`
+  fragment CardList_list on List {
+    name
+    id
+    cards {
+      ...Card_card
+    }
+  }
+  ${CardCardDoc}
+`;

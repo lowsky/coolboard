@@ -1,10 +1,13 @@
+import { gql } from '@apollo/client';
+import { useSuspenseQuery, useMutation } from '@apollo/client/react';
+
 import { createUpdateCachedListsAfterMovingCard } from './overrideCacheListsAfterMovingCard';
 import { CardListWithDnd, type UIListData } from './ui/CardListWithDnd';
 import { type MoveItemToFrom, useCardListDnd } from './ui/useCardListDnd';
 import { useSuspenseQuery, useMutation } from '@apollo/client/react';
 import { graphql } from '../../gql';
 
-const MoveCard2Doc = graphql(`
+const MoveCard2Doc = gql`
   mutation moveCard2($cardId: ID!, $toList: ID!, $fromListId: ID!) {
     moveCard(id: $cardId, toListId: $toList, fromListId: $fromListId) {
       ...Card_card
@@ -12,7 +15,7 @@ const MoveCard2Doc = graphql(`
   }
 `);
 
-const DeleteListOfBoardDoc = graphql(`
+const DeleteListOfBoardDoc = gql`
   mutation deleteListOfBoard($boardId: ID!, $listId: ID!) {
     updateBoard(
       data: { lists: { delete: { id: $listId } } }
@@ -23,7 +26,7 @@ const DeleteListOfBoardDoc = graphql(`
   }
 `);
 
-const CardListDoc = graphql(`
+const CardListDoc = gql`
   query CardList($cardListId: ID!) {
     list(where: { id: $cardListId }) {
       ...CardList_list
@@ -31,7 +34,7 @@ const CardListDoc = graphql(`
   }
 `);
 
-const AddCardMutationDoc = graphql(`
+const AddCardMutationDoc = gql`
   mutation addCardMutation($cardListId: ID!, $name: String!) {
     updateList(
       data: { cards: { create: { name: $name } } }

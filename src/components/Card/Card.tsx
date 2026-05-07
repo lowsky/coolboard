@@ -1,4 +1,4 @@
-import { ApolloClient, TypedDocumentNode } from '@apollo/client';
+import { ApolloClient, gql, TypedDocumentNode } from '@apollo/client';
 import { useMutation } from '@apollo/client/react';
 
 import { CardComponent } from './ui/CardComponent';
@@ -16,7 +16,7 @@ import { graphql } from '../../gql';
 const UpdateCardDoc: TypedDocumentNode<
   UpdateCardMutation,
   UpdateCardMutationVariables
-> = graphql(`
+> = gql`
   mutation updateCard($id: ID!, $name: String!, $description: String) {
     updateCard(
       where: { id: $id }

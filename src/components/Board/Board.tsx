@@ -2,11 +2,10 @@ import { BoardContainer } from './ui/BoardContainer';
 import { useQuery, useMutation } from '@apollo/client/react';
 import { gql, TypedDocumentNode } from '@apollo/client';
 
-import { graphql } from '../../gql';
 import { BoardQuery, BoardQueryVariables } from '../../gql/graphql';
 import { BoardBoardDoc } from 'components/Board/board.graphql';
 
-const DeleteListsOfBoardDoc = graphql(`
+const DeleteListsOfBoardDoc = gql`
   mutation deleteListsOfBoard($boardId: ID!, $listIds: [ID!]!) {
     updateBoard(
       data: { lists: { deleteMany: { id_in: $listIds } } }
@@ -26,7 +25,7 @@ const boardQuery: TypedDocumentNode<BoardQuery, BoardQueryVariables> = gql`
   ${BoardBoardDoc}
 `;
 
-const AddListDoc = graphql(`
+const AddListDoc = gql`
   mutation addList($boardId: ID!, $name: String!) {
     updateBoard(
       data: { lists: { create: { name: $name } } }
