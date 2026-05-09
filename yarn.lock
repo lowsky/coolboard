@@ -804,12 +804,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/localizations@npm:^4.5.8":
-  version: 4.5.8
-  resolution: "@clerk/localizations@npm:4.5.8"
+"@clerk/localizations@npm:^4.6.2":
+  version: 4.6.2
+  resolution: "@clerk/localizations@npm:4.6.2"
   dependencies:
-    "@clerk/shared": "npm:^4.9.0"
-  checksum: 10c0/ca70aa6d29370459d2053bd9718df05837d8bd8f5ef9f27284ea333c865d75162c5ec8d80d1f9c335394e05d7822825ac332241a52340bca6e3560c71942e01a
+    "@clerk/shared": "npm:^4.10.2"
+  checksum: 10c0/8daba1c6c20626a3f3d6c5f1fbb18c6d881dd4e1134f60893bd51934c1f23f68e63874bfc26baccd6c0dfe5a5192985d104c5d90905ef71a7a9e42b9a902e0d8
   languageName: node
   linkType: hard
 
@@ -864,33 +864,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/shared@npm:^4.9.0":
-  version: 4.9.0
-  resolution: "@clerk/shared@npm:4.9.0"
-  dependencies:
-    "@tanstack/query-core": "npm:^5.100.6"
-    dequal: "npm:2.0.3"
-    glob-to-regexp: "npm:0.4.1"
-    js-cookie: "npm:3.0.5"
-    std-env: "npm:^3.9.0"
-  peerDependencies:
-    react: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
-    react-dom: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
-  peerDependenciesMeta:
-    react:
-      optional: true
-    react-dom:
-      optional: true
-  checksum: 10c0/73c4a759e1df875b744fd41634c0f786d1c34f94cece1eb3600b1532c240c1545bb0bf1321bd7805a1bfddac714ada183fb05b1955ad7853a280773c45a7edb3
-  languageName: node
-  linkType: hard
-
 "@clerk/ui@npm:^1.2.1":
-  version: 1.7.0
-  resolution: "@clerk/ui@npm:1.7.0"
+  version: 1.9.1
+  resolution: "@clerk/ui@npm:1.9.1"
   dependencies:
-    "@clerk/localizations": "npm:^4.5.8"
-    "@clerk/shared": "npm:^4.9.0"
+    "@clerk/localizations": "npm:^4.6.2"
+    "@clerk/shared": "npm:^4.10.2"
     "@emotion/cache": "npm:11.11.0"
     "@emotion/react": "npm:11.11.1"
     "@floating-ui/react": "npm:0.27.12"
@@ -908,7 +887,7 @@ __metadata:
   peerDependencies:
     react: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
     react-dom: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
-  checksum: 10c0/5bbfdbb2afd0a367435aec748eede7e034f90cab1eafdac58281436c136101a65812f809f1e6dad53695a6f1d7e5c8c9bb299efc782d8d0a2112b365a55b9707
+  checksum: 10c0/6795b9cb3ea10ce0045e5bad93aefcd88805cce9a8d95f0ff11e0408306457c341d4bb0b2265c162b53720d171bd31d516dabb0ab5885aec84dff9caf5f9d707
   languageName: node
   linkType: hard
 
