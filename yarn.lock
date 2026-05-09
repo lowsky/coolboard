@@ -1606,9 +1606,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-codegen/typescript-operations@npm:6.0.1":
-  version: 6.0.1
-  resolution: "@graphql-codegen/typescript-operations@npm:6.0.1"
+"@graphql-codegen/typescript-operations@npm:6.0.2":
+  version: 6.0.2
+  resolution: "@graphql-codegen/typescript-operations@npm:6.0.2"
   dependencies:
     "@graphql-codegen/plugin-helpers": "npm:^7.0.0"
     "@graphql-codegen/schema-ast": "npm:^6.0.0"
@@ -1621,7 +1621,7 @@ __metadata:
   peerDependenciesMeta:
     graphql-sock:
       optional: true
-  checksum: 10c0/9b64ff75ed04a34da90b1a5080225cea335501110574d0242942eb396cb02003b3385128717488abbec5b828d2941abc9cdb4675cfc821316ab600473ffb39d4
+  checksum: 10c0/117c7f08332f03e633770dc7b1635cea3e553b159d8401abb2ff420a54067dd211a01464ce67cdcc31472dd7085db96aa38f89ce013468a363cbccfe6f263d1e
   languageName: node
   linkType: hard
 
@@ -8393,7 +8393,7 @@ __metadata:
     "@graphql-codegen/schema-ast": "npm:6.0.0"
     "@graphql-codegen/typescript": "npm:6.0.1"
     "@graphql-codegen/typescript-graphql-files-modules": "npm:4.0.1"
-    "@graphql-codegen/typescript-operations": "npm:6.0.1"
+    "@graphql-codegen/typescript-operations": "npm:6.0.2"
     "@graphql-codegen/typescript-react-apollo": "npm:4.4.2"
     "@graphql-yoga/plugin-disable-introspection": "npm:2.22.0"
     "@neondatabase/serverless": "npm:1.1.0"
