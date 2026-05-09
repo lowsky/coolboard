@@ -86,7 +86,7 @@ jobs:
           name: smoketest - yarn install
           command: |
             cd smoketest
-            PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 yarn --immutable
+            PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npx yarn --immutable
       - save_cache:
           key: cache-smoketest-no-root-cypress-y4-{{ arch }}-{{ checksum "smoketest/yarn.lock" }}
           paths:
@@ -151,8 +151,8 @@ jobs:
           name: smoketest - yarn install cypress
           command: |
             cd smoketest
-            yarn install --immutable
-            yarn cypress install
+            npx yarn install --immutable
+            npx yarn cypress install
       - save_cache:
           key: cache-smoketest-no-root-cypress-y4-{{ arch }}-{{ checksum "smoketest/yarn.lock" }}
           paths:
