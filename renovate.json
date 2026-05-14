@@ -21,6 +21,7 @@
   "extends": [
     ":separateMultipleMajorReleases",
     ":pinDevDependencies",
+    "config:best-practices",
     "config:recommended"
   ]
 }
