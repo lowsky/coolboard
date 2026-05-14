@@ -1,5 +1,14 @@
 {
+  "autoApprove": true,
+  "automergeStrategy": "squash",
+
   "packageRules": [
+    {
+      "vulnerabilityAlerts": {
+        "labels": ["security"],
+        "automerge": true,
+      }
+    },
     {
       "matchUpdateTypes": ["minor", "patch"],
       "matchCurrentVersion": "!/^0/",
@@ -15,5 +24,10 @@
   ],
   "dependencyDashboard": true,
   "rebaseWhen": "never",
-  "extends": ["config:recommended"]
+  "extends": [
+    ":separateMultipleMajorReleases",
+    ":pinDevDependencies",
+    ":best-practices",
+    "config:recommended"
+  ]
 }
