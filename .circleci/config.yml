@@ -26,7 +26,7 @@ workflows:
 executors:
   executor_with_curl:
     docker:
-      - image: cimg/base:stable
+      - image: cimg/base:stable@sha256:35e5e29930ab565475a4f2aa9b4124998ed67dbc7b0e2dd5f420a4189d08d0d2
 
 jobs:
   pr-pending:
@@ -75,7 +75,7 @@ jobs:
 
   install_and_cache:
     docker:
-      - image: cypress/base:26.0.0
+      - image: cypress/base:26.0.0@sha256:446be8fcb63e3cad2f9a4e14720e3d8e35993e12f36da541e09f5740a4c2477c
     resource_class: lowsky/selfhosted
     steps:
       - checkout
@@ -93,7 +93,7 @@ jobs:
             - smoketest/node_modules
   test:
     docker:
-      - image: cypress/base:26.0.0
+      - image: cypress/base:26.0.0@sha256:446be8fcb63e3cad2f9a4e14720e3d8e35993e12f36da541e09f5740a4c2477c
     resource_class: lowsky/selfhosted
     environment:
       CYPRESS_baseUrl: << pipeline.parameters.test-url >>
