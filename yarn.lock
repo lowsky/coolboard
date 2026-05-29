@@ -804,12 +804,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/localizations@npm:^4.6.2":
-  version: 4.6.2
-  resolution: "@clerk/localizations@npm:4.6.2"
+"@clerk/localizations@npm:^4.7.0":
+  version: 4.7.0
+  resolution: "@clerk/localizations@npm:4.7.0"
   dependencies:
-    "@clerk/shared": "npm:^4.10.2"
-  checksum: 10c0/8daba1c6c20626a3f3d6c5f1fbb18c6d881dd4e1134f60893bd51934c1f23f68e63874bfc26baccd6c0dfe5a5192985d104c5d90905ef71a7a9e42b9a902e0d8
+    "@clerk/shared": "npm:^4.14.0"
+  checksum: 10c0/ab68ca210003a3b566604205b5f0079ba105fadc5d1fff23ea1ed08aff23412f87faeb26cb254981eff8fe799d482d54f1bb2ab50ca44f8164e6f8a62ee29683
   languageName: node
   linkType: hard
 
@@ -864,12 +864,33 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/ui@npm:^1.2.1":
-  version: 1.9.1
-  resolution: "@clerk/ui@npm:1.9.1"
+"@clerk/shared@npm:^4.14.0":
+  version: 4.14.0
+  resolution: "@clerk/shared@npm:4.14.0"
   dependencies:
-    "@clerk/localizations": "npm:^4.6.2"
-    "@clerk/shared": "npm:^4.10.2"
+    "@tanstack/query-core": "npm:^5.100.6"
+    dequal: "npm:2.0.3"
+    glob-to-regexp: "npm:0.4.1"
+    js-cookie: "npm:3.0.7"
+    std-env: "npm:^3.9.0"
+  peerDependencies:
+    react: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
+    react-dom: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
+  peerDependenciesMeta:
+    react:
+      optional: true
+    react-dom:
+      optional: true
+  checksum: 10c0/2403e452571f119ef8a0cf58090d94937df4abc437652b76218482b90e16a646bd0501cf93a4a73be41212d285ce199400bde4296495adf92e20cd5211b2bbca
+  languageName: node
+  linkType: hard
+
+"@clerk/ui@npm:^1.2.1":
+  version: 1.14.0
+  resolution: "@clerk/ui@npm:1.14.0"
+  dependencies:
+    "@clerk/localizations": "npm:^4.7.0"
+    "@clerk/shared": "npm:^4.14.0"
     "@emotion/cache": "npm:11.11.0"
     "@emotion/react": "npm:11.11.1"
     "@floating-ui/react": "npm:0.27.12"
@@ -887,7 +908,7 @@ __metadata:
   peerDependencies:
     react: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
     react-dom: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
-  checksum: 10c0/6795b9cb3ea10ce0045e5bad93aefcd88805cce9a8d95f0ff11e0408306457c341d4bb0b2265c162b53720d171bd31d516dabb0ab5885aec84dff9caf5f9d707
+  checksum: 10c0/c31dbaa873f11d6b4a30f60cbd3c89c69925381289c7e672c243cfe01bbc0c1c6b3dbfaab78fc94cbfa72abfa99dbf043ffbed6d09a30b7dde9234f628ac8274
   languageName: node
   linkType: hard
 
@@ -11768,6 +11789,13 @@ __metadata:
   version: 3.0.5
   resolution: "js-cookie@npm:3.0.5"
   checksum: 10c0/04a0e560407b4489daac3a63e231d35f4e86f78bff9d792011391b49c59f721b513411cd75714c418049c8dc9750b20fcddad1ca5a2ca616c3aca4874cce5b3a
+  languageName: node
+  linkType: hard
+
+"js-cookie@npm:3.0.7":
+  version: 3.0.7
+  resolution: "js-cookie@npm:3.0.7"
+  checksum: 10c0/c921c43014e98bb94a1765663a1a10d693048d61444e374c1ecf459eba92320381f9c406e724df9aa44e819c4b606e6a7240f2abe2d5c54ad1e73a3002b191c2
   languageName: node
   linkType: hard
 
