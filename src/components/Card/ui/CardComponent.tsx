@@ -158,6 +158,8 @@ export const CardComponent = (props: CardComponentProps) => {
           borderRadius: '3px',
           backgroundColor: '#fff',
           padding: '10px',
+          opacity: isDragging ? 0.5 : 1,
+          border: isDragging ? '1px dashed gray' : 'none',
         }}>
         <span style={isDragging ? whenDraggingStyle : undefined}>
           {props.name ?? '-'}

@@ -28,19 +28,17 @@ const UpdateCardDoc: TypedDocumentNode<
   ${CardCardDoc}
 `;
 
-export const dndItemType = 'card';
-
 function CardForDragging(props: CardForDraggingProps) {
-  const ref = useCardDragHook(props);
+  const { ref, attributes, listeners, isDragging } = useCardDragHook(props);
 
   return (
-    <div ref={ref}>
-      <Card {...props} />
+    <div ref={ref} {...attributes} {...listeners}>
+      <Card {...props} isDragging={isDragging} />
     </div>
   );
 }
 
-function Card(props: CardType) {
+function Card(props: CardType & { isDragging?: boolean }) {
   const [mutation] = useMutation(UpdateCardDoc, {
     // @ts-expect-error type mismatch. TODO add generics to useMutation
     variables: {

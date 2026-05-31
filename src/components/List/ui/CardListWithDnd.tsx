@@ -55,7 +55,10 @@ export const CardListWithDnd = (props: CardListWithoutDndProps & DndProps) => {
       data-cy="card-list"
       className={styles.list}
       style={{
-        backgroundColor: isOver ? 'yellow' : 'lightgrey',
+        backgroundColor: isOver ? 'rgba(255, 255, 0, 0.3)' : 'lightgrey',
+        outline: isOver ? '2px solid gold' : 'none',
+        borderRadius: '4px',
+        transition: 'background-color 0.2s ease',
       }}>
       <CardListHeader name={name} listId={id} readonly={readonly}>
         <CardListButton
