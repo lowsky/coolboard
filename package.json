@@ -10,7 +10,7 @@
   "dependencies": {
     "@apollo/client": "4.2.0",
     "@chakra-ui/react": "3.35.0",
-    "@clerk/nextjs": "7.4.1",
+    "@clerk/nextjs": "7.4.2",
     "@clerk/ui": "^1.2.1",
     "@emotion/react": "11.14.0",
     "@escape.tech/graphql-armor-block-field-suggestions": "3.0.1",
