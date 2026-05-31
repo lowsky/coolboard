@@ -9,14 +9,14 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import reactPlugin from 'eslint-plugin-react';
 import nextPlugin from '@next/eslint-plugin-next';
 
-import { fixupPluginRules, includeIgnoreFile } from '@eslint/compat';
+import { fixupPluginRules } from '@eslint/compat';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const gitignorePath = path.resolve(__dirname, '.gitignore');
 
-import { defineConfig } from 'eslint/config';
+import { defineConfig, includeIgnoreFile } from 'eslint/config';
 
 export default defineConfig([
   {
