@@ -12,11 +12,12 @@ import {
   DragOverlay,
 } from '@dnd-kit/core';
 
-import { BoardQuery, BoardQueryVariables } from '../../gql/graphql';
+import type { BoardQuery, BoardQueryVariables, Card } from 'src/gql/graphql';
 import { BoardBoardDoc } from 'components/Board/board.graphql';
 import { CardCardDoc } from 'components/List/list.graphql';
 import { createUpdateCachedListsAfterMovingCard } from 'components/List/overrideCacheListsAfterMovingCard';
 import { CardComponent } from 'components/Card/ui/CardComponent';
+import { CardForDraggingProps } from 'components/Card/useCardDragHook';
 
 const MoveCard2Doc = gql`
   mutation moveCard2($cardId: ID!, $toList: ID!, $fromListId: ID!) {
@@ -92,19 +93,19 @@ export const Board = ({ boardId, readonly = false }: BoardProps) => {
   const [moveCard] = useMutation(MoveCard2Doc);
 
   const sensors = useSensors(useSensor(PointerSensor));
-  // TODO: refine type:
-  const [activeCard, setActiveCard] = useState<AnyData | undefined>(null);
+  const [activeCard, setActiveCard] = useState<Card | undefined>();
 
   function handleDragStart(event: DragStartEvent) {
-    setActiveCard(event.active.data.current);
+    setActiveCard(event.active.data.current as Card);
   }
 
   function handleDragEnd(event: DragEndEvent) {
     const { active, over } = event;
 
-    if (over && active.id !== over.id) {
-      const cardId = active.data.current?.id;
-      const fromListId = active.data.current?.listId;
+    if (over && active.id !== over.id && active.data.current) {
+      const card = active.data.current as CardForDraggingProps;
+      const cardId = card.id;
+      const fromListId = card.cardListId;
       const toListId = over.id as string;
 
       if (cardId && fromListId && toListId && fromListId !== toListId) {
@@ -118,7 +119,7 @@ export const Board = ({ boardId, readonly = false }: BoardProps) => {
         });
       }
     }
-    setActiveCard(null);
+    setActiveCard(undefined);
   }
 
   if (error) {

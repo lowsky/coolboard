@@ -32,6 +32,7 @@ function CardForDragging(props: CardForDraggingProps) {
   const { ref, attributes, listeners, isDragging } = useCardDragHook(props);
 
   return (
+    // @ts-expect-error type mismatch.HTMElement// HTMLDivElement
     <div ref={ref} {...attributes} {...listeners}>
       <Card {...props} isDragging={isDragging} />
     </div>
