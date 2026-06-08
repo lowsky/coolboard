@@ -346,56 +346,55 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/backend@npm:^3.4.14":
-  version: 3.4.14
-  resolution: "@clerk/backend@npm:3.4.14"
+"@clerk/backend@npm:^3.5.0":
+  version: 3.5.0
+  resolution: "@clerk/backend@npm:3.5.0"
   dependencies:
-    "@clerk/shared": "npm:^4.14.0"
+    "@clerk/shared": "npm:^4.15.0"
     standardwebhooks: "npm:^1.0.0"
     tslib: "npm:2.8.1"
-  checksum: 10c0/e97158ea68911d219510be3530efb976f031ad6f8b6b72e5b90da2d67cb7b1d9f8aa63315e7e4a9cec3c46f3602d5313934a85dd894497715439dc152583e84e
+  checksum: 10c0/2930c3a64d049fe5ad906b66d654fd22373a6a45fd16b4e1cc5aa0c4cf05bfed6124108ae0283b373c7a94e039e2e2b7dd2c03d0b63abe9142ae09bb3dd6d01a
   languageName: node
   linkType: hard
 
-"@clerk/nextjs@npm:7.4.2":
-  version: 7.4.2
-  resolution: "@clerk/nextjs@npm:7.4.2"
+"@clerk/nextjs@npm:7.4.3":
+  version: 7.4.3
+  resolution: "@clerk/nextjs@npm:7.4.3"
   dependencies:
-    "@clerk/backend": "npm:^3.4.14"
-    "@clerk/react": "npm:^6.7.2"
-    "@clerk/shared": "npm:^4.14.0"
+    "@clerk/backend": "npm:^3.5.0"
+    "@clerk/react": "npm:^6.7.3"
+    "@clerk/shared": "npm:^4.15.0"
     server-only: "npm:0.0.1"
     tslib: "npm:2.8.1"
   peerDependencies:
     next: ^15.2.8 || ^15.3.8 || ^15.4.10 || ^15.5.9 || ^15.6.0-0 || ^16.0.10 || ^16.1.0-0
     react: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
     react-dom: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
-  checksum: 10c0/70edba55c0f642cce8501aad9eb4f9cf66f055fe6645a0bf3ad02b700e62ebc517011e34d8bd43c7c6bbd1032d92afd73a806e23c494158d9ef30fb40dfa9d46
+  checksum: 10c0/0cda984263ef72ec18cf363db694619c1da4734b7d5580c4b7fde76ead04c0b743d030419cebaabdfdefdee027d21e88bc233ab60035c1d41364c95fe8a43fe5
   languageName: node
   linkType: hard
 
-"@clerk/react@npm:^6.7.2":
-  version: 6.7.2
-  resolution: "@clerk/react@npm:6.7.2"
+"@clerk/react@npm:^6.7.3":
+  version: 6.7.3
+  resolution: "@clerk/react@npm:6.7.3"
   dependencies:
-    "@clerk/shared": "npm:^4.14.0"
+    "@clerk/shared": "npm:^4.15.0"
     tslib: "npm:2.8.1"
   peerDependencies:
     react: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
     react-dom: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
-  checksum: 10c0/d24414622b11b4cbd618f57d3c7746a6903f282b9f204590b5d6bb863a11abbe82f7ab5a17936702b05dd28baf4b6188b913f54e9a65445e6b24a8bfdb090eb6
+  checksum: 10c0/f92a1e368e5562dbd07a2f375d637fdfda8a49e40e249df494f2254dc33db689684ff1602a53078fe05bf4f4975c80d399e953d1fe1f09f6e18de4a43a94603d
   languageName: node
   linkType: hard
 
-"@clerk/shared@npm:^4.14.0":
-  version: 4.14.0
-  resolution: "@clerk/shared@npm:4.14.0"
+"@clerk/shared@npm:^4.15.0":
+  version: 4.15.0
+  resolution: "@clerk/shared@npm:4.15.0"
   dependencies:
     "@tanstack/query-core": "npm:^5.100.6"
     dequal: "npm:2.0.3"
     glob-to-regexp: "npm:0.4.1"
     js-cookie: "npm:3.0.7"
-    std-env: "npm:^3.9.0"
   peerDependencies:
     react: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
     react-dom: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
@@ -404,7 +403,7 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: 10c0/2403e452571f119ef8a0cf58090d94937df4abc437652b76218482b90e16a646bd0501cf93a4a73be41212d285ce199400bde4296495adf92e20cd5211b2bbca
+  checksum: 10c0/9f430ee5d37dbc07d82379044d82842b5067c851233b31717cd141444cd3c4a856baa4e00ab0814b9cf13282c536b66cb983a78e190dd9fce8ed72e345e114e1
   languageName: node
   linkType: hard
 
@@ -6397,7 +6396,7 @@ __metadata:
   dependencies:
     "@apollo/client": "npm:4.2.0"
     "@chakra-ui/react": "npm:3.35.0"
-    "@clerk/nextjs": "npm:7.4.2"
+    "@clerk/nextjs": "npm:7.4.3"
     "@emotion/react": "npm:11.14.0"
     "@escape.tech/graphql-armor-block-field-suggestions": "npm:3.0.1"
     "@eslint/compat": "npm:2.1.0"
@@ -10454,7 +10453,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"std-env@npm:3.10.0, std-env@npm:^3.9.0":
+"std-env@npm:3.10.0":
   version: 3.10.0
   resolution: "std-env@npm:3.10.0"
   checksum: 10c0/1814927a45004d36dde6707eaf17552a546769bc79a6421be2c16ce77d238158dfe5de30910b78ec30d95135cc1c59ea73ee22d2ca170f8b9753f84da34c427f
