@@ -13,7 +13,7 @@
     "@clerk/nextjs": "7.4.3",
     "@emotion/react": "11.14.0",
     "@escape.tech/graphql-armor-block-field-suggestions": "3.0.1",
-    "@graphql-yoga/plugin-disable-introspection": "2.22.0",
+    "@graphql-yoga/plugin-disable-introspection": "2.22.1",
     "@neondatabase/serverless": "1.1.0",
     "@opentelemetry/auto-instrumentations-node": "0.76.0",
     "@opentelemetry/auto-instrumentations-web": "0.63.0",
