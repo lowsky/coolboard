@@ -5,26 +5,25 @@ __metadata:
   version: 10
   cacheKey: 10c0
 
-"@clerk/backend@npm:^3.4.14":
-  version: 3.4.14
-  resolution: "@clerk/backend@npm:3.4.14"
+"@clerk/backend@npm:^3.5.0":
+  version: 3.5.0
+  resolution: "@clerk/backend@npm:3.5.0"
   dependencies:
-    "@clerk/shared": "npm:^4.14.0"
+    "@clerk/shared": "npm:^4.15.0"
     standardwebhooks: "npm:^1.0.0"
     tslib: "npm:2.8.1"
-  checksum: 10c0/e97158ea68911d219510be3530efb976f031ad6f8b6b72e5b90da2d67cb7b1d9f8aa63315e7e4a9cec3c46f3602d5313934a85dd894497715439dc152583e84e
+  checksum: 10c0/2930c3a64d049fe5ad906b66d654fd22373a6a45fd16b4e1cc5aa0c4cf05bfed6124108ae0283b373c7a94e039e2e2b7dd2c03d0b63abe9142ae09bb3dd6d01a
   languageName: node
   linkType: hard
 
-"@clerk/shared@npm:^4.14.0":
-  version: 4.14.0
-  resolution: "@clerk/shared@npm:4.14.0"
+"@clerk/shared@npm:^4.15.0":
+  version: 4.15.0
+  resolution: "@clerk/shared@npm:4.15.0"
   dependencies:
     "@tanstack/query-core": "npm:^5.100.6"
     dequal: "npm:2.0.3"
     glob-to-regexp: "npm:0.4.1"
     js-cookie: "npm:3.0.7"
-    std-env: "npm:^3.9.0"
   peerDependencies:
     react: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
     react-dom: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
@@ -33,16 +32,16 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: 10c0/2403e452571f119ef8a0cf58090d94937df4abc437652b76218482b90e16a646bd0501cf93a4a73be41212d285ce199400bde4296495adf92e20cd5211b2bbca
+  checksum: 10c0/9f430ee5d37dbc07d82379044d82842b5067c851233b31717cd141444cd3c4a856baa4e00ab0814b9cf13282c536b66cb983a78e190dd9fce8ed72e345e114e1
   languageName: node
   linkType: hard
 
-"@clerk/testing@npm:2.0.34":
-  version: 2.0.34
-  resolution: "@clerk/testing@npm:2.0.34"
+"@clerk/testing@npm:2.0.35":
+  version: 2.0.35
+  resolution: "@clerk/testing@npm:2.0.35"
   dependencies:
-    "@clerk/backend": "npm:^3.4.14"
-    "@clerk/shared": "npm:^4.14.0"
+    "@clerk/backend": "npm:^3.5.0"
+    "@clerk/shared": "npm:^4.15.0"
     dotenv: "npm:17.2.2"
   peerDependencies:
     "@playwright/test": ^1
@@ -52,7 +51,7 @@ __metadata:
       optional: true
     cypress:
       optional: true
-  checksum: 10c0/5436383077c1c7cf587a7f02066edcb5f83d2dbe8d5c8c5de8f4965f03c10cfc27c9c70e21a6ad1cbdcd2bbd61c8076164996bd186f38768715342a6b5d5c56a
+  checksum: 10c0/533f9e05ff3799d7d902a90c64b2b68c90cef1f1874939b92ded1943dabca2972c6713f209b34d40f59e1db4f2659bd3c7658f322588c5548cec7893041e50d2
   languageName: node
   linkType: hard
 
@@ -417,7 +416,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "coolboard-smoketests@workspace:."
   dependencies:
-    "@clerk/testing": "npm:2.0.34"
+    "@clerk/testing": "npm:2.0.35"
     cypress: "npm:15.16.0"
     typescript: "npm:6.0.3"
   languageName: unknown
@@ -1422,13 +1421,6 @@ __metadata:
     "@stablelib/base64": "npm:^1.0.0"
     fast-sha256: "npm:^1.3.0"
   checksum: 10c0/aee097d0f3c05172c19b80df1ed9596a2ce92f8956957650d0bbe47c2ca6d36515796b51d523333cb4a48c889b2ab130d789e7879e14975c4381bc7a61274327
-  languageName: node
-  linkType: hard
-
-"std-env@npm:^3.9.0":
-  version: 3.10.0
-  resolution: "std-env@npm:3.10.0"
-  checksum: 10c0/1814927a45004d36dde6707eaf17552a546769bc79a6421be2c16ce77d238158dfe5de30910b78ec30d95135cc1c59ea73ee22d2ca170f8b9753f84da34c427f
   languageName: node
   linkType: hard
 
