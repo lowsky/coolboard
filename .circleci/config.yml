@@ -85,7 +85,7 @@ jobs:
       - run:
           name: smoketest - pnpm install
           command: |
-            corepack enable
+            npm install -g pnpm
             PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 pnpm install --frozen-lockfile
       - save_cache:
           key: cache-smoketest-pnpm-{{ arch }}-{{ checksum "pnpm-lock.yaml" }}
@@ -151,7 +151,7 @@ jobs:
       - run:
           name: smoketest - pnpm install cypress
           command: |
-            corepack enable
+            npm install -g pnpm
             pnpm install --frozen-lockfile
             pnpm --filter coolboard-smoketests exec cypress install
       - save_cache:
