@@ -128,9 +128,6 @@ importers:
       react-timeago:
         specifier: 8.3.0
         version: 8.3.0(react@19.2.7)
-      ws:
-        specifier: 8.21.0
-        version: 8.21.0
     devDependencies:
       '@eslint/compat':
         specifier: 2.1.0
