@@ -14,7 +14,7 @@
   },
   "scripts": {
     "cy": "cypress",
-    "test": "npx -y yarn run cy run",
+    "test": "pnpm run cy run",
     "wait:valid-version": "check-deployed-version/check-deployed-version"
   }
 }

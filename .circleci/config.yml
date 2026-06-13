@@ -1,4 +1,4 @@
-version: 2.1
+ version: 2.1
 orbs:
   github-status: assurance-maladie-digital/github-status@1.3.0
 
@@ -81,15 +81,16 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - cache-smoketest-no-root-cypress-y4-{{ arch }}-{{ checksum "smoketest/yarn.lock" }}
+            - cache-smoketest-pnpm-{{ arch }}-{{ checksum "pnpm-lock.yaml" }}
       - run:
-          name: smoketest - yarn install
+          name: smoketest - pnpm install
           command: |
-            cd smoketest
-            PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npx yarn --immutable
+            corepack enable
+            PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 pnpm install --frozen-lockfile
       - save_cache:
-          key: cache-smoketest-no-root-cypress-y4-{{ arch }}-{{ checksum "smoketest/yarn.lock" }}
+          key: cache-smoketest-pnpm-{{ arch }}-{{ checksum "pnpm-lock.yaml" }}
           paths:
+            - node_modules
             - smoketest/node_modules
   test:
     docker:
@@ -145,17 +146,18 @@ jobs:
 
       - restore_cache:
           keys:
-            - cache-smoketest-no-root-cypress-y4-{{ arch }}-{{ checksum "smoketest/yarn.lock" }}
+            - cache-smoketest-pnpm-{{ arch }}-{{ checksum "pnpm-lock.yaml" }}
 
       - run:
-          name: smoketest - yarn install cypress
+          name: smoketest - pnpm install cypress
           command: |
-            cd smoketest
-            npx yarn install --immutable
-            npx yarn cypress install
+            corepack enable
+            pnpm install --frozen-lockfile
+            pnpm --filter coolboard-smoketests exec cypress install
       - save_cache:
-          key: cache-smoketest-no-root-cypress-y4-{{ arch }}-{{ checksum "smoketest/yarn.lock" }}
+          key: cache-smoketest-pnpm-{{ arch }}-{{ checksum "pnpm-lock.yaml" }}
           paths:
+            - node_modules
             - smoketest/node_modules
 
       - run:
@@ -165,11 +167,12 @@ jobs:
             mkdir -p cypress/results
 
             echo _DEBUG:  running without reporting to cypress.io:
-            echo   CYPRESS_branch=${CIRCLE_BRANCH} npm run cy run -- --record --key $CYPRESS_API_KEY --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
-            echo   CYPRESS_branch=${CIRCLE_BRANCH} npm run cy run -- --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
+            echo   CYPRESS_branch=${CIRCLE_BRANCH} pnpm --filter coolboard-smoketests run cy run -- --record --key $CYPRESS_API_KEY --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
+            echo   CYPRESS_branch=${CIRCLE_BRANCH} pnpm --filter coolboard-smoketests run cy run -- --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
             echo ...without reporting to cypress.io:
 
-            CYPRESS_branch=${CIRCLE_BRANCH} npm run cy run -- --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true \
+            cd smoketest
+            CYPRESS_branch=${CIRCLE_BRANCH} pnpm run cy run -- --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true \
               -x VERCEL_AUTOMATION_BYPASS_SECRET=$VERCEL_AUTOMATION_BYPASS_SECRET,PASSWORD=$PASSWORD,PRODUCTION_PASSWORD=$PRODUCTION_PASSWORD,BRANCH=$BRANCH
 
       - store_test_results:
