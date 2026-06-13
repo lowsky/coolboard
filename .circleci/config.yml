@@ -153,7 +153,7 @@ jobs:
           command: |
             corepack enable
             pnpm install --frozen-lockfile
-            pnpm --filter coolboard-smoketests exec cypress install
+            pnpm exec cypress install
       - save_cache:
           key: cache-smoketest-pnpm-{{ arch }}-{{ checksum "pnpm-lock.yaml" }}
           paths:
@@ -167,8 +167,8 @@ jobs:
             mkdir -p cypress/results
 
             echo _DEBUG:  running without reporting to cypress.io:
-            echo   CYPRESS_branch=${CIRCLE_BRANCH} pnpm --filter coolboard-smoketests run cy run -- --record --key $CYPRESS_API_KEY --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
-            echo   CYPRESS_branch=${CIRCLE_BRANCH} pnpm --filter coolboard-smoketests run cy run -- --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
+            echo   CYPRESS_branch=${CIRCLE_BRANCH} pnpm run cy run -- --record --key $CYPRESS_API_KEY --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
+            echo   CYPRESS_branch=${CIRCLE_BRANCH} pnpm run cy run -- --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
             echo ...without reporting to cypress.io:
 
             cd smoketest
