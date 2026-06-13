@@ -7,11 +7,12 @@
 tasks:
   - name: load deps, setup cypress, then run lint
     init: |
-      yarn install --immutable
-      cd smoketest ; yarn install --immutable ; yarn cypress install ; cd --
+      corepack enable
+      pnpm install --frozen-lockfile
+      pnpm --filter coolboard-smoketests exec cypress install
     command: |
-      yarn next lint
-      cd smoketest ; yarn cypress verify ; cd --
-      cd smoketest ; yarn cy run ; cd --
+      pnpm next lint
+      pnpm --filter coolboard-smoketests exec cypress verify
+      pnpm --filter coolboard-smoketests cy run
 image:
   file: .gitpod.Dockerfile
