@@ -1,2 +1,8 @@
 onlyBuiltDependencies:
   - '@clerk/shared'
+  - '@parcel/watcher'
+  - '@prisma/engines'
+  - prisma
+  - protobufjs
+  - sharp
+  - unrs-resolver
