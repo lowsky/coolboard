@@ -43,3 +43,7 @@ curl --request POST \
 			"test-url": "'$TEST_URL'"
 		}
 }'
+
+echo Check circleci builds for current branch here:
+echo $BRANCH
+echo https://app.circleci.com/pipelines/github/lowsky/coolboard?branch=$BRANCH
