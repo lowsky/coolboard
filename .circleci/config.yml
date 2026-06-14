@@ -151,6 +151,7 @@ jobs:
       - run:
           name: smoketest - pnpm install cypress
           command: |
+            cd smoketest
             npm install -g pnpm
             pnpm install --frozen-lockfile
             pnpm exec cypress install
