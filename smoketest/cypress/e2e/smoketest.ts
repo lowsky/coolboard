@@ -138,9 +138,9 @@ describe('Test coolboard', () => {
               isPrimary: true,
               pointerId: 1,
             })
-            // initial pointermove initiates the drag
+            // initial pointermove initiates the drag (must exceed the 5px distance constraint, so use > 5)
             .trigger('pointermove', {
-              clientX: startX + 5,
+              clientX: startX + 10,
               clientY: startY,
               bubbles: true,
               cancelable: true,
