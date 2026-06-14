@@ -18,6 +18,7 @@
 .env
 
 npm-debug.log*
+pnpm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 smoketest/node_modules
@@ -46,13 +47,6 @@ smoketest/cypress/screenshots
 # not using Zero-Installs
 # https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
 .pnp.*
-
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
 
 /smoketest/.yarn/*
 !/smoketest/.yarn/patches
