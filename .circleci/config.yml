@@ -164,7 +164,6 @@ jobs:
       - run:
           name: run cypress
           command: |
-            cd smoketest
             mkdir -p cypress/results
 
             echo _DEBUG:  running without reporting to cypress.io:
