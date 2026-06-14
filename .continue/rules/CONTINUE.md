@@ -8,7 +8,7 @@
 - **Purpose** – A Next.js application named *coolboard* that serves as a dashboard for monitoring and interacting with data stored in a Neon (PostgreSQL) database.
 - **Key technologies** –
   - Next.js 15 (App Router)
-  - React 19 + Chakra‑UI, Lucide, Inter‑UI
+  - React 19 + Chakra‑UI, Lucide, Inter‑UI
   - Apollo Client & GraphQL Yoga server (Pothos + Prisma)
   - Clerk for authentication, Vercel Analytics & OTEL
   - Prisma + Neon (serverless PostgreSQL)
@@ -20,27 +20,27 @@
 
 ## 2. Getting Started
 ```bash
-# Install dependencies (Node 22 required)
-yarn install
+# Install dependencies (Node 24 required)
+pnpm install
 ```
-- **Prerequisites** – Node 22.x, Yarn 4.
+- **Prerequisites** – Node 24.x, pnpm 10.
 - **Environment variables** – Copy `.env.example` to `.env.local` and fill:
   - `DATABASE_URL`
   - `NEXTAUTH_SECRET`, `CLERK_PUBLISHABLE_KEY`, etc.
 - **Run locally** –
 ```bash
 # Development server (uses Clerk auth)
-yarn start
+pnpm start
 ```
 - **Run tests** –
 ```bash
 # Run Cypress e2e (Electron)
-yarn smoketest
+pnpm smoketest
 ```
 - **Build for production** –
 ```bash
 # Generates Prisma client, builds Next.js app, and runs smoke tests
-yarn build
+pnpm build
 ```
 
 ## 3. Project Structure
@@ -58,7 +58,7 @@ yarn build
 - **Coding standards** – ESLint + Prettier, TypeScript strict mode.
 - **Component style** – Chakra‑UI components with Emotion styling; keep UI logic in hooks.
 - **Testing** – Cypress for e2e, Jest (if added) for unit tests.
-- **Build** – `yarn build` compiles Next.js and Prisma client.
+- **Build** – `pnpm build` compiles Next.js and Prisma client.
 - **Deployment** – Vercel (via `vercel.json`).
 - **Contribution guidelines** – Create feature branches, run tests locally, submit PR with lint pass.
 
@@ -71,16 +71,16 @@ yarn build
 ## 6. Common Tasks
 | Task | Command / Steps |
 |------|-----------------|
-| Migrate DB | `yarn prisma:migrate` |
-| Generate Prisma client | `yarn prisma:generate` |
-| Run smoke tests | `yarn smoketest` |
-| Generate GraphQL types | `yarn codegen` |
+| Migrate DB | `pnpm prisma:migrate` |
+| Generate Prisma client | `pnpm prisma:generate` |
+| Run smoke tests | `pnpm smoketest` |
+| Generate GraphQL types | `pnpm codegen` |
 
 ## 7. Troubleshooting
 - **Database connection errors** – Verify `DATABASE_URL` and Neon status.
 - **Clerk auth issues** – Ensure Clerk environment vars are set; check middleware in `middleware.ts`.
-- **GraphQL errors** – Run `yarn codegen` to sync types; inspect `/api/graphql` logs.
-- **Build failures** – Check Node version, clear `node_modules`, run `yarn clean && yarn install`.
+- **GraphQL errors** – Run `pnpm codegen` to sync types; inspect `/api/graphql` logs.
+- **Build failures** – Check Node version, clear `node_modules`, run `pnpm install`.
 
 ## 8. References
 - [Next.js Docs](https://nextjs.org/docs)
