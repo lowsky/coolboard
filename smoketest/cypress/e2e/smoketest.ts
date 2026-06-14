@@ -115,7 +115,9 @@ describe('Test coolboard', () => {
     cy.getCardListByIndex(2).find(':nth-child(1) > [data-cy="card"]')
       .should('have.length', 0);
 
-    // dnd-kit uses PointerSensor, so pointer events are required (not HTML5 drag events)
+    // dnd-kit's PointerSensor registers its pointermove/pointerup listeners on the document.
+    // Dispatch events directly on the document via win.PointerEvent (app-frame constructor)
+    // so they reach dnd-kit's document-level listeners reliably.
     cy.getCardListByIndex(1).find(':nth-child(1) > [data-cy="card"]').first()
       .then($card => {
         const cardRect = $card[0].getBoundingClientRect();
@@ -127,46 +129,57 @@ describe('Test coolboard', () => {
           const endX = Math.round(listRect.left + listRect.width / 2);
           const endY = Math.round(listRect.top + listRect.height / 2);
 
-          // pointerdown activates the PointerSensor on the draggable element
-          cy.wrap($card)
-            .trigger('pointerdown', {
+          cy.window().then(win => {
+            const doc = win.document;
+
+            // pointerdown on the card element activates dnd-kit's PointerSensor
+            $card[0].dispatchEvent(new win.PointerEvent('pointerdown', {
+              bubbles: true,
+              cancelable: true,
+              isPrimary: true,
               button: 0,
+              buttons: 1,
               clientX: startX,
               clientY: startY,
+              pointerId: 1,
+            }));
+
+            // pointermove on document: must exceed the 5px distance constraint to activate drag
+            doc.dispatchEvent(new win.PointerEvent('pointermove', {
               bubbles: true,
               cancelable: true,
               isPrimary: true,
-              pointerId: 1,
-            })
-            // initial pointermove initiates the drag (must exceed distance:5 activation constraint)
-            .trigger('pointermove', {
+              button: 0,
+              buttons: 1,
               clientX: startX + 10,
               clientY: startY,
-              bubbles: true,
-              cancelable: true,
-              isPrimary: true,
               pointerId: 1,
-            });
+            }));
 
-          // pointermove over target bubbles to document where dnd-kit listens
-          cy.getCardListByIndex(2)
-            .trigger('pointermove', {
-              clientX: endX,
-              clientY: endY,
+            // pointermove on document to position the drag over the second list
+            doc.dispatchEvent(new win.PointerEvent('pointermove', {
               bubbles: true,
               cancelable: true,
               isPrimary: true,
-              pointerId: 1,
-            })
-            .trigger('pointerup', {
               button: 0,
+              buttons: 1,
               clientX: endX,
               clientY: endY,
+              pointerId: 1,
+            }));
+
+            // pointerup on document: ends the drag and fires onDragEnd
+            doc.dispatchEvent(new win.PointerEvent('pointerup', {
               bubbles: true,
               cancelable: true,
               isPrimary: true,
+              button: 0,
+              buttons: 0,
+              clientX: endX,
+              clientY: endY,
               pointerId: 1,
-            });
+            }));
+          });
         });
       });
 
