@@ -1,7 +1,12 @@
+packages:
+  - .
+  - smoketest
+
 onlyBuiltDependencies:
   - '@clerk/shared'
   - '@parcel/watcher'
   - '@prisma/engines'
+  - cypress
   - prisma
   - protobufjs
   - sharp
