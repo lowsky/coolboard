@@ -92,7 +92,13 @@ export const Board = ({ boardId, readonly = false }: BoardProps) => {
 
   const [moveCard] = useMutation(MoveCard2Doc);
 
-  const sensors = useSensors(useSensor(PointerSensor));
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 5,
+      },
+    })
+  );
   const [activeCard, setActiveCard] = useState<Card | undefined>();
 
   function handleDragStart(event: DragStartEvent) {
