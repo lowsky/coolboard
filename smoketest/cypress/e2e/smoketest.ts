@@ -115,26 +115,60 @@ describe('Test coolboard', () => {
     cy.getCardListByIndex(2).find(':nth-child(1) > [data-cy="card"]')
       .should('have.length', 0);
 
-    // Get the source card element
-    const dataTransfer = new DataTransfer();
+    // dnd-kit uses PointerSensor, so pointer events are required (not HTML5 drag events)
+    cy.getCardListByIndex(1).find(':nth-child(1) > [data-cy="card"]').first()
+      .then($card => {
+        const cardRect = $card[0].getBoundingClientRect();
+        const startX = Math.round(cardRect.left + cardRect.width / 2);
+        const startY = Math.round(cardRect.top + cardRect.height / 2);
 
-    // Start dragging the card
-    cy.getCardListByIndex(1).find(':nth-child(1) > [data-cy="card"]')
-      .trigger('dragstart', { dataTransfer })
-      .should('be.visible');
+        return cy.getCardListByIndex(2).then($list => {
+          const listRect = $list[0].getBoundingClientRect();
+          const endX = Math.round(listRect.left + listRect.width / 2);
+          const endY = Math.round(listRect.top + listRect.height / 2);
 
-    // Drag over the target list
-    cy.getCardListByIndex(2)
-      .trigger('dragover', { dataTransfer })
-      .should('have.css', 'background-color', 'rgb(255, 255, 0)'); // Check for the yellow background (isOver)
+          // pointerdown activates the PointerSensor on the draggable element
+          cy.wrap($card)
+            .trigger('pointerdown', {
+              button: 0,
+              clientX: startX,
+              clientY: startY,
+              bubbles: true,
+              cancelable: true,
+              isPrimary: true,
+              pointerId: 1,
+            })
+            // initial pointermove initiates the drag (must exceed the 5px distance constraint, so use > 5)
+            .trigger('pointermove', {
+              clientX: startX + 10,
+              clientY: startY,
+              bubbles: true,
+              cancelable: true,
+              isPrimary: true,
+              pointerId: 1,
+            });
 
-    // Drop the card on the target list
-    cy.getCardListByIndex(2)
-      .trigger('drop', { dataTransfer });
-
-    // End the drag operation
-    cy.getCardListByIndex(1).find(':nth-child(1) > [data-cy="card"]')
-      .trigger('dragend');
+          // pointermove over target bubbles to document where dnd-kit listens
+          cy.getCardListByIndex(2)
+            .trigger('pointermove', {
+              clientX: endX,
+              clientY: endY,
+              bubbles: true,
+              cancelable: true,
+              isPrimary: true,
+              pointerId: 1,
+            })
+            .trigger('pointerup', {
+              button: 0,
+              clientX: endX,
+              clientY: endY,
+              bubbles: true,
+              cancelable: true,
+              isPrimary: true,
+              pointerId: 1,
+            });
+        });
+      });
 
     // Verify the card has moved to the second list
     cy.getCardListByIndex(2).find(':nth-child(1) > [data-cy="card"]')

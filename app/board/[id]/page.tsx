@@ -2,9 +2,6 @@
 
 import { Suspense, use } from 'react';
 
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
-
 import { trackPage } from 'src/common/tracking';
 
 import { ProfileHeader } from 'src/common/ProfileHeader';
@@ -28,11 +25,9 @@ export default function Page({
     <FullPageWithApollo>
       <ProfileHeader />
       <GeneralErrorHandler />
-      <DndProvider backend={HTML5Backend}>
-        <Suspense fallback={<div>Loading Board</div>}>
-          {boardId && <Board boardId={boardId} />}
-        </Suspense>
-      </DndProvider>
+      <Suspense fallback={<div>Loading Board</div>}>
+        {boardId && <Board boardId={boardId} />}
+      </Suspense>
     </FullPageWithApollo>
   );
 }

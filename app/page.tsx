@@ -6,8 +6,6 @@ import { Container, Flex, Heading, Icon, Text } from '@chakra-ui/react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { FaChalkboardTeacher, FaFilm, FaLink } from 'react-icons/fa';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
 import { ApolloProvider } from '@apollo/client/react';
 import { ApolloClient } from '@apollo/client';
 
@@ -136,11 +134,9 @@ function DemoBoardSegment() {
       )}
       {demoBoardId && client && (
         <ApolloProvider client={client}>
-          <DndProvider backend={HTML5Backend}>
-            <Suspense fallback={<div>Loading Board</div>}>
-              <Board boardId={demoBoardId} readonly />
-            </Suspense>
-          </DndProvider>
+          <Suspense fallback={<div>Loading Board</div>}>
+            <Board boardId={demoBoardId} readonly />
+          </Suspense>
         </ApolloProvider>
       )}
       {!demoBoardId && (

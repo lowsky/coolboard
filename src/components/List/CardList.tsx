@@ -1,21 +1,10 @@
 import { gql } from '@apollo/client';
 import { useSuspenseQuery, useMutation } from '@apollo/client/react';
 
-import { createUpdateCachedListsAfterMovingCard } from './overrideCacheListsAfterMovingCard';
 import { CardListWithDnd, type UIListData } from './ui/CardListWithDnd';
-import { type MoveItemToFrom, useCardListDnd } from './ui/useCardListDnd';
-import { CardCardDoc, CardListListDoc } from './list.graphql';
+import { useCardListDnd } from './ui/useCardListDnd';
+import { CardListListDoc } from './list.graphql';
 import { BoardBoardDoc } from 'components/Board/board.graphql';
-
-const MoveCard2Doc = gql`
-  mutation moveCard2($cardId: ID!, $toList: ID!, $fromListId: ID!) {
-    moveCard(id: $cardId, toListId: $toList, fromListId: $fromListId) {
-      ...Card_card
-    }
-  }
-  ${CardCardDoc}
-`;
-
 const DeleteListOfBoardDoc = gql`
   mutation deleteListOfBoard($boardId: ID!, $listId: ID!) {
     updateBoard(
@@ -83,18 +72,7 @@ export const CardList = ({
       variables: { name, cardListId },
     });
 
-  const [moveCard] = useMutation(MoveCard2Doc);
-  const moveCardToList: MoveItemToFrom = (cardId, toList, fromListId) =>
-    moveCard({
-      variables: { fromListId, toList, cardId },
-      update: createUpdateCachedListsAfterMovingCard(
-        cardId,
-        toList,
-        fromListId
-      ),
-    });
-
-  const [dndProps, ref] = useCardListDnd(id, moveCardToList);
+  const [dndProps, ref] = useCardListDnd(id);
 
   if (error) {
     return <span>Load error!</span>;
