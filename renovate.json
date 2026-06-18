@@ -2,13 +2,12 @@
   "autoApprove": true,
   "automergeStrategy": "squash",
 
+  "vulnerabilityAlerts": {
+    "labels": ["security"],
+    "automerge": true
+  },
+
   "packageRules": [
-    {
-      "vulnerabilityAlerts": {
-        "labels": ["security"],
-        "automerge": true
-      }
-    },
     {
       "matchUpdateTypes": ["minor", "patch"],
       "matchCurrentVersion": "!/^0/",
