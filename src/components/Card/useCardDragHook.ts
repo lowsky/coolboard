@@ -1,4 +1,3 @@
-import { useCallback } from 'react';
 import { useDraggable } from '@dnd-kit/core';
 import type { Card as CardType } from 'src/gql/graphql';
 
@@ -17,13 +16,5 @@ export function useCardDragHook(props: CardForDraggingProps) {
     },
   });
 
-  const dragRef = useCallback(
-    (element: HTMLElement | null) => {
-      setNodeRef(element);
-      return element;
-    },
-    [setNodeRef]
-  );
-
-  return { attributes, listeners, ref: dragRef, isDragging };
+  return { attributes, listeners, setNodeRef, isDragging };
 }
