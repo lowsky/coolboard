@@ -35,7 +35,7 @@
     "plugins": [
       {
         "name": "@0no-co/graphqlsp",
-        "schema": "./server/src/schema/schema.graphql",
+        "schema": "./server/src/schema/schema.graphql"
       },
       {
         "name": "next"
