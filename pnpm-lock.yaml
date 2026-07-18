@@ -60,14 +60,14 @@ importers:
         specifier: 0.29.0
         version: 0.29.0
       '@pothos/core':
-        specifier: 4.12.0
-        version: 4.12.0(graphql@16.14.2)
+        specifier: 4.13.1
+        version: 4.13.1(graphql@16.14.2)
       '@pothos/plugin-prisma':
-        specifier: 4.14.3
-        version: 4.14.3(@pothos/core@4.12.0(graphql@16.14.2))(@prisma/client@7.8.0(prisma@7.8.0(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(typescript@6.0.3))(typescript@6.0.3))(graphql@16.14.2)(typescript@6.0.3)
+        specifier: 4.15.0
+        version: 4.15.0(@pothos/core@4.13.1(graphql@16.14.2))(@prisma/client@7.8.0(prisma@7.8.0(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(typescript@6.0.3))(typescript@6.0.3))(graphql@16.14.2)
       '@pothos/plugin-with-input':
-        specifier: 4.1.4
-        version: 4.1.4(@pothos/core@4.12.0(graphql@16.14.2))(graphql@16.14.2)
+        specifier: 4.1.5
+        version: 4.1.5(@pothos/core@4.13.1(graphql@16.14.2))(graphql@16.14.2)
       '@prisma/adapter-neon':
         specifier: 7.8.0
         version: 7.8.0
@@ -2084,25 +2084,24 @@ packages:
     resolution: {integrity: sha512-SEeaJLb3qBNF/OaXnaR1NmmBbFYk1zC0ZH/52fATcRPLFg/p791YrcyFFy44Bo9sLaGuSuLp5Q6axbb/O+v/RA==}
     engines: {node: ^14.18.0 || >=16.0.0}
 
-  '@pothos/core@4.12.0':
-    resolution: {integrity: sha512-PeiODrj3GjQ7Nbs/5p65DEyBWZTSGGjgGO/BgaMEqS1jBNX/2zJTEQJA9zM5uPmCHUCDjE7Qn2U7lOi0ALp/8A==}
+  '@pothos/core@4.13.1':
+    resolution: {integrity: sha512-2hkLxmvrT7VnbiWAfYhfF09PjaHeflZ5HrBHYzU6Tn/P9tDviuZS7IS5xO4k/KnK5GkRo3YxDzXyn+HnkEkVNw==}
     peerDependencies:
-      graphql: ^16.10.0
+      graphql: ^16.10.0 || ^17.0.0
 
-  '@pothos/plugin-prisma@4.14.3':
-    resolution: {integrity: sha512-jeI6gGhozIpig4zmDT7uIu8LUjUZLRCG8GPD6ij/3y7hjl92yG7gc9vbqy14YbTNoYXPpoMPkumiOy+FeRSDcw==}
+  '@pothos/plugin-prisma@4.15.0':
+    resolution: {integrity: sha512-17UQN3WsnsPW9WhxAWgGb2s6yYKhN2Y/lD3bVDCo5puRgNP7XCf3L8S0MVXiJUvqosaBAMt8Da7V2OumWLVxgg==}
     hasBin: true
     peerDependencies:
       '@pothos/core': '*'
       '@prisma/client': '*'
-      graphql: ^16.10.0
-      typescript: '>=4.7.2'
+      graphql: ^16.10.0 || ^17.0.0
 
-  '@pothos/plugin-with-input@4.1.4':
-    resolution: {integrity: sha512-ov8Ufga6lU1PmE0lHt50jpt3G3ypJvHJ0YF2PmjcgWEvJMi/cDhRRKoU2IoB13juBBRE2yo9rS3QhSRUR35iAQ==}
+  '@pothos/plugin-with-input@4.1.5':
+    resolution: {integrity: sha512-lRekMF2+NVXcCL9/Z61y+O3YYQ4Copsm7dUlAQdo6ZOWP+m0BukUFk/MNZmOtem7mridMR9Yu3CY+Au+mSiz+w==}
     peerDependencies:
       '@pothos/core': '*'
-      graphql: ^16.10.0
+      graphql: ^16.10.0 || ^17.0.0
 
   '@prisma/adapter-neon@7.8.0':
     resolution: {integrity: sha512-9MoOjRuY53sQNyji87u1NivsK0tIacoUE3PqTxdG95b7ORn1pzwribH2z83j4Vh3eb9nQ/UC+MTfVW7jCFnXlA==}
@@ -7386,21 +7385,20 @@ snapshots:
 
   '@pkgr/core@0.3.6': {}
 
-  '@pothos/core@4.12.0(graphql@16.14.2)':
+  '@pothos/core@4.13.1(graphql@16.14.2)':
     dependencies:
       graphql: 16.14.2
 
-  '@pothos/plugin-prisma@4.14.3(@pothos/core@4.12.0(graphql@16.14.2))(@prisma/client@7.8.0(prisma@7.8.0(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(typescript@6.0.3))(typescript@6.0.3))(graphql@16.14.2)(typescript@6.0.3)':
+  '@pothos/plugin-prisma@4.15.0(@pothos/core@4.13.1(graphql@16.14.2))(@prisma/client@7.8.0(prisma@7.8.0(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(typescript@6.0.3))(typescript@6.0.3))(graphql@16.14.2)':
     dependencies:
-      '@pothos/core': 4.12.0(graphql@16.14.2)
+      '@pothos/core': 4.13.1(graphql@16.14.2)
       '@prisma/client': 7.8.0(prisma@7.8.0(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(typescript@6.0.3))(typescript@6.0.3)
       '@prisma/generator-helper': 7.8.0
       graphql: 16.14.2
-      typescript: 6.0.3
 
-  '@pothos/plugin-with-input@4.1.4(@pothos/core@4.12.0(graphql@16.14.2))(graphql@16.14.2)':
+  '@pothos/plugin-with-input@4.1.5(@pothos/core@4.13.1(graphql@16.14.2))(graphql@16.14.2)':
     dependencies:
-      '@pothos/core': 4.12.0(graphql@16.14.2)
+      '@pothos/core': 4.13.1(graphql@16.14.2)
       graphql: 16.14.2
 
   '@prisma/adapter-neon@7.8.0':
