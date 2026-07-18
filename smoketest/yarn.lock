@@ -410,7 +410,7 @@ __metadata:
   resolution: "coolboard-smoketests@workspace:."
   dependencies:
     "@clerk/testing": "npm:2.2.8"
-    cypress: "npm:15.17.0"
+    cypress: "npm:15.18.1"
     typescript: "npm:6.0.3"
   languageName: unknown
   linkType: soft
@@ -433,9 +433,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cypress@npm:15.17.0":
-  version: 15.17.0
-  resolution: "cypress@npm:15.17.0"
+"cypress@npm:15.18.1":
+  version: 15.18.1
+  resolution: "cypress@npm:15.18.1"
   dependencies:
     "@cypress/request": "npm:^4.0.0"
     "@cypress/xvfb": "npm:^1.2.4"
@@ -478,7 +478,7 @@ __metadata:
     yauzl: "npm:^3.3.1"
   bin:
     cypress: bin/cypress
-  checksum: 10c0/4f8c38b075ba0f470d948fe9d705b3afc9d87f8a5e7e8592eaef88ae040ed42d3076fadf04c1eb1ef4806b3e9258f8daea14c2b1e05bf159530ad0e23d822d04
+  checksum: 10c0/18543d1ef8b802d48eb30864279aa3ac6ac33c23d03a7d411e0447846bfac06c960f0419a7bdc3d7be54d599cab888197ea6b55640d0d4156f754406e54bf7e6
   languageName: node
   linkType: hard
 
