@@ -7,7 +7,7 @@
   "engines": {
     "node": "26.x"
   },
-  "packageManager": "yarn@4.17.0",
+  "packageManager": "yarn@4.17.1",
   "dependencies": {
     "@clerk/testing": "2.1.2",
     "cypress": "15.17.0",
