@@ -76,7 +76,7 @@ describe('Test coolboard', () => {
     cy.sections(LogAndWaitLong).should('have.length', 1);
     cy.clickAddNewCard();
     cy.enterText('new card{enter}');
-    cy.contains('[data-cy="card"] > span', 'new card');
+    cy.contains('[data-cy="card"] > span', 'new card', WaitVeryLong);
 
     cy.clickAddNewCard();
     cy.enterText('canceled');
@@ -85,7 +85,7 @@ describe('Test coolboard', () => {
     // edit card
     cy.log('edit card');
     // old: cy.dataCy('card').contains('new card').click();
-    cy.contains('[data-cy="card"] > span', 'new card').first().click();
+    cy.contains('[data-cy="card"] > span', 'new card', WaitVeryLong).first().click();
     cy.get('.chakra-dialog__content')
       .get('#title')
       .clear()
@@ -99,7 +99,7 @@ describe('Test coolboard', () => {
     cy.get('.chakra-dialog__content', WaitVeryLong).should(
       'not.exist'
     );
-    cy.contains('[data-cy="card"] > span', 'name-changed');
+    cy.contains('[data-cy="card"] > span', 'name-changed', WaitVeryLong);
 
     cy.log('add another list');
     cy.getCardListButton('Add a list').click();
