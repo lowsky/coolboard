@@ -164,13 +164,9 @@ jobs:
             cd smoketest
             mkdir -p cypress/results
 
-            echo _DEBUG:  running without reporting to cypress.io:
-            echo   CYPRESS_branch=${CIRCLE_BRANCH} npm run cy run -- --record --key $CYPRESS_API_KEY --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
-            echo   CYPRESS_branch=${CIRCLE_BRANCH} npm run cy run -- --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true
-            echo ...without reporting to cypress.io:
-
             CYPRESS_branch=${CIRCLE_BRANCH} npm run cy run -- --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true \
-              -x VERCEL_AUTOMATION_BYPASS_SECRET=$VERCEL_AUTOMATION_BYPASS_SECRET,PASSWORD=$PASSWORD,PRODUCTION_PASSWORD=$PRODUCTION_PASSWORD,BRANCH=$BRANCH
+              -x VERCEL_AUTOMATION_BYPASS_SECRET=$VERCEL_AUTOMATION_BYPASS_SECRET,PASSWORD=$PASSWORD,PRODUCTION_PASSWORD=$PRODUCTION_PASSWORD,BRANCH=$BRANCH \
+              --record --key ${CYPRESS_RECORD_KEY}
 
       - store_test_results:
           path: smoketest/cypress/results
