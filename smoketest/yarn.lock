@@ -5,7 +5,7 @@ __metadata:
   version: 10
   cacheKey: 10c0
 
-"@clerk/backend@npm:^3.14.0":
+"@clerk/backend@npm:^3.15.0":
   version: 3.15.0
   resolution: "@clerk/backend@npm:3.15.0"
   dependencies:
@@ -36,32 +36,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/shared@npm:^4.25.9":
-  version: 4.25.9
-  resolution: "@clerk/shared@npm:4.25.9"
+"@clerk/testing@npm:2.2.16":
+  version: 2.2.16
+  resolution: "@clerk/testing@npm:2.2.16"
   dependencies:
-    "@tanstack/query-core": "npm:^5.100.6"
-    dequal: "npm:2.0.3"
-    glob-to-regexp: "npm:0.4.1"
-    js-cookie: "npm:3.0.7"
-  peerDependencies:
-    react: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
-    react-dom: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
-  peerDependenciesMeta:
-    react:
-      optional: true
-    react-dom:
-      optional: true
-  checksum: 10c0/627ddc4b7d0a5757524644c4e6f15ffc0025e87284268109b4094167e7632f885b63d394f309b54cecbb30a3feb2bfcda89a7a267487d9acf15b0c0d8d3f7d5b
-  languageName: node
-  linkType: hard
-
-"@clerk/testing@npm:2.2.15":
-  version: 2.2.15
-  resolution: "@clerk/testing@npm:2.2.15"
-  dependencies:
-    "@clerk/backend": "npm:^3.14.0"
-    "@clerk/shared": "npm:^4.25.9"
+    "@clerk/backend": "npm:^3.15.0"
+    "@clerk/shared": "npm:^4.25.10"
     dotenv: "npm:17.2.2"
   peerDependencies:
     "@playwright/test": ^1
@@ -71,7 +51,7 @@ __metadata:
       optional: true
     cypress:
       optional: true
-  checksum: 10c0/00948ad669cd3494ae1b7e696db6c4792be4588c760dff50f41f6e69cb8994624d153128e4e4b60ebf6460b60572e2f6932297d7c6d92f898403f3d20e17aa72
+  checksum: 10c0/3c91736907a8117a7342322ff82016a2c9e9698d01735a3caf5c18fa6b9fa2a1818c34afc256562d07e75aef0655652a72f67ee4d17bc840c350781ba7748fea
   languageName: node
   linkType: hard
 
@@ -429,7 +409,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "coolboard-smoketests@workspace:."
   dependencies:
-    "@clerk/testing": "npm:2.2.15"
+    "@clerk/testing": "npm:2.2.16"
     cypress: "npm:15.19.0"
     typescript: "npm:6.0.3"
   languageName: unknown
