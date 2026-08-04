@@ -124,7 +124,7 @@ export const CardComponent = (props: CardComponentProps) => {
   const whenDraggingStyle: CSSProperties = {
     color: 'black',
     fontWeight: 'bold',
-    fontStyle: 'italic',
+    // temporary disable: fontStyle: 'italic',
   };
   const { isDragging, createdAt, updatedAt, updatedBy } = props;
 
