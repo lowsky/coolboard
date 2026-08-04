@@ -100,7 +100,7 @@
     "sharp": "0.35.3",
     "typescript": "6.0.3",
     "typescript-eslint": "8.66.0",
-    "ws": "8.21.1"
+    "ws": "8.21.2"
   },
   "browserslist": [
     ">0.2%",
