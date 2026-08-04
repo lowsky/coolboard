@@ -170,9 +170,6 @@ describe('Test coolboard', () => {
         });
       });
 
-    // wait extra long to be sure the graphql operation was finished.
-    cy.wait(LogAndWaitLong.timeout!)
-
     // Verify the card has moved to the second list
     cy.getCardListByIndex(2).find(':nth-child(1) > [data-cy="card"]')
       .should('have.length', 1);
