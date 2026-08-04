@@ -15,8 +15,8 @@ importers:
         specifier: 3.36.1
         version: 3.36.1(@emotion/react@11.14.0(@types/react@19.2.17)(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@clerk/nextjs':
-        specifier: 7.6.3
-        version: 7.6.3(next@16.2.11(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(babel-plugin-macros@3.1.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+        specifier: 7.6.4
+        version: 7.6.4(next@16.2.11(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(babel-plugin-macros@3.1.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@dnd-kit/core':
         specifier: 6.3.1
         version: 6.3.1(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -370,8 +370,8 @@ packages:
     resolution: {integrity: sha512-m8/X0hAjX9HyBD0IdfIFIxP1fbbSvnq5DB6mPLeIc53Ya9XCLn/hlQkaIM8pobKsM/jquRt9DQLT9IvV6z6bFQ==}
     engines: {node: '>=20.9.0'}
 
-  '@clerk/nextjs@7.6.3':
-    resolution: {integrity: sha512-lE7H4vI4xbXYwb6zCaAEYCVQcvmzFl38mXE7hjqk5b0kn3DMO9MnUV8GCXKSNCPU+d+GJ/KU1wCY01ME097pfQ==}
+  '@clerk/nextjs@7.6.4':
+    resolution: {integrity: sha512-eDo55Yheel2xoYSvVRsg8SKiZV5sB57NIfX2tTuSRCHh2/pG20nZ2wUHg7CdVQ7xtwtIp9qkmGScSkjm/T4++Q==}
     engines: {node: '>=20.9.0'}
     peerDependencies:
       next: ^15.2.8 || ^15.3.8 || ^15.4.10 || ^15.5.9 || ^15.6.0-0 || ^16.0.10 || ^16.1.0-0
@@ -5540,7 +5540,7 @@ snapshots:
       - react
       - react-dom
 
-  '@clerk/nextjs@7.6.3(next@16.2.11(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(babel-plugin-macros@3.1.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)':
+  '@clerk/nextjs@7.6.4(next@16.2.11(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(babel-plugin-macros@3.1.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)':
     dependencies:
       '@clerk/backend': 3.15.0(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@clerk/react': 6.12.10(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
