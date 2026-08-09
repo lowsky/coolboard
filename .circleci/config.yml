@@ -22,20 +22,24 @@ workflows:
             - test
 
 executors:
-  executor_with_curl:
+  github-status-executor:
     docker:
       - image: cimg/base:stable@sha256:35e5e29930ab565475a4f2aa9b4124998ed67dbc7b0e2dd5f420a4189d08d0d2
+  cypress-executor:
+    docker:
+      - image: cypress/base:26.0.0@sha256:446be8fcb63e3cad2f9a4e14720e3d8e35993e12f36da541e09f5740a4c2477c
+    resource_class: lowsky/selfhosted
 
 jobs:
   pr-pending:
-    executor: executor_with_curl
+    executor: github-status-executor
     steps:
       - run: echo "export TARGET_URL=$CIRCLE_BUILD_URL" >> $BASH_ENV
       - github-status/pending:
           description: pending
           context: e2e/cypress-test
   pr-success:
-    executor: executor_with_curl
+    executor: github-status-executor
     environment:
       CYPRESS_baseUrl: << pipeline.parameters.test-url >>
     steps:
@@ -52,9 +56,7 @@ jobs:
           state: success
 
   test:
-    docker:
-      - image: cypress/base:26.0.0@sha256:446be8fcb63e3cad2f9a4e14720e3d8e35993e12f36da541e09f5740a4c2477c
-    resource_class: lowsky/selfhosted
+    executor: cypress-executor
     environment:
       CYPRESS_baseUrl: << pipeline.parameters.test-url >>
       EXPECTED_GIT_SHA: << pipeline.parameters.deployed-sha >>
