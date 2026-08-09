@@ -59,9 +59,6 @@ jobs:
           name: pre-check for params
           command: |
             if [  "x" == "x${CYPRESS_baseUrl}"  ] ;  then
-              circleci step halt # does nothing
-              circleci-agent step halt # does nothing
-
               echo "   No parameters -skipping build ..."
               exit 0
             fi
@@ -106,10 +103,7 @@ jobs:
           name: pre-check for params
           command: |
             if [  "x" == "x${CYPRESS_baseUrl}"  ] ;  then
-              circleci step halt # does nothing
-              circleci-agent step halt # does nothing
               echo "   No parameters -skipping build ..."
-              echo "   No parameters - mark build as failed, even when there was already a good run ..."
               exit 1
             fi
 
