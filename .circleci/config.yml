@@ -31,8 +31,6 @@ executors:
 jobs:
   pr-pending:
     executor: executor_with_curl
-    environment:
-      DEBUG: true
     steps:
       - run: echo "export TARGET_URL=$CIRCLE_BUILD_URL" >> $BASH_ENV
       - github-status/pending:
@@ -56,7 +54,6 @@ jobs:
     executor: executor_with_curl
     environment:
       CYPRESS_baseUrl: << pipeline.parameters.test-url >>
-      DEBUG: true
     steps:
       - run:
           name: pre-check for params
