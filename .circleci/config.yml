@@ -93,7 +93,6 @@ jobs:
     environment:
       CYPRESS_baseUrl: << pipeline.parameters.test-url >>
       EXPECTED_GIT_SHA: << pipeline.parameters.deployed-sha >>
-      CYPRESS_branch: ${CIRCLE_BRANCH}
     steps:
       - run:
           name: pre-check for params
