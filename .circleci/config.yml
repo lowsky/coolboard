@@ -10,6 +10,17 @@ parameters:
     type: string
     default: ''
 
+commands:
+  halt-if-no-test-url:
+    steps:
+      - run:
+          name: Skip if no test-url parameter
+          command: |
+            if [ -z "${CYPRESS_baseUrl}" ]; then
+              echo "No test-url parameter — skipping."
+              exit 1
+            fi
+
 workflows:
   all:
     jobs:
@@ -43,13 +54,7 @@ jobs:
     environment:
       CYPRESS_baseUrl: << pipeline.parameters.test-url >>
     steps:
-      - run:
-          name: pre-check for params
-          command: |
-            if [  "x" == "x${CYPRESS_baseUrl}"  ] ;  then
-              echo "   No parameters -skipping build ..."
-              exit 0
-            fi
+      - halt-if-no-test-url
       - github-status/post_status:
           context: e2e/cypress-test
           description: success
@@ -61,14 +66,7 @@ jobs:
       CYPRESS_baseUrl: << pipeline.parameters.test-url >>
       EXPECTED_GIT_SHA: << pipeline.parameters.deployed-sha >>
     steps:
-      - run:
-          name: pre-check for params
-          command: |
-            if [  "x" == "x${CYPRESS_baseUrl}"  ] ;  then
-              echo "   No parameters -skipping build ..."
-              exit 1
-            fi
-
+      - halt-if-no-test-url
       - checkout
       - run:
           name: check matching of versions
