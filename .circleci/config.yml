@@ -54,6 +54,7 @@ jobs:
       - github-status/pending:
           description: pending
           context: e2e/cypress-test
+
   pr-success:
     executor: github-status-executor
     environment:
@@ -74,22 +75,21 @@ jobs:
       - halt-if-no-test-url
       - checkout
       - run:
-          name: check matching of versions
+          name: Verify deployed version matches expected SHA
           command: |
             cd smoketest
             export GIT_SHA1=${EXPECTED_GIT_SHA:-$CIRCLE_SHA1}
             check-deployed-version/check-deployed-version || CHECK_VERSION=$?
             if [ "x-$CHECK_VERSION" == "x-255" ]; then
-              echo "Version does not match with $EXPECTED_GIT_SHA"
+              echo "Version mismatch: expected $EXPECTED_GIT_SHA"
               exit 1
             fi
-
       - restore_cache:
           keys:
             - cache-smoketest-v2-{{ arch }}-{{ checksum "smoketest/yarn.lock" }}
 
       - run:
-          name: smoketest - yarn install cypress
+          name: Install dependencies
           command: |
             cd smoketest
             npm install -g yarn@1.22.10
@@ -103,14 +103,13 @@ jobs:
             - /root/.cache/Cypress
 
       - run:
-          name: run cypress
+          name: Run Cypress smoke tests
           command: |
             cd smoketest
             mkdir -p cypress/results
-            CYPRESS_branch=${CIRCLE_BRANCH} yarn run cy run --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true \
+            CYPRESS_branch=${CIRCLE_BRANCH} yarn cypress run --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true \
               -x VERCEL_AUTOMATION_BYPASS_SECRET=$VERCEL_AUTOMATION_BYPASS_SECRET,PASSWORD=$PASSWORD,PRODUCTION_PASSWORD=$PRODUCTION_PASSWORD,BRANCH=$BRANCH \
               --record --key ${CYPRESS_RECORD_KEY}
-
       - store_test_results:
           path: smoketest/cypress/results
       - store_artifacts:
