@@ -96,10 +96,6 @@ jobs:
       CYPRESS_branch: ${CIRCLE_BRANCH}
     steps:
       - run:
-          name: Check if parameters for PR-run exist
-          command: |
-            echo CYPRESS_baseUrl: $CYPRESS_baseUrl
-      - run:
           name: pre-check for params
           command: |
             if [  "x" == "x${CYPRESS_baseUrl}"  ] ;  then
