@@ -81,16 +81,17 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - cache-smoketest-no-root-cypress-y4-{{ arch }}-{{ checksum "smoketest/yarn.lock" }}
+            - cache-smoketest-v1-{{ arch }}-{{ checksum "smoketest/yarn.lock" }}
       - run:
           name: smoketest - yarn install
           command: |
             cd smoketest
             PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npx yarn --immutable
       - save_cache:
-          key: cache-smoketest-no-root-cypress-y4-{{ arch }}-{{ checksum "smoketest/yarn.lock" }}
+          key: cache-smoketest-v1-{{ arch }}-{{ checksum "smoketest/yarn.lock" }}
           paths:
             - smoketest/node_modules
+            - /root/.cache/cypress
   test:
     docker:
       - image: cypress/base:26.0.0@sha256:446be8fcb63e3cad2f9a4e14720e3d8e35993e12f36da541e09f5740a4c2477c
@@ -145,7 +146,7 @@ jobs:
 
       - restore_cache:
           keys:
-            - cache-smoketest-no-root-cypress-y4-{{ arch }}-{{ checksum "smoketest/yarn.lock" }}
+            - cache-smoketest-v1-{{ arch }}-{{ checksum "smoketest/yarn.lock" }}
 
       - run:
           name: smoketest - yarn install cypress
@@ -154,9 +155,10 @@ jobs:
             npx yarn install --immutable
             npx yarn cypress install
       - save_cache:
-          key: cache-smoketest-no-root-cypress-y4-{{ arch }}-{{ checksum "smoketest/yarn.lock" }}
+          key: cache-smoketest-v1-{{ arch }}-{{ checksum "smoketest/yarn.lock" }}
           paths:
             - smoketest/node_modules
+            - /root/.cache/cypress
 
       - run:
           name: run cypress
