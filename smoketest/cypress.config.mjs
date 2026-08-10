@@ -3,7 +3,6 @@ import { clerkSetup } from '@clerk/testing/cypress';
 import { defineConfig } from 'cypress';
 
 export default defineConfig({
-  allowCypressEnv: false,
   experimentalWebKitSupport: true,
   projectId: 'epr8fo',
   defaultCommandTimeout: 8000,
