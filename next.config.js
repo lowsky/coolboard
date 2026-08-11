@@ -21,8 +21,10 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   */
+  reactCompiler: true,
 
   experimental: {
+    turbopackRustReactCompiler: true,
     mcpServer: true,
     /* from
      * https://chakra-ui.com/docs/get-started/frameworks/next-pages#optimize-bundle
