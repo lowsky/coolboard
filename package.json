@@ -98,7 +98,7 @@
     "prettier": "3.9.6",
     "rxjs": "7.8.2",
     "sharp": "0.35.3",
-    "typescript": "7.0.2",
+    "typescript": "6.0.3",
     "typescript-eslint": "8.66.0",
     "ws": "8.21.3"
   },
@@ -108,5 +108,5 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "packageManager": "pnpm@11.20.0"
+  "packageManager": "pnpm@11.21.0"
 }
