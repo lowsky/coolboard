@@ -98,7 +98,7 @@ jobs:
           key: cache-smoketest-v1-{{ arch }}-{{ checksum "smoketest/yarn.lock" }}
           paths:
             - smoketest/node_modules
-            - /root/.cache/cypress
+            - /root/.cache/Cypress
 
       - run:
           name: run cypress
