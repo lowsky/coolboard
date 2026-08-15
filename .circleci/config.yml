@@ -86,7 +86,7 @@ jobs:
 
       - restore_cache:
           keys:
-            - cache-smoketest-v1-{{ arch }}-{{ checksum "smoketest/yarn.lock" }}
+            - cache-smoketest-v2-{{ arch }}-{{ checksum "smoketest/yarn.lock" }}
 
       - run:
           name: smoketest - yarn install cypress
@@ -97,9 +97,9 @@ jobs:
             yarn cypress install
             yarn cypress info
       - save_cache:
-          key: cache-smoketest-v1-{{ arch }}-{{ checksum "smoketest/yarn.lock" }}
+          key: cache-smoketest-v2-{{ arch }}-{{ checksum "smoketest/yarn.lock" }}
           paths:
-            - smoketest/node_modules
+            - /root/.yarn/berry
             - /root/.cache/Cypress
 
       - run:
