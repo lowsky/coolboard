@@ -86,27 +86,28 @@ jobs:
 
       - restore_cache:
           keys:
-            - cache-smoketest-v1-{{ arch }}-{{ checksum "smoketest/yarn.lock" }}
+            - cache-smoketest-v2-{{ arch }}-{{ checksum "smoketest/yarn.lock" }}
 
       - run:
           name: smoketest - yarn install cypress
           command: |
             cd smoketest
-            npx yarn install --immutable
-            npx yarn cypress install
+            npm install -g yarn@1.22.10
+            yarn install --immutable
+            yarn cypress install
+            yarn cypress info
       - save_cache:
-          key: cache-smoketest-v1-{{ arch }}-{{ checksum "smoketest/yarn.lock" }}
+          key: cache-smoketest-v2-{{ arch }}-{{ checksum "smoketest/yarn.lock" }}
           paths:
-            - smoketest/node_modules
-            - /root/.cache/cypress
+            - /root/.yarn/berry
+            - /root/.cache/Cypress
 
       - run:
           name: run cypress
           command: |
             cd smoketest
             mkdir -p cypress/results
-
-            CYPRESS_branch=${CIRCLE_BRANCH} npm run cy run -- --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true \
+            CYPRESS_branch=${CIRCLE_BRANCH} yarn run cy run --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true \
               -x VERCEL_AUTOMATION_BYPASS_SECRET=$VERCEL_AUTOMATION_BYPASS_SECRET,PASSWORD=$PASSWORD,PRODUCTION_PASSWORD=$PRODUCTION_PASSWORD,BRANCH=$BRANCH \
               --record --key ${CYPRESS_RECORD_KEY}
 
