@@ -92,6 +92,7 @@ jobs:
           name: smoketest - yarn install cypress
           command: |
             cd smoketest
+            npm install -g yarn@1.22.10
             yarn install --immutable
             yarn cypress install
       - save_cache:
