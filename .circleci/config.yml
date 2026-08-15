@@ -108,7 +108,7 @@ jobs:
 
             npx yarn cypress info
 
-            CYPRESS_branch=${CIRCLE_BRANCH} npm run cy run -- --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true \
+            CYPRESS_branch=${CIRCLE_BRANCH} npx yarn run cy run -- --reporter junit --reporter-options mochaFile=cypress/results/test-results.xml,toConsole=true \
               -x VERCEL_AUTOMATION_BYPASS_SECRET=$VERCEL_AUTOMATION_BYPASS_SECRET,PASSWORD=$PASSWORD,PRODUCTION_PASSWORD=$PRODUCTION_PASSWORD,BRANCH=$BRANCH \
               --record --key ${CYPRESS_RECORD_KEY}
 
