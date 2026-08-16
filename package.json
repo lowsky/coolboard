@@ -62,7 +62,7 @@
     "prisma:generate": "prisma generate",
     "prisma:migrate": "DATABASE_URL=\"$MIGRATE_DATABASE_URL\" prisma migrate deploy",
     "metainfo": "sh storeMetaInfo.sh",
-    "gen:theme-typings": "npx -y @chakra-ui/cli typegen src/common/theme.ts",
+    "gen:theme-typings": "pnpm dlx -y @chakra-ui/cli typegen src/common/theme.ts",
     "postinstall": "pnpm run gen:theme-typings",
     "vercel-build": "pnpm run build && pnpm trigger-e2e-smoke",
     "vercel-fast-build": "pnpm run build",
