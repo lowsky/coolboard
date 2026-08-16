@@ -14,3 +14,6 @@ onlyBuiltDependencies:
   - protobufjs
   - sharp
   - unrs-resolver
+#1 day:minimumReleaseAge: 1440
+# 3 days in minutes, same as in renovate.json
+minimumReleaseAge: 4320

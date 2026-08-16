@@ -2,7 +2,7 @@
   "autoApprove": true,
   "automergeStrategy": "squash",
 
-  "minimumReleaseAge": "1 day",
+  "minimumReleaseAge": "3 day",
 
   "vulnerabilityAlerts": {
     "labels": ["security"],
