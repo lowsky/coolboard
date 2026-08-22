@@ -15,8 +15,8 @@ importers:
         specifier: 3.36.1
         version: 3.36.1(@emotion/react@11.14.0(@types/react@19.2.18)(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@clerk/nextjs':
-        specifier: 7.7.8
-        version: 7.7.8(next@16.3.1(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@types/node@26.2.0)(babel-plugin-macros@3.1.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+        specifier: 7.7.9
+        version: 7.7.9(next@16.3.1(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@types/node@26.2.0)(babel-plugin-macros@3.1.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@dnd-kit/core':
         specifier: 6.3.1
         version: 6.3.1(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -366,12 +366,12 @@ packages:
       react: '>=18'
       react-dom: '>=18'
 
-  '@clerk/backend@3.16.8':
-    resolution: {integrity: sha512-l2DncQ4JPye98Gh7JU7mHi3s23QeR0A7qaALeJ0g3Ii0FtAue7uiZEHNx/c61NYKfaN3UePSW2jxLjY/iksHLg==}
+  '@clerk/backend@3.16.9':
+    resolution: {integrity: sha512-x+kyjPTAMNEJIVuRMEXRSZUJPnB2PAoljSQ5gh/O/nVmRPIF1fU+tMQYEHKiCg3Ab/JUSywOsgamoEufyJj8dA==}
     engines: {node: '>=20.9.0'}
 
-  '@clerk/nextjs@7.7.8':
-    resolution: {integrity: sha512-3HCxcy8XJEecpgHVlMLMHEB+QBovzuEZswya/E2NjlDjZhrE9MpKMmqIKCXB8Czqt6htOkPlGaSFnbuVXvQOZw==}
+  '@clerk/nextjs@7.7.9':
+    resolution: {integrity: sha512-6niXLthsXYDwmH2pD0qL7Ut499p6/ucect1Ks9WQp+rVC5va+rTYGEy9pkKKWWePnO4oYf7ncmzJmjFYZXM0Hg==}
     engines: {node: '>=20.9.0'}
     peerDependencies:
       next: ^15.2.8 || ^15.3.8 || ^15.4.10 || ^15.5.9 || ^15.6.0-0 || ^16.0.10 || ^16.1.0-0
@@ -5491,7 +5491,7 @@ snapshots:
       react: 19.2.8
       react-dom: 19.2.8(react@19.2.8)
 
-  '@clerk/backend@3.16.8(react-dom@19.2.8(react@19.2.8))(react@19.2.8)':
+  '@clerk/backend@3.16.9(react-dom@19.2.8(react@19.2.8))(react@19.2.8)':
     dependencies:
       '@clerk/shared': 4.29.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       standardwebhooks: 1.0.0
@@ -5500,9 +5500,9 @@ snapshots:
       - react
       - react-dom
 
-  '@clerk/nextjs@7.7.8(next@16.3.1(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@types/node@26.2.0)(babel-plugin-macros@3.1.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)':
+  '@clerk/nextjs@7.7.9(next@16.3.1(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@types/node@26.2.0)(babel-plugin-macros@3.1.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)':
     dependencies:
-      '@clerk/backend': 3.16.8(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+      '@clerk/backend': 3.16.9(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@clerk/react': 6.14.4(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@clerk/shared': 4.29.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       next: 16.3.1(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@types/node@26.2.0)(babel-plugin-macros@3.1.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
