@@ -116,60 +116,11 @@ describe('Test coolboard', () => {
     cy.getCardListByIndex(2).find(':nth-child(1) > [data-cy="card"]')
       .should('have.length', 0);
 
-    // dnd-kit uses PointerSensor, so pointer events are required (not HTML5 drag events)
-    cy.getCardListByIndex(1).find(':nth-child(1) > [data-cy="card"]').first()
-      .then($card => {
-        const cardRect = $card[0].getBoundingClientRect();
-        const startX = Math.round(cardRect.left + cardRect.width / 2);
-        const startY = Math.round(cardRect.top + cardRect.height / 2);
-
-        return cy.getCardListByIndex(2).then($list => {
-          const listRect = $list[0].getBoundingClientRect();
-          const endX = Math.round(listRect.left + listRect.width / 2);
-          const endY = Math.round(listRect.top + listRect.height / 2);
-
-          // pointerdown activates the PointerSensor on the draggable element
-          cy.wrap($card)
-            .trigger('pointerdown', {
-              button: 0,
-              clientX: startX,
-              clientY: startY,
-              bubbles: true,
-              cancelable: true,
-              isPrimary: true,
-              pointerId: 1,
-            })
-            // initial pointermove initiates the drag (must exceed the 5px distance constraint, so use > 5)
-            .trigger('pointermove', {
-              clientX: startX + 10,
-              clientY: startY,
-              bubbles: true,
-              cancelable: true,
-              isPrimary: true,
-              pointerId: 1,
-            });
-
-          // pointermove over target bubbles to document where dnd-kit listens
-          cy.getCardListByIndex(2)
-            .trigger('pointermove', {
-              clientX: endX,
-              clientY: endY,
-              bubbles: true,
-              cancelable: true,
-              isPrimary: true,
-              pointerId: 1,
-            })
-            .trigger('pointerup', {
-              button: 0,
-              clientX: endX,
-              clientY: endY,
-              bubbles: true,
-              cancelable: true,
-              isPrimary: true,
-              pointerId: 1,
-            });
-        });
-      });
+    // Use custom drag command that waits for mutation to complete
+    cy.dragCardTo(
+      ':nth-child(1) > [data-cy="card-list"]',
+      ':nth-child(2) > [data-cy="card-list"]'
+    );
 
     // Verify the card has moved to the second list
     cy.getCardListByIndex(2).find(':nth-child(1) > [data-cy="card"]')

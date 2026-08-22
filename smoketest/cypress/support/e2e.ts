@@ -306,3 +306,76 @@ function getCardListByIndex(
 }
 
 Cypress.Commands.add('getCardListByIndex', getCardListByIndex);
+
+/**
+ * Custom command to drag and drop a card from source list to target list.
+ * Waits for the mutation to complete before resolving.
+ */
+Cypress.Commands.add(
+  'dragCardTo',
+  (sourceListSelector: string, targetListSelector: string) => {
+    const cardSelector = '[data-cy="card"]';
+
+    return cy
+      .get(sourceListSelector)
+      .find(cardSelector)
+      .first()
+      .then(($card) => {
+        const cardRect = $card[0].getBoundingClientRect();
+        const startX = Math.round(cardRect.left + cardRect.width / 2);
+        const startY = Math.round(cardRect.top + cardRect.height / 2);
+
+        cy.intercept('POST', '/api/graphql').as('graphqlRequest');
+
+        return cy.get(targetListSelector).then(($targetList) => {
+          const targetRect = $targetList[0].getBoundingClientRect();
+          const endX = Math.round(targetRect.left + targetRect.width / 2);
+          const endY = Math.round(targetRect.top + targetRect.height / 2);
+
+          // pointerdown activates the PointerSensor on the draggable element
+          cy.wrap($card)
+            .trigger('pointerdown', {
+              button: 0,
+              clientX: startX,
+              clientY: startY,
+              bubbles: true,
+              cancelable: true,
+              isPrimary: true,
+              pointerId: 1,
+            })
+            // initial pointermove initiates the drag (must exceed the 5px distance constraint)
+            .trigger('pointermove', {
+              clientX: startX + 10,
+              clientY: startY,
+              bubbles: true,
+              cancelable: true,
+              isPrimary: true,
+              pointerId: 1,
+            });
+
+          // pointermove over target bubbles to document where dnd-kit listens
+          cy.get(targetListSelector)
+            .trigger('pointermove', {
+              clientX: endX,
+              clientY: endY,
+              bubbles: true,
+              cancelable: true,
+              isPrimary: true,
+              pointerId: 1,
+            })
+            .trigger('pointerup', {
+              button: 0,
+              clientX: endX,
+              clientY: endY,
+              bubbles: true,
+              cancelable: true,
+              isPrimary: true,
+              pointerId: 1,
+            });
+
+          // Wait for mutation to complete and cache to sync
+          cy.wait('@graphqlRequest', { timeout: 5000 });
+        });
+      });
+  }
+);
