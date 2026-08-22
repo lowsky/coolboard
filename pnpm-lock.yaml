@@ -133,8 +133,8 @@ importers:
         version: 8.3.0(react@19.2.8)
     devDependencies:
       '@0no-co/graphqlsp':
-        specifier: 1.17.3
-        version: 1.17.3(graphql@17.0.2)(typescript@6.0.3)
+        specifier: 1.17.4
+        version: 1.17.4(graphql@17.0.2)(typescript@6.0.3)
       '@eslint/compat':
         specifier: 2.1.0
         version: 2.1.0(eslint@10.8.1(jiti@2.7.0))
@@ -239,8 +239,8 @@ packages:
       graphql:
         optional: true
 
-  '@0no-co/graphqlsp@1.17.3':
-    resolution: {integrity: sha512-4PPvxDPmbntddpgMyA3VId5/E9YGdRuuS/mW+THOvtTx/C79Pf+lN28LkNNACJrF9L7YACiAJelyOkC6LqUzvw==}
+  '@0no-co/graphqlsp@1.17.4':
+    resolution: {integrity: sha512-5OneBcUU0dVbyrTqyFzmC1TtXmA1PxRKLLBO3O9wqmB6dzkidea1d+mK3ciqYDSejq22LzBQ2lb829aArK22/g==}
     peerDependencies:
       graphql: ^15.5.0 || ^16.0.0 || ^17.0.0
       typescript: ^5.0.0 || ^6.0.0
@@ -5139,7 +5139,7 @@ snapshots:
     optionalDependencies:
       graphql: 17.0.2
 
-  '@0no-co/graphqlsp@1.17.3(graphql@17.0.2)(typescript@6.0.3)':
+  '@0no-co/graphqlsp@1.17.4(graphql@17.0.2)(typescript@6.0.3)':
     dependencies:
       '@gql.tada/internal': 1.2.2(graphql@17.0.2)(typescript@6.0.3)
       graphql: 17.0.2
