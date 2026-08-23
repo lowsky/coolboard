@@ -374,7 +374,7 @@ Cypress.Commands.add(
             });
 
           // Wait for mutation to complete and cache to sync
-          cy.wait('@graphqlRequest', { timeout: WaitVeryLong });
+          cy.wait('@graphqlRequest', WaitVeryLong);
 
           // Verify the card has moved to the second list
           cy.getCardListByIndex(sourceListIndex)
