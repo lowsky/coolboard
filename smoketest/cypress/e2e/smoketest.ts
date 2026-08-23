@@ -111,10 +111,7 @@ describe('Test coolboard', () => {
       .should('have.length', 0);
 
     // Use custom drag command that waits for mutation to complete
-    cy.dragCardTo(
-      ':nth-child(1) > [data-cy="card-list"]',
-      ':nth-child(2) > [data-cy="card-list"]'
-    );
+    cy.dragCardTo(1, 2);
 
     // Verify the card has moved to the second list
     cy.getCardListByIndex(2)
@@ -125,10 +122,7 @@ describe('Test coolboard', () => {
       .should('have.length', 0);
 
     // move back. Also simplifying re-run test and further testing
-    cy.dragCardTo(
-      ':nth-child(2) > [data-cy="card-list"]',
-      ':nth-child(1) > [data-cy="card-list"]'
-    );
+    cy.dragCardTo(2, 1);
   });
 
   it('user can delete lists', () => {

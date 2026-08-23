@@ -314,11 +314,10 @@ Cypress.Commands.add('getCardListByIndex', getCardListByIndex);
  */
 Cypress.Commands.add(
   'dragCardTo',
-  (sourceListSelector: string, targetListSelector: string) => {
+  (sourceListIndex: number, targetListIndex: number) => {
     const cardSelector = '[data-cy="card"]';
 
-    return cy
-      .get(sourceListSelector)
+    return getCardListByIndex(sourceListIndex)
       .find(cardSelector)
       .first()
       .then(($card) => {
@@ -328,7 +327,7 @@ Cypress.Commands.add(
 
         cy.intercept('POST', '/api/graphql').as('graphqlRequest');
 
-        return cy.get(targetListSelector).then(($targetList) => {
+        return getCardListByIndex(targetListIndex).then(($targetList) => {
           const targetRect = $targetList[0].getBoundingClientRect();
           const endX = Math.round(targetRect.left + targetRect.width / 2);
           const endY = Math.round(targetRect.top + targetRect.height / 2);
@@ -355,7 +354,7 @@ Cypress.Commands.add(
             });
 
           // pointermove over target bubbles to document where dnd-kit listens
-          cy.get(targetListSelector)
+          getCardListByIndex(targetListIndex)
             .trigger('pointermove', {
               clientX: endX,
               clientY: endY,
