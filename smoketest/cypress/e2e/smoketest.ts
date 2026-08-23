@@ -25,12 +25,6 @@ describe('Test coolboard', () => {
       }
     );
   });
-  before(() => {
-    // Ensure that all sessions are cleared up even if you re-run the spec in the Cypress App UI (Test Runner)
-    // run only once
-    cy.log('close all sessions');
-    Cypress.session.clearAllSavedSessions();
-  });
 
   beforeEach(() => {
     cy.viewport(1280, 960);
@@ -49,9 +43,7 @@ describe('Test coolboard', () => {
     cy.get('#name').clear().type(newBoardName);
     cy.dataCy('create-board-submit').click();
     cy.log('wait until dialog closes');
-    cy.get('.chakra-dialog__content', WaitVeryLong).should(
-      'not.exist'
-    );
+    cy.get('.chakra-dialog__content', WaitVeryLong).should('not.exist');
 
     cy.getBoardsList_FirstEntry(newBoardName);
   });
@@ -86,7 +78,9 @@ describe('Test coolboard', () => {
     // edit card
     cy.log('edit card');
     // old: cy.dataCy('card').contains('new card').click();
-    cy.contains('[data-cy="card"] > span', 'new card', WaitVeryLong).first().click();
+    cy.contains('[data-cy="card"] > span', 'new card', WaitVeryLong)
+      .first()
+      .click();
     cy.get('.chakra-dialog__content')
       .get('#title')
       .clear()
@@ -97,9 +91,7 @@ describe('Test coolboard', () => {
       .click()
       .wait(1500);
     cy.log('wait until dialog closes');
-    cy.get('.chakra-dialog__content', WaitVeryLong).should(
-      'not.exist'
-    );
+    cy.get('.chakra-dialog__content', WaitVeryLong).should('not.exist');
     cy.contains('[data-cy="card"] > span', 'name-changed', WaitVeryLong);
 
     cy.log('add another list');
@@ -111,24 +103,19 @@ describe('Test coolboard', () => {
     cy.getBoardsList_FirstEntry(newBoardName).click();
 
     // Verify initial state: card exists in the first card-list but not in the second card-list
-    cy.getCardListByIndex(1).find(':nth-child(1) > [data-cy="card"]')
+    cy.getCardListByIndex(1)
+      .find(':nth-child(1) > [data-cy="card"]')
       .should('have.length', 1);
-    cy.getCardListByIndex(2).find(':nth-child(1) > [data-cy="card"]')
+    cy.getCardListByIndex(2)
+      .find(':nth-child(1) > [data-cy="card"]')
       .should('have.length', 0);
 
     // Use custom drag command that waits for mutation to complete
-    cy.dragCardTo(
-      ':nth-child(1) > [data-cy="card-list"]',
-      ':nth-child(2) > [data-cy="card-list"]'
-    );
+    cy.dragCardTo(1, 2);
 
-    // Verify the card has moved to the second list
-    cy.getCardListByIndex(2).find(':nth-child(1) > [data-cy="card"]')
-      .should('have.length', 1);
-    cy.getCardListByIndex(1).find(':nth-child(1) > [data-cy="card"]')
-      .should('have.length', 0);
+    // move back. Also simplifying re-run test and further testing
+    cy.dragCardTo(2, 1);
   });
-
 
   it('user can delete lists', () => {
     // open first board named XXX

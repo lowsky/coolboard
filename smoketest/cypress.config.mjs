@@ -3,9 +3,10 @@ import { clerkSetup } from '@clerk/testing/cypress';
 import { defineConfig } from 'cypress';
 
 export default defineConfig({
+  retries: 2,
   experimentalWebKitSupport: true,
   projectId: 'epr8fo',
-  defaultCommandTimeout: 8000,
+  defaultCommandTimeout: 4000,
   // https://docs.cypress.io/app/references/experiments#Experimental-Fast-Visibility
   experimentalFastVisibility: true,
   expose: {

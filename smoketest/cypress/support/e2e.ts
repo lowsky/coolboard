@@ -232,11 +232,13 @@ Cypress.on('uncaught:exception', (_error, _runnable, promise) => {
 });
 
 const graphqlQuery = `
-query CardList($cardListId: ID!) {
-  list(where: {id: $cardListId} ) {
-    id name __typename
+  query whoami {
+    me {
+      name
+      id
+    }
   }
-}`;
+`;
 
 export const login: (
   userLogin: string,
@@ -245,15 +247,16 @@ export const login: (
   cy.session(
     'coolboardSessionId',
     () => {
-      // It is required to call cy.visit before calling this command, and
-      // navigate to a not protected page that loads Clerk.
-      cy.visit(`/`);
-
+      // open main entrance page (home would be unintersting, and loading other unwanted stuff)
+      cy.visit(`/boards`);
       // Signs in a user using Clerk. This custom command supports only password,
       // phone_code and email_code first factor strategies.
       //
       // This helper is using the setupClerkTestingToken internally!
       cy.clerkSignIn({ strategy: 'password', identifier: userLogin, password });
+
+      //It requires navigating explicitly to this page. Without that, it would stay on the
+      // sign-in page (at least here in cypress!)
       cy.visit(`/boards`);
       cy.location('pathname').should('eq', '/boards');
     },
@@ -261,15 +264,18 @@ export const login: (
       // () => Promise<false | void> | void
       validate: () => {
         const someApiGraphqlQuery = {
-          operationName: 'CardList',
-          // todo: this won't work on all environments
-          variables: { cardListId: 'clsq1w75z0002gnafx71y3v8d' },
+          operationName: 'whoami',
           query: graphqlQuery,
         };
         cy.request({
           body: someApiGraphqlQuery,
           method: 'POST',
           url: '/api/graphql',
+        }).then((response) => {
+          expect(response.body.errors ?? []).to.have.lengthOf(0);
+          expect(response.body.data.me.id)
+            .to.be.a('string')
+            .and.to.have.lengthOf.at.least(1);
         });
       },
       cacheAcrossSpecs: true,
@@ -278,12 +284,12 @@ export const login: (
 
 export const LogAndWaitLong: Partial<Loggable & Timeoutable> = {
   log: true,
-  timeout: 8000,
+  timeout: 6000,
 };
 
 export const WaitVeryLong: Partial<Loggable & Timeoutable> = {
   log: true,
-  timeout: 5000 * 4,
+  timeout: 2000 * 4,
 };
 
 Cypress.Commands.add(
@@ -313,11 +319,10 @@ Cypress.Commands.add('getCardListByIndex', getCardListByIndex);
  */
 Cypress.Commands.add(
   'dragCardTo',
-  (sourceListSelector: string, targetListSelector: string) => {
+  (sourceListIndex: number, targetListIndex: number) => {
     const cardSelector = '[data-cy="card"]';
 
-    return cy
-      .get(sourceListSelector)
+    return getCardListByIndex(sourceListIndex)
       .find(cardSelector)
       .first()
       .then(($card) => {
@@ -327,7 +332,7 @@ Cypress.Commands.add(
 
         cy.intercept('POST', '/api/graphql').as('graphqlRequest');
 
-        return cy.get(targetListSelector).then(($targetList) => {
+        return getCardListByIndex(targetListIndex).then(($targetList) => {
           const targetRect = $targetList[0].getBoundingClientRect();
           const endX = Math.round(targetRect.left + targetRect.width / 2);
           const endY = Math.round(targetRect.top + targetRect.height / 2);
@@ -354,7 +359,7 @@ Cypress.Commands.add(
             });
 
           // pointermove over target bubbles to document where dnd-kit listens
-          cy.get(targetListSelector)
+          getCardListByIndex(targetListIndex)
             .trigger('pointermove', {
               clientX: endX,
               clientY: endY,
@@ -374,7 +379,15 @@ Cypress.Commands.add(
             });
 
           // Wait for mutation to complete and cache to sync
-          cy.wait('@graphqlRequest', { timeout: 5000 });
+          cy.wait('@graphqlRequest', WaitVeryLong);
+
+          // Verify the card has moved to the second list
+          cy.getCardListByIndex(sourceListIndex)
+            .find(':nth-child(1) > [data-cy="card"]')
+            .should('have.length', 0);
+          cy.getCardListByIndex(targetListIndex)
+            .find(':nth-child(1) > [data-cy="card"]')
+            .should('have.length', 1);
         });
       });
   }
