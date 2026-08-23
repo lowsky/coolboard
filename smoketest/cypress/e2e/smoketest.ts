@@ -127,8 +127,13 @@ describe('Test coolboard', () => {
       .should('have.length', 1);
     cy.getCardListByIndex(1).find(':nth-child(1) > [data-cy="card"]')
       .should('have.length', 0);
-  });
 
+    // move back. Also simplifying re-run test and further testing
+    cy.dragCardTo(
+      ':nth-child(2) > [data-cy="card-list"]',
+      ':nth-child(1) > [data-cy="card-list"]'
+    );
+  });
 
   it('user can delete lists', () => {
     // open first board named XXX

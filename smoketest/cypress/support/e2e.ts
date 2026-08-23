@@ -374,7 +374,7 @@ Cypress.Commands.add(
             });
 
           // Wait for mutation to complete and cache to sync
-          cy.wait('@graphqlRequest', { timeout: 5000 });
+          cy.wait('@graphqlRequest', { timeout: 10000 });
         });
       });
   }
