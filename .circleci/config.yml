@@ -94,6 +94,9 @@ jobs:
             cd smoketest
             npm install -g yarn@1.22.10
             yarn install --immutable
+            # Install Cypress, if needed
+            # if the version is not installed, it will be installed
+            # when there is a bigger issue, try cypress install --force
             yarn cypress verify || yarn cypress install
             yarn cypress info
       - save_cache:
