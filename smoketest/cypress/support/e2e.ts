@@ -232,9 +232,11 @@ Cypress.on('uncaught:exception', (_error, _runnable, promise) => {
 });
 
 const graphqlQuery = `
-query CardList($cardListId: ID!) {
-  list(where: {id: $cardListId} ) {
-    id name __typename
+  query userBoards {
+    me {
+      name
+      id
+    }
   }
 }`;
 
@@ -261,9 +263,7 @@ export const login: (
       // () => Promise<false | void> | void
       validate: () => {
         const someApiGraphqlQuery = {
-          operationName: 'CardList',
-          // todo: this won't work on all environments
-          variables: { cardListId: 'clsq1w75z0002gnafx71y3v8d' },
+          operationName: 'whoami',
           query: graphqlQuery,
         };
         cy.request({
