@@ -247,15 +247,16 @@ export const login: (
   cy.session(
     'coolboardSessionId',
     () => {
-      // It is required to call cy.visit before calling this command, and
-      // navigate to a not protected page that loads Clerk.
-      cy.visit(`/`);
-
+      // open main entrance page (home would be unintersting, and loading other unwanted stuff)
+      cy.visit(`/boards`);
       // Signs in a user using Clerk. This custom command supports only password,
       // phone_code and email_code first factor strategies.
       //
       // This helper is using the setupClerkTestingToken internally!
       cy.clerkSignIn({ strategy: 'password', identifier: userLogin, password });
+
+      //It requires navigating explicitly to this page. Without that, it would stay on the
+      // sign-in page (at least here in cypress!)
       cy.visit(`/boards`);
       cy.location('pathname').should('eq', '/boards');
     },
