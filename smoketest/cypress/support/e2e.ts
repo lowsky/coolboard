@@ -278,12 +278,12 @@ export const login: (
 
 export const LogAndWaitLong: Partial<Loggable & Timeoutable> = {
   log: true,
-  timeout: 8000,
+  timeout: 6000,
 };
 
 export const WaitVeryLong: Partial<Loggable & Timeoutable> = {
   log: true,
-  timeout: 5000 * 4,
+  timeout: 2000 * 4,
 };
 
 Cypress.Commands.add(
@@ -374,7 +374,7 @@ Cypress.Commands.add(
             });
 
           // Wait for mutation to complete and cache to sync
-          cy.wait('@graphqlRequest', { timeout: 10000 });
+          cy.wait('@graphqlRequest', { timeout: WaitVeryLong});
         });
       });
   }
