@@ -113,14 +113,6 @@ describe('Test coolboard', () => {
     // Use custom drag command that waits for mutation to complete
     cy.dragCardTo(1, 2);
 
-    // Verify the card has moved to the second list
-    cy.getCardListByIndex(2)
-      .find(':nth-child(1) > [data-cy="card"]')
-      .should('have.length', 1);
-    cy.getCardListByIndex(1)
-      .find(':nth-child(1) > [data-cy="card"]')
-      .should('have.length', 0);
-
     // move back. Also simplifying re-run test and further testing
     cy.dragCardTo(2, 1);
   });

@@ -375,6 +375,14 @@ Cypress.Commands.add(
 
           // Wait for mutation to complete and cache to sync
           cy.wait('@graphqlRequest', { timeout: WaitVeryLong });
+
+          // Verify the card has moved to the second list
+          cy.getCardListByIndex(sourceListIndex)
+            .find(':nth-child(1) > [data-cy="card"]')
+            .should('have.length', 0);
+          cy.getCardListByIndex(targetListIndex)
+            .find(':nth-child(1) > [data-cy="card"]')
+            .should('have.length', 1);
         });
       });
   }
