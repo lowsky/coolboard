@@ -94,7 +94,7 @@ jobs:
             cd smoketest
             npm install -g yarn@1.22.10
             yarn install --immutable
-            yarn cypress install
+            yarn cypress verify || yarn cypress install
             yarn cypress info
       - save_cache:
           key: cache-smoketest-v2-{{ arch }}-{{ checksum "smoketest/yarn.lock" }}
