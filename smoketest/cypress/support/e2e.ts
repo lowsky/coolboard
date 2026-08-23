@@ -232,13 +232,13 @@ Cypress.on('uncaught:exception', (_error, _runnable, promise) => {
 });
 
 const graphqlQuery = `
-  query userBoards {
+  query whoami {
     me {
       name
       id
     }
   }
-}`;
+`;
 
 export const login: (
   userLogin: string,
@@ -271,6 +271,11 @@ export const login: (
           body: someApiGraphqlQuery,
           method: 'POST',
           url: '/api/graphql',
+        }).then((response) => {
+          expect(response.body.errors ?? []).to.have.lengthOf(0);
+          expect(response.body.data.me.id)
+            .to.be.a('string')
+            .and.to.have.lengthOf.at.least(1);
         });
       },
       cacheAcrossSpecs: true,
