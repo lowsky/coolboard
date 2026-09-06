@@ -6,19 +6,19 @@ __metadata:
   cacheKey: 10c0
 
 "@clerk/backend@npm:^3.16.12":
-  version: 3.16.12
-  resolution: "@clerk/backend@npm:3.16.12"
+  version: 3.17.1
+  resolution: "@clerk/backend@npm:3.17.1"
   dependencies:
-    "@clerk/shared": "npm:^4.30.1"
+    "@clerk/shared": "npm:^4.31.0"
     standardwebhooks: "npm:^1.0.0"
     tslib: "npm:2.8.1"
-  checksum: 10c0/16733e838a78649f1d7e502d9634fcee2d9eed9c8e02cbc83351e1397d01a11ad71516d4ec2d60951cd8f0dd1061ec99206fcab38660ff840e66910099c4e3d5
+  checksum: 10c0/b7c3c1b9f297c6045cac7c741553dcf86d79d15e81863856400d3f4cdcbedeb075f30a1861d2c8fc61103314d35b7854911e731af77b7c7357f4026ea0368ea3
   languageName: node
   linkType: hard
 
-"@clerk/shared@npm:^4.30.1":
-  version: 4.30.1
-  resolution: "@clerk/shared@npm:4.30.1"
+"@clerk/shared@npm:^4.30.1, @clerk/shared@npm:^4.31.0":
+  version: 4.31.0
+  resolution: "@clerk/shared@npm:4.31.0"
   dependencies:
     "@tanstack/query-core": "npm:^5.100.6"
     dequal: "npm:2.0.3"
@@ -32,7 +32,7 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: 10c0/88d3e2368de2806c8827f8d28c7437aec6ef758202fe7124aefd8c0fc9d436ea77132c9cde2b3ee516c3e75e3645fd8ca622f34c47bb79f38841ce52a8570963
+  checksum: 10c0/cdc4d0dd5e8ef283d7e7f052a45f26ee06f325f9d66a6cd9938b9937d68c8caa5b9aefe1d38a45f3182dde6344be8a47d7d51be49267c6650cfc8ba75f4c44c8
   languageName: node
   linkType: hard
 
@@ -98,9 +98,9 @@ __metadata:
   linkType: hard
 
 "@tanstack/query-core@npm:^5.100.6":
-  version: 5.101.4
-  resolution: "@tanstack/query-core@npm:5.101.4"
-  checksum: 10c0/a407960303431e6498c6518cf6f8cc7283d3e4a95dbdc5e9fa42c217b9dd7afaffb82a4f2d36b38f578f745e8cf69ff8551abb947f5abcc0a290f3e3e75dc654
+  version: 5.102.8
+  resolution: "@tanstack/query-core@npm:5.102.8"
+  checksum: 10c0/b8b8413c2372ff26605f63283f2bfe0edc17be1daad858a437d154ca38b30e8b6e47a5b8a0eb5c40b93fd66b8461f1cf2ac6cf5e1c9a03919d0079a0b4ae8bfa
   languageName: node
   linkType: hard
 
@@ -1399,12 +1399,12 @@ __metadata:
   linkType: hard
 
 "qs@npm:^6.15.2":
-  version: 6.15.3
-  resolution: "qs@npm:6.15.3"
+  version: 6.16.0
+  resolution: "qs@npm:6.16.0"
   dependencies:
     es-define-property: "npm:^1.0.1"
     side-channel: "npm:^1.1.1"
-  checksum: 10c0/8f3f6e45ece255347d57696628401cde29e9ec649fff698b53bd3150dea7cefdf33036e1bc1826b9f110bfa7cb0ec4ab9f5297eca628ce216c55af82c304e08e
+  checksum: 10c0/eb3e31992fbd70e31a1791e571ed817d70975de7d3bfcbbbec93d77d1dd305877e9e8fdbcc62303c228ee5c3606685622cd6231c042dbc4790bb4e7c65fcbe18
   languageName: node
   linkType: hard
 
@@ -1568,12 +1568,12 @@ __metadata:
   linkType: hard
 
 "standardwebhooks@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "standardwebhooks@npm:1.0.0"
+  version: 1.1.1
+  resolution: "standardwebhooks@npm:1.1.1"
   dependencies:
     "@stablelib/base64": "npm:^1.0.0"
     fast-sha256: "npm:^1.3.0"
-  checksum: 10c0/aee097d0f3c05172c19b80df1ed9596a2ce92f8956957650d0bbe47c2ca6d36515796b51d523333cb4a48c889b2ab130d789e7879e14975c4381bc7a61274327
+  checksum: 10c0/6971c8f12a718c26779f03219db62ca7af9f6f584f6810a0d5288cb19946777968f4e3bc2fd71d8e1bf11b5f423c48b6a83f762093a4db4d68ba2cc12095fd4f
   languageName: node
   linkType: hard
 
@@ -1653,11 +1653,11 @@ __metadata:
   linkType: hard
 
 "systeminformation@npm:^5.31.1":
-  version: 5.33.1
-  resolution: "systeminformation@npm:5.33.1"
+  version: 5.33.8
+  resolution: "systeminformation@npm:5.33.8"
   bin:
     systeminformation: lib/cli.js
-  checksum: 10c0/7a0a400db03539fa2163033eba8dbb04f3c2c6357b9e8720dd5abef8a20d6a7b85b943b3fe028bbfa0e9d01b8982e658bedb7c5e200eabdf2546beb002872f8e
+  checksum: 10c0/cc1dd9f5998936b72f0c8fb61fdfe21294e1aa3818c79d3373e27ff65080414b3e93ced80b8ee59fcec8b603854bcd1cbabfdfbd52b75817b11e5056ba5d5ac8
   conditions: (os=darwin | os=linux | os=win32 | os=freebsd | os=openbsd | os=netbsd | os=sunos | os=android)
   languageName: node
   linkType: hard
