@@ -1,6 +1,4 @@
 version: 2.1
-orbs:
-  github-status: assurance-maladie-digital/github-status@1.3.0
 
 parameters:
   test-url:
@@ -29,43 +27,15 @@ workflows:
         - not:
             equal: ['', << pipeline.parameters.test-url >>]
     jobs:
-      - pr-pending
-      - test:
-          requires:
-            - pr-pending
-      - pr-success:
-          requires:
-            - test
+      - test
 
 executors:
-  github-status-executor:
-    docker:
-      - image: cimg/base:stable@sha256:35e5e29930ab565475a4f2aa9b4124998ed67dbc7b0e2dd5f420a4189d08d0d2
   cypress-executor:
     docker:
       - image: cypress/base:26.0.0@sha256:446be8fcb63e3cad2f9a4e14720e3d8e35993e12f36da541e09f5740a4c2477c
     resource_class: lowsky/selfhosted
 
 jobs:
-  pr-pending:
-    executor: github-status-executor
-    steps:
-      - run: echo "export TARGET_URL=$CIRCLE_BUILD_URL" >> $BASH_ENV
-      - github-status/pending:
-          description: pending
-          context: e2e/cypress-test
-
-  pr-success:
-    executor: github-status-executor
-    environment:
-      CYPRESS_baseUrl: << pipeline.parameters.test-url >>
-    steps:
-      - halt-if-no-test-url
-      - github-status/post_status:
-          context: e2e/cypress-test
-          description: success
-          state: success
-
   test:
     executor: cypress-executor
     environment:
