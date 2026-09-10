@@ -62,7 +62,7 @@
     "prisma:generate": "prisma generate",
     "prisma:migrate": "DATABASE_URL=\"$MIGRATE_DATABASE_URL\" prisma migrate deploy",
     "metainfo": "sh storeMetaInfo.sh",
-    "gen:theme-typings": "pnpm dlx -y @chakra-ui/cli typegen src/common/theme.ts",
+    "gen:theme-typings": "chakra typegen src/common/theme.ts",
     "postinstall": "pnpm run gen:theme-typings",
     "vercel-build": "pnpm run build && pnpm trigger-e2e-smoke",
     "vercel-fast-build": "pnpm run build",
@@ -70,6 +70,7 @@
   },
   "devDependencies": {
     "@0no-co/graphqlsp": "1.17.5",
+    "@chakra-ui/cli": "3.37.0",
     "@eslint/compat": "2.1.1",
     "@eslint/eslintrc": "3.3.7",
     "@eslint/js": "10.0.1",
