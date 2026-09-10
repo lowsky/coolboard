@@ -6,15 +6,6 @@ allowBuilds:
   protobufjs: true
   sharp: true
   unrs-resolver: true
-onlyBuiltDependencies:
-  - '@clerk/shared'
-  - '@parcel/watcher'
-  - '@prisma/engines'
-  - cypress
-  - prisma
-  - protobufjs
-  - sharp
-  - unrs-resolver
 #1 day:minimumReleaseAge: 1440
 # 3 days in minutes, same as in renovate.json
 minimumReleaseAge: 4320
