@@ -257,6 +257,7 @@ const graphqlQuery = `
 const login: () => Cypress.Chainable<null> = (): Cypress.Chainable<null> => cy.session(
     'coolboardSessionId',
     () => {
+      const passwordKey = credPrefix + 'PASSWORD';
       // open main entrance page (home would be unintersting, and loading other unwanted stuff)
       cy.visit(`/boards`);
       // Signs in a user using Clerk. This custom command supports only password,
@@ -271,7 +272,13 @@ const login: () => Cypress.Chainable<null> = (): Cypress.Chainable<null> => cy.s
       expect(userLogin, `expose ${credPrefix}LOGIN !`).to.be.a('string');
       expect(password, `expose ${credPrefix}PASSWORD !`).to.be.a('string');
       // This helper is using the setupClerkTestingToken internally!
-      cy.clerkSignIn({ strategy: 'password', identifier: userLogin, password });
+      cy.env([passwordKey]).then((secrets: Record<string, string>) => {
+        cy.clerkSignIn({
+          strategy: 'password',
+          identifier: userLogin,
+          password: secrets[passwordKey],
+        });
+      });
 
       //It requires navigating explicitly to this page. Without that, it would stay on the
       // sign-in page (at least here in cypress!)
