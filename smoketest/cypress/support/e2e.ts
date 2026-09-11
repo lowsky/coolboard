@@ -14,7 +14,6 @@ export const isProduction =
 
 const credPrefix = isProduction ? 'PRODUCTION_' : '';
 export const userLogin = Cypress.expose(credPrefix + 'LOGIN');
-export const password = Cypress.expose(credPrefix + 'PASSWORD');
 
 declare global {
   namespace Cypress {
@@ -31,9 +30,9 @@ declare global {
       /**
        * Custom command to do the authentication via logging-in in UI
        *
-       * @example cy.login('login', 'passwd')
+       * @example cy.login('login')
        */
-      login(user: string, password: string): void;
+      login(user: string): void;
       /**
        * Custom command to log out
        */
@@ -42,8 +41,8 @@ declare global {
   }
 }
 
-Cypress.Commands.add('login', (username, password): void => {
-  login(username, password);
+Cypress.Commands.add('login', (username: string): void => {
+  login(username);
 });
 
 Cypress.Commands.add('logout', (): void => {
@@ -241,19 +240,25 @@ const graphqlQuery = `
 `;
 
 export const login: (
-  userLogin: string,
-  password: string
-) => Cypress.Chainable<null> = (userLogin, password): Cypress.Chainable<null> =>
+  userLogin: string
+) => Cypress.Chainable<null> = (userLogin): Cypress.Chainable<null> =>
   cy.session(
     'coolboardSessionId',
     () => {
+      const passwordKey = credPrefix + 'PASSWORD';
       // open main entrance page (home would be unintersting, and loading other unwanted stuff)
       cy.visit(`/boards`);
       // Signs in a user using Clerk. This custom command supports only password,
       // phone_code and email_code first factor strategies.
       //
       // This helper is using the setupClerkTestingToken internally!
-      cy.clerkSignIn({ strategy: 'password', identifier: userLogin, password });
+      cy.env([passwordKey]).then((secrets: Record<string, string>) => {
+        cy.clerkSignIn({
+          strategy: 'password',
+          identifier: userLogin,
+          password: secrets[passwordKey],
+        });
+      });
 
       //It requires navigating explicitly to this page. Without that, it would stay on the
       // sign-in page (at least here in cypress!)
