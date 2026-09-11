@@ -7,11 +7,10 @@ export default defineConfig({
   experimentalWebKitSupport: true,
   projectId: 'epr8fo',
   defaultCommandTimeout: 4000,
-  // https://docs.cypress.io/app/references/experiments#Experimental-Fast-Visibility
-  experimentalFastVisibility: true,
   expose: {
     LOGIN: 'skylab@nurfuerspam.de',
     PRODUCTION_LOGIN: 'coolboard+testnew@protonmail.com',
+    branch: process.env.CYPRESS_branch,
   },
   e2e: {
     setupNodeEvents(on, config) {

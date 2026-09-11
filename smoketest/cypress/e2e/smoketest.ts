@@ -1,7 +1,6 @@
 import {
   isProduction,
   LogAndWaitLong,
-  password,
   userLogin,
   WaitVeryLong,
 } from '../support/e2e';
@@ -14,14 +13,17 @@ describe('Test coolboard', () => {
   });
 
   beforeEach(() => {
-    cy.intercept(
-      Cypress.config().baseUrl + '/' + '**',
-      { middleware: true },
-      (req) => {
-        req.headers['x-vercel-protection-bypass'] = Cypress.expose(
-          'VERCEL_AUTOMATION_BYPASS_SECRET'
+    cy.env(['VERCEL_AUTOMATION_BYPASS_SECRET']).then(
+      (secrets: Record<string, string>) => {
+        cy.intercept(
+          Cypress.config().baseUrl + '/' + '**',
+          { middleware: true },
+          (req) => {
+            req.headers['x-vercel-protection-bypass'] =
+              secrets['VERCEL_AUTOMATION_BYPASS_SECRET'];
+            req.headers['x-vercel-set-bypass-cookie'] = 'true';
+          }
         );
-        req.headers['x-vercel-set-bypass-cookie'] = 'true';
       }
     );
   });
@@ -29,7 +31,7 @@ describe('Test coolboard', () => {
   beforeEach(() => {
     cy.viewport(1280, 960);
     // initial login, initiate cached session:
-    cy.login(userLogin, password);
+    cy.login(userLogin);
     cy.visit('/boards');
   });
 
