@@ -1,8 +1,6 @@
 import {
   isProduction,
   LogAndWaitLong,
-  password,
-  userLogin,
   WaitVeryLong,
 } from '../support/e2e';
 
@@ -29,7 +27,7 @@ describe('Test coolboard', () => {
   beforeEach(() => {
     cy.viewport(1280, 960);
     // initial login, initiate cached session:
-    cy.login(userLogin, password);
+    cy.login();
     cy.visit('/boards');
   });
 
