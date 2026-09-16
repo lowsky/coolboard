@@ -12,6 +12,7 @@ export default defineConfig({
   expose: {
     LOGIN: 'skylab@nurfuerspam.de',
     PRODUCTION_LOGIN: 'coolboard+testnew@protonmail.com',
+    branch: process.env.CYPRESS_branch,
   },
   e2e: {
     setupNodeEvents(on, config) {
