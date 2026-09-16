@@ -257,33 +257,32 @@ const graphqlQuery = `
 const login: () => Cypress.Chainable<null> = (): Cypress.Chainable<null> => cy.session(
     'coolboardSessionId',
     () => {
-      const passwordKey = credPrefix + 'PASSWORD';
-      // open main entrance page (home would be unintersting, and loading other unwanted stuff)
+      // open main entrance page (home page is unrestricted, lacking Clerk, and loading unwanted stuff)
       cy.visit(`/boards`);
-      // Signs in a user using Clerk. This custom command supports only password,
-      // phone_code and email_code first factor strategies.
-      //
 
       const credPrefix = isProduction ? 'PRODUCTION_' : '';
 
-      const userLogin = Cypress.expose(credPrefix + 'LOGIN');
-      const password = Cypress.expose(credPrefix + 'PASSWORD');
+      const userLoginKey = credPrefix + 'LOGIN';
+      const passwordKey = credPrefix + 'PASSWORD';
 
-      expect(userLogin, `expose ${credPrefix}LOGIN !`).to.be.a('string');
-      expect(password, `expose ${credPrefix}PASSWORD !`).to.be.a('string');
       // This helper is using the setupClerkTestingToken internally!
-      cy.env([passwordKey]).then((secrets: Record<string, string>) => {
+      return cy.env([userLoginKey, passwordKey]).then((secrets: Record<string, string>) => {
+        expect(secrets[userLoginKey], `env variable not set: ${userLoginKey} !`).to.be.a('string');
+        expect(secrets[passwordKey], `env variable not set: ${passwordKey} !`).to.be.a('string');
+
+        // Signs in a user using Clerk. This custom command supports only password,
+        // phone_code and email_code first factor strategies.
         cy.clerkSignIn({
           strategy: 'password',
-          identifier: userLogin,
+          identifier: secrets[userLoginKey],
           password: secrets[passwordKey],
         });
-      });
 
-      //It requires navigating explicitly to this page. Without that, it would stay on the
-      // sign-in page (at least here in cypress!)
-      cy.visit(`/boards`);
-      cy.location('pathname').should('eq', '/boards');
+        //It requires navigating explicitly to this page. Without that, it would stay on the
+        // sign-in page (at least here in cypress!)
+        cy.visit(`/boards`);
+        cy.location('pathname').should('eq', '/boards');
+      });
     },
     {
       // () => Promise<false | void> | void
