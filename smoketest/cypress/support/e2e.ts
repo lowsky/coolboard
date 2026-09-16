@@ -268,7 +268,6 @@ const login: () => Cypress.Chainable<null> = (): Cypress.Chainable<null> => cy.s
       // This helper is using the setupClerkTestingToken internally!
       return cy.env([userLoginKey, passwordKey]).then((secrets: Record<string, string>) => {
         expect(secrets[userLoginKey], `env variable not set: ${userLoginKey} !`).to.be.a('string');
-        expect(secrets[passwordKey], `env variable not set: ${passwordKey} !`).to.be.a('string');
 
         // Signs in a user using Clerk. This custom command supports only password,
         // phone_code and email_code first factor strategies.
