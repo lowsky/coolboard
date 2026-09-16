@@ -68,7 +68,7 @@ describe('Test coolboard', () => {
 
     cy.sections(LogAndWaitLong).should('have.length', 1);
     cy.clickAddNewCard();
-    cy.enterText('new card{enter}');
+    cy.enterText('new card', { withEnter: true });
     cy.contains('[data-cy="card"] > span', 'new card', WaitVeryLong);
 
     cy.clickAddNewCard();

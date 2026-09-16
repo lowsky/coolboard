@@ -62,8 +62,8 @@ Cypress.Commands.add(
     cy.get(`[data-cy="${selector}"]`, options)
 );
 
-const enterText = (text: string): Chainable<JQuery<HTMLInputElement>> =>
-  cy
+const enterText = (text: string, params?: {withEnter: boolean}): Chainable<JQuery<HTMLInputElement>> => {
+  const entered = cy
     .get<HTMLInputElement>(
       '[data-cy="edit-and-add-card"] .chakra-editable__input'
     )
@@ -72,6 +72,14 @@ const enterText = (text: string): Chainable<JQuery<HTMLInputElement>> =>
     .focus()
     .clear()
     .type(text);
+
+  if(params?.withEnter) {
+    return entered.type('{enter}')
+  }
+
+  return entered;
+}
+
 Cypress.Commands.add('enterText', enterText);
 
 declare global {
@@ -87,7 +95,7 @@ declare global {
 declare global {
   namespace Cypress {
     interface Chainable<Subject> {
-      enterText(text: string): Chainable<JQuery<HTMLInputElement>>;
+      enterText(text: string, params?: {withEnter: boolean}): Chainable<JQuery<HTMLInputElement>>;
     }
   }
 }
