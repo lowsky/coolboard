@@ -6,19 +6,19 @@ __metadata:
   cacheKey: 10c0
 
 "@clerk/backend@npm:^3.17.2":
-  version: 3.17.2
-  resolution: "@clerk/backend@npm:3.17.2"
+  version: 3.18.1
+  resolution: "@clerk/backend@npm:3.18.1"
   dependencies:
-    "@clerk/shared": "npm:^4.31.1"
+    "@clerk/shared": "npm:^4.33.0"
     standardwebhooks: "npm:^1.0.0"
     tslib: "npm:2.8.1"
-  checksum: 10c0/86dd2aec22a529ff188c1fce4ce55f04d30b23233dc199722756b3a719c5b289d9eb5e044d1b792d6622c90a6b3f9a23621cd13640d91d52004f99e42f386c90
+  checksum: 10c0/31cbc573c2129695a4bd7e124d2a5286314ec1a54ee58191fcb6b828949e5fd138b2345f6f5068df510dd3d4a83738f535ef347d329f9cb93e3bb120a1e861d0
   languageName: node
   linkType: hard
 
-"@clerk/shared@npm:^4.31.1":
-  version: 4.31.1
-  resolution: "@clerk/shared@npm:4.31.1"
+"@clerk/shared@npm:^4.31.1, @clerk/shared@npm:^4.33.0":
+  version: 4.33.0
+  resolution: "@clerk/shared@npm:4.33.0"
   dependencies:
     "@tanstack/query-core": "npm:^5.101.4"
     dequal: "npm:2.0.3"
@@ -32,7 +32,7 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: 10c0/f88987f68abf2affb2831e3d3b49ade0267c30380f4aa63a1cb776777af6beacee7ab5e027365d2a6e9beb46d1209ba78d71e9894710658bdb2aece176bf040a
+  checksum: 10c0/5825a2f191f36bcb8f6a03c5f9d03bc29cb591987e5cb6e532916662a33547d03a880dc2e8fb9574ae2fdaa0619706986e86cdd206392b805a12ba0325415579
   languageName: node
   linkType: hard
 
@@ -98,9 +98,9 @@ __metadata:
   linkType: hard
 
 "@tanstack/query-core@npm:^5.101.4":
-  version: 5.102.8
-  resolution: "@tanstack/query-core@npm:5.102.8"
-  checksum: 10c0/b8b8413c2372ff26605f63283f2bfe0edc17be1daad858a437d154ca38b30e8b6e47a5b8a0eb5c40b93fd66b8461f1cf2ac6cf5e1c9a03919d0079a0b4ae8bfa
+  version: 5.103.2
+  resolution: "@tanstack/query-core@npm:5.103.2"
+  checksum: 10c0/52362dd214a487b2194728a79c7fd1bd7af1831f21928030866a8ad28877eaec050e7215a6f3b3a0c4fdf601644ae8edb652e4cef7270f6f82d7371d2bbe9f41
   languageName: node
   linkType: hard
 
@@ -900,9 +900,9 @@ __metadata:
   linkType: hard
 
 "get-east-asian-width@npm:^1.0.0, get-east-asian-width@npm:^1.3.1, get-east-asian-width@npm:^1.5.0":
-  version: 1.6.0
-  resolution: "get-east-asian-width@npm:1.6.0"
-  checksum: 10c0/7e72e9550fd49ca5b246f9af6bb2afc129c96412845ff6556b3274fd44817a381702ca17028efe9866b261a3d44254cbf21e6c90cf05b4b61675630af776d431
+  version: 1.7.0
+  resolution: "get-east-asian-width@npm:1.7.0"
+  checksum: 10c0/680a5f611a186e4a065291f31821f7e4ad7742625be814e05b8ab5535c6fa53562bc0333a83138fca5f2e1030ed960a561b2fd4629e0cff0dc68b19cf46d7c53
   languageName: node
   linkType: hard
 
@@ -1653,11 +1653,11 @@ __metadata:
   linkType: hard
 
 "systeminformation@npm:^5.31.1":
-  version: 5.33.8
-  resolution: "systeminformation@npm:5.33.8"
+  version: 5.33.13
+  resolution: "systeminformation@npm:5.33.13"
   bin:
     systeminformation: lib/cli.js
-  checksum: 10c0/cc1dd9f5998936b72f0c8fb61fdfe21294e1aa3818c79d3373e27ff65080414b3e93ced80b8ee59fcec8b603854bcd1cbabfdfbd52b75817b11e5056ba5d5ac8
+  checksum: 10c0/477d501a058182116cb488f9d869532be0176763e5430d9495d5a72b045e377a2c33ab827d599caa928fc7aed5543ca5541dd8e46fcd061896694d9f1e5f1840
   conditions: (os=darwin | os=linux | os=win32 | os=freebsd | os=openbsd | os=netbsd | os=sunos | os=android)
   languageName: node
   linkType: hard
