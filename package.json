@@ -98,7 +98,7 @@
     "eslint-plugin-react-hooks": "7.1.1",
     "prettier": "3.9.9",
     "rxjs": "7.8.2",
-    "sharp": "0.35.4",
+    "sharp": "0.35.5",
     "typescript": "7.0.2",
     "typescript-eslint": "8.70.1",
     "ws": "8.21.3"
