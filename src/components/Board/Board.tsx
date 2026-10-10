@@ -3,14 +3,11 @@ import { BoardContainer } from './ui/BoardContainer';
 import { useQuery, useMutation } from '@apollo/client/react';
 import { gql, TypedDocumentNode } from '@apollo/client';
 import {
-  DndContext,
-  PointerSensor,
-  useSensor,
-  useSensors,
+  DragDropProvider,
   DragEndEvent,
   DragStartEvent,
   DragOverlay,
-} from '@dnd-kit/core';
+} from '@dnd-kit/react';
 
 import type { BoardQuery, BoardQueryVariables, Card } from 'src/gql/graphql';
 import { BoardBoardDoc } from 'components/Board/board.graphql';
@@ -92,27 +89,23 @@ export const Board = ({ boardId, readonly = false }: BoardProps) => {
 
   const [moveCard] = useMutation(MoveCard2Doc);
 
-  const sensors = useSensors(
-    useSensor(PointerSensor, {
-      activationConstraint: {
-        distance: 5,
-      },
-    })
-  );
+
   const [activeCard, setActiveCard] = useState<Card | undefined>();
 
   function handleDragStart(event: DragStartEvent) {
-    setActiveCard(event.active.data.current as Card);
+    setActiveCard(event.operation.source?.data.current as Card);
   }
 
   function handleDragEnd(event: DragEndEvent) {
-    const { active, over } = event;
+    if (event.canceled) return;
+    const source = event.operation.source;
+    const target = event.operation.target;
 
-    if (over && active.id !== over.id && active.data.current) {
-      const card = active.data.current as CardForDraggingProps;
+    if (target && source && source.id !== target.id && source.data.current) {
+      const card = source.data.current as CardForDraggingProps;
       const cardId = card.id;
       const fromListId = card.cardListId;
-      const toListId = over.id as string;
+      const toListId = target.id as string;
 
       if (cardId && fromListId && toListId && fromListId !== toListId) {
         moveCard({
@@ -143,8 +136,7 @@ export const Board = ({ boardId, readonly = false }: BoardProps) => {
   }
 
   return (
-    <DndContext
-      sensors={sensors}
+    <DragDropProvider
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}>
       <BoardContainer
@@ -164,6 +156,6 @@ export const Board = ({ boardId, readonly = false }: BoardProps) => {
           />
         ) : null}
       </DragOverlay>
-    </DndContext>
+    </DragDropProvider>
   );
 };
