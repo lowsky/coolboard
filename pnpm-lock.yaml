@@ -364,7 +364,7 @@ importers:
         version: 10.1.8(eslint@10.12.0(jiti@2.7.0))
       eslint-plugin-prettier:
         specifier: 5.5.7
-        version: 5.5.7(eslint-config-prettier@10.1.8(eslint@10.12.0(jiti@2.7.0)))(eslint@10.12.0(jiti@2.7.0))(prettier@3.9.9)
+        version: 5.5.7(eslint-config-prettier@10.1.8(eslint@10.12.0(jiti@2.7.0)))(eslint@10.12.0(jiti@2.7.0))(prettier@3.9.10)
       eslint-plugin-react:
         specifier: 7.37.5
         version: 7.37.5(eslint@10.12.0(jiti@2.7.0))
@@ -372,8 +372,8 @@ importers:
         specifier: 7.1.1
         version: 7.1.1(eslint@10.12.0(jiti@2.7.0))
       prettier:
-        specifier: 3.9.9
-        version: 3.9.9
+        specifier: 3.9.10
+        version: 3.9.10
       rxjs:
         specifier: 7.8.2
         version: 7.8.2
@@ -5157,8 +5157,8 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
 
-  prettier@3.9.9:
-    resolution: {integrity: sha512-Z/CJHIkdujO/OtN7nXUii0Rf3VT5SRuhjBA82Xvu2XhBUgX3nhP67T0LHceBdQLex7OOFGTox+Q5Yg8Jk2Qivg==}
+  prettier@3.9.10:
+    resolution: {integrity: sha512-skGHTH1Yb9QvaTC4hWnRTzEYtCpApF0UMBPz+t/0ZPzP8ihefo/btKd+QA7pUE0fEwA1SbS/NmhyEcstdXOIdA==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -10386,10 +10386,10 @@ snapshots:
       safe-regex-test: 1.1.0
       string.prototype.includes: 2.0.1
 
-  eslint-plugin-prettier@5.5.7(eslint-config-prettier@10.1.8(eslint@10.12.0(jiti@2.7.0)))(eslint@10.12.0(jiti@2.7.0))(prettier@3.9.9):
+  eslint-plugin-prettier@5.5.7(eslint-config-prettier@10.1.8(eslint@10.12.0(jiti@2.7.0)))(eslint@10.12.0(jiti@2.7.0))(prettier@3.9.10):
     dependencies:
       eslint: 10.12.0(jiti@2.7.0)
-      prettier: 3.9.9
+      prettier: 3.9.10
       prettier-linter-helpers: 1.0.1
       synckit: 0.12.3
     optionalDependencies:
@@ -11527,7 +11527,7 @@ snapshots:
 
   prettier@3.8.3: {}
 
-  prettier@3.9.9: {}
+  prettier@3.9.10: {}
 
   prisma@7.10.0(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@7.0.2):
     dependencies:
