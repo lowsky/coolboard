@@ -9,7 +9,7 @@
   },
   "packageManager": "yarn@4.18.1",
   "dependencies": {
-    "@clerk/testing": "2.2.44",
+    "@clerk/testing": "2.2.45",
     "cypress": "16.1.1",
     "typescript": "7.0.2"
   },
