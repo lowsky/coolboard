@@ -30,7 +30,7 @@
     "@pothos/plugin-with-input": "4.1.5",
     "@prisma/adapter-neon": "7.10.1",
     "@prisma/client": "7.10.1",
-    "@prisma/instrumentation": "7.10.0",
+    "@prisma/instrumentation": "7.10.1",
     "@vercel/analytics": "2.0.1",
     "@vercel/otel": "2.1.3",
     "@vercel/speed-insights": "2.0.0",
