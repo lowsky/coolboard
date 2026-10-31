@@ -1,4 +1,5 @@
-import TimeAgo from 'react-timeago';
+import TimeAgo from 'react-timeago-i18n';
+
 import { AlertDescription, Box } from '@chakra-ui/react';
 
 import { Segment } from 'common/Segment';
