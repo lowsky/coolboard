@@ -370,15 +370,17 @@ Cypress.Commands.add(
               cancelable: true,
               isPrimary: true,
               pointerId: 1,
+              pointerType: 'mouse',
             })
-            // initial pointermove initiates the drag (must exceed the 5px distance constraint)
+            // initial pointermove initiates the drag (must exceed the distance constraint)
             .trigger('pointermove', {
-              clientX: startX + 10,
+              clientX: startX + 20,
               clientY: startY,
               bubbles: true,
               cancelable: true,
               isPrimary: true,
               pointerId: 1,
+              pointerType: 'mouse',
             });
 
           // pointermove over target bubbles to document where dnd-kit listens
@@ -390,6 +392,7 @@ Cypress.Commands.add(
               cancelable: true,
               isPrimary: true,
               pointerId: 1,
+              pointerType: 'mouse',
             })
             .trigger('pointerup', {
               button: 0,
@@ -399,6 +402,7 @@ Cypress.Commands.add(
               cancelable: true,
               isPrimary: true,
               pointerId: 1,
+              pointerType: 'mouse',
             });
 
           // Wait for mutation to complete and cache to sync
