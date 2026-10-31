@@ -1,4 +1,4 @@
-import { useDraggable } from '@dnd-kit/core';
+import { useDraggable } from '@dnd-kit/react';
 import type { Card as CardType } from 'src/gql/graphql';
 
 export interface CardForDraggingProps extends CardType {
@@ -8,7 +8,7 @@ export interface CardForDraggingProps extends CardType {
 }
 
 export function useCardDragHook(props: CardForDraggingProps) {
-  const { attributes, listeners, setNodeRef, isDragging } = useDraggable({
+  const { ref, isDragging } = useDraggable({
     id: `card-${props.id}`, // Unique ID required by DndKit
     data: {
       listId: props.cardListId,
@@ -16,5 +16,5 @@ export function useCardDragHook(props: CardForDraggingProps) {
     },
   });
 
-  return { attributes, listeners, setNodeRef, isDragging };
+  return { ref, isDragging };
 }
