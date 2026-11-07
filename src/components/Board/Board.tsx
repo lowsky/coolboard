@@ -93,7 +93,7 @@ export const Board = ({ boardId, readonly = false }: BoardProps) => {
   const [activeCard, setActiveCard] = useState<Card | undefined>();
 
   function handleDragStart(event: DragStartEvent) {
-    setActiveCard(event.operation.source?.data.current as Card);
+    setActiveCard(event.operation.source?.data as Card);
   }
 
   function handleDragEnd(event: DragEndEvent) {
@@ -101,8 +101,8 @@ export const Board = ({ boardId, readonly = false }: BoardProps) => {
     const source = event.operation.source;
     const target = event.operation.target;
 
-    if (target && source && source.id !== target.id && source.data.current) {
-      const card = source.data.current as CardForDraggingProps;
+    if (target && source && source.id !== target.id && source.data) {
+      const card = source.data as CardForDraggingProps;
       const cardId = card.id;
       const fromListId = card.cardListId;
       const toListId = target.id as string;
