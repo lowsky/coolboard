@@ -360,50 +360,56 @@ Cypress.Commands.add(
           const endX = Math.round(targetRect.left + targetRect.width / 2);
           const endY = Math.round(targetRect.top + targetRect.height / 2);
 
-          // pointerdown activates the PointerSensor on the draggable element
-          cy.wrap($card)
-            .trigger('pointerdown', {
-              button: 0,
-              clientX: startX,
-              clientY: startY,
-              bubbles: true,
-              cancelable: true,
-              isPrimary: true,
-              pointerId: 1,
-              pointerType: 'mouse',
-            })
-            // initial pointermove initiates the drag (must exceed the distance constraint)
-            .trigger('pointermove', {
-              clientX: startX + 20,
-              clientY: startY,
-              bubbles: true,
-              cancelable: true,
-              isPrimary: true,
-              pointerId: 1,
-              pointerType: 'mouse',
-            });
+          // Dispatch native PointerEvents so the browser establishes an active
+          // pointer and setPointerCapture works for dnd-kit's PointerSensor.
+          const cardEl = $card[0];
+          const downEvent = new PointerEvent('pointerdown', {
+            button: 0,
+            clientX: startX,
+            clientY: startY,
+            bubbles: true,
+            cancelable: true,
+            isPrimary: true,
+            pointerId: 1,
+            pointerType: 'mouse',
+          });
+          cardEl.dispatchEvent(downEvent);
 
-          // pointermove over target bubbles to document where dnd-kit listens
-          getCardListByIndex(targetListIndex)
-            .trigger('pointermove', {
-              clientX: endX,
-              clientY: endY,
-              bubbles: true,
-              cancelable: true,
-              isPrimary: true,
-              pointerId: 1,
-              pointerType: 'mouse',
-            })
-            .trigger('pointerup', {
-              button: 0,
-              clientX: endX,
-              clientY: endY,
-              bubbles: true,
-              cancelable: true,
-              isPrimary: true,
-              pointerId: 1,
-              pointerType: 'mouse',
-            });
+          // initial pointermove initiates the drag (must exceed distance constraint)
+          const moveStartEvent = new PointerEvent('pointermove', {
+            clientX: startX + 20,
+            clientY: startY,
+            bubbles: true,
+            cancelable: true,
+            isPrimary: true,
+            pointerId: 1,
+            pointerType: 'mouse',
+          });
+          cardEl.dispatchEvent(moveStartEvent);
+
+          // pointermove over target — dnd-kit listens on document
+          const moveEndEvent = new PointerEvent('pointermove', {
+            clientX: endX,
+            clientY: endY,
+            bubbles: true,
+            cancelable: true,
+            isPrimary: true,
+            pointerId: 1,
+            pointerType: 'mouse',
+          });
+          document.dispatchEvent(moveEndEvent);
+
+          const upEvent = new PointerEvent('pointerup', {
+            button: 0,
+            clientX: endX,
+            clientY: endY,
+            bubbles: true,
+            cancelable: true,
+            isPrimary: true,
+            pointerId: 1,
+            pointerType: 'mouse',
+          });
+          document.dispatchEvent(upEvent);
 
           // Wait for mutation to complete and cache to sync
           cy.wait('@graphqlRequest', WaitVeryLong);
