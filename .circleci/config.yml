@@ -41,6 +41,7 @@ jobs:
     environment:
       CYPRESS_baseUrl: << pipeline.parameters.test-url >>
       EXPECTED_GIT_SHA: << pipeline.parameters.deployed-sha >>
+      DISPLAY: :99
     steps:
       - halt-if-no-test-url
       - checkout
@@ -58,6 +59,18 @@ jobs:
           keys:
             - cache-smoketest-v2-{{ arch }}-{{ checksum "smoketest/yarn.lock" }}
 
+      - run:
+          name: Setup clean display for Cypress
+          command: |
+            set -e
+            # Kill any existing Xvfb from previous runs on self-hosted executor
+            pkill -9 Xvfb 2>/dev/null || true
+            sleep 1
+            # Start fresh Xvfb on display :99
+            Xvfb :99 -screen 0 1280x1024x24 &
+            sleep 2
+            echo "Xvfb started, DISPLAY=:99"
+            ps aux | grep '[X]vfb'
       - run:
           name: Install dependencies
           command: |
