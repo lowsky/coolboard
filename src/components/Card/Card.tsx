@@ -29,11 +29,10 @@ const UpdateCardDoc: TypedDocumentNode<
 `;
 
 function CardForDragging(props: CardForDraggingProps) {
-  const { setNodeRef, attributes, listeners, isDragging } =
-    useCardDragHook(props);
+  const { ref, isDragging } = useCardDragHook(props);
 
   return (
-    <div ref={setNodeRef} {...attributes} {...listeners}>
+    <div ref={ref}>
       <Card {...props} isDragging={isDragging} />
     </div>
   );
