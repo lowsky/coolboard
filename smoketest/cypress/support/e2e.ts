@@ -231,6 +231,11 @@ declare global {
         index: number,
         options?: Partial<Loggable & Timeoutable>
       ): Chainable<JQuery<HTMLElement>>;
+
+      dragCardTo(
+        sourceListIndex: number,
+        targetListIndex: number
+      ): Chainable<void>;
     }
   }
 }
@@ -360,49 +365,44 @@ Cypress.Commands.add(
           const endX = Math.round(targetRect.left + targetRect.width / 2);
           const endY = Math.round(targetRect.top + targetRect.height / 2);
 
+          const pointerEventOptions = {
+            bubbles: true,
+            cancelable: true,
+            isPrimary: true,
+            pointerId: 1,
+            pointerType: 'mouse',
+          };
+
           // pointerdown activates the PointerSensor on the draggable element
           cy.wrap($card)
             .trigger('pointerdown', {
               button: 0,
               clientX: startX,
               clientY: startY,
-              bubbles: true,
-              cancelable: true,
-              isPrimary: true,
-              pointerId: 1,
-              pointerType: 'mouse',
+              ...pointerEventOptions,
             })
             // initial pointermove initiates the drag (must exceed the distance constraint)
             .trigger('pointermove', {
               clientX: startX + 20,
               clientY: startY,
-              bubbles: true,
-              cancelable: true,
-              isPrimary: true,
-              pointerId: 1,
-              pointerType: 'mouse',
+              ...pointerEventOptions,
             });
 
-          // pointermove over target bubbles to document where dnd-kit listens
-          getCardListByIndex(targetListIndex)
+          // Fire subsequent pointer events on document — dnd-kit registers its
+          // pointermove/pointerup listeners there after drag starts, and synthetic
+          // Cypress events bypass setPointerCapture which would otherwise redirect
+          // these to the draggable element.
+          cy.document()
             .trigger('pointermove', {
               clientX: endX,
               clientY: endY,
-              bubbles: true,
-              cancelable: true,
-              isPrimary: true,
-              pointerId: 1,
-              pointerType: 'mouse',
+              ...pointerEventOptions,
             })
             .trigger('pointerup', {
               button: 0,
               clientX: endX,
               clientY: endY,
-              bubbles: true,
-              cancelable: true,
-              isPrimary: true,
-              pointerId: 1,
-              pointerType: 'mouse',
+              ...pointerEventOptions,
             });
 
           // Wait for mutation to complete and cache to sync
