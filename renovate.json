@@ -23,7 +23,9 @@
     "smoketest/package.json",
     ".nvmrc"
   ],
-  "dependencyDashboard": true,
+  "dependencyDashboard": {
+    "enabled": true
+  },
   "rebaseWhen": "never",
   "extends": [
     ":separateMultipleMajorReleases",
