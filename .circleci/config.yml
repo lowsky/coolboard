@@ -32,7 +32,7 @@ workflows:
 executors:
   cypress-executor:
     docker:
-      - image: cypress/base:26.13.0@sha256:5f5138fff456c4250cb327421f6a43e71c3feb50e46f95b3261c5bdc6f4b0531
+      - image: cypress/base:26.13.1@sha256:2cb6f113cf40343204c19ee3ce361cdb4a03204a5a05025c1043cb3233f9f833
     resource_class: lowsky/selfhosted
 
 jobs:
