@@ -318,8 +318,8 @@ importers:
         specifier: 6.2.0
         version: 6.2.0(graphql@17.1.0)
       '@graphql-codegen/typescript-react-apollo':
-        specifier: 5.0.0
-        version: 5.0.0(graphql@17.1.0)
+        specifier: 6.0.1
+        version: 6.0.1(graphql@17.1.0)
       '@next/eslint-plugin-next':
         specifier: 16.4.6
         version: 16.4.6(eslint@10.14.0(jiti@2.7.0))
@@ -1128,11 +1128,11 @@ packages:
       graphql-sock:
         optional: true
 
-  '@graphql-codegen/typescript-react-apollo@5.0.0':
-    resolution: {integrity: sha512-fjMCr4OkoGRHaZSDlOmPNdl0E7T8A1ueedvrHjGp3ayia+8c3MHYSwMOyJ87z4piK3waMUuz+fB4hVSyqU9Fog==}
-    engines: {node: '>= 16.0.0'}
+  '@graphql-codegen/typescript-react-apollo@6.0.1':
+    resolution: {integrity: sha512-AB9lPnkEQ59ZLmvK0QWqM3Y5xtZhzJzhfzh1g47noCtdUtoJCLwsFzxoaz4r3jjJvENekn9LKcMTF4Dq5sVMRw==}
+    engines: {node: '>=22.18.0'}
     peerDependencies:
-      graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+      graphql: ^16.0.0 || ^17.0.0
 
   '@graphql-codegen/typescript@6.1.2':
     resolution: {integrity: sha512-tO9lJu0Yzy5Ipx+IMSBLZlAIQwGDTgqH3L8quGtU8u+BMZCAtGME82utpz16nmKLXueuWUuVzDarkYc12/otgw==}
@@ -6993,10 +6993,10 @@ snapshots:
       graphql: 17.1.0
       tslib: 2.8.1
 
-  '@graphql-codegen/typescript-react-apollo@5.0.0(graphql@17.1.0)':
+  '@graphql-codegen/typescript-react-apollo@6.0.1(graphql@17.1.0)':
     dependencies:
-      '@graphql-codegen/plugin-helpers': 6.3.0(graphql@17.1.0)
-      '@graphql-codegen/visitor-plugin-common': 7.3.0(graphql@17.1.0)
+      '@graphql-codegen/plugin-helpers': 8.0.0(graphql@17.1.0)
+      '@graphql-codegen/visitor-plugin-common': 8.0.0(graphql@17.1.0)
       auto-bind: 4.0.0
       change-case-all: 1.0.15
       graphql: 17.1.0
@@ -7053,7 +7053,7 @@ snapshots:
       '@graphql-codegen/plugin-helpers': 8.0.0(graphql@17.1.0)
       '@graphql-tools/optimize': 3.0.0(graphql@17.1.0)
       '@graphql-tools/relay-operation-optimizer': 8.0.8(graphql@17.1.0)
-      '@graphql-tools/utils': 13.2.0(graphql@17.1.0)
+      '@graphql-tools/utils': 13.2.1(graphql@17.1.0)
       auto-bind: 5.0.1
       change-case-all: 2.1.0
       dependency-graph: 1.0.0
