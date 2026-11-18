@@ -191,8 +191,8 @@ importers:
         specifier: 3.0.1
         version: 3.0.1(graphql-yoga@6.0.1(graphql@17.1.0))(graphql@17.1.0)
       '@neondatabase/serverless':
-        specifier: 1.2.0
-        version: 1.2.0
+        specifier: 1.2.1
+        version: 1.2.1
       '@opentelemetry/auto-instrumentations-node':
         specifier: 0.83.0
         version: 0.83.0(@opentelemetry/core@3.0.0)
@@ -1786,8 +1786,8 @@ packages:
       '@emnapi/core': ^1.7.1 || 2.0.0-beta.2
       '@emnapi/runtime': ^1.7.1 || 2.0.0-beta.2
 
-  '@neondatabase/serverless@1.2.0':
-    resolution: {integrity: sha512-tnaqgixUengZQNd9ZrS3ytQfamJzLKY8QxgqWQTNHHtB+KrFQWk77JTbbpg4RD+J3qE4eO2lVytvGDX5Kj6FdQ==}
+  '@neondatabase/serverless@1.2.1':
+    resolution: {integrity: sha512-PI2JjuyEFE7oZDTkV/s6WP4KEceCwnjQHClfunhysuIATtvcVTBLdA4UgHTnJo7C0mkK+OZ6U7SV1NDnYa0HgA==}
     engines: {node: '>=19.0.0'}
 
   '@next/env@16.4.6':
@@ -7705,7 +7705,7 @@ snapshots:
       '@tybys/wasm-util': 0.10.4
     optional: true
 
-  '@neondatabase/serverless@1.2.0': {}
+  '@neondatabase/serverless@1.2.1': {}
 
   '@next/env@16.4.6': {}
 
@@ -8570,7 +8570,7 @@ snapshots:
 
   '@prisma/adapter-neon@7.10.1':
     dependencies:
-      '@neondatabase/serverless': 1.2.0
+      '@neondatabase/serverless': 1.2.1
       '@prisma/driver-adapter-utils': 7.10.1
       postgres-array: 3.0.4
 
