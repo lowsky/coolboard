@@ -6,18 +6,18 @@ __metadata:
   cacheKey: 10c0
 
 "@clerk/backend@npm:^3.27.0":
-  version: 3.27.0
-  resolution: "@clerk/backend@npm:3.27.0"
+  version: 3.30.0
+  resolution: "@clerk/backend@npm:3.30.0"
   dependencies:
-    "@clerk/shared": "npm:^4.44.1"
+    "@clerk/shared": "npm:^4.46.0"
     standardwebhooks: "npm:^1.0.0"
-  checksum: 10c0/1f08746be26d08b22b9f7edcbafc99d0ff131ae7df7e5fc917194ddfda641f18d758008e7a4da08051c7ae15fe7dc9dcd7efc13752f5dab9c5e6e00450995096
+  checksum: 10c0/dff67fa40c85aa977c91d5e057d930911a04fdeed52336b0ee0f9ac640326a2300f60b4d2be842121765451fe727fbb73c6f348f6e67bf9bbcf6e93cad3e9a71
   languageName: node
   linkType: hard
 
-"@clerk/shared@npm:^4.44.1":
-  version: 4.44.1
-  resolution: "@clerk/shared@npm:4.44.1"
+"@clerk/shared@npm:^4.44.1, @clerk/shared@npm:^4.46.0":
+  version: 4.46.0
+  resolution: "@clerk/shared@npm:4.46.0"
   dependencies:
     "@tanstack/query-core": "npm:^5.101.4"
     dequal: "npm:2.0.3"
@@ -31,7 +31,7 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: 10c0/d56e40b999008979a12f160ab15bec3e26478627f386c19c875d93acc8ba9bc7367a67f4d2b79960decb2ffcb4b4f4ffec361a8f3b681b2a45850d7b165b97c3
+  checksum: 10c0/e3016a13d99359b1141c2238f50143954723ce30c77bee0054f24ff43beb4f635ae9d3ee54ca21ffb9feb18a35340c54263eb0f31b6eca5fcfe4403348efd7f0
   languageName: node
   linkType: hard
 
@@ -97,9 +97,9 @@ __metadata:
   linkType: hard
 
 "@tanstack/query-core@npm:^5.101.4":
-  version: 5.105.0
-  resolution: "@tanstack/query-core@npm:5.105.0"
-  checksum: 10c0/1b4baa128a95810b677d93f91156e3d32eb07dbe9e062fe0a2651089569f3fca275e43dc9fe569efd55b9e5a00d0d2e18b78de6fa9ed65b1ad54f24e5a90106e
+  version: 5.108.0
+  resolution: "@tanstack/query-core@npm:5.108.0"
+  checksum: 10c0/abf7119b0389b8571b7be5295d384a3b9cb23c14bbd6d66de6d51c0d445e970637f2b85d0f1daba6d90b709027df1d222b05de852f7a778713f13046e7506fcb
   languageName: node
   linkType: hard
 
@@ -281,9 +281,9 @@ __metadata:
   linkType: hard
 
 "ansi-regex@npm:^6.2.2":
-  version: 6.4.0
-  resolution: "ansi-regex@npm:6.4.0"
-  checksum: 10c0/e42f68ffa21aac4c4de27aad601bb5ea415b5a07b127681ef44728195f22231b77bc39230ce0c976420d84650b7bf5a5b60eb4e7500c1f74e9a3f3cd4a68f3f6
+  version: 6.6.0
+  resolution: "ansi-regex@npm:6.6.0"
+  checksum: 10c0/a151a7bee21f74765c1bbc50cb778ca8d5138e01683b123aa63a5e5f4ae02cb9cff50598bd2ace4429917be7d312ec70a6d140e53030da76597202a018ce9899
   languageName: node
   linkType: hard
 
@@ -465,9 +465,9 @@ __metadata:
   linkType: hard
 
 "ci-info@npm:^4.1.0":
-  version: 4.4.0
-  resolution: "ci-info@npm:4.4.0"
-  checksum: 10c0/44156201545b8dde01aa8a09ee2fe9fc7a73b1bef9adbd4606c9f61c8caeeb73fb7a575c88b0443f7b4edb5ee45debaa59ed54ba5f99698339393ca01349eb3a
+  version: 4.5.0
+  resolution: "ci-info@npm:4.5.0"
+  checksum: 10c0/8ad193f49fe61248764a346cf35627e9dd85b192492a3001fb93622e30696eafd5d9d6091f10fc49dbabf963d9fd48261f9895fcaec054d5a57b5e9e56e94371
   languageName: node
   linkType: hard
 
@@ -978,9 +978,9 @@ __metadata:
   linkType: hard
 
 "graceful-fs@npm:^4.1.6, graceful-fs@npm:^4.2.0":
-  version: 4.2.11
-  resolution: "graceful-fs@npm:4.2.11"
-  checksum: 10c0/386d011a553e02bc594ac2ca0bd6d9e4c22d7fa8cfbfc448a6d148c59ea881b092db9dbe3547ae4b88e55f1b01f7c4a2ecc53b310c042793e63aa44cf6c257f2
+  version: 4.2.12
+  resolution: "graceful-fs@npm:4.2.12"
+  checksum: 10c0/a4e2ccd9fe7ed384ed0d466363028978c1b1537f0719db826dfa6a850abd8fc418596f14d9a9609f830ba8137df3da1acc1132a6afd635d8633fbe53530c3e6d
   languageName: node
   linkType: hard
 
@@ -1398,12 +1398,12 @@ __metadata:
   linkType: hard
 
 "qs@npm:^6.15.2":
-  version: 6.17.0
-  resolution: "qs@npm:6.17.0"
+  version: 6.17.1
+  resolution: "qs@npm:6.17.1"
   dependencies:
     es-define-property: "npm:^1.0.1"
     side-channel: "npm:^1.1.1"
-  checksum: 10c0/62d59fddc00fa6e141a8b3de78df89bb5863a02346af844403c6ad3b1d175b236602df293c1f2c0fa010b95ea862cacef337f108a2eef0a34556897454fcebe6
+  checksum: 10c0/55f09dd0282fda70ce9475719158f910f2214477b95aa7284675fb9977c9cdae89fb495423399227331de76766703aaa71372e96cded05046e21713c033e885d
   languageName: node
   linkType: hard
 
@@ -1652,11 +1652,11 @@ __metadata:
   linkType: hard
 
 "systeminformation@npm:^5.33.16":
-  version: 5.33.19
-  resolution: "systeminformation@npm:5.33.19"
+  version: 5.33.23
+  resolution: "systeminformation@npm:5.33.23"
   bin:
     systeminformation: lib/cli.js
-  checksum: 10c0/cb95464c1ab9b5deabd0141d0ae22db29ced520f321c2b5cbcdea84eff5d0cf65fbb521a9945f8dc98e560bc9fc57cbe06e68dd2d34c53a4c3a59eb61d0535b3
+  checksum: 10c0/bb40b125c3d427b7c4bd09b8aa82d0022bbb6a288b4954afafe8d0653125631596da5258b104fca22c188180c1be4e08d666f7ba1109eeb0196539740e3bcefc
   conditions: (os=darwin | os=linux | os=win32 | os=freebsd | os=openbsd | os=netbsd | os=sunos | os=android)
   languageName: node
   linkType: hard
@@ -1931,8 +1931,8 @@ __metadata:
   linkType: hard
 
 "ws@npm:^7.2.0":
-  version: 7.5.13
-  resolution: "ws@npm:7.5.13"
+  version: 7.5.14
+  resolution: "ws@npm:7.5.14"
   peerDependencies:
     bufferutil: ^4.0.1
     utf-8-validate: ^5.0.2
@@ -1941,7 +1941,7 @@ __metadata:
       optional: true
     utf-8-validate:
       optional: true
-  checksum: 10c0/e223726bbda5768ed58ec9252d04eda7018ef380ea122bb94e595a4d7a02b5baeb423933936576fddb8fa51b642375f7ae814bf0f6f5d9a3ce290566578a8c5a
+  checksum: 10c0/cdd7bf9a34d35d836c39992bfd22993d33c56c43c8bdbf523958b5517c5654aa500381a41fd71f164996b079fccba67ee60135e87c9c1a1d2fbf30127760e31e
   languageName: node
   linkType: hard
 
