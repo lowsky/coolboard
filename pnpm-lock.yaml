@@ -224,8 +224,8 @@ importers:
         specifier: 4.18.1
         version: 4.18.1(graphql@17.1.0)
       '@pothos/plugin-prisma':
-        specifier: 4.17.3
-        version: 4.17.3(@pothos/core@4.18.1(graphql@17.1.0))(@prisma/client@7.10.1(prisma@7.10.1(@types/node@26.6.5)(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(typescript@7.0.2))(typescript@7.0.2))(graphql@17.1.0)
+        specifier: 4.17.4
+        version: 4.17.4(@pothos/core@4.18.1(graphql@17.1.0))(@prisma/client@7.10.1(prisma@7.10.1(@types/node@26.6.5)(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(typescript@7.0.2))(typescript@7.0.2))(graphql@17.1.0)
       '@pothos/plugin-with-input':
         specifier: 4.1.5
         version: 4.1.5(@pothos/core@4.18.1(graphql@17.1.0))(graphql@17.1.0)
@@ -2515,8 +2515,8 @@ packages:
     peerDependencies:
       graphql: ^16.10.0 || ^17.0.0
 
-  '@pothos/plugin-prisma@4.17.3':
-    resolution: {integrity: sha512-o0KSIz8reiUGHNzCuPF6QRUJZvkd9QjFUYRxpT/DFTTQL+ZoaBQ6z45IHMnKLRdmzEW3g654Y1dh0IWBp5Y3ww==}
+  '@pothos/plugin-prisma@4.17.4':
+    resolution: {integrity: sha512-avmFEeXI3IAU29E88xNtYGWUnaYcJPdjjiV5O8y2jDWuUCn6bqKCX4TaTF7McnrRmBrmhsW1R3JAT4EkTjm9jQ==}
     hasBin: true
     peerDependencies:
       '@pothos/core': '*'
@@ -2529,8 +2529,8 @@ packages:
       '@pothos/core': '*'
       graphql: ^16.10.0 || ^17.0.0
 
-  '@pothos/selection-mapper@0.3.0':
-    resolution: {integrity: sha512-mZp5mW+j10N3I4HBzGntloj+D4h+Qztv/kM578EwSAAoGkVVImowLXvcW21Llmj9n0rStRYhBcdKGiHQu5xnqQ==}
+  '@pothos/selection-mapper@0.3.1':
+    resolution: {integrity: sha512-M0bfitqeZSRNXLxDF51Nog24YQMQ0ERVfGH8ABWrVP8h+7rDBfaDX2Nf/kl6ajW3g6bxhLLfeoiEr091UObcsQ==}
     peerDependencies:
       '@pothos/core': '*'
       graphql: ^16.10.0 || ^17.0.0
@@ -8442,10 +8442,10 @@ snapshots:
     dependencies:
       graphql: 17.1.0
 
-  '@pothos/plugin-prisma@4.17.3(@pothos/core@4.18.1(graphql@17.1.0))(@prisma/client@7.10.1(prisma@7.10.1(@types/node@26.6.5)(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(typescript@7.0.2))(typescript@7.0.2))(graphql@17.1.0)':
+  '@pothos/plugin-prisma@4.17.4(@pothos/core@4.18.1(graphql@17.1.0))(@prisma/client@7.10.1(prisma@7.10.1(@types/node@26.6.5)(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(typescript@7.0.2))(typescript@7.0.2))(graphql@17.1.0)':
     dependencies:
       '@pothos/core': 4.18.1(graphql@17.1.0)
-      '@pothos/selection-mapper': 0.3.0(@pothos/core@4.18.1(graphql@17.1.0))(graphql@17.1.0)
+      '@pothos/selection-mapper': 0.3.1(@pothos/core@4.18.1(graphql@17.1.0))(graphql@17.1.0)
       '@prisma/client': 7.10.1(prisma@7.10.1(@types/node@26.6.5)(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(typescript@7.0.2))(typescript@7.0.2)
       '@prisma/generator-helper': 7.10.1
       graphql: 17.1.0
@@ -8455,7 +8455,7 @@ snapshots:
       '@pothos/core': 4.18.1(graphql@17.1.0)
       graphql: 17.1.0
 
-  '@pothos/selection-mapper@0.3.0(@pothos/core@4.18.1(graphql@17.1.0))(graphql@17.1.0)':
+  '@pothos/selection-mapper@0.3.1(@pothos/core@4.18.1(graphql@17.1.0))(graphql@17.1.0)':
     dependencies:
       '@pothos/core': 4.18.1(graphql@17.1.0)
       graphql: 17.1.0
