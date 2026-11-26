@@ -5,19 +5,19 @@ __metadata:
   version: 10
   cacheKey: 10c0
 
-"@clerk/backend@npm:^3.30.0":
-  version: 3.30.0
-  resolution: "@clerk/backend@npm:3.30.0"
+"@clerk/backend@npm:^3.31.4":
+  version: 3.31.4
+  resolution: "@clerk/backend@npm:3.31.4"
   dependencies:
-    "@clerk/shared": "npm:^4.46.0"
+    "@clerk/shared": "npm:^4.48.3"
     standardwebhooks: "npm:^1.0.0"
-  checksum: 10c0/dff67fa40c85aa977c91d5e057d930911a04fdeed52336b0ee0f9ac640326a2300f60b4d2be842121765451fe727fbb73c6f348f6e67bf9bbcf6e93cad3e9a71
+  checksum: 10c0/cb9f3111264cf1d2c3312d48445da010b1e73abe74eaf93533e99034e286213886f7711b3eb84a700a014ef37c2fca53d690256ef2bb2dd46b01845cce24174f
   languageName: node
   linkType: hard
 
-"@clerk/shared@npm:^4.46.0":
-  version: 4.46.0
-  resolution: "@clerk/shared@npm:4.46.0"
+"@clerk/shared@npm:^4.48.3":
+  version: 4.48.3
+  resolution: "@clerk/shared@npm:4.48.3"
   dependencies:
     "@tanstack/query-core": "npm:^5.101.4"
     dequal: "npm:2.0.3"
@@ -31,16 +31,16 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: 10c0/e3016a13d99359b1141c2238f50143954723ce30c77bee0054f24ff43beb4f635ae9d3ee54ca21ffb9feb18a35340c54263eb0f31b6eca5fcfe4403348efd7f0
+  checksum: 10c0/d7e0c9864e2ffbd70f44a612cd24ddd9938a18813f06f348bd808e089916d913294a9dad284095c7357b599308631040df1b6411c1cca3a16359e9e669d254d1
   languageName: node
   linkType: hard
 
-"@clerk/testing@npm:2.3.1":
-  version: 2.3.1
-  resolution: "@clerk/testing@npm:2.3.1"
+"@clerk/testing@npm:2.3.6":
+  version: 2.3.6
+  resolution: "@clerk/testing@npm:2.3.6"
   dependencies:
-    "@clerk/backend": "npm:^3.30.0"
-    "@clerk/shared": "npm:^4.46.0"
+    "@clerk/backend": "npm:^3.31.4"
+    "@clerk/shared": "npm:^4.48.3"
     dotenv: "npm:17.2.2"
   peerDependencies:
     "@playwright/test": ^1
@@ -50,7 +50,7 @@ __metadata:
       optional: true
     cypress:
       optional: true
-  checksum: 10c0/fad5c5e7f6b0f765a875e8cb3a5e95d5f27e1b0b5312212d20b153490a37ace45b6ace1d9ae0f616f313bbe1f13f0d825f86093d0cd40a0c8c12c36f6f640cb7
+  checksum: 10c0/85fe0a811a6cd413f10129d4cafd4eaf6bdd6c9c5828a3a5c92ccce67c3923176966912d5226119ca4f0b9ec551c483c5be52895bd51b4767658e198e5b9da51
   languageName: node
   linkType: hard
 
@@ -567,7 +567,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "coolboard-smoketests@workspace:."
   dependencies:
-    "@clerk/testing": "npm:2.3.1"
+    "@clerk/testing": "npm:2.3.6"
     cypress: "npm:16.3.0"
     typescript: "npm:7.0.2"
   languageName: unknown
