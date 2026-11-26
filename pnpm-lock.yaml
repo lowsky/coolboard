@@ -197,8 +197,8 @@ importers:
         specifier: 3.2.0
         version: 3.2.0(graphql@17.1.0)
       '@graphql-yoga/plugin-disable-introspection':
-        specifier: 3.1.0
-        version: 3.1.0(graphql-yoga@6.1.0(graphql@17.1.0))(graphql@17.1.0)
+        specifier: 3.1.1
+        version: 3.1.1(graphql-yoga@6.1.0(graphql@17.1.0))(graphql@17.1.0)
       '@neondatabase/serverless':
         specifier: 1.2.1
         version: 1.2.1
@@ -1349,12 +1349,12 @@ packages:
     peerDependencies:
       graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
 
-  '@graphql-yoga/plugin-disable-introspection@3.1.0':
-    resolution: {integrity: sha512-dpCPs9YkDvByea5FdeIXpPDSSz6nSRoCWAxDRxITgi+XstID40J4W1a++DM8ZH63iz45YAMI7LPXafaat5matg==}
+  '@graphql-yoga/plugin-disable-introspection@3.1.1':
+    resolution: {integrity: sha512-wIUCqXt+lavaw5zlyip0yrDU7/Ddcjoo1sU96JnWsJAwhPaueatbM/csMk/jFp5D4eaKMdTKhQsBhcZI+fYkkg==}
     engines: {node: '>=22.15.0'}
     peerDependencies:
       graphql: ^16.0.0 || ^17.0.0
-      graphql-yoga: ^6.1.0
+      graphql-yoga: ^6.1.1
 
   '@graphql-yoga/subscription@6.0.0':
     resolution: {integrity: sha512-7itRaKCigZXL5gbgtKg8+/xCB2NI5T/1p1yIcAx8fht2nEMmu/2RlQ8xtpsa25xKy/u5h4Y9nDSQo7kV/nCcBg==}
@@ -7268,7 +7268,7 @@ snapshots:
     dependencies:
       graphql: 17.1.0
 
-  '@graphql-yoga/plugin-disable-introspection@3.1.0(graphql-yoga@6.1.0(graphql@17.1.0))(graphql@17.1.0)':
+  '@graphql-yoga/plugin-disable-introspection@3.1.1(graphql-yoga@6.1.0(graphql@17.1.0))(graphql@17.1.0)':
     dependencies:
       '@whatwg-node/promise-helpers': 2.0.2
       graphql: 17.1.0
