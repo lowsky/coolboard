@@ -5,13 +5,13 @@ __metadata:
   version: 10
   cacheKey: 10c0
 
-"@clerk/backend@npm:^3.31.4":
-  version: 3.31.4
-  resolution: "@clerk/backend@npm:3.31.4"
+"@clerk/backend@npm:^3.32.0":
+  version: 3.32.0
+  resolution: "@clerk/backend@npm:3.32.0"
   dependencies:
     "@clerk/shared": "npm:^4.48.3"
     standardwebhooks: "npm:^1.0.0"
-  checksum: 10c0/cb9f3111264cf1d2c3312d48445da010b1e73abe74eaf93533e99034e286213886f7711b3eb84a700a014ef37c2fca53d690256ef2bb2dd46b01845cce24174f
+  checksum: 10c0/548fc9531876be87ae9e81975611dae2642753bf5ab4776521b6df57f7f352ca1a2c9c0552ab508fabe28b9eb507a4ca7ad4cb5a6f0537e4d384f66bec3001d2
   languageName: node
   linkType: hard
 
@@ -35,11 +35,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/testing@npm:2.3.6":
-  version: 2.3.6
-  resolution: "@clerk/testing@npm:2.3.6"
+"@clerk/testing@npm:2.3.7":
+  version: 2.3.7
+  resolution: "@clerk/testing@npm:2.3.7"
   dependencies:
-    "@clerk/backend": "npm:^3.31.4"
+    "@clerk/backend": "npm:^3.32.0"
     "@clerk/shared": "npm:^4.48.3"
     dotenv: "npm:17.2.2"
   peerDependencies:
@@ -50,7 +50,7 @@ __metadata:
       optional: true
     cypress:
       optional: true
-  checksum: 10c0/85fe0a811a6cd413f10129d4cafd4eaf6bdd6c9c5828a3a5c92ccce67c3923176966912d5226119ca4f0b9ec551c483c5be52895bd51b4767658e198e5b9da51
+  checksum: 10c0/73a1221921dc64788cb13f6ada58c283b6b94473ad276d849fa2146d17914b9967175db3c6c6f986a22ab242cc14f5669581807fb3f82a21bf6f6f1d7a160ad6
   languageName: node
   linkType: hard
 
@@ -567,7 +567,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "coolboard-smoketests@workspace:."
   dependencies:
-    "@clerk/testing": "npm:2.3.6"
+    "@clerk/testing": "npm:2.3.7"
     cypress: "npm:16.3.0"
     typescript: "npm:7.0.2"
   languageName: unknown
