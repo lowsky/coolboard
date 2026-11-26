@@ -35,7 +35,7 @@
     "graphql": "17.1.0",
     "graphql-scalars": "2.0.1",
     "graphql-tag": "2.12.7",
-    "graphql-yoga": "6.1.0",
+    "graphql-yoga": "6.1.1",
     "inter-ui": "4.1.1",
     "lucide-react": "1.75.0",
     "next": "16.4.6",
